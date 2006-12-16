@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.3' generator='JOSM'>
+<node id='1' lat='272' lon='182' />
+<node id='2' lat='153' lon='249' />
+<node id='3' lat='147' lon='126' />
+<node id='4' lat='354' lon='318' />
+<segment id='5' from='3' to='2' />
+<segment id='6' from='2' to='4' />
+<segment id='7' from='4' to='1' />
+<segment id='8' from='1' to='3' />
+</osm>

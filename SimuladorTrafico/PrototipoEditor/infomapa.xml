@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.3' generator='JOSM'>
+<node id='1' lat='287' lon='164' />
+<node id='2' lat='181' lon='175' />
+<node id='3' lat='99' lon='274' />
+<node id='4' lat='205' lon='340' />
+<node id='5' lat='323' lon='278' />
+<node id='6' lat='401' lon='187' />
+<node id='7' lat='223' lon='98' />
+<node id='8' lat='84' lon='169' />
+<segment id='9' from='8' to='7' />
+<segment id='10' from='7' to='6' />
+<segment id='11' from='6' to='5' />
+<segment id='12' from='1' to='5' />
+<segment id='13' from='1' to='2' />
+<segment id='14' from='2' to='4' />
+<segment id='15' from='4' to='4' />
+<segment id='16' from='3' to='3' />
+<segment id='17' from='8' to='8' />
+<segment id='18' from='3' to='3' />
+<segment id='19' from='4' to='2' />
+<segment id='20' from='8' to='2' />
+<segment id='21' from='4' to='5' />
+</osm>
