@@ -1,5 +1,8 @@
 package is.SimTraffic;
 
+import is.SimTraffic.Mapa.Mapa;
+import is.SimTraffic.Simulacion.Simulacion;
+
 import java.util.ArrayList;
 
 public class Modelo implements IModelo 

@@ -1,6 +1,8 @@
 
 package is.SimTraffic.Herramientas;
 
+import is.SimTraffic.IModelo;
+
 import java.io.File;
 
 public class HCargarMapa implements IHerramienta 

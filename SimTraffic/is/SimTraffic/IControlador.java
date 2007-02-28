@@ -1,5 +1,7 @@
 package is.SimTraffic;
 
+import is.SimTraffic.Herramientas.IHerramienta;
+
 
 public interface IControlador 
 {

@@ -1,5 +1,8 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
+
 import java.awt.Dimension;
 
 public interface IVehiculo 

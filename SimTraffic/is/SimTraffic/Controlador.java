@@ -1,6 +1,7 @@
 package is.SimTraffic;
 
 import is.SimTraffic.Herramientas.IHerramienta;
+import is.SimTraffic.Vista.IVista;
 
 
 public class Controlador implements IControlador 
