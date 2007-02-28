@@ -1,11 +1,11 @@
-package is.SimTraffic.Mapa.TipoNodo;
+package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoNodoManMade implements TipoNodo {
+public class TipoNodoManMade implements ITipoElemento {
 
 	/**
 	 * Características de Nodos asociadas a Construcciones (man_made)
 	 */
-	private char tipo="man_made";
+	private String tipo="man_made";
 	
 	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a una construccion)
@@ -19,25 +19,25 @@ public class TipoNodoManMade implements TipoNodo {
 	 lighthouse	Faro (en la costa)
 	 User Defined
 	 */
-	private char valorTipo;
+	private String valorTipo;
 	
-	public TipoNodoManMade(char valorTipo) {
+	public TipoNodoManMade(String valorTipo) {
 		// TODO Auto-generated constructor stub
 		this.valorTipo = valorTipo;
 	}
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 	
-	public char getValorTipo() {
+	public String getValorTipo() {
 		return valorTipo;
 	}
 	
 	/**
 	 * 
 	 */
-	public void setValorTipo(char valorTipo) {
+	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
 	}
 	

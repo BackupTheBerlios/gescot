@@ -1,11 +1,11 @@
-package is.SimTraffic.Mapa.TipoNodo;
+package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoNodoHighway implements TipoNodo {
+public class TipoNodoHighway implements ITipoElemento {
 
 	/**
 	 * Características de Nodos asociadas a Carreteras (Highway)
 	 */
-	private char tipo="highway";
+	private String tipo="highway";
 	
 	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a una carretera)
@@ -25,25 +25,25 @@ public class TipoNodoHighway implements TipoNodo {
 		bus_stop	Parada de autobús 	
 		User Defined
 	 */
-	private char valorTipo;
+	private String valorTipo;
 	
-	public TipoNodoHighway(char valorTipo) {
+	public TipoNodoHighway(String valorTipo) {
 		// TODO Auto-generated constructor stub
 		this.valorTipo = valorTipo;
 	}
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 	
-	public char getValorTipo() {
+	public String getValorTipo() {
 		return valorTipo;
 	}
 	
 	/**
 	 * 
 	 */
-	public void setValorTipo(char valorTipo) {
+	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
 	}
 	

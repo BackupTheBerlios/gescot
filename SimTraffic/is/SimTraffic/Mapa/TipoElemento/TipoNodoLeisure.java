@@ -1,11 +1,11 @@
-package is.SimTraffic.Mapa.TipoNodo;
+package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoNodoLeisure implements TipoNodo {
+public class TipoNodoLeisure implements ITipoElemento {
 
 	/**
 	 * Características de Nodos asociadas a  Recreo (Leisure)
 	 */
-	private char tipo="leisure";
+	private String tipo="leisure";
 	
 	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a un lugar de recreo)
@@ -24,25 +24,25 @@ public class TipoNodoLeisure implements TipoNodo {
 	 common	Plazas
 	 User Defined
 	 */
-	private char valorTipo;
+	private String valorTipo;
 	
-	public TipoNodoLeisure(char valorTipo) {
+	public TipoNodoLeisure(String valorTipo) {
 		// TODO Auto-generated constructor stub
 		this.valorTipo = valorTipo;
 	}
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 	
-	public char getValorTipo() {
+	public String getValorTipo() {
 		return valorTipo;
 	}
 	
 	/**
 	 * 
 	 */
-	public void setValorTipo(char valorTipo) {
+	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
 	}
 	

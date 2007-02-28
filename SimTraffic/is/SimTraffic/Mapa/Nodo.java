@@ -1,6 +1,6 @@
 package is.SimTraffic.Mapa;
 
-import is.SimTraffic.Mapa.TipoNodo.TipoNodo;
+import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Nodo {
 	 * Variable que indicará la categoría del nodo (asociado a una carretera, lugar de ocio, 
 	 * etc.) y su fin concreto.
 	 */
-	public TipoNodo tipoNodo;
+	public ITipoElemento tipoNodo;
 	
 	/**
 	 * Constructor de la clase nodo.<p>
