@@ -28,4 +28,12 @@ public class Posicion {
 			return false;
 		return true;
 	}
+	
+	public float getPosX() {
+		return posX;
+	}
+	
+	public float getPosY() {
+		return posY;
+	}
 }

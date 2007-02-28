@@ -2,6 +2,7 @@ package is.SimTraffic.Mapa;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Grupo ISTrafico
@@ -54,7 +55,7 @@ public class Mapa {
 	/**
 	 * @param señal
 	 */
-	public void instertar(Señal señal, Nodo nodo) {
+	public void insertar(Señal señal, Nodo nodo) {
 		if (señal != null && nodo != null && Nodos.contains(nodo)) {
 			Señales.add(señal);
 			nodo.setSeñal(señal);
@@ -84,27 +85,15 @@ public class Mapa {
 		return true;
 	}
 
-	/**
-	 * @return Nodo
-	 * @roseuid 45B8AA6301F0
-	 */
-	public Nodo getNodo() {
-		return null;
+	public List<Nodo> getNodos() {
+		return Nodos;
 	}
 
-	/**
-	 * @return Señal
-	 * @roseuid 45B8AA89021E
-	 */
-	public Señal getSeñal() {
-		return null;
+	public List<Señal> getSeñales() {
+		return Señales;
 	}
 
-	/**
-	 * @return Tramo
-	 * @roseuid 45B8AA9B03C4
-	 */
-	public Tramo getTramo() {
-		return null;
+	public List<Tramo> getTramos() {
+		return Tramos;
 	}
 }

@@ -32,52 +32,6 @@ public class Tramo {
 	}
 
 	/**
-	 * @return float
-	 * @roseuid 45B8AD5501C1
-	 */
-	public float getVelMax() {
-		return velocidadMax;
-	}
-
-	/**
-	 * @return int
-	 * @roseuid 45B8AD6403B5
-	 */
-	public int getNumCarrilesDir1() {
-		return numCarrilesDir1;
-	}
-
-	/**
-	 * @return int
-	 * @roseuid 45B8AD8B0338
-	 */
-	public int getNumCarrilesDir2() {
-		return numCarrilesDir2;
-	}
-
-	/**
-	 * @return int
-	 * @roseuid 45B8AD9A0309
-	 */
-	public int getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * @return
-	 */
-	public Nodo getNodoInicial() {
-		return nodoInicial;
-	}
-
-	/**
-	 * @return
-	 */
-	public Nodo getNodoFinal() {
-		return nodoFinal;
-	}
-
-	/**
 	 * Método para determinar si un nodo es uno de los de la lista.<p>
 	 * @param nodo
 	 * Nodo a comprobar
@@ -106,5 +60,45 @@ public class Tramo {
 		if (nodo.nodoFinal != this.nodoFinal)
 			return false;
 		return true;
+	}
+
+	public void setVelMax(float velmax) {
+		velocidadMax = velmax;
+	}
+
+	public float getVelMax() {
+		return velocidadMax;
+	}
+
+	public void setNumCarrilesDir1(int num) {
+		this.numCarrilesDir1 = num;
+	}
+	
+	public int getNumCarrilesDir1() {
+		return numCarrilesDir1;
+	}
+
+	public void setNumCarrilesDir2(int num) {
+		this.numCarrilesDir2 = num;
+	}
+	
+	public int getNumCarrilesDir2() {
+		return numCarrilesDir2;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+	
+	public int getTipo() {
+		return tipo;
+	}
+
+	public Nodo getNodoInicial() {
+		return nodoInicial;
+	}
+
+	public Nodo getNodoFinal() {
+		return nodoFinal;
 	}
 }

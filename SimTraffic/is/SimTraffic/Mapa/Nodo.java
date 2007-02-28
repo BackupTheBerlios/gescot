@@ -37,41 +37,12 @@ public class Nodo {
 	}
 
 	/**
-	 * @return ArrayList
-	 * @roseuid 45B8AC4903C4
+	 * @return List
 	 */
-	public ArrayList getTramos() {
-		return null;
+	public List<Tramo> getTramos() {
+		return tramos;
 	}
 
-	/**
-	 * @return float
-	 * @roseuid 45B8AC990105
-	 */
-	public float getEntrada() {
-		return 0;
-	}
-
-	/**
-	 * @return float
-	 * @roseuid 45B8ACB301F0
-	 */
-	public float getSalida() {
-		return 0;
-	}
-
-	/**
-	 * @return boolean
-	 * @roseuid 45B8ACBE0105
-	 */
-	public boolean getParada() {
-		return true;
-	}
-
-	public void setSeñal(Señal señal) {
-		this.señal = señal;
-	}
-	
 	public boolean equals(Object objeto) {
 		if (objeto == null)
 			return false;
@@ -81,5 +52,37 @@ public class Nodo {
 		if (nodo.pos != this.pos)
 			return false;
 		return true;
+	}
+	
+	public float getEntrada() {
+		return entrada;
+	}
+
+	public void setEntrada(float entrada) {
+		this.entrada = entrada;
+	}
+
+	public float getSalida() {
+		return salida;
+	}
+
+	public void setSalida(float salida) {
+		this.salida = salida;
+	}
+	
+	public boolean getParada() {
+		return true;
+	}
+
+	public void setParada(boolean parada) {
+		this.parada = parada;
+	}
+
+	public void setSeñal(Señal señal) {
+		this.señal = señal;
+	}
+
+	public Señal getSeñal() {
+		return señal;
 	}
 }
