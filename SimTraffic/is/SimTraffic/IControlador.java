@@ -1,6 +1,7 @@
 package is.SimTraffic;
 
 import is.SimTraffic.Herramientas.IHerramienta;
+import is.SimTraffic.Vista.IVista;
 
 
 public interface IControlador 
@@ -10,6 +11,12 @@ public interface IControlador
    @roseuid 45B8A7B103D4
     */
    public void crear();
+   
+   public void setModelo(IModelo modelo);
+   
+   public void setVista(IVista vista);
+   
+   public int deshacer();
    
    /**
    @param herramienta

@@ -1,18 +1,19 @@
 package is.SimTraffic.Simulacion;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Simulacion 
 {
-   private ArrayList vehiculos;
-   public Parametros theParametros;
+   private List<IVehiculo> vehiculos;
+   private Parametros theParametros;
    
    /**
    @roseuid 45B8B3A7025D
     */
    public Simulacion() 
    {
-    
+	   vehiculos = new ArrayList<IVehiculo>();
    }
    
    /**
@@ -59,5 +60,9 @@ public class Simulacion
    public int pausar() 
    {
     return 0;
+   }
+   
+   public List<IVehiculo> getVehiculos() {
+	   return vehiculos;
    }
 }
