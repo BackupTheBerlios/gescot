@@ -62,6 +62,13 @@ public class Tramo {
 		return true;
 	}
 
+	public int hashCode() {
+		int hash = 11;
+		hash = 211 * hash + nodoInicial.hashCode();
+		hash = 281 * hash + nodoFinal.hashCode();
+		return hash;
+	}
+	
 	public void setVelMax(float velmax) {
 		velocidadMax = velmax;
 	}

@@ -4,19 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nodo {
+	/**
+	 * Variable que indica la proporción de coches que entran por este nodo al mapa
+	 */
 	private float entrada;
 
+	/**
+	 * Variable que indica la proporción de coches que sale del mapa por este nodo
+	 */
 	private float salida;
 
+	/**
+	 * Variable booleana que indica si los coches deben parar al llegar a este nodo
+	 */
 	private boolean parada;
 
+	/**
+	 * Señal que regulara el trafico por este nodo
+	 */
 	public Señal señal;
 
+	/**
+	 * Variable que mantiene la posicion del nodo en el mapa
+	 */
 	private Posicion pos;
 
+	/**
+	 * Variable del tipo lista que mantiene todos los tramos que llegan a este nodo
+	 */
 	public List<Tramo> tramos;
 
 	/**
+	 * Consturtor de la clase nodo.<p>
+	 * Este constructor solo requiere la posicion donde se ubica el nodo,
+	 * el resto de la información la completa con valores por defecto.
+	 * 
 	 * @roseuid 45B8B3A80192
 	 */
 	public Nodo(Posicion pos) {
@@ -29,20 +51,34 @@ public class Nodo {
 	}
 
 	/**
-	 * @return Posicion
-	 * @roseuid 45B8ABD203D4
+	 * Método para añadir un nuevo tramo al nodo.<p>
+	 * Este método se encarga de actualizar la lista de tramos que llegan o salen
+	 * del nodo con un nuevo tramo.
+	 * @param tramo
+	 * Tramo a añadir
 	 */
-	public Posicion getPos() {
-		return null;
+	public void añadirTramo(Tramo tramo) {
+		if (tramo!= null && !tramos.contains(tramo)) {
+			tramos.add(tramo);
+		}
 	}
-
+	
 	/**
-	 * @return List
+	 * Método para quitar un tramo del nodo.<p>
+	 * Este método se encarga de, cuando sea posible, quitar un tramo dado de la
+	 * lista de tramos que salen o llegan a nodo.
+	 * @param tramo
+	 * Tramo a quitar.
 	 */
-	public List<Tramo> getTramos() {
-		return tramos;
+	public void quitarTramo(Tramo tramo) {
+		if (tramo != null & tramos.contains(tramo)){
+			tramos.remove(tramo);
+		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object objeto) {
 		if (objeto == null)
 			return false;
@@ -52,6 +88,10 @@ public class Nodo {
 		if (nodo.pos != this.pos)
 			return false;
 		return true;
+	}
+	
+	public int hashCode() {
+		return pos.hashCode();
 	}
 	
 	public float getEntrada() {
@@ -85,4 +125,13 @@ public class Nodo {
 	public Señal getSeñal() {
 		return señal;
 	}
+
+	public Posicion getPos() {
+		return null;
+	}
+
+	public List<Tramo> getTramos() {
+		return tramos;
+	}
+
 }

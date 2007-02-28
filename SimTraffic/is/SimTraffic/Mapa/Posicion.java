@@ -29,6 +29,13 @@ public class Posicion {
 		return true;
 	}
 	
+	public int hashCode() {
+		int hash = 7;
+		hash = 61 * hash + (int) (posX * 100000);
+		hash = 37 * hash + (int) (posY * 100000);
+		return hash;
+	}
+	
 	public float getPosX() {
 		return posX;
 	}
