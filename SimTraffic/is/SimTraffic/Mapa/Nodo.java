@@ -63,4 +63,12 @@ public class Nodo
    {
     return true;
    }
+   
+   public boolean equals(Object objeto) {
+	   if (objeto == null) return false;
+	   if (objeto.getClass() != this.getClass()) return false;
+	   Nodo nodo = (Nodo) objeto;
+	   if (nodo.posicion != this.posicion) return false;
+	   return true;
+   }
 }
