@@ -1,9 +1,11 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.*;
+import is.SimTraffic.Mapa.*;
 
 public class HEliminarNodo implements IHerramienta 
 {
+	private Nodo nodo;
    
    /**
    @roseuid 45C3154D02B7
@@ -13,6 +15,12 @@ public class HEliminarNodo implements IHerramienta
     
    }
    
+   public HEliminarNodo(Nodo nodo){
+	   this.nodo = nodo;
+   }
+
+   
+   
    /**
    @param modelo
    @return int
@@ -20,7 +28,8 @@ public class HEliminarNodo implements IHerramienta
     */
    public int hacer(IModelo modelo) 
    {
-    return 0;
+	   modelo.getMapa().eliminar(nodo);
+	   return 0;
    }
    
    /**
@@ -30,6 +39,7 @@ public class HEliminarNodo implements IHerramienta
     */
    public int deshacer(IModelo modelo) 
    {
-    return 0;
+	   modelo.getMapa().insertar(nodo);
+	   return 0;
    }
 }
