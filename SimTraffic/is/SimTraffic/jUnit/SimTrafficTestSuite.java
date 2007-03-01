@@ -18,6 +18,7 @@ public class SimTrafficTestSuite {
 	public static Test suite() {
 		    TestSuite suite = new TestSuite();
 		    suite.addTestSuite(MapaTest.class);
+		    suite.addTestSuite(NodoTest.class);
 		    return suite;
 		  }
 	/**

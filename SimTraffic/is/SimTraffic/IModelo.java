@@ -9,13 +9,17 @@ import java.util.List;
 public interface IModelo {
 
 	/**
+	 * Método para obtener la instancia acutal del mapa.
 	 * @return Mapa
+	 * Instancia actual del mapa
 	 * @roseuid 45B8A8B60376
 	 */
 	public Mapa getMapa();
 
 	/**
-	 * @return java.util.ArrayList
+	 * Método para obtener la lista actual de vehiculos en simualcion
+	 * @return java.util.List
+	 * Lista con los vehiculos en simulacion
 	 * @roseuid 45B8A8C60357
 	 */
 	public List<IVehiculo> getVehiculos();
