@@ -6,6 +6,10 @@ import is.SimTraffic.Simulacion.Simulacion;
 
 import java.util.List;
 
+/**
+ * @author Grupo ISTrafico
+ *
+ */
 public interface IModelo {
 
 	/**

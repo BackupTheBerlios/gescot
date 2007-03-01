@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
 public interface IVista {
@@ -16,4 +17,6 @@ public interface IVista {
 	 * @roseuid 45C1DFB203B8
 	 */
 	public void setModelo(IModelo modelo);
+	
+	public void setControlador(IControlador controlador);
 }

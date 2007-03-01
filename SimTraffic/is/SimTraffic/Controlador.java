@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Vista.IVista;
 
+/**
+ * @author Grupo ISTrafico
+ *
+ */
 public class Controlador implements IControlador {
 	/**
 	 * Mantiene la instancia acutal de la vista
