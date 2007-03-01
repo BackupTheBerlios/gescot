@@ -6,16 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nodo {
+	
+	//Decidimos incluir la clase de entradaSalida e incluir un atributo aqui de ese tipo
+	//que represente mejor las proporciones de los coches en franjas horarias
+	private EntradaSalida es;
 	/**
 	 * Variable que indica la proporción de coches que entran por este nodo al mapa
-	 */
-	private float entrada;
+	 *
+	 *private float entrada;
 
-	/**
 	 * Variable que indica la proporción de coches que sale del mapa por este nodo
-	 */
-	private float salida;
-
+	 *
+	 *private float salida;
+     */
+	
+	
 	/**
 	 * Variable booleana que indica si los coches deben parar al llegar a este nodo
 	 */
@@ -51,8 +56,7 @@ public class Nodo {
 	 */
 	public Nodo(Posicion pos) {
 		this.pos = pos;
-		entrada = 0.1f;
-		salida = 0.1f;
+		es = null;
 		parada = false;
 		señal = null;
 		tramos = new ArrayList<Tramo>();
@@ -102,22 +106,13 @@ public class Nodo {
 		return pos.hashCode();
 	}
 	
-	public float getEntrada() {
-		return entrada;
-	}
-
-	public void setEntrada(float entrada) {
-		this.entrada = entrada;
-	}
-
-	public float getSalida() {
-		return salida;
-	}
-
-	public void setSalida(float salida) {
-		this.salida = salida;
+	public EntradaSalida getEs(){
+		return es;
 	}
 	
+	public void setEs(EntradaSalida es){
+		this.es=es;
+	}
 	public boolean getParada() {
 		return true;
 	}
