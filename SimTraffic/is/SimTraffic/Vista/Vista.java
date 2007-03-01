@@ -49,7 +49,7 @@ public class Vista implements IVista {
 	}
 
 	public void setControlador(IControlador controlador) {
-		this.controlador controlador;
+		this.controlador = controlador;
 		
 	}
 }
