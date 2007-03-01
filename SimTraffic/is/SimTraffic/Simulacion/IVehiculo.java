@@ -1,12 +1,22 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
+
 
 import java.awt.Dimension;
 
 public interface IVehiculo 
 {
+
+	/**Estos metodos se incluyen porque son necesarios para relacionar
+	los vehiculos con los nodos de entrada salida y poder mantener el numero
+	 de coches que salen de un nodo acorde a las especificaciones*/
+   public void setNodoOrigen(Nodo nodo);
+   public Nodo getNodoOrigen();
+   public void setNodoDestino(Nodo nodo);
+   public Nodo getNodoDestino();
    
    /**
    @return Posicion

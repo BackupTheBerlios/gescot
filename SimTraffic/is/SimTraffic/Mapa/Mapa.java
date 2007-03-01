@@ -13,6 +13,8 @@ public class Mapa {
 	private ArrayList<Nodo> Nodos;
 
 	private ArrayList<Señal> Señales;
+	//En principio no hace falta este array de señales?? vienen
+	// incluidas en el array de nodos
 
 	private ArrayList<Tramo> Tramos;
 
