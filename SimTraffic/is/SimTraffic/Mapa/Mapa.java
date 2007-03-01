@@ -9,7 +9,7 @@ import java.util.List;
  * 
  */
 public class Mapa {
-	
+
 	private ArrayList<Nodo> Nodos;
 
 	private ArrayList<Señal> Señales;
@@ -40,40 +40,48 @@ public class Mapa {
 	 */
 	public void insertar(Nodo nodo) {
 		// verificar validez del nodo?
-		if (nodo != null)
+		if (nodo != null && !Nodos.contains(nodo))
 			Nodos.add(nodo);
 	}
 
 	/**
-	 * Metodo para insertar un tramo al mapa.<p>
-	 * Este metodo confirma que el tramo sea válido y que no exista ya en el mapa.
-	 * De cumplirse estas condiciones, lo agrega a la lista de tramos.
+	 * Metodo para insertar un tramo al mapa.
+	 * <p>
+	 * Este metodo confirma que el tramo sea válido (no es nulo y no empieza y
+	 * termina en el mismo nodo) y que no exista ya en el mapa. De cumplirse
+	 * estas condiciones, lo agrega a la lista de tramos.
+	 * 
 	 * @param tramo
-	 * Tramo que se desea añadir.
+	 *            Tramo que se desea añadir.
 	 */
 	public void insertar(Tramo tramo) {
-		if (tramo != null && !Tramos.contains(tramo)) {
-			if (Nodos.contains(tramo.getNodoInicial())
-					&& Nodos.contains(tramo.getNodoFinal()))
-				tramo.getNodoInicial().añadirTramo(tramo);
-				tramo.getNodoFinal().añadirTramo(tramo);
-				Tramos.add(tramo);
-		}
+		if (tramo != null && !Tramos.contains(tramo))
+			if (!tramo.getNodoFinal().equals(tramo.getNodoInicial()))
+				if (Nodos.contains(tramo.getNodoInicial())
+						&& Nodos.contains(tramo.getNodoFinal())) {
+					tramo.getNodoInicial().añadirTramo(tramo);
+					tramo.getNodoFinal().añadirTramo(tramo);
+					Tramos.add(tramo);
+				}
+
 	}
 
 	/**
-	 * Metodo para insertar una señal relacionada con un nodo al mapa.<p>
-	 * Este método confirma que la señal es valida y que el nodo existe, y
-	 * añade la señal al mapa relacionandola con el nodo.
+	 * Metodo para insertar una señal relacionada con un nodo al mapa.
+	 * <p>
+	 * Este método confirma que la señal es valida y que el nodo existe, y añade
+	 * la señal al mapa relacionandola con el nodo.
+	 * 
 	 * @param señal
 	 */
 	public void insertar(Señal señal, Nodo nodo) {
 		if (señal != null && nodo != null && Nodos.contains(nodo)) {
-			if (!Señales.contains(señal)) Señales.add(señal);
+			if (!Señales.contains(señal))
+				Señales.add(señal);
 			nodo.setSeñal(señal);
 		}
 	}
-	
+
 	/**
 	 * Método para eliminar un nodo del mapa, si es posible.
 	 * <p>
@@ -96,12 +104,15 @@ public class Mapa {
 		}
 		return true;
 	}
-	
-	public void eliminar(Tramo tramo){
+
+	/**
+	 * @param tramo
+	 */
+	public void eliminar(Tramo tramo) {
 		if (tramo != null && Tramos.contains(tramo)) {
 			Tramos.remove(tramo);
-		tramo.getNodoFinal().quitarTramo(tramo);
-		tramo.getNodoInicial().quitarTramo(tramo);
+			tramo.getNodoFinal().quitarTramo(tramo);
+			tramo.getNodoInicial().quitarTramo(tramo);
 		}
 	}
 

@@ -93,7 +93,7 @@ public class Nodo {
 		if (objeto.getClass() != this.getClass())
 			return false;
 		Nodo nodo = (Nodo) objeto;
-		if (nodo.pos != this.pos)
+		if (!nodo.pos.equals(this.pos))
 			return false;
 		return true;
 	}

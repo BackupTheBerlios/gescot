@@ -1,16 +1,38 @@
 package is.SimTraffic.Mapa;
 
+/**
+ * @author usuario_local
+ *
+ */
 public class Tramo {
+	/**
+	 * 
+	 */
 	private float velocidadMax;
 
+	/**
+	 * 
+	 */
 	private int numCarrilesDir1;
 
+	/**
+	 * 
+	 */
 	private int numCarrilesDir2;
 
+	/**
+	 * 
+	 */
 	private int tipo;
 
+	/**
+	 * 
+	 */
 	private Nodo nodoInicial;
 
+	/**
+	 * 
+	 */
 	private Nodo nodoFinal;
 
 	/**
@@ -32,11 +54,12 @@ public class Tramo {
 	}
 
 	/**
-	 * Método para determinar si un nodo es uno de los de la lista.<p>
+	 * Método para determinar si un nodo es uno de los de la lista.
+	 * <p>
+	 * 
 	 * @param nodo
-	 * Nodo a comprobar
-	 * @return
-	 * Cierto si pertenece, falso en otro caso.
+	 *            Nodo a comprobar
+	 * @return Cierto si pertenece, falso en otro caso.
 	 */
 	public boolean tieneNodo(Nodo nodo) {
 		if (nodoInicial == nodo)
@@ -46,7 +69,9 @@ public class Tramo {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object objeto) {
@@ -54,21 +79,19 @@ public class Tramo {
 			return false;
 		if (objeto.getClass() != this.getClass())
 			return false;
-		Tramo nodo = (Tramo) objeto;
-		if (nodo.nodoInicial != this.nodoInicial)
-			return false;
-		if (nodo.nodoFinal != this.nodoFinal)
+		Tramo tramo = (Tramo) objeto;
+		if (this.tieneNodo(tramo.nodoInicial)
+				&& this.tieneNodo(tramo.nodoInicial))
 			return false;
 		return true;
 	}
 
 	public int hashCode() {
 		int hash = 11;
-		hash = 211 * hash + nodoInicial.hashCode();
-		hash = 281 * hash + nodoFinal.hashCode();
+		hash = 211 * hash + nodoInicial.hashCode() + nodoFinal.hashCode();
 		return hash;
 	}
-	
+
 	public void setVelMax(float velmax) {
 		velocidadMax = velmax;
 	}
@@ -80,7 +103,7 @@ public class Tramo {
 	public void setNumCarrilesDir1(int num) {
 		this.numCarrilesDir1 = num;
 	}
-	
+
 	public int getNumCarrilesDir1() {
 		return numCarrilesDir1;
 	}
@@ -88,7 +111,7 @@ public class Tramo {
 	public void setNumCarrilesDir2(int num) {
 		this.numCarrilesDir2 = num;
 	}
-	
+
 	public int getNumCarrilesDir2() {
 		return numCarrilesDir2;
 	}
@@ -96,7 +119,7 @@ public class Tramo {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public int getTipo() {
 		return tipo;
 	}
