@@ -7,7 +7,7 @@ public interface IVista {
 	/**
 	 * @roseuid 45C1DF090280
 	 */
-	public void mostar();
+	public void mostrar();
 
 	public void actualizar();
 
