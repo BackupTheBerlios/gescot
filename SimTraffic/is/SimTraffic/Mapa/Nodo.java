@@ -9,17 +9,11 @@ public class Nodo {
 	
 	//Decidimos incluir la clase de entradaSalida e incluir un atributo aqui de ese tipo
 	//que represente mejor las proporciones de los coches en franjas horarias
-	private EntradaSalida es;
 	/**
-	 * Variable que indica la proporción de coches que entran por este nodo al mapa
-	 *
-	 *private float entrada;
-
-	 * Variable que indica la proporción de coches que sale del mapa por este nodo
-	 *
-	 *private float salida;
-     */
-	
+	 * Variable tipo EntradaSalida que almacena la proporción de coches que entran
+	 * y salen del nodo en las diferentes franjas horarias.
+	 */
+	private EntradaSalida es;
 	
 	/**
 	 * Variable booleana que indica si los coches deben parar al llegar a este nodo

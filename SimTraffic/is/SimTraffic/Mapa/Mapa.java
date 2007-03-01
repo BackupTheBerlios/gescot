@@ -5,20 +5,48 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * Clase que matiene una instancia de un mapa.
+ * <p>
+ * Esta clase mantendra nodos, señales y tramos. En esta se podran representar
+ * todas las características de un mapa OSM, como nodos y tramos con diferentes
+ * características. Además incluye algunas características adiciones como
+ * señales y otras propiedades en tramos y nodos para llevar a cabo la
+ * simulacion.<br>
+ * Por útlimo, cabe destacar que todos los nodos, señales y tramos estan
+ * interconectados, con lo cual no es escrictamente necesario tenerlos todos en
+ * listas (bastaría con tener los nodos) pero sin embargo hacerlo así simplifica
+ * recorrer los elementos (por ejemplo, cuando se necesita encontrar una señal
+ * con características particulares) y mejora la gestion (facilita verificar si
+ * se añaden y eliminan correctamente las cosas.
+ * 
  * @author Grupo ISTrafico
  * 
  */
 public class Mapa {
 
+	/**
+	 * Mantiene la lista de nodos del mapa
+	 */
 	private ArrayList<Nodo> Nodos;
 
+	/**
+	 * Mantiene la lita de señales del mapa
+	 */
 	private ArrayList<Señal> Señales;
-	//En principio no hace falta este array de señales?? vienen
-	// incluidas en el array de nodos
 
+	// En principio no hace falta este array de señales?? vienen
+	// incluidas en el array de nodos (Nacho, ya lo conteste en la descripcion
+	// de la clase,
+	// cuando quieras borra el comentario)
+
+	/**
+	 * Mantiene la lista de tramos del Mapa
+	 */
 	private ArrayList<Tramo> Tramos;
 
 	/**
+	 * Crea un nuevo mapa, sin ningun nodo, tramo o señal.
+	 * 
 	 * @roseuid 45B8B3A802CA
 	 */
 	public Mapa() {
@@ -36,7 +64,13 @@ public class Mapa {
 	}
 
 	/**
+	 * Método para insertar un nodo al mapa.
+	 * <p>
+	 * Este método se asegura de que el nodo no sea vacío y de que no este en la
+	 * lista. Cuando es así, agrega el nodo al mapa.
+	 * 
 	 * @param nodo
+	 *            Nodo que se desea agregar al mapa.
 	 */
 	public void insertar(Nodo nodo) {
 		// verificar validez del nodo?
@@ -73,6 +107,9 @@ public class Mapa {
 	 * la señal al mapa relacionandola con el nodo.
 	 * 
 	 * @param señal
+	 *            Señal que se desea agregar al mapa
+	 * @param nodo
+	 *            Nodo al que se desea ligar la señal
 	 */
 	public void insertar(Señal señal, Nodo nodo) {
 		if (señal != null && nodo != null && Nodos.contains(nodo)) {
@@ -106,7 +143,13 @@ public class Mapa {
 	}
 
 	/**
+	 * Método par a eliminar un tramo del mapa.
+	 * <p>
+	 * Este método se encarga de remover el tramo de la lista correspondiente,
+	 * así como actualizar los componentes con los que esta relacionado.
+	 * 
 	 * @param tramo
+	 *            Tramo que se desea quitar de la lista
 	 */
 	public void eliminar(Tramo tramo) {
 		if (tramo != null && Tramos.contains(tramo)) {

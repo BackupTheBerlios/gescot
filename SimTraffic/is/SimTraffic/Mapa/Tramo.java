@@ -1,37 +1,38 @@
 package is.SimTraffic.Mapa;
 
 /**
- * @author usuario_local
- *
+ * @author Grupo ISTrafico
  */
 public class Tramo {
 	/**
-	 * 
+	 * Velocidad maxima a la que se puede cirucular por el tramo
 	 */
 	private float velocidadMax;
 
 	/**
-	 * 
+	 * Numero de carriles que tiene el tramo en la dirección del nodo incial al
+	 * final
 	 */
 	private int numCarrilesDir1;
 
 	/**
-	 * 
+	 * Número de carriles que tiene el tramo en la dirección del nodo final al
+	 * inicial
 	 */
 	private int numCarrilesDir2;
 
 	/**
-	 * 
+	 * Tipo de nodo
 	 */
 	private int tipo;
 
 	/**
-	 * 
+	 * Almacena la referencia al nodo donde comienza el tramo
 	 */
 	private Nodo nodoInicial;
 
 	/**
-	 * 
+	 * Almacena la referencia al nodo donde termina el tramo
 	 */
 	private Nodo nodoFinal;
 
@@ -62,9 +63,9 @@ public class Tramo {
 	 * @return Cierto si pertenece, falso en otro caso.
 	 */
 	public boolean tieneNodo(Nodo nodo) {
-		if (nodoInicial == nodo)
+		if (nodoInicial.equals(nodo))
 			return true;
-		if (nodoFinal == nodo)
+		if (nodoFinal.equals(nodo))
 			return true;
 		return false;
 	}
