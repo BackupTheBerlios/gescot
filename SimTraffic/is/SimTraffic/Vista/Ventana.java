@@ -191,7 +191,7 @@ public class Ventana extends JFrame
 	
 	public void paint(Graphics g)
 	{
-		
+		paintComponents(g);
 	}
 
 }
