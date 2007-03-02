@@ -60,7 +60,6 @@ public class ConversorUTM {
 	 */
 	static double ArcLengthOfMeridian(double phi) {
 		double alpha, beta, gamma, delta, epsilon, n;
-		double result;
 
 		/* Precalculate n */
 		n = (sm_a - sm_b) / (sm_a + sm_b);
@@ -85,13 +84,9 @@ public class ConversorUTM {
 		epsilon = (315.0 * Math.pow(n, 4.0) / 512.0);
 
 		/* Now calculate the sum of the series and return */
-		result = alpha
-				* (phi + (beta * Math.sin(2.0 * phi))
-						+ (gamma * Math.sin(4.0 * phi))
-						+ (delta * Math.sin(6.0 * phi)) + (epsilon * Math
-						.sin(8.0 * phi)));
-
-		return result;
+		return (alpha * (phi + (beta * Math.sin(2.0 * phi))
+				+ (gamma * Math.sin(4.0 * phi)) + (delta * Math.sin(6.0 * phi)) + (epsilon * Math
+				.sin(8.0 * phi))));
 	}
 
 	/*
@@ -106,12 +101,8 @@ public class ConversorUTM {
 	 * central meridian is the radian equivalent of [-177,+177].
 	 * 
 	 */
-	static double UTMCentralMeridian(double zone) {
-		double cmeridian;
-
-		cmeridian = DegToRad(-183.0 + (zone * 6.0));
-
-		return cmeridian;
+	static double UTMCentralMeridian(int zone) {
+		return DegToRad(-183.0 + ((double) zone * 6.0));
 	}
 
 	/*
@@ -130,7 +121,6 @@ public class ConversorUTM {
 	 */
 	static double FootpointLatitude(double y) {
 		double y_, alpha_, beta_, gamma_, delta_, epsilon_, n;
-		double result;
 
 		/* Precalculate n (Eq. 10.18) */
 		n = (sm_a - sm_b) / (sm_a + sm_b);
@@ -159,11 +149,9 @@ public class ConversorUTM {
 		epsilon_ = (1097.0 * Math.pow(n, 4.0) / 512.0);
 
 		/* Now calculate the sum of the series (Eq. 10.21) */
-		result = y_ + (beta_ * Math.sin(2.0 * y_))
-				+ (gamma_ * Math.sin(4.0 * y_)) + (delta_ * Math.sin(6.0 * y_))
-				+ (epsilon_ * Math.sin(8.0 * y_));
-
-		return result;
+		return (y_ + (beta_ * Math.sin(2.0 * y_))
+				+ (gamma_ * Math.sin(4.0 * y_)) + (delta_ * Math.sin(6.0 * y_)) + (epsilon_ * Math
+				.sin(8.0 * y_)));
 	}
 
 	/*
@@ -383,7 +371,10 @@ public class ConversorUTM {
 	 * 
 	 */
 	public static double[] LatLonToUTMXY(double lat, double lon, int zone) {
-		double[] xy = new double[2];
+		double[] xy;
+		lat = DegToRad(lat);
+		lon = DegToRad(lon);
+		
 		xy = MapLatLonToXY(lat, lon, UTMCentralMeridian(zone));
 
 		/* Adjust easting and northing for UTM system. */
@@ -412,9 +403,9 @@ public class ConversorUTM {
 	 * Returns: The function does not return a value.
 	 * 
 	 */
-	public static double[] UTMXYToLatLon(double x, double y, double zone,
+	public static double[] UTMXYToLatLon(double x, double y, int zone,
 			boolean southhemi) {
-		double latlon[] = new double[2];
+		double latlon[];
 		double cmeridian;
 
 		x -= 500000.0;
@@ -428,7 +419,8 @@ public class ConversorUTM {
 
 		cmeridian = UTMCentralMeridian(zone);
 		latlon = MapXYToLatLon(x, y, cmeridian);
-
+		latlon[0] = RadToDeg (latlon[0]);
+		latlon[1] = RadToDeg (latlon[1]);
 		return latlon;
 	}
 
