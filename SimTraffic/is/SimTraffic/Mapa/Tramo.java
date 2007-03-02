@@ -82,9 +82,9 @@ public class Tramo {
 			return false;
 		Tramo tramo = (Tramo) objeto;
 		if (this.tieneNodo(tramo.nodoInicial)
-				&& this.tieneNodo(tramo.nodoInicial))
-			return false;
-		return true;
+				&& this.tieneNodo(tramo.nodoFinal))
+			return true;
+		return false;
 	}
 
 	public int hashCode() {
