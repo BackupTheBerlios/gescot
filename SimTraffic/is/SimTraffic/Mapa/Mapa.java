@@ -34,11 +34,6 @@ public class Mapa {
 	 */
 	private ArrayList<Señal> Señales;
 
-	// En principio no hace falta este array de señales?? vienen
-	// incluidas en el array de nodos (Nacho, ya lo conteste en la descripcion
-	// de la clase,
-	// cuando quieras borra el comentario)
-
 	/**
 	 * Mantiene la lista de tramos del Mapa
 	 */
