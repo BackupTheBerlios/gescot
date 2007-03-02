@@ -27,6 +27,7 @@ public class Modelo implements IModelo {
 	 */
 	private Simulacion simulacion;
 
+	
 	/**
 	 * Constructor de la clase modelo.<p>
 	 * Este constructor inicializa el mapa y la simulación a sus valores por defecto.

@@ -153,6 +153,10 @@ public class Mapa {
 			tramo.getNodoInicial().quitarTramo(tramo);
 		}
 	}
+	
+	public void eliminar(Señal señal){
+		Señales.remove(señal);
+	}
 
 	public List<Nodo> getNodos() {
 		return Nodos;

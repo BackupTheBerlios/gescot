@@ -6,6 +6,7 @@ import is.SimTraffic.Simulacion.Simulacion;
 
 import java.util.List;
 
+
 /**
  * @author Grupo ISTrafico
  *
@@ -39,4 +40,6 @@ public interface IModelo {
 	 * @roseuid 45B8A95A0347
 	 */
 	public void setMapa(Mapa mapa);
+	
+	
 }
