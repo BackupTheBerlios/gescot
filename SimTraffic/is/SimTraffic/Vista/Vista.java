@@ -1,7 +1,10 @@
 package is.SimTraffic.Vista;
 
+import java.awt.Image;
+
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.Mapa;
 
 public class Vista implements IVista {
 	/**
@@ -50,6 +53,11 @@ public class Vista implements IVista {
 
 	public void setControlador(IControlador controlador) {
 		this.controlador = controlador;
+	}
+	
+	public Image dibujarMapa(){
+		Mapa mapa = modelo.getMapa();
+		Image imagen = ();
 		
 	}
 }

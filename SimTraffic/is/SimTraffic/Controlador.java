@@ -50,6 +50,7 @@ public class Controlador implements IControlador {
 	 * @roseuid 45C1E08103E7
 	 */
 	public int herramienta(IHerramienta herramienta) {
+		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
 		if (resultado != 0) { // fallo
 			return resultado;
