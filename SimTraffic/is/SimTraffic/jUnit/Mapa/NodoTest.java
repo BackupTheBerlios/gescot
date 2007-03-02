@@ -4,7 +4,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import junit.framework.TestCase;
-
+import java.util.*;
 public class NodoTest extends TestCase {
 
 	/*
@@ -26,6 +26,8 @@ public class NodoTest extends TestCase {
 	/*
 	 * Test method for 'is.SimTraffic.Mapa.Nodo.equals(Object)'
 	 */
+	
+	
 	public void testEqualsObject() {
 		Posicion pos = new Posicion(1.0f,1.0f);
 		Nodo nodoprueba = new Nodo(pos);
@@ -39,14 +41,22 @@ public class NodoTest extends TestCase {
 			fail("Nodos tendrian que ser diferentes");	
 	}
 	
-	public void testAñadirTramo(Tramo tramo) {
+	public void testAñadirTramo() {
 		Nodo nodo1 = new Nodo (new Posicion(100,100));
 		Nodo nodo2 = new Nodo (new Posicion(200,200));
 		Tramo tramo1 = new Tramo (nodo1,nodo2);
 		nodo1.añadirTramo(tramo1);
-		assertEquals(tramo1.getNodoInicial(),nodo1);
-		assertEquals(tramo1.getNodoFinal(),nodo2);		
-		
+		assertTrue(nodo1.getTramos().contains(tramo1));
+					
+	}
+	
+	public void testQuitarTramo() {
+		Nodo nodo1 = new Nodo (new Posicion(100,100));
+		Nodo nodo2 = new Nodo (new Posicion(200,200));
+		Tramo tramo1 = new Tramo (nodo1,nodo2);
+		nodo1.añadirTramo(tramo1);
+		nodo1.quitarTramo(tramo1);
+		assertTrue(nodo1.getTramos().isEmpty());
 		
 	}
 
