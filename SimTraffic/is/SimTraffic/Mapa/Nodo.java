@@ -17,8 +17,13 @@ public class Nodo {
 	
 	/**
 	 * Variable booleana que indica si los coches deben parar al llegar a este nodo
+	 *
+	 *private boolean parada;
+	 *Creemos que las paradas de autobus deben residir en la linea de autobus,ya que
+	 *cada linea tiene sus paradas y de esta forma tendria el problema de que varias lineas se paran en todos los nodos 
+	 *de parada.
+	 *
 	 */
-	private boolean parada;
 
 	/**
 	 * Señal que regulara el trafico por este nodo
@@ -51,7 +56,6 @@ public class Nodo {
 	public Nodo(Posicion pos) {
 		this.pos = pos;
 		es = null;
-		parada = false;
 		señal = null;
 		tramos = new ArrayList<Tramo>();
 	}
@@ -107,13 +111,7 @@ public class Nodo {
 	public void setEs(EntradaSalida es){
 		this.es=es;
 	}
-	public boolean getParada() {
-		return true;
-	}
 
-	public void setParada(boolean parada) {
-		this.parada = parada;
-	}
 
 	public void setSeñal(Señal señal) {
 		this.señal = señal;
