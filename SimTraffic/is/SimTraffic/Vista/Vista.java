@@ -55,9 +55,11 @@ public class Vista implements IVista {
 		this.controlador = controlador;
 	}
 	
-	public Image dibujarMapa(){
-		Mapa mapa = modelo.getMapa();
-		Image imagen = ();
+	/*public Image dibujarMapa(){
+		// implementacion en http://josm.eigenheimstrasse.de/svn/src/org/openstreetmap/josm/
 		
-	}
+		Mapa mapa = modelo.getMapa();
+		//Image imagen = ();
+		
+	}*/
 }

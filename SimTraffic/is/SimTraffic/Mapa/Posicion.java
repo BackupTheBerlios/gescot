@@ -43,12 +43,12 @@ public class Posicion {
 	/**
 	 * Constructur de la clase, latitudes y longitudes
 	 * 
-	 * @param lat
-	 *            Float que representa la latitud del punto
-	 * @param lon
-	 *            Float que representa la longitud del punto
+	 * @param d
+	 *            Double que representa la latitud del punto
+	 * @param e
+	 *            Double que representa la longitud del punto
 	 */
-	public Posicion(float lat, float lon) {
+	public Posicion(double d, double e) {
 		this.lat = lat;
 		this.lon = lon;
 		double[] xy = new double[2];
@@ -108,5 +108,10 @@ public class Posicion {
 	
 	public int getPosY() {
 		return posY;
+	}
+	
+	public static void main(String[] args) {
+		Posicion pos = new Posicion(5.0,5.0);
+		System.out.println(pos.getPosX()+ " " + pos.getPosY());
 	}
 }
