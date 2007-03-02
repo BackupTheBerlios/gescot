@@ -1,4 +1,4 @@
-package is.SimTraffic.jUnit;
+package is.SimTraffic.jUnit.Mapa;
 
 import java.util.ArrayList;
 import java.util.List;

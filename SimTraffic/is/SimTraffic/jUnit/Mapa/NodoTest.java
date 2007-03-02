@@ -1,7 +1,8 @@
-package is.SimTraffic.jUnit;
+package is.SimTraffic.jUnit.Mapa;
 
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
 import junit.framework.TestCase;
 
 public class NodoTest extends TestCase {
@@ -36,6 +37,17 @@ public class NodoTest extends TestCase {
 		Nodo nodoprueba3 = new Nodo(new Posicion(0.5f,0.5f));
 		if (nodoprueba.equals(nodoprueba3))
 			fail("Nodos tendrian que ser diferentes");	
+	}
+	
+	public void testAñadirTramo(Tramo tramo) {
+		Nodo nodo1 = new Nodo (new Posicion(100,100));
+		Nodo nodo2 = new Nodo (new Posicion(200,200));
+		Tramo tramo1 = new Tramo (nodo1,nodo2);
+		nodo1.añadirTramo(tramo1);
+		assertEquals(tramo1.getNodoInicial(),nodo1);
+		assertEquals(tramo1.getNodoFinal(),nodo2);		
+		
+		
 	}
 
 }
