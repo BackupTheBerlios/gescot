@@ -56,7 +56,7 @@ public class Ventana extends JFrame
 	{
 		this.modelo = modelo;
 		setSize(800,600);
-		setTitle("SimTraffic v1.0");
+		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		menuBar = new JMenuBar();
@@ -145,7 +145,7 @@ public class Ventana extends JFrame
 			}
 		});
 		panel.add(añadirNodoButton);
-		añadirNodoButton.setText("Añadir Nodo");
+		añadirNodoButton.setText("Añadir Nodo(s)");
 
 		añadirTramoButton = new JButton();
 		añadirTramoButton.addActionListener(new ActionListener() {
@@ -155,7 +155,7 @@ public class Ventana extends JFrame
 			}
 		});
 		panel.add(añadirTramoButton);
-		añadirTramoButton.setText("Añadir Tramo");
+		añadirTramoButton.setText("Añadir Tramo(s)");
 
 		eliminarNodoButton = new JButton();
 		eliminarNodoButton.addActionListener(new ActionListener() {
@@ -165,7 +165,7 @@ public class Ventana extends JFrame
 			}
 		});
 		panel.add(eliminarNodoButton);
-		eliminarNodoButton.setText("Eliminar Nodo");
+		eliminarNodoButton.setText("Eliminar Nodo(s)");
 
 		eliminartramoButton = new JButton();
 		eliminartramoButton.addActionListener(new ActionListener() {
@@ -175,7 +175,7 @@ public class Ventana extends JFrame
 			}
 		});
 		panel.add(eliminartramoButton);
-		eliminartramoButton.setText("EliminarTramo");
+		eliminartramoButton.setText("Eliminar Tramo(s)");
 
 		otrosButton = new JButton();
 		panel.add(otrosButton);
