@@ -4,17 +4,15 @@ import is.SimTraffic.IModelo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -22,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
@@ -51,6 +50,7 @@ public class Ventana extends JFrame
 	 * Panel para editar los mapas. Puede ser que haya que cambiarlo por una JLabel.
 	 * */
 	private JPanel panel_edicion;
+	private JPanel superior;
 	
 	public Ventana(IModelo modelo)
 	{
@@ -187,6 +187,32 @@ public class Ventana extends JFrame
 		scrollPane.setViewportView(panel_edicion);
 		panel_edicion.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		panel_edicion.setBackground(Color.WHITE);
+		
+		superior = new JPanel();
+		getContentPane().add(superior, BorderLayout.NORTH);
+		
+		JToolBar archivoTB = new JToolBar();
+		JToolBar edicionTB = new JToolBar();
+		superior.add(archivoTB);
+		superior.add(edicionTB);
+		
+		superior.setLayout(new BoxLayout(superior, BoxLayout.LINE_AXIS));
+		JButton nuevoTB = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\nuevo.gif"));
+		nuevoTB.setMargin(new Insets(1,1,1,1));
+		JButton cargarTB = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\abrir.gif"));
+		cargarTB.setMargin(new Insets(1,1,1,1));
+		JButton guardarTB = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\guardar.gif"));
+		guardarTB.setMargin(new Insets(1,1,1,1));
+		JButton copiarTB = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\copiar.gif"));
+		copiarTB.setMargin(new Insets(1,1,1,1));
+		JButton pegarTB = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\pegar.gif"));
+		pegarTB.setMargin(new Insets(1,1,1,1));
+		
+		archivoTB.add(nuevoTB);
+		archivoTB.add(cargarTB);
+		archivoTB.add(guardarTB);
+		edicionTB.add(copiarTB);
+		edicionTB.add(pegarTB);
 	}
 	
 	public void paint(Graphics g)

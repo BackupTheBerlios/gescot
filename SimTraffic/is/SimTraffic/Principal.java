@@ -3,7 +3,15 @@
  */
 package is.SimTraffic;
 
-import is.SimTraffic.Vista.*;
+import is.SimTraffic.Vista.IVista;
+import is.SimTraffic.Vista.Vista;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 /**
  * Clase principal del programa.
@@ -28,6 +36,12 @@ public class Principal {
 	 *            main
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		IModelo modelo = new Modelo();
 		IVista vista = new Vista(modelo);
 		IControlador controlador = new Controlador();
