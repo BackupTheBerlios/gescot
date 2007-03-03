@@ -1,8 +1,6 @@
 package is.SimTraffic.jUnit.Mapa;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.math.*;
 import is.SimTraffic.Mapa.*;
 import junit.framework.TestCase;
 
@@ -56,7 +54,27 @@ public class MapaTest extends TestCase {
 	 * Test method for 'is.SimTraffic.Mapa.Mapa.insertar(Tramo)'
 	 */
 	public void testInsertarTramo() {
-
+		Nodo nodo2 = new Nodo (new Posicion(200,200));
+		Nodo nodo3 = new Nodo (new Posicion(300,300));
+		Nodo nodo4 = new Nodo (new Posicion(400,400));
+		Tramo tramo1 = new Tramo (nodo,nodo2);
+		Tramo tramo2 = new Tramo (nodo3,nodo4);
+		mapa.insertar(tramo1);
+		/*si insertamos directamente el tramo, sin que estén los nodos insertados,
+		  no se debe insertar el tramo*/
+		assertTrue (mapa.getTramos().size()==0);
+		mapa.insertar(nodo);
+		mapa.insertar(nodo2);
+		mapa.insertar(tramo1);
+		assertEquals (mapa.getTramos().get(0),tramo1);
+		mapa.insertar(tramo1);
+		//si insertamos el mismo tramo dos veces, no se debe insertar la segunda
+		assertTrue (mapa.getTramos().size()==1);
+		mapa.insertar(nodo3);
+		mapa.insertar(nodo4);
+		mapa.insertar(tramo2);
+		assertEquals (mapa.getTramos().get(0),tramo1);
+		assertEquals (mapa.getTramos().get(1),tramo2);		
 	}
 
 	/*

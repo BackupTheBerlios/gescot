@@ -1,10 +1,11 @@
 package is.SimTraffic.jUnit.Mapa;
 
+import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 import junit.framework.TestCase;
-import java.util.*;
 public class NodoTest extends TestCase {
 
 	/*
@@ -59,5 +60,69 @@ public class NodoTest extends TestCase {
 		assertTrue(nodo1.getTramos().isEmpty());
 		
 	}
+	
+	public void testGetEs(){
+		Nodo nodo = new Nodo (new Posicion(100,100));
+		int[] franjas = new int [3];
+		franjas[0]=60;
+		franjas[1]=10;
+		franjas[2]=30;
+		int cut = 5;
+		nodo.setEs(new EntradaSalida(cut,franjas));
+		EntradaSalida es = nodo.getEs();
+		assertEquals(es.getCochesUnidadTiempo(),cut);
+		assertEquals(es.getValoresFranjaHoraria(),franjas);
+		
+	}
+	
+	
+	
+	public void testSetEsEntradaSalida (){
+		Nodo nodo = new Nodo (new Posicion(100,100));
+		int[] franjas = new int [3];
+		franjas[0]=60;
+		franjas[1]=10;
+		franjas[2]=30;
+		int cut = 5;
+		EntradaSalida es = new EntradaSalida(cut,franjas);
+		nodo.setEs(es);
+		assertEquals(nodo.getEs(),es);
+			
+	}
+
+	public void testSetSeñalSeñal() {
+		Señal s = new Señal ("Prueba");
+		Nodo nodo1 = new Nodo (new Posicion(100,100));
+		nodo1.setSeñal(s);
+		assertEquals(nodo1.getSeñal(),s);
+	}
+
+	public void testGetSeñal() {
+		Señal s = new Señal ("Prueba");
+		Nodo nodo1 = new Nodo (new Posicion(100,100));
+		nodo1.setSeñal(s);
+		assertEquals(nodo1.getSeñal(),s);
+	}
+
+	public void testGetPos() {
+		Posicion pos = new Posicion (100,100);
+		Nodo nodo1 = new Nodo (pos);
+		assertEquals(nodo1.getPos(),pos);
+	}
+
+	public void testGetTramos() {
+		Nodo nodo1 = new Nodo (new Posicion(100,100));
+		Nodo nodo2 = new Nodo (new Posicion(200,200));
+		Nodo nodo3 = new Nodo (new Posicion(300,300));
+		Tramo tramo1 = new Tramo (nodo1,nodo2);
+		Tramo tramo2 = new Tramo (nodo1,nodo3);
+		nodo1.añadirTramo(tramo1);
+		nodo1.añadirTramo(tramo2);
+		assertEquals(nodo1.getTramos().get(0),tramo1);
+		assertEquals(nodo1.getTramos().get(1),tramo2);
+		
+		
+	}
+	
 
 }
