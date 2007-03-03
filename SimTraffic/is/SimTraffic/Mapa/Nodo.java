@@ -122,7 +122,7 @@ public class Nodo {
 	}
 
 	public Posicion getPos() {
-		return null;
+		return pos;
 	}
 
 	public List<Tramo> getTramos() {
