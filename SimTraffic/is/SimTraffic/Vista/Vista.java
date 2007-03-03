@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
@@ -55,11 +56,15 @@ public class Vista implements IVista {
 		this.controlador = controlador;
 	}
 	
-	/*public Image dibujarMapa(){
+	public Image dibujarMapa(){
 		// implementacion en http://josm.eigenheimstrasse.de/svn/src/org/openstreetmap/josm/
 		
 		Mapa mapa = modelo.getMapa();
-		//Image imagen = ();
+		Image imagen = Toolkit.getDefaultToolkit().createImage((byte[]) null);
+		imagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 		
-	}*/
+		
+		return imagen;
+		
+	}
 }

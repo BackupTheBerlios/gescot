@@ -43,12 +43,12 @@ public class Posicion {
 	/**
 	 * Constructur de la clase, latitudes y longitudes
 	 * 
-	 * @param d
+	 * @param lat
 	 *            Double que representa la latitud del punto
-	 * @param e
+	 * @param lon
 	 *            Double que representa la longitud del punto
 	 */
-	public Posicion(double d, double e) {
+	public Posicion(double lat, double lon) {
 		this.lat = lat;
 		this.lon = lon;
 		double[] xy = new double[2];
@@ -80,17 +80,17 @@ public class Posicion {
 		if (objeto.getClass() != this.getClass())
 			return false;
 		Posicion pos = (Posicion) objeto;
-		if (pos.lon != this.lon)
+		if (pos.posX != this.posX)
 			return false;
-		if (pos.lat != this.lat)
+		if (pos.posY != this.posY)
 			return false;
 		return true;
 	}
 
 	public int hashCode() {
 		int hash = 7;
-		hash = 61 * hash + (int) (lat * 100000);
-		hash = 37 * hash + (int) (lon * 100000);
+		hash = 61 * hash + posX;
+		hash = 37 * hash + posY;
 		return hash;
 	}
 
