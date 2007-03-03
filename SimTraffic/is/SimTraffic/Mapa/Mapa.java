@@ -39,6 +39,14 @@ public class Mapa {
 	 */
 	private ArrayList<Tramo> Tramos;
 
+	private int maxX;
+
+	private int minX;
+
+	private int minY;
+
+	private int maxY;
+
 	/**
 	 * Crea un nuevo mapa, sin ningun nodo, tramo o señal.
 	 * 
@@ -62,15 +70,31 @@ public class Mapa {
 	 * Método para insertar un nodo al mapa.
 	 * <p>
 	 * Este método se asegura de que el nodo no sea vacío y de que no este en la
-	 * lista. Cuando es así, agrega el nodo al mapa.
+	 * lista. Cuando es así, agrega el nodo al mapa.<br>
+	 * Además, este método actualiza las posiciones máxima y mínima de las coordenadas
+	 * del mapa, útiles a la hora de representarlo.
 	 * 
 	 * @param nodo
 	 *            Nodo que se desea agregar al mapa.
 	 */
 	public void insertar(Nodo nodo) {
-		// verificar validez del nodo?
 		if (nodo != null && !Nodos.contains(nodo))
 			Nodos.add(nodo);
+		if (Nodos.size() == 1) {
+			maxY = nodo.getPos().getPosY();
+			minY = nodo.getPos().getPosY();
+			maxX = nodo.getPos().getPosX();
+			minX = nodo.getPos().getPosX();
+		} else {
+			if (maxY < nodo.getPos().getPosY())
+				maxY = nodo.getPos().getPosY();
+			if (minY > nodo.getPos().getPosY())
+				minY = nodo.getPos().getPosY();
+			if (maxX < nodo.getPos().getPosX())
+				maxX = nodo.getPos().getPosX();
+			if (minX > nodo.getPos().getPosX())
+				minX = nodo.getPos().getPosX();
+		}
 	}
 
 	/**
@@ -153,8 +177,8 @@ public class Mapa {
 			tramo.getNodoInicial().quitarTramo(tramo);
 		}
 	}
-	
-	public void eliminar(Señal señal){
+
+	public void eliminar(Señal señal) {
 		Señales.remove(señal);
 	}
 
@@ -169,4 +193,21 @@ public class Mapa {
 	public List<Tramo> getTramos() {
 		return Tramos;
 	}
+
+	public int getMaxX() {
+		return maxX;
+	}
+
+	public int getMaxY() {
+		return maxY;
+	}
+
+	public int getMinX() {
+		return minX;
+	}
+
+	public int getMinY() {
+		return minY;
+	}
+	
 }
