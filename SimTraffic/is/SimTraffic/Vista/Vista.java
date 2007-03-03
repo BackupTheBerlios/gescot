@@ -7,6 +7,10 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Mapa;
 
+/**
+ * @author Grupo ISTrafico
+ *
+ */
 public class Vista implements IVista {
 	/**
 	 * Mantiene la instancia actual del modelo, para saber que mostrar en
@@ -54,17 +58,5 @@ public class Vista implements IVista {
 
 	public void setControlador(IControlador controlador) {
 		this.controlador = controlador;
-	}
-	
-	public Image dibujarMapa(){
-		// implementacion en http://josm.eigenheimstrasse.de/svn/src/org/openstreetmap/josm/
-		
-		Mapa mapa = modelo.getMapa();
-		Image imagen = Toolkit.getDefaultToolkit().createImage((byte[]) null);
-		imagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-		
-		
-		return imagen;
-		
 	}
 }

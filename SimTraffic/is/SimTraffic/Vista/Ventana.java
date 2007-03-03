@@ -1,65 +1,30 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Vista.Acciones.*;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+import javax.swing.*;
+import javax.swing.border.*;
 
 // No tiene un solo comentario!!!
 // no pude haber métdos tan largos!!!
+/**
+ * @author Grupo ISTrafico
+ *
+ */
 public class Ventana extends JFrame {
-	private JMenuItem pegarMenuItem;
 
-	private JMenuItem copiarMenuItem;
-
-	private JMenu edicionMenu;
-
-	private JMenuItem salirMenuItem;
+	private static final long serialVersionUID = -3549855005952631901L;
 
 	private JPanel panel;
 
-	private JLabel herramientasLabel;
-
 	private JScrollPane scrollPane;
 
-	private JButton otrosButton;
-
-	private JButton eliminartramoButton;
-
-	private JButton eliminarNodoButton;
-
-	private JButton añadirTramoButton;
-
-	private JButton añadirNodoButton;
-
 	private JPanel panel_herramientas;
-
-	private JMenuItem guardarmapaMenuItem;
-
-	private JMenuItem cargarMapaMenuItem;
-
-	private JMenuItem nuevoMapaMenuItem;
-
-	private JMenu archivoMenu;
 
 	private JMenuBar menuBar;
 
@@ -71,15 +36,21 @@ public class Ventana extends JFrame {
 	 */
 	private PanelMapa panel_mapa;
 
+	/**
+	 * 
+	 */
 	private JPanel superior;
 
+	/**
+	 * @param modelo
+	 */
 	public Ventana(IModelo modelo) {
 		this.modelo = modelo;
 		setSize(800, 600);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		crearMenu();
+		crearBarraMenu();
 
 		crearHerramientas();
 
@@ -89,46 +60,46 @@ public class Ventana extends JFrame {
 
 	}
 
-	public void crearMenu() {
+	/**
+	 * 
+	 */
+	public void crearBarraMenu() {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		archivoMenu = new JMenu();
+		crearMenuArchivo();
+		
+		crearMenuEdicion();
+	}
+
+	/**
+	 * 
+	 */
+	public void crearMenuArchivo() {
+		JMenu archivoMenu = new JMenu();
 		archivoMenu.setText("Archivo");
 		menuBar.add(archivoMenu);
 
-		nuevoMapaMenuItem = new JMenuItem();
-		nuevoMapaMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
+		JMenuItem nuevoMapaMenuItem = new JMenuItem();
+		nuevoMapaMenuItem.addActionListener(new AccionNuevo());
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		archivoMenu.add(nuevoMapaMenuItem);
 
 		archivoMenu.addSeparator();
 
-		cargarMapaMenuItem = new JMenuItem();
-		cargarMapaMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		JMenuItem cargarMapaMenuItem = new JMenuItem();
+		cargarMapaMenuItem.addActionListener(new AccionAbrir());
 		cargarMapaMenuItem.setText("Cargar Mapa");
 		archivoMenu.add(cargarMapaMenuItem);
 
-		guardarmapaMenuItem = new JMenuItem();
-		guardarmapaMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		JMenuItem guardarmapaMenuItem = new JMenuItem();
+		guardarmapaMenuItem.addActionListener(new AccionGuardar());
 		guardarmapaMenuItem.setText("GuardarMapa");
 		archivoMenu.add(guardarmapaMenuItem);
 
 		archivoMenu.addSeparator();
 
-		salirMenuItem = new JMenuItem();
+		JMenuItem salirMenuItem = new JMenuItem();
 		salirMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -137,20 +108,31 @@ public class Ventana extends JFrame {
 		salirMenuItem.setText("Salir");
 		archivoMenu.add(salirMenuItem);
 
-		edicionMenu = new JMenu();
+	}
+	
+	/**
+	 * 
+	 */
+	public void crearMenuEdicion() {
+		JMenu edicionMenu = new JMenu();
 		edicionMenu.setText("Edición");
 		menuBar.add(edicionMenu);
 
-		copiarMenuItem = new JMenuItem();
+		JMenuItem copiarMenuItem = new JMenuItem();
+		copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
 		edicionMenu.add(copiarMenuItem);
-
-		pegarMenuItem = new JMenuItem();
+		
+		JMenuItem pegarMenuItem = new JMenuItem();
+		pegarMenuItem.addActionListener(new AccionPegar());
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
-
+		
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void crearHerramientas() {
 		panel_herramientas = new JPanel();
 		panel_herramientas.setLayout(new BorderLayout());
@@ -162,12 +144,12 @@ public class Ventana extends JFrame {
 		panel.setLayout(gridLayout);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 
-		herramientasLabel = new JLabel();
+		JLabel herramientasLabel = new JLabel();
 		panel.add(herramientasLabel);
 		herramientasLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		herramientasLabel.setText("Herramientas");
 
-		añadirNodoButton = new JButton();
+		JButton añadirNodoButton = new JButton();
 		añadirNodoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -176,7 +158,7 @@ public class Ventana extends JFrame {
 		panel.add(añadirNodoButton);
 		añadirNodoButton.setText("Añadir Nodo(s)");
 
-		añadirTramoButton = new JButton();
+		JButton añadirTramoButton = new JButton();
 		añadirTramoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -185,7 +167,7 @@ public class Ventana extends JFrame {
 		panel.add(añadirTramoButton);
 		añadirTramoButton.setText("Añadir Tramo(s)");
 
-		eliminarNodoButton = new JButton();
+		JButton eliminarNodoButton = new JButton();
 		eliminarNodoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -194,7 +176,7 @@ public class Ventana extends JFrame {
 		panel.add(eliminarNodoButton);
 		eliminarNodoButton.setText("Eliminar Nodo(s)");
 
-		eliminartramoButton = new JButton();
+		JButton eliminartramoButton = new JButton();
 		eliminartramoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -203,12 +185,15 @@ public class Ventana extends JFrame {
 		panel.add(eliminartramoButton);
 		eliminartramoButton.setText("Eliminar Tramo(s)");
 
-		otrosButton = new JButton();
+		JButton otrosButton = new JButton();
 		panel.add(otrosButton);
 		otrosButton.setText("Otros...");
 
 	}
 
+	/**
+	 * 
+	 */
 	public void crearBotonesSuperiores() {
 		superior = new JPanel();
 		getContentPane().add(superior, BorderLayout.NORTH);
@@ -222,18 +207,27 @@ public class Ventana extends JFrame {
 		JButton nuevoTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\nuevo.gif"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
+		nuevoTB.addActionListener(new AccionNuevo());
+		
 		JButton cargarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\abrir.gif"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
+		cargarTB.addActionListener(new AccionAbrir());
+		
 		JButton guardarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\guardar.gif"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
+		guardarTB.addActionListener(new AccionGuardar());
+		
 		JButton copiarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\copiar.gif"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
+		copiarTB.addActionListener(new AccionCopiar());
+		
 		JButton pegarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\pegar.gif"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
+		pegarTB.addActionListener(new AccionCortar());
 
 		archivoTB.add(nuevoTB);
 		archivoTB.add(cargarTB);
@@ -243,6 +237,9 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void añadirPanelMapa() {
 
 		//scrollPane = new JScrollPane();

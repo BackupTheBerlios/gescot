@@ -13,14 +13,14 @@ import is.SimTraffic.Mapa.*;
 import javax.swing.JPanel;
 
 /**
+ * Clase (por ahora provisional) para representar simplemente el mapa en pantalla.<p>
+ * Utiliza iteradores para recorrer los distintos componentes del mapa y dibujarlos.
+ *
  * @author Grupo ISTrafico
  * 
  */
 public class PanelMapa extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3680412115222562074L;
 
 	private IModelo modelo;
@@ -33,6 +33,10 @@ public class PanelMapa extends JPanel {
 
 	private boolean recrear;
 
+	/**
+	 * @param tamX
+	 * @param tamY
+	 */
 	public PanelMapa(int tamX, int tamY) {
 		super();
 		setSize(tamX, tamY);
@@ -43,6 +47,13 @@ public class PanelMapa extends JPanel {
 		recrear = true;
 	}
 
+	/**
+	 * Para establecer el modelo donde esta la infromación.<p>
+	 * Se utliza este método para establecer el modelo y no el contructor, dado que
+	 * el modelo podría cambiar.
+	 * @param modelo
+	 * IModelo con el modelo a mostrar
+	 */
 	public void setModelo(IModelo modelo) {
 		this.modelo = modelo;
 		recrear = true;
@@ -63,6 +74,10 @@ public class PanelMapa extends JPanel {
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
 			pintar(g, inodos.next());
+		}
+		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
+		while(itramos.hasNext()) {
+			pintar(g, itramos.next());
 		}
 	}
 
