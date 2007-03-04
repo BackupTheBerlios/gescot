@@ -42,13 +42,19 @@ public class Nodo implements ElementoMapa {
 	/**
 	 * Variable del tipo lista que mantiene todos los tramos que llegan a este nodo
 	 */
-	public List<Tramo> tramos;
+	private List<Tramo> tramos;
 	
 	/**
 	 * Variable que indicará la categoría del nodo (asociado a una carretera, lugar de ocio, 
 	 * etc.) y su fin concreto.
 	 */
-	public ITipoElemento tipoNodo;
+	private ITipoElemento tipoNodo;
+	
+	/**
+	 * Identificador en OSM del nodo. Cada nodo tiene un identificador entero único, que puede
+	 * ser positivo o negativo pero siempre distinto de 0.
+	 */
+	private int ID;
 	
 	/**
 	 * Constructor de la clase nodo.<p>
@@ -128,6 +134,14 @@ public class Nodo implements ElementoMapa {
 
 	public List<Tramo> getTramos() {
 		return tramos;
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	
+	public void setID(int id) {
+		this.ID = id;
 	}
 
 }
