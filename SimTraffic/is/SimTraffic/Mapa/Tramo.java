@@ -3,7 +3,7 @@ package is.SimTraffic.Mapa;
 /**
  * @author Grupo ISTrafico
  */
-public class Tramo {
+public class Tramo implements ElementoMapa {
 	/**
 	 * Velocidad maxima a la que se puede cirucular por el tramo
 	 */

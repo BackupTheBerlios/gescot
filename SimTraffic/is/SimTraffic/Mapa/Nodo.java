@@ -5,7 +5,11 @@ import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nodo {
+/**
+ * @author Grupo ISTrafico
+ *
+ */
+public class Nodo implements ElementoMapa {
 	
 	//Decidimos incluir la clase de entradaSalida e incluir un atributo aqui de ese tipo
 	//que represente mejor las proporciones de los coches en franjas horarias
@@ -86,9 +90,6 @@ public class Nodo {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	public boolean equals(Object objeto) {
 		if (objeto == null)
 			return false;

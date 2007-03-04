@@ -3,6 +3,7 @@ package is.SimTraffic.Vista;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Acciones.*;
+import is.SimTraffic.Vista.EsuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
 
 import java.awt.*;
@@ -16,7 +17,7 @@ import javax.swing.border.*;
 // no pude haber métdos tan largos!!!
 /**
  * @author Grupo ISTrafico
- *
+ * 
  */
 public class Ventana extends JFrame {
 
@@ -31,8 +32,10 @@ public class Ventana extends JFrame {
 	private JMenuBar menuBar;
 
 	private IModelo modelo;
-	
+
 	private IControlador controlador;
+
+	EscuchaRaton escucha;
 
 	/**
 	 * Panel para editar los mapas. Puede ser que haya que cambiarlo por una
@@ -54,6 +57,8 @@ public class Ventana extends JFrame {
 		setSize(800, 600);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.escucha = null;
+		panel_mapa = new PanelMapa(200, 200);
 
 		crearBarraMenu();
 
@@ -73,7 +78,7 @@ public class Ventana extends JFrame {
 		setJMenuBar(menuBar);
 
 		crearMenuArchivo();
-		
+
 		crearMenuEdicion();
 	}
 
@@ -114,7 +119,7 @@ public class Ventana extends JFrame {
 		archivoMenu.add(salirMenuItem);
 
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -127,14 +132,14 @@ public class Ventana extends JFrame {
 		copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
 		edicionMenu.add(copiarMenuItem);
-		
+
 		JMenuItem pegarMenuItem = new JMenuItem();
 		pegarMenuItem.addActionListener(new AccionPegar());
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
-		
+
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -155,11 +160,9 @@ public class Ventana extends JFrame {
 		herramientasLabel.setText("Herramientas");
 
 		JButton añadirNodoButton = new JButton();
-		añadirNodoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Ventana.this.panel_mapa.addMouseListener(new MLAñadirNodo(Ventana.this.panel_mapa,controlador, modelo));
-			}
-		});
+		añadirNodoButton.addActionListener(new AccionSobreMapa(
+				new MLAñadirNodo(modelo, controlador, panel_mapa),
+				this));
 		panel.add(añadirNodoButton);
 		añadirNodoButton.setText("Añadir Nodo(s)");
 
@@ -213,22 +216,22 @@ public class Ventana extends JFrame {
 				"is\\SimTraffic\\Vista\\Imagenes\\nuevo.gif"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
 		nuevoTB.addActionListener(new AccionNuevo());
-		
+
 		JButton cargarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\abrir.gif"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
 		cargarTB.addActionListener(new AccionAbrir());
-		
+
 		JButton guardarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\guardar.gif"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
 		guardarTB.addActionListener(new AccionGuardar());
-		
+
 		JButton copiarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\copiar.gif"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
 		copiarTB.addActionListener(new AccionCopiar());
-		
+
 		JButton pegarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\pegar.gif"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
@@ -249,7 +252,7 @@ public class Ventana extends JFrame {
 
 		//scrollPane = new JScrollPane();
 		//getContentPane().add(scrollPane);
-		panel_mapa = new PanelMapa(200, 200);
+		//panel_mapa = new PanelMapa(200, 200);
 		getContentPane().add(panel_mapa);
 		//scrollPane.setViewportView(panel_mapa);
 		panel_mapa.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -258,8 +261,20 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Método que reemplasa el escucha actual del panel_mapa con uno nuevo<p>
+	 * 
+	 * @param escucha
+	 * Implementación de EscuchaRaton herramientas sobre el mapa.
+	 */
+	public void cambiarEscucha(EscuchaRaton escucha) {
+		if (this.escucha != null)
+			this.escucha.desactivar();
+		this.escucha = escucha;
+	}
+
 	public void paint(Graphics g) {
-		//panel_mapa.dibujar();
+		// panel_mapa.dibujar();
 		paintComponents(g);
 	}
 
