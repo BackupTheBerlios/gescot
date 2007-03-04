@@ -4,12 +4,30 @@ import junit.framework.TestCase;
 import is.SimTraffic.Mapa.*;
 
 
+/**
+ * Clase de prueba para probar la clase Tramo
+ * 
+ */
+
 public class TramoTest extends TestCase {
 	
+	/**
+	 * Nodo para hacer pruebas
+	 */
 	private Nodo nodo1;
+	/**
+	 * Nodo para hacer pruebas
+	 */
 	private Nodo nodo2;
+	/**
+	 * Tramo para hacer pruebas
+	 */
 	private Tramo tramo1;
-		
+	
+	/**
+	 * Método para hacer la inicialización de los atributos
+	 * de prueba
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		nodo1=new Nodo(new Posicion(100,100));
@@ -19,8 +37,9 @@ public class TramoTest extends TestCase {
 		
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.hashCode()'
+	/**
+	 * Método de prueba para hashCode()
+	 * Se comprueba que el valor del hashCode calculado es el esperado
 	 */
 	public void testHashCode() {
 		int hash = tramo1.hashCode();
@@ -30,8 +49,10 @@ public class TramoTest extends TestCase {
 		assertEquals(hashEsperada,hash);
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.Tramo(Nodo, Nodo)'
+	/**
+	 * Método de prueba para la constructora de Tramo
+	 * Se comprueba que los nodos inicial y final se actualizacn correctamente, 
+	 * y que los valores de número de carriles y los demás atributos son correctos
 	 */
 	public void testTramo() {
 		assertEquals(tramo1.getNodoInicial(),nodo1);
@@ -44,8 +65,10 @@ public class TramoTest extends TestCase {
 		
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.tieneNodo(Nodo)'
+	/**
+	 * Método de prueba para tieneNodo(Nodo)
+	 * Se comprueba que devuelve el valor correcto cuando un tramo contiene el
+	 * nodo o no 
 	 */
 	public void testTieneNodo() {
 		assertTrue(tramo1.tieneNodo(nodo1));
@@ -54,8 +77,9 @@ public class TramoTest extends TestCase {
 		assertFalse(tramo1.tieneNodo(nodo3));
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.equals(Object)'
+	/**
+	 * Método de prueba para equals(Object)
+	 * Se comprueba que los nodos inicial y final son iguales
 	 */
 	public void testEqualsObject() {
 		Tramo tramo2 = new Tramo (nodo1,nodo2);
@@ -66,8 +90,9 @@ public class TramoTest extends TestCase {
 		
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.setVelMax(float)'
+	/**
+	 * Método de prueba para setVelMax(float)
+	 * Se comprueba que se modifica el valor de velMax correctamente
 	 */
 	public void testSetVelMax() {
 		float velmax = 150;
@@ -76,8 +101,9 @@ public class TramoTest extends TestCase {
 		
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getVelMax()'
+	/**
+	 * Método de prueba para getVelMax()
+	 * Se comprueba que el valor devuelto es el correcto
 	 */
 	public void testGetVelMax() {
 		float velmax = 150;
@@ -85,8 +111,9 @@ public class TramoTest extends TestCase {
 		assertEquals(tramo1.getVelMax(),velmax);
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.setNumCarrilesDir1(int)'
+	/**
+	 * Método de prueba para setNumCarrilesDir1(int)
+	 * Se comprueba que se modifica correctamente el atributo
 	 */
 	public void testSetNumCarrilesDir1() {
 		int numDir1 = 2;
@@ -94,8 +121,9 @@ public class TramoTest extends TestCase {
 		assertEquals (numDir1,tramo1.getNumCarrilesDir1());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getNumCarrilesDir1()'
+	/**
+	 * Método de prueba para getNumCarrilesDir1(int)
+	 * Se comprueba que el valor devuelto es correcto
 	 */
 	public void testGetNumCarrilesDir1() {
 		int numDir1 = 2;
@@ -103,8 +131,9 @@ public class TramoTest extends TestCase {
 		assertEquals (numDir1,tramo1.getNumCarrilesDir1());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.setNumCarrilesDir2(int)'
+	/**
+	 * Método de prueba para setNumCarrilesDir2(int)
+	 * Se comprueba que se modifica correctamente el atributo
 	 */
 	public void testSetNumCarrilesDir2() {
 		int numDir2 = 2;
@@ -112,8 +141,9 @@ public class TramoTest extends TestCase {
 		assertEquals (numDir2,tramo1.getNumCarrilesDir2());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getNumCarrilesDir2()'
+	/**
+	 * Método de prueba para getNumCarrilesDir2(int)
+	 * Se comprueba que el valor devuelto es correcto
 	 */
 	public void testGetNumCarrilesDir2() {
 		int numDir2 = 2;
@@ -121,8 +151,9 @@ public class TramoTest extends TestCase {
 		assertEquals (numDir2,tramo1.getNumCarrilesDir2());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.setTipo(int)'
+	/**
+	 * Método de prueba para setTipo(String)
+	 * Se comprueba que el valor de tipo se modifica correctamente
 	 */
 	public void testSetTipo() {
 		int tipo = 5;
@@ -130,8 +161,9 @@ public class TramoTest extends TestCase {
 		assertEquals(tipo,tramo1.getTipo());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getTipo()'
+	/**
+	 * Método de prueba para getTipo()
+	 * Se comprueba que el valor devuelto de tipo es correcto
 	 */
 	public void testGetTipo() {
 		int tipo = 5;
@@ -139,16 +171,18 @@ public class TramoTest extends TestCase {
 		assertEquals(tipo,tramo1.getTipo());
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getNodoInicial()'
+	/**
+	 * Método de prueba para getNodoInicial()
+	 * Se comprueba que el nodo devuelto tiene los valores correctos
 	 */
 	public void testGetNodoInicial() {
 		Nodo nodoIni = tramo1.getNodoInicial();
 		assertEquals(nodo1,nodoIni);
 	}
 
-	/*
-	 * Test method for 'is.SimTraffic.Mapa.Tramo.getNodoFinal()'
+	/**
+	 * Método de prueba para getNodoFinal()
+	 * Se comprueba que el nodo devuelto tiene los valores correctos
 	 */
 	public void testGetNodoFinal() {
 		Nodo nodoFin = tramo1.getNodoFinal();

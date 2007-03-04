@@ -4,6 +4,10 @@ import java.util.List;
 import is.SimTraffic.Mapa.*;
 import junit.framework.TestCase;
 
+/**
+ * Clase JUnit para probar la clase Mapa
+ */
+
 public class MapaTest extends TestCase {
 	
 	private Mapa mapa;
