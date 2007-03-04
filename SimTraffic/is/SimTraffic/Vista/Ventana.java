@@ -184,14 +184,14 @@ public class Ventana extends JFrame {
 		panel.add(eliminarNodoButton);
 		eliminarNodoButton.setText("Eliminar Nodo(s)");
 
-		JButton eliminartramoButton = new JButton();
-		eliminartramoButton.addActionListener(new ActionListener() {
+		JButton StartStopNodoButton = new JButton();
+		StartStopNodoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		panel.add(eliminartramoButton);
-		eliminartramoButton.setText("Eliminar Tramo(s)");
+		panel.add(StartStopNodoButton);
+		StartStopNodoButton.setText("Comenzar simulación (Ejecutar)");
 
 		JButton otrosButton = new JButton();
 		panel.add(otrosButton);
