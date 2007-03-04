@@ -34,14 +34,16 @@ public class Vista implements IVista {
 	 */
 	public Vista(IModelo modelo) {
 		setModelo(modelo);
-		ventana = new Ventana(modelo);
 	}
 
 	/**
 	 * @roseuid 45C1DF84033B
 	 */
 	public void mostrar() {
-		ventana.setVisible(true);
+		if (controlador != null) {
+			ventana = new Ventana(modelo, controlador);
+			ventana.setVisible(true);
+		}
 	}
 
 	public void actualizar() {

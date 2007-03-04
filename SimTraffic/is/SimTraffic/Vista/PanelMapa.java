@@ -3,6 +3,7 @@
  */
 package is.SimTraffic.Vista;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Iterator;
@@ -13,9 +14,12 @@ import is.SimTraffic.Mapa.*;
 import javax.swing.JPanel;
 
 /**
- * Clase (por ahora provisional) para representar simplemente el mapa en pantalla.<p>
- * Utiliza iteradores para recorrer los distintos componentes del mapa y dibujarlos.
- *
+ * Clase (por ahora provisional) para representar simplemente el mapa en
+ * pantalla.
+ * <p>
+ * Utiliza iteradores para recorrer los distintos componentes del mapa y
+ * dibujarlos.
+ * 
  * @author Grupo ISTrafico
  * 
  */
@@ -48,11 +52,13 @@ public class PanelMapa extends JPanel {
 	}
 
 	/**
-	 * Para establecer el modelo donde esta la infromación.<p>
-	 * Se utliza este método para establecer el modelo y no el contructor, dado que
-	 * el modelo podría cambiar.
+	 * Para establecer el modelo donde esta la infromación.
+	 * <p>
+	 * Se utliza este método para establecer el modelo y no el contructor, dado
+	 * que el modelo podría cambiar.
+	 * 
 	 * @param modelo
-	 * IModelo con el modelo a mostrar
+	 *            IModelo con el modelo a mostrar
 	 */
 	public void setModelo(IModelo modelo) {
 		this.modelo = modelo;
@@ -66,31 +72,73 @@ public class PanelMapa extends JPanel {
 
 	}
 
+	/**
+	 * Método que recera la imagen del mapa a partir de la infromación del
+	 * modelo.
+	 * <p>
+	 * 
+	 */
 	public void recrearMapa() {
 		if (modelo == null)
 			return;
-		mapa = this.createImage(tamX, tamY);
+		Dimension tamaño = this.getSize();
+		tamX = tamaño.width;
+		tamY = tamaño.height;
+		if (tamX == 0 || tamY == 0)
+			mapa = this.createImage(200, 200);
+		else
+			mapa = this.createImage(tamX, tamY);
 		Graphics g = mapa.getGraphics();
+		g.drawOval(20, 20, 4, 4);
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
 			pintar(g, inodos.next());
 		}
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
-		while(itramos.hasNext()) {
+		while (itramos.hasNext()) {
 			pintar(g, itramos.next());
 		}
 	}
 
+	/**
+	 * Método que recalula la posicion en X de un punto del mapa en la pantalla.
+	 * <p>
+	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
+	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
+	 * otra información pertinente.
+	 * 
+	 * @param posX
+	 *            Entero que representa la posicion en el mapa
+	 * @return Entero que representa una posicion en la pantalla
+	 */
 	public int recalculaX(int posX) {
-		return (int) ((posX - modelo.getMapa().getMinX()) / (modelo.getMapa()
-				.getMaxX() - modelo.getMapa().getMinX()))
-				* this.getWidth();
+		/*
+		 * if (modelo.getMapa() .getMaxX() - modelo.getMapa().getMinX() == 0)
+		 * return (int) (posX); return (int) ((posX -
+		 * modelo.getMapa().getMinX()) / (modelo.getMapa() .getMaxX() -
+		 * modelo.getMapa().getMinX())) this.getWidth();
+		 */
+		return posX;
 	}
 
+	/**
+	 * Método que recalula la posicion en Y de un punto del mapa en la pantalla.
+	 * <p>
+	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
+	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
+	 * otra información pertinente.
+	 * 
+	 * @param posX
+	 *            Entero que representa la posicion en el mapa
+	 * @return Entero que representa una posicion en la pantalla
+	 */
 	public int recalculaY(int posY) {
-		return (int) ((posY - modelo.getMapa().getMinY()) / (modelo.getMapa()
-				.getMaxY() - modelo.getMapa().getMinY()))
-				* this.getHeight();
+		/*
+		 * if (modelo.getMapa() .getMaxY() - modelo.getMapa().getMinY() == 0)
+		 * return (int) (posY); return (int) ((posY -
+		 * modelo.getMapa().getMinY()) / (modelo.getMapa() .getMaxY() -
+		 * modelo.getMapa().getMinY())) this.getHeight();
+		 */return posY;
 	}
 
 	public void pintar(Graphics g, Nodo nodo) {
@@ -107,6 +155,11 @@ public class PanelMapa extends JPanel {
 
 	}
 
+	public void repaint() {
+		recrear = true;
+		super.repaint();
+	}
+
 	public void paintComponent(Graphics g) {
 		if (modelo == null)
 			return;
@@ -114,8 +167,8 @@ public class PanelMapa extends JPanel {
 			mapa = super.createImage(tamX, tamY);
 			recrearMapa();
 		}
-		this.getGraphics().drawImage(mapa, 0, 0, null);
-
+		g.drawImage(mapa, 0, 0, null);
+		g.drawString("fps: ", 80, 80);
 	}
 
 }

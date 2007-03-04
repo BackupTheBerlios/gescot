@@ -1,7 +1,9 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Acciones.*;
+import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,6 +31,8 @@ public class Ventana extends JFrame {
 	private JMenuBar menuBar;
 
 	private IModelo modelo;
+	
+	private IControlador controlador;
 
 	/**
 	 * Panel para editar los mapas. Puede ser que haya que cambiarlo por una
@@ -44,8 +48,9 @@ public class Ventana extends JFrame {
 	/**
 	 * @param modelo
 	 */
-	public Ventana(IModelo modelo) {
+	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
+		this.controlador = controlador;
 		setSize(800, 600);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -152,7 +157,7 @@ public class Ventana extends JFrame {
 		JButton añadirNodoButton = new JButton();
 		añadirNodoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				Ventana.this.panel_mapa.addMouseListener(new MLAñadirNodo(Ventana.this.panel_mapa,controlador, modelo));
 			}
 		});
 		panel.add(añadirNodoButton);
