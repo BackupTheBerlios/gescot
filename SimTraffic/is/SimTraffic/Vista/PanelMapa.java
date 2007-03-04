@@ -3,13 +3,18 @@
  */
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.util.Iterator;
-
-import is.SimTraffic.IModelo;
-import is.SimTraffic.Mapa.*;
 
 import javax.swing.JPanel;
 
@@ -88,8 +93,9 @@ public class PanelMapa extends JPanel {
 			mapa = this.createImage(200, 200);
 		else
 			mapa = this.createImage(tamX, tamY);
-		Graphics g = mapa.getGraphics();
-		g.drawOval(20, 20, 4, 4);
+		Graphics2D g = (Graphics2D)mapa.getGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		//g.drawOval(20, 20, 4, 4);
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
 			pintar(g, inodos.next());
@@ -142,8 +148,9 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void pintar(Graphics g, Nodo nodo) {
+		g.setColor(Color.RED);
 		g.drawOval(recalculaX(nodo.getPos().getPosX()), recalculaY(nodo
-				.getPos().getPosY()), 4, 4);
+				.getPos().getPosY()), 6, 6);
 	}
 
 	public void pintar(Graphics g, Tramo tramo) {
