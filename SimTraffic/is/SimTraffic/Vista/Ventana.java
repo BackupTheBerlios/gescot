@@ -275,7 +275,7 @@ public class Ventana extends JFrame {
 
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
-		//paintComponents(g);
+		paintComponents(g);
 	}
 
 }
