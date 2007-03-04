@@ -42,6 +42,8 @@ public class PanelMapa extends JPanel {
 
 	private boolean recrear;
 
+	private int contador;
+	
 	/**
 	 * @param tamX
 	 * @param tamY
@@ -54,6 +56,7 @@ public class PanelMapa extends JPanel {
 		this.tamX = tamX;
 		this.tamY = tamY;
 		recrear = true;
+		contador= 0;
 	}
 
 	/**
@@ -104,6 +107,7 @@ public class PanelMapa extends JPanel {
 		while (itramos.hasNext()) {
 			pintar(g, itramos.next());
 		}
+		contador++;
 	}
 
 	/**
@@ -173,9 +177,10 @@ public class PanelMapa extends JPanel {
 		if (recrear) {
 			mapa = super.createImage(tamX, tamY);
 			recrearMapa();
+			recrear = false;
 		}
 		g.drawImage(mapa, 0, 0, null);
-		g.drawString("fps: ", 80, 80);
+		g.drawString("redibujardo: "+contador, 80, 80);
 	}
 
 }

@@ -213,27 +213,27 @@ public class Ventana extends JFrame {
 
 		superior.setLayout(new BoxLayout(superior, BoxLayout.LINE_AXIS));
 		JButton nuevoTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\nuevo.gif"));
+				"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
 		nuevoTB.addActionListener(new AccionNuevo());
 
 		JButton cargarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\abrir.gif"));
+				"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
 		cargarTB.addActionListener(new AccionAbrir());
 
 		JButton guardarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\guardar.gif"));
+				"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
 		guardarTB.addActionListener(new AccionGuardar());
 
 		JButton copiarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\copiar.gif"));
+				"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
 		copiarTB.addActionListener(new AccionCopiar());
 
 		JButton pegarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\pegar.gif"));
+				"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
 		pegarTB.addActionListener(new AccionCortar());
 
@@ -275,7 +275,7 @@ public class Ventana extends JFrame {
 
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
-		paintComponents(g);
+		//paintComponents(g);
 	}
 
 }
