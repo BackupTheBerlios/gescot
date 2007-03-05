@@ -5,6 +5,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Acciones.*;
 import is.SimTraffic.Vista.EsuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
+import is.SimTraffic.Vista.EsuchasRaton.MLAñadirTramo;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -167,11 +168,8 @@ public class Ventana extends JFrame {
 		añadirNodoButton.setText("Añadir Nodo(s)");
 
 		JButton añadirTramoButton = new JButton();
-		añadirTramoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		añadirTramoButton.addActionListener(new AccionSobreMapa(
+				new MLAñadirTramo(modelo, controlador, panel_mapa),this));
 		panel.add(añadirTramoButton);
 		añadirTramoButton.setText("Añadir Tramo(s)");
 

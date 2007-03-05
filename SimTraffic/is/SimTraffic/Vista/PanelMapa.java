@@ -8,6 +8,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -99,13 +100,13 @@ public class PanelMapa extends JPanel {
 		Graphics2D g = (Graphics2D)mapa.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		//g.drawOval(20, 20, 4, 4);
-		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
-		while (inodos.hasNext()) {
-			pintar(g, inodos.next());
-		}
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
 			pintar(g, itramos.next());
+		}
+		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
+		while (inodos.hasNext()) {
+			pintar(g, inodos.next());
 		}
 		contador++;
 	}
@@ -157,13 +158,35 @@ public class PanelMapa extends JPanel {
 				.getPos().getPosY()), 6, 6);
 	}
 
-	public void pintar(Graphics g, Tramo tramo) {
+	public void pintar(Graphics2D g, Tramo tramo) {
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
-		Posicion posnodo2 = tramo.getNodoInicial().getPos();
-		g.drawLine(recalculaX(posnodo1.getPosX()), recalculaY(posnodo1
-				.getPosY()), recalculaX(posnodo2.getPosX()),
-				recalculaY(posnodo2.getPosY()));
-
+		Posicion posnodo2 = tramo.getNodoFinal().getPos();
+		int tamaño_carril = 20;
+		/*int carriles_ida = tramo.getNumCarrilesDir1();
+		int carriles_vuelta = tramo.getNumCarrilesDir2();
+		double largo = posnodo1.getPosX() - posnodo2.getPosX();
+		double alto = posnodo1.getPosY() - posnodo2.getPosY();
+		double angulo = Math.atan(alto/largo);
+		int x[] = {(int) (posnodo1.getPosX() + tamaño_carril * carriles_ida * Math.cos(angulo)),
+				   (int) (posnodo1.getPosX() + tamaño_carril * carriles_vuelta * (-Math.cos(angulo))),
+				   (int) (posnodo2.getPosX() + tamaño_carril * carriles_ida * Math.cos(angulo)),
+				   (int) (posnodo2.getPosX() + tamaño_carril * carriles_vuelta * (-Math.cos(angulo)))};
+		int y[] = {(int) (posnodo1.getPosY() + tamaño_carril * carriles_ida * (-Math.sin(angulo))),
+				   (int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta * (Math.sin(angulo))),
+				   (int) (posnodo2.getPosY() + tamaño_carril * carriles_ida * (-Math.sin(angulo))),
+				   (int) (posnodo2.getPosY() + tamaño_carril * carriles_vuelta * (Math.sin(angulo)))};
+		g.setColor(Color.DARK_GRAY);
+		g.fillPolygon(x, y, 4);*/
+		g.setColor(Color.DARK_GRAY);
+		g.setStroke(new BasicStroke(20));
+		g.drawLine(recalculaX(posnodo1.getPosX() + 3), recalculaY(posnodo1
+				.getPosY() + 3), recalculaX(posnodo2.getPosX() + 3),
+				recalculaY(posnodo2.getPosY()) + 3);
+		g.setColor(Color.WHITE);
+		g.setStroke(new BasicStroke(1));
+		g.drawLine(recalculaX(posnodo1.getPosX() + 3), recalculaY(posnodo1
+				.getPosY() + 3), recalculaX(posnodo2.getPosX() + 3),
+				recalculaY(posnodo2.getPosY()) + 3);
 	}
 
 	public void repaint() {

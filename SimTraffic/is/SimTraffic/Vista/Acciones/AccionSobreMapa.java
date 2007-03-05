@@ -2,7 +2,6 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.EsuchasRaton.EscuchaRaton;
-import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
