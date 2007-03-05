@@ -48,7 +48,13 @@ public class Nodo implements ElementoMapa {
 	 * Variable que indicará la categoría del nodo (asociado a una carretera, lugar de ocio, 
 	 * etc.) y su fin concreto.
 	 */
-	private ITipoElemento tipoNodo;
+	private ITipoElemento tipo;
+	
+	/**
+	 * Atributo opcional que permitirá al usuario dar nombre concreto a un nodo (función 
+	 * meramente complementaria, ya que dicho nombre no determina de forma unívoca el nodo).
+	 */
+	private String nombre;
 	
 	/**
 	 * Identificador en OSM del nodo. Cada nodo tiene un identificador entero único, que puede
@@ -144,12 +150,33 @@ public class Nodo implements ElementoMapa {
 		this.ID = id;
 	}
 
-	public ITipoElemento getTipoNodo() {
-		return tipoNodo;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setTipoNodo(ITipoElemento tipoNodo) {
-		this.tipoNodo = tipoNodo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String transformaraOSM() {
+		String s=new String();
+		if (tipo==null && nombre==null)
+			s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
+		else {
+			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >");
+			if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />");
+			if (nombre!=null) s=s.concat("<tag k='nombre' v='"+tipo.getValorTipo()+"' />");
+			s=s.concat("</node>");
+		}
+		return s;
+	}
+
+	public ITipoElemento getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(ITipoElemento tipo) {
+		this.tipo = tipo;
 	}
 
 	public void setPos(Posicion pos) {

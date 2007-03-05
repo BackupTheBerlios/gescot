@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+
 /**
  * @author Grupo ISTrafico
  */
@@ -23,8 +25,31 @@ public class Tramo implements ElementoMapa {
 
 	/**
 	 * Tipo de nodo
+	 * private int tipo;
+	 * 
 	 */
-	private int tipo;
+	
+	/**
+	 * Identificador en OSM del nodo. Cada nodo tiene un identificador entero único, que puede
+	 * ser positivo o negativo pero siempre distinto de 0.
+	 */
+	private int ID;
+	
+	/**
+	 * Indica el tipo de vía (inicialmente crearemos todas las vías de un tramo, para 
+	 * simplificar la tarea y debido a que no aprovechamos aun las posibilidades
+	 * de las vías), posteriormente puede moverse su inclusión a una futura clase vía. 
+	 * No conviene redefinirlo a tipoTramo por cuestiones de compatibilidad, pues el 
+	 * formato osm etiqueta las vías, no los tramos.
+	 */
+	private ITipoElemento tipo;
+	
+	/**
+	 * Atributo opcional que permitirá al usuario dar nombre concreto a una vía (función 
+	 * meramente complementaria, ya que dicho nombre no determina de forma unívoca el nodo).
+	 * (También le afecta el comentario de tipoVía).
+	 */
+	private String nombre;
 
 	/**
 	 * Almacena la referencia al nodo donde comienza el tramo
@@ -51,7 +76,6 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
-		tipo = 0; // ???
 	}
 
 	/**
@@ -117,19 +141,36 @@ public class Tramo implements ElementoMapa {
 		return numCarrilesDir2;
 	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
 	public Nodo getNodoInicial() {
 		return nodoInicial;
 	}
 
 	public Nodo getNodoFinal() {
 		return nodoFinal;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int id) {
+		ID = id;
+	}
+
+	public String transformaraOSM() {
+		String s=("<segment id='"+ID+"' from='" + nodoInicial.getID() + "' to='" + nodoFinal.getID() + "' />");
+		return s;
+	}
+
+	public ITipoElemento getTipo() {
+		return tipo;
 	}
 }
