@@ -78,7 +78,7 @@ public class Mapa {
 	 *            Nodo que se desea agregar al mapa.
 	 */
 	public void insertar(Nodo nodo) {
-		int id = 1;
+		int idMax = 1;
 		if (nodo != null) {
 			Iterator<Nodo> it = Nodos.iterator();
 			Nodo temp;
@@ -86,11 +86,11 @@ public class Mapa {
 				temp = it.next();
 				if (nodo.equals(temp))
 					return;
-				if (nodo.getID() == id)
-					id++;
+				if (nodo.getID() > idMax)
+					idMax = nodo.getID();
 			}
 			Nodos.add(nodo);
-			nodo.setID(id);
+			nodo.setID(idMax + 1);
 
 		}
 
