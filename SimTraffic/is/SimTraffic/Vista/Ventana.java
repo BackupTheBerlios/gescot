@@ -2,17 +2,39 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Vista.Acciones.*;
+import is.SimTraffic.Vista.Acciones.AccionAbrir;
+import is.SimTraffic.Vista.Acciones.AccionCopiar;
+import is.SimTraffic.Vista.Acciones.AccionCortar;
+import is.SimTraffic.Vista.Acciones.AccionGuardar;
+import is.SimTraffic.Vista.Acciones.AccionNuevo;
+import is.SimTraffic.Vista.Acciones.AccionPegar;
+import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.EsuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
 import is.SimTraffic.Vista.EsuchasRaton.MLAñadirTramo;
+import is.SimTraffic.Vista.EsuchasRaton.MLEliminarNodo;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 // No tiene un solo comentario!!!
 // no pude haber métdos tan largos!!!
@@ -174,11 +196,8 @@ public class Ventana extends JFrame {
 		añadirTramoButton.setText("Añadir Tramo(s)");
 
 		JButton eliminarNodoButton = new JButton();
-		eliminarNodoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		eliminarNodoButton.addActionListener(new AccionSobreMapa(
+				new MLEliminarNodo(modelo, controlador, panel_mapa),this));
 		panel.add(eliminarNodoButton);
 		eliminarNodoButton.setText("Eliminar Nodo(s)");
 
