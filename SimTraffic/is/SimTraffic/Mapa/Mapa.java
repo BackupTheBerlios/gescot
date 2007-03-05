@@ -80,15 +80,19 @@ public class Mapa {
 	public void insertar(Nodo nodo) {
 		int idMax = 1;
 		if (nodo != null) {
+			// controla que el nodo no este ya en la lista, a la vez que
+			// determina el maximo id para que no se repita
 			Iterator<Nodo> it = Nodos.iterator();
 			Nodo temp;
 			while (it.hasNext()) {
 				temp = it.next();
 				if (nodo.equals(temp))
 					return;
-				if (nodo.getID() > idMax)
+				if (nodo.getID() >= idMax)
 					idMax = nodo.getID();
 			}
+			
+			//añade el nodo
 			Nodos.add(nodo);
 			nodo.setID(idMax + 1);
 
@@ -122,14 +126,34 @@ public class Mapa {
 	 *            Tramo que se desea añadir.
 	 */
 	public void insertar(Tramo tramo) {
-		if (tramo != null && !Tramos.contains(tramo))
+		int idMax = 1;
+		if (tramo != null) {
+			// busca si el tramo no esta ya en el mapa, y el id de tramo mas grande
+			//  para no repetir
+			Iterator<Tramo> it = Tramos.iterator();
+			Tramo temp;
+			while (it.hasNext()) {
+				temp = it.next();
+				if (tramo.equals(temp))
+					return;
+				if (tramo.getID() >= idMax)
+					idMax = tramo.getID();
+			}
+
+			// añade el tramo, salvo que comienze y termie en el mismo nodo
 			if (!tramo.getNodoFinal().equals(tramo.getNodoInicial()))
 				if (Nodos.contains(tramo.getNodoInicial())
 						&& Nodos.contains(tramo.getNodoFinal())) {
 					tramo.getNodoInicial().añadirTramo(tramo);
 					tramo.getNodoFinal().añadirTramo(tramo);
 					Tramos.add(tramo);
+					tramo.setID(idMax+1);
 				}
+		
+		}
+			
+			
+			
 
 	}
 
