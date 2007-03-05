@@ -60,7 +60,6 @@ public class HModificarNodo implements IHerramienta {
 	    if (pos !=nodo.getPos())
 	     nodo.setPos(pos);
 		
-	    // TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -69,7 +68,6 @@ public class HModificarNodo implements IHerramienta {
 		//Deshacemos el cambio restaurando los parametros con el anterior
 		nodo = nodoGuardado;
 		
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
