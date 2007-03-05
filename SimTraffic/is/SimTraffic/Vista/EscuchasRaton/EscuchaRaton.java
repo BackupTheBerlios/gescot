@@ -1,7 +1,7 @@
 /**
  * 
  */
-package is.SimTraffic.Vista.EsuchasRaton;
+package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;

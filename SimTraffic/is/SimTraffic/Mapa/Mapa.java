@@ -71,8 +71,8 @@ public class Mapa {
 	 * <p>
 	 * Este método se asegura de que el nodo no sea vacío y de que no este en la
 	 * lista. Cuando es así, agrega el nodo al mapa.<br>
-	 * Además, este método actualiza las posiciones máxima y mínima de las coordenadas
-	 * del mapa, útiles a la hora de representarlo.
+	 * Además, este método actualiza las posiciones máxima y mínima de las
+	 * coordenadas del mapa, útiles a la hora de representarlo.
 	 * 
 	 * @param nodo
 	 *            Nodo que se desea agregar al mapa.
@@ -82,9 +82,10 @@ public class Mapa {
 		if (nodo != null) {
 			Iterator<Nodo> it = Nodos.iterator();
 			Nodo temp;
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				temp = it.next();
-				if (nodo.equals(temp)) return;
+				if (nodo.equals(temp))
+					return;
 				if (nodo.getID() == id)
 					id++;
 			}
@@ -92,7 +93,7 @@ public class Mapa {
 			nodo.setID(id);
 
 		}
-		
+
 		if (Nodos.size() == 1) {
 			maxY = nodo.getPos().getPosY();
 			minY = nodo.getPos().getPosY();
@@ -159,7 +160,9 @@ public class Mapa {
 	 * Si el nodo no existe o no esta en ningún tramo, el método devuelve
 	 * cierto.
 	 * 
-	 * @roseuid 45B8A9E500D6
+	 * @param nodo
+	 *            Nodo que se desea eliminar
+	 * @return Booleano que indica si se elimino correctamente
 	 */
 	public boolean eliminar(Nodo nodo) {
 		if (Nodos.contains(nodo)) {
@@ -182,13 +185,16 @@ public class Mapa {
 	 * 
 	 * @param tramo
 	 *            Tramo que se desea quitar de la lista
+	 * @return Booelano que inidca si se pudo elimnar el tramo
 	 */
-	public void eliminar(Tramo tramo) {
+	public boolean eliminar(Tramo tramo) {
 		if (tramo != null && Tramos.contains(tramo)) {
 			Tramos.remove(tramo);
 			tramo.getNodoFinal().quitarTramo(tramo);
 			tramo.getNodoInicial().quitarTramo(tramo);
+			return true;
 		}
+		return false;
 	}
 
 	public void eliminar(Señal señal) {
@@ -222,5 +228,5 @@ public class Mapa {
 	public int getMinY() {
 		return minY;
 	}
-	
+
 }

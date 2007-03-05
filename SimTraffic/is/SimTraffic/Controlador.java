@@ -7,7 +7,7 @@ import is.SimTraffic.Vista.IVista;
 
 /**
  * @author Grupo ISTrafico
- *
+ * 
  */
 public class Controlador implements IControlador {
 	/**
@@ -27,9 +27,10 @@ public class Controlador implements IControlador {
 	public List<IHerramienta> herramientas;
 
 	/**
-	 * Constructor de la clase.<p>
-	 * Metodo que simplemente inicializa la lista. Todavía hace falta
-	 * establecer el modelo y la vista que se desean utilizar.
+	 * Constructor de la clase.
+	 * <p>
+	 * Metodo que simplemente inicializa la lista. Todavía hace falta establecer
+	 * el modelo y la vista que se desean utilizar.
 	 * 
 	 * @roseuid 45B8B3A90134
 	 */
@@ -59,16 +60,23 @@ public class Controlador implements IControlador {
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see is.SimTraffic.IControlador#deshacer()
 	 */
 	public int deshacer() {
-		int resultado = herramientas.get(herramientas.size()).deshacer(modelo);
-		if (resultado == 0) {
-			herramientas.remove(herramientas.size());
-			return 0;
+		if (herramientas.size() > 0) {
+			int resultado = herramientas.get(herramientas.size() - 1).deshacer(
+					modelo);
+			if (resultado == 0) {
+				herramientas.remove(herramientas.size() - 1);
+				return 0;
+			}
+			return resultado;
 		}
-		return resultado;
+		return 0; // no devuelve error, pero se podria indicar que no hay nada
+					// para deshacer
 	}
 
 	/**

@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author Bimbo
+ * @author Grupo ISTrafico
  *
  */
 public class AccionAbrir implements ActionListener {

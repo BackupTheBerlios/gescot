@@ -2,17 +2,8 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Vista.Acciones.AccionAbrir;
-import is.SimTraffic.Vista.Acciones.AccionCopiar;
-import is.SimTraffic.Vista.Acciones.AccionCortar;
-import is.SimTraffic.Vista.Acciones.AccionGuardar;
-import is.SimTraffic.Vista.Acciones.AccionNuevo;
-import is.SimTraffic.Vista.Acciones.AccionPegar;
-import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
-import is.SimTraffic.Vista.EsuchasRaton.EscuchaRaton;
-import is.SimTraffic.Vista.EsuchasRaton.MLAñadirNodo;
-import is.SimTraffic.Vista.EsuchasRaton.MLAñadirTramo;
-import is.SimTraffic.Vista.EsuchasRaton.MLEliminarNodo;
+import is.SimTraffic.Vista.Acciones.*;
+import is.SimTraffic.Vista.EscuchasRaton.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -36,10 +27,9 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
-// No tiene un solo comentario!!!
-// no pude haber métdos tan largos!!!
 /**
  * Ventana que contiene la interfaz gráfica de la aplicación.
+ * 
  * @author Grupo ISTrafico
  * 
  */
@@ -48,15 +38,17 @@ public class Ventana extends JFrame {
 	private static final long serialVersionUID = -3549855005952631901L;
 
 	/**
-	 * Panel de la parte superior de panel_herramientas. Contiene los botones
-	 * de las distintas herramientas.
+	 * Panel de la parte superior de panel_herramientas. Contiene los botones de
+	 * las distintas herramientas.
 	 */
 	private JPanel panel;
 
 	/**
 	 * Panel central con scroll.
 	 */
-	private JScrollPane scrollPane; //De momento sin usar, ¿sobra?
+	private JScrollPane scrollPane; // De momento sin usar, ¿sobra? - Si, debría
+									// inclurise de alguna forma en PanelMapa.
+									// Podemos dejarlo aqui para recordarnoslo
 
 	/**
 	 * Panel de la parte izquierda de la interfaz gráfica.
@@ -96,8 +88,11 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Constructor de la ventana.
-	 * @param modelo Modelo asociado a la interfaz gráfica.
-	 * @param controlador Controlador asociado a la interfaz gráfica.
+	 * 
+	 * @param modelo
+	 *            Modelo asociado a la interfaz gráfica.
+	 * @param controlador
+	 *            Controlador asociado a la interfaz gráfica.
 	 */
 	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
@@ -131,7 +126,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 *  Crea el menú Archivo.
+	 * Crea el menú Archivo.
 	 */
 	public void crearMenuArchivo() {
 		JMenu archivoMenu = new JMenu();
@@ -176,6 +171,13 @@ public class Ventana extends JFrame {
 		edicionMenu.setText("Edición");
 		menuBar.add(edicionMenu);
 
+		JMenuItem deshacerMenuItem = new JMenuItem();
+		deshacerMenuItem.addActionListener(new AccionDeshacer(controlador, panel_mapa));
+		deshacerMenuItem.setText("Deshacer");
+		edicionMenu.add(deshacerMenuItem);
+		
+		edicionMenu.addSeparator();
+		
 		JMenuItem copiarMenuItem = new JMenuItem();
 		copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
@@ -189,7 +191,8 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * Crea el panel de herramientas de la parte izquierda de la interfaz gráfica.
+	 * Crea el panel de herramientas de la parte izquierda de la interfaz
+	 * gráfica.
 	 */
 	public void crearHerramientas() {
 		panel_herramientas = new JPanel();
@@ -209,19 +212,19 @@ public class Ventana extends JFrame {
 
 		JButton añadirNodoButton = new JButton();
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa),this));
+				new MLAñadirNodo(modelo, controlador, panel_mapa), this));
 		panel.add(añadirNodoButton);
 		añadirNodoButton.setText("Añadir Nodo(s)");
 
 		JButton añadirTramoButton = new JButton();
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirTramo(modelo, controlador, panel_mapa),this));
+				new MLAñadirTramo(modelo, controlador, panel_mapa), this));
 		panel.add(añadirTramoButton);
 		añadirTramoButton.setText("Añadir Tramo(s)");
 
 		JButton eliminarNodoButton = new JButton();
 		eliminarNodoButton.addActionListener(new AccionSobreMapa(
-				new MLEliminarNodo(modelo, controlador, panel_mapa),this));
+				new MLEliminarNodo(modelo, controlador, panel_mapa), this));
 		panel.add(eliminarNodoButton);
 		eliminarNodoButton.setText("Eliminar Nodo(s)");
 
@@ -291,11 +294,11 @@ public class Ventana extends JFrame {
 	 */
 	public void añadirPanelMapa() {
 
-		//scrollPane = new JScrollPane();
-		//getContentPane().add(scrollPane);
-		//panel_mapa = new PanelMapa(200, 200);
+		// scrollPane = new JScrollPane();
+		// getContentPane().add(scrollPane);
+		// panel_mapa = new PanelMapa(200, 200);
 		getContentPane().add(panel_mapa);
-		//scrollPane.setViewportView(panel_mapa);
+		// scrollPane.setViewportView(panel_mapa);
 		panel_mapa.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		panel_mapa.setBackground(Color.WHITE);
 		panel_mapa.setModelo(modelo);
@@ -303,10 +306,11 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * Método que reemplaza el escucha actual del panel_mapa con uno nuevo<p>
+	 * Método que reemplaza el escucha actual del panel_mapa con uno nuevo
+	 * <p>
 	 * 
 	 * @param escucha
-	 * Implementación de EscuchaRaton herramientas sobre el mapa.
+	 *            Implementación de EscuchaRaton herramientas sobre el mapa.
 	 */
 	public void cambiarEscucha(EscuchaRaton escucha) {
 		if (this.escucha != null)
