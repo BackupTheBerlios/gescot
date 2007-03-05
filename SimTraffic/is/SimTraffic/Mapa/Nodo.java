@@ -144,4 +144,20 @@ public class Nodo implements ElementoMapa {
 		this.ID = id;
 	}
 
+	public ITipoElemento getTipoNodo() {
+		return tipoNodo;
+	}
+
+	public void setTipoNodo(ITipoElemento tipoNodo) {
+		this.tipoNodo = tipoNodo;
+	}
+
+	public void setPos(Posicion pos) {
+		this.pos = pos;
+	}
+
+	public void setTramos(List<Tramo> tramos) {
+		this.tramos = tramos;
+	}
+
 }
