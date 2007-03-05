@@ -146,7 +146,7 @@ public class Ventana extends JFrame {
 		archivoMenu.add(cargarMapaMenuItem);
 
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
-		guardarmapaMenuItem.addActionListener(new AccionGuardar());
+		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));
 		guardarmapaMenuItem.setText("GuardarMapa");
 		archivoMenu.add(guardarmapaMenuItem);
 
@@ -273,7 +273,7 @@ public class Ventana extends JFrame {
 		JButton guardarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
-		guardarTB.addActionListener(new AccionGuardar());
+		guardarTB.addActionListener(new AccionGuardar(controlador));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-save2.png"; 
 		guardarTB.setToolTipText("<html>Guardar mapa <img src="+imageName+"></html>");
 
