@@ -155,21 +155,21 @@ public class TramoTest extends TestCase {
 	 * Método de prueba para setTipo(String)
 	 * Se comprueba que el valor de tipo se modifica correctamente
 	 */
-	public void testSetTipo() {
+	/*public void testSetTipo() {
 		int tipo = 5;
 		tramo1.setTipo(tipo);
 		assertEquals(tipo,tramo1.getTipo());
-	}
+	}*/
 
 	/**
 	 * Método de prueba para getTipo()
 	 * Se comprueba que el valor devuelto de tipo es correcto
 	 */
-	public void testGetTipo() {
+	/*public void testGetTipo() {
 		int tipo = 5;
 		tramo1.setTipo(tipo);
 		assertEquals(tipo,tramo1.getTipo());
-	}
+	}*/
 
 	/**
 	 * Método de prueba para getNodoInicial()

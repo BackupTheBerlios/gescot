@@ -55,8 +55,8 @@ public class HModificarNodo implements IHerramienta {
 	    /**
 	     * Si cambiamos el tipo de nodo o la posicion,se lo aplicamos al nodo
 	     */
-	    if (tipoNodo!=nodo.getTipoNodo()) 
-	     nodo.setTipoNodo(tipoNodo);
+	    if (tipoNodo!=nodo.getTipo()) 
+	     nodo.setTipo(tipoNodo);
 	    if (pos !=nodo.getPos())
 	     nodo.setPos(pos);
 		
