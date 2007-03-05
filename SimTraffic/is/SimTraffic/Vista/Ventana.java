@@ -260,32 +260,50 @@ public class Ventana extends JFrame {
 				"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
 		nuevoTB.addActionListener(new AccionNuevo());
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-new2.png"; 
+		nuevoTB.setToolTipText("<html>Nuevo mapa <img src="+imageName+"></html>");
 
 		JButton cargarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
 		cargarTB.addActionListener(new AccionAbrir());
-
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-open2.png"; 
+		cargarTB.setToolTipText("<html>Cargar mapa <img src="+imageName+"></html>");
+		
 		JButton guardarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
 		guardarTB.addActionListener(new AccionGuardar());
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-save2.png"; 
+		guardarTB.setToolTipText("<html>Guardar mapa <img src="+imageName+"></html>");
 
 		JButton copiarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
 		copiarTB.addActionListener(new AccionCopiar());
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-copy2.png"; 
+		copiarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
 
 		JButton pegarTB = new JButton(new ImageIcon(
 				"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
 		pegarTB.addActionListener(new AccionCortar());
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-paste2.png"; 
+		pegarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
 
+		JButton deshacerTB = new JButton(new ImageIcon(
+		"is\\SimTraffic\\Vista\\Imagenes\\edit-undo.png"));
+		deshacerTB.setMargin(new Insets(1, 1, 1, 1));
+		deshacerTB.addActionListener(new AccionDeshacer(controlador,panel_mapa));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-undo2.png"; 
+		deshacerTB.setToolTipText("<html>Deshacer <img src="+imageName+"></html>");
+		
 		archivoTB.add(nuevoTB);
 		archivoTB.add(cargarTB);
 		archivoTB.add(guardarTB);
 		edicionTB.add(copiarTB);
 		edicionTB.add(pegarTB);
+		edicionTB.add(deshacerTB);
 
 	}
 
