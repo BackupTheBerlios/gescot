@@ -39,6 +39,7 @@ import javax.swing.border.BevelBorder;
 // No tiene un solo comentario!!!
 // no pude haber métdos tan largos!!!
 /**
+ * Ventana que contiene la interfaz gráfica de la aplicación.
  * @author Grupo ISTrafico
  * 
  */
@@ -46,18 +47,40 @@ public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = -3549855005952631901L;
 
+	/**
+	 * Panel de la parte superior de panel_herramientas. Contiene los botones
+	 * de las distintas herramientas.
+	 */
 	private JPanel panel;
 
-	private JScrollPane scrollPane;
+	/**
+	 * Panel central con scroll.
+	 */
+	private JScrollPane scrollPane; //De momento sin usar, ¿sobra?
 
+	/**
+	 * Panel de la parte izquierda de la interfaz gráfica.
+	 */
 	private JPanel panel_herramientas;
 
+	/**
+	 * Barra de menús de la parte superior de la interfaz.
+	 */
 	private JMenuBar menuBar;
 
+	/**
+	 * Modelo asociado a la interfaz.
+	 */
 	private IModelo modelo;
 
+	/**
+	 * Controlador asociado a la interfaz.
+	 */
 	private IControlador controlador;
 
+	/**
+	 * Escucha de ratón actual.
+	 */
 	EscuchaRaton escucha;
 
 	/**
@@ -67,12 +90,14 @@ public class Ventana extends JFrame {
 	private PanelMapa panel_mapa;
 
 	/**
-	 * 
+	 * Panel con los iconos de la parte superior.
 	 */
 	private JPanel superior;
 
 	/**
-	 * @param modelo
+	 * Constructor de la ventana.
+	 * @param modelo Modelo asociado a la interfaz gráfica.
+	 * @param controlador Controlador asociado a la interfaz gráfica.
 	 */
 	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
@@ -94,7 +119,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Crea la barra de menús.
 	 */
 	public void crearBarraMenu() {
 		menuBar = new JMenuBar();
@@ -106,7 +131,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 *  Crea el menú Archivo.
 	 */
 	public void crearMenuArchivo() {
 		JMenu archivoMenu = new JMenu();
@@ -144,7 +169,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Crea el menú Edicion.
 	 */
 	public void crearMenuEdicion() {
 		JMenu edicionMenu = new JMenu();
@@ -164,7 +189,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Crea el panel de herramientas de la parte izquierda de la interfaz gráfica.
 	 */
 	public void crearHerramientas() {
 		panel_herramientas = new JPanel();
@@ -184,8 +209,7 @@ public class Ventana extends JFrame {
 
 		JButton añadirNodoButton = new JButton();
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa),
-				this));
+				new MLAñadirNodo(modelo, controlador, panel_mapa),this));
 		panel.add(añadirNodoButton);
 		añadirNodoButton.setText("Añadir Nodo(s)");
 
@@ -217,7 +241,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Crea los botones de la parte superior.
 	 */
 	public void crearBotonesSuperiores() {
 		superior = new JPanel();
@@ -263,7 +287,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Añade el panel del mapa, en la parte central.
 	 */
 	public void añadirPanelMapa() {
 
@@ -279,7 +303,7 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * Método que reemplasa el escucha actual del panel_mapa con uno nuevo<p>
+	 * Método que reemplaza el escucha actual del panel_mapa con uno nuevo<p>
 	 * 
 	 * @param escucha
 	 * Implementación de EscuchaRaton herramientas sobre el mapa.
