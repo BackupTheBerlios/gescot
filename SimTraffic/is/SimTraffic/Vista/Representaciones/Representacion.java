@@ -65,13 +65,8 @@ abstract public class Representacion {
 	 *            Entero que representa la posicion en el mapa
 	 * @return Entero que representa una posicion en la pantalla
 	 */
-	public int recalculaX(int posX) {
-		/*
-		 * if (modelo.getMapa() .getMaxX() - modelo.getMapa().getMinX() == 0)
-		 * return (int) (posX); return (int) ((posX -
-		 * modelo.getMapa().getMinX()) / (modelo.getMapa() .getMaxX() -
-		 * modelo.getMapa().getMinX())) this.getWidth();
-		 */
+	public int x_MapaARep(int posX) {
+		// falta implementar
 		return posX;
 	}
 
@@ -86,15 +81,21 @@ abstract public class Representacion {
 	 *            Entero que representa la posicion en el mapa
 	 * @return Entero que representa una posicion en la pantalla
 	 */
-	public int recalculaY(int posY) {
-		/*
-		 * if (modelo.getMapa() .getMaxY() - modelo.getMapa().getMinY() == 0)
-		 * return (int) (posY); return (int) ((posY -
-		 * modelo.getMapa().getMinY()) / (modelo.getMapa() .getMaxY() -
-		 * modelo.getMapa().getMinY())) this.getHeight();
-		 */return posY;
+	public int y_MapaARep(int posY) {
+		// falta implementar
+		return posY;
 	}
 
+	public int x_RepAMapa(int posX){
+		// falta implementar
+		return posX;
+	}
+	
+	public int y_RepAMapa(int posY) {
+		// falta implementar
+		return posY;
+	}
+	
 	/**
 	 * Método abstracto que se debe implementar para pintar un nodo.
 	 * <p>

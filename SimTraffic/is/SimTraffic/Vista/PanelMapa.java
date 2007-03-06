@@ -34,18 +34,41 @@ public class PanelMapa extends JPanel {
 
 	private static final long serialVersionUID = -3680412115222562074L;
 
+	/**
+	 * Almacena el modelo que se va a mostrar por pantalla
+	 */
 	private IModelo modelo;
 
+	/**
+	 * Imagen del mapa usada para duplicar el buffer
+	 */
 	private Image mapa;
 
+	/**
+	 * Zoom que se esta utilizando en la representacion del mapa
+	 */
 	private float zoom;
 
+	/**
+	 * Almacena tamaños en x e y del panel, utilizados a la hora de dibujar
+	 */
 	private int tamX, tamY;
 
+	/**
+	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que se dibjue
+	 * el panel en pantalla
+	 */
 	private boolean recrear;
 
+	/**
+	 * Contador de las veces que se dibujo el mapa, para efectos de evaluacion
+	 */
 	private int contador;
 
+	/**
+	 * Elemento a mostrar como sugerido, segun donde esta el puntero del usuario. Para
+	 * operaciones de modificacion/borrado/etc
+	 */
 	private ElementoMapa sugerencia;
 	
 	/**
@@ -55,12 +78,14 @@ public class PanelMapa extends JPanel {
 	private Representacion representacion;
 
 	/**
+	 * Constructor de la clase PanelMapa.<p>
+	 * Este constructor toma como parámetros el tamaño que se le quiere dar inicialmente
 	 * @param tamX
 	 * @param tamY
 	 */
 	public PanelMapa(int tamX, int tamY) {
 		super();
-		setSize(new Dimension(tamX, tamY));
+		setSize(new Dimension(200, 200));
 		modelo = null;
 		zoom = 1;
 		this.tamX = tamX;
@@ -84,13 +109,15 @@ public class PanelMapa extends JPanel {
 		recrear = true;
 	}
 
-	public void resize(int tamX, int tamY) {
+	/*
+	public void setSize(int tamX, int tamY) {
 		this.tamX = tamX;
 		this.tamY = tamY;
 		recrear = true;
-
-	}
-
+		super.setSize(tamX, tamY);
+		}
+*/
+	
 	/**
 	 * Método que recera la imagen del mapa a partir de la infromación del
 	 * modelo.
@@ -113,7 +140,6 @@ public class PanelMapa extends JPanel {
 		Graphics2D g = (Graphics2D) mapa.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		// g.drawOval(20, 20, 4, 4);
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
 			representacion.pintar(g, itramos.next());
@@ -126,16 +152,15 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void repaint() {
-		//recrear = true;
+		if(tamX != this.getSize().width || tamY != this.getSize().height)
+			recrear = true;
 		super.repaint();
 	}
 
 	public void paintComponent(Graphics g_normal) {
 		Graphics2D g = (Graphics2D) g_normal;
-		if (modelo == null)
-			return;
 		if (recrear) {
-			mapa = super.createImage(tamX, tamY);
+			//mapa = super.createImage(tamX, tamY);
 			recrearMapa();
 			recrear = false;
 		}
@@ -148,6 +173,10 @@ public class PanelMapa extends JPanel {
 		this.representacion = representacion;
 	}
 	
+	public Representacion getRepresentacion() {
+		return representacion;
+	}
+	
 	public void setZoom(float zoom) {
 		this.zoom = zoom;
 	}
@@ -155,5 +184,13 @@ public class PanelMapa extends JPanel {
 	public void sugerir(ElementoMapa sugerencia) {
 		this.sugerencia = sugerencia;
 		this.repaint();
+	}
+	
+	public int x_RepAMapa(int posX) {
+		return representacion.x_RepAMapa(posX);
+	}
+	
+	public int y_RepAMapa(int posY) {
+		return representacion.y_RepAMapa(posY);
 	}
 }

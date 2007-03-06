@@ -28,6 +28,7 @@ public class MLEliminarNodo extends EscuchaRaton
 			if (seleccionado.getTramos().isEmpty())   //Solo se eliminan los nodos que no tienen ningun tramo. ¿Eliminar también los tramos?
 			{
 				controlador.herramienta(new HEliminarNodo(seleccionado));
+				panel.sugerir(null);
 				panel.recrearMapa();
 				panel.repaint();
 			}
