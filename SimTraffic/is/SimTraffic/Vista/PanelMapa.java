@@ -7,6 +7,8 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Representaciones.Representacion;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -47,8 +49,12 @@ public class PanelMapa extends JPanel {
 
 	private int contador;
 
-	private int tamaño_carril;
-	
+	/**
+	 * Alamcena la representacion que se utiliza para mostrar el mapa por
+	 * pantalla.
+	 */
+	private Representacion representacion;
+
 	/**
 	 * @param tamX
 	 * @param tamY
@@ -57,12 +63,12 @@ public class PanelMapa extends JPanel {
 		super();
 		setSize(new Dimension(tamX, tamY));
 		modelo = null;
-		zoom = 0;
+		zoom = 1;
 		this.tamX = tamX;
 		this.tamY = tamY;
 		recrear = true;
 		contador = 0;
-		tamaño_carril = 5;
+		representacion = new RepresentacionSimple();
 	}
 
 	/**
@@ -98,120 +104,25 @@ public class PanelMapa extends JPanel {
 		Dimension tamaño = this.getSize();
 		tamX = tamaño.width;
 		tamY = tamaño.height;
+		representacion.setTamX(tamX);
+		representacion.setTamY(tamY);
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
 		else
 			mapa = this.createImage(tamX, tamY);
-		Graphics2D g = (Graphics2D)mapa.getGraphics();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		//g.drawOval(20, 20, 4, 4);
+		Graphics2D g = (Graphics2D) mapa.getGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		// g.drawOval(20, 20, 4, 4);
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
-			pintar(g, itramos.next());
+			representacion.pintar(g, itramos.next());
 		}
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
-			pintar(g, inodos.next());
+			representacion.pintar(g, inodos.next());
 		}
 		contador++;
-	}
-
-	/**
-	 * Método que recalula la posicion en X de un punto del mapa en la pantalla.
-	 * <p>
-	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
-	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
-	 * otra información pertinente.
-	 * 
-	 * @param posX
-	 *            Entero que representa la posicion en el mapa
-	 * @return Entero que representa una posicion en la pantalla
-	 */
-	public int recalculaX(int posX) {
-		/*
-		 * if (modelo.getMapa() .getMaxX() - modelo.getMapa().getMinX() == 0)
-		 * return (int) (posX); return (int) ((posX -
-		 * modelo.getMapa().getMinX()) / (modelo.getMapa() .getMaxX() -
-		 * modelo.getMapa().getMinX())) this.getWidth();
-		 */
-		return posX;
-	}
-
-	/**
-	 * Método que recalula la posicion en Y de un punto del mapa en la pantalla.
-	 * <p>
-	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
-	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
-	 * otra información pertinente.
-	 * 
-	 * @param posX
-	 *            Entero que representa la posicion en el mapa
-	 * @return Entero que representa una posicion en la pantalla
-	 */
-	public int recalculaY(int posY) {
-		/*
-		 * if (modelo.getMapa() .getMaxY() - modelo.getMapa().getMinY() == 0)
-		 * return (int) (posY); return (int) ((posY -
-		 * modelo.getMapa().getMinY()) / (modelo.getMapa() .getMaxY() -
-		 * modelo.getMapa().getMinY())) this.getHeight();
-		 */return posY;
-	}
-
-	public void pintar(Graphics g, Nodo nodo) 
-	{	
-		g.setColor(Color.DARK_GRAY);
-		g.fillOval(recalculaX(nodo.getPos().getPosX()), recalculaY(nodo
-				.getPos().getPosY()), 6, 6);
-		g.setColor(Color.RED);
-		g.drawOval(recalculaX(nodo.getPos().getPosX()), recalculaY(nodo
-				.getPos().getPosY()), 6, 6);
-	}
-
-	public void pintar(Graphics2D g, Tramo tramo) {
-		Posicion posnodo1 = tramo.getNodoInicial().getPos();
-		Posicion posnodo2 = tramo.getNodoFinal().getPos();
-		int carriles_ida = tramo.getNumCarrilesDir1();
-		int carriles_vuelta = tramo.getNumCarrilesDir2();
-		double largo = posnodo1.getPosX() - posnodo2.getPosX();
-		double alto = posnodo1.getPosY() - posnodo2.getPosY();
-		double angulo = Math.atan(alto/largo);
-		int x[] = {(int) (3 + posnodo1.getPosX() + tamaño_carril * carriles_ida * Math.sin(angulo)),
-				   (int) (3 + posnodo2.getPosX() + tamaño_carril * carriles_vuelta * Math.sin(angulo)),
-				   (int) (3 + posnodo2.getPosX() + tamaño_carril * carriles_vuelta * (-Math.sin(angulo))),
-				   (int) (3 + posnodo1.getPosX() + tamaño_carril * carriles_ida * (-Math.sin(angulo)))};
-		int y[] = {(int) (3 + posnodo1.getPosY() + tamaño_carril * carriles_ida * (-Math.cos(angulo))),
-				   (int) (3 + posnodo2.getPosY() + tamaño_carril * carriles_vuelta * (-Math.cos(angulo))),
-				   (int) (3 + posnodo2.getPosY() + tamaño_carril * carriles_vuelta * Math.cos(angulo)),
-				   (int) (3 + posnodo1.getPosY() + tamaño_carril * carriles_ida * Math.cos(angulo))};
-		g.setColor(Color.DARK_GRAY);
-		g.fillPolygon(x, y, 4);
-		g.setColor(Color.WHITE);
-		float array[] = {10,10};
-		g.drawLine(recalculaX(posnodo1.getPosX() + 3), recalculaY(posnodo1
-				.getPosY() + 3), recalculaX(posnodo2.getPosX() + 3),
-				recalculaY(posnodo2.getPosY()) + 3);
-		for (int i = 0; i < carriles_ida; i++)
-		{
-			if (i == carriles_ida - 1)
-				g.setStroke(new BasicStroke(1));
-			else
-				g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1, array, 1));
-			g.drawLine(recalculaX((int) (3 + posnodo1.getPosX() + tamaño_carril * (i + 1) * Math.sin(angulo))), 
-					   recalculaY((int) (3 + posnodo1.getPosY() + tamaño_carril * (i + 1) * (-Math.cos(angulo)))), 
-					   recalculaX((int) (3 + posnodo2.getPosX() + tamaño_carril * (i + 1) * Math.sin(angulo))),
-					   recalculaY((int) (3 + posnodo2.getPosY() + tamaño_carril * (i + 1) * (-Math.cos(angulo)))));
-		}
-		for (int i = 0; i < carriles_vuelta; i++)
-		{
-			if (i == carriles_vuelta - 1)
-				g.setStroke(new BasicStroke(1));
-			else
-				g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1, array, 1));
-			g.drawLine(recalculaX((int) (3 + posnodo1.getPosX() + tamaño_carril * -(i + 1) * Math.sin(angulo))), 
-					   recalculaY((int) (3 + posnodo1.getPosY() + tamaño_carril * -(i + 1) * (-Math.cos(angulo)))), 
-					   recalculaX((int) (3 + posnodo2.getPosX() + tamaño_carril * -(i + 1) * Math.sin(angulo))),
-					   recalculaY((int) (3 + posnodo2.getPosY() + tamaño_carril * -(i + 1) * (-Math.cos(angulo)))));
-		}
 	}
 
 	public void repaint() {
@@ -228,7 +139,10 @@ public class PanelMapa extends JPanel {
 			recrear = false;
 		}
 		g.drawImage(mapa, 0, 0, null);
-		g.drawString("redibujardo: "+contador, 80, 80);
+		g.drawString("redibujardo: " + contador, 80, 80);
 	}
 
+	public void setRepresentacion(Representacion representacion) {
+		this.representacion = representacion;
+	}
 }
