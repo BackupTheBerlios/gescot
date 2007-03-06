@@ -76,6 +76,18 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
+		ID=asignarIDunico();
+	}
+
+	/**
+	 * Método que genera el ID de un tramo tomando los IDs de sus nodos (y 
+	 * como los IDs de los nodos son únicos, este es también único)
+	 * @return el ID generado para identificar el tramo.
+	 */
+	private int asignarIDunico() {
+		String IDstring=""+nodoInicial.getID()+nodoFinal.getID();
+		int IDtramo=Integer.parseInt(IDstring);
+		return IDtramo;
 	}
 
 	/**
