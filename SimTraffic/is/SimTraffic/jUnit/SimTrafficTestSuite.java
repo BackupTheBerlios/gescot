@@ -24,8 +24,7 @@ public class SimTrafficTestSuite {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		 	SimTrafficTestSuite SimTrafficTestSuite1 = new SimTrafficTestSuite();
+		 	//SimTrafficTestSuite SimTrafficTestSuite1 = new SimTrafficTestSuite();
 		    junit.textui.TestRunner.run(suite());
 
 	}

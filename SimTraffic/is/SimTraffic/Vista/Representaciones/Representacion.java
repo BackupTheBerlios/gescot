@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Representaciones;
 
+import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
@@ -136,6 +137,8 @@ abstract public class Representacion {
 	 */
 	abstract public void pintar(Graphics2D g, Señal señal);
 
+	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
+	
 	public void setPosX0(int posX0) {
 		this.posX0 = posX0;
 	}

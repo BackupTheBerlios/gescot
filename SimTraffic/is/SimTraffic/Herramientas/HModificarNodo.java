@@ -1,7 +1,6 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;

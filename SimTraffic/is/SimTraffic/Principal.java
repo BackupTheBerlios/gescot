@@ -6,13 +6,6 @@ package is.SimTraffic;
 import is.SimTraffic.Vista.IVista;
 import is.SimTraffic.Vista.Vista;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-
 /**
  * Clase principal del programa.
  * <p>
@@ -36,7 +29,9 @@ public class Principal {
 	 *            main
 	 */
 	public static void main(String[] args) {
-		/*try {
+		/*
+		 * no se por que estaba este codigo, pero la ventana se ve mejor sin el
+		 * try {
 			UIManager.setLookAndFeel(new WindowsLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block

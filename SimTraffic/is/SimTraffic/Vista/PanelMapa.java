@@ -4,6 +4,7 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.Representacion;
@@ -45,6 +46,8 @@ public class PanelMapa extends JPanel {
 
 	private int contador;
 
+	private ElementoMapa sugerencia;
+	
 	/**
 	 * Alamcena la representacion que se utiliza para mostrar el mapa por
 	 * pantalla.
@@ -123,11 +126,12 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void repaint() {
-		recrear = true;
+		//recrear = true;
 		super.repaint();
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g_normal) {
+		Graphics2D g = (Graphics2D) g_normal;
 		if (modelo == null)
 			return;
 		if (recrear) {
@@ -136,6 +140,7 @@ public class PanelMapa extends JPanel {
 			recrear = false;
 		}
 		g.drawImage(mapa, 0, 0, null);
+		representacion.pintarSugerencia(g, sugerencia);
 		g.drawString("redibujardo: " + contador, 80, 80);
 	}
 
@@ -145,5 +150,10 @@ public class PanelMapa extends JPanel {
 	
 	public void setZoom(float zoom) {
 		this.zoom = zoom;
+	}
+	
+	public void sugerir(ElementoMapa sugerencia) {
+		this.sugerencia = sugerencia;
+		this.repaint();
 	}
 }

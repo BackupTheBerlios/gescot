@@ -1,11 +1,7 @@
 package is.SimTraffic.Vista;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Mapa.Mapa;
 
 /**
  * @author Grupo ISTrafico

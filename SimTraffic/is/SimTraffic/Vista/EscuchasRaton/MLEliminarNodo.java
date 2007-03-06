@@ -7,7 +7,6 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
 
 public class MLEliminarNodo extends EscuchaRaton
 {
@@ -29,6 +28,7 @@ public class MLEliminarNodo extends EscuchaRaton
 			if (seleccionado.getTramos().isEmpty())   //Solo se eliminan los nodos que no tienen ningun tramo. ¿Eliminar también los tramos?
 			{
 				controlador.herramienta(new HEliminarNodo(seleccionado));
+				panel.recrearMapa();
 				panel.repaint();
 			}
 		}	
@@ -54,8 +54,11 @@ public class MLEliminarNodo extends EscuchaRaton
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		Nodo nodo = buscarNodo(arg0.getX(), arg0.getY());
+		if (nodo != null)
+			panel.sugerir(nodo);
+		else
+			panel.sugerir(null);
 	}
 
 	@Override
