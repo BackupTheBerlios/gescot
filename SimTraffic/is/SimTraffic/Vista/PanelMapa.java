@@ -5,13 +5,11 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,8 +17,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.util.Iterator;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -41,7 +37,7 @@ public class PanelMapa extends JPanel {
 
 	private Image mapa;
 
-	private int zoom;
+	private float zoom;
 
 	private int tamX, tamY;
 
@@ -106,6 +102,7 @@ public class PanelMapa extends JPanel {
 		tamY = tamaño.height;
 		representacion.setTamX(tamX);
 		representacion.setTamY(tamY);
+		representacion.setZoom(zoom);
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
 		else
@@ -144,5 +141,9 @@ public class PanelMapa extends JPanel {
 
 	public void setRepresentacion(Representacion representacion) {
 		this.representacion = representacion;
+	}
+	
+	public void setZoom(float zoom) {
+		this.zoom = zoom;
 	}
 }

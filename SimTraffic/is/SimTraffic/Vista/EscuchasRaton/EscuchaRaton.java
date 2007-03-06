@@ -5,6 +5,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.Image;
@@ -13,6 +14,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Iterator;
 
 /**
  * Clase EsuchaRaton, con los métodos básicos para una clase que toma entras de
@@ -64,6 +66,42 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		panel.removeMouseMotionListener(this);
 	}
 
+	/**
+	 * Método para obtener un nodo a partir de dos puntos en el panel del mapa.<p>
+	 * Este método recorre la lista de nodos y busca el nodo que tiene una posicion (x,y)
+	 * similar a la pasada como parámetro.
+	 * 
+	 * @param x
+	 * Posicion a lo largo del eje x
+	 * @param y
+	 * Posicion a lo largo del eje y
+	 * @return
+	 * Nodo encontrado en la posicion dada o null
+	 */
+	public Nodo buscarNodo(int x, int y) 
+	{
+		int error = 3;
+		Iterator<Nodo> iter = modelo.getMapa().getNodos().iterator();
+		Nodo sel = null;
+		boolean encontrado = false;
+		while (!encontrado && iter.hasNext())
+		{
+			Nodo next = iter.next();
+			if ((next.getPos().getPosX() - error <= x) && 
+				(next.getPos().getPosX() + error >= x) &&
+				(next.getPos().getPosY() - error <= y) &&
+				(next.getPos().getPosY() + error >= y))
+			{
+				encontrado = true;
+				sel = next;
+			}
+		}
+		if (encontrado)
+			return sel;
+		else
+			return null;
+	}
+	
 	abstract public void mouseClicked(MouseEvent arg0);
 
 	abstract public void mouseEntered(MouseEvent arg0);

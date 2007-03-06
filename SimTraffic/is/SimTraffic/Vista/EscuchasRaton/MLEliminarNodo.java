@@ -33,30 +33,6 @@ public class MLEliminarNodo extends EscuchaRaton
 			}
 		}	
 	}
-	
-	
-	private Nodo buscarNodo(int x, int y) 
-	{
-		Iterator<Nodo> iter = modelo.getMapa().getNodos().iterator();
-		Nodo sel = null;
-		boolean encontrado = false;
-		while (!encontrado && iter.hasNext())
-		{
-			Nodo next = iter.next();
-			if ((next.getPos().getPosX() <= x) && 
-				(next.getPos().getPosX() + 6 >= x) &&
-				(next.getPos().getPosY() <= y) &&
-				(next.getPos().getPosY() + 6 >= y))
-			{
-				encontrado = true;
-				sel = next;
-			}
-		}
-		if (encontrado)
-			return sel;
-		else
-			return null;
-	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
