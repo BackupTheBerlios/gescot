@@ -17,6 +17,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.util.Iterator;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -53,7 +55,7 @@ public class PanelMapa extends JPanel {
 	 */
 	public PanelMapa(int tamX, int tamY) {
 		super();
-		setSize(tamX, tamY);
+		setSize(new Dimension(tamX, tamY));
 		modelo = null;
 		zoom = 0;
 		this.tamX = tamX;

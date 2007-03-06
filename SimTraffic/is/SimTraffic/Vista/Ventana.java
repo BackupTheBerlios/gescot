@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -102,7 +103,7 @@ public class Ventana extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
-
+		
 		crearBarraMenu();
 
 		crearHerramientas();
@@ -215,7 +216,7 @@ public class Ventana extends JFrame {
 				new MLAñadirNodo(modelo, controlador, panel_mapa), this));
 		panel.add(añadirNodoButton);
 		añadirNodoButton.setText("Añadir Nodo(s)");
-
+		
 		JButton añadirTramoButton = new JButton();
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirTramo(modelo, controlador, panel_mapa), this));
@@ -304,7 +305,6 @@ public class Ventana extends JFrame {
 		edicionTB.add(copiarTB);
 		edicionTB.add(pegarTB);
 		edicionTB.add(deshacerTB);
-
 	}
 
 	/**
