@@ -84,7 +84,7 @@ public class Tramo implements ElementoMapa {
 	 * como los IDs de los nodos son únicos, este es también único)
 	 * @return el ID generado para identificar el tramo.
 	 */
-	private int asignarIDunico() {
+	public int asignarIDunico() {
 		String IDstring=""+nodoInicial.getID()+nodoFinal.getID();
 		int IDtramo=Integer.parseInt(IDstring);
 		return IDtramo;

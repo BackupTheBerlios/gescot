@@ -88,8 +88,8 @@ public class Mapa {
 				temp = it.next();
 				if (nodo.equals(temp))
 					return;
-				if (nodo.getID() >= idMax)
-					idMax = nodo.getID();
+				if (temp.getID() >= idMax) //Antes nodo.getID()
+					idMax = temp.getID();
 			}
 			
 			//añade el nodo
@@ -148,6 +148,8 @@ public class Mapa {
 					tramo.getNodoFinal().añadirTramo(tramo);
 					Tramos.add(tramo);
 					tramo.setID(idMax+1);
+					//Cambio en el método de asignación de ID
+					tramo.asignarIDunico();
 				}
 		
 		}

@@ -12,6 +12,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class HGuardarMapa implements IHerramienta {
 
@@ -29,7 +30,8 @@ public class HGuardarMapa implements IHerramienta {
 	}
 	
 	/**
-	 * Método inacabado.
+	 * Método depurado y probado con el sistema actual (sin nombre ni tipos de elemento).
+	 * Guarda la información relativa al mapa osm (ningún valor sobre entrada/salida, señales, etc.)
 	 * @param mapa
 	 */
 	public void generarXMLinfo(Mapa mapa) {
@@ -44,7 +46,7 @@ public class HGuardarMapa implements IHerramienta {
 				System.out.println("w/n");
 				//Escribir
 				salida.println("<?xml version='1.0' encoding='UTF-8'?>");
-				salida.println("<osm version='0.3' generator='JOSM'>");
+				salida.println("<osm version='0.3' generator='SimTrafficTM'>");
 				
 				Iterator<Nodo> nod = mapa.getNodos().iterator();
 				while (nod.hasNext()) {
@@ -53,13 +55,28 @@ public class HGuardarMapa implements IHerramienta {
 				}
 				
 				Iterator<Tramo> tram = mapa.getTramos().iterator();
-				while (nod.hasNext()) {
+				while (tram.hasNext()) {
 					Tramo tramoaux = tram.next();
 					salida.println(tramoaux.transformaraOSM());
 				}
 				
-				//Falta parte de vías (en proceso)
-				
+				//Parte de vías (en proceso)
+				//Provisional mientras se decide sobre la inclusión de un tipo vía, 
+				//pero incluido para tener toda la información de nodos y tramos guardada.
+				//1 segmento por vía.
+				String s=new String();
+				tram = mapa.getTramos().iterator();
+				while (tram.hasNext()) {
+					Tramo tramoaux = tram.next();
+					//Crea el código de vías (con 1 segmento por vía, con id el del tramo negativo)
+					s=s.concat("<way id='"+(-tramoaux.getID())+"'>\n");
+					s=s.concat("<seg id='"+tramoaux.getID()+"'/>\n");
+					ITipoElemento tipo = tramoaux.getTipo();
+					if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
+					if (tramoaux.getNombre()!=null) s=s.concat("<tag k='nombre' v='"+tramoaux.getNombre()+"' />\n");
+					s=s.concat("</way>\n");
+				}
+				salida.println(s);
 				salida.println("</osm>");
 				salida.close();
 		} catch (IOException e) {
