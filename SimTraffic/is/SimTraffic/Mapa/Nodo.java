@@ -3,6 +3,7 @@ package is.SimTraffic.Mapa;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -189,6 +190,27 @@ public class Nodo implements ElementoMapa {
 
 	public void setTramos(List<Tramo> tramos) {
 		this.tramos = tramos;
+	}
+	
+	/**
+	 * Método auxiliar definido para resolver si dos nodos tienen un tramo
+	 * que les comunique. 
+	 * @param nodo Nodo al que se quiere llegar a través de un tramo.
+	 * @return Si 2 nodos tienen un tramo común (y se puede ir de nodo1 a nodo2) 
+	 * devuelve dicho tramo, y sino devuelve null.
+	 */
+	public Tramo devuelveTramoDirigidoA(Nodo nodo) {
+		if (nodo.getPos()==getPos()) return null; //Fallo, pues no hay un tramo entre un nodo y sí mismo.
+		else {
+			Iterator<Tramo> tram= tramos.iterator();
+			Tramo tramoaux;
+			while (tram.hasNext()) {
+					tramoaux = tram.next();
+					if (tramoaux.getNodoFinal()==nodo) //Ha encontrado el tramo con la condición requerida.
+						return tramoaux;
+			}
+			return null; //No ha encontrado ningún tramo, luego devuelve null.
+		}
 	}
 
 }

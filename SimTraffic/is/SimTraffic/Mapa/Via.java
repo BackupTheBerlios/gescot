@@ -73,6 +73,15 @@ public class Via implements ElementoMapa {
 	public void setTramos(ArrayList<Tramo> tramos) {
 		Tramos = tramos;
 	}
+	
+	/**
+	 * En principio no se incluyen comprobaciones de si el tramo ya está, 
+	 * pero puede añadirse para mayor seguridad.
+	 * @param tramo
+	 */
+	public void addTramo(Tramo tramo) {
+		Tramos.add(tramo);
+	}
 
 	public void setID(int id) {
 		ID = id;
