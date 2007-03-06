@@ -36,11 +36,11 @@ public class Tramo implements ElementoMapa {
 	private int ID;
 	
 	/**
-	 * Indica el tipo de vía (inicialmente crearemos todas las vías de un tramo, para 
-	 * simplificar la tarea y debido a que no aprovechamos aun las posibilidades
-	 * de las vías), posteriormente puede moverse su inclusión a una futura clase vía. 
-	 * No conviene redefinirlo a tipoTramo por cuestiones de compatibilidad, pues el 
-	 * formato osm etiqueta las vías, no los tramos.
+	 * Indica el tipo de vía (inicialmente crearemos para cada tramo una vía con dicho tramo, para 
+	 * simplificar la tarea y debido a que no aprovechamos aun las posibilidades de las vías 
+	 * (de momento su uso se reduce a las lineas de autobuses)), posteriormente puede moverse 
+	 * su inclusión a una futura clase vía. No conviene redefinirlo a tipoTramo por cuestiones 
+	 * de compatibilidad, pues el formato osm etiqueta las vías, no los tramos.
 	 */
 	private ITipoElemento tipo;
 	
@@ -177,6 +177,10 @@ public class Tramo implements ElementoMapa {
 		ID = id;
 	}
 
+	/**
+	 * Devuelve un string con la traducción del tramo al formato osm(segment), necesario 
+	 * para el proceso de guardar el mapa.
+	 */
 	public String transformaraOSM() {
 		String s=("<segment id='"+ID+"' from='" + nodoInicial.getID() + "' to='" + nodoFinal.getID() + "' />");
 		return s;

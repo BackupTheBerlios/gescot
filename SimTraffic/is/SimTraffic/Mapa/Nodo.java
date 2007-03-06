@@ -158,6 +158,10 @@ public class Nodo implements ElementoMapa {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Devuelve un string con la traducción del nodo al formato osm(node), necesario 
+	 * para el proceso de guardar el mapa.
+	 */
 	public String transformaraOSM() {
 		String s=new String();
 		if (tipo==null && nombre==null)

@@ -38,6 +38,12 @@ public class Mapa {
 	 * Mantiene la lista de tramos del Mapa
 	 */
 	private ArrayList<Tramo> Tramos;
+	
+	/**
+	 * Mantiene la lista de vías del mapa. 
+	 * Aclaración: Uso actual para lineas de autobuses únicamente.
+	 */
+	private ArrayList<Via> Vias;
 
 	private int maxX;
 
@@ -56,7 +62,7 @@ public class Mapa {
 		Nodos = new ArrayList<Nodo>();
 		Señales = new ArrayList<Señal>();
 		Tramos = new ArrayList<Tramo>();
-
+		Vias = new ArrayList<Via>();
 	}
 
 	/**
@@ -153,9 +159,7 @@ public class Mapa {
 				}
 		
 		}
-			
-			
-			
+		
 
 	}
 

@@ -61,6 +61,7 @@ public class HGuardarMapa implements IHerramienta {
 				}
 				
 				//Parte de vías (en proceso)
+				//Objetivo aquí: Tratar cada segmento como vía de un solo segmento.
 				//Provisional mientras se decide sobre la inclusión de un tipo vía, 
 				//pero incluido para tener toda la información de nodos y tramos guardada.
 				//1 segmento por vía.
