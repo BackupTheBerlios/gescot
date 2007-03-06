@@ -37,7 +37,7 @@ public class Via implements ElementoMapa {
 	}
 	
 	/**
-	 * Devuelve un string con la traducción del nodo al formato osm(way), necesario 
+	 * Devuelve un string con la traducción de la vía al formato osm(way), necesario 
 	 * para el proceso de guardar el mapa.
 	 */
 	public String transformaraOSM() {
