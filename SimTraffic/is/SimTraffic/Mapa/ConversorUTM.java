@@ -178,7 +178,7 @@ public class ConversorUTM {
 		double xy[] = new double[2];
 		double N, nu2, ep2, t, t2, l;
 		double l3coef, l4coef, l5coef, l6coef, l7coef, l8coef;
-		double tmp;
+		//double tmp;
 
 		/* Precalculate ep2 */
 		ep2 = (Math.pow(sm_a, 2.0) - Math.pow(sm_b, 2.0)) / Math.pow(sm_b, 2.0);
@@ -192,7 +192,7 @@ public class ConversorUTM {
 		/* Precalculate t */
 		t = Math.tan(phi);
 		t2 = t * t;
-		tmp = (t2 * t2 * t2) - Math.pow(t, 6.0);
+		//tmp = (t2 * t2 * t2) - Math.pow(t, 6.0);
 
 		/* Precalculate l */
 		l = lambda - lambda0;

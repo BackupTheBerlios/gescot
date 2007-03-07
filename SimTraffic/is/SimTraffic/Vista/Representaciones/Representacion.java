@@ -53,7 +53,6 @@ abstract public class Representacion {
 		tamY = 200;
 	}
 
-	
 	/**
 	 * Método que recalula la posicion en X de un punto del mapa en la pantalla.
 	 * <p>
@@ -86,16 +85,16 @@ abstract public class Representacion {
 		return posY;
 	}
 
-	public int x_RepAMapa(int posX){
+	public int x_RepAMapa(int posX) {
 		// falta implementar
 		return posX;
 	}
-	
+
 	public int y_RepAMapa(int posY) {
 		// falta implementar
 		return posY;
 	}
-	
+
 	/**
 	 * Método abstracto que se debe implementar para pintar un nodo.
 	 * <p>
@@ -138,8 +137,21 @@ abstract public class Representacion {
 	 */
 	abstract public void pintar(Graphics2D g, Señal señal);
 
+	/**
+	 * Método abstracto que se debe implementar para marcar un elemento del
+	 * mapa.
+	 * <p>
+	 * Este método dibuja en el mapa una sugerencia, esto es un elemento pinta
+	 * de forma particular para que sea facilmente identificado por el usuario y
+	 * facilitar la visualización.
+	 * 
+	 * @param g
+	 *            Graphics2D donde se debe dibujar el elemento
+	 * @param elemento
+	 *            ElementoMapa que se desea resaltar
+	 */
 	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
-	
+
 	public void setPosX0(int posX0) {
 		this.posX0 = posX0;
 	}

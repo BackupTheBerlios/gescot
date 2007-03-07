@@ -11,8 +11,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class RepresentacionSimple extends Representacion {
+	/**
+	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
+	 */
 	private int tamaño_carril;
 
+	/**
+	 * Constructor por defecto de la RepresentacionSimple
+	 */
 	public RepresentacionSimple() {
 		super();
 		tamaño_carril = 5;
@@ -115,18 +121,22 @@ public class RepresentacionSimple extends Representacion {
 	public void pintarSugerencia(Graphics2D g, ElementoMapa elemento) {
 		if (elemento != null) {
 			if (elemento.getClass() == Nodo.class) {
+				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
 				g.setColor(Color.RED);
 				g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - 5,
 						y_MapaARep(nodo.getPos().getPosY()) - 5, 10, 10);
 			}
 			if (elemento.getClass() == Tramo.class) {
-				Posicion posnodo1 = ((Tramo) elemento).getNodoInicial().getPos();
+				// pintar un tramo sugerido
+				Posicion posnodo1 = ((Tramo) elemento).getNodoInicial()
+						.getPos();
 				Posicion posnodo2 = ((Tramo) elemento).getNodoFinal().getPos();
 				g.setColor(Color.RED);
 				g.setStroke(new BasicStroke(6));
-				g.drawLine(x_MapaARep(posnodo1.getPosX()), y_MapaARep(posnodo1.getPosY()),
-						x_MapaARep(posnodo2.getPosX()), y_MapaARep(posnodo2.getPosY()));
+				g.drawLine(x_MapaARep(posnodo1.getPosX()), y_MapaARep(posnodo1
+						.getPosY()), x_MapaARep(posnodo2.getPosX()),
+						y_MapaARep(posnodo2.getPosY()));
 				g.setStroke(new BasicStroke(1));
 			}
 		}
