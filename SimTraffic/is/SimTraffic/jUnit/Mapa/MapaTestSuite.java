@@ -10,6 +10,8 @@ public class MapaTestSuite {
 	    suite.addTestSuite(MapaTest.class);
 	    suite.addTestSuite(NodoTest.class);
 	    suite.addTestSuite(TramoTest.class);
+	    suite.addTestSuite(SeñalTest.class);
+	    suite.addTestSuite(EntradaSalidaTest.class);	    
 	    suite.addTestSuite(ConversorUTMTest.class);
 	    return suite;
 	}
