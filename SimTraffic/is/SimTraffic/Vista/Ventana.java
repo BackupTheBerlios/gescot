@@ -121,6 +121,10 @@ public class Ventana extends JFrame {
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
 		
+		EscuchaRaton escuchaSiempre = new MLEscuchaSiempre(modelo,controlador,panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSiempre);
+		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
+		
 		crearBarraMenu();
 		
 		crearBarraEstado();
@@ -323,7 +327,7 @@ public class Ventana extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * Cra la barra de estado
 	 *
 	 */
 	public void crearBarraEstado(){
