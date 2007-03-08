@@ -31,6 +31,7 @@ public class Principal {
 	public static void main(String[] args) {
 		/*
 		 * no se por que estaba este codigo, pero la ventana se ve mejor sin el
+		 * eso es cuestion de gustos porque a mi me gusta mas de la otra manera, pero en fin...
 		 * try {
 			UIManager.setLookAndFeel(new WindowsLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) {
