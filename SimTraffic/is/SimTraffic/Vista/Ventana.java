@@ -34,58 +34,58 @@ import javax.swing.border.BevelBorder;
  * 
  */
 public class Ventana extends JFrame {
-
+	
 	private static final long serialVersionUID = -3549855005952631901L;
-
+	
 	/**
 	 * Panel de la parte superior de panel_herramientas. Contiene los botones de
 	 * las distintas herramientas.
 	 */
-	private JPanel panel;
-
+	private JToolBar panel;
+	
 	/**
 	 * Panel central con scroll.
 	 */
 	private JScrollPane scrollPane; // De momento sin usar, ¿sobra? - Si, debría
-									// inclurise de alguna forma en PanelMapa.
-									// Podemos dejarlo aqui para recordarnoslo
-
+	// inclurise de alguna forma en PanelMapa.
+	// Podemos dejarlo aqui para recordarnoslo
+	
 	/**
 	 * Panel de la parte izquierda de la interfaz gráfica.
 	 */
 	private JPanel panel_herramientas;
-
+	
 	/**
 	 * Barra de menús de la parte superior de la interfaz.
 	 */
 	private JMenuBar menuBar;
-
+	
 	/**
 	 * Modelo asociado a la interfaz.
 	 */
 	private IModelo modelo;
-
+	
 	/**
 	 * Controlador asociado a la interfaz.
 	 */
 	private IControlador controlador;
-
+	
 	/**
 	 * Escucha de ratón actual.
 	 */
 	EscuchaRaton escucha;
-
+	
 	/**
 	 * Panel para editar los mapas. Puede ser que haya que cambiarlo por una
 	 * JLabel.
 	 */
 	private PanelMapa panel_mapa;
-
+	
 	/**
 	 * Panel con los iconos de la parte superior.
 	 */
 	private JPanel superior;
-
+	
 	/**
 	 * Constructor de la ventana.
 	 * 
@@ -104,27 +104,27 @@ public class Ventana extends JFrame {
 		panel_mapa = new PanelMapa(200, 200);
 		
 		crearBarraMenu();
-
+		
 		crearHerramientas();
-
+		
 		añadirPanelMapa();
-
+		
 		crearBotonesSuperiores();
-
+		
 	}
-
+	
 	/**
 	 * Crea la barra de menús.
 	 */
 	public void crearBarraMenu() {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-
+		
 		crearMenuArchivo();
-
+		
 		crearMenuEdicion();
 	}
-
+	
 	/**
 	 * Crea el menú Archivo.
 	 */
@@ -132,26 +132,26 @@ public class Ventana extends JFrame {
 		JMenu archivoMenu = new JMenu();
 		archivoMenu.setText("Archivo");
 		menuBar.add(archivoMenu);
-
+		
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem.addActionListener(new AccionNuevo());
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		archivoMenu.add(nuevoMapaMenuItem);
-
+		
 		archivoMenu.addSeparator();
-
+		
 		JMenuItem cargarMapaMenuItem = new JMenuItem();
 		cargarMapaMenuItem.addActionListener(new AccionAbrir());
 		cargarMapaMenuItem.setText("Cargar Mapa");
 		archivoMenu.add(cargarMapaMenuItem);
-
+		
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
 		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));
 		guardarmapaMenuItem.setText("GuardarMapa");
 		archivoMenu.add(guardarmapaMenuItem);
-
+		
 		archivoMenu.addSeparator();
-
+		
 		JMenuItem salirMenuItem = new JMenuItem();
 		salirMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,9 +160,9 @@ public class Ventana extends JFrame {
 		});
 		salirMenuItem.setText("Salir");
 		archivoMenu.add(salirMenuItem);
-
+		
 	}
-
+	
 	/**
 	 * Crea el menú Edicion.
 	 */
@@ -170,7 +170,7 @@ public class Ventana extends JFrame {
 		JMenu edicionMenu = new JMenu();
 		edicionMenu.setText("Edición");
 		menuBar.add(edicionMenu);
-
+		
 		JMenuItem deshacerMenuItem = new JMenuItem();
 		deshacerMenuItem.addActionListener(new AccionDeshacer(controlador, panel_mapa));
 		deshacerMenuItem.setText("Deshacer");
@@ -182,14 +182,14 @@ public class Ventana extends JFrame {
 		copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
 		edicionMenu.add(copiarMenuItem);
-
+		
 		JMenuItem pegarMenuItem = new JMenuItem();
 		pegarMenuItem.addActionListener(new AccionPegar());
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
-
+		
 	}
-
+	
 	/**
 	 * Crea el panel de herramientas de la parte izquierda de la interfaz
 	 * gráfica.
@@ -198,99 +198,95 @@ public class Ventana extends JFrame {
 		panel_herramientas = new JPanel();
 		panel_herramientas.setLayout(new BorderLayout());
 		getContentPane().add(panel_herramientas, BorderLayout.WEST);
-
-		panel = new JPanel();
-		final GridLayout gridLayout = new GridLayout(0, 1);
-		gridLayout.setVgap(2);
-		panel.setLayout(gridLayout);
+		
+		panel = new JToolBar(JToolBar.VERTICAL);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
-
-		JLabel herramientasLabel = new JLabel();
-		panel.add(herramientasLabel);
-		herramientasLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		herramientasLabel.setText("Herramientas");
-
-		JButton añadirNodoButton = new JButton();
+		
+		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
+		añadirNodoButton.setMargin(new Insets(1, 1, 1, 1));
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
+		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirNodo(modelo, controlador, panel_mapa), this));
 		panel.add(añadirNodoButton);
-		añadirNodoButton.setText("Añadir Nodo(s)");
 		
-		JButton añadirTramoButton = new JButton();
+		JButton añadirTramoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo.png"));
+		añadirTramoButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png"; 
+		añadirTramoButton.setToolTipText("<html>Añadir Tramo <img src="+imageName+"></html>");
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirTramo(modelo, controlador, panel_mapa), this));
 		panel.add(añadirTramoButton);
-		añadirTramoButton.setText("Añadir Tramo(s)");
-
-		JButton eliminarNodoButton = new JButton();
+		
+		JButton eliminarNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo.png"));
+		eliminarNodoButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo2.png"; 
+		eliminarNodoButton.setToolTipText("<html>Eliminar Nodo <img src="+imageName+"></html>");
 		eliminarNodoButton.addActionListener(new AccionSobreMapa(
 				new MLEliminarNodo(modelo, controlador, panel_mapa), this));
 		panel.add(eliminarNodoButton);
-		eliminarNodoButton.setText("Eliminar Nodo(s)");
-
-		JButton StartStopNodoButton = new JButton();
-		StartStopNodoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		panel.add(StartStopNodoButton);
-		StartStopNodoButton.setText("Comenzar simulación (Ejecutar)");
-
-		JButton otrosButton = new JButton();
-		panel.add(otrosButton);
-		otrosButton.setText("Otros...");
-
+		
+		
+		JButton eliminarTramoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\eliminar_tramo.png"));
+		eliminarTramoButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_tramo2.png"; 
+		eliminarTramoButton.setToolTipText("<html>Eliminar Tramo <img src="+imageName+"></html>");
+		eliminarTramoButton.addActionListener(new AccionSobreMapa(
+				new MLEliminarTramo(modelo, controlador, panel_mapa), this));
+		panel.add(eliminarTramoButton);
+		//Aqui se añadirán los nuevos botones.
+		
+		
 	}
-
+	
 	/**
 	 * Crea los botones de la parte superior.
 	 */
 	public void crearBotonesSuperiores() {
 		superior = new JPanel();
 		getContentPane().add(superior, BorderLayout.NORTH);
-
+		
 		JToolBar archivoTB = new JToolBar();
 		JToolBar edicionTB = new JToolBar();
 		superior.add(archivoTB);
 		superior.add(edicionTB);
-
+		
 		superior.setLayout(new BoxLayout(superior, BoxLayout.LINE_AXIS));
 		JButton nuevoTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
 		nuevoTB.addActionListener(new AccionNuevo());
 		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-new2.png"; 
 		nuevoTB.setToolTipText("<html>Nuevo mapa <img src="+imageName+"></html>");
-
+		
 		JButton cargarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
 		cargarTB.addActionListener(new AccionAbrir());
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-open2.png"; 
 		cargarTB.setToolTipText("<html>Cargar mapa <img src="+imageName+"></html>");
 		
 		JButton guardarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
 		guardarTB.setMargin(new Insets(1, 1, 1, 1));
 		guardarTB.addActionListener(new AccionGuardar(controlador));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-save2.png"; 
 		guardarTB.setToolTipText("<html>Guardar mapa <img src="+imageName+"></html>");
-
+		
 		JButton copiarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
 		copiarTB.addActionListener(new AccionCopiar());
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-copy2.png"; 
 		copiarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
-
+		
 		JButton pegarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
 		pegarTB.addActionListener(new AccionCortar());
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-paste2.png"; 
 		pegarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
-
+		
 		JButton deshacerTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-undo.png"));
 		deshacerTB.setMargin(new Insets(1, 1, 1, 1));
@@ -305,12 +301,12 @@ public class Ventana extends JFrame {
 		edicionTB.add(pegarTB);
 		edicionTB.add(deshacerTB);
 	}
-
+	
 	/**
 	 * Añade el panel del mapa, en la parte central.
 	 */
 	public void añadirPanelMapa() {
-
+		
 		// scrollPane = new JScrollPane();
 		// getContentPane().add(scrollPane);
 		// panel_mapa = new PanelMapa(200, 200);
@@ -319,9 +315,9 @@ public class Ventana extends JFrame {
 		panel_mapa.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		panel_mapa.setBackground(Color.WHITE);
 		panel_mapa.setModelo(modelo);
-
+		
 	}
-
+	
 	/**
 	 * Método que reemplaza el escucha actual del panel_mapa con uno nuevo
 	 * <p>
@@ -335,10 +331,10 @@ public class Ventana extends JFrame {
 		panel_mapa.sugerir(null);
 		this.escucha = escucha;
 	}
-
+	
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
 		paintComponents(g);
 	}
-
+	
 }
