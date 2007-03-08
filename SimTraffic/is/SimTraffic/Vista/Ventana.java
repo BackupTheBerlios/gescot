@@ -7,11 +7,14 @@ import is.SimTraffic.Vista.EscuchasRaton.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -61,6 +64,11 @@ public class Ventana extends JFrame {
 	private JMenuBar menuBar;
 	
 	/**
+	 * Barra de estado situada en la parte inferior de la interfaz
+	 */
+	private JPanel barraEstado;
+	
+	/**
 	 * Modelo asociado a la interfaz.
 	 */
 	private IModelo modelo;
@@ -80,6 +88,16 @@ public class Ventana extends JFrame {
 	 * JLabel.
 	 */
 	private PanelMapa panel_mapa;
+	
+	/**
+	 * Indica la posición X del ratón en el mapa
+	 */
+	private Integer posX; 
+	
+	/**
+	 * Indica la posición Y del ratón en el mapa
+	 */
+	private Integer posY; 
 	
 	/**
 	 * Panel con los iconos de la parte superior.
@@ -104,6 +122,8 @@ public class Ventana extends JFrame {
 		panel_mapa = new PanelMapa(200, 200);
 		
 		crearBarraMenu();
+		
+		crearBarraEstado();
 		
 		crearHerramientas();
 		
@@ -300,6 +320,43 @@ public class Ventana extends JFrame {
 		edicionTB.add(copiarTB);
 		edicionTB.add(pegarTB);
 		edicionTB.add(deshacerTB);
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	public void crearBarraEstado(){
+		
+		barraEstado = new JPanel();
+		barraEstado.setLayout(new FlowLayout(FlowLayout.LEFT,30,5));
+		
+		JLabel etiquetaPosicion = new JLabel("Posición: ");
+		JLabel etiquetaX = new JLabel("X= ");
+		JLabel etiquetaY = new JLabel("Y= ");
+		posX = new Integer(0);
+		posY = new Integer(0);
+		final JLabel posicionX = new JLabel();
+        final JLabel posicionY = new JLabel();
+		
+        panel_mapa.addMouseMotionListener(new MouseMotionAdapter(){
+			public void mouseMoved(MouseEvent e) {  
+				posX =  (Integer) e.getX();
+				posY = (Integer) e.getY();
+				posicionX.setText(posX.toString());
+				posicionY.setText(posY.toString());
+            }
+
+		});
+		
+		barraEstado.add(etiquetaPosicion);
+		barraEstado.add(etiquetaX);
+		barraEstado.add(posicionX);
+		barraEstado.add(etiquetaY);
+		barraEstado.add(posicionY);
+		
+		
+		getContentPane().add(barraEstado, BorderLayout.SOUTH);
 	}
 	
 	/**
