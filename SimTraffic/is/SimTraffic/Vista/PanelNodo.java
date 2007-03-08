@@ -22,7 +22,6 @@ public class PanelNodo extends JPanel{
 	
 	
 	public PanelNodo(){
-		
 		this.setLayout(new BorderLayout(2,2));
 		
 		panelDatos = new JTabbedPane();

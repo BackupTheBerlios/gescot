@@ -339,8 +339,8 @@ public class Ventana extends JFrame {
         // Esto habrá que ponerlo interactuando con la clase MLEscuchaSiempre
         panel_mapa.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent e) {  
-				posX =  (Integer) e.getX();
-				posY = (Integer) e.getY();
+				posX =  panel_mapa.x_RepAMapa((int) (Integer) e.getX());
+				posY = panel_mapa.y_RepAMapa((int) (Integer) e.getY());
 				posicionX.setText(posX.toString());
 				posicionY.setText(posY.toString());
             }
