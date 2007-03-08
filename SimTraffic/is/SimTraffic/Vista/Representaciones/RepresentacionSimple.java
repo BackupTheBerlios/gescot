@@ -9,6 +9,7 @@ import is.SimTraffic.Mapa.Tramo;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 
 public class RepresentacionSimple extends Representacion {
 	/**
@@ -142,4 +143,44 @@ public class RepresentacionSimple extends Representacion {
 		}
 	}
 
+	
+	
+	/** Método para determinar el área ocupada por un tramo. Devuelve un polígono que representa dicha área.
+	 * @param tramo
+	 * 		El tramo del que se quiere conocer el área que ocupa.
+	 * @return El polígono que rodea al tramo.*/
+	public Polygon generarAreaTramo(Tramo tramo) 
+	{
+		// almacena posiciones de los nodos inicial y final del tramo.
+		Posicion posnodo1 = tramo.getNodoInicial().getPos();
+		Posicion posnodo2 = tramo.getNodoFinal().getPos();
+		// almacena numero de carriles en cada sentido.
+		int carriles_ida = tramo.getNumCarrilesDir1();
+		int carriles_vuelta = tramo.getNumCarrilesDir2();
+		// determina largo y alto del tramo y calcula el angulo del tramo en base a estos datos.
+		double largo = posnodo1.getPosX() - posnodo2.getPosX();
+		double alto = posnodo1.getPosY() - posnodo2.getPosY();
+		double angulo = Math.atan(alto / largo);
+		// Coordenadas de los puntos del rectángulo que representa al tramo.
+		int x[] = {
+				(int) (posnodo1.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo)),
+				(int) (posnodo2.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo)),
+				(int) (posnodo2.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo))),
+				(int) (posnodo1.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo))) };
+		int y[] = {
+				(int) (posnodo1.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo))),
+				(int) (posnodo2.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo))),
+				(int) (posnodo2.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo)),
+				(int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo)) };
+		Polygon p = new Polygon(x,y,4);
+		return p;
+	}
 }

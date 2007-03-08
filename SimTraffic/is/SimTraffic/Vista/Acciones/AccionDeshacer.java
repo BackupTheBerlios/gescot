@@ -31,7 +31,10 @@ public class AccionDeshacer implements ActionListener {
 		if (controlador != null)
 			controlador.deshacer();
 		if (panel_mapa != null)
+		{
+			panel_mapa.recrearMapa();
 			panel_mapa.repaint();
+		}
 	}
 
 }

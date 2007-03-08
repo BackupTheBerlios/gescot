@@ -6,6 +6,7 @@ import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 
 /**
  * Clase abstracta para representaciones del mapa.
@@ -171,5 +172,17 @@ abstract public class Representacion {
 	public void setZoom(float zoom) {
 		this.zoom = zoom;
 	}
-
+	
+	/**
+	 * Método abstracto que se debe implementar para calcular el área ocupada por un tramo.
+	 * <p>
+	 * Este método recibe como parámetro un tramoo. En él ultimo estará toda la
+	 * infromación pertinente al tipo, la posición inicial y final, etc.
+	 * 
+	 * @param tramo
+	 *            Tramo del que se quiere calcular el área.
+	 * @return 
+	 * 			  El área ocupada por el tramo.
+	 */
+	public abstract Polygon generarAreaTramo(Tramo tramo); 
 }

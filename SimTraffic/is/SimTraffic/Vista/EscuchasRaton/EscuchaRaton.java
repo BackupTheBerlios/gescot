@@ -6,10 +6,13 @@ package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,24 +30,24 @@ import java.util.Iterator;
  * 
  */
 abstract public class EscuchaRaton implements MouseListener, MouseMotionListener {
-
+	
 	IModelo modelo;
-
+	
 	IControlador controlador;
-
+	
 	PanelMapa panel;
-
+	
 	Image cursor;
-
+	
 	boolean activo;
-
+	
 	public EscuchaRaton(IModelo modelo, IControlador controlador,
 			PanelMapa panel) {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		this.panel = panel;
 	}
-
+	
 	/**
 	 * Método que establece este esucha como el activo en el panel del mapa.<p>
 	 * Este metodo primero estable el icono del esucha, para luego esablecer esta
@@ -57,7 +60,7 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 	}
-
+	
 	/**
 	 * Método para quitar esta instancia como esucha del raton y su movimiento.
 	 */
@@ -65,7 +68,7 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		panel.removeMouseListener(this);
 		panel.removeMouseMotionListener(this);
 	}
-
+	
 	/**
 	 * Método para obtener un nodo a partir de dos puntos en el panel del mapa.<p>
 	 * Este método recorre la lista de nodos y busca el nodo que tiene una posicion (x,y)
@@ -88,9 +91,9 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		{
 			Nodo next = iter.next();
 			if ((next.getPos().getPosX() - error <= x) && 
-				(next.getPos().getPosX() + error >= x) &&
-				(next.getPos().getPosY() - error <= y) &&
-				(next.getPos().getPosY() + error >= y))
+					(next.getPos().getPosX() + error >= x) &&
+					(next.getPos().getPosY() - error <= y) &&
+					(next.getPos().getPosY() + error >= y))
 			{
 				encontrado = true;
 				sel = next;
@@ -102,18 +105,51 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 			return null;
 	}
 	
+	/**
+	 * Método para obtener un tramo a partir de un punto en el panel del mapa.<p>
+	 * Este método recorre la lista de tramos y busca el tramo que tiene una posicion (x,y)
+	 * similar a la pasada como parámetro.
+	 * 
+	 * @param x
+	 * Posicion a lo largo del eje x
+	 * @param y
+	 * Posicion a lo largo del eje y
+	 * @return
+	 * Tramo encontrado en la posicion dada o null
+	 */
+	public Tramo buscarTramo(int x, int y)
+	{
+		Iterator<Tramo> iter = modelo.getMapa().getTramos().iterator();
+		Tramo sel = null;
+		boolean encontrado = false;
+		while (!encontrado && iter.hasNext())
+		{
+			Tramo next = iter.next();
+			Polygon p = panel.getRepresentacion().generarAreaTramo(next);
+			if (p.contains(x,y))
+			{
+				encontrado = true;
+				sel = next;
+			}
+		}
+		if (encontrado)
+			return sel;
+		else
+			return null;
+	}
+
 	abstract public void mouseClicked(MouseEvent arg0);
-
+	
 	abstract public void mouseEntered(MouseEvent arg0);
-
+	
 	abstract public void mouseExited(MouseEvent arg0);
-
+	
 	abstract public void mousePressed(MouseEvent arg0);
-
+	
 	abstract public void mouseReleased(MouseEvent arg0);
-
+	
 	abstract public void mouseDragged(MouseEvent arg0);
-
+	
 	abstract public void mouseMoved(MouseEvent arg0);
-
+	
 }
