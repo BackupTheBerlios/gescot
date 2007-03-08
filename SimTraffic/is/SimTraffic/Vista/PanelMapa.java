@@ -7,10 +7,11 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Acciones.AccionScroll;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
-
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +20,8 @@ import java.awt.RenderingHints;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 /**
  * Clase (por ahora provisional) para representar simplemente el mapa en
@@ -54,9 +57,11 @@ public class PanelMapa extends JPanel {
 	 */
 	private int tamX, tamY;
 
+	private int posX, posY;
+
 	/**
-	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que se dibjue
-	 * el panel en pantalla
+	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que
+	 * se dibjue el panel en pantalla
 	 */
 	private boolean recrear;
 
@@ -66,20 +71,27 @@ public class PanelMapa extends JPanel {
 	private int contador;
 
 	/**
-	 * Elemento a mostrar como sugerido, segun donde esta el puntero del usuario. Para
-	 * operaciones de modificacion/borrado/etc
+	 * Elemento a mostrar como sugerido, segun donde esta el puntero del
+	 * usuario. Para operaciones de modificacion/borrado/etc
 	 */
 	private ElementoMapa sugerencia;
-	
+
 	/**
 	 * Alamcena la representacion que se utiliza para mostrar el mapa por
 	 * pantalla.
 	 */
 	private Representacion representacion;
 
+	private JScrollBar largo;
+
+	private JScrollBar alto;
+
 	/**
-	 * Constructor de la clase PanelMapa.<p>
-	 * Este constructor toma como parámetros el tamaño que se le quiere dar inicialmente
+	 * Constructor de la clase PanelMapa.
+	 * <p>
+	 * Este constructor toma como parámetros el tamaño que se le quiere dar
+	 * inicialmente
+	 * 
 	 * @param tamX
 	 * @param tamY
 	 */
@@ -93,6 +105,8 @@ public class PanelMapa extends JPanel {
 		recrear = true;
 		contador = 0;
 		representacion = new RepresentacionSimple();
+		this.setLayout(new BorderLayout());
+		añadirScrolls();
 	}
 
 	/**
@@ -110,14 +124,23 @@ public class PanelMapa extends JPanel {
 	}
 
 	/*
-	public void setSize(int tamX, int tamY) {
-		this.tamX = tamX;
-		this.tamY = tamY;
-		recrear = true;
-		super.setSize(tamX, tamY);
-		}
-*/
-	
+	 * public void setSize(int tamX, int tamY) { this.tamX = tamX; this.tamY =
+	 * tamY; recrear = true; super.setSize(tamX, tamY); }
+	 */
+	public void añadirScrolls() {
+		alto = new JScrollBar();
+		alto.setMinimum(0);
+		alto.setMaximum(100);
+		alto.addAdjustmentListener(new AccionScroll(this));
+		this.add(alto, BorderLayout.EAST);
+		largo = new JScrollBar();
+		largo.setOrientation(0);
+		largo.setMinimum(0);
+		largo.setMaximum(100);
+		largo.addAdjustmentListener(new AccionScroll(this));
+		this.add(largo, BorderLayout.SOUTH);
+	}
+
 	/**
 	 * Método que recera la imagen del mapa a partir de la infromación del
 	 * modelo.
@@ -130,8 +153,12 @@ public class PanelMapa extends JPanel {
 		Dimension tamaño = this.getSize();
 		tamX = tamaño.width;
 		tamY = tamaño.height;
+		posX = largo.getValue();
+		posY = alto.getValue();
 		representacion.setTamX(tamX);
 		representacion.setTamY(tamY);
+		representacion.setPosX0(posX);
+		representacion.setPosY0(posY);
 		representacion.setZoom(zoom);
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
@@ -152,7 +179,9 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void repaint() {
-		if(tamX != this.getSize().width || tamY != this.getSize().height)
+		if (tamX != getSize().width || tamY != getSize().height
+				|| ((largo != null) && posX != largo.getValue())
+				|| ((alto != null) && posY != alto.getValue()))
 			recrear = true;
 		super.repaint();
 	}
@@ -160,7 +189,7 @@ public class PanelMapa extends JPanel {
 	public void paintComponent(Graphics g_normal) {
 		Graphics2D g = (Graphics2D) g_normal;
 		if (recrear) {
-			//mapa = super.createImage(tamX, tamY);
+			// mapa = super.createImage(tamX, tamY);
 			recrearMapa();
 			recrear = false;
 		}
@@ -172,24 +201,24 @@ public class PanelMapa extends JPanel {
 	public void setRepresentacion(Representacion representacion) {
 		this.representacion = representacion;
 	}
-	
+
 	public Representacion getRepresentacion() {
 		return representacion;
 	}
-	
+
 	public void setZoom(float zoom) {
 		this.zoom = zoom;
 	}
-	
+
 	public void sugerir(ElementoMapa sugerencia) {
 		this.sugerencia = sugerencia;
 		this.repaint();
 	}
-	
+
 	public int x_RepAMapa(int posX) {
 		return representacion.x_RepAMapa(posX);
 	}
-	
+
 	public int y_RepAMapa(int posY) {
 		return representacion.y_RepAMapa(posY);
 	}

@@ -48,23 +48,23 @@ public class RepresentacionSimple extends Representacion {
 
 		// genera los puntos (x,y) de las esquinas del poligono
 		int x[] = {
-				(int) (posnodo1.getPosX() + tamaño_carril * carriles_ida
-						* Math.sin(angulo)),
-				(int) (posnodo2.getPosX() + tamaño_carril * carriles_ida
-						* Math.sin(angulo)),
-				(int) (posnodo2.getPosX() + tamaño_carril * carriles_vuelta
-						* (-Math.sin(angulo))),
-				(int) (posnodo1.getPosX() + tamaño_carril * carriles_vuelta
-						* (-Math.sin(angulo))) };
+				x_MapaARep((int) (posnodo1.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo))),
+						x_MapaARep((int) (posnodo2.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo))),
+						x_MapaARep((int) (posnodo2.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo)))),
+						x_MapaARep((int) (posnodo1.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo)))) };
 		int y[] = {
-				(int) (posnodo1.getPosY() + tamaño_carril * carriles_ida
-						* (-Math.cos(angulo))),
-				(int) (posnodo2.getPosY() + tamaño_carril * carriles_ida
-						* (-Math.cos(angulo))),
-				(int) (posnodo2.getPosY() + tamaño_carril * carriles_vuelta
-						* Math.cos(angulo)),
-				(int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta
-						* Math.cos(angulo)) };
+				y_MapaARep((int) (posnodo1.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo)))),
+						y_MapaARep((int) (posnodo2.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo)))),
+						y_MapaARep((int) (posnodo2.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo))),
+						y_MapaARep((int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo))) };
 		// establece el color y dibuja el poligono
 		g.setColor(Color.DARK_GRAY);
 		g.fillPolygon(x, y, 4);
