@@ -130,14 +130,17 @@ public class PanelMapa extends JPanel {
 	public void añadirScrolls() {
 		alto = new JScrollBar();
 		alto.setMinimum(0);
-		alto.setMaximum(100);
+		alto.setMaximum(400);
+		alto.setValue(200);
 		alto.addAdjustmentListener(new AccionScroll(this));
 		this.add(alto, BorderLayout.EAST);
 		largo = new JScrollBar();
 		largo.setOrientation(0);
 		largo.setMinimum(0);
-		largo.setMaximum(100);
+		largo.setMaximum(400);
+		largo.setValue(200);
 		largo.addAdjustmentListener(new AccionScroll(this));
+		//largo.addMouseListener(new ML)
 		this.add(largo, BorderLayout.SOUTH);
 	}
 
@@ -175,6 +178,7 @@ public class PanelMapa extends JPanel {
 		while (inodos.hasNext()) {
 			representacion.pintar(g, inodos.next());
 		}
+		representacion.pintarCoordenadas(g);
 		contador++;
 	}
 

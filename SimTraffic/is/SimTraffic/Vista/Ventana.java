@@ -47,13 +47,6 @@ public class Ventana extends JFrame {
 	private JToolBar panel;
 	
 	/**
-	 * Panel central con scroll.
-	 */
-	private JScrollPane scrollPane; // De momento sin usar, ¿sobra? - Si, debría
-	// inclurise de alguna forma en PanelMapa.
-	// Podemos dejarlo aqui para recordarnoslo
-	
-	/**
 	 * Panel de la parte izquierda de la interfaz gráfica.
 	 */
 	private JPanel panel_herramientas;

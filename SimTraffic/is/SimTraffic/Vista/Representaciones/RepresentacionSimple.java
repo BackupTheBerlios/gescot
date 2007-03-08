@@ -183,4 +183,24 @@ public class RepresentacionSimple extends Representacion {
 		Polygon p = new Polygon(x,y,4);
 		return p;
 	}
+
+	@Override
+	public void pintarCoordenadas(Graphics2D g) {
+		float array[] = { 10, 5,5,5 };
+		g.setColor(Color.LIGHT_GRAY);
+		g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
+				BasicStroke.JOIN_ROUND, 1, array, 1));
+		for(int i = 0; i < 30; i++) {
+			int posx = x_MapaARep((posX0 - posX0 % (int) (100*zoom)) + (int)(100*i*zoom));
+			g.drawLine(posx, 13, posx, 2000);
+			g.drawString(""+x_RepAMapa(posx), posx - 10, 12);
+
+			int posy = y_MapaARep((posY0 - posY0 % (int) (100*zoom)) + (int)(100*i*zoom));
+			g.drawLine(0, posy, 2000, posy);
+			g.drawString(""+y_RepAMapa(posy),3 , posy - 4);
+
+		}
+		g.setStroke(new BasicStroke(1));
+
+	}
 }

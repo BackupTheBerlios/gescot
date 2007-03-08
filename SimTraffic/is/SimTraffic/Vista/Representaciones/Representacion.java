@@ -185,4 +185,6 @@ abstract public class Representacion {
 	 * 			  El área ocupada por el tramo.
 	 */
 	public abstract Polygon generarAreaTramo(Tramo tramo); 
+	
+	public abstract void pintarCoordenadas(Graphics2D g);
 }
