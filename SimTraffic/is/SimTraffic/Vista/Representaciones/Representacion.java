@@ -173,6 +173,10 @@ abstract public class Representacion {
 		this.zoom = zoom;
 	}
 	
+	public float getZoom() {
+		return zoom;
+	}
+	
 	/**
 	 * Método abstracto que se debe implementar para calcular el área ocupada por un tramo.
 	 * <p>

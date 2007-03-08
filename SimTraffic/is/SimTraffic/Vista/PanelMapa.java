@@ -7,7 +7,8 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Vista.Acciones.AccionScroll;
+import is.SimTraffic.Vista.Acciones.AccionScrollX;
+import is.SimTraffic.Vista.Acciones.AccionScrollY;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
@@ -107,6 +108,8 @@ public class PanelMapa extends JPanel {
 		representacion = new RepresentacionSimple();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
+		posX = 1000;
+		posY = 1000;
 	}
 
 	/**
@@ -130,17 +133,20 @@ public class PanelMapa extends JPanel {
 	public void añadirScrolls() {
 		alto = new JScrollBar();
 		alto.setMinimum(0);
-		alto.setMaximum(400);
-		alto.setValue(200);
-		alto.addAdjustmentListener(new AccionScroll(this));
+		alto.setMaximum(30);
+		alto.setValue(10);
+		alto.setUnitIncrement(10);
+		alto.addAdjustmentListener(new AccionScrollY(this));
+		alto.addMouseListener(new AccionScrollY(this));
 		this.add(alto, BorderLayout.EAST);
 		largo = new JScrollBar();
 		largo.setOrientation(0);
 		largo.setMinimum(0);
-		largo.setMaximum(400);
-		largo.setValue(200);
-		largo.addAdjustmentListener(new AccionScroll(this));
-		//largo.addMouseListener(new ML)
+		largo.setMaximum(30);
+		largo.setValue(10);
+		largo.setUnitIncrement(10);
+		largo.addAdjustmentListener(new AccionScrollX(this));
+		largo.addMouseListener(new AccionScrollX(this));
 		this.add(largo, BorderLayout.SOUTH);
 	}
 
@@ -156,8 +162,8 @@ public class PanelMapa extends JPanel {
 		Dimension tamaño = this.getSize();
 		tamX = tamaño.width;
 		tamY = tamaño.height;
-		posX = largo.getValue();
-		posY = alto.getValue();
+		//posX = largo.getValue();
+		//posY = alto.getValue();
 		representacion.setTamX(tamX);
 		representacion.setTamY(tamY);
 		representacion.setPosX0(posX);
@@ -216,6 +222,18 @@ public class PanelMapa extends JPanel {
 
 	public void sugerir(ElementoMapa sugerencia) {
 		this.sugerencia = sugerencia;
+		this.repaint();
+	}
+	
+	public void cambiaPosX(int cambio) {
+		posX = posX + (int) (cambio*representacion.getZoom());
+		recrear = true;
+		this.repaint();
+	}
+
+	public void cambiaPosY(int cambio) {
+		posY = posY + (int) (cambio*representacion.getZoom());
+		recrear = true;
 		this.repaint();
 	}
 
