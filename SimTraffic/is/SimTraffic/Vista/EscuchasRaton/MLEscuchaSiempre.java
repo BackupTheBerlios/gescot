@@ -6,8 +6,11 @@ package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.PanelNodo;
 
 import java.awt.event.MouseEvent;
+
+import javax.swing.JFrame;
 
 /**
  * Clase que extiende MouseListener para recoger todos los eventos
@@ -31,9 +34,20 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if (arg0.getButton() == MouseEvent.BUTTON2){
-			
-		}
+		// Aqui ahi que poner que queremos que salga cuando 
+		// hacemos click con el boton derecho...
+		
+		// Esta puesto de prueba que cuando le des con el boton
+		// derecho en el mapa, te salga la ventana de propiedades
+		// del nodo
+		
+		JFrame ventanaNodo = new JFrame();
+		PanelNodo panelNod = new PanelNodo();
+		ventanaNodo.setContentPane(panelNod);
+		ventanaNodo.setTitle("Propiedades del Nodo");
+		ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventanaNodo.setBounds(80,120,400,600);
+		ventanaNodo.setVisible(true);
 			
 	}
 
@@ -89,6 +103,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+		int x = panel.x_RepAMapa(arg0.getX());
+		int y = panel.y_RepAMapa(arg0.getY());
 
 	}
 
