@@ -40,14 +40,16 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		// Esta puesto de prueba que cuando le des con el boton
 		// derecho en el mapa, te salga la ventana de propiedades
 		// del nodo
+		if (arg0.getButton() == MouseEvent.BUTTON3){
+			JFrame ventanaNodo = new JFrame();
+			PanelNodo panelNod = new PanelNodo();
+			ventanaNodo.setContentPane(panelNod);
+			ventanaNodo.setTitle("Propiedades del Nodo");
+			ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			ventanaNodo.setBounds(80,120,400,600);
+			ventanaNodo.setVisible(true);
+		}
 		
-		JFrame ventanaNodo = new JFrame();
-		PanelNodo panelNod = new PanelNodo();
-		ventanaNodo.setContentPane(panelNod);
-		ventanaNodo.setTitle("Propiedades del Nodo");
-		ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventanaNodo.setBounds(80,120,400,600);
-		ventanaNodo.setVisible(true);
 			
 	}
 

@@ -342,7 +342,8 @@ public class Ventana extends JFrame {
 		posY = new Integer(0);
 		final JLabel posicionX = new JLabel();
         final JLabel posicionY = new JLabel();
-		
+	
+        // Esto habrá que ponerlo interactuando con la clase MLEscuchaSiempre
         panel_mapa.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent e) {  
 				posX =  (Integer) e.getX();
