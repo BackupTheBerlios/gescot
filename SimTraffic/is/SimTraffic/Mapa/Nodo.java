@@ -92,6 +92,27 @@ public class Nodo implements ElementoMapa {
 		tramos = new ArrayList<Tramo>();
 	}
 
+	public Nodo(int id, String nombre, Posicion pos, ITipoElemento tipo) {
+		super();
+		// TODO Auto-generated constructor stub
+		ID = id;
+		this.nombre = nombre;
+		this.pos = pos;
+		this.tipo = tipo;
+	}
+
+	public Nodo(EntradaSalida es, int id, String nombre, Posicion pos, Señal señal, ITipoElemento tipo, List<Tramo> tramos) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.es = es;
+		ID = id;
+		this.nombre = nombre;
+		this.pos = pos;
+		this.señal = señal;
+		this.tipo = tipo;
+		this.tramos = tramos;
+	}
+
 	/**
 	 * Método para añadir un nuevo tramo al nodo.<p>
 	 * Este método se encarga de actualizar la lista de tramos que llegan o salen
