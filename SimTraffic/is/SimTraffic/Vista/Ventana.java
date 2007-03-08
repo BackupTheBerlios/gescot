@@ -251,8 +251,17 @@ public class Ventana extends JFrame {
 		eliminarTramoButton.addActionListener(new AccionSobreMapa(
 				new MLEliminarTramo(modelo, controlador, panel_mapa), this));
 		panel.add(eliminarTramoButton);
-		//Aqui se añadirán los nuevos botones.
+
+		//Falta ponerle función al boton seleccionar
+		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\edit-select.png"));
+		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-select2.png"; 
+		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
+		//seleccionarButton.addActionListener(new AccionSobreMapa(
+		//		new MLEliminarTramo(modelo, controlador, panel_mapa), this));
+		panel.add(seleccionarButton);
 		
+		//Aqui se añadirán los nuevos botones.
 		
 	}
 	
