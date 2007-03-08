@@ -27,9 +27,9 @@ public class HEliminarSeleccion implements IHerramienta {
 	 * Se inicializan las listas de nodos y tramos
 	 *
 	 */
-	public HEliminarSeleccion () {
-		nodos = new ArrayList<Nodo>();
-		tramos = new ArrayList<Tramo>();
+	public HEliminarSeleccion (List<Nodo> nodos, List<Tramo> tramos) {
+		this.nodos = nodos;
+		this.tramos = tramos;
 	}
 	/**
 	 * Método hacer de la herramienta
