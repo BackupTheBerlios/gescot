@@ -2,18 +2,21 @@ package is.SimTraffic.Simulacion;
 
 import java.util.ArrayList;
 
-public class Parametros 
+public class ParametrosSimulacion 
 {
    private int clima;
    private int numVehiculos;
    private float hora;
    private int estadoCoches;
+   /**
+    * porcentaje de coches que hay de cada tipo en la simulacion actual
+    */
    private ArrayList porcentajeTipo;
    
    /**
    @roseuid 45B8B3A70347
     */
-   public Parametros() 
+   public ParametrosSimulacion() 
    {
     
    }
@@ -24,7 +27,7 @@ public class Parametros
     */
    public int getClima() 
    {
-    return 0;
+    return this.clima;
    }
    
    /**
@@ -33,7 +36,7 @@ public class Parametros
     */
    public int getNumVehiculos() 
    {
-    return 0;
+    return this.numVehiculos;
    }
    
    /**
@@ -42,7 +45,7 @@ public class Parametros
     */
    public float getHora() 
    {
-    return 0;
+    return this.hora;
    }
    
    /**
@@ -51,7 +54,7 @@ public class Parametros
     */
    public int getEstadoCoches() 
    {
-    return 0;
+    return this.estadoCoches;
    }
    
    /**
@@ -60,6 +63,6 @@ public class Parametros
     */
    public ArrayList getPorcentajeTipo() 
    {
-    return null;
+    return this.porcentajeTipo;
    }
 }

@@ -12,6 +12,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class HGuardarMapa implements IHerramienta {
@@ -26,9 +27,12 @@ public class HGuardarMapa implements IHerramienta {
 		return 0;
 	}
 
+	/**
+	 * Las operaciones como Guardar Mapa que no tiene operación deshacer devuelven el codigo indicativo 50
+	 */
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 50;
 	}
 
 	/**
@@ -65,6 +69,12 @@ public class HGuardarMapa implements IHerramienta {
 				while (tram.hasNext()) {
 					Tramo tramoaux = tram.next();
 					salida.println(tramoaux.transformaraOSM());
+				}
+				
+				Iterator<Via> via = mapa.getVias().iterator();
+				while (via.hasNext()) {
+					Via viaAux = via.next();
+					salida.println(viaAux.transformaraOSM());
 				}
 
 				// Parte de vías (en proceso)

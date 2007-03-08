@@ -73,7 +73,21 @@ public class Controlador implements IControlador {
 				herramientas.remove(herramientas.size() - 1);
 				return 0;
 			}
-			return resultado;
+			//Si el resultado de la última accion es mayor que 0
+			//es porque es una accion que no se puede deshacer pero se pueden seguir
+			//deshaciendo las anteriores(ejemplo: guardar). 
+			//En este caso se pasa a la siguiente accion
+			else if (resultado>0){
+				herramientas.remove(herramientas.size() - 1);				
+				return deshacer();
+			}
+			//Si el resultado de la última accion es menor que 0
+			//es porque es una accion que no se puede deshacer y no se pueden seguir
+			//deshaciendo las anteriores(ejemplo: nuevo mapa). 
+			//En este caso se ya no se pasa a la siguiente accion
+			else{
+				return resultado;
+			}
 		}
 		return 0; // no devuelve error, pero se podria indicar que no hay nada
 					// para deshacer

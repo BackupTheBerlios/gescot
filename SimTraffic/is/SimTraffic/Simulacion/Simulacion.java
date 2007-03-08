@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Simulacion 
 {
    private List<IVehiculo> vehiculos;
-   private Parametros theParametros;
+   private ParametrosSimulacion theParametros;
    
    /**
    @roseuid 45B8B3A7025D
@@ -20,9 +20,9 @@ public class Simulacion
    @return Parametros
    @roseuid 45B8AAB50192
     */
-   public Parametros getParametros() 
+   public ParametrosSimulacion getParametros() 
    {
-    return null;
+    return this.theParametros;
    }
    
    /**
@@ -30,8 +30,9 @@ public class Simulacion
    @return int
    @roseuid 45B8AAD3022E
     */
-   public int modificaParametros(Parametros parametros) 
+   public int modificaParametros(ParametrosSimulacion parametros) 
    {
+	   this.theParametros=parametros;
     return 0;
    }
    

@@ -231,15 +231,15 @@ public class Mapa {
 		Señales.remove(señal);
 	}
 
-	public List<Nodo> getNodos() {
+	public ArrayList<Nodo> getNodos() {
 		return Nodos;
 	}
 
-	public List<Señal> getSeñales() {
+	public ArrayList<Señal> getSeñales() {
 		return Señales;
 	}
 
-	public List<Tramo> getTramos() {
+	public ArrayList<Tramo> getTramos() {
 		return Tramos;
 	}
 
@@ -257,6 +257,14 @@ public class Mapa {
 
 	public int getMinY() {
 		return minY;
+	}
+
+	public ArrayList<Via> getVias() {
+		return Vias;
+	}
+
+	public void setVias(ArrayList<Via> vias) {
+		Vias = vias;
 	}
 
 }
