@@ -80,12 +80,13 @@ public class Mapa {
 	 * @param tramos
 	 */
 	public Mapa(ArrayList<Nodo> nodos, ArrayList<Tramo> tramos) {
-		super();
 		// TODO Auto-generated constructor stub
 		Nodos = nodos;
 		Tramos = tramos;
 		Señales = new ArrayList<Señal>();
 		Vias = new ArrayList<Via>();
+		
+		seleccion = new Seleccion();
 	}
 
 	/**

@@ -30,6 +30,24 @@ public class ConversorUTMTest extends TestCase {
 		assertTrue("longitud equivocada", (latlon[1] >= -181.53958) && (latlon[1] <= -181.53956));
 		assertTrue("latitud equivocada", (latlon[0] >= -87.880973) && (latlon[0] <= -87.880971));	
 	}
+	
+	public void test2Conversiones() {
+		double x = 456734;
+		double y = 234634;
+		double[] latlon;
+		int zone = 2;
+		latlon = ConversorUTM.UTMXYToLatLon(x, y, zone, true);
+		//Hasta aquí conversión a LatLon, ahora estos valores de nuevo en posX, posY
+		double[] xy;
+		zone = (int) (Math.floor ((latlon[1] + 180.0) / 6) + 1);
+		xy = ConversorUTM.LatLonToUTMXY(latlon[0], latlon[1], zone);
+		double nuevaX=xy[0];
+		double nuevaY=xy[1];
+		//assertTrue("¡Conversiones inexactas en X!", (nuevaX >= 456834) && (nuevaX <= 456634));
+		//assertTrue("¡Conversiones inexactas en Y!", (nuevaY >= 234734) && (nuevaX <= 234534));
+		assertTrue("¡Conversiones MUY inexactas en X!", (nuevaX >= 556834) && (nuevaX <= 356634));
+		assertTrue("¡Conversiones MUY inexactas en Y!", (nuevaY >= 334734) && (nuevaX <= 134534));
+	}
 
 	
 

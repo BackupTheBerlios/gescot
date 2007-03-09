@@ -86,12 +86,12 @@ public class Nodo implements ElementoMapa {
 	}
 
 	public Nodo(int id, String nombre, Posicion pos, ITipoElemento tipo) {
-		super();
 		// TODO Auto-generated constructor stub
 		ID = id;
 		this.nombre = nombre;
 		this.pos = pos;
 		this.tipo = tipo;
+		tramos = new ArrayList<Tramo>();
 	}
 
 	public Nodo(EntradaSalida es, int id, String nombre, Posicion pos, Señal señal, ITipoElemento tipo, List<Tramo> tramos) {

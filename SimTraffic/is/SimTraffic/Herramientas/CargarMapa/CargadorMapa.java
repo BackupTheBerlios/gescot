@@ -21,6 +21,11 @@ public class CargadorMapa implements DocHandler {
 	static ArrayList<Nodo> nodos;
 
 	static ArrayList<Tramo> tramos;
+	
+	public CargadorMapa() {
+	//	this.nodos = new ArrayList<Nodo>();
+	//	this.tramos = new ArrayList<Tramo>();
+	}
 
 	public void endDocument() throws Exception {
 		// TODO Auto-generated method stub
@@ -44,11 +49,13 @@ public class CargadorMapa implements DocHandler {
 		// TODO Auto-generated method stub
 		System.out.println("    start elem: " + elem);
 		int id = 0;
-		int posX = 0, posY = 0;
+		double lat = 0;
+		double lon = 0;
 		int indexFrom = 0, indexTo = 0;
 		String nombre = null,tipoElemStringNombre = null,tipoElemStringValor = null;
 		Integer integer;
 		Boolean bool;
+		Double vdouble;
 		boolean visible;
 		Enumeration e = h.keys();
 		while (e.hasMoreElements()) {
@@ -63,18 +70,23 @@ public class CargadorMapa implements DocHandler {
 				id = integer.intValue();
 			}
 			if (key.compareTo("lat") == 0) {
-				integer = new Integer(val);
-				posX = integer.intValue();
+				//integer = new Integer(val);
+				vdouble = new Double(val);
+				lat = vdouble.doubleValue();
+				//posX = integer.intValue();
 			}
 			if (key.compareTo("lon") == 0){
-				integer = new Integer(val);
-				posY = integer.intValue();
+				//integer = new Integer(val);
+				//posY = integer.intValue();
+				vdouble = new Double(val);
+				lon = vdouble.doubleValue();
 			}
 
 			if (key.compareTo("to") == 0){
 				integer = new Integer(val);
 				indexTo = integer.intValue();// -1 ;
 			}
+			
 			if (key.compareTo("from") == 0){
 				integer = new Integer(val);
 				indexFrom = integer.intValue(); //-1;
@@ -108,7 +120,8 @@ public class CargadorMapa implements DocHandler {
 
 		if (elem.compareTo("node") == 0) {
 			System.out.println("reconocido nodo");
-			Posicion pos = new Posicion(posX,posY);
+			//Posicion pos = new Posicion(posX,posY);
+			Posicion pos = new Posicion(lat,lon);
 			//ITipoElemento tipo =identificarTipoElem(tipoElemStringNombre,tipoElemStringValor);
 			//Luego poner nombre y tipo en vez de null,null.
 			nodos.add(new Nodo(id,null,pos,null));
@@ -118,7 +131,10 @@ public class CargadorMapa implements DocHandler {
 			System.out.println("reconoce tramo");
 			Nodo nodoI=buscarNodoConId(indexFrom);
 			Nodo nodoF=buscarNodoConId(indexTo);
-			tramos.add(new Tramo(id,nodoI,nodoF));
+			Tramo nuevoTramo = new Tramo(id,nodoI,nodoF);
+			nodoI.añadirTramo(nuevoTramo);
+			nodoF.añadirTramo(nuevoTramo);
+			tramos.add(nuevoTramo);
 			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
 					false));*/
@@ -184,13 +200,20 @@ public class CargadorMapa implements DocHandler {
 		QDParser.parse(cargadormapa, fr);
 		
 		fr.close();
+		System.out.println("Tamaño de nodos:"+nodos.size());
+		System.out.println("Tamaño de tramos:"+tramos.size());
+		
+		System.out.println("Localización de nodo: "+nodos.get(0).getID());
+		System.out.println("PosX:"+nodos.get(0).getPos().getPosX());
+		System.out.println("PosY:"+nodos.get(0).getPos().getPosY());
+		
 		Mapa mapaADevolver = new Mapa(nodos,tramos); 
 		return mapaADevolver;
 		//return null;
 	}
 	
 	public static void main(String[] args) throws Exception{
-		Mapa mapa=cargar("C:/hlocal/mapa_prototipo1.osm");
+		Mapa mapa=cargar("C:/Documents and Settings/Ignacio/Escritorio/IS-ultimamente/Mapas-hechos/unapruebamasSinVias.osm");
 		System.out.println("cargado");
 	}
 }
