@@ -78,6 +78,25 @@ public class Tramo implements ElementoMapa {
 		velocidadMax = 40;
 		ID=asignarIDunico();
 	}
+	
+	/**
+	 * Constructor de la clase Tramo con id (para la herramienta cargar mapa), 
+	 * nodos inicial y final.
+	 * <p>
+	 * Este constructuro crea un nuevo tramo a partir de dos nodos, y le da el
+	 * resto de los valores por defecto. Esto será, un carril en cada sentido,
+	 * una velocidad máxima de 40 y un tipo 0.
+	 * 
+	 * @roseuid 45B8B3A800B7
+	 */
+	public Tramo(int ID, Nodo nodoInicial, Nodo nodoFinal) {
+		this.nodoInicial = nodoInicial;
+		this.nodoFinal = nodoFinal;
+		numCarrilesDir1 = 1;
+		numCarrilesDir2 = 1;
+		velocidadMax = 40;
+		this.ID=ID;
+	}
 
 	/**
 	 * Método que genera el ID de un tramo tomando los IDs de sus nodos (y 

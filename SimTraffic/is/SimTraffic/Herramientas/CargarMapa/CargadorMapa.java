@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
+import java.util.Iterator;
 
 
 public class CargadorMapa implements DocHandler {
@@ -82,12 +82,14 @@ public class CargadorMapa implements DocHandler {
 			
 			if (key.compareTo("visible") == 0){
 				bool = new Boolean(val);	
-				visible = bool.booleanValue();
+				if (val.equals("false")) visible=false;
+				else visible=true;
+				//visible = bool.booleanValue();
 			}
 			/** Siempre que se lea la etiqueta k (key), se lee posteriormente la etiqueta  v(value), 
 			 * luego no es necesario incluir en esta secuencia de "intrucciones if" el string v 
 			 */
-			if (key.compareTo("k") == 0){
+			/*if (key.compareTo("k") == 0){
 				String keyV = new String((String) e.nextElement());
 				if (!keyV.equals("v")) 
 					System.out.println("Atributo no esperado, keyV");
@@ -100,26 +102,39 @@ public class CargadorMapa implements DocHandler {
 					tipoElemStringValor = valV;
 				}
 				
-			}
+			}*/
 			
 		}
 
 		if (elem.compareTo("node") == 0) {
-			System.out.println("reconoce nodo");
+			System.out.println("reconocido nodo");
 			Posicion pos = new Posicion(posX,posY);
-			ITipoElemento tipo =identificarTipoElem(tipoElemStringNombre,tipoElemStringValor);
-			nodos.add(new Nodo(id,nombre,pos,tipo));
+			//ITipoElemento tipo =identificarTipoElem(tipoElemStringNombre,tipoElemStringValor);
+			//Luego poner nombre y tipo en vez de null,null.
+			nodos.add(new Nodo(id,null,pos,null));
 			
 		}
-		/** En desarrollo
-		 * if (elem.compareTo("segment") == 0) {
+		  if (elem.compareTo("segment") == 0) {
 			System.out.println("reconoce tramo");
-
-			tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
+			Nodo nodoI=buscarNodoConId(indexFrom);
+			Nodo nodoF=buscarNodoConId(indexTo);
+			tramos.add(new Tramo(id,nodos.get(indexFrom),nodos.get(indexTo)));
+			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
-					false));
-		}*/
+					false));*/
+		}
 
+	}
+	
+	public Nodo buscarNodoConId(int idnodo) {
+		Iterator<Nodo> nod = nodos.iterator();
+		Nodo nodoaux;
+		while (nod.hasNext()) {
+			nodoaux = nod.next();
+			if (nodoaux.getID() == idnodo) 
+				return nodoaux;
+		}
+		return null;
 	}
 	
 	public ITipoElemento identificarTipoElem(String nombre,String valor){
@@ -138,10 +153,10 @@ public class CargadorMapa implements DocHandler {
 
 	}
 
-	public static void main(String[] args) throws Exception {
+	/*public static void main(String[] args) throws Exception {
 		for (int i = 0; i < args.length; i++)
 			reportOnFile(args[0]);
-	}
+	}*/
 
 	public static void reportOnFile(String file) throws Exception {
 		System.out.println("===============================");
@@ -170,8 +185,12 @@ public class CargadorMapa implements DocHandler {
 		
 		fr.close();
 		
-		// en desarrollo
-		//return new Mapa(nodos,tramos);
-		return null;
+		return new Mapa(nodos,tramos);
+		//return null;
+	}
+	
+	public static void main(String[] args) throws Exception{
+		Mapa mapa=cargar("C:/hlocal/mapa_prototipo1.osm");
+		System.out.println("cargado");
 	}
 }

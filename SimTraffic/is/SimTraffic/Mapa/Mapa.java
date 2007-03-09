@@ -66,6 +66,20 @@ public class Mapa {
 	}
 
 	/**
+	 * Utilizado para cargar el mapa.
+	 * @param nodos
+	 * @param tramos
+	 */
+	public Mapa(ArrayList<Nodo> nodos, ArrayList<Tramo> tramos) {
+		super();
+		// TODO Auto-generated constructor stub
+		Nodos = nodos;
+		Tramos = tramos;
+	}
+
+
+
+	/**
 	 * @roseuid 45B8A9B603B5
 	 */
 	public void modificar() {
