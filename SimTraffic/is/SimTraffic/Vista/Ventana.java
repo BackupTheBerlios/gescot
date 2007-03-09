@@ -108,8 +108,7 @@ public class Ventana extends JFrame {
 	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
 		this.controlador = controlador;
-		//setSize(800, 600);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setSize(800, 600);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.escucha = null;
@@ -220,9 +219,17 @@ public class Ventana extends JFrame {
 		panel = new JToolBar(JToolBar.VERTICAL);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 		
+		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.gif"));
+		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.gif"; 
+		seleccionarButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
+		seleccionarButton.addActionListener(new AccionSobreMapa(
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this));
+		panel.add(seleccionarButton);
+		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
 		añadirNodoButton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
 		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirNodo(modelo, controlador, panel_mapa), this));
@@ -252,17 +259,8 @@ public class Ventana extends JFrame {
 		eliminarTramoButton.addActionListener(new AccionSobreMapa(
 				new MLEliminarTramo(modelo, controlador, panel_mapa), this));
 		panel.add(eliminarTramoButton);
-
-		//Falta ponerle función al boton seleccionar
-		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\edit-select.png"));
-		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-select2.png"; 
-		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
-		//seleccionarButton.addActionListener(new AccionSobreMapa(
-		//		new MLEliminarTramo(modelo, controlador, panel_mapa), this));
-		panel.add(seleccionarButton);
-		
 		//Aqui se añadirán los nuevos botones.
+		
 		
 	}
 	
