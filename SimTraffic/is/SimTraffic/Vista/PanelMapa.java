@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.Iterator;
 
@@ -86,6 +88,24 @@ public class PanelMapa extends JPanel {
 	private JScrollBar largo;
 
 	private JScrollBar alto;
+	
+	/**
+	 * Punto que limitan el rectángulo del área de selección.
+	 */
+	Point puntoInicial;
+	Point puntoDrag;
+	
+	/**
+	 * Rectangulo que se muestra cuando se seleccionan varios nodos.
+	 */
+	private Rectangle rectanguloSeleccion;
+
+	
+	/**
+	 * Permite conocer si se está seleccionando. 
+	 */
+	boolean modoSeleccion;
+	
 
 	/**
 	 * Constructor de la clase PanelMapa.
@@ -110,6 +130,9 @@ public class PanelMapa extends JPanel {
 		añadirScrolls();
 		posX = 1000;
 		posY = 1000;
+		
+		modoSeleccion = false;
+		rectanguloSeleccion = new Rectangle();
 	}
 
 	/**
@@ -204,6 +227,10 @@ public class PanelMapa extends JPanel {
 			recrear = false;
 		}
 		g.drawImage(mapa, 0, 0, null);
+		//Si estamos seleccionando, entonces dibujar el rectangulo de selección.
+		if (modoSeleccion)
+			representacion.pintar(g,this.rectanguloSeleccion);
+		
 		representacion.pintarSugerencia(g, sugerencia);
 		g.drawString("Redibujando: " + contador, 80, 80);
 	}
@@ -237,11 +264,48 @@ public class PanelMapa extends JPanel {
 		this.repaint();
 	}
 
+	public void configurarRectanguloSeleccion(){
+		rectanguloSeleccion.setFrameFromDiagonal(puntoInicial,puntoDrag);
+	}
+	
 	public int x_RepAMapa(int posX) {
 		return representacion.x_RepAMapa(posX);
 	}
 
 	public int y_RepAMapa(int posY) {
 		return representacion.y_RepAMapa(posY);
+	}
+	
+	public boolean isModoSeleccion() {
+		return modoSeleccion;
+	}
+
+	public void setModoSeleccion(boolean modoSeleccion) {
+		this.modoSeleccion = modoSeleccion;
+	}
+
+	public Point getPuntoDrag() {
+		return puntoDrag;
+	}
+
+	public void setPuntoDrag(Point puntoDrag) {
+		this.puntoDrag = puntoDrag;
+		configurarRectanguloSeleccion();
+	}
+
+	public Point getPuntoInicial() {
+		return puntoInicial;
+	}
+
+	public void setPuntoInicial(Point puntoInicial) {
+		this.puntoInicial = puntoInicial;
+	}
+
+	public Rectangle getRectanguloSeleccion() {
+		return rectanguloSeleccion;
+	}
+
+	public void setRectanguloSeleccion(Rectangle rectanguloSeleccion) {
+		this.rectanguloSeleccion = rectanguloSeleccion;
 	}
 }
