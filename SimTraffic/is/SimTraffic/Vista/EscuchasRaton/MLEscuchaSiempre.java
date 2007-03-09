@@ -9,8 +9,10 @@ import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
 
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * Clase que extiende MouseListener para recoger todos los eventos que ocurran
@@ -22,13 +24,23 @@ import javax.swing.JFrame;
  * @author Grupo ISTrafico
  */
 public class MLEscuchaSiempre extends EscuchaRaton {
-
-	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,
-			PanelMapa panel) {
+	
+	private JLabel posicionX;
+	private JLabel posicionY;
+	private long millis;
+	private int estado;
+	private int x1;
+	private int y1;
+	
+	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY) 
+	{
 		super(modelo, controlador, panel);
-		// TODO Auto-generated constructor stub
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+		estado = 0;
+		millis = 0;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -39,28 +51,50 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		// TODO Auto-generated method stub
 		// Aqui ahi que poner que queremos que salga cuando
 		// hacemos click con el boton derecho...
-
+		
 		// Esta puesto de prueba que cuando le des con el boton
 		// derecho en el mapa, te salga la ventana de propiedades
 		// del nodo
-		if (arg0.getButton() == MouseEvent.BUTTON3) {
-			if (this.buscarNodo(panel.x_RepAMapa(arg0.getX()), panel
-					.y_RepAMapa(arg0.getY())) != null) {
-				JFrame ventanaNodo = new JFrame();
-				PanelNodo panelNod = new PanelNodo();
-				ventanaNodo.setContentPane(panelNod);
-				ventanaNodo.setTitle("Propiedades del Nodo");
-				// ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				ventanaNodo.setBounds(80, 120, 400, 600);
-				ventanaNodo.setVisible(true);
+		if (arg0.getButton() == MouseEvent.BUTTON1) 
+		{	
+			if (estado == 0)
+			{
+				estado = 1;
+				millis = System.currentTimeMillis();
+				x1 = panel.x_RepAMapa(arg0.getX());
+				y1 = panel.y_RepAMapa(arg0.getY());
 			}
-			if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
-					.y_RepAMapa(arg0.getY())) != null) {
-				JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
-				ventanaTramo.setVisible(true);
+			else
+			{
+				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 1000)
+				{
+					if (this.buscarNodo(panel.x_RepAMapa(arg0.getX()), panel
+							.y_RepAMapa(arg0.getY())) != null) {
+						JFrame ventanaNodo = new JFrame();
+						PanelNodo panelNod = new PanelNodo();
+						ventanaNodo.setContentPane(panelNod);
+						ventanaNodo.setTitle("Propiedades del Nodo");
+						// ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						ventanaNodo.setBounds(80, 120, 400, 600);
+						ventanaNodo.setVisible(true);
+					}
+					if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
+							.y_RepAMapa(arg0.getY())) != null) {
+						JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
+						ventanaTramo.setVisible(true);
+					}
+				}
+				estado = 0;
 			}
 		}
-
+		
+	}
+	
+	private boolean mismoPunto(MouseEvent arg0) 
+	{
+		int x2 = panel.x_RepAMapa(arg0.getX());
+		int y2 = panel.y_RepAMapa(arg0.getY());
+		return (x1 == x2 && y1 == y2);
 	}
 
 	/*
@@ -71,9 +105,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -82,9 +116,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -93,9 +127,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -104,9 +138,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -115,21 +149,13 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton#mouseMoved(java.awt.event.MouseEvent)
-	 */
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-		int x = panel.x_RepAMapa(arg0.getX());
-		int y = panel.y_RepAMapa(arg0.getY());
-
+	
+	public void mouseMoved(MouseEvent e) {  
+		int posX = panel.x_RepAMapa(e.getX());
+		int posY = panel.y_RepAMapa(e.getY());
+		posicionX.setText("" + posX);
+		posicionY.setText("" + posY);
 	}
-
 }

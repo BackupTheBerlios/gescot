@@ -27,12 +27,12 @@ public class RepresentacionSimple extends Representacion {
 	}
 
 	public void pintar(Graphics2D g, Nodo nodo) {
-		g.setColor(Color.DARK_GRAY);
-		g.fillOval(x_MapaARep(nodo.getPos().getPosX()) - 3, y_MapaARep(nodo
-				.getPos().getPosY()) - 3, 6, 6);
+		g.setColor(Color.GRAY);
+		g.fillOval(x_MapaARep(nodo.getPos().getPosX()) - 5, y_MapaARep(nodo
+				.getPos().getPosY()) - 5, 10, 10);
 		g.setColor(Color.RED);
-		g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - 3, y_MapaARep(nodo
-				.getPos().getPosY()) - 3, 6, 6);
+		g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - 5, y_MapaARep(nodo
+				.getPos().getPosY()) - 5, 10, 10);
 	}
 	
 	public void pintar(Graphics2D g, Rectangle rectanguloSeleccion){
@@ -128,13 +128,14 @@ public class RepresentacionSimple extends Representacion {
 
 	@Override
 	public void pintarSugerencia(Graphics2D g, ElementoMapa elemento) {
+		int tamaño = 14;
 		if (elemento != null) {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
 				g.setColor(Color.RED);
-				g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - 5,
-						y_MapaARep(nodo.getPos().getPosY()) - 5, 10, 10);
+				g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - tamaño/2,
+						y_MapaARep(nodo.getPos().getPosY()) - tamaño/2, tamaño, tamaño);
 			}
 			if (elemento.getClass() == Tramo.class) {
 				// pintar un tramo sugerido

@@ -83,7 +83,7 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	 */
 	public Nodo buscarNodo(int x, int y) 
 	{
-		int error = 3;
+		int error = 5;
 		Iterator<Nodo> iter = modelo.getMapa().getNodos().iterator();
 		Nodo sel = null;
 		boolean encontrado = false;
