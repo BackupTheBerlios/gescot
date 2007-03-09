@@ -197,8 +197,7 @@ public class PanelMapa extends JPanel {
 		else
 			mapa = this.createImage(tamX, tamY);
 		Graphics2D g = (Graphics2D) mapa.getGraphics();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
 			representacion.pintar(g, itramos.next());
@@ -208,6 +207,7 @@ public class PanelMapa extends JPanel {
 			representacion.pintar(g, inodos.next());
 		}
 		representacion.pintarCoordenadas(g);
+		representacion.pintarSugerencia(g, sugerencia);
 		contador++;
 	}
 
@@ -248,8 +248,12 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void sugerir(ElementoMapa sugerencia) {
+		boolean refresco = false;
+		if ((this.sugerencia != null && sugerencia == null) || (this.sugerencia == null && sugerencia != null))
+			refresco = true;
 		this.sugerencia = sugerencia;
-		this.repaint();
+		if (refresco)
+			this.repaint();
 	}
 	
 	public void cambiaPosX(int cambio) {

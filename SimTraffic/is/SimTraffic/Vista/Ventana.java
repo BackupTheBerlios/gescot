@@ -2,19 +2,29 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Vista.Acciones.*;
-import is.SimTraffic.Vista.EscuchasRaton.*;
+import is.SimTraffic.Vista.Acciones.AccionAbrir;
+import is.SimTraffic.Vista.Acciones.AccionCopiar;
+import is.SimTraffic.Vista.Acciones.AccionCortar;
+import is.SimTraffic.Vista.Acciones.AccionDeshacer;
+import is.SimTraffic.Vista.Acciones.AccionGuardar;
+import is.SimTraffic.Vista.Acciones.AccionNuevo;
+import is.SimTraffic.Vista.Acciones.AccionPegar;
+import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -25,9 +35,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 /**
@@ -83,19 +91,13 @@ public class Ventana extends JFrame {
 	private PanelMapa panel_mapa;
 	
 	/**
-	 * Indica la posición X del ratón en el mapa
-	 */
-	private Integer posX; 
-	
-	/**
-	 * Indica la posición Y del ratón en el mapa
-	 */
-	private Integer posY; 
-	
-	/**
 	 * Panel con los iconos de la parte superior.
 	 */
 	private JPanel superior;
+
+	private JLabel posicionX;
+
+	private JLabel posicionY;
 	
 	/**
 	 * Constructor de la ventana.
@@ -114,13 +116,13 @@ public class Ventana extends JFrame {
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
 		
-		EscuchaRaton escuchaSiempre = new MLEscuchaSiempre(modelo,controlador,panel_mapa);
+		crearBarraEstado();
+		
+		EscuchaRaton escuchaSiempre = new MLEscuchaSiempre(modelo,controlador,panel_mapa, posicionX, posicionY);
 		this.panel_mapa.addMouseListener(escuchaSiempre);
 		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
 		
 		crearBarraMenu();
-		
-		crearBarraEstado();
 		
 		crearHerramientas();
 		
@@ -334,31 +336,16 @@ public class Ventana extends JFrame {
 	public void crearBarraEstado(){
 		
 		barraEstado = new JPanel();
-		barraEstado.setLayout(new FlowLayout(FlowLayout.LEFT,30,5));
+		barraEstado.setLayout(new FlowLayout(FlowLayout.RIGHT,10,5));
 		
 		JLabel etiquetaPosicion = new JLabel("Posición: ");
-		JLabel etiquetaX = new JLabel("X= ");
-		JLabel etiquetaY = new JLabel("Y= ");
-		posX = new Integer(0);
-		posY = new Integer(0);
-		final JLabel posicionX = new JLabel();
-        final JLabel posicionY = new JLabel();
-	
-        // Esto habrá que ponerlo interactuando con la clase MLEscuchaSiempre
-        panel_mapa.addMouseMotionListener(new MouseMotionAdapter(){
-			public void mouseMoved(MouseEvent e) {  
-				posX =  panel_mapa.x_RepAMapa((int) (Integer) e.getX());
-				posY = panel_mapa.y_RepAMapa((int) (Integer) e.getY());
-				posicionX.setText(posX.toString());
-				posicionY.setText(posY.toString());
-            }
-
-		});
+		JLabel puntitos = new JLabel(" : ");
+		posicionX = new JLabel();
+        posicionY = new JLabel();
 		
 		barraEstado.add(etiquetaPosicion);
-		barraEstado.add(etiquetaX);
 		barraEstado.add(posicionX);
-		barraEstado.add(etiquetaY);
+		barraEstado.add(puntitos);
 		barraEstado.add(posicionY);
 		
 		
