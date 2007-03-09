@@ -46,7 +46,7 @@ public class QDParser {
     String lvalue = null;
     String rvalue = null;
     Hashtable attrs = null;
-    st = new Stack();
+  //  st = new Stack();
     doc.startDocument();
     int line=1, col=0;
     boolean eol = false;
