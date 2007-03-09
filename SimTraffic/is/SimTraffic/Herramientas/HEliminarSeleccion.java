@@ -37,11 +37,10 @@ public class HEliminarSeleccion implements IHerramienta {
 	 * Se recorren los tramos y se eliminan del mapa
 	 */
 	public int hacer (IModelo modelo) {
-		for (int i=0; i<nodos.size(); i++)
-			modelo.getMapa().eliminar(nodos.get(i));	
-		
 		for (int i=0; i<tramos.size(); i++)
 			modelo.getMapa().eliminar(tramos.get(i));
+		for (int i=0; i<nodos.size(); i++)
+			modelo.getMapa().eliminar(nodos.get(i));	
 		return 0;
 	}
 	
