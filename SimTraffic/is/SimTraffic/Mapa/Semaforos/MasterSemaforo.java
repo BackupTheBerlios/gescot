@@ -19,6 +19,10 @@ public class MasterSemaforo {
 	 * Variable del tipo lista que mantiene todos los tramos que llegan a este nodo
 	 */
 	private List<Tramo> tramos;
+	/**
+	 * Variable del tipo lista que mantiene todos los tramos que llegan a este nodo
+	 */
+	private BibliotecaSemaforos SemControl;
 	
 	/**
 	 * Controlador de los semaforos del nodo
@@ -51,36 +55,21 @@ public class MasterSemaforo {
 		public void inicializarSemaforos(){
 			estadoSemaforos = tramos.size();
 			ArraySemaforos=new boolean [tramos.size()][tramos.size()];
-			cambiarEstadoSemaforos();
+
+			// se hace otro dia
+			//		SemControl.GeneraSiguienteEstado(id_tipo_sem,nodo);
 							
 		}
 		
 		
-		/**
-		 * Metodo para actualizar todos los semaforos del cruze.
-		 * Por ejemplo <pre>si estadoSemaforos==1 entonces <br>estadoSemaforos=2<br>y ArraySemaforos se configura de tal manera que los vehiculos que estan en el tramo 2 puedan ir al resto de tramos excluyendo el mismo.<pre>
-		 */
-		public void cambiarEstadoSemaforos(){
-			estadoSemaforos = (estadoSemaforos+1) % tramos.size();
-			for (int i=0; i<tramos.size();i++)
-			{
-				for (int j=0; j<tramos.size();j++)
-				{
-					if (i==estadoSemaforos){
-						ArraySemaforos[i][j]=true;
-					}
-					else
-					{
-						ArraySemaforos[i][j]=false;
-					}
-				}
-			}
-			// Vehículos no pueden hacer cambio de sentido. 
-			for (int k=0; k<tramos.size();k++)
-			{
-				ArraySemaforos[k][k]=false;
-			}
-			
-			
-		}
+		
+public int getEstadoSemaforos(){
+	return this.estadoSemaforos;
+}
+
+public void setEstadoSemaforos(int Estado){
+	this.estadoSemaforos=Estado;
+}
+
+
 }

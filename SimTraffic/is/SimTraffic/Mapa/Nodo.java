@@ -68,6 +68,8 @@ public class Nodo implements ElementoMapa {
 	 */
 	private MasterSemaforo ControladorSemaforo= null;
 	
+
+	
 	/**
 	 * Constructor de la clase nodo.<p>
 	 * Este constructor solo requiere la posicion donde se ubica el nodo,
@@ -229,6 +231,11 @@ public class Nodo implements ElementoMapa {
 
 	public void setTramos(List<Tramo> tramos) {
 		this.tramos = tramos;
+	}
+	
+	public MasterSemaforo getMasterSemaforo(){
+		return this.ControladorSemaforo;
+		
 	}
 	
 	/**
