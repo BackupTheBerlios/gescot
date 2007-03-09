@@ -222,10 +222,10 @@ public class Ventana extends JFrame {
 		panel = new JToolBar(JToolBar.VERTICAL);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 		
-		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.gif"));
+		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
 		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.gif"; 
-		seleccionarButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
+		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
 		seleccionarButton.addActionListener(new AccionSobreMapa(
 				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this));
 		panel.add(seleccionarButton);
