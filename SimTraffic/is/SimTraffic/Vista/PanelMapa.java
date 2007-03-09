@@ -205,7 +205,7 @@ public class PanelMapa extends JPanel {
 		}
 		g.drawImage(mapa, 0, 0, null);
 		representacion.pintarSugerencia(g, sugerencia);
-		g.drawString("redibujardo: " + contador, 80, 80);
+		g.drawString("Redibujando: " + contador, 80, 80);
 	}
 
 	public void setRepresentacion(Representacion representacion) {
