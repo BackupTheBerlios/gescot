@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +46,11 @@ public class Mapa {
 	 * Aclaración: Uso actual para lineas de autobuses únicamente.
 	 */
 	private ArrayList<Via> Vias;
+	
+	/**
+	 * Indica la seleccion actual del mapa (nodos, tramos y señales).
+	 */
+	private Seleccion seleccion;
 
 	private int maxX;
 
@@ -63,6 +70,8 @@ public class Mapa {
 		Señales = new ArrayList<Señal>();
 		Tramos = new ArrayList<Tramo>();
 		Vias = new ArrayList<Via>();
+		
+		seleccion = new Seleccion();
 	}
 
 	/**
@@ -76,8 +85,6 @@ public class Mapa {
 		Nodos = nodos;
 		Tramos = tramos;
 	}
-
-
 
 	/**
 	 * @roseuid 45B8A9B603B5
@@ -244,6 +251,34 @@ public class Mapa {
 	public void eliminar(Señal señal) {
 		Señales.remove(señal);
 	}
+	
+	/**
+	 * En función de un rectangulo pasado como parámetro, modifica la seleccion con todos los elementos
+	 * que estén contenido en dicho rectángulo.
+	 * @param rectanguloSeleccion
+	 */
+	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion){
+		Nodo nodoTemp;
+		Point punto;
+		for (int i=0;i<Nodos.size();i++){
+			nodoTemp = Nodos.get(i);
+			punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+			if (rectanguloSeleccion.contains(punto)){
+				this.seleccion.añadirNodo(nodoTemp);
+			}
+			
+			
+		}
+		
+		
+	}
+	
+	/**
+	 * Deselecciona todos los elementos que estaban seleccionados. 
+	 */
+	public void limpiaSeleccion(){
+		this.seleccion = null;
+	}
 
 	public ArrayList<Nodo> getNodos() {
 		return Nodos;
@@ -279,6 +314,14 @@ public class Mapa {
 
 	public void setVias(ArrayList<Via> vias) {
 		Vias = vias;
+	}
+
+	public Seleccion getSeleccion() {
+		return seleccion;
+	}
+
+	public void setSeleccion(Seleccion seleccion) {
+		this.seleccion = seleccion;
 	}
 
 }
