@@ -108,7 +108,8 @@ public class Ventana extends JFrame {
 	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
 		this.controlador = controlador;
-		setSize(800, 600);
+		//setSize(800, 600);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.escucha = null;
