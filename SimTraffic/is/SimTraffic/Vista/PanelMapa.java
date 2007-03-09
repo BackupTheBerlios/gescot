@@ -280,6 +280,22 @@ public class PanelMapa extends JPanel {
 		return representacion.y_RepAMapa(posY);
 	}
 	
+	
+	/**
+	 * Llama al mapa para indicarle qué área (rectángulo) ha seleccionado el usuario y que este haga
+	 * las gestiones oportunas. 
+	 */
+	public void notificaSeleccion(){
+		Rectangle rectanguloCoordenadasReales = new Rectangle();
+		
+		//Al rectangulo que pasamos al mapa para que conozca que área ha seleccionado el usuario, le aplicamos
+		//la transformación a coordenadas relativas del mapa.
+		rectanguloCoordenadasReales.setFrameFromDiagonal(x_RepAMapa((int)(puntoInicial.getX())),y_RepAMapa((int)(puntoInicial.getY())),
+				x_RepAMapa((int)(puntoDrag.getX())),y_RepAMapa((int)(puntoDrag.getY())));
+		
+		this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
+	}
+	
 	public boolean isModoSeleccion() {
 		return modoSeleccion;
 	}
