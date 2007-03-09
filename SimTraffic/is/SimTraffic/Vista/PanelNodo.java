@@ -41,6 +41,7 @@ public class PanelNodo extends JPanel{
 		
 		JPanel panelPropiedades = new JPanel();
 	    JPanel panelSeñales = new JPanel();
+	    JPanel panelTramos = new JPanel();
 	      
 	    JPanel panelTipo = new JPanel();
 	    panelTipo.setLayout(new FlowLayout(FlowLayout.CENTER,30,20));
@@ -97,7 +98,8 @@ public class PanelNodo extends JPanel{
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Nodo");
 	    panelDatos.setSelectedIndex(0);
 		
-	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");		
+	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");
+	    panelDatos.addTab("Tramos", null, panelTramos,"Tramos asociados al Nodo");
 	}
 	
 	public void creaPanelBotones(){
@@ -108,7 +110,7 @@ public class PanelNodo extends JPanel{
 		botonAceptar = new JButton("Aceptar");
 		botonCancelar = new JButton("Cancelar");
 		
-		panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT,80,40));
+		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER,80,28));
 		
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
