@@ -3,6 +3,7 @@ package is.SimTraffic.Vista;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Acciones.AccionAbrir;
+import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
 import is.SimTraffic.Vista.Acciones.AccionCortar;
 import is.SimTraffic.Vista.Acciones.AccionDeshacer;
