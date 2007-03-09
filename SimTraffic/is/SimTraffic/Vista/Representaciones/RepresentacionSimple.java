@@ -10,6 +10,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.Rectangle;
 
 public class RepresentacionSimple extends Representacion {
 	/**
@@ -32,6 +33,13 @@ public class RepresentacionSimple extends Representacion {
 		g.setColor(Color.RED);
 		g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - 3, y_MapaARep(nodo
 				.getPos().getPosY()) - 3, 6, 6);
+	}
+	
+	public void pintar(Graphics2D g, Rectangle rectanguloSeleccion){
+    	g.draw(rectanguloSeleccion);
+    	Color colorTransparente = new Color((float)0.8,(float)0.1,(float)0.05,(float)0.2);
+    	g.setColor(colorTransparente);
+    	g.fill(rectanguloSeleccion);
 	}
 
 	public void pintar(Graphics2D g, Tramo tramo) {

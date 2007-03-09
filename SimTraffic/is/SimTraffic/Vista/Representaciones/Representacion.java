@@ -7,6 +7,7 @@ import is.SimTraffic.Mapa.Tramo;
 
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.Rectangle;
 
 /**
  * Clase abstracta para representaciones del mapa.
@@ -110,6 +111,12 @@ abstract public class Representacion {
 	 */
 	abstract public void pintar(Graphics2D g, Nodo nodo);
 
+	/**
+	 * 
+	 * @param g
+	 * @param rectanguloSeleccion
+	 */
+	abstract public void pintar(Graphics2D g, Rectangle rectanguloSeleccion);
 	/**
 	 * Método abstracto que se debe implementar para pintar un tramo.
 	 * <p>
