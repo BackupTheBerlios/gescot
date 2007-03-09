@@ -1,29 +1,36 @@
 
 package is.SimTraffic.Herramientas;
 
+import is.SimTraffic.IControlador;
+import is.SimTraffic.Controlador;
 import is.SimTraffic.IModelo;
 
 import java.io.File;
 
+import javax.swing.JFileChooser;
+
+import is.SimTraffic.Herramientas.CargarMapa.*;
+import is.SimTraffic.Mapa.Mapa;
+
 public class HCargarMapa implements IHerramienta 
 {
-   
+   IControlador controlador;
    /**
    @roseuid 45B8B3A70182
     */
-   public HCargarMapa() 
+   public HCargarMapa(IControlador controlador) 
    {
-    
+	   this.controlador=controlador;
    }
    
    /**
    @param archivo
    @roseuid 45B8B1430105
     */
-   public HCargarMapa(File archivo) 
+   /*public HCargarMapa(File archivo) 
    {
     
-   }
+   }*/
    
    /**
    @param modelo
@@ -32,6 +39,26 @@ public class HCargarMapa implements IHerramienta
     */
    public int hacer(IModelo modelo) 
    {
+	   Mapa mapaNuevo=null;
+	   CargadorMapa cargadorMapa=new CargadorMapa();
+	   JFileChooser fc = new JFileChooser();
+	   String[] ext = new String[] { "osm" };
+	   fc.addChoosableFileFilter(new ExtFilter(ext,"Mapa OSM (*.osm)"));
+	   int val = fc.showOpenDialog(null);
+
+	   if (val == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			//Faltaría definir comportamiento ante fallos.
+			try {
+				mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
+			} catch (Exception e) {
+				System.out.println("Error al leer archivo");
+				e.printStackTrace();
+			}
+			//if (mapaNuevo==null) 
+			//	System.out.println("Mapa vacío?");
+			modelo.setMapa(mapaNuevo);
+	   }
     return 0;
    }
    

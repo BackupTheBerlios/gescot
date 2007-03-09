@@ -118,7 +118,7 @@ public class CargadorMapa implements DocHandler {
 			System.out.println("reconoce tramo");
 			Nodo nodoI=buscarNodoConId(indexFrom);
 			Nodo nodoF=buscarNodoConId(indexTo);
-			tramos.add(new Tramo(id,nodos.get(indexFrom),nodos.get(indexTo)));
+			tramos.add(new Tramo(id,nodoI,nodoF));
 			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
 					false));*/
@@ -184,8 +184,8 @@ public class CargadorMapa implements DocHandler {
 		QDParser.parse(cargadormapa, fr);
 		
 		fr.close();
-		
-		return new Mapa(nodos,tramos);
+		Mapa mapaADevolver = new Mapa(nodos,tramos); 
+		return mapaADevolver;
 		//return null;
 	}
 	

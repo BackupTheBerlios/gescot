@@ -160,7 +160,7 @@ public class Ventana extends JFrame {
 		archivoMenu.addSeparator();
 		
 		JMenuItem cargarMapaMenuItem = new JMenuItem();
-		cargarMapaMenuItem.addActionListener(new AccionAbrir());
+		cargarMapaMenuItem.addActionListener(new AccionCargar(controlador));
 		cargarMapaMenuItem.setText("Cargar Mapa");
 		archivoMenu.add(cargarMapaMenuItem);
 		
@@ -289,7 +289,7 @@ public class Ventana extends JFrame {
 		JButton cargarTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
 		cargarTB.setMargin(new Insets(1, 1, 1, 1));
-		cargarTB.addActionListener(new AccionAbrir());
+		cargarTB.addActionListener(new AccionCargar(controlador));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-open2.png"; 
 		cargarTB.setToolTipText("<html>Cargar mapa <img src="+imageName+"></html>");
 		

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Finalmente llamada accionCargar (por mantener un mismo nombre en todo el proceso)
  * @author Grupo ISTrafico
  *
  */

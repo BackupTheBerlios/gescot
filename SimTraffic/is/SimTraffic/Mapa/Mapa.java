@@ -84,6 +84,8 @@ public class Mapa {
 		// TODO Auto-generated constructor stub
 		Nodos = nodos;
 		Tramos = tramos;
+		Señales = new ArrayList<Señal>();
+		Vias = new ArrayList<Via>();
 	}
 
 	/**
