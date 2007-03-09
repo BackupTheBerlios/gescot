@@ -7,6 +7,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
+import is.SimTraffic.Vista.PanelTramo;
 
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
@@ -78,9 +79,12 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 						ventanaNodo.setBounds(80, 120, 400, 600);
 						ventanaNodo.setVisible(true);
 					}
-					if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
+					else if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
 							.y_RepAMapa(arg0.getY())) != null) {
 						JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
+						PanelTramo panelTram = new PanelTramo();
+						ventanaTramo.add(panelTram);
+						ventanaTramo.setBounds(80, 120, 400, 600);
 						ventanaTramo.setVisible(true);
 					}
 				}
