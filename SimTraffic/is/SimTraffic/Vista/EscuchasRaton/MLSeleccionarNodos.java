@@ -46,7 +46,7 @@ public class MLSeleccionarNodos extends EscuchaRaton{
 		panel.setModoSeleccion(false);
 		panel.recrearMapa();
 		panel.repaint();
-		panel.notificaSeleccion();
+		panel.notificaSeleccion(0);
 	}
 
 	@Override
