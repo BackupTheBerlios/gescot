@@ -44,7 +44,7 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		panel.setModoSeleccion(false);
-		panel.recrearMapa();
+		//panel.recrearMapa();
 		panel.repaint();
 		panel.notificaSeleccion(2);
 	}

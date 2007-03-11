@@ -13,7 +13,7 @@ public class AccionScrollX implements AdjustmentListener, MouseListener {
 
 	private PanelMapa panel;
 	
-	Thread thread;
+	AuxScrollX thread;
 	
 	public AccionScrollX(PanelMapa panel) {
 		this.panel = panel;
@@ -22,15 +22,17 @@ public class AccionScrollX implements AdjustmentListener, MouseListener {
 	public void adjustmentValueChanged(AdjustmentEvent e) {
 		JScrollBar barra = (JScrollBar) e.getSource();
 		if (!barra.getValueIsAdjusting()) {
-			panel.cambiaPosX((barra.getValue()-10)*10);
-			barra.setValue(10);
+			int valor = barra.getValue();
+			System.out.println(""+valor);
+			if (valor >= 10) valor = 11;
+			else valor = 9;
+			panel.cambiaPosX((valor-10)*8);
+			barra.setValue(valor);
 		}
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		JScrollBar barra = (JScrollBar) arg0.getComponent();
-		panel.cambiaPosX((barra.getValue()-10)*100);
-		barra.setValue(10);
+
 		
 	}
 
@@ -46,13 +48,13 @@ public class AccionScrollX implements AdjustmentListener, MouseListener {
 
 	public void mousePressed(MouseEvent arg0) {
 		JScrollBar barra = (JScrollBar) arg0.getComponent();
-		thread = new Thread(new AuxScrollX(barra, panel));
+		thread = new AuxScrollX(barra, panel);
 		thread.start();
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
 		((JScrollBar) arg0.getComponent()).setValue(10);
-		thread.stop();
+		thread.terminar();
 		thread = null;
 	}
 

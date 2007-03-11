@@ -60,7 +60,16 @@ public class PanelMapa extends JPanel {
 	 */
 	private int tamX, tamY;
 
+	/**
+	 * Almacenan el punto mas arriba a la izquierda del mapa que aparece en pantalla
+	 */
 	private int posX, posY;
+	
+	/**
+	 * Utilizados para detectar cambios en la posicion del mapa
+	 */
+	private int posXtemp, posYtemp;
+	
 
 	/**
 	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que
@@ -130,7 +139,8 @@ public class PanelMapa extends JPanel {
 		añadirScrolls();
 		posX = 1000;
 		posY = 1000;
-		
+		posXtemp = 1000;
+		posYtemp = 1000;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
 	}
@@ -213,9 +223,11 @@ public class PanelMapa extends JPanel {
 
 	public void repaint() {
 		if (tamX != getSize().width || tamY != getSize().height
-				|| ((largo != null) && posX != largo.getValue())
-				|| ((alto != null) && posY != alto.getValue()))
-			recrear = true;
+				|| (posX != posXtemp)
+				|| (posY != posYtemp)){
+			posXtemp = posX;
+			posYtemp = posY;
+			recrear = true;}
 		super.repaint();
 	}
 
