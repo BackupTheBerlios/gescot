@@ -23,7 +23,7 @@ public class MLEliminarTramo extends EscuchaRaton
 		if (e.getButton() != MouseEvent.BUTTON1)
 			return;
 		
-		Tramo seleccionado = buscarTramo(panel.x_RepAMapa(e.getX()), panel.x_RepAMapa(e.getY()));
+		Tramo seleccionado = buscarTramo(panel.x_RepAMapa(e.getX()), panel.y_RepAMapa(e.getY()));
 		if (seleccionado != null)
 		{
 			controlador.herramienta(new HEliminarTramo(seleccionado));
@@ -53,7 +53,7 @@ public class MLEliminarTramo extends EscuchaRaton
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		Tramo tramo = buscarTramo(panel.x_RepAMapa(e.getX()), panel.x_RepAMapa(e.getY()));
+		Tramo tramo = buscarTramo(panel.x_RepAMapa(e.getX()), panel.y_RepAMapa(e.getY()));
 		if (tramo != null)
 			panel.sugerir(tramo);
 		else
