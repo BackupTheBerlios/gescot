@@ -21,6 +21,7 @@ public class MapaTestSuite {
 	    suite.addTestSuite(SeñalTest.class);
 	    suite.addTestSuite(EntradaSalidaTest.class);	    
 	    suite.addTestSuite(ConversorUTMTest.class);
+	    suite.addTestSuite(PosicionTest.class);
 	    return suite;
 	}
 

@@ -53,7 +53,7 @@ public class Posicion {
 		this.lon = lon;
 		double[] xy = new double[2];
 		zone = (int) (Math.floor ((lon + 180.0) / 6) + 1);
-		xy = ConversorUTM.LatLonToUTMXY (ConversorUTM.DegToRad (lat), ConversorUTM.DegToRad (lon), zone);
+		xy = ConversorUTM.LatLonToUTMXY (lat, lon, zone);
 		posX = (int)xy[0];
 		posY = (int)xy[1];
 	}
@@ -61,12 +61,16 @@ public class Posicion {
 	public Posicion(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
+		this.zone = 0;
 		double[] latlon = new double[2];
 		latlon = ConversorUTM.UTMXYToLatLon (posX, posY, zone, false);
-		this.lat = latlon[0];
-		this.lon = latlon[1];
+		this.lat = latlon[1];
+		this.lon = latlon[0];
 	}
 	
+	public void setZone(int zone) {
+		this.zone = zone;
+	}
 	
 
 	/*

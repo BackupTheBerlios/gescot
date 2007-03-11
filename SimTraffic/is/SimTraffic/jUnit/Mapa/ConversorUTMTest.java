@@ -27,8 +27,8 @@ public class ConversorUTMTest extends TestCase {
 		double[] latlon;
 		int zone = 2;
 		latlon = ConversorUTM.UTMXYToLatLon(x, y, zone, true);
-		assertTrue("longitud equivocada", (latlon[1] >= -181.53958) && (latlon[1] <= -181.53956));
-		assertTrue("latitud equivocada", (latlon[0] >= -87.880973) && (latlon[0] <= -87.880971));	
+		assertTrue("latitud equivocada", (latlon[1] >= -181.53958) && (latlon[1] <= -181.53956));
+		assertTrue("longitud equivocada", (latlon[0] >= -87.880973) && (latlon[0] <= -87.880971));	
 	}
 	
 	public void test2Conversiones() {
@@ -36,19 +36,31 @@ public class ConversorUTMTest extends TestCase {
 		double y = 234634;
 		double[] latlon;
 		int zone = 2;
-		latlon = ConversorUTM.UTMXYToLatLon(x, y, zone, true);
+		latlon = ConversorUTM.UTMXYToLatLon(x, y, zone, false);
 		//Hasta aquí conversión a LatLon, ahora estos valores de nuevo en posX, posY
+		//System.out.println(""+latlon[0]+" "+latlon[1]);
 		double[] xy;
 		zone = (int) (Math.floor ((latlon[1] + 180.0) / 6) + 1);
 		xy = ConversorUTM.LatLonToUTMXY(latlon[0], latlon[1], zone);
 		double nuevaX=xy[0];
 		double nuevaY=xy[1];
+		//System.out.println(""+zone+" "+nuevaX+" "+nuevaY);
 		//assertTrue("¡Conversiones inexactas en X!", (nuevaX >= 456834) && (nuevaX <= 456634));
 		//assertTrue("¡Conversiones inexactas en Y!", (nuevaY >= 234734) && (nuevaX <= 234534));
-		assertTrue("¡Conversiones MUY inexactas en X!", (nuevaX >= 556834) && (nuevaX <= 356634));
-		assertTrue("¡Conversiones MUY inexactas en Y!", (nuevaY >= 334734) && (nuevaX <= 134534));
+		assertTrue("¡Conversiones MUY inexactas en X!", (nuevaX >= 356634) && (nuevaX <= 556834));
+		assertTrue("¡Conversiones MUY inexactas en Y!", (nuevaY >= 134534) && (nuevaY <= 334734));
 	}
 
-	
+	public void test3Conversiones() {
+
+		double[] xy;
+		int zone = (int) (Math.floor ((45 + 180.0) / 6) + 1);
+		xy = ConversorUTM.LatLonToUTMXY(30, 45, zone);
+		double nuevaX=xy[0];
+		double nuevaY=xy[1];
+		System.out.println(""+zone +" " + nuevaX + " " + nuevaY);
+		assertFalse("mala conversion x", (nuevaX < 499999 || nuevaX > 500001));
+
+		assertFalse("mala conversion y", (nuevaY < 3318784 ||nuevaY > 3318786));	}
 
 }

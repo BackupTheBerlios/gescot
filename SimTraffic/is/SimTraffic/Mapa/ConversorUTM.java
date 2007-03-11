@@ -4,6 +4,18 @@
 package is.SimTraffic.Mapa;
 
 /**
+ * Clase que convierte valores de UTM a coordenadas geográficas.
+ * <p>
+ * Esta clase implementa los métodos para obtener coordenadas UTM a partir de
+ * geográficas y viceversa. Notas sobre el funcionamiento:<br> + La conversion
+ * de latitud-longitud a UTM calcula todos los valores (x,y,zona y hemisferio)<br> +
+ * La conversion inversa necesita valores para zona y hemisferio para funcionar
+ * correctamente<br> + El hemisferio sur sera true y el norte sera false<br> +
+ * Cuando devuelve latlon, el primer valor es la longitud y el segundo la
+ * latitudz<br>
+ * + El método de lat-lon a x e y, toma como primer parámetro la latitud y como segundo
+ * la longitud
+ * 
  * @author Grupo ISTrafico
  * 
  */
@@ -178,7 +190,7 @@ public class ConversorUTM {
 		double xy[] = new double[2];
 		double N, nu2, ep2, t, t2, l;
 		double l3coef, l4coef, l5coef, l6coef, l7coef, l8coef;
-		//double tmp;
+		// double tmp;
 
 		/* Precalculate ep2 */
 		ep2 = (Math.pow(sm_a, 2.0) - Math.pow(sm_b, 2.0)) / Math.pow(sm_b, 2.0);
@@ -192,7 +204,7 @@ public class ConversorUTM {
 		/* Precalculate t */
 		t = Math.tan(phi);
 		t2 = t * t;
-		//tmp = (t2 * t2 * t2) - Math.pow(t, 6.0);
+		// tmp = (t2 * t2 * t2) - Math.pow(t, 6.0);
 
 		/* Precalculate l */
 		l = lambda - lambda0;
@@ -374,7 +386,7 @@ public class ConversorUTM {
 		double[] xy;
 		lat = DegToRad(lat);
 		lon = DegToRad(lon);
-		
+
 		xy = MapLatLonToXY(lat, lon, UTMCentralMeridian(zone));
 
 		/* Adjust easting and northing for UTM system. */
@@ -419,8 +431,8 @@ public class ConversorUTM {
 
 		cmeridian = UTMCentralMeridian(zone);
 		latlon = MapXYToLatLon(x, y, cmeridian);
-		latlon[0] = RadToDeg (latlon[0]);
-		latlon[1] = RadToDeg (latlon[1]);
+		latlon[0] = RadToDeg(latlon[0]);
+		latlon[1] = RadToDeg(latlon[1]);
 		return latlon;
 	}
 
