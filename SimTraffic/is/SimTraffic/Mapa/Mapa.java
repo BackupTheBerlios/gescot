@@ -260,20 +260,96 @@ public class Mapa {
 	 * que estén contenido en dicho rectángulo.
 	 * @param rectanguloSeleccion
 	 */
-	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion){
-		Nodo nodoTemp;
-		Point punto;
-		for (int i=0;i<Nodos.size();i++){
-			nodoTemp = Nodos.get(i);
-			punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
-			if (rectanguloSeleccion.contains(punto)){
-				this.seleccion.añadirNodo(nodoTemp);
+	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion,int tipoDeSeleccion){
+		
+		if (tipoDeSeleccion==0) { //se elige seleccionar nodos
+			Nodo nodoTemp;
+			Point punto;
+			for (int i=0;i<Nodos.size();i++){
+				nodoTemp = Nodos.get(i);
+				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				if (rectanguloSeleccion.contains(punto)){
+					this.seleccion.añadirNodo(nodoTemp);
+				}			
+			}
+		}
+		if (tipoDeSeleccion==1) { //se elige seleccionar elementos
+			Nodo nodoTemp;
+			Point punto;
+			for (int i=0;i<Nodos.size();i++){
+				nodoTemp = Nodos.get(i);
+				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				if (rectanguloSeleccion.contains(punto)){
+					this.seleccion.añadirNodo(nodoTemp);
+				}			
+			}
+			Tramo tramoTemp;
+			for (int i=0;i<Tramos.size();i++) {
+				tramoTemp = Tramos.get(i);
+				boolean encontradoInicial=false;
+				boolean encontradoFinal=false;
+				int j=0;
+				Nodo posibleNodoInicial;
+				while (j<seleccion.getNodosSeleccionados().size() && !encontradoInicial) {
+					posibleNodoInicial = seleccion.getNodosSeleccionados().get(j);
+					if (posibleNodoInicial.equals(tramoTemp.getNodoInicial()))
+						encontradoInicial=true;
+					j++;
+				}
+				j=0;
+				Nodo posibleNodoFinal;
+				while (j<seleccion.getNodosSeleccionados().size() && !encontradoFinal) {
+					posibleNodoFinal = seleccion.getNodosSeleccionados().get(j);
+					if (posibleNodoFinal.equals(tramoTemp.getNodoFinal()))
+						encontradoFinal=true;
+					j++;
+				}
+				if (encontradoInicial && encontradoFinal) {
+					this.seleccion.añadirTramo(tramoTemp);
+				}
 			}
 			
-			
+		}
+		if (tipoDeSeleccion==2) { //se elige seleccionar tramos
+			Nodo nodoTemp;
+			Point punto;
+			ArrayList<Nodo> nodosSeleccionados = new ArrayList();
+			for (int i=0;i<Nodos.size();i++){
+				nodoTemp = Nodos.get(i);
+				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				if (rectanguloSeleccion.contains(punto)){
+					nodosSeleccionados.add(nodoTemp);
+				}			
+			}
+			Tramo tramoTemp;
+			for (int i=0;i<Tramos.size();i++) {
+				tramoTemp = Tramos.get(i);
+				boolean encontradoInicial=false;
+				boolean encontradoFinal=false;
+				int j=0;
+				Nodo posibleNodoInicial;
+				while (j<nodosSeleccionados.size() && !encontradoInicial) {
+					posibleNodoInicial = nodosSeleccionados.get(j);
+					if (posibleNodoInicial.equals(tramoTemp.getNodoInicial()))
+						encontradoInicial=true;
+					j++;
+				}
+				j=0;
+				Nodo posibleNodoFinal;
+				while (j<nodosSeleccionados.size() && !encontradoFinal) {
+					posibleNodoFinal = nodosSeleccionados.get(j);
+					if (posibleNodoFinal.equals(tramoTemp.getNodoFinal()))
+						encontradoFinal=true;
+					j++;
+				}
+				if (encontradoInicial && encontradoFinal) {
+					this.seleccion.añadirTramo(tramoTemp);
+				}
+			}
+		
 		}
 		
-		
+	//int a=5;
 	}
 	
 	/**
