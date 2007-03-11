@@ -213,7 +213,7 @@ public class CargadorMapa implements DocHandler {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		Mapa mapa=cargar("C:/Documents and Settings/Ignacio/Escritorio/IS-ultimamente/Mapas-hechos/unapruebamasSinVias.osm");
+		Mapa mapa=cargar("C:/Documents and Settings/Ignacio/Escritorio/IS-ultimamente/Mapas-hechos/prueba110307_2.osm");
 		System.out.println("cargado");
 	}
 }
