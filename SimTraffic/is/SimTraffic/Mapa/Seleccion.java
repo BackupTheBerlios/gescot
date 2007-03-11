@@ -34,6 +34,10 @@ public class Seleccion {
 		this.nodosSeleccionados.add(nodo);
 	}
 	
+	public void añadirTramo(Tramo tramo){
+		this.tramosSeleccionados.add(tramo);
+	}
+	
 	
 	public ArrayList<Nodo> getNodosSeleccionados() {
 		return nodosSeleccionados;
