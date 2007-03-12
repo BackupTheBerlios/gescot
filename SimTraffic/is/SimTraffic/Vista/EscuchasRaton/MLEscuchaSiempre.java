@@ -67,7 +67,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 			}
 			else
 			{
-				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 1000)
+				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 250)
 				{
 					if (this.buscarNodo(panel.x_RepAMapa(arg0.getX()), panel
 							.y_RepAMapa(arg0.getY())) != null) {

@@ -2,7 +2,6 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Vista.Acciones.AccionAbrir;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
 import is.SimTraffic.Vista.Acciones.AccionCortar;
@@ -276,8 +275,10 @@ public class Ventana extends JFrame {
 		
 		JToolBar archivoTB = new JToolBar();
 		JToolBar edicionTB = new JToolBar();
+		JToolBar zoomTB = new JToolBar();
 		superior.add(archivoTB);
 		superior.add(edicionTB);
+		superior.add(zoomTB);
 		
 		superior.setLayout(new BoxLayout(superior, BoxLayout.LINE_AXIS));
 		JButton nuevoTB = new JButton(new ImageIcon(
@@ -322,12 +323,25 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-undo2.png"; 
 		deshacerTB.setToolTipText("<html>Deshacer <img src="+imageName+"></html>");
 		
+		JButton zoomin = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\zoom_in.png"));
+		zoomin.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_in2.png"; 
+		zoomin.setToolTipText("<html>Aumentar tamaño de la representación <img src="+imageName+"></html>");
+		
+		JButton zoomout = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\zoom_out.png"));
+		zoomout.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_out2.png"; 
+		zoomout.setToolTipText("<html>Aumentar tamaño de la representación <img src="+imageName+"></html>");
+		
+		
 		archivoTB.add(nuevoTB);
 		archivoTB.add(cargarTB);
 		archivoTB.add(guardarTB);
 		edicionTB.add(copiarTB);
 		edicionTB.add(pegarTB);
 		edicionTB.add(deshacerTB);
+		zoomTB.add(zoomin);
+		zoomTB.add(zoomout);
 	}
 	
 	/**
@@ -387,5 +401,4 @@ public class Ventana extends JFrame {
 		// panel_mapa.dibujar();
 		paintComponents(g);
 	}
-	
 }
