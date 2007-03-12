@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,16 +20,19 @@ import java.awt.event.ActionListener;
 public class AccionSobreMapa implements ActionListener {
 
 	EscuchaRaton escucha;
+	EscuchaTeclado escuchaTeclado;
 
 	Ventana ventana;
 
-	public AccionSobreMapa(EscuchaRaton escucha, Ventana ventana) {
+	public AccionSobreMapa(EscuchaRaton escucha, Ventana ventana, EscuchaTeclado escuchaTeclado) {
 		this.escucha = escucha;
 		this.ventana = ventana;
+		this.escuchaTeclado = escuchaTeclado;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		ventana.cambiarEscucha(escucha);
+		escuchaTeclado.setEscuchaANotificar(escucha);
 		escucha.activar();
 	}
 
