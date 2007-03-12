@@ -68,7 +68,7 @@ abstract public class Representacion {
 	 */
 	public int x_MapaARep(int posX) {
 		// falta implementar
-		return (int) ((posX/zoom - posX0));
+		return posX - posX0;//(int) ((posX/zoom - posX0));
 	}
 
 	/**
@@ -84,17 +84,17 @@ abstract public class Representacion {
 	 */
 	public int y_MapaARep(int posY) {
 		// falta implementar
-		return (int) ((posY/zoom - posY0));
+		return - posY0 - posY;//(int) ((posY/zoom - posY0));
 	}
 
 	public int x_RepAMapa(int posX) {
 		// falta implementar
-		return (int) ((posX + posX0)*zoom);
+		return posX + posX0;//(int) ((posX + posX0)*zoom);
 	}
 
 	public int y_RepAMapa(int posY) {
 		// falta implementar
-		return (int) ((posY + posY0)*zoom);
+		return - posY0 - posY;//(int) ((posY + posY0)*zoom);
 	}
 
 	/**

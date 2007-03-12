@@ -72,6 +72,11 @@ public class Posicion {
 	
 	public void setZone(int zone) {
 		this.zone = zone;
+		double[] latlon = new double[2];
+		latlon = ConversorUTM.UTMXYToLatLon (posX,posY, zone, false);
+		//Antes al revés, se asignaba a lat = latlon[1] y viceversa con lon
+		this.lat = latlon[0];
+		this.lon = latlon[1];
 	}
 	
 

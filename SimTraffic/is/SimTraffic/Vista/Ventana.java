@@ -164,7 +164,7 @@ public class Ventana extends JFrame {
 		menuBar.add(archivoMenu);
 		
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
-		nuevoMapaMenuItem.addActionListener(new AccionNuevo());
+		nuevoMapaMenuItem.addActionListener(new AccionNuevo(modelo));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		archivoMenu.add(nuevoMapaMenuItem);
 		
@@ -301,7 +301,7 @@ public class Ventana extends JFrame {
 		JButton nuevoTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
-		nuevoTB.addActionListener(new AccionNuevo());
+		nuevoTB.addActionListener(new AccionNuevo(modelo));
 		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-new2.png"; 
 		nuevoTB.setToolTipText("<html>Nuevo mapa <img src="+imageName+"></html>");
 		

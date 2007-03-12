@@ -3,6 +3,9 @@
  */
 package is.SimTraffic.Vista.Acciones;
 
+import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.Mapa;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,12 +15,14 @@ import java.awt.event.ActionListener;
  */
 public class AccionNuevo implements ActionListener {
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	private IModelo modelo;
+	
+	public AccionNuevo(IModelo modelo) {
+		this.modelo = modelo;
+	}
 
+	public void actionPerformed(ActionEvent arg0) {
+		modelo.setMapa(new Mapa());
 	}
 
 }

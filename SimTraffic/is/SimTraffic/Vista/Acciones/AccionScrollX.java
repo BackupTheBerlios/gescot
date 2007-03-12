@@ -23,7 +23,6 @@ public class AccionScrollX implements AdjustmentListener, MouseListener {
 		JScrollBar barra = (JScrollBar) e.getSource();
 		if (!barra.getValueIsAdjusting()) {
 			int valor = barra.getValue();
-			System.out.println(""+valor);
 			if (valor >= 10) valor = 11;
 			else valor = 9;
 			panel.cambiaPosX((valor-10)*8);
