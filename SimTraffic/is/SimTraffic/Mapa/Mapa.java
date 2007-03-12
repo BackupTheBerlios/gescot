@@ -349,14 +349,15 @@ public class Mapa {
 		
 		}
 		
-	//int a=5;
 	}
 	
 	/**
 	 * Deselecciona todos los elementos que estaban seleccionados. 
 	 */
 	public void limpiaSeleccion(){
-		this.seleccion = null;
+		if (this.seleccion != null)
+			this.seleccion = null;
+		this.seleccion = new Seleccion();
 	}
 
 	public ArrayList<Nodo> getNodos() {
