@@ -41,11 +41,19 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	
 	boolean activo;
 	
+	
+	/**
+	 * Este modificador permite ser modificado en función de lo que se haya recibido
+	 * desde un evento de teclado. Representará el código de la tecla pulsada. 
+	 */
+	private int modificadorDeTeclado;
+	
 	public EscuchaRaton(IModelo modelo, IControlador controlador,
 			PanelMapa panel) {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		this.panel = panel;
+		modificadorDeTeclado = 0;
 	}
 	
 	/**
@@ -137,6 +145,23 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		else
 			return null;
 	}
+	
+	/**
+	 * Permite a un oyente externo modificar el valor del modificador para 
+	 * poder a éste oyente generar condiciones especiales (Especialmente útil
+	 * para el oyente externo de teclado).
+	 * @param modificador
+	 */
+	public void notificar(int modificador){
+		this.modificadorDeTeclado = modificador;
+	}
+	
+	/**
+	 * Da el valor por defecto al modicador de éste oyente.
+	 */
+	public void desnotificar(){
+		this.modificadorDeTeclado = 0;
+	}
 
 	abstract public void mouseClicked(MouseEvent arg0);
 	
@@ -151,5 +176,13 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	abstract public void mouseDragged(MouseEvent arg0);
 	
 	abstract public void mouseMoved(MouseEvent arg0);
+
+	public int getModificadorDeTeclado() {
+		return modificadorDeTeclado;
+	}
+
+	public void setModificadorDeTeclado(int modificadorDeTeclado) {
+		this.modificadorDeTeclado = modificadorDeTeclado;
+	}
 	
 }
