@@ -1,8 +1,14 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -19,10 +25,19 @@ public class PanelNodo extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane panelDatos;
 	private JPanel panelBotones;
+	private JPanel panelAuxiliar;
+	private JComboBox comboTipo;
+	private JComboBox comboValor;
+	private JTextField campoFrecuencia;
+	private JTextField campoNombre;
+	private Nodo nodo;
+	private JButton botonAceptar;
+	private JButton botonCancelar;
 	
 	
-	public PanelNodo(){
+	public PanelNodo(Nodo nodo){
 		this.setLayout(new BorderLayout(2,2));
+		this.nodo = nodo;
 		
 		panelDatos = new JTabbedPane();
 		creaPanelDatos();
@@ -30,15 +45,14 @@ public class PanelNodo extends JPanel{
 		panelBotones = new JPanel();
 		creaPanelBotones();
 		
+		crearAcciones();
 	    this.add(panelDatos,BorderLayout.NORTH);
 	    this.add(panelBotones,BorderLayout.SOUTH);
 	    
 	}
 	
 	public void creaPanelDatos(){
-		
-		
-		
+	
 		JPanel panelPropiedades = new JPanel();
 	    JPanel panelSeñales = new JPanel();
 	    JPanel panelTramos = new JPanel();
@@ -46,11 +60,23 @@ public class PanelNodo extends JPanel{
 	    JPanel panelTipo = new JPanel();
 	    panelTipo.setLayout(new FlowLayout(FlowLayout.CENTER,30,20));
 	    JLabel etiquetaTipo = new JLabel("Tipo");
-	    String[] tiposNodos = { "                    ", "tipo1", "tipo2", "tipo3", "tipo4", "tipo5" };
-	    JComboBox comboTipo = new JComboBox(tiposNodos);
+	    
+	    //Modificando
+	    String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "No definido"};
+	    
+	    comboTipo = new JComboBox(tiposNodos);
+	    
 	    JLabel etiquetaValor = new JLabel("Valor");
-	    String[] valorNodos = { "                    ", "valor1", "valor2", "valor3", "valor4", "valor5" };
-	    JComboBox comboValor = new JComboBox(valorNodos);
+	    
+	    String[] valorNodos = { "                  "};
+	    
+	    comboValor = new JComboBox(valorNodos);
+	    
+	    if (nodo.getTipo()!= null) {
+    		comboTipo.setSelectedItem(nodo.getTipo().getTipo());
+    		comboValor.setSelectedItem(nodo.getTipo().getValorTipo());
+	    }
+	    
 	    panelTipo.add(etiquetaTipo);
 	    panelTipo.add(comboTipo);
 	    panelTipo.add(etiquetaValor);
@@ -63,21 +89,21 @@ public class PanelNodo extends JPanel{
 	    JPanel panelRadioButtons = new JPanel();
 	    panelRadioButtons.setLayout(new GridLayout(3,1));
 	    JRadioButton radioNormal = new JRadioButton("Normal");
-	    JRadioButton radioEntrada = new JRadioButton("Entrada");
-	    JRadioButton radioSalida = new JRadioButton("Salida");
+	    JRadioButton radioEntradaSalida = new JRadioButton("Entrada/Salida");
+	    //JRadioButton radioSalida = new JRadioButton("Salida");
 	    radioNormal.setSelected(true);
 	    ButtonGroup radioGrupo = new ButtonGroup();
 	    radioGrupo.add(radioNormal);
-	    radioGrupo.add(radioEntrada);
-	    radioGrupo.add(radioSalida);
+	    radioGrupo.add(radioEntradaSalida);
+	    //radioGrupo.add(radioSalida);
 	    panelRadioButtons.add(radioNormal);
-	    panelRadioButtons.add(radioEntrada);
-	    panelRadioButtons.add(radioSalida);
+	    panelRadioButtons.add(radioEntradaSalida);
+	    //panelRadioButtons.add(radioSalida);
 	    
 	    JPanel panelFrecuencia = new JPanel();
 	    panelFrecuencia.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
 	    JLabel etiquetaFrecuencia = new JLabel("Frecuencia");
-	    JTextField campoFrecuencia = new JTextField(5);
+	    campoFrecuencia = new JTextField(5);
 	    panelFrecuencia.add(etiquetaFrecuencia);
 	    panelFrecuencia.add(campoFrecuencia);
 	    
@@ -85,15 +111,30 @@ public class PanelNodo extends JPanel{
 	    panelEntrada.add(panelFrecuencia);
 	    panelEntrada.setBorder(BorderFactory.createTitledBorder("Funcionalidad del Nodo"));
 	    
-	    JPanel panelAux = new JPanel();
-	    panelAux.setLayout(new FlowLayout(FlowLayout.CENTER,30,80));
+	    panelAuxiliar = new JPanel();
+	    panelAuxiliar.setLayout(new FlowLayout(FlowLayout.CENTER,30,80));
 	    // Añadir cosas
-	    panelAux.setBorder(BorderFactory.createTitledBorder("Panel Auxiliar"));
+	    JLabel etiquetaNombre = new JLabel("Nombre");
+	    campoNombre = new JTextField(14);
+	    if (nodo.getNombre()!=null)
+	    	campoNombre.setText(nodo.getNombre());
+	    JLabel etiquetaposicionX = new JLabel("X:");
+	    JLabel etiquetaposicionY = new JLabel("Y:");
+	    JLabel posicionX = new JLabel((""+nodo.getPos().getPosX()));
+	    JLabel posicionY = new JLabel((""+nodo.getPos().getPosY()));
 	    
+	    panelAuxiliar.add(etiquetaNombre);
+	    panelAuxiliar.add(campoNombre);
+	    panelAuxiliar.add(etiquetaposicionX);
+	    panelAuxiliar.add(posicionX);
+	    panelAuxiliar.add(etiquetaposicionY);
+	    panelAuxiliar.add(posicionY);
+	    panelAuxiliar.setBorder(BorderFactory.createTitledBorder("Panel Auxiliar"));
+	        
 	    panelPropiedades.setLayout(new BorderLayout(10,20));
 	    panelPropiedades.add(panelTipo,BorderLayout.NORTH);
 	    panelPropiedades.add(panelEntrada,BorderLayout.CENTER);
-	    panelPropiedades.add(panelAux,BorderLayout.SOUTH);
+	    panelPropiedades.add(panelAuxiliar,BorderLayout.SOUTH);
 	    
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Nodo");
 	    panelDatos.setSelectedIndex(0);
@@ -102,10 +143,14 @@ public class PanelNodo extends JPanel{
 	    panelDatos.addTab("Tramos", null, panelTramos,"Tramos asociados al Nodo");
 	}
 	
+	public void crearAcciones() {
+		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
+	    comboTipo.addActionListener(accionSeleccionarTipo);
+	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this);
+	    botonAceptar.addActionListener(accionAceptar);
+	}
+	
 	public void creaPanelBotones(){
-		
-		JButton botonAceptar;
-		JButton botonCancelar;
 		
 		botonAceptar = new JButton("Aceptar");
 		botonCancelar = new JButton("Cancelar");

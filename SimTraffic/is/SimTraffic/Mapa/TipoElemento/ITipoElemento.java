@@ -13,5 +13,5 @@ public interface ITipoElemento {
 	public String getTipo();
 	public String getValorTipo();
 	public void setValorTipo(String valorTipo);
-	
+	//public String[] getPosiblesValoresTipoCastellano();
 }

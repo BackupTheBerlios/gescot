@@ -29,8 +29,27 @@ public class TipoNodoHighway implements ITipoElemento {
 	
 	public TipoNodoHighway(String valorTipo) {
 		// TODO Auto-generated constructor stub
+		String valorOSM =traducirOSM(valorTipo);
 		this.valorTipo = valorTipo;
 	}
+	
+	public String traducirOSM(String valorTipo) {
+		String traducido=valorTipo;
+		if (valorTipo.equals("")) traducido="";
+		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
+		else if (valorTipo.equals("Stop")) traducido="Stop";
+		else if (valorTipo.equals("Cruce")) traducido="crossing";
+		else if (valorTipo.equals("Portón para vehículos")) traducido="gate";
+		else if (valorTipo.equals("Cambio De Rasante")) traducido="incline";
+		else if (valorTipo.equals("Puente")) traducido="bridge";
+		else if (valorTipo.equals("Viaducto")) traducido="viaduct";
+		return traducido;
+	}
+	
+	/*public String[] getPosiblesValoresTipoCastellano() {
+		String[] s={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
+		return s;
+	}*/
 
 	public String getTipo() {
 		return tipo;

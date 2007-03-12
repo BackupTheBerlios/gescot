@@ -25,6 +25,11 @@ public class TipoNodoManMade implements ITipoElemento {
 		// TODO Auto-generated constructor stub
 		this.valorTipo = valorTipo;
 	}
+	
+	public String[] getPosiblesValoresTipoCastellano() {
+		String[] s={""};
+		return s;
+	}
 
 	public String getTipo() {
 		return tipo;

@@ -209,9 +209,9 @@ public class Nodo implements ElementoMapa {
 		if (tipo==null && nombre==null)
 			s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
 		else {
-			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >");
-			if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />");
-			if (nombre!=null) s=s.concat("<tag k='nombre' v='"+tipo.getValorTipo()+"' />");
+			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >\n");
+			if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
+			if (nombre!=null) s=s.concat("<tag k='nombre' v='"+getNombre()+"' />\n");
 			s=s.concat("</node>");
 		}
 		return s;
