@@ -237,7 +237,7 @@ public class Ventana extends JFrame {
 		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
 		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
 		seleccionarButton.addActionListener(new AccionSobreMapa(
-				escuchaSeleccion, this/*, escuchaTeclado*/));
+				escuchaSeleccion, this, escuchaTeclado));
 		panel.add(seleccionarButton);
 		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
 		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
@@ -249,7 +249,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
 		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa), this/*, escuchaTeclado*/));
+				new MLAñadirNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirNodoButton);
 		//Aquí también habría que añadir el oyente de teclado al añadirNodoButton (y en el resto de botones),
 		//pero de momento no lo pongo por si encontramos una alternativa mejor.
@@ -259,7 +259,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png"; 
 		añadirTramoButton.setToolTipText("<html>Añadir Tramo <img src="+imageName+"></html>");
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirTramo(modelo, controlador, panel_mapa), this/*, escuchaTeclado*/));
+				new MLAñadirTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirTramoButton);
 		
 		JButton eliminarNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo.png"));
@@ -267,7 +267,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo2.png"; 
 		eliminarNodoButton.setToolTipText("<html>Eliminar Nodo <img src="+imageName+"></html>");
 		eliminarNodoButton.addActionListener(new AccionSobreMapa(
-				new MLEliminarNodo(modelo, controlador, panel_mapa), this/*, escuchaTeclado*/));
+				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(eliminarNodoButton);
 		
 		
@@ -276,7 +276,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_tramo2.png"; 
 		eliminarTramoButton.setToolTipText("<html>Eliminar Tramo <img src="+imageName+"></html>");
 		eliminarTramoButton.addActionListener(new AccionSobreMapa(
-				new MLEliminarTramo(modelo, controlador, panel_mapa), this/*, escuchaTeclado*/));
+				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(eliminarTramoButton);
 		//Aqui se añadirán los nuevos botones.
 		
