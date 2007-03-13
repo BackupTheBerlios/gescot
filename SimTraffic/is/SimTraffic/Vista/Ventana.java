@@ -18,6 +18,8 @@ import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -104,6 +106,8 @@ public class Ventana extends JFrame {
 	 * Oyentes para teclado y ratón.
 	 */
 	MLSeleccionarNodos escuchaSeleccion;
+	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
+	MLSeleccionarTramos escuchaSeleccionTramos;
 	EscuchaTeclado escuchaTeclado;
 	
 	/**
@@ -130,6 +134,9 @@ public class Ventana extends JFrame {
 		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
 		
 		escuchaSeleccion = new MLSeleccionarNodos(modelo, controlador, panel_mapa);
+		escuchaSeleccionTramos = new MLSeleccionarTramos(modelo, controlador, panel_mapa);
+		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo, controlador, panel_mapa);
+		
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccion);
 		
 		crearBarraMenu();
@@ -232,10 +239,10 @@ public class Ventana extends JFrame {
 		panel = new JToolBar(JToolBar.VERTICAL);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 		
-		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
+		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos.png"));
 		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
-		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
+		seleccionarButton.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
 		seleccionarButton.addActionListener(new AccionSobreMapa(
 				escuchaSeleccion, this, escuchaTeclado));
 		panel.add(seleccionarButton);
@@ -243,6 +250,30 @@ public class Ventana extends JFrame {
 		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
 		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
 		seleccionarButton.addKeyListener(escuchaTeclado);
+		
+		JButton seleccionarTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
+		seleccionarTramosButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos-2.png"; 
+		seleccionarTramosButton.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
+		seleccionarTramosButton.addActionListener(new AccionSobreMapa(
+				escuchaSeleccionTramos, this, escuchaTeclado));
+		panel.add(seleccionarTramosButton);
+		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
+		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
+		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
+		seleccionarTramosButton.addKeyListener(escuchaTeclado);
+		
+		JButton seleccionarNodosYTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
+		seleccionarNodosYTramosButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos-2.png"; 
+		seleccionarNodosYTramosButton.setToolTipText("<html>Seleccionar nodos y tramos <img src="+imageName+"></html>");
+		seleccionarNodosYTramosButton.addActionListener(new AccionSobreMapa(
+				escuchaSeleccionNodosYTramos, this, escuchaTeclado));
+		panel.add(seleccionarNodosYTramosButton);
+		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
+		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
+		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
+		seleccionarNodosYTramosButton.addKeyListener(escuchaTeclado);
 		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
 		añadirNodoButton.setMargin(new Insets(1, 1, 1, 1));
