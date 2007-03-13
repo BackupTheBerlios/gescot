@@ -18,6 +18,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.Iterator;
@@ -246,14 +247,16 @@ public class PanelMapa extends JPanel {
 		representacion.pintarSugerencia(g, sugerencia);
 		g.drawString("Redibujando: " + contador, 80, 80);
 		
+		//Se pintan los tramos que están seleccionados
+		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
+			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
+		}
+		
 		//Aquí se pintan los nodos que están seleccionados como si estuvieran sugiriendo.
 		for (int i = 0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++){
-			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i));
+			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i));
 		}
-		//Y los tramos que están seleccionados
-		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
-			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
-		}
+		
 	}
 
 	public void setRepresentacion(Representacion representacion) {
