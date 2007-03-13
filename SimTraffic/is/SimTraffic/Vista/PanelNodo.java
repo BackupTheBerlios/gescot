@@ -1,6 +1,8 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 
@@ -63,7 +65,7 @@ public class PanelNodo extends JFrame{
 	    JLabel etiquetaTipo = new JLabel("Tipo");
 	    
 	    //Modificando
-	    String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "No definido"};
+	    String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "Infraestructura", "No definido"};
 	    
 	    comboTipo = new JComboBox(tiposNodos);
 	    
@@ -215,6 +217,14 @@ public class PanelNodo extends JFrame{
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
 				comboValor.addItem(s3[i]);
+		}
+		
+		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
+			TipoElemento inf=new TipoNodoAmenity("Pub");
+			String[] s4=inf.devolverListaValores();
+			comboValor.removeAllItems();
+			for (int i=0;i<s4.length;i++)
+				comboValor.addItem(s4[i]);
 		}
 		
 		else {

@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones.PanelNodo;
 
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
@@ -42,6 +43,9 @@ public class AccionAceptar implements ActionListener {
 		}
 		else if (comboTipo.getSelectedItem().equals("Construcción")) {
 			tipo = new TipoNodoManMade((String)(comboValor.getSelectedItem()));
+		}
+		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
+			tipo = new TipoNodoAmenity((String)(comboValor.getSelectedItem()));
 		}
 		else { //No se ha seleccionado ninguno concreto
 			//nodo.setTipo(tipo);

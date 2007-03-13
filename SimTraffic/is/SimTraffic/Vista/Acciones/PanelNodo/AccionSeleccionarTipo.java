@@ -1,5 +1,9 @@
 package is.SimTraffic.Vista.Acciones.PanelNodo;
 
+import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,6 +39,14 @@ public class AccionSeleccionarTipo implements ActionListener {
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
 				comboValor.addItem(s3[i]);
+		}
+		
+		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
+			TipoElemento inf=new TipoNodoAmenity("Pub");
+			String[] s4=inf.devolverListaValores();
+			comboValor.removeAllItems();
+			for (int i=0;i<s4.length;i++)
+				comboValor.addItem(s4[i]);
 		}
 		
 		else {

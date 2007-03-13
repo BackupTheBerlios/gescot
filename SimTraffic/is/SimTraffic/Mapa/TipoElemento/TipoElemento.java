@@ -1,30 +1,16 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoNodoLeisure implements ITipoElemento {
+public abstract class TipoElemento {
 
 	/**
-	 * Características de Nodos asociadas a  Recreo (Leisure)
+	 * Categoría del tipo de elemento (nodo, tramo, vía)
 	 */
-	private String tipo="leisure";
+	protected String tipo;
 	
 	/**
-	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a un lugar de recreo)
-	 *  sports_centre	Polideportivo
-	 golf_course	Campo de golf
-	 stadium	Estadio (con gradas)
-	 marina	Marina para yates y barcos de recreo
-	 track	Pista de carreras (ciclismo, galgos, hipódromo, etc)
-	 pitch	Campo de deportes (campo de fútbol, cancha de baloncesto, pista de pádel, etc)
-	 water_park	Parque acuático
-	 slipway	Rampa para la botadura de barcos
-	 fishing	Área de pesca
-	 nature_reserve	Parque natural, reservas ecológicas
-	 park	Parque
-	 garden	Jardín
-	 common	Plazas
-	 User Defined
+	 * Descripción cocnreta de la categoría asignada
 	 */
-	private String valorTipo;
+	protected String valorTipo;
 	
 	/**
 	 * Tabla de 2 columnas utilizada para traducir términos relativos a valores de este tipo de elemento: 
@@ -32,27 +18,16 @@ public class TipoNodoLeisure implements ITipoElemento {
 	 */
 	private String[][] tablaTraduccion;
 	
-	public TipoNodoLeisure(String vTipo) {
+	public TipoElemento(String valorTipo) {
 		tablaTraduccion=crearTablaTraduccion();
-		String valorOSM =traduciraOSM(vTipo);
+		String valorOSM =traduciraOSM(valorTipo);
 		this.valorTipo = valorOSM;
 	}
 	
 	/**
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
-	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Campo de golf","golf_course"}, 
-								   {"Estadio","stadium"},
-								   {"Marina","marina"},
-								   {"Pista de carreras","track"},
-								   {"Campo de deporte","pich"},
-								   {"Parque acuático","water_park"},
-								   {"Parque","park"},
-								   {"Jardín","garden"},	
-									};
-		return tTraduccion;
-	}
+	public abstract String[][] crearTablaTraduccion();
 	
 	/**
 	 * Método que traduce de las palabras utilizadas por el usuario (castellano) 
@@ -93,7 +68,15 @@ public class TipoNodoLeisure implements ITipoElemento {
 			}
 		}
 		
-		return traducido;
+		return traducido;	
+	}
+	
+	public String[] devolverListaValores() {
+		String[] s = new String[tablaTraduccion.length];
+		for (int i=0;i<tablaTraduccion.length;i++) {
+			s[i] = tablaTraduccion[i][0];
+		}
+		return s;
 	}
 
 	public String getTipo() {
@@ -104,13 +87,11 @@ public class TipoNodoLeisure implements ITipoElemento {
 		return valorTipo;
 	}
 	
+	/**
+	 * 
+	 */
 	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
-	}
-	
-	public String getValorTipoCastellano() {
-		String s=traduciraCastellano(valorTipo);
-		return s;
 	}
 	
 	/**
@@ -121,8 +102,11 @@ public class TipoNodoLeisure implements ITipoElemento {
 
 	}
 
-	public String getTipoCastellano() {
-		return "Tiempo Libre";
+	public String getValorTipoCastellano() {
+		String s=traduciraCastellano(valorTipo);
+		return s;
 	}
+
+	public abstract String getTipoCastellano();
 
 }
