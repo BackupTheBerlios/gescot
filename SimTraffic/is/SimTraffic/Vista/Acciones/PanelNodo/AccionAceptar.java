@@ -40,7 +40,7 @@ public class AccionAceptar implements ActionListener {
 		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
 			tipo = new TipoNodoLeisure((String)(comboValor.getSelectedItem()));
 		}
-		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
+		else if (comboTipo.getSelectedItem().equals("Construcción")) {
 			tipo = new TipoNodoManMade((String)(comboValor.getSelectedItem()));
 		}
 		else { //No se ha seleccionado ninguno concreto

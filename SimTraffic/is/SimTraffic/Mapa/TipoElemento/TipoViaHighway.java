@@ -35,13 +35,24 @@ public class TipoViaHighway implements ITipoElemento {
 		this.valorTipo = valorTipo;
 	}
 	
-	//Por terminar
-	public String traducirOSM(String valorTipo) {
+	/**
+	 * Método que traduce de las palabras utilizadas por el usuario (castellano) 
+	 * a las palabras que utiliza el estándar osm (en inglés).
+	 */
+	public String traduciraOSM(String valorTipo) {
 		String traducido=valorTipo;
 		/*if (valorTipo.equals("")) traducido="";
 		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
 		*/
 		return traducido;
+	}
+	
+	/**
+	 * Método que traduce de las palabras utilizadas por el estándar osm (en inglés) 
+	 * a las palabras que utiliza el usuario (en castellano).
+	 */
+	public String traduciraCastellano(String valorTipo) {
+		return null;
 	}
 
 	public String getTipo() {
@@ -53,7 +64,7 @@ public class TipoViaHighway implements ITipoElemento {
 	}
 	
 	public String getValorTipoCastellano() {
-		String s=traducirOSM(valorTipo);
+		String s=traduciraCastellano(valorTipo);
 		return s;
 	}
 	
@@ -71,5 +82,10 @@ public class TipoViaHighway implements ITipoElemento {
 		// TODO Auto-generated method stub
 
 	}
+
+	public String getTipoCastellano() {
+		return "Carretera";
+	}
+
 
 }

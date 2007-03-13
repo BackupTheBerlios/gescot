@@ -31,7 +31,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		}
 		
 		else if (comboTipo.getSelectedItem().equals("Construcción")) {
-			String[] s3={"Planta eólica","Planta Hidroeléctrica","Central Hidroeléctrica","Central nuclear"};
+			String[] s3={"Planta eólica","Planta hidroeléctrica","Central eléctrica","Central nuclear","Faro"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
 				comboValor.addItem(s3[i]);

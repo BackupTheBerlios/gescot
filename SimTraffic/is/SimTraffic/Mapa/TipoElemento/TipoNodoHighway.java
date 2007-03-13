@@ -27,29 +27,74 @@ public class TipoNodoHighway implements ITipoElemento {
 	 */
 	private String valorTipo;
 	
+	/**
+	 * Tabla de 2 columnas utilizada para traducir términos relativos a valores de este tipo de elemento: 
+	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
+	 */
+	private String[][] tablaTraduccion;
+	
 	public TipoNodoHighway(String valorTipo) {
-		// TODO Auto-generated constructor stub
-		String valorOSM =traducirOSM(valorTipo);
-		this.valorTipo = valorTipo;
+		tablaTraduccion=crearTablaTraduccion();
+		String valorOSM =traduciraOSM(valorTipo);
+		this.valorTipo = valorOSM;
 	}
 	
-	public String traducirOSM(String valorTipo) {
-		String traducido=valorTipo;
-		if (valorTipo.equals("")) traducido="";
-		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
-		else if (valorTipo.equals("Stop")) traducido="Stop";
-		else if (valorTipo.equals("Cruce")) traducido="crossing";
-		else if (valorTipo.equals("Portón para vehículos")) traducido="gate";
-		else if (valorTipo.equals("Cambio De Rasante")) traducido="incline";
-		else if (valorTipo.equals("Puente")) traducido="bridge";
-		else if (valorTipo.equals("Viaducto")) traducido="viaduct";
+	/**
+	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
+	 */
+	private String[][] crearTablaTraduccion() {
+		String[][] tTraduccion = { {"Mini-rotonda","mini_roundabout"}, 
+								   {"Stop","stadium"},
+								   {"Cruce","crossing"},
+								   {"Portón para vehículos","gate"},
+								   {"Cambio De Rasante","incline"},
+								   {"Puente","bridge"},
+								   {"Viaducto","viaduct"},	
+									};
+		return tTraduccion;
+	}
+	
+	/**
+	 * Método que traduce de las palabras utilizadas por el usuario (castellano) 
+	 * a las palabras que utiliza el estándar osm (en inglés). Si no encuentra la 
+	 * traducción devuelve la palabra dada.
+	 */
+	public String traduciraOSM(String vTipo) {
+		String traducido=vTipo;
+		
+		if (vTipo.equals("")) return "";
+		
+		boolean encontrado=false;
+		for (int i=0; (i<tablaTraduccion.length) && (!encontrado); i++) {
+			if (tablaTraduccion[i][0].equals(vTipo)) {
+				traducido=tablaTraduccion[i][1];
+				encontrado=true;
+			}
+		}
+		
 		return traducido;
 	}
 	
-	/*public String[] getPosiblesValoresTipoCastellano() {
-		String[] s={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
-		return s;
-	}*/
+	/**
+	 * Método que traduce de las palabras utilizadas por el estándar osm (en inglés) 
+	 * a las palabras que utiliza el usuario (en castellano).
+	 */
+	public String traduciraCastellano(String vTipo) {
+		
+		String traducido=vTipo;
+		
+		if (vTipo.equals("")) return "";
+		
+		boolean encontrado=false;
+		for (int i=0; (i<tablaTraduccion.length) && (!encontrado); i++) {
+			if (tablaTraduccion[i][1].equals(vTipo)) {
+				traducido=tablaTraduccion[i][0];
+				encontrado=true;
+			}
+		}
+		
+		return traducido;	
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -75,8 +120,12 @@ public class TipoNodoHighway implements ITipoElemento {
 	}
 
 	public String getValorTipoCastellano() {
-		String s=traducirOSM(valorTipo);
+		String s=traduciraCastellano(valorTipo);
 		return s;
+	}
+
+	public String getTipoCastellano() {
+		return "Carretera";
 	}
 
 }

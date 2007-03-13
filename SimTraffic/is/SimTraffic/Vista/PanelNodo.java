@@ -76,14 +76,15 @@ public class PanelNodo extends JFrame{
 	    //Por depurar
 	    boolean encontrado=false;
 	    if (nodo.getTipo()!= null) {
-	    	for (int i=0;i<comboTipo.getItemCount() && !encontrado; i++) {
-	    		if (comboTipo.getItemAt(i).equals(nodo.getTipo().getTipo())) {
-	    			comboTipo.setSelectedItem(i);
-	    			//comboTipo.setSelectedItem(comboTipo.getItemAt(i));
+	    	for (int i=0;(i<comboTipo.getItemCount()) && (!encontrado); i++) {
+	    		if (comboTipo.getItemAt(i).equals(nodo.getTipo().getTipoCastellano())) {
+	    			//comboTipo.setSelectedItem(i);
+	    			comboTipo.setSelectedItem(nodo.getTipo().getTipoCastellano());
+	    			configurarValoresNodo();
 	    			encontrado = true;
 	    			for (int j=0;j<comboValor.getItemCount(); j++) {
-	    				if (comboValor.getItemAt(j).equals(nodo.getTipo().getValorTipo()))
-	    					comboValor.setSelectedItem(j);
+	    				if (comboValor.getItemAt(j).equals(nodo.getTipo().getValorTipoCastellano()))
+	    					comboValor.setSelectedItem(nodo.getTipo().getValorTipoCastellano());
 	    			}
 	    		}
 	    	}
@@ -188,6 +189,38 @@ public class PanelNodo extends JFrame{
 		panelBotones.add(botonCancelar);
 		
 		panelBotones.setBorder(BorderFactory.createEtchedBorder());
+	}
+	
+	/**
+	 * Redundante (método que ya existía en un oyente peor necesario aquí, 
+	 * rediseñar más adelante).
+	 */
+	public void configurarValoresNodo() {
+		if (comboTipo.getSelectedItem().equals("Carretera")) {
+			String[] s1={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
+			comboValor.removeAllItems();
+			for (int i=0;i<s1.length;i++)
+				comboValor.addItem(s1[i]);
+		}
+		
+		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
+			String[] s2={"Campo de golf","Estadio","Marina","Pista de carreras", "Campo de deporte", "Parque acuático", "Parque", "Jardín"};
+			comboValor.removeAllItems();
+			for (int i=0;i<s2.length;i++)
+				comboValor.addItem(s2[i]);
+		}
+		
+		else if (comboTipo.getSelectedItem().equals("Construcción")) {
+			String[] s3={"Planta eólica","Planta Hidroeléctrica","Central Hidroeléctrica","Central nuclear","Faro"};
+			comboValor.removeAllItems();
+			for (int i=0;i<s3.length;i++)
+				comboValor.addItem(s3[i]);
+		}
+		
+		else {
+			comboValor.removeAllItems();
+			comboValor.addItem("No definido");
+		}
 	}
 		
 }
