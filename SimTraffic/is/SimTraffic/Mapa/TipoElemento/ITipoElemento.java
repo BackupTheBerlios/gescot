@@ -13,5 +13,9 @@ public interface ITipoElemento {
 	public String getTipo();
 	public String getValorTipo();
 	public void setValorTipo(String valorTipo);
+	
+	public String getValorTipoCastellano();
+	public String traducirOSM(String valorTipo);
+	//public void setValorTipoCastellano(String valorTipo);
 	//public String[] getPosiblesValoresTipoCastellano();
 }

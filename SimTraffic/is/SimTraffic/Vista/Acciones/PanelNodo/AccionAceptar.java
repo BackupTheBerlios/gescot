@@ -57,8 +57,7 @@ public class AccionAceptar implements ActionListener {
 			nodo.setNombre(nuevoNombre);
 		}
 		
-		panel.setVisible(false);
-		//panel=null;
+		panel.dispose();
 			
 	}
 

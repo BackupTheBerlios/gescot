@@ -31,10 +31,14 @@ public class TipoNodoLeisure implements ITipoElemento {
 		this.valorTipo = valorTipo;
 	}
 	
-	/*public String[] getPosiblesValoresTipoCastellano() {
-		String[] s={""};
-		return s;
-	}*/
+	//Por terminar
+	public String traducirOSM(String valorTipo) {
+		String traducido=valorTipo;
+		/*if (valorTipo.equals("")) traducido="";
+		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
+		*/
+		return traducido;
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -49,6 +53,11 @@ public class TipoNodoLeisure implements ITipoElemento {
 	 */
 	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
+	}
+	
+	public String getValorTipoCastellano() {
+		String s=traducirOSM(valorTipo);
+		return s;
 	}
 	
 	/**

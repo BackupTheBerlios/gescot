@@ -74,4 +74,9 @@ public class TipoNodoHighway implements ITipoElemento {
 
 	}
 
+	public String getValorTipoCastellano() {
+		String s=traducirOSM(valorTipo);
+		return s;
+	}
+
 }

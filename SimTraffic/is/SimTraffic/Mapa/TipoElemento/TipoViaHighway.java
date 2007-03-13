@@ -35,9 +35,13 @@ public class TipoViaHighway implements ITipoElemento {
 		this.valorTipo = valorTipo;
 	}
 	
-	public String[] getPosiblesValoresTipoCastellano() {
-		String[] s={""};
-		return s;
+	//Por terminar
+	public String traducirOSM(String valorTipo) {
+		String traducido=valorTipo;
+		/*if (valorTipo.equals("")) traducido="";
+		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
+		*/
+		return traducido;
 	}
 
 	public String getTipo() {
@@ -46,6 +50,11 @@ public class TipoViaHighway implements ITipoElemento {
 	
 	public String getValorTipo() {
 		return valorTipo;
+	}
+	
+	public String getValorTipoCastellano() {
+		String s=traducirOSM(valorTipo);
+		return s;
 	}
 	
 	/**

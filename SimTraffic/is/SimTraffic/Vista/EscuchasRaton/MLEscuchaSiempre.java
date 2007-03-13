@@ -73,13 +73,17 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 					Nodo nodoAux=this.buscarNodo(panel.x_RepAMapa(arg0.getX()), panel
 							.y_RepAMapa(arg0.getY()));
 					if (nodoAux != null) {
-						JFrame ventanaNodo = new JFrame();
+						//JFrame ventanaNodo = new JFrame();
 						PanelNodo panelNod = new PanelNodo(nodoAux);
-						ventanaNodo.setContentPane(panelNod);
-						ventanaNodo.setTitle("Propiedades del Nodo");
+						panelNod.setTitle("Propiedades del Nodo");
+						panelNod.setBounds(80, 120, 480, 600);
+						panelNod.setVisible(true);
+						
+						//ventanaNodo.setContentPane(panelNod);
+						//ventanaNodo.setTitle("Propiedades del Nodo");
 						// ventanaNodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						ventanaNodo.setBounds(80, 120, 400, 600);
-						ventanaNodo.setVisible(true);
+						//ventanaNodo.setBounds(80, 120, 400, 600);
+						//ventanaNodo.setVisible(true);
 					}
 					else if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
 							.y_RepAMapa(arg0.getY())) != null) {

@@ -14,13 +14,14 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class PanelNodo extends JPanel{
+public class PanelNodo extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane panelDatos;
@@ -72,9 +73,20 @@ public class PanelNodo extends JPanel{
 	    
 	    comboValor = new JComboBox(valorNodos);
 	    
+	    //Por depurar
+	    boolean encontrado=false;
 	    if (nodo.getTipo()!= null) {
-    		comboTipo.setSelectedItem(nodo.getTipo().getTipo());
-    		comboValor.setSelectedItem(nodo.getTipo().getValorTipo());
+	    	for (int i=0;i<comboTipo.getItemCount() && !encontrado; i++) {
+	    		if (comboTipo.getItemAt(i).equals(nodo.getTipo().getTipo())) {
+	    			comboTipo.setSelectedItem(i);
+	    			//comboTipo.setSelectedItem(comboTipo.getItemAt(i));
+	    			encontrado = true;
+	    			for (int j=0;j<comboValor.getItemCount(); j++) {
+	    				if (comboValor.getItemAt(j).equals(nodo.getTipo().getValorTipo()))
+	    					comboValor.setSelectedItem(j);
+	    			}
+	    		}
+	    	}
 	    }
 	    
 	    panelTipo.add(etiquetaTipo);
@@ -155,6 +167,14 @@ public class PanelNodo extends JPanel{
 	    comboTipo.addActionListener(accionSeleccionarTipo);
 	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this);
 	    botonAceptar.addActionListener(accionAceptar);
+	    final PanelNodo panelPpal=this;
+	    botonCancelar.addActionListener(
+	    		new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						panelPpal.dispose();
+					}
+	    		}
+	    );
 	}
 	
 	public void creaPanelBotones(){
