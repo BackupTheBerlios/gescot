@@ -93,24 +93,46 @@ public class PanelTramo extends JPanel {
 	    JPanel panelNumCarriles = new JPanel();
 	    panelNumCarriles.setLayout(new BorderLayout());
 	  
-	    JPanel panelEtiquetas = new JPanel();
-	    panelEtiquetas.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
-	    JLabel etiquetaCarril1 = new JLabel("Carril sentido 1");
-	    JLabel etiquetaCarril2 = new JLabel("Carril sentido 2");
-	    panelEtiquetas.add(etiquetaCarril1);
-	    panelEtiquetas.add(etiquetaCarril2);
+	    JPanel panelEtiquetasNumero = new JPanel();
+	    panelEtiquetasNumero.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    JLabel etiquetaCarril1Numero = new JLabel("Carril sentido 1");
+	    JLabel etiquetaCarril2Numero = new JLabel("Carril sentido 2");
+	    panelEtiquetasNumero.add(etiquetaCarril1Numero);
+	    panelEtiquetasNumero.add(etiquetaCarril2Numero);
 	    
-	    JPanel panelCampos = new JPanel();
-	    panelCampos.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
-	    JTextField campoCarril1 = new JTextField(3);
-	    final JTextField campoCarril2 = new JTextField(3);
-	    campoCarril2.setEnabled(false);
-	    panelCampos.add(campoCarril1);
-	    panelCampos.add(campoCarril2);
+	    JPanel panelCamposNumero = new JPanel();
+	    panelCamposNumero.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    JTextField campoCarril1Numero = new JTextField(3);
+	    final JTextField campoCarril2Numero = new JTextField(3);
+	    campoCarril2Numero.setEnabled(false);
+	    panelCamposNumero.add(campoCarril1Numero);
+	    panelCamposNumero.add(campoCarril2Numero);
 	    
 	    panelNumCarriles.setBorder(BorderFactory.createTitledBorder("Número de carriles"));
-	    panelNumCarriles.add(panelEtiquetas,BorderLayout.NORTH);
-	    panelNumCarriles.add(panelCampos,BorderLayout.SOUTH);
+	    panelNumCarriles.add(panelEtiquetasNumero,BorderLayout.NORTH);
+	    panelNumCarriles.add(panelCamposNumero,BorderLayout.SOUTH);
+	    
+	    JPanel panelVelocidad = new JPanel();
+	    panelVelocidad.setLayout(new BorderLayout());
+	  
+	    JPanel panelEtiquetasVelocidad = new JPanel();
+	    panelEtiquetasVelocidad.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    JLabel etiquetaCarril1Velocidad = new JLabel("Carril sentido 1");
+	    JLabel etiquetaCarril2Velocidad = new JLabel("Carril sentido 2");
+	    panelEtiquetasVelocidad.add(etiquetaCarril1Velocidad);
+	    panelEtiquetasVelocidad.add(etiquetaCarril2Velocidad);
+	    
+	    JPanel panelCamposVelocidad = new JPanel();
+	    panelCamposVelocidad.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    JTextField campoCarril1Velocidad = new JTextField(3);
+	    final JTextField campoCarril2Velocidad = new JTextField(3);
+	    campoCarril2Velocidad.setEnabled(false);
+	    panelCamposVelocidad.add(campoCarril1Velocidad);
+	    panelCamposVelocidad.add(campoCarril2Velocidad);
+	    
+	    panelVelocidad.setBorder(BorderFactory.createTitledBorder("Velocidad de los carriles"));
+	    panelVelocidad.add(panelEtiquetasVelocidad,BorderLayout.NORTH);
+	    panelVelocidad.add(panelCamposVelocidad,BorderLayout.SOUTH);
 	      
 	    
 	    radioBidireccional.addActionListener(
@@ -119,7 +141,8 @@ public class PanelTramo extends JPanel {
 						if (radioBidireccional.isSelected()){
 							radioSentido1.setEnabled(false);
 							radioSentido2.setEnabled(false);
-							campoCarril2.setEnabled(true);
+							campoCarril2Numero.setEnabled(true);
+							campoCarril2Velocidad.setEnabled(true);
 						}
             }
 	    });
@@ -130,7 +153,8 @@ public class PanelTramo extends JPanel {
 						if (radioUnidireccional.isSelected()){
 							radioSentido1.setEnabled(true);
 							radioSentido2.setEnabled(true);
-							campoCarril2.setEnabled(false);
+							campoCarril2Numero.setEnabled(false);
+							campoCarril2Velocidad.setEnabled(false);
 						}
             }
 	    });
@@ -138,6 +162,7 @@ public class PanelTramo extends JPanel {
 	    panelPropiedades.setLayout(new BorderLayout(10,20));
 	    panelPropiedades.add(panelSentido,BorderLayout.NORTH);
 	    panelPropiedades.add(panelNumCarriles,BorderLayout.CENTER);
+	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);
 	    
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
 	    panelDatos.setSelectedIndex(0);

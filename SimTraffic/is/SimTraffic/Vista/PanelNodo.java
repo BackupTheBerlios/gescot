@@ -112,24 +112,31 @@ public class PanelNodo extends JPanel{
 	    panelEntrada.setBorder(BorderFactory.createTitledBorder("Funcionalidad del Nodo"));
 	    
 	    panelAuxiliar = new JPanel();
-	    panelAuxiliar.setLayout(new FlowLayout(FlowLayout.CENTER,30,80));
-	    // Añadir cosas
+	    panelAuxiliar.setLayout(new BorderLayout());
+	    JPanel panelNombre = new JPanel();
+	    panelNombre.setLayout(new FlowLayout(FlowLayout.CENTER,30,10));
 	    JLabel etiquetaNombre = new JLabel("Nombre");
 	    campoNombre = new JTextField(14);
 	    if (nodo.getNombre()!=null)
 	    	campoNombre.setText(nodo.getNombre());
+	    panelNombre.add(etiquetaNombre);
+	    panelNombre.add(campoNombre);
+	    JPanel panelPosicion = new JPanel();
+	    panelPosicion.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
+	    JLabel etiquetaPosicion = new JLabel("Posición=  ");
 	    JLabel etiquetaposicionX = new JLabel("X:");
 	    JLabel etiquetaposicionY = new JLabel("Y:");
 	    JLabel posicionX = new JLabel((""+nodo.getPos().getPosX()));
 	    JLabel posicionY = new JLabel((""+nodo.getPos().getPosY()));
+	    panelPosicion.add(etiquetaPosicion);
+	    panelPosicion.add(etiquetaposicionX);
+	    panelPosicion.add(posicionX);
+	    panelPosicion.add(etiquetaposicionY);
+	    panelPosicion.add(posicionY);
 	    
-	    panelAuxiliar.add(etiquetaNombre);
-	    panelAuxiliar.add(campoNombre);
-	    panelAuxiliar.add(etiquetaposicionX);
-	    panelAuxiliar.add(posicionX);
-	    panelAuxiliar.add(etiquetaposicionY);
-	    panelAuxiliar.add(posicionY);
-	    panelAuxiliar.setBorder(BorderFactory.createTitledBorder("Panel Auxiliar"));
+	    panelAuxiliar.add(panelNombre,BorderLayout.NORTH);
+	    panelAuxiliar.add(panelPosicion,BorderLayout.SOUTH);
+	    panelAuxiliar.setBorder(BorderFactory.createTitledBorder("Información del Nodo"));
 	        
 	    panelPropiedades.setLayout(new BorderLayout(10,20));
 	    panelPropiedades.add(panelTipo,BorderLayout.NORTH);
