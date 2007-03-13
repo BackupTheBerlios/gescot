@@ -155,6 +155,42 @@ public class RepresentacionSimple extends Representacion {
 			}
 		}
 	}
+	
+	/**
+	 * Pinta una sugerencia de nodos y tramos para los elementos seleccionados
+	 */
+	
+	public void pintarSugerenciaSeleccion(Graphics2D g, ElementoMapa elemento) {
+		int tamaño = 14;
+		if (elemento != null) {
+			if (elemento.getClass() == Nodo.class) {
+				// pintar un nodo sugerido
+				Nodo nodo = (Nodo) elemento;	
+				g.setColor(Color.yellow);
+				g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getPosY()) - tamaño / 2,
+						tamaño, tamaño);
+				Color colorTransparente = new Color((float) 1, (float) 0.6,
+						(float) 0, (float) 0.8);
+				g.setColor(colorTransparente);
+				g.drawOval(x_MapaARep(nodo.getPos().getPosX()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getPosY()) - tamaño / 2,
+						tamaño, tamaño);
+				g.fillOval(x_MapaARep(nodo.getPos().getPosX()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getPosY()) - tamaño / 2,
+						tamaño, tamaño);
+			}
+			if (elemento.getClass() == Tramo.class) {
+				// pintar un tramo sugerido
+				Tramo t = (Tramo)elemento;
+				Polygon p = generarAreaTramoReal(t);
+				Color colorTransparente = new Color((float) 0.1, (float) 0.8,
+						(float) 0.05, (float) 0.2);
+				g.setColor(colorTransparente);				
+				g.fillPolygon(p);				
+			}
+		}
+	}
 
 	/**
 	 * Método para determinar el área ocupada por un tramo. Devuelve un polígono
@@ -195,6 +231,45 @@ public class RepresentacionSimple extends Representacion {
 						* Math.cos(angulo)),
 				(int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta
 						* Math.cos(angulo)) };
+		Polygon p = new Polygon(x, y, 4);
+		return p;
+	}
+	
+	public Polygon generarAreaTramoReal(Tramo tramo) {
+		// almacena posiciones de los nodos inicial y final del tramo.
+		Posicion posnodo1 = tramo.getNodoInicial().getPos();
+		Posicion posnodo2 = tramo.getNodoFinal().getPos();
+		// almacena numero de carriles en cada sentido.
+		int carriles_ida = tramo.getNumCarrilesDir1();
+		int carriles_vuelta = tramo.getNumCarrilesDir2();
+		// determina largo y alto del tramo y calcula el angulo del tramo en
+		// base a estos datos.
+		double largo = posnodo1.getPosX() - posnodo2.getPosX();
+		double alto = posnodo1.getPosY() - posnodo2.getPosY();
+		double angulo = Math.atan(alto / largo);
+		// Coordenadas de los puntos del rectángulo que representa al tramo.
+		int x[] = {
+				(int) (posnodo1.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo)),
+				(int) (posnodo2.getPosX() + tamaño_carril * carriles_ida
+						* Math.sin(angulo)),
+				(int) (posnodo2.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo))),
+				(int) (posnodo1.getPosX() + tamaño_carril * carriles_vuelta
+						* (-Math.sin(angulo))) };
+		int y[] = {
+				(int) (posnodo1.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo))),
+				(int) (posnodo2.getPosY() + tamaño_carril * carriles_ida
+						* (-Math.cos(angulo))),
+				(int) (posnodo2.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo)),
+				(int) (posnodo1.getPosY() + tamaño_carril * carriles_vuelta
+						* Math.cos(angulo)) };
+		for (int i=0;i<4;i++) {
+			x[i]=x_MapaARep(x[i]);
+			y[i]=y_MapaARep(y[i]);
+		}
 		Polygon p = new Polygon(x, y, 4);
 		return p;
 	}
