@@ -159,6 +159,7 @@ abstract public class Representacion {
 	 *            ElementoMapa que se desea resaltar
 	 */
 	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
+	abstract public void pintarSugerenciaSeleccion(Graphics2D g, ElementoMapa elemento);
 
 	public void setPosX0(int posX0) {
 		this.posX0 = posX0;
@@ -195,7 +196,8 @@ abstract public class Representacion {
 	 * @return 
 	 * 			  El área ocupada por el tramo.
 	 */
-	public abstract Polygon generarAreaTramo(Tramo tramo); 
+	public abstract Polygon generarAreaTramo(Tramo tramo);
+	public abstract Polygon generarAreaTramoReal(Tramo tramo);
 	
 	public abstract void pintarCoordenadas(Graphics2D g);
 }
