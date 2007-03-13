@@ -250,6 +250,10 @@ public class PanelMapa extends JPanel {
 		for (int i = 0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++){
 			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i));
 		}
+		//Y los tramos que están seleccionados
+		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
+			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
+		}
 	}
 
 	public void setRepresentacion(Representacion representacion) {
