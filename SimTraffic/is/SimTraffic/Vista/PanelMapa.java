@@ -299,7 +299,7 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void cambiaPosX(int cambio) {
-		posLon = posLon + ((double)cambio * zoom) / 30000;
+		posLon = posLon + ((double)cambio * zoom) / 60000;
 		if (posLon > 180) posLon = 180;
 		if (posLon < -180) posLon = -180;
 		recrear = true;
@@ -307,7 +307,7 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void cambiaPosY(int cambio) {
-		posLat = posLat - ((double)cambio * zoom) / 30000;
+		posLat = posLat - ((double)cambio * zoom) / 60000;
 		if (posLat > 89) posLat = 89;
 		if (posLat < -89) posLat = -89;
 		recrear = true;
@@ -337,14 +337,14 @@ public class PanelMapa extends JPanel {
 		// seleccionado el usuario, le aplicamos
 		// la transformación a coordenadas relativas del mapa.
 		rectanguloCoordenadasReales.setFrameFromDiagonal(
-				lon_RepAMapa((int) (puntoInicial.getX())),
-				lat_RepAMapa((int) (puntoInicial.getY())),
-				lon_RepAMapa((int) (puntoDrag.getX())),
-				lat_RepAMapa((int) (puntoDrag.getY())));
+				puntoInicial.getX(),
+				puntoInicial.getY(),
+				puntoDrag.getX(),
+				puntoDrag.getY());
 
 		// this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
 		this.modelo.getMapa().seleccionaEnRectangulo(
-				rectanguloCoordenadasReales, tipoDeSeleccion);
+				rectanguloCoordenadasReales, tipoDeSeleccion, representacion);
 	}
 
 	public boolean isModoSeleccion() {
@@ -355,8 +355,19 @@ public class PanelMapa extends JPanel {
 		this.modoSeleccion = modoSeleccion;
 	}
 
+	public double getLat0 (){
+		return posLat;	
+	}
+	
+	public double getLon0() {
+		return posLon;
+	}
 	public Point getPuntoDrag() {
 		return puntoDrag;
+	}
+	
+	public void recrear() {
+		this.recrear = true;
 	}
 		
 	public void setPuntoDrag(Point puntoDrag) {

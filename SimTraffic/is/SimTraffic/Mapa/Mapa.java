@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Vista.Representaciones.Representacion;
+
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -284,14 +286,14 @@ public class Mapa {
 	 * que estén contenido en dicho rectángulo.
 	 * @param rectanguloSeleccion
 	 */
-	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion,int tipoDeSeleccion){
+	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion,int tipoDeSeleccion,Representacion rep){
 		
 		if (tipoDeSeleccion==0) { //se elige seleccionar nodos
 			Nodo nodoTemp;
 			Point punto;
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point((int)nodoTemp.getPos().getLon()*10000, (int)nodoTemp.getPos().getLat()*10000);
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
 					this.seleccion.añadirNodo(nodoTemp);
 				}			
@@ -302,7 +304,7 @@ public class Mapa {
 			Point punto;
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point((int)nodoTemp.getPos().getLon()*10000,(int)nodoTemp.getPos().getLat()*10000);
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
 					this.seleccion.añadirNodo(nodoTemp);
 				}			
@@ -340,7 +342,7 @@ public class Mapa {
 			ArrayList<Nodo> nodosSeleccionados = new ArrayList();
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point((int)nodoTemp.getPos().getLon()*10000,(int)nodoTemp.getPos().getLat()*10000);
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
 					nodosSeleccionados.add(nodoTemp);
 				}			
@@ -370,9 +372,7 @@ public class Mapa {
 					this.seleccion.añadirTramo(tramoTemp);
 				}
 			}
-		
 		}
-		
 	}
 	
 	/**

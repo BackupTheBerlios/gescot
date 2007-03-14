@@ -18,7 +18,8 @@ public class AccionCargarImagen implements ActionListener {
 	private PanelMapa panel;
 
 	public AccionCargarImagen(IControlador controlador, PanelMapa panel) {
-
+		this.controlador = controlador;
+		this.panel = panel;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -35,11 +36,10 @@ public class AccionCargarImagen implements ActionListener {
 					&& System.currentTimeMillis() - time < 2000) {
 			}
 			if (imagen.getWidth(null) >= 0) {
-				panel.getRepresentacion().addImage(imagen, new Posicion(0, 0));
+				panel.getRepresentacion().addImage(imagen, new Posicion(panel.getLat0(), panel.getLon0()));
 			} else {
 			}
 		}
-		panel.recrearMapa();
 	}
 
 }

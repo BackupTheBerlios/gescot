@@ -48,13 +48,15 @@ abstract public class Representacion {
 	 * Almacena el tamaño actual en y del panel donde se hace la representacion
 	 */
 	int tamY;
-	
+
 	double consx;
+
 	double consy;
-	
+
 	private ArrayList<Image> imagenes;
+
 	private ArrayList<Posicion> posiciones;
-	
+
 	Representacion() {
 		zoom = 1.0f;
 		Lon0 = 0;
@@ -79,7 +81,7 @@ abstract public class Representacion {
 	 */
 	public int x_MapaARep(double lon) {
 		// falta implementar
-		return (int) ((lon - Lon0)/consx);// (int) ((posX/zoom - posX0));
+		return (int) ((lon - Lon0) / consx);// (int) ((posX/zoom - posX0));
 	}
 
 	/**
@@ -94,15 +96,15 @@ abstract public class Representacion {
 	 * @return Entero que representa una posicion en la pantalla
 	 */
 	public int y_MapaARep(double lat) {
-		return (int) ((Lat0 - lat)/consy);// (int) ((posY/zoom - posY0));
+		return (int) ((Lat0 - lat) / consy);// (int) ((posY/zoom - posY0));
 	}
 
 	public double lon_RepAMapa(int posX) {
-		return ((double)posX*consx + Lon0);// (int) ((posX + posX0)*zoom);
+		return ((double) posX * consx + Lon0);// (int) ((posX + posX0)*zoom);
 	}
 
 	public double lat_RepAMapa(int posY) {
-		return (Lat0 - (double)posY*consy);// (int) ((posY + posY0)*zoom);
+		return (Lat0 - (double) posY * consy);// (int) ((posY + posY0)*zoom);
 	}
 
 	/**
@@ -205,10 +207,12 @@ abstract public class Representacion {
 	 * @return El área ocupada por el tramo.
 	 */
 	public abstract Polygon generarAreaTramo(Tramo tramo);
-	
-	public abstract void pintarSugerenciaSeleccion(Graphics2D g, ElementoMapa elemento);
+
+	public abstract void pintarSugerenciaSeleccion(Graphics2D g,
+			ElementoMapa elemento);
 
 	public void pintarCoordenadas(Graphics2D g) {
+		recalculaCons();
 		float array[] = { 10, 5, 5, 5 };
 		g.setColor(Color.LIGHT_GRAY);
 		g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
@@ -217,30 +221,50 @@ abstract public class Representacion {
 
 		int lat, lon;
 		for (int i = 0; i < 30; i++) {
-			lat = y_MapaARep(Lat0 - i*0.001*zoom);
-			lon = x_MapaARep(Lon0 + i*0.001*zoom);
+			lat = y_MapaARep(((int)(Lat0/(100*consy))-i)*(100*consy));
+			
+			lon = x_MapaARep(((int)(Lon0/(100*consx))+i)*(100*consx));
+			
 			g.drawLine(lon, 13, lon, 3000);
-			g.drawString(""+cincoCifras.format(Lon0 + i*0.008*zoom), lon - 5, 13);
-			g.drawLine(0,lat,3000,lat);
-			g.drawString(""+cincoCifras.format(Lat0 - i*0.008*zoom), 5, lat - 2);
+			g.drawString("" + cincoCifras.format(lon_RepAMapa(lon)), lon - 5,
+					13);
+			g.drawLine(0, lat, 3000, lat);
+			g
+					.drawString("" + cincoCifras.format(lat_RepAMapa(lat)), 5,
+							lat - 2);
 		}
 		g.setStroke(new BasicStroke(1));
-		g.drawLine(25, 40, 25 + (int) (50*zoom), 40);
+		g.drawLine(25, 40, 25 + (int) (50 * zoom), 40);
 		g.drawLine(25, 35, 25, 45);
-		g.drawLine(25 + (int) (50*zoom), 35, 25 + (int) (50*zoom), 45);
+		g.drawLine(25 + (int) (50 * zoom), 35, 25 + (int) (50 * zoom), 45);
 		g.drawString("50 m", 40, 35);
 	}
-	
+
+	/**
+	 * Añade una imagen a la representacion en una posicion dada.<p>
+	 * @param imagen
+	 * @param pos
+	 */
 	public void addImage(Image imagen, Posicion pos) {
-		imagenes.add(imagen);
-		posiciones.add(pos);
+		if (imagen != null && pos != null) {
+			imagenes.add(imagen);
+			posiciones.add(pos);
+		};
 	}
-	
+
+	/**
+	 * Quita una imagen de la representacion.<p>
+	 * @param imagen
+	 */
 	public void removeImage(Image imagen) {
 		posiciones.remove(imagenes.indexOf(imagen));
 		imagenes.remove(imagen);
 	}
 
+	/**
+	 * Dibuja las imagenes de la representacion.
+	 * @param g
+	 */
 	public void ponerImagenes(Graphics2D g) {
 		for (int i = 0; i < imagenes.size(); i++) {
 			g.drawImage(imagenes.get(i),
@@ -248,7 +272,7 @@ abstract public class Representacion {
 					y_MapaARep(posiciones.get(i).getLat()), null);
 		}
 	}
-	
+
 	private void recalculaCons() {
 		int zona = ConversorUTM.recalculaZona(Lon0);
 		boolean hem = ConversorUTM.recalculaHem(Lat0);
@@ -256,8 +280,7 @@ abstract public class Representacion {
 		xy[0] = xy[0] + zoom;
 		xy[1] = xy[1] + zoom;
 		double latlon[] = ConversorUTM.UTMXYToLatLon(xy[0], xy[1], zona, hem);
-		consx = Math.abs(latlon[0] - Lon0);
-		consy = Math.abs(latlon[1] - Lat0);
-		System.out.println(""+ consx+ " "+ consy);
+		consx = Math.abs(latlon[1] - Lon0);
+		consy = Math.abs(latlon[0] - Lat0);
 	}
 }
