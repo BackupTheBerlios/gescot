@@ -26,7 +26,7 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
-		Nodo seleccionado = buscarNodo(panel.x_RepAMapa(arg0.getX()), panel.y_RepAMapa(arg0.getY()));
+		Nodo seleccionado = buscarNodo(arg0.getX(), arg0.getY());
 		if (seleccionado != null)
 			if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(seleccionado)){
 				modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(seleccionado);

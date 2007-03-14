@@ -22,19 +22,19 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
-		Tramo seleccionado = buscarTramo(panel.x_RepAMapa(arg0.getX()), panel.y_RepAMapa(arg0.getY()));
+		Tramo seleccionado = buscarTramo(e.getX(), e.getY());
 		if (seleccionado != null)
 			if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(seleccionado)){
 				modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(seleccionado);
 			} else {
 				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
 		}
-		Nodo nodoSeleccionado = buscarNodo(panel.x_RepAMapa(arg0.getX()), panel.y_RepAMapa(arg0.getY()));
+		Nodo nodoSeleccionado = buscarNodo(e.getX(), e.getY());
 		if (nodoSeleccionado != null)
 			if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoSeleccionado)){
 				modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoSeleccionado);

@@ -41,5 +41,4 @@ public interface IModelo {
 	 */
 	public void setMapa(Mapa mapa);
 	
-	
 }

@@ -205,8 +205,8 @@ public class CargadorMapa implements DocHandler {
 		System.out.println("Tamaño de tramos:"+tramos.size());
 		
 		System.out.println("Localización de nodo: "+nodos.get(0).getID());
-		System.out.println("PosX:"+nodos.get(0).getPos().getPosX());
-		System.out.println("PosY:"+nodos.get(0).getPos().getPosY());
+		System.out.println("Lat:"+nodos.get(0).getPos().getLat());
+		System.out.println("Lon:"+nodos.get(0).getPos().getLon());
 		
 		Mapa mapaADevolver = new Mapa(nodos,tramos); 
 		return mapaADevolver;

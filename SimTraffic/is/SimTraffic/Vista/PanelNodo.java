@@ -139,10 +139,10 @@ public class PanelNodo extends JFrame{
 	    JPanel panelPosicion = new JPanel();
 	    panelPosicion.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
 	    JLabel etiquetaPosicion = new JLabel("Posición=  ");
-	    JLabel etiquetaposicionX = new JLabel("X:");
-	    JLabel etiquetaposicionY = new JLabel("Y:");
-	    JLabel posicionX = new JLabel((""+nodo.getPos().getPosX()));
-	    JLabel posicionY = new JLabel((""+nodo.getPos().getPosY()));
+	    JLabel etiquetaposicionX = new JLabel("Lat:");
+	    JLabel etiquetaposicionY = new JLabel("Lon:");
+	    JLabel posicionX = new JLabel((""+nodo.getPos().getLat()));
+	    JLabel posicionY = new JLabel((""+nodo.getPos().getLon()));
 	    panelPosicion.add(etiquetaPosicion);
 	    panelPosicion.add(etiquetaposicionX);
 	    panelPosicion.add(posicionX);

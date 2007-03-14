@@ -11,6 +11,7 @@ import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.PanelTramo;
 
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
@@ -31,9 +32,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	private JLabel posicionY;
 	private long millis;
 	private int estado;
-	private int x1;
-	private int y1;
-	
+	private double x1;
+	private double y1;
+	private DecimalFormat cincoCifras;
 	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY) 
 	{
 		super(modelo, controlador, panel);
@@ -41,6 +42,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		this.posicionY = posicionY;
 		estado = 0;
 		millis = 0;
+		cincoCifras = new DecimalFormat("0.00000");
 	}
 	
 	/*
@@ -63,15 +65,14 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 			{
 				estado = 1;
 				millis = System.currentTimeMillis();
-				x1 = panel.x_RepAMapa(arg0.getX());
-				y1 = panel.y_RepAMapa(arg0.getY());
+				x1 = panel.lon_RepAMapa(arg0.getX());
+				y1 = panel.lat_RepAMapa(arg0.getY());
 			}
 			else
 			{
 				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 250)
 				{
-					Nodo nodoAux=this.buscarNodo(panel.x_RepAMapa(arg0.getX()), panel
-							.y_RepAMapa(arg0.getY()));
+					Nodo nodoAux=this.buscarNodo(arg0.getX(), arg0.getY());
 					if (nodoAux != null) {
 						//JFrame ventanaNodo = new JFrame();
 						PanelNodo panelNod = new PanelNodo(nodoAux);
@@ -79,8 +80,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 						panelNod.setBounds(80, 120, 500, 600);
 						panelNod.setVisible(true);
 					}
-					else if (this.buscarTramo(panel.x_RepAMapa(arg0.getX()), panel
-							.y_RepAMapa(arg0.getY())) != null) {
+					else if (this.buscarTramo(arg0.getX(), arg0.getY()) != null) {
 						JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
 						PanelTramo panelTram = new PanelTramo();
 						ventanaTramo.add(panelTram);
@@ -96,8 +96,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	
 	private boolean mismoPunto(MouseEvent arg0) 
 	{
-		int x2 = panel.x_RepAMapa(arg0.getX());
-		int y2 = panel.y_RepAMapa(arg0.getY());
+		double x2 = panel.lon_RepAMapa(arg0.getX());
+		double y2 = panel.lat_RepAMapa(arg0.getY());
 		return (x1 == x2 && y1 == y2);
 	}
 
@@ -157,9 +157,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	}
 	
 	public void mouseMoved(MouseEvent e) {  
-		int posX = panel.x_RepAMapa(e.getX());
-		int posY = panel.y_RepAMapa(e.getY());
-		posicionX.setText("" + posX);
-		posicionY.setText("" + posY);
+		double posX = panel.lon_RepAMapa(e.getX());
+		double posY = panel.lat_RepAMapa(e.getY());
+		posicionX.setText("" + cincoCifras.format(posX)+"º");
+		posicionY.setText("" + cincoCifras.format(posY)+"º");
 	}
 }

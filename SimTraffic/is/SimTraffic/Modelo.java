@@ -27,6 +27,7 @@ public class Modelo implements IModelo {
 	 */
 	private Simulacion simulacion;
 
+
 	
 	/**
 	 * Constructor de la clase modelo.<p>
@@ -36,6 +37,7 @@ public class Modelo implements IModelo {
 	public Modelo() {
 		mapa = new Mapa();
 		simulacion = new Simulacion();
+
 	}
 
 	/**
@@ -70,4 +72,7 @@ public class Modelo implements IModelo {
 		if (mapa != null)
 			this.mapa = mapa;
 	}
+	
+
+
 }

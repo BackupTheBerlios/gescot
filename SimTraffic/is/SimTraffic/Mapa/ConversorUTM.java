@@ -12,9 +12,11 @@ package is.SimTraffic.Mapa;
  * La conversion inversa necesita valores para zona y hemisferio para funcionar
  * correctamente<br> + El hemisferio sur sera true y el norte sera false<br> +
  * Cuando devuelve latlon, el primer valor es la longitud y el segundo la
- * latitudz<br>
- * + El método de lat-lon a x e y, toma como primer parámetro la latitud y como segundo
- * la longitud
+ * latitudz<br> + El método de lat-lon a x e y, toma como primer parámetro la
+ * latitud y como segundo la longitud <br>
+ * Para mas infomación sobre las coordenada UTM, visitar:
+ * http://www.sigcpic.info/GEOUTM.htm ,
+ * http://www.elgps.com/documentos/utm/coordenadas_utm.htm
  * 
  * @author Grupo ISTrafico
  * 
@@ -436,4 +438,14 @@ public class ConversorUTM {
 		return latlon;
 	}
 
+	public static int recalculaZona(double lon) {
+		return (int) (Math.floor((lon + 180.0) / 6) + 1);
+	}
+
+	public static boolean recalculaHem(double lat) {
+		if (lat < 0)
+			return true;
+		else
+			return false;
+	}
 }

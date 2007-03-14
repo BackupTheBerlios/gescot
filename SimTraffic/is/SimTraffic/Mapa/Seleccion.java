@@ -25,9 +25,9 @@ public class Seleccion {
 	private ArrayList<Tramo> tramosSeleccionados;
 	
 	public Seleccion (){
-		nodosSeleccionados = new ArrayList();
-		señalesSeleccionadas = new ArrayList();
-		tramosSeleccionados = new ArrayList(); 
+		nodosSeleccionados = new ArrayList<Nodo>();
+		señalesSeleccionadas = new ArrayList<Señal>();
+		tramosSeleccionados = new ArrayList<Tramo>(); 
 	}
 
 	public void añadirNodo(Nodo nodo){

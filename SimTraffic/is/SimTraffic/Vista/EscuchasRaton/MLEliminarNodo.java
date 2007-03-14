@@ -22,7 +22,7 @@ public class MLEliminarNodo extends EscuchaRaton
 		if (e.getButton() != MouseEvent.BUTTON1)
 			return;
 		
-		Nodo seleccionado = buscarNodo(panel.x_RepAMapa(e.getX()), panel.y_RepAMapa(e.getY()));
+		Nodo seleccionado = buscarNodo(e.getX(), e.getY());
 		if (seleccionado != null)
 		{
 			if (seleccionado.getTramos().isEmpty())   //Solo se eliminan los nodos que no tienen ningun tramo. ¿Eliminar también los tramos?
@@ -55,7 +55,7 @@ public class MLEliminarNodo extends EscuchaRaton
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		Nodo nodo = buscarNodo(panel.x_RepAMapa(arg0.getX()), panel.y_RepAMapa(arg0.getY()));
+		Nodo nodo = buscarNodo(arg0.getX(), arg0.getY());
 		if (nodo != null)
 			panel.sugerir(nodo);
 		else

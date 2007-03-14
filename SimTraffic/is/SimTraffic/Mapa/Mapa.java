@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Clase que matiene una instancia de un mapa.
@@ -52,13 +51,13 @@ public class Mapa {
 	 */
 	private Seleccion seleccion;
 
-	private int maxX;
+	private double maxLon;
 
-	private int minX;
+	private double minLon;
 
-	private int minY;
+	private double minLat;
 
-	private int maxY;
+	private double maxLat;
 
 	/**
 	 * Crea un nuevo mapa, sin ningun nodo, tramo o señal.
@@ -129,19 +128,19 @@ public class Mapa {
 		}
 
 		if (Nodos.size() == 1) {
-			maxY = nodo.getPos().getPosY();
-			minY = nodo.getPos().getPosY();
-			maxX = nodo.getPos().getPosX();
-			minX = nodo.getPos().getPosX();
+			maxLat = nodo.getPos().getLat();
+			minLat = nodo.getPos().getLat();
+			maxLon = nodo.getPos().getLon();
+			minLon = nodo.getPos().getLon();
 		} else {
-			if (maxY < nodo.getPos().getPosY())
-				maxY = nodo.getPos().getPosY();
-			if (minY > nodo.getPos().getPosY())
-				minY = nodo.getPos().getPosY();
-			if (maxX < nodo.getPos().getPosX())
-				maxX = nodo.getPos().getPosX();
-			if (minX > nodo.getPos().getPosX())
-				minX = nodo.getPos().getPosX();
+			if (maxLat < nodo.getPos().getLat())
+				maxLat = nodo.getPos().getLat();
+			if (minLat > nodo.getPos().getLat())
+				minLat = nodo.getPos().getLat();
+			if (maxLon < nodo.getPos().getLon())
+				maxLon = nodo.getPos().getLon();
+			if (minLon > nodo.getPos().getLon())
+				minLon = nodo.getPos().getLon();
 		}
 	}
 
@@ -267,7 +266,7 @@ public class Mapa {
 			Point punto;
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				punto = new Point((int)nodoTemp.getPos().getLon()*10000, (int)nodoTemp.getPos().getLat()*10000);
 				if (rectanguloSeleccion.contains(punto)){
 					this.seleccion.añadirNodo(nodoTemp);
 				}			
@@ -278,7 +277,7 @@ public class Mapa {
 			Point punto;
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				punto = new Point((int)nodoTemp.getPos().getLon()*10000,(int)nodoTemp.getPos().getLat()*10000);
 				if (rectanguloSeleccion.contains(punto)){
 					this.seleccion.añadirNodo(nodoTemp);
 				}			
@@ -316,7 +315,7 @@ public class Mapa {
 			ArrayList<Nodo> nodosSeleccionados = new ArrayList();
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
-				punto = new Point(nodoTemp.getPos().getPosX(),nodoTemp.getPos().getPosY());
+				punto = new Point((int)nodoTemp.getPos().getLon()*10000,(int)nodoTemp.getPos().getLat()*10000);
 				if (rectanguloSeleccion.contains(punto)){
 					nodosSeleccionados.add(nodoTemp);
 				}			
@@ -372,20 +371,20 @@ public class Mapa {
 		return Tramos;
 	}
 
-	public int getMaxX() {
-		return maxX;
+	public double getMaxLon() {
+		return maxLon;
 	}
 
-	public int getMaxY() {
-		return maxY;
+	public double getMaxLat() {
+		return maxLat;
 	}
 
-	public int getMinX() {
-		return minX;
+	public double getMinLon() {
+		return minLon;
 	}
 
-	public int getMinY() {
-		return minY;
+	public double getMinLat() {
+		return minLat;
 	}
 
 	public ArrayList<Via> getVias() {

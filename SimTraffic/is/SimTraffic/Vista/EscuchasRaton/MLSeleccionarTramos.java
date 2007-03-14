@@ -27,7 +27,7 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
-		Tramo seleccionado = buscarTramo(panel.x_RepAMapa(arg0.getX()), panel.y_RepAMapa(arg0.getY()));
+		Tramo seleccionado = buscarTramo(arg0.getX(), arg0.getY());
 		if (seleccionado != null)
 			if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(seleccionado)){
 				modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(seleccionado);

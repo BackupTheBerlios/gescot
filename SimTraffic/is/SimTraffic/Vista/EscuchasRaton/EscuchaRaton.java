@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 /**
@@ -48,12 +49,16 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	 */
 	private int modificadorDeTeclado;
 	
+
+	
 	public EscuchaRaton(IModelo modelo, IControlador controlador,
 			PanelMapa panel) {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		this.panel = panel;
 		modificadorDeTeclado = 0;
+
+
 	}
 	
 	/**
@@ -82,26 +87,30 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	 * Este método recorre la lista de nodos y busca el nodo que tiene una posicion (x,y)
 	 * similar a la pasada como parámetro.
 	 * 
-	 * @param x
+	 * @param lat
 	 * Posicion a lo largo del eje x
-	 * @param y
+	 * @param lon
 	 * Posicion a lo largo del eje y
+	 * @param zona
+	 * Zona en el mapa
 	 * @return
 	 * Nodo encontrado en la posicion dada o null
 	 */
-	public Nodo buscarNodo(int x, int y) 
+	public Nodo buscarNodo(int posX, int posY) 
 	{
-		int error = 5;
+		double error = 3;
 		Iterator<Nodo> iter = modelo.getMapa().getNodos().iterator();
 		Nodo sel = null;
 		boolean encontrado = false;
 		while (!encontrado && iter.hasNext())
 		{
 			Nodo next = iter.next();
-			if ((next.getPos().getPosX() - error <= x) && 
-					(next.getPos().getPosX() + error >= x) &&
-					(next.getPos().getPosY() - error <= y) &&
-					(next.getPos().getPosY() + error >= y))
+			int nodox = panel.getRepresentacion().x_MapaARep(next.getPos().getLon());
+			int nodoy = panel.getRepresentacion().y_MapaARep(next.getPos().getLat());
+			if ((nodoy - error <= posY) && 
+					(nodoy + error >= posY) &&
+					(nodox - error <= posX) &&
+					(nodox + error >= posX))
 			{
 				encontrado = true;
 				sel = next;
@@ -122,10 +131,12 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 	 * Posicion a lo largo del eje x
 	 * @param y
 	 * Posicion a lo largo del eje y
+	 * @param zona
+	 * Zona en el mapa
 	 * @return
 	 * Tramo encontrado en la posicion dada o null
 	 */
-	public Tramo buscarTramo(int x, int y)
+	public Tramo buscarTramo(int posX, int posY)
 	{
 		Iterator<Tramo> iter = modelo.getMapa().getTramos().iterator();
 		Tramo sel = null;
@@ -134,7 +145,7 @@ abstract public class EscuchaRaton implements MouseListener, MouseMotionListener
 		{
 			Tramo next = iter.next();
 			Polygon p = panel.getRepresentacion().generarAreaTramo(next);
-			if (p.contains(x,y))
+			if (p.contains(posX,posY))
 			{
 				encontrado = true;
 				sel = next;

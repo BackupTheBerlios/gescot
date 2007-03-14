@@ -3,6 +3,7 @@ package is.SimTraffic.Vista;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
+import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
 import is.SimTraffic.Vista.Acciones.AccionCortar;
 import is.SimTraffic.Vista.Acciones.AccionDeshacer;
@@ -224,6 +225,11 @@ public class Ventana extends JFrame {
 		pegarMenuItem.addActionListener(new AccionPegar());
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
+		
+		JMenuItem imagenMenuItem = new JMenuItem();
+		imagenMenuItem.addActionListener(new AccionCargarImagen(controlador, panel_mapa));
+		imagenMenuItem.setText("Cargar imagen");
+		edicionMenu.add(imagenMenuItem);
 		
 	}
 	

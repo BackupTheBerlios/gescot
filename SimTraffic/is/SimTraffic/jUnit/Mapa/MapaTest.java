@@ -58,9 +58,9 @@ public class MapaTest extends TestCase {
 		List listaNodos = mapa.getNodos(); 
 		assertEquals(nodo,listaNodos.get(listaNodos.size()-1));
 		for(int i = 0; i<100; i++){
-			int x = (int)(Math.random() * 1000);
-			int y = (int)(Math.random() * 1000);
-			Nodo nodoi= new Nodo(new Posicion(x,y));
+			double lat = Math.random() * 180 -90;
+			double lon = Math.random() * 360 -180;
+			Nodo nodoi= new Nodo(new Posicion(lat, lon));
 			mapa.insertar(nodoi);
 		}
 		assertEquals(mapa.getNodos().size(),101);

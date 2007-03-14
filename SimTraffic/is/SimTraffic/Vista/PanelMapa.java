@@ -62,15 +62,15 @@ public class PanelMapa extends JPanel {
 	private int tamX, tamY;
 
 	/**
-	 * Almacenan el punto mas arriba a la izquierda del mapa que aparece en pantalla
+	 * Almacenan el punto mas arriba a la izquierda del mapa que aparece en
+	 * pantalla
 	 */
-	private int posX, posY;
-	
+	private double posLat, posLon;
+
 	/**
 	 * Utilizados para detectar cambios en la posicion del mapa
 	 */
-	private int posXtemp, posYtemp;
-	
+	private double posLattemp, posLontemp;
 
 	/**
 	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que
@@ -98,24 +98,23 @@ public class PanelMapa extends JPanel {
 	private JScrollBar largo;
 
 	private JScrollBar alto;
-	
+
 	/**
 	 * Punto que limitan el rectángulo del área de selección.
 	 */
 	Point puntoInicial;
+
 	Point puntoDrag;
-	
+
 	/**
 	 * Rectangulo que se muestra cuando se seleccionan varios nodos.
 	 */
 	private Rectangle rectanguloSeleccion;
 
-	
 	/**
-	 * Permite conocer si se está seleccionando. 
+	 * Permite conocer si se está seleccionando.
 	 */
 	boolean modoSeleccion;
-	
 
 	/**
 	 * Constructor de la clase PanelMapa.
@@ -138,10 +137,10 @@ public class PanelMapa extends JPanel {
 		representacion = new RepresentacionSimple();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
-		posX = 1000;
-		posY = 1000;
-		posXtemp = 1000;
-		posYtemp = 1000;
+		posLat = 0; // latitud cero
+		posLon = 0; // longitud cero
+		posLattemp = 0;
+		posLontemp = 0;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
 	}
@@ -196,27 +195,36 @@ public class PanelMapa extends JPanel {
 		Dimension tamaño = this.getSize();
 		tamX = tamaño.width;
 		tamY = tamaño.height;
-		//posX = largo.getValue();
-		//posY = alto.getValue();
+		// posX = largo.getValue();
+		// posY = alto.getValue();
 		representacion.setTamX(tamX);
 		representacion.setTamY(tamY);
-		representacion.setPosX0(posX);
-		representacion.setPosY0(posY);
+		representacion.setLon0(posLon);
+		representacion.setLat0(posLat);
 		representacion.setZoom(zoom);
+
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
 		else
 			mapa = this.createImage(tamX, tamY);
 		Graphics2D g = (Graphics2D) mapa.getGraphics();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
+		representacion.ponerImagenes(g);
+
+		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
 			representacion.pintar(g, itramos.next());
 		}
+
+		// dibujar nodos
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
 			representacion.pintar(g, inodos.next());
 		}
+
 		representacion.pintarCoordenadas(g);
 		representacion.pintarSugerencia(g, sugerencia);
 		contador++;
@@ -224,11 +232,11 @@ public class PanelMapa extends JPanel {
 
 	public void repaint() {
 		if (tamX != getSize().width || tamY != getSize().height
-				|| (posX != posXtemp)
-				|| (posY != posYtemp)){
-			posXtemp = posX;
-			posYtemp = posY;
-			recrear = true;}
+				|| (posLon != posLontemp) || (posLat != posLattemp)) {
+			posLontemp = posLon;
+			posLattemp = posLat;
+			recrear = true;
+		}
 		super.repaint();
 	}
 
@@ -240,13 +248,21 @@ public class PanelMapa extends JPanel {
 			recrear = false;
 		}
 		g.drawImage(mapa, 0, 0, null);
-		//Si estamos seleccionando, entonces dibujar el rectangulo de selección.
+		// Si estamos seleccionando, entonces dibujar el rectangulo de
+		// selección.
 		if (modoSeleccion)
-			representacion.pintar(g,this.rectanguloSeleccion);
-		
+			representacion.pintar(g, this.rectanguloSeleccion);
+
 		representacion.pintarSugerencia(g, sugerencia);
 		g.drawString("Redibujando: " + contador, 80, 80);
-		
+
+		// Aquí se pintan los nodos que están seleccionados como si estuvieran
+		// sugiriendo.
+		for (int i = 0; i < modelo.getMapa().getSeleccion()
+				.getNodosSeleccionados().size(); i++) {
+			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion()
+					.getNodosSeleccionados().get(i));
+		}
 		//Se pintan los tramos que están seleccionados
 		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
@@ -273,54 +289,64 @@ public class PanelMapa extends JPanel {
 
 	public void sugerir(ElementoMapa sugerencia) {
 		boolean refresco = false;
-		if ((this.sugerencia != null && sugerencia == null) || (this.sugerencia == null && sugerencia != null))
+		if ((this.sugerencia != null && sugerencia == null)
+				|| (this.sugerencia == null && sugerencia != null)
+				|| (this.sugerencia != sugerencia))
 			refresco = true;
 		this.sugerencia = sugerencia;
 		if (refresco)
 			this.repaint();
 	}
-	
+
 	public void cambiaPosX(int cambio) {
-		posX = posX + (int) (cambio*representacion.getZoom());
+		posLon = posLon + ((double)cambio * zoom) / 30000;
+		if (posLon > 180) posLon = 180;
+		if (posLon < -180) posLon = -180;
 		recrear = true;
 		this.repaint();
 	}
 
 	public void cambiaPosY(int cambio) {
-		posY = posY + (int) (cambio*representacion.getZoom());
+		posLat = posLat - ((double)cambio * zoom) / 30000;
+		if (posLat > 89) posLat = 89;
+		if (posLat < -89) posLat = -89;
 		recrear = true;
 		this.repaint();
 	}
 
-	public void configurarRectanguloSeleccion(){
-		rectanguloSeleccion.setFrameFromDiagonal(puntoInicial,puntoDrag);
-	}
-	
-	public int x_RepAMapa(int posX) {
-		return representacion.x_RepAMapa(posX);
+	public void configurarRectanguloSeleccion() {
+		rectanguloSeleccion.setFrameFromDiagonal(puntoInicial, puntoDrag);
 	}
 
-	public int y_RepAMapa(int posY) {
-		return representacion.y_RepAMapa(posY);
+	public double lon_RepAMapa(int posX) {
+		return representacion.lon_RepAMapa(posX);
 	}
-	
-	
+
+	public double lat_RepAMapa(int posY) {
+		return representacion.lat_RepAMapa(posY);
+	}
+
 	/**
-	 * Llama al mapa para indicarle qué área (rectángulo) ha seleccionado el usuario y que este haga
-	 * las gestiones oportunas. 
+	 * Llama al mapa para indicarle qué área (rectángulo) ha seleccionado el
+	 * usuario y que este haga las gestiones oportunas.
 	 */
-	public void notificaSeleccion(int tipoDeSeleccion){
+	public void notificaSeleccion(int tipoDeSeleccion) {
 		Rectangle rectanguloCoordenadasReales = new Rectangle();
-		
-		//Al rectangulo que pasamos al mapa para que conozca que área ha seleccionado el usuario, le aplicamos
-		//la transformación a coordenadas relativas del mapa.
-		rectanguloCoordenadasReales.setFrameFromDiagonal(x_RepAMapa((int)(puntoInicial.getX())),y_RepAMapa((int)(puntoInicial.getY())),
-				x_RepAMapa((int)(puntoDrag.getX())),y_RepAMapa((int)(puntoDrag.getY())));
 
-		//this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
-		this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales,tipoDeSeleccion);
+		// Al rectangulo que pasamos al mapa para que conozca que área ha
+		// seleccionado el usuario, le aplicamos
+		// la transformación a coordenadas relativas del mapa.
+		rectanguloCoordenadasReales.setFrameFromDiagonal(
+				lon_RepAMapa((int) (puntoInicial.getX())),
+				lat_RepAMapa((int) (puntoInicial.getY())),
+				lon_RepAMapa((int) (puntoDrag.getX())),
+				lat_RepAMapa((int) (puntoDrag.getY())));
+
+		// this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
+		this.modelo.getMapa().seleccionaEnRectangulo(
+				rectanguloCoordenadasReales, tipoDeSeleccion);
 	}
-	
+
 	public boolean isModoSeleccion() {
 		return modoSeleccion;
 	}
@@ -332,7 +358,7 @@ public class PanelMapa extends JPanel {
 	public Point getPuntoDrag() {
 		return puntoDrag;
 	}
-
+		
 	public void setPuntoDrag(Point puntoDrag) {
 		this.puntoDrag = puntoDrag;
 		configurarRectanguloSeleccion();
