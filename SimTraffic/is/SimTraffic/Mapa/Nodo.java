@@ -254,6 +254,9 @@ public class Nodo implements ElementoMapa {
 					tramoaux = tram.next();
 					if (tramoaux.getNodoFinal()==nodo) //Ha encontrado el tramo con la condición requerida.
 						return tramoaux;
+					//Depurar
+					if (tramoaux.getNodoInicial()==nodo) //Ha encontrado el tramo con la condición requerida.
+						return tramoaux;
 			}
 			return null; //No ha encontrado ningún tramo, luego devuelve null.
 		}

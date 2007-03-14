@@ -32,6 +32,10 @@ public class Via implements ElementoMapa {
 	 */
 	private ArrayList<Tramo> Tramos;
 	
+	public Via() {
+		Tramos = new ArrayList<Tramo>();
+	}
+
 	public int getID() {
 		return ID;
 	}

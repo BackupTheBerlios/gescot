@@ -13,6 +13,7 @@ import is.SimTraffic.Vista.Acciones.AccionPegar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
@@ -24,6 +25,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -314,8 +316,17 @@ public class Ventana extends JFrame {
 		eliminarTramoButton.setToolTipText("<html>Eliminar Tramo <img src="+imageName+"></html>");
 		eliminarTramoButton.addActionListener(new AccionSobreMapa(
 				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
-		panel.add(eliminarTramoButton);
+		panel.add(eliminarTramoButton);	
+		
 		//Aqui se añadirán los nuevos botones.
+		JButton añadirLineaAutobus = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\add_bus.png"));
+		añadirLineaAutobus.setMargin(new Insets(1, 1, 1, 1));
+		//añadirLineaAutobus.setMaximumSize(new Dimension(25,25));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\add_bus.png"; 
+		añadirLineaAutobus.setToolTipText("<html>Añadir linea de autobus <img src="+imageName+"></html>");
+		añadirLineaAutobus.addActionListener(new AccionSobreMapa(
+				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		panel.add(añadirLineaAutobus);
 		
 		
 	}

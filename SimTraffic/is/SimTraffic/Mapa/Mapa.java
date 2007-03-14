@@ -169,7 +169,7 @@ public class Mapa {
 					idMax = tramo.getID();
 			}
 
-			// añade el tramo, salvo que comienze y termie en el mismo nodo
+			// añade el tramo, salvo que comienze y termine en el mismo nodo
 			if (!tramo.getNodoFinal().equals(tramo.getNodoInicial()))
 				if (Nodos.contains(tramo.getNodoInicial())
 						&& Nodos.contains(tramo.getNodoFinal())) {
@@ -178,12 +178,37 @@ public class Mapa {
 					Tramos.add(tramo);
 					tramo.setID(idMax+1);
 					//Cambio en el método de asignación de ID
-					tramo.asignarIDunico();
+					//tramo.asignarIDunico();
 				}
 		
 		}
 		
 
+	}
+	
+	
+	public void insertar(Via via) {
+		int idMax = 1;
+		if (via != null) {
+			// busca si el tramo no esta ya en el mapa, y el id de tramo mas grande
+			//  para no repetir
+			Iterator<Via> it = Vias.iterator();
+			Via temp;
+			while (it.hasNext()) {
+				temp = it.next();
+				if (via.equals(temp))
+					return;
+				if (via.getID() >= idMax)
+					idMax = via.getID();
+			}
+
+			// Añade la vía, salvo que esté repetida (por comprobar)
+
+					Vias.add(via);
+					via.setID(idMax+1);
+		
+		}
+		
 	}
 
 	/**
