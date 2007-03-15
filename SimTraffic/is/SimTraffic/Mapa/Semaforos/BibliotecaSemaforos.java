@@ -25,6 +25,7 @@ public class BibliotecaSemaforos {
 	 * @return Identificador de la configuracion del semaforo. El semaforo estandar tendra el Id=0. (Semaforo Circular)
 	 */
 	public int CalculaTipoDeSemaforoOptimo(Nodo nodo){
+		//TODO implementar el metodo. 
 		// calculo de las condiciones.. eleccion del mejor semaforo
 		return 0;
 		
@@ -45,14 +46,14 @@ public class BibliotecaSemaforos {
 	 * Metodo para actualizar todos los semaforos del cruze.
 	 * Por ejemplo <pre>si estadoSemaforos==1 entonces <br>estadoSemaforos=2<br>y 
 	 * ArraySemaforos se configura de tal manera que los vehiculos que estan en el tramo 2
-	 *  puedan ir al resto de tramos excluyendo el mismo.<pre>
+	 * puedan ir al resto de tramos excluyendo el mismo.<pre>
 	 * Esta es la configuracion estandar, Semaforo circular  
 	 */
 	
 	// se hace otro dia
 	
 public void cambiarEstadoSemaforosTipo0(Nodo nodo){
-/*		//nodo.getMasterSemaforo().getEstadoSemaforos()
+		//nodo.getMasterSemaforo().getEstadoSemaforos()
 		int tamaño= nodo.getTramos().size();
 		
 		int estadoSemaforos=nodo.getMasterSemaforo().getEstadoSemaforos();
@@ -66,17 +67,17 @@ public void cambiarEstadoSemaforosTipo0(Nodo nodo){
 		{
 			for (int j=0; j<tamaño;j++)
 			{
-				if (i==estadoSemaforos){	ArraySemaforos[i][j]=true;		}
-				else	{		ArraySemaforos[i][j]=false;			}
+				if (i==estadoSemaforos){	nodo.getMasterSemaforo().setMasterSemaforo(i,j,true); }//ArraySemaforos[i][j]=true;
+				else	{		nodo.getMasterSemaforo().setMasterSemaforo(i,j,false);			}
 			}
 		}
 		// Vehículos no pueden hacer cambio de sentido. 
-		for (int k=0; k<tramos.size();k++)
+		for (int k=0; k<tamaño;k++)
 		{
-			ArraySemaforos[k][k]=false;
+			nodo.getMasterSemaforo().setMasterSemaforo(k,k,false);
 		}
 		
-	*/	
+	
 	}
 
 	
