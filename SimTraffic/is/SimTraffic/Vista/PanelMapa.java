@@ -256,11 +256,12 @@ public class PanelMapa extends JPanel {
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
 		// sugiriendo.
-		for (int i = 0; i < modelo.getMapa().getSeleccion()
+		/*for (int i = 0; i < modelo.getMapa().getSeleccion()
 				.getNodosSeleccionados().size(); i++) {
 			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion()
 					.getNodosSeleccionados().get(i));
-		}
+		}*/
+		
 		//Se pintan los tramos que están seleccionados
 		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
@@ -392,5 +393,13 @@ public class PanelMapa extends JPanel {
 
 	public void setRectanguloSeleccion(Rectangle rectanguloSeleccion) {
 		this.rectanguloSeleccion = rectanguloSeleccion;
+	}
+
+	public boolean isRecrear() {
+		return recrear;
+	}
+
+	public void setRecrear(boolean recrear) {
+		this.recrear = recrear;
 	}
 }
