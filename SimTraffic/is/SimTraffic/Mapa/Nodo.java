@@ -253,10 +253,10 @@ public class Nodo implements ElementoMapa {
 			Tramo tramoaux;
 			while (tram.hasNext()) {
 					tramoaux = tram.next();
-					if (tramoaux.getNodoFinal()==nodo) //Ha encontrado el tramo con la condición requerida.
+					//Por depurar (seguramente se deba incluir condición de (carrilesdirX>0))
+					if (tramoaux.getNodoInicial()==this && tramoaux.getNodoFinal()==nodo) //Ha encontrado el tramo con la condición requerida.
 						return tramoaux;
-					//Depurar
-					if (tramoaux.getNodoInicial()==nodo) //Ha encontrado el tramo con la condición requerida.
+					if (tramoaux.getNodoInicial()==nodo && tramoaux.getNodoFinal()==this) //Ha encontrado el tramo con la condición requerida.
 						return tramoaux;
 			}
 			return null; //No ha encontrado ningún tramo, luego devuelve null.

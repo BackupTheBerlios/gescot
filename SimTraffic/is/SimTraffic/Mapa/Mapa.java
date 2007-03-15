@@ -197,7 +197,7 @@ public class Mapa {
 	public void insertar(Via via) {
 		int idMax = 1;
 		if (via != null) {
-			// busca si el tramo no esta ya en el mapa, y el id de tramo mas grande
+			// busca si la vía no esta ya en el mapa, y el id de via mas grande
 			//  para no repetir
 			Iterator<Via> it = Vias.iterator();
 			Via temp;
@@ -208,8 +208,6 @@ public class Mapa {
 				if (via.getID() >= idMax)
 					idMax = via.getID();
 			}
-
-			// Añade la vía, salvo que esté repetida (por comprobar)
 
 					Vias.add(via);
 					via.setID(idMax+1);
@@ -277,6 +275,32 @@ public class Mapa {
 			Tramos.remove(tramo);
 			tramo.getNodoFinal().quitarTramo(tramo);
 			tramo.getNodoInicial().quitarTramo(tramo);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Método par a eliminar un tramo del mapa.
+	 * <p>
+	 * Este método se encarga de remover el tramo de la lista correspondiente,
+	 * así como actualizar los componentes con los que esta relacionado.
+	 * 
+	 * @param tramo
+	 *            Tramo que se desea quitar de la lista
+	 * @return Booelano que inidca si se pudo elimnar el tramo
+	 */
+	public boolean eliminar(Via via) {
+		if (via != null && Vias.contains(via)) {
+			
+			//Borrar segmentos que aparezcan en la lista de tramos de la vía concreta
+			//Ese borrar segmentos ya borrará los nodos correspondientes (recursivo)
+			Iterator<Tramo> tram = via.getTramos().iterator();
+			while (tram.hasNext()) {
+				Tramo aux = tram.next();
+				this.eliminar(aux);
+			}
+			Vias.remove(via);
 			return true;
 		}
 		return false;
