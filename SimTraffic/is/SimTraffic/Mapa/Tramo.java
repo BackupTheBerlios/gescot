@@ -202,7 +202,10 @@ public class Tramo implements ElementoMapa {
 	 */
 	public String transformaraOSM() {
 		String s=("<segment id='"+ID+"' from='" + nodoInicial.getID() + "' to='" + nodoFinal.getID() + "' />");
-		return s;
+		String s2=("<tag k='nCarrilesIda' v='"+this.numCarrilesDir1+"' />\n");
+		String s3=("<tag k='nCarrilesVuelta' v='"+this.numCarrilesDir1+"' />\n");
+		String s4=("<tag k='velMax' v='"+this.velocidadMax+"' />\n");
+		return s+s2+s3+s4;
 	}
 
 	public ITipoElemento getTipo() {
