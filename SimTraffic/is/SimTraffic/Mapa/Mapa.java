@@ -52,7 +52,12 @@ public class Mapa {
 	 * Indica la seleccion actual del mapa (nodos, tramos y señales).
 	 */
 	private Seleccion seleccion;
-
+	
+	/**
+	 * Contiene los nodos y tramos que están temporalmente en el 
+	 * portapapeles con el fin de reutilizarlos posteriormente. 
+	 */
+	private Seleccion portapapeles;
 	private double maxLon;
 
 	private double minLon;
