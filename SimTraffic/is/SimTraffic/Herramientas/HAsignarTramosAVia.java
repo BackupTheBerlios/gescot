@@ -58,4 +58,44 @@ public class HAsignarTramosAVia implements IHerramienta {
 		viaATratar.setTramos(this.tramosVia);
 		return viaATratar;		
 	}
+	
+	public String getNombre() {
+		return nombreVia;
+	}
+	
+	public int getID() {
+		return id;
+	}
+	
+	public ITipoElemento getTipoVia() {
+		return tipoVia;
+	}
+	
+	public ArrayList<Tramo> getTramos() {
+		return tramosVia;
+	}
+	
+	public Via getviaAInsertar(){
+		return viaAInsertar;
+	}
+	
+	public void setNombre(String nombre) {
+		nombreVia=nombre;
+	}
+	
+	public void setID(int ID) {
+		this.id=ID;
+	}
+	
+	public void setTipoVia(ITipoElemento TipoVia) {
+		this.tipoVia = TipoVia;
+	}
+	
+	public void setTramos(ArrayList<Tramo> Tramos) {
+		this.tramosVia=Tramos;
+	}
+	
+	public void setviaAInsertar(Via viaAInsertar){
+		this.viaAInsertar=viaAInsertar;
+	}
 }
