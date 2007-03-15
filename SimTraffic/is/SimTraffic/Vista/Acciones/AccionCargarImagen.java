@@ -12,13 +12,20 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+/**
+ * Método que implementa ActionListener para la acción de cargar una imagen de fondo.<p>
+ * 
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class AccionCargarImagen implements ActionListener {
-	private IControlador controlador;
+	//private IControlador controlador;
 
 	private PanelMapa panel;
 
 	public AccionCargarImagen(IControlador controlador, PanelMapa panel) {
-		this.controlador = controlador;
+		//this.controlador = controlador;
 		this.panel = panel;
 	}
 

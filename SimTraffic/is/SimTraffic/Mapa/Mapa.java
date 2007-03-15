@@ -339,7 +339,7 @@ public class Mapa {
 		if (tipoDeSeleccion==2) { //se elige seleccionar tramos
 			Nodo nodoTemp;
 			Point punto;
-			ArrayList<Nodo> nodosSeleccionados = new ArrayList();
+			ArrayList<Nodo> nodosSeleccionados = new ArrayList<Nodo>();
 			for (int i=0;i<Nodos.size();i++){
 				nodoTemp = Nodos.get(i);
 				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));

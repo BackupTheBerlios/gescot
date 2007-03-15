@@ -12,7 +12,6 @@ import is.SimTraffic.Vista.PanelTramo;
 
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

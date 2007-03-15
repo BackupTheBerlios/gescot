@@ -18,14 +18,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
 /**
  * Clase (por ahora provisional) para representar simplemente el mapa en
@@ -54,7 +52,7 @@ public class PanelMapa extends JPanel {
 	/**
 	 * Zoom que se esta utilizando en la representacion del mapa
 	 */
-	private float zoom;
+	private double zoom;
 
 	/**
 	 * Almacena tamaños en x e y del panel, utilizados a la hora de dibujar
@@ -283,8 +281,13 @@ public class PanelMapa extends JPanel {
 		return representacion;
 	}
 
-	public void setZoom(float zoom) {
-		this.zoom = zoom;
+	public void cambiaZoom(double cambio) {
+		this.zoom = this.zoom * cambio;
+		if (zoom > 8 || zoom < 0.25) {
+			this.zoom = this.zoom / cambio;
+			return;}
+		recrear = true;
+		repaint();
 	}
 
 	public void sugerir(ElementoMapa sugerencia) {

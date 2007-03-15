@@ -1,6 +1,5 @@
 package is.SimTraffic.jUnit.Mapa;
 
-import is.SimTraffic.Mapa.ConversorUTM;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 import junit.framework.TestCase;

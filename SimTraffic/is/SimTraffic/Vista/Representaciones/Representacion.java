@@ -25,16 +25,16 @@ abstract public class Representacion {
 	/**
 	 * Alamcena el zoom que se esta haciendo sobre el mapa en la representacion
 	 */
-	float zoom;
+	double zoom;
 
 	/**
-	 * Guarda la posicion en X del mapa que se esta representado en la esquina
+	 * Guarda la longitud del mapa que se esta representada en la esquina
 	 * superior izquierda
 	 */
 	double Lon0;
 
 	/**
-	 * Guarda la posicion en Y del mapa que se esta representado en la esquina
+	 * Guarda la latitud del mapa que se esta representada en la esquina
 	 * superior izquierda
 	 */
 	double Lat0;
@@ -49,14 +49,37 @@ abstract public class Representacion {
 	 */
 	int tamY;
 
+	/**
+	 * Constante de proporcionalidad, indica cuantas "longitudes" entran en un
+	 * pixel de la pantalla dado un zoom y una posicion en el mapa. Esto es, si
+	 * se multiplica una longitud por este valor obtentemos el desplazamiento en
+	 * pixeles de esta desde 0.
+	 */
 	double consx;
 
+	/**
+	 * Constante de proporcionalidad, indica cuantas "latitudes" entran en un
+	 * pixel de la pantalla dado un zoom y una posicion en el mapa. Esto es, si
+	 * se multiplica una latitud por este valor obtentemos el desplazamiento en
+	 * pixeles de esta desde 0.
+	 */
 	double consy;
 
+	/**
+	 * ArrayList que almacena las imagenes que se muestran de fondo al usuario
+	 */
 	private ArrayList<Image> imagenes;
 
+	/**
+	 * ArrayList que almacen las posiciones donde se encuentran las imagenes de
+	 * fondo
+	 */
 	private ArrayList<Posicion> posiciones;
 
+	/**
+	 * Construcutra de la clase representacion, que toma los valores por
+	 * defecto.
+	 */
 	Representacion() {
 		zoom = 1.0f;
 		Lon0 = 0;
@@ -69,40 +92,81 @@ abstract public class Representacion {
 	}
 
 	/**
+	 * Construcura de la clase representación, que toma los valores de otra
+	 * representacion dada como parámetro
+	 * 
+	 * @param rep
+	 *            Representacion de la cual se toman los parámetros
+	 */
+	Representacion(Representacion rep) {
+		this.zoom = rep.zoom;
+		this.Lon0 = rep.Lon0;
+		this.Lat0 = rep.Lat0;
+		this.tamX = rep.tamX;
+		this.tamY = rep.tamY;
+		recalculaCons();
+		this.imagenes = rep.imagenes;
+		this.posiciones = rep.posiciones;
+	}
+
+	/**
 	 * Método que recalula la posicion en X de un punto del mapa en la pantalla.
 	 * <p>
-	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
-	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
-	 * otra información pertinente.
+	 * Este método se vale de la consx para recalcular la posicion de un punto
+	 * en el mapa en la representación actual en pantalla.<br>
+	 * La conversión inversa es realizada por lon_RepAMapa(int).
 	 * 
-	 * @param posX
-	 *            Entero que representa la posicion en el mapa
+	 * @param lon
+	 *            Double que representa la longitud en el mapa
 	 * @return Entero que representa una posicion en la pantalla
 	 */
 	public int x_MapaARep(double lon) {
-		// falta implementar
-		return (int) ((lon - Lon0) / consx);// (int) ((posX/zoom - posX0));
+		return (int) ((lon - Lon0) / consx);
 	}
 
 	/**
 	 * Método que recalula la posicion en Y de un punto del mapa en la pantalla.
 	 * <p>
-	 * Esta funcion por ahora solo devuelve el punto como esta, pero tendra que
-	 * tener en cuenta el zoom, la posicion de la ventana respecto al mapa y
-	 * otra información pertinente.
+	 * Este método se vale de la consy para recalcular la posicion de un punto
+	 * en el mapa en la reprsentación actual en pantalla.<br>
+	 * La conversion inversa es la realizada por lat_RepAMapa(int).
 	 * 
-	 * @param posX
-	 *            Entero que representa la posicion en el mapa
+	 * @param lat
+	 *            Double que representa la latitud en en mapa
 	 * @return Entero que representa una posicion en la pantalla
 	 */
 	public int y_MapaARep(double lat) {
 		return (int) ((Lat0 - lat) / consy);// (int) ((posY/zoom - posY0));
 	}
 
+	/**
+	 * Método que realiza la conversión de coordenadas de pantalla a coordeandas
+	 * de mapa.
+	 * <p>
+	 * Este método recalcula la longitud a la que se encuentra un punto a partir
+	 * de su coordenada en x en la pantalla.<br>
+	 * La conversión inversa es realizada por x_MapaARep(double).
+	 * 
+	 * @param posX
+	 *            Coorenada en x de la pantalla
+	 * @return Double que representa la longitud en el mapa
+	 */
 	public double lon_RepAMapa(int posX) {
 		return ((double) posX * consx + Lon0);// (int) ((posX + posX0)*zoom);
 	}
 
+	/**
+	 * Método que realiza la conversión de coordenadas de pantalla a coordeandas
+	 * de mapa.
+	 * <p>
+	 * Este método recalcula la latitud a la que se encuentra un punto a partir
+	 * de su coordenada en y en la pantalla.<br>
+	 * La conversión inversa es realizada por y_MapaARep(double).
+	 * 
+	 * @param posY
+	 *            Coorenada en y de la pantalla
+	 * @return Double que representa la longitud en el mapa
+	 */
 	public double lat_RepAMapa(int posY) {
 		return (Lat0 - (double) posY * consy);// (int) ((posY + posY0)*zoom);
 	}
@@ -187,11 +251,11 @@ abstract public class Representacion {
 		this.tamY = tamY;
 	}
 
-	public void setZoom(float zoom) {
+	public void setZoom(double zoom) {
 		this.zoom = zoom;
 	}
 
-	public float getZoom() {
+	public double getZoom() {
 		return zoom;
 	}
 
@@ -208,9 +272,29 @@ abstract public class Representacion {
 	 */
 	public abstract Polygon generarAreaTramo(Tramo tramo);
 
+	/**
+	 * Método para pintar los elementos seleccionados en pantalla.
+	 * <p>
+	 * 
+	 * @param g
+	 *            Graphics2D donde se quiere dibujar
+	 * @param elemento
+	 *            Elemento a representar seleccionado
+	 */
 	public abstract void pintarSugerenciaSeleccion(Graphics2D g,
 			ElementoMapa elemento);
 
+	/**
+	 * Método para mostrar los ejes de coordenadas en el mapa.
+	 * <p>
+	 * Este método dibujara en linea punteada los ejes para ser representados en
+	 * el fondo de un mapa y facilitar asi la representación. Además de los
+	 * ejes, este método muestra una referencia de la escala en la que se
+	 * encuentra representado el mapa.
+	 * 
+	 * @param g
+	 *            Graphics2D donde se deben representar los ejes de coordenadas
+	 */
 	public void pintarCoordenadas(Graphics2D g) {
 		recalculaCons();
 		float array[] = { 10, 5, 5, 5 };
@@ -221,10 +305,10 @@ abstract public class Representacion {
 
 		int lat, lon;
 		for (int i = 0; i < 30; i++) {
-			lat = y_MapaARep(((int)(Lat0/(100*consy))-i)*(100*consy));
-			
-			lon = x_MapaARep(((int)(Lon0/(100*consx))+i)*(100*consx));
-			
+			lat = y_MapaARep(((int) (Lat0 / (100 * consy)) - i) * (100 * consy));
+
+			lon = x_MapaARep(((int) (Lon0 / (100 * consx)) + i) * (100 * consx));
+
 			g.drawLine(lon, 13, lon, 3000);
 			g.drawString("" + cincoCifras.format(lon_RepAMapa(lon)), lon - 5,
 					13);
@@ -241,20 +325,29 @@ abstract public class Representacion {
 	}
 
 	/**
-	 * Añade una imagen a la representacion en una posicion dada.<p>
+	 * Añade una imagen a la representacion en una posicion dada.
+	 * <p>
+	 * 
 	 * @param imagen
+	 *            Imagen que se quiere representar sobre el fondo.
 	 * @param pos
+	 *            Posicion donde se quiere colocar la imagen.
 	 */
 	public void addImage(Image imagen, Posicion pos) {
 		if (imagen != null && pos != null) {
 			imagenes.add(imagen);
 			posiciones.add(pos);
-		};
+		}
+		;
 	}
 
 	/**
-	 * Quita una imagen de la representacion.<p>
+	 * Quita una imagen de la representacion.
+	 * <p>
+	 * Este método tambien se encarga de actualizar la lista de posiciones.
+	 * 
 	 * @param imagen
+	 *            Imagen que se desea quitar de la representacion
 	 */
 	public void removeImage(Image imagen) {
 		posiciones.remove(imagenes.indexOf(imagen));
@@ -262,8 +355,18 @@ abstract public class Representacion {
 	}
 
 	/**
+	 * Método que vacia las listas de imagenes y sus posiciones relacionadas
+	 */
+	public void vaciarImage() {
+		posiciones = new ArrayList<Posicion>();
+		imagenes = new ArrayList<Image>();
+	}
+
+	/**
 	 * Dibuja las imagenes de la representacion.
+	 * 
 	 * @param g
+	 *            Graphics2D donde se deben representar las imagenes
 	 */
 	public void ponerImagenes(Graphics2D g) {
 		for (int i = 0; i < imagenes.size(); i++) {
@@ -273,14 +376,18 @@ abstract public class Representacion {
 		}
 	}
 
+	/**
+	 * Metodo que a partir de los parámetros de la representación recalcula las
+	 * constantes de proporcionalidad para la representación.
+	 */
 	private void recalculaCons() {
 		int zona = ConversorUTM.recalculaZona(Lon0);
 		boolean hem = ConversorUTM.recalculaHem(Lat0);
 		double xy[] = ConversorUTM.LatLonToUTMXY(Lat0, Lon0, zona);
-		xy[0] = xy[0] + zoom;
-		xy[1] = xy[1] + zoom;
+		xy[0] = xy[0] + zoom * 100;
+		xy[1] = xy[1] + zoom * 100;
 		double latlon[] = ConversorUTM.UTMXYToLatLon(xy[0], xy[1], zona, hem);
-		consx = Math.abs(latlon[1] - Lon0);
-		consy = Math.abs(latlon[0] - Lat0);
+		consx = Math.abs(latlon[1] - Lon0) / 100;
+		consy = Math.abs(latlon[0] - Lat0) / 100;
 	}
 }

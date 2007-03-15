@@ -34,7 +34,7 @@ public class QDParser {
     PRE = 15,
     CDATA = 16;
   public static void parse(DocHandler doc,Reader r) throws Exception {
-    Stack st = new Stack();
+    Stack<Integer> st = new Stack<Integer>();
     int depth = 0;
     int mode = PRE;
     int c = 0;
@@ -45,7 +45,7 @@ public class QDParser {
     String tagName = null;
     String lvalue = null;
     String rvalue = null;
-    Hashtable attrs = null;
+    Hashtable<String, String> attrs = null;
   //  st = new Stack();
     doc.startDocument();
     int line=1, col=0;
@@ -156,7 +156,7 @@ public class QDParser {
 	  st.push(new Integer(mode));
 	  mode = OPEN_TAG;
 	  tagName = null;
-	  attrs = new Hashtable();
+	  attrs = new Hashtable<String, String>();
 	  sb.append((char)c);
         }
 
@@ -203,7 +203,7 @@ public class QDParser {
 	  return;
 	}
 	sb.setLength(0);
-	attrs = new Hashtable();
+	attrs = new Hashtable<String, String>();
 	tagName = null;
 	mode = popMode(st);
 
@@ -218,7 +218,7 @@ public class QDParser {
 	  depth++;
 	  doc.startElement(tagName,attrs);
 	  tagName = null;
-	  attrs = new Hashtable();
+	  attrs = new Hashtable<String, String>();
 	  mode = popMode(st);
 	} else if(c == '/') {
 	  mode = SINGLE_TAG;
@@ -296,7 +296,7 @@ public class QDParser {
 	  doc.startElement(tagName,attrs);
 	  depth++;
 	  tagName = null;
-	  attrs = new Hashtable();
+	  attrs = new Hashtable<String, String>();
 	} else if(c == '/') {
 	  mode = SINGLE_TAG;
         } else if(Character.isWhitespace((char)c)) {

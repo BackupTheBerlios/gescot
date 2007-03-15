@@ -3,7 +3,6 @@ package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HEliminarTramo;
-import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 

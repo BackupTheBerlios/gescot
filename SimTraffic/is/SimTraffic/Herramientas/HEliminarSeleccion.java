@@ -1,7 +1,6 @@
 package is.SimTraffic.Herramientas;
 
 import java.util.List;
-import java.util.ArrayList;
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.IModelo;
 

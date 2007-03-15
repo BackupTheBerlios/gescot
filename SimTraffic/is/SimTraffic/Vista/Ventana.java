@@ -11,6 +11,7 @@ import is.SimTraffic.Vista.Acciones.AccionGuardar;
 import is.SimTraffic.Vista.Acciones.AccionNuevo;
 import is.SimTraffic.Vista.Acciones.AccionPegar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
+import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
@@ -25,7 +26,6 @@ import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -390,12 +390,14 @@ public class Ventana extends JFrame {
 		
 		JButton zoomin = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\zoom_in.png"));
 		zoomin.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_in2.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_in2.png";
+		zoomin.addActionListener(new AccionZoom(panel_mapa, 0.5));
 		zoomin.setToolTipText("<html>Aumentar tamaño de la representación <img src="+imageName+"></html>");
 		
 		JButton zoomout = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\zoom_out.png"));
 		zoomout.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_out2.png"; 
+		zoomout.addActionListener(new AccionZoom(panel_mapa, 2));
 		zoomout.setToolTipText("<html>Aumentar tamaño de la representación <img src="+imageName+"></html>");
 		
 		

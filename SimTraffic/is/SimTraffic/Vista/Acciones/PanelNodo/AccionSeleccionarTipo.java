@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista.Acciones.PanelNodo;
 
-import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 
