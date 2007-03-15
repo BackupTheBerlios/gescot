@@ -10,9 +10,11 @@ import is.SimTraffic.Vista.Acciones.AccionDeshacer;
 import is.SimTraffic.Vista.Acciones.AccionGuardar;
 import is.SimTraffic.Vista.Acciones.AccionNuevo;
 import is.SimTraffic.Vista.Acciones.AccionPegar;
-import is.SimTraffic.Vista.Acciones.AccionSeleccionar;
+import is.SimTraffic.Vista.Acciones.AccionBarra;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
@@ -37,6 +39,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -102,11 +105,11 @@ public class Ventana extends JFrame {
 	 * Panel con los iconos de la parte superior.
 	 */
 	private JPanel superior;
-
+	
 	private JLabel posicionX;
-
+	
 	private JLabel posicionY;
-
+	
 	/**
 	 * Oyentes para teclado y ratón.
 	 */
@@ -114,12 +117,18 @@ public class Ventana extends JFrame {
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
 	MLSeleccionarTramos escuchaSeleccionTramos;
 	EscuchaTeclado escuchaTeclado;
-
+	
 	private JPanel superior_abajo;
-
+	
 	private JToolBar barraSeleccionar;
-
+	
 	private boolean panel_añadido;
+	
+	private JToolBar barraCrearNodo;
+
+	private JComboBox comboTipo;
+
+	private JComboBox comboValor;
 	
 	/**
 	 * Constructor de la ventana.
@@ -152,14 +161,14 @@ public class Ventana extends JFrame {
 		
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccion);
 		
+		crearBotonesSuperiores();	
+		
 		crearBarraMenu();
 		
 		crearHerramientas();
 		
-		añadirPanelMapa();
+		añadirPanelMapa();	 
 		
-		crearBotonesSuperiores();		 
-	
 		panel.setFocusable(true);		
 	}
 	
@@ -258,46 +267,46 @@ public class Ventana extends JFrame {
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 		String imageName;
 		/*JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos.png"));
-		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
-		seleccionarButton.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
-		seleccionarButton.addActionListener(new AccionSobreMapa(
-				escuchaSeleccion, this, escuchaTeclado));
-		panel.add(seleccionarButton);
-		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
-		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
-		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
-		seleccionarButton.addKeyListener(escuchaTeclado);
-		
-		JButton seleccionarTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
-		seleccionarTramosButton.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos-2.png"; 
-		seleccionarTramosButton.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
-		seleccionarTramosButton.addActionListener(new AccionSobreMapa(
-				escuchaSeleccionTramos, this, escuchaTeclado));
-		panel.add(seleccionarTramosButton);
-		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
-		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
-		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
-		seleccionarTramosButton.addKeyListener(escuchaTeclado);
-		
-		JButton seleccionarNodosYTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
-		seleccionarNodosYTramosButton.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos-2.png"; 
-		seleccionarNodosYTramosButton.setToolTipText("<html>Seleccionar nodos y tramos <img src="+imageName+"></html>");
-		seleccionarNodosYTramosButton.addActionListener(new AccionSobreMapa(
-				escuchaSeleccionNodosYTramos, this, escuchaTeclado));
-		panel.add(seleccionarNodosYTramosButton);
-		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
-		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
-		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
-		seleccionarNodosYTramosButton.addKeyListener(escuchaTeclado);*/
+		 seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
+		 String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
+		 seleccionarButton.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
+		 seleccionarButton.addActionListener(new AccionSobreMapa(
+		 escuchaSeleccion, this, escuchaTeclado));
+		 panel.add(seleccionarButton);
+		 //!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
+		  //habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
+		   //teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
+		    seleccionarButton.addKeyListener(escuchaTeclado);
+		    
+		    JButton seleccionarTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
+		    seleccionarTramosButton.setMargin(new Insets(1, 1, 1, 1));
+		    imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos-2.png"; 
+		    seleccionarTramosButton.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
+		    seleccionarTramosButton.addActionListener(new AccionSobreMapa(
+		    escuchaSeleccionTramos, this, escuchaTeclado));
+		    panel.add(seleccionarTramosButton);
+		    //!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
+		     //habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
+		      //teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
+		       seleccionarTramosButton.addKeyListener(escuchaTeclado);
+		       
+		       JButton seleccionarNodosYTramosButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
+		       seleccionarNodosYTramosButton.setMargin(new Insets(1, 1, 1, 1));
+		       imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos-2.png"; 
+		       seleccionarNodosYTramosButton.setToolTipText("<html>Seleccionar nodos y tramos <img src="+imageName+"></html>");
+		       seleccionarNodosYTramosButton.addActionListener(new AccionSobreMapa(
+		       escuchaSeleccionNodosYTramos, this, escuchaTeclado));
+		       panel.add(seleccionarNodosYTramosButton);
+		       //!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
+		        //habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
+		         //teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
+		          seleccionarNodosYTramosButton.addKeyListener(escuchaTeclado);*/
 		
 		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
 		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
 		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
-		seleccionarButton.addActionListener(new AccionSeleccionar(this));
+		seleccionarButton.addActionListener(new AccionBarra(this, barraSeleccionar));
 		panel.add(seleccionarButton);
 		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
@@ -306,6 +315,7 @@ public class Ventana extends JFrame {
 		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		añadirNodoButton.addActionListener(new AccionBarra(this, barraCrearNodo));
 		panel.add(añadirNodoButton);
 		//Aquí también habría que añadir el oyente de teclado al añadirNodoButton (y en el resto de botones),
 		//pero de momento no lo pongo por si encontramos una alternativa mejor.
@@ -442,22 +452,37 @@ public class Ventana extends JFrame {
 		crearBarraEliminar();
 		crearBarraSeleccionar();
 	}
-
+	
 	private void crearBarraEliminar() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	private void crearBarraTramo() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	private void crearBarraNodo() {
-		// TODO Auto-generated method stub
+	
+	private void crearBarraNodo() 
+	{
+		barraCrearNodo = new JToolBar(); 
 		
+		JLabel etiquetaTipo = new JLabel("Tipo");
+		String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "Infraestructura", "No definido"};
+		comboTipo = new JComboBox(tiposNodos);
+		
+		JLabel etiquetaValor = new JLabel("Valor");
+		String[] valorNodos = { "                  "};
+		comboValor = new JComboBox(valorNodos);
+	
+	    comboTipo.addActionListener(new AccionSeleccionarTipo(comboTipo,comboValor));
+	    
+	    barraCrearNodo.add(etiquetaTipo);
+	    barraCrearNodo.add(comboTipo);
+	    barraCrearNodo.add(etiquetaValor);
+	    barraCrearNodo.add(comboValor);
 	}
-
+	
 	private void crearBarraSeleccionar() 
 	{
 		barraSeleccionar = new JToolBar();
@@ -487,7 +512,7 @@ public class Ventana extends JFrame {
 		barraSeleccionar.add(seleccion_tramo);
 		barraSeleccionar.add(seleccion_area);
 	}
-
+	
 	/**
 	 * Crea la barra de estado
 	 *
@@ -500,7 +525,7 @@ public class Ventana extends JFrame {
 		JLabel etiquetaPosicion = new JLabel("Posición: ");
 		JLabel puntitos = new JLabel(" : ");
 		posicionX = new JLabel();
-        posicionY = new JLabel();
+		posicionY = new JLabel();
 		
 		barraEstado.add(etiquetaPosicion);
 		barraEstado.add(posicionX);
@@ -545,7 +570,7 @@ public class Ventana extends JFrame {
 		// panel_mapa.dibujar();
 		paintComponents(g);
 	}
-
+	
 	public void mostrar(JToolBar bar) 
 	{
 		if (!panel_añadido)
@@ -557,11 +582,11 @@ public class Ventana extends JFrame {
 		superior_abajo.add(bar);
 		repaint();
 	}
-
+	
 	public JToolBar getBarraSeleccionar() {
 		return barraSeleccionar;
 	}
-
+	
 	public void setBarraSeleccionar(JToolBar barraSeleccionar) {
 		this.barraSeleccionar = barraSeleccionar;
 	}
