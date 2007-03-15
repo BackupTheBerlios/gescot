@@ -296,7 +296,6 @@ abstract public class Representacion {
 	 *            Graphics2D donde se deben representar los ejes de coordenadas
 	 */
 	public void pintarCoordenadas(Graphics2D g) {
-		recalculaCons();
 		float array[] = { 10, 5, 5, 5 };
 		g.setColor(Color.LIGHT_GRAY);
 		g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
@@ -380,7 +379,7 @@ abstract public class Representacion {
 	 * Metodo que a partir de los parámetros de la representación recalcula las
 	 * constantes de proporcionalidad para la representación.
 	 */
-	private void recalculaCons() {
+	public void recalculaCons() {
 		int zona = ConversorUTM.recalculaZona(Lon0);
 		boolean hem = ConversorUTM.recalculaHem(Lat0);
 		double xy[] = ConversorUTM.LatLonToUTMXY(Lat0, Lon0, zona);

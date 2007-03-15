@@ -44,6 +44,8 @@ public class AccionCargarImagen implements ActionListener {
 			}
 			if (imagen.getWidth(null) >= 0) {
 				panel.getRepresentacion().addImage(imagen, new Posicion(panel.getLat0(), panel.getLon0()));
+				panel.recrear();
+				panel.repaint();
 			} else {
 			}
 		}

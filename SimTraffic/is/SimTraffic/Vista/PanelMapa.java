@@ -201,6 +201,8 @@ public class PanelMapa extends JPanel {
 		representacion.setLat0(posLat);
 		representacion.setZoom(zoom);
 
+		representacion.recalculaCons();
+
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
 		else
@@ -256,22 +258,28 @@ public class PanelMapa extends JPanel {
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
 		// sugiriendo.
-		/*for (int i = 0; i < modelo.getMapa().getSeleccion()
+		/*
+		 * for (int i = 0; i < modelo.getMapa().getSeleccion()
+		 * .getNodosSeleccionados().size(); i++) {
+		 * representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion()
+		 * .getNodosSeleccionados().get(i)); }
+		 */
+
+		// Se pintan los tramos que están seleccionados
+		for (int i = 0; i < modelo.getMapa().getSeleccion()
+				.getTramosSeleccionados().size(); i++) {
+			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
+					.getSeleccion().getTramosSeleccionados().get(i));
+		}
+
+		// Aquí se pintan los nodos que están seleccionados como si estuvieran
+		// sugiriendo.
+		for (int i = 0; i < modelo.getMapa().getSeleccion()
 				.getNodosSeleccionados().size(); i++) {
-			representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion()
-					.getNodosSeleccionados().get(i));
-		}*/
-		
-		//Se pintan los tramos que están seleccionados
-		for (int i = 0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size();i++){
-			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i));
+			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
+					.getSeleccion().getNodosSeleccionados().get(i));
 		}
-		
-		//Aquí se pintan los nodos que están seleccionados como si estuvieran sugiriendo.
-		for (int i = 0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++){
-			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i));
-		}
-		
+
 	}
 
 	public void setRepresentacion(Representacion representacion) {
@@ -286,9 +294,10 @@ public class PanelMapa extends JPanel {
 		this.zoom = this.zoom * cambio;
 		if (zoom > 8 || zoom < 0.25) {
 			this.zoom = this.zoom / cambio;
-			return;}
+			return;
+		}
 		recrear = true;
-		repaint();
+		super.repaint();
 	}
 
 	public void sugerir(ElementoMapa sugerencia) {
@@ -303,17 +312,21 @@ public class PanelMapa extends JPanel {
 	}
 
 	public void cambiaPosX(int cambio) {
-		posLon = posLon + ((double)cambio * zoom) / 60000;
-		if (posLon > 180) posLon = 180;
-		if (posLon < -180) posLon = -180;
+		posLon = posLon + ((double) cambio * zoom) / 60000;
+		if (posLon > 180)
+			posLon = 180;
+		if (posLon < -180)
+			posLon = -180;
 		recrear = true;
 		this.repaint();
 	}
 
 	public void cambiaPosY(int cambio) {
-		posLat = posLat - ((double)cambio * zoom) / 60000;
-		if (posLat > 89) posLat = 89;
-		if (posLat < -89) posLat = -89;
+		posLat = posLat - ((double) cambio * zoom) / 60000;
+		if (posLat > 89)
+			posLat = 89;
+		if (posLat < -89)
+			posLat = -89;
 		recrear = true;
 		this.repaint();
 	}
@@ -340,11 +353,8 @@ public class PanelMapa extends JPanel {
 		// Al rectangulo que pasamos al mapa para que conozca que área ha
 		// seleccionado el usuario, le aplicamos
 		// la transformación a coordenadas relativas del mapa.
-		rectanguloCoordenadasReales.setFrameFromDiagonal(
-				puntoInicial.getX(),
-				puntoInicial.getY(),
-				puntoDrag.getX(),
-				puntoDrag.getY());
+		rectanguloCoordenadasReales.setFrameFromDiagonal(puntoInicial.getX(),
+				puntoInicial.getY(), puntoDrag.getX(), puntoDrag.getY());
 
 		// this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
 		this.modelo.getMapa().seleccionaEnRectangulo(
@@ -359,21 +369,22 @@ public class PanelMapa extends JPanel {
 		this.modoSeleccion = modoSeleccion;
 	}
 
-	public double getLat0 (){
-		return posLat;	
+	public double getLat0() {
+		return posLat;
 	}
-	
+
 	public double getLon0() {
 		return posLon;
 	}
+
 	public Point getPuntoDrag() {
 		return puntoDrag;
 	}
-	
+
 	public void recrear() {
 		this.recrear = true;
 	}
-		
+
 	public void setPuntoDrag(Point puntoDrag) {
 		this.puntoDrag = puntoDrag;
 		configurarRectanguloSeleccion();
