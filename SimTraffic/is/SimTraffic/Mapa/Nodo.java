@@ -64,9 +64,10 @@ public class Nodo implements ElementoMapa {
 	private int ID;
 	
 	/**
-	 * Atributo que controla los semafores del nodo 
+	 * Atributo que controla los semaforos del nodo 
+	 * //TODO Se deberia quitar este atributo e unificarlo todo en el atributo señal??
 	 */
-	private MasterSemaforo ControladorSemaforo= null;
+	private MasterSemaforo ControladorSemaforo;
 	
 
 	
@@ -261,6 +262,21 @@ public class Nodo implements ElementoMapa {
 			return null; //No ha encontrado ningún tramo, luego devuelve null.
 		}
 	}
+	/**
+	 * Accedente para obtener el Mastersemaforo del nodo
+	 * @return en el MasterSemaforo almacenado en el nodo
+	 */
+	public MasterSemaforo getControladorSemaforo() {
+		return ControladorSemaforo;
+	}
 
-	
+	/**
+	 * Mutador para establecer el controlador del semaforo
+	 * @param controladorSemaforo
+	 */
+	public void setControladorSemaforo(MasterSemaforo controladorSemaforo) {
+		ControladorSemaforo = controladorSemaforo;
+	}
+
+
 }

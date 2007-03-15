@@ -3,6 +3,7 @@
  */
 package is.SimTraffic.Mapa.Semaforos;
 
+import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import is.SimTraffic.Mapa.Nodo;
  * @author grupo IS "Tráfico"
  * clase que se encarga de controlar los semáforos de un nodo
  */
-public class MasterSemaforo {
+public class MasterSemaforo extends Señal{
 
 	/**
 	 * Variable del tipo lista que mantiene todos los tramos que llegan a este nodo
@@ -31,7 +32,7 @@ public class MasterSemaforo {
 	 * TODO Uso discutible, ¿Hace falta usarlo? 
 	 */
  
-	private BibliotecaSemaforos SemControl;
+	private BibliotecaSemaforos SemControl = new BibliotecaSemaforos();
 	
 	/**
 	 * Controlador de los semaforos del nodo
@@ -65,12 +66,25 @@ public class MasterSemaforo {
 	
 	
 	/**
+	 * Accedente para establecer el tipo de semaforo.
+	 * @param tipoSemaforo
+	 */
+	public void setTipoSemaforo(int tipoSemaforo) {
+		this.tipoSemaforo = tipoSemaforo;
+	}
+
+
+	/**
 	 * Contructor de la Clase MasterSemaforo
 	 * @param nodo : Nodo cuyos semaforos se controlaran
 	 */
 	public MasterSemaforo(Nodo n){
+		super("Semaforo");
 		this.tramos=n.getTramos();
 		this.nodo=n;
+		nodo.setControladorSemaforo(this);
+		this.inicializarSemaforos();
+		
 	}
 	
 	
