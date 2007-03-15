@@ -52,8 +52,14 @@ public class HGuardarMapa implements IHerramienta {
 		if (val == JFileChooser.APPROVE_OPTION) {
 			PrintWriter salida;
 			try {
-				salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
-						.getSelectedFile().getAbsolutePath())));
+				if (fc.getSelectedFile().getAbsolutePath().contains(".osm"))
+					salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
+						.getSelectedFile().getAbsolutePath())))  ;
+				else {
+					salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
+							.getSelectedFile().getAbsolutePath().concat(".osm"))))  ;	
+				}
+					
 				System.out.println("w/n");
 				// Escribir
 				salida.println("<?xml version='1.0' encoding='UTF-8'?>");
