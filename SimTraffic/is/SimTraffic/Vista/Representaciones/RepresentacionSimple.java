@@ -179,7 +179,7 @@ public class RepresentacionSimple extends Representacion {
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
 						tamaño, tamaño);
 				Color colorTransparente = new Color((float) 1, (float) 0.6,
-						(float) 0, (float) 0.8);
+						(float) 0, (float) 0.6);
 				g.setColor(colorTransparente);
 				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
@@ -193,7 +193,7 @@ public class RepresentacionSimple extends Representacion {
 				Tramo t = (Tramo) elemento;
 				Polygon p = generarAreaTramo(t);
 				Color colorTransparente = new Color((float) 0.1, (float) 0.8,
-						(float) 0.05, (float) 0.2);
+						(float) 0.05, (float)0.6);
 				g.setColor(colorTransparente);
 				g.fillPolygon(p);
 			}
