@@ -10,6 +10,7 @@ import is.SimTraffic.Vista.Acciones.AccionDeshacer;
 import is.SimTraffic.Vista.Acciones.AccionGuardar;
 import is.SimTraffic.Vista.Acciones.AccionNuevo;
 import is.SimTraffic.Vista.Acciones.AccionPegar;
+import is.SimTraffic.Vista.Acciones.AccionSeleccionar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
@@ -20,14 +21,15 @@ import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
-import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,6 +114,12 @@ public class Ventana extends JFrame {
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
 	MLSeleccionarTramos escuchaSeleccionTramos;
 	EscuchaTeclado escuchaTeclado;
+
+	private JPanel superior_abajo;
+
+	private JToolBar barraSeleccionar;
+
+	private boolean panel_añadido;
 	
 	/**
 	 * Constructor de la ventana.
@@ -129,6 +137,8 @@ public class Ventana extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
+		
+		panel_añadido = false;
 		
 		crearBarraEstado();
 		
@@ -246,8 +256,8 @@ public class Ventana extends JFrame {
 		
 		panel = new JToolBar(JToolBar.VERTICAL);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
-		
-		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos.png"));
+		String imageName;
+		/*JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos.png"));
 		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
 		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
 		seleccionarButton.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
@@ -281,7 +291,14 @@ public class Ventana extends JFrame {
 		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
 		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
 		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
-		seleccionarNodosYTramosButton.addKeyListener(escuchaTeclado);
+		seleccionarNodosYTramosButton.addKeyListener(escuchaTeclado);*/
+		
+		JButton seleccionarButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
+		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
+		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
+		seleccionarButton.addActionListener(new AccionSeleccionar(this));
+		panel.add(seleccionarButton);
 		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
 		añadirNodoButton.setMargin(new Insets(1, 1, 1, 1));
@@ -335,17 +352,24 @@ public class Ventana extends JFrame {
 	 * Crea los botones de la parte superior.
 	 */
 	public void crearBotonesSuperiores() {
-		superior = new JPanel();
+		JPanel superior_arriba = new JPanel();
+		superior_abajo = new JPanel();
+		superior = new JPanel(new GridLayout(0,1));
 		getContentPane().add(superior, BorderLayout.NORTH);
+		
+		superior.add(superior_arriba);
+		
+		crearBarraPropiedades();
 		
 		JToolBar archivoTB = new JToolBar();
 		JToolBar edicionTB = new JToolBar();
 		JToolBar zoomTB = new JToolBar();
-		superior.add(archivoTB);
-		superior.add(edicionTB);
-		superior.add(zoomTB);
+		superior_arriba.add(archivoTB);
+		superior_arriba.add(edicionTB);
+		superior_arriba.add(zoomTB);
 		
-		superior.setLayout(new BoxLayout(superior, BoxLayout.LINE_AXIS));
+		superior_arriba.setLayout(new BoxLayout(superior_arriba, BoxLayout.LINE_AXIS));
+		superior_abajo.setLayout(new BoxLayout(superior_abajo, BoxLayout.LINE_AXIS));
 		JButton nuevoTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
 		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
@@ -411,8 +435,61 @@ public class Ventana extends JFrame {
 		zoomTB.add(zoomout);
 	}
 	
+	private void crearBarraPropiedades() 
+	{	
+		crearBarraNodo();
+		crearBarraTramo();
+		crearBarraEliminar();
+		crearBarraSeleccionar();
+	}
+
+	private void crearBarraEliminar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void crearBarraTramo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void crearBarraNodo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void crearBarraSeleccionar() 
+	{
+		barraSeleccionar = new JToolBar();
+		
+		JButton seleccion_nodo = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos.png"));
+		seleccion_nodo.setMargin(new Insets(1, 1, 1, 1));
+		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
+		seleccion_nodo.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
+		seleccion_nodo.addActionListener(new AccionSobreMapa(
+				escuchaSeleccion, this, escuchaTeclado));
+		
+		JButton seleccion_tramo = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
+		seleccion_tramo.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos-2.png"; 
+		seleccion_tramo.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
+		seleccion_tramo.addActionListener(new AccionSobreMapa(
+				escuchaSeleccionTramos, this, escuchaTeclado));
+		
+		JButton seleccion_area =  new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
+		seleccion_area.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos-2.png"; 
+		seleccion_area.setToolTipText("<html>Seleccionar componentes dentro de área <img src="+imageName+"></html>");
+		seleccion_area.addActionListener(new AccionSobreMapa(
+				escuchaSeleccionNodosYTramos, this, escuchaTeclado));
+		
+		barraSeleccionar.add(seleccion_nodo);
+		barraSeleccionar.add(seleccion_tramo);
+		barraSeleccionar.add(seleccion_area);
+	}
+
 	/**
-	 * Cra la barra de estado
+	 * Crea la barra de estado
 	 *
 	 */
 	public void crearBarraEstado(){
@@ -467,5 +544,25 @@ public class Ventana extends JFrame {
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
 		paintComponents(g);
+	}
+
+	public void mostrar(JToolBar bar) 
+	{
+		if (!panel_añadido)
+		{
+			superior.add(superior_abajo);
+			panel_añadido = true;
+		}
+		superior_abajo.removeAll();
+		superior_abajo.add(bar);
+		repaint();
+	}
+
+	public JToolBar getBarraSeleccionar() {
+		return barraSeleccionar;
+	}
+
+	public void setBarraSeleccionar(JToolBar barraSeleccionar) {
+		this.barraSeleccionar = barraSeleccionar;
 	}
 }
