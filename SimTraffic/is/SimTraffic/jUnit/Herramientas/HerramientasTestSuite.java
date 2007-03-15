@@ -17,6 +17,8 @@ public class HerramientasTestSuite {
 	    TestSuite suite = new TestSuite();
 	    suite.addTestSuite(HAñadirNodoTest.class);
 	    suite.addTestSuite(HAñadirTramoTest.class);
+	    suite.addTestSuite(HAsignarTramosAViaTest.class);
+	    suite.addTestSuite(HModificarSeñalTest.class);
 	    return suite;
 	}
 }
