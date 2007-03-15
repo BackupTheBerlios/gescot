@@ -295,7 +295,8 @@ public class Mapa {
 				nodoTemp = Nodos.get(i);
 				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
-					this.seleccion.añadirNodo(nodoTemp);
+					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
+						this.seleccion.añadirNodo(nodoTemp);
 				}			
 			}
 		}
@@ -306,7 +307,8 @@ public class Mapa {
 				nodoTemp = Nodos.get(i);
 				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
-					this.seleccion.añadirNodo(nodoTemp);
+					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
+						this.seleccion.añadirNodo(nodoTemp);
 				}			
 			}
 			Tramo tramoTemp;
@@ -331,7 +333,8 @@ public class Mapa {
 					j++;
 				}
 				if (encontradoInicial && encontradoFinal) {
-					this.seleccion.añadirTramo(tramoTemp);
+					if (!seleccion.getTramosSeleccionados().contains(tramoTemp))
+						this.seleccion.añadirTramo(tramoTemp);
 				}
 			}
 			
@@ -344,7 +347,8 @@ public class Mapa {
 				nodoTemp = Nodos.get(i);
 				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
 				if (rectanguloSeleccion.contains(punto)){
-					nodosSeleccionados.add(nodoTemp);
+					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
+						nodosSeleccionados.add(nodoTemp);
 				}			
 			}
 			Tramo tramoTemp;
@@ -369,7 +373,8 @@ public class Mapa {
 					j++;
 				}
 				if (encontradoInicial && encontradoFinal) {
-					this.seleccion.añadirTramo(tramoTemp);
+					if (!seleccion.getTramosSeleccionados().contains(tramoTemp))
+						this.seleccion.añadirTramo(tramoTemp);
 				}
 			}
 		}
