@@ -56,7 +56,6 @@ public class CargadorMapa implements DocHandler {
 		double lat = 0;
 		double lon = 0;
 		int indexFrom = 0, indexTo = 0;
-		String nombre = null,tipoElemStringNombre = null,tipoElemStringValor = null;
 		Integer integer;
 		Boolean bool;
 		Double vdouble;
@@ -82,14 +81,10 @@ public class CargadorMapa implements DocHandler {
 				id = integer.intValue();
 			}
 			if (key.compareTo("lat") == 0) {
-				//integer = new Integer(val);
 				vdouble = new Double(val);
 				lat = vdouble.doubleValue();
-				//posX = integer.intValue();
 			}
 			if (key.compareTo("lon") == 0){
-				//integer = new Integer(val);
-				//posY = integer.intValue();
 				vdouble = new Double(val);
 				lon = vdouble.doubleValue();
 			}
@@ -108,33 +103,13 @@ public class CargadorMapa implements DocHandler {
 				bool = new Boolean(val);	
 				if (val.equals("false")) visible=false;
 				else visible=true;
-				//visible = bool.booleanValue();
 			}
-			/** Siempre que se lea la etiqueta k (key), se lee posteriormente la etiqueta  v(value), 
-			 * luego no es necesario incluir en esta secuencia de "intrucciones if" el string v 
-			 */
-			/*if (key.compareTo("k") == 0){
-				String keyV = new String((String) e.nextElement());
-				if (!keyV.equals("v")) 
-					System.out.println("Atributo no esperado, keyV");
-				String valV = new String((String) h.get(key));
-				if (val.equals("nombre")) {
-					nombre=valV;
-				}
-				else {
-					tipoElemStringNombre = val;
-					tipoElemStringValor = valV;
-				}
-				
-			}*/
 			
 		}
 
 		if (elem.compareTo("node") == 0) {
 			System.out.println("reconocido nodo");
-			//Posicion pos = new Posicion(posX,posY);
 			Posicion pos = new Posicion(lat,lon);
-			//ITipoElemento tipo =identificarTipoElem(tipoElemStringNombre,tipoElemStringValor);
 			//Luego poner nombre y tipo en vez de null,null.
 			idUltimoNodo=id;
 			nodos.add(new Nodo(id,null,pos,null));
@@ -146,19 +121,7 @@ public class CargadorMapa implements DocHandler {
 			if (k.compareTo("nombre")==0){
 				nodoAux.setNombre(v);
 			}
-			else nodoAux.setTipo(identificarTipoElem(k,v));
-			/*if (k.compareTo("highway")==0){
-				nodoAux.setTipo(new TipoNodoHighway(v));				
-			}
-			if (k.compareTo("amenity")==0){
-				nodoAux.setTipo(new TipoNodoAmenity(v));				
-			}
-			if (k.compareTo("leisure")==0){
-				nodoAux.setTipo(new TipoNodoLeisure(v));				
-			}
-			if (k.compareTo("man_made")==0){
-				nodoAux.setTipo(new TipoNodoManMade(v));				
-			}*/			
+			else nodoAux.setTipo(identificarTipoElem(k,v));		
 		}
 		  if (elem.compareTo("segment") == 0) {
 			System.out.println("reconoce tramo");
