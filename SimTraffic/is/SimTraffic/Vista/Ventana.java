@@ -507,6 +507,7 @@ public class Ventana extends JFrame {
 		seleccion_nodo.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
 		seleccion_nodo.addActionListener(new AccionSobreMapa(
 				escuchaSeleccion, this, escuchaTeclado));
+		seleccion_nodo.addKeyListener(escuchaTeclado);
 		
 		JButton seleccion_tramo = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
 		seleccion_tramo.setMargin(new Insets(1, 1, 1, 1));
@@ -514,6 +515,7 @@ public class Ventana extends JFrame {
 		seleccion_tramo.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
 		seleccion_tramo.addActionListener(new AccionSobreMapa(
 				escuchaSeleccionTramos, this, escuchaTeclado));
+		seleccion_tramo.addKeyListener(escuchaTeclado);
 		
 		JButton seleccion_area =  new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
 		seleccion_area.setMargin(new Insets(1, 1, 1, 1));
@@ -521,6 +523,7 @@ public class Ventana extends JFrame {
 		seleccion_area.setToolTipText("<html>Seleccionar componentes dentro de área <img src="+imageName+"></html>");
 		seleccion_area.addActionListener(new AccionSobreMapa(
 				escuchaSeleccionNodosYTramos, this, escuchaTeclado));
+		seleccion_area.addKeyListener(escuchaTeclado);
 		
 		barraSeleccionar.add(seleccion_nodo);
 		barraSeleccionar.add(seleccion_tramo);
