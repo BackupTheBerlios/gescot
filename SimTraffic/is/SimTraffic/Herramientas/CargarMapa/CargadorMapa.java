@@ -4,6 +4,7 @@ package is.SimTraffic.Herramientas.CargarMapa;
 
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
@@ -16,6 +17,8 @@ import java.util.Iterator;
 
 
 public class CargadorMapa implements DocHandler {
+	
+	static int idUltimoNodo;
 
 	static CargadorMapa cargadormapa = new CargadorMapa();
 
@@ -49,7 +52,7 @@ public class CargadorMapa implements DocHandler {
 	public void startElement(String elem, Hashtable h) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("    start elem: " + elem);
-		int id = 0;
+		int id = 0;		
 		double lat = 0;
 		double lon = 0;
 		int indexFrom = 0, indexTo = 0;
@@ -57,6 +60,8 @@ public class CargadorMapa implements DocHandler {
 		Integer integer;
 		Boolean bool;
 		Double vdouble;
+		String v = null;
+		String k = null;
 		boolean visible;
 		Enumeration e = h.keys();
 		while (e.hasMoreElements()) {
@@ -66,6 +71,12 @@ public class CargadorMapa implements DocHandler {
 
 			System.out.println("      " + key + " = " + val);
 
+			if(key.compareTo("v")==0){
+				v=new String(val);
+			}
+			if(key.compareTo("k")==0){
+				k=new String(val);
+			}
 			if (key.compareTo("id") == 0) {
 				integer = new Integer(val);
 				id = integer.intValue();
@@ -125,8 +136,29 @@ public class CargadorMapa implements DocHandler {
 			Posicion pos = new Posicion(lat,lon);
 			//ITipoElemento tipo =identificarTipoElem(tipoElemStringNombre,tipoElemStringValor);
 			//Luego poner nombre y tipo en vez de null,null.
+			idUltimoNodo=id;
 			nodos.add(new Nodo(id,null,pos,null));
 			
+		}
+		if (elem.compareTo("tag")==0){
+			System.out.println("tag de nodo reconocido");
+			Nodo nodoAux = buscarNodoConId(idUltimoNodo);
+			if (k.compareTo("nombre")==0){
+				nodoAux.setNombre(v);
+			}
+			else nodoAux.setTipo(identificarTipoElem(k,v));
+			/*if (k.compareTo("highway")==0){
+				nodoAux.setTipo(new TipoNodoHighway(v));				
+			}
+			if (k.compareTo("amenity")==0){
+				nodoAux.setTipo(new TipoNodoAmenity(v));				
+			}
+			if (k.compareTo("leisure")==0){
+				nodoAux.setTipo(new TipoNodoLeisure(v));				
+			}
+			if (k.compareTo("man_made")==0){
+				nodoAux.setTipo(new TipoNodoManMade(v));				
+			}*/			
 		}
 		  if (elem.compareTo("segment") == 0) {
 			System.out.println("reconoce tramo");
@@ -161,6 +193,8 @@ public class CargadorMapa implements DocHandler {
 			  return new TipoNodoLeisure(valor); 
 		  else if (nombre.equals("man_made"))
 			  return new TipoNodoManMade(valor);
+		  else if (nombre.equals("amenity"))
+			  return new TipoNodoAmenity(valor);
 		  return null;		
 	}
 
