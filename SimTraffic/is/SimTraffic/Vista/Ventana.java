@@ -349,16 +349,16 @@ public class Ventana extends JFrame {
 		JButton añadirLineaAutobus = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\add_bus.png"));
 		añadirLineaAutobus.setMargin(new Insets(1, 1, 1, 1));
 		//añadirLineaAutobus.setMaximumSize(new Dimension(25,25));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\add_bus.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\add_bus2.png"; 
 		añadirLineaAutobus.setToolTipText("<html>Añadir linea de autobus <img src="+imageName+"></html>");
 		añadirLineaAutobus.addActionListener(new AccionSobreMapa(
 				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirLineaAutobus);
 		
 		// Botón añadir semaforos
-		JButton añadirSemaforos = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\semaforo.png"));
+		JButton añadirSemaforos = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\semaforo1.png"));
 		añadirSemaforos.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo2.png"; 
 		añadirSemaforos.setToolTipText("<html>Añiadir semaforo <img src="+imageName+"></html>");
 		añadirSemaforos.addActionListener(new AccionSobreMapa(
 				escuchaSeleccion, this, escuchaTeclado));
