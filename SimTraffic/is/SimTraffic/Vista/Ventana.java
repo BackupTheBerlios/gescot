@@ -19,6 +19,7 @@ import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirSemaforo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
@@ -355,18 +356,15 @@ public class Ventana extends JFrame {
 				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirLineaAutobus);
 		
-		// Botón añadir semaforos
+//		 Botón añadir semaforos
 		JButton añadirSemaforos = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\semaforo1.png"));
 		añadirSemaforos.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo2.png"; 
 		añadirSemaforos.setToolTipText("<html>Añadir semaforo <img src="+imageName+"></html>");
-		añadirSemaforos.addActionListener(new AccionSobreMapa(
-				escuchaSeleccion, this, escuchaTeclado));
+		añadirSemaforos.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado));
 		panel.add(añadirSemaforos);
-		//!\ OJO (Álex): Para que funcione el oyente, tiene que estar "Enfocado" un objeto con el oyente, por ello
-		//habría que añadir el oyente de teclado a cada boton (componentes enfocables de la ventana) el oyente de 
-		//teclado (aún no he encontrado una manera mejor de conseguir hacerlo).
 		seleccionarButton.addKeyListener(escuchaTeclado);
+		
 		
 		
 		
