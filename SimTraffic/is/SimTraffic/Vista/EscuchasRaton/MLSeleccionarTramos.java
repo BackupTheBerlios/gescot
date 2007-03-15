@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -86,6 +87,25 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void notificar(int modificador){
+		super.notificar(modificador);
+		// Si se ha pulsado la tecla "Supr"
+		if (modificador == 127){
+			//Crear una herramienta de borrado de varios nodos
+			HEliminarSeleccion herramientaBorrarSeleccion = 
+				new HEliminarSeleccion(modelo.getMapa().getSeleccion().getNodosSeleccionados(),
+										modelo.getMapa().getSeleccion().getTramosSeleccionados());
+			//y aplicarla al modelo.
+			controlador.herramienta(herramientaBorrarSeleccion);
+			
+			modelo.getMapa().limpiaSeleccion();
+			panel.setRecrear(true);
+			panel.repaint();
+			//panel.setRecrear(false);
+		}
 		
 	}
 

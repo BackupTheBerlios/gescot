@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -23,23 +24,29 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		boolean yaSeleccionado = false;
+		
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
-		Tramo seleccionado = buscarTramo(e.getX(), e.getY());
-		if (seleccionado != null)
-			if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(seleccionado)){
-				modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(seleccionado);
-			} else {
-				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
-		}
 		Nodo nodoSeleccionado = buscarNodo(e.getX(), e.getY());
-		if (nodoSeleccionado != null)
+		if (nodoSeleccionado != null){
+			yaSeleccionado = true;
 			if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoSeleccionado)){
 				modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoSeleccionado);
 			} else {
 				modelo.getMapa().getSeleccion().añadirNodo(nodoSeleccionado);
 			}
+		}
+		
+		Tramo seleccionado = buscarTramo(e.getX(), e.getY());
+		if (seleccionado != null && !yaSeleccionado)
+			if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(seleccionado)){
+				modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(seleccionado);
+			} else {
+				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
+		}
+	
 	}
 
 	@Override
@@ -94,6 +101,25 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void notificar(int modificador){
+		super.notificar(modificador);
+		// Si se ha pulsado la tecla "Supr"
+		if (modificador == 127){
+			//Crear una herramienta de borrado de varios nodos
+			HEliminarSeleccion herramientaBorrarSeleccion = 
+				new HEliminarSeleccion(modelo.getMapa().getSeleccion().getNodosSeleccionados(),
+										modelo.getMapa().getSeleccion().getTramosSeleccionados());
+			//y aplicarla al modelo.
+			controlador.herramienta(herramientaBorrarSeleccion);
+			
+			modelo.getMapa().limpiaSeleccion();
+			panel.setRecrear(true);
+			panel.repaint();
+			//panel.setRecrear(false);
+		}
 		
 	}
 
