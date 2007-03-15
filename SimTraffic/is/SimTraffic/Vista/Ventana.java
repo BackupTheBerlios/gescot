@@ -359,7 +359,7 @@ public class Ventana extends JFrame {
 		JButton añadirSemaforos = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\semaforo1.png"));
 		añadirSemaforos.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo2.png"; 
-		añadirSemaforos.setToolTipText("<html>Añiadir semaforo <img src="+imageName+"></html>");
+		añadirSemaforos.setToolTipText("<html>Añadir semaforo <img src="+imageName+"></html>");
 		añadirSemaforos.addActionListener(new AccionSobreMapa(
 				escuchaSeleccion, this, escuchaTeclado));
 		panel.add(añadirSemaforos);
