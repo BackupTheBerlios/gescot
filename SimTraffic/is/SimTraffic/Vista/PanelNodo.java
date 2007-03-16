@@ -23,12 +23,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+
 public class PanelNodo extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane panelDatos;
 	private JPanel panelBotones;
 	private JPanel panelAuxiliar;
+	private JComboBox comboTipoSeñales;
 	private JComboBox comboTipo;
 	private JComboBox comboValor;
 	private JTextField campoFrecuencia;
@@ -157,6 +159,19 @@ public class PanelNodo extends JFrame{
 	    panelPropiedades.add(panelTipo,BorderLayout.NORTH);
 	    panelPropiedades.add(panelEntrada,BorderLayout.CENTER);
 	    panelPropiedades.add(panelAuxiliar,BorderLayout.SOUTH);
+	    
+	    
+	    panelSeñales.setLayout(new FlowLayout());
+	    JLabel etiquetaTipoSeñal = new JLabel("Tipo");
+	    panelSeñales.add(etiquetaTipoSeñal);
+	    String[] tiposSeñales = { "                  ", "STOP", "Ceda el Paso", "Semáforos"};
+	    comboTipoSeñales = new JComboBox(tiposSeñales);
+	    panelSeñales.add(comboTipoSeñales);
+	    /*JLabel etiquetaValorSeñal = new JLabel("Valor");
+	    panelSeñales.add(etiquetaValorSeñal);
+	    panelSeñales.add(comboValor);*/
+	    panelSeñales.setBorder(BorderFactory.createTitledBorder("Tipo de Nodo"));
+	    
 	    
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Nodo");
 	    panelDatos.setSelectedIndex(0);
