@@ -5,6 +5,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
+import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
 import is.SimTraffic.Vista.Acciones.AccionCortar;
 import is.SimTraffic.Vista.Acciones.AccionDeshacer;
@@ -392,6 +393,15 @@ public class Ventana extends JFrame {
 		añadirVia.addActionListener(new AccionSobreMapa(
 				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirVia);
+		
+		//JButton simulacion = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\simular.png"));
+		JButton simulacion = new JButton(">");
+		simulacion.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_via.png"; 
+		simulacion.setToolTipText("<html>Comenzar simulación <img src="+imageName+"></html>");
+		simulacion.addActionListener(new AccionComenzarSimulacion
+				(controlador,modelo));
+		panel.add(simulacion);
 		
 		
 		
