@@ -121,7 +121,7 @@ abstract public class Representacion {
 	 * @return Entero que representa una posicion en la pantalla
 	 */
 	public int x_MapaARep(double lon) {
-		return (int) ((lon - Lon0) / consx);
+		return tamX/2 + (int) ((lon - Lon0) / consx);
 	}
 
 	/**
@@ -136,7 +136,7 @@ abstract public class Representacion {
 	 * @return Entero que representa una posicion en la pantalla
 	 */
 	public int y_MapaARep(double lat) {
-		return (int) ((Lat0 - lat) / consy);// (int) ((posY/zoom - posY0));
+		return tamY/2 + (int) ((Lat0 - lat) / consy);// (int) ((posY/zoom - posY0));
 	}
 
 	/**
@@ -152,7 +152,7 @@ abstract public class Representacion {
 	 * @return Double que representa la longitud en el mapa
 	 */
 	public double lon_RepAMapa(int posX) {
-		return ((double) posX * consx + Lon0);// (int) ((posX + posX0)*zoom);
+		return ((double) (posX - tamX/2) * consx + Lon0);// (int) ((posX + posX0)*zoom);
 	}
 
 	/**
@@ -168,7 +168,7 @@ abstract public class Representacion {
 	 * @return Double que representa la longitud en el mapa
 	 */
 	public double lat_RepAMapa(int posY) {
-		return (Lat0 - (double) posY * consy);// (int) ((posY + posY0)*zoom);
+		return (Lat0 - (double) (posY - tamY/2) * consy);// (int) ((posY + posY0)*zoom);
 	}
 
 	/**
@@ -304,9 +304,9 @@ abstract public class Representacion {
 
 		int lat, lon;
 		for (int i = 0; i < 30; i++) {
-			lat = y_MapaARep(((int) (Lat0 / (100 * consy)) - i) * (100 * consy));
+			lat = y_MapaARep(((int) (Lat0 / (100 * consy)) - i) * (100 * consy)) - tamY/2;
 
-			lon = x_MapaARep(((int) (Lon0 / (100 * consx)) + i) * (100 * consx));
+			lon = x_MapaARep(((int) (Lon0 / (100 * consx)) + i) * (100 * consx)) - tamX/2;
 
 			g.drawLine(lon, 13, lon, 3000);
 			g.drawString("" + cincoCifras.format(lon_RepAMapa(lon)), lon - 5,
