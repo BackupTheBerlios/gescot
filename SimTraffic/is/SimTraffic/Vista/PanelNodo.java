@@ -39,8 +39,16 @@ public class PanelNodo extends JFrame
 	private Nodo nodo;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
-	private PanelMapa mapa;
+private JPanel panelPropiedades = new JPanel();
+	private JPanel panelSeñales = new JPanel();
+	private JPanel panelTramos = new JPanel();
+    private PanelMapa mapa;
+
 	
+	public PanelNodo(Nodo nodo){
+		
+		
+	}
 	
 	public PanelNodo(Nodo nodo, PanelMapa mapa)
 	{
@@ -60,12 +68,53 @@ public class PanelNodo extends JFrame
 	    
 	}
 	
+	/**
+	 * Diseño de cuadro de dialogo emergente de propiedades de nodo
+	 * TODO terminar el diseño de las pestañas
+	 */
 	public void creaPanelDatos(){
+		creaPanelTipo();
+		creaPanelSeñales();
+		creaPanelTramos();
+	}
 	
-		JPanel panelPropiedades = new JPanel();
-	    JPanel panelSeñales = new JPanel();
-	    JPanel panelTramos = new JPanel();
-	      
+	/**
+	 * Esto correponde a la pestaña de las propiedades de los tramos de un nodo
+	 * TODO Todo
+	 */
+	public void creaPanelTramos(){
+		panelDatos.addTab("Tramos", null, panelTramos,"Tramos asociados al Nodo");
+	}
+
+	/**
+	 * Esto correponde a la pestaña de las propiedades de las señales de un nodo
+	 * falta mucho por hacer
+	 * TODO casi todo
+	 */
+	public void creaPanelSeñales(){
+
+	    panelSeñales.setLayout(new FlowLayout());
+	    JLabel etiquetaTipoSeñal = new JLabel("Tipo");
+	    panelSeñales.add(etiquetaTipoSeñal);
+	    String[] tiposSeñales = { "                  ", "STOP", "Ceda el Paso", "Semáforos"};
+	    comboTipoSeñales = new JComboBox(tiposSeñales);
+	    panelSeñales.add(comboTipoSeñales);
+/*	    if(comboTipoSeñales.getSelectedItem()=="Semaforo"){
+	    	String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular (¿?)"};
+	    	JComboBox comboTipoSemaforos = new JComboBox(tiposSemaforos);
+		    panelSeñales.add(comboTipoSemaforos);
+	    }
+*/
+	    /*JLabel etiquetaValorSeñal = new JLabel("Valor");
+	    panelSeñales.add(etiquetaValorSeñal);
+	    panelSeñales.add(comboValor);*/
+	    panelSeñales.setBorder(BorderFactory.createTitledBorder("Tipo de Señales"));
+	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");
+	    
+	}
+	
+	public void creaPanelTipo(){
+					  
 	    JPanel panelTipo = new JPanel();
 	    panelTipo.setLayout(new FlowLayout(FlowLayout.CENTER,30,20));
 	    JLabel etiquetaTipo = new JLabel("Tipo");
@@ -165,23 +214,10 @@ public class PanelNodo extends JFrame
 	    panelPropiedades.add(panelAuxiliar,BorderLayout.SOUTH);
 	    
 	    
-	    panelSeñales.setLayout(new FlowLayout());
-	    JLabel etiquetaTipoSeñal = new JLabel("Tipo");
-	    panelSeñales.add(etiquetaTipoSeñal);
-	    String[] tiposSeñales = { "                  ", "STOP", "Ceda el Paso", "Semáforos"};
-	    comboTipoSeñales = new JComboBox(tiposSeñales);
-	    panelSeñales.add(comboTipoSeñales);
-	    /*JLabel etiquetaValorSeñal = new JLabel("Valor");
-	    panelSeñales.add(etiquetaValorSeñal);
-	    panelSeñales.add(comboValor);*/
-	    panelSeñales.setBorder(BorderFactory.createTitledBorder("Tipo de Nodo"));
-	    
 	    
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Nodo");
 	    panelDatos.setSelectedIndex(0);
 		
-	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");
-	    panelDatos.addTab("Tramos", null, panelTramos,"Tramos asociados al Nodo");
 	}
 	
 	public void crearAcciones() {
@@ -216,6 +252,19 @@ public class PanelNodo extends JFrame
 	 * Redundante (método que ya existía en un oyente peor necesario aquí, 
 	 * rediseñar más adelante).
 	 */
+	public void configurarValoresSeñal() {
+		if (comboTipoSeñales.getSelectedItem().equals("Semaforo")) {
+		 	String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular (¿?)"};
+	    	JComboBox comboTipoSemaforos = new JComboBox(tiposSemaforos);
+		    panelSeñales.add(comboTipoSemaforos);
+	  }
+		else {
+			comboValor.removeAllItems();
+			comboValor.addItem("No definido");
+		}
+	}
+	
+	
 	public void configurarValoresNodo() {
 		if (comboTipo.getSelectedItem().equals("Carretera")) {
 			String[] s1={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
