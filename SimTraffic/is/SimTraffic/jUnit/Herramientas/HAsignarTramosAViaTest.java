@@ -41,14 +41,14 @@ public class HAsignarTramosAViaTest extends TestCase {
 	 * Test method for 'is.SimTraffic.Herramientas.HAsignarTramosAVia.hacer(IModelo)'
 	 */
 	public void testHacer() {
-
+		//aun no estaba hecho en la clase a probar
 	}
 
 	/*
 	 * Test method for 'is.SimTraffic.Herramientas.HAsignarTramosAVia.deshacer(IModelo)'
 	 */
 	public void testDeshacer() {
-
+		//aun no estaba hecho en la clase a probar
 	}
 
 	/*
@@ -60,7 +60,5 @@ public class HAsignarTramosAViaTest extends TestCase {
 		assertEquals(v.getID(),1);
 		assertEquals(v.getTramos().size(),0);
 		assertEquals(v.getTipo().getValorTipo(), "valor tipo");
-
 	}
-
 }
