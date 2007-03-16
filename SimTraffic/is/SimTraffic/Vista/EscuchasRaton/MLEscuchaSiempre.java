@@ -34,6 +34,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	private double x1;
 	private double y1;
 	private DecimalFormat cincoCifras;
+	
 	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY) 
 	{
 		super(modelo, controlador, panel);
@@ -74,7 +75,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 					Nodo nodoAux=this.buscarNodo(arg0.getX(), arg0.getY());
 					if (nodoAux != null) {
 						//JFrame ventanaNodo = new JFrame();
-						PanelNodo panelNod = new PanelNodo(nodoAux);
+						PanelNodo panelNod = new PanelNodo(nodoAux, panel);
 						panelNod.setTitle("Propiedades del Nodo");
 						panelNod.setBounds(80, 120, 500, 600);
 						panelNod.setVisible(true);

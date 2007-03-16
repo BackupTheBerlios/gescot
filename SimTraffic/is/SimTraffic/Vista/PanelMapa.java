@@ -10,6 +10,7 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
 import is.SimTraffic.Vista.Representaciones.Representacion;
+import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
 import java.awt.BorderLayout;
@@ -132,7 +133,7 @@ public class PanelMapa extends JPanel {
 		this.tamY = tamY;
 		recrear = true;
 		contador = 0;
-		representacion = new RepresentacionSimple();
+		representacion = new RepresentacionAvanzada();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
 		posLat = 0; // latitud cero

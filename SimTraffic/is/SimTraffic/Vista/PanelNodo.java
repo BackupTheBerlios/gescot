@@ -38,11 +38,14 @@ public class PanelNodo extends JFrame{
 	private Nodo nodo;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
+	private PanelMapa mapa;
 	
 	
-	public PanelNodo(Nodo nodo){
+	public PanelNodo(Nodo nodo, PanelMapa mapa)
+	{
 		this.setLayout(new BorderLayout(2,2));
 		this.nodo = nodo;
+		this.mapa = mapa;
 		
 		panelDatos = new JTabbedPane();
 		creaPanelDatos();
@@ -183,7 +186,7 @@ public class PanelNodo extends JFrame{
 	public void crearAcciones() {
 		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
 	    comboTipo.addActionListener(accionSeleccionarTipo);
-	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this);
+	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this, mapa);
 	    botonAceptar.addActionListener(accionAceptar);
 	    final PanelNodo panelPpal=this;
 	    botonCancelar.addActionListener(

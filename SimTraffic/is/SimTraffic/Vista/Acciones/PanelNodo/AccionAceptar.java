@@ -6,6 +6,7 @@ import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
+import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
 
 import java.awt.event.ActionEvent;
@@ -22,8 +23,9 @@ public class AccionAceptar implements ActionListener {
 	private JTextField campoFrecuencia;
 	private JTextField campoNombre;
 	private PanelNodo panel;
+	private PanelMapa mapa;
 
-	public AccionAceptar(Nodo nodo, JComboBox comboTipo, JComboBox comboValor, JTextField campoFrecuencia, JTextField campoNombre, PanelNodo panel) {
+	public AccionAceptar(Nodo nodo, JComboBox comboTipo, JComboBox comboValor, JTextField campoFrecuencia, JTextField campoNombre, PanelNodo panel, PanelMapa mapa) {
 		// TODO Auto-generated constructor stub
 		this.nodo = nodo;
 		this.comboTipo = comboTipo;
@@ -31,6 +33,7 @@ public class AccionAceptar implements ActionListener {
 		this.campoFrecuencia = campoFrecuencia;
 		this.campoNombre = campoNombre;
 		this.panel = panel;
+		this.mapa = mapa;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -60,17 +63,10 @@ public class AccionAceptar implements ActionListener {
 		else {
 			nodo.setNombre(nuevoNombre);
 		}
-		
+	
+		mapa.repaint();
+		mapa.recrearMapa();
 		panel.dispose();
-			
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
