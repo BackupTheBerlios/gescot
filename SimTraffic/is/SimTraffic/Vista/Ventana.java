@@ -50,6 +50,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -474,7 +475,7 @@ public class Ventana extends JFrame {
 		zoomin.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_in2.png";
 		zoomin.addActionListener(new AccionZoom(panel_mapa, 0.5));
-		zoomin.setToolTipText("<html>Aumentar tamaño de la representación <img src="+imageName+"></html>");
+		zoomin.setToolTipText("<html>Disminuir tamaño de la representación <img src="+imageName+"></html>");
 		
 		JButton zoomout = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\zoom_out.png"));
 		zoomout.setMargin(new Insets(1, 1, 1, 1));

@@ -43,19 +43,26 @@ public class HCrearVia implements IHerramienta {
 			tramosGuardados.add(tramos.get(0));
 			tramos.remove(0);
 		}
+		
+		//Repasar, si esto puede alterar el orden.
+		via.setTramos(tramosGuardados);
+		
 		modelo.getMapa().insertar(via);
 		return 0;
 	}
 
 	public int deshacer(IModelo modelo) {
-		while (!tramosGuardados.isEmpty()){
+		/*while (!tramosGuardados.isEmpty()){
 			modelo.getMapa().eliminar(tramosGuardados.get(0));
 			tramosGuardados.remove(0);
 		}
 		while (!nodosGuardados.isEmpty()){
 			modelo.getMapa().eliminar(nodosGuardados.get(0));
 			nodosGuardados.remove(0);
-		}
+		}*/
+		//Cambiado, en depuración.
+		nodosGuardados=null;
+		tramosGuardados=null;
 		modelo.getMapa().eliminar(via);
 		return 0;
 	}

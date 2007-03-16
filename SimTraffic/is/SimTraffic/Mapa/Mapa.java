@@ -43,10 +43,14 @@ public class Mapa {
 	private ArrayList<Tramo> Tramos;
 	
 	/**
-	 * Mantiene la lista de vías del mapa. 
-	 * Aclaración: Uso actual para lineas de autobuses únicamente.
+	 * Mantiene la lista de vías del mapa.
 	 */
 	private ArrayList<Via> Vias;
+	
+	/**
+	 * Guarda la información sobre los itinerarios de las lineas de autobuses (en vías).
+	 */
+	private ArrayList<Via> LineasAutobuses;
 	
 	/**
 	 * Indica la seleccion actual del mapa (nodos, tramos y señales).
@@ -58,6 +62,7 @@ public class Mapa {
 	 * portapapeles con el fin de reutilizarlos posteriormente. 
 	 */
 	private Seleccion portapapeles;
+	
 	private double maxLon;
 
 	private double minLon;
@@ -76,6 +81,7 @@ public class Mapa {
 		Señales = new ArrayList<Señal>();
 		Tramos = new ArrayList<Tramo>();
 		Vias = new ArrayList<Via>();
+		LineasAutobuses = new ArrayList<Via>();
 		
 		seleccion = new Seleccion();
 	}
@@ -91,6 +97,7 @@ public class Mapa {
 		Tramos = tramos;
 		Señales = new ArrayList<Señal>();
 		Vias = new ArrayList<Via>();
+		LineasAutobuses = new ArrayList<Via>();
 		
 		seleccion = new Seleccion();
 	}
@@ -172,8 +179,8 @@ public class Mapa {
 				temp = it.next();
 				if (tramo.equals(temp))
 					return;
-				if (tramo.getID() >= idMax)
-					idMax = tramo.getID();
+				if (temp.getID() >= idMax)
+					idMax = temp.getID();
 			}
 
 			// añade el tramo, salvo que comienze y termine en el mismo nodo
@@ -206,16 +213,64 @@ public class Mapa {
 				if (via.equals(temp))
 					return;
 				if (temp.getID() >= idMax)
-					idMax = via.getID();
+					idMax = temp.getID();
 			}
-
-					Vias.add(via);
-					via.setID(idMax+1);
+			
+			//Debe buscar también en la lista de lineas de autobuses 
+			//para poder asignar un id de vía único.
+			it = LineasAutobuses.iterator();
+			while (it.hasNext()) {
+				temp = it.next();
+				if (via.equals(temp))
+					return;
+				if (temp.getID() >= idMax)
+					idMax = temp.getID();
+			}
+			
+			Vias.add(via);
+			via.setID(idMax+1);
 		
 		}
 		
 	}
-
+	
+	/**
+	 * Método que inserta una vía dada como parámetro como un itinerario que seguirá un autobus.
+	 * Estos itinerarios se guardarán como vías, pero en un array de vias diferente a Vias,
+	 * por eso se crea este otro método aparte de insertar(Via via).
+	 * @param via Itinerario que seguirá un autobus.
+	 */
+	public void insertarLineaAutobus(Via via) {
+		int idMax = 1;
+		if (via != null) {
+			// busca si la vía no esta ya en el mapa, y el id de via mas grande
+			//  para no repetir
+			Iterator<Via> it = Vias.iterator();
+			Via temp;
+			while (it.hasNext()) {
+				temp = it.next();
+				if (via.equals(temp))
+					return;
+				if (temp.getID() >= idMax)
+					idMax = temp.getID();
+			}
+			
+			//Debe buscar también en la lista de lineas de autobuses 
+			//para poder asignar un id de vía único.
+			it = LineasAutobuses.iterator();
+			while (it.hasNext()) {
+				temp = it.next();
+				if (via.equals(temp))
+					return;
+				if (temp.getID() >= idMax)
+					idMax = temp.getID();
+			}
+			
+			LineasAutobuses.add(via);
+			via.setID(idMax+1);	
+		}
+	}
+	
 	/**
 	 * Metodo para insertar una señal relacionada con un nodo al mapa.
 	 * <p>
@@ -281,10 +336,10 @@ public class Mapa {
 	}
 	
 	/**
-	 * Método par a eliminar un tramo del mapa.
+	 * Método para eliminar una vía del mapa.
 	 * <p>
-	 * Este método se encarga de remover el tramo de la lista correspondiente,
-	 * así como actualizar los componentes con los que esta relacionado.
+	 * Este método se encarga de eliminar la vía creada, junto a los segmentos y nodos creados con ella.
+	 * (la operación de isnertar y eliminar una vía es atómica))
 	 * 
 	 * @param tramo
 	 *            Tramo que se desea quitar de la lista
@@ -299,8 +354,27 @@ public class Mapa {
 			while (tram.hasNext()) {
 				Tramo aux = tram.next();
 				this.eliminar(aux);
+				eliminar(aux.getNodoInicial());				
+				eliminar(aux.getNodoFinal());
 			}
 			Vias.remove(via);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Método que elimina una linea de autobus. Deberá ampliarse cuando cada nodo posea 
+	 * información sobre los autobuses que paran en si mismo, para actualizar la información
+	 * de esos nodos.
+	 * Al contrario que eliminar(Via via) no elimina del mapa los tramos y nodos que pertenecen 
+	 * a la via. 
+	 * @param via Itinerario de un autobus que se pretende eliminar.
+	 * @return
+	 */
+	public boolean eliminarLineaAutobus(Via via) {
+		if (via != null && LineasAutobuses.contains(via)) {
+			LineasAutobuses.remove(via);
 			return true;
 		}
 		return false;
@@ -460,6 +534,18 @@ public class Mapa {
 
 	public void setSeleccion(Seleccion seleccion) {
 		this.seleccion = seleccion;
+	}
+
+	public ArrayList<Via> getLineasAutobuses() {
+		return LineasAutobuses;
+	}
+
+	public void setLineasAutobuses(ArrayList<Via> lineasAutobuses) {
+		LineasAutobuses = lineasAutobuses;
+	}
+
+	public void setTramos(ArrayList<Tramo> tramos) {
+		Tramos = tramos;
 	}
 
 }
