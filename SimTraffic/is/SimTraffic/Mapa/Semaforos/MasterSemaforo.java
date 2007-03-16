@@ -66,6 +66,13 @@ public class MasterSemaforo extends Señal{
 	
 	
 	/**
+	 * Atributo que almacena el tiempo de ciclo de los semaforos.<br>
+	 * El valor esta en segundos. Inicialmente se establece a 30 segs<br>
+	 * Nota: Se entiende por tiempo de ciclo al periodo en el que el semaforo permanece en un estado.
+	 */
+	private int tiempoDeCiclo=30;
+	
+	/**
 	 * Accedente para establecer el tipo de semaforo.
 	 * @param tipoSemaforo
 	 */
@@ -112,8 +119,14 @@ public void setEstadoSemaforos(int Estado){
 
 public void setMasterSemaforo(int x, int y, boolean value){
 	this.ArraySemaforos[x][y]=value;
-	
 }
 
+public int getTiempoDeCiclo(){
+	return this.tiempoDeCiclo;
+}
+
+public void setTiempoDeCiclo(int tiempo){
+	this.tiempoDeCiclo=tiempo;
+}
 
 }

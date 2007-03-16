@@ -36,13 +36,14 @@ public class PanelNodo extends JFrame
 	private JComboBox comboValor;
 	private JTextField campoFrecuencia;
 	private JTextField campoNombre;
-	private Nodo nodo;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
 	private JPanel panelPropiedades = new JPanel();
 	private JPanel panelSeñales = new JPanel();
 	private JPanel panelTramos = new JPanel();
-    private PanelMapa mapa;
+	
+	private Nodo nodo;
+	private PanelMapa mapa;
 
 	
 	public PanelNodo(Nodo nodo){
