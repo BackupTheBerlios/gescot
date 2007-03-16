@@ -16,6 +16,7 @@ import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
  */
 public class HAsignarTramosAVia implements IHerramienta {
 	
+
 	Via viaAInsertar;
 	int id;
 	ITipoElemento tipoVia;

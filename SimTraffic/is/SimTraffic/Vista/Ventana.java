@@ -2,6 +2,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
@@ -21,6 +22,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirSemaforo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
@@ -365,6 +367,14 @@ public class Ventana extends JFrame {
 		panel.add(añadirSemaforos);
 		seleccionarButton.addKeyListener(escuchaTeclado);
 		
+		//Añadir Vias
+		JButton añadirVia = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_via2.png"));
+		añadirVia.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_via.png"; 
+		añadirVia.setToolTipText("<html>Añadir una via <img src="+imageName+"></html>");
+		añadirVia.addActionListener(new AccionSobreMapa(
+				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		panel.add(añadirVia);
 		
 		
 		
