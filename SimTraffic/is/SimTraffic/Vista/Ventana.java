@@ -394,10 +394,9 @@ public class Ventana extends JFrame {
 				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirVia);
 		
-		//JButton simulacion = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\simular.png"));
-		JButton simulacion = new JButton(">");
+		JButton simulacion = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\simular.png"));
 		simulacion.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_via.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\simular2.png"; 
 		simulacion.setToolTipText("<html>Comenzar simulación <img src="+imageName+"></html>");
 		simulacion.addActionListener(new AccionComenzarSimulacion
 				(controlador,modelo));
