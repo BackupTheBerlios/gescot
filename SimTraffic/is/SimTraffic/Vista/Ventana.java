@@ -26,6 +26,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
+import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
@@ -319,6 +320,14 @@ public class Ventana extends JFrame {
 		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
 		seleccionarButton.addActionListener(new AccionBarra(this, barraSeleccionar));
 		panel.add(seleccionarButton);
+		
+		JButton moverButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
+		moverButton.setMargin(new Insets(1, 1, 1, 1));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
+		moverButton.setToolTipText("<html>Mover <img src="+imageName+"></html>");
+		moverButton.addActionListener(new AccionSobreMapa(
+				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		panel.add(moverButton);
 		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
 		añadirNodoButton.setMargin(new Insets(1, 1, 1, 1));
