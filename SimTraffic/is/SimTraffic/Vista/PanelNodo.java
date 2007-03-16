@@ -39,7 +39,7 @@ public class PanelNodo extends JFrame
 	private Nodo nodo;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
-private JPanel panelPropiedades = new JPanel();
+	private JPanel panelPropiedades = new JPanel();
 	private JPanel panelSeñales = new JPanel();
 	private JPanel panelTramos = new JPanel();
     private PanelMapa mapa;
@@ -93,12 +93,44 @@ private JPanel panelPropiedades = new JPanel();
 	 */
 	public void creaPanelSeñales(){
 
-	    panelSeñales.setLayout(new FlowLayout());
+	    panelSeñales.setLayout(new BorderLayout());
+	    JPanel panelTipoSeñal= new JPanel();
+	    JPanel panelDetallesSeñal= new JPanel();
+	    this.panelSeñales.add(panelTipoSeñal,BorderLayout.NORTH);
+	    this.panelSeñales.add(panelDetallesSeñal,BorderLayout.CENTER);
+	    
+	    panelTipoSeñal.setLayout(new FlowLayout());
+	    panelDetallesSeñal.setLayout(new FlowLayout());
+	    
+	    panelTipoSeñal.setBorder(BorderFactory.createTitledBorder("Tipo de Señal"));
+	    panelDetallesSeñal.setBorder(BorderFactory.createTitledBorder("Detalles"));
+	    
+	    
 	    JLabel etiquetaTipoSeñal = new JLabel("Tipo");
-	    panelSeñales.add(etiquetaTipoSeñal);
 	    String[] tiposSeñales = { "                  ", "STOP", "Ceda el Paso", "Semáforos"};
 	    comboTipoSeñales = new JComboBox(tiposSeñales);
-	    panelSeñales.add(comboTipoSeñales);
+	    
+	    panelTipoSeñal.add(etiquetaTipoSeñal);
+	    panelTipoSeñal.add(comboTipoSeñales);
+	    
+	    
+	    
+	    JLabel etiquetaDetallesSeñal1= new JLabel("Tipo de Semaforo");
+	    String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular"};
+	    JComboBox comboTipoSemaforos = new JComboBox();
+	    comboTipoSemaforos = new JComboBox(tiposSemaforos);
+	    JLabel etiquetaDetallesSeñal2= new JLabel("Tiempo de cliclo");
+	    JTextField campoTiempoCicloSemaforo= new JTextField("      ");
+	    
+	    
+	    
+	    panelDetallesSeñal.add(etiquetaDetallesSeñal1);
+	    panelDetallesSeñal.add(comboTipoSemaforos);
+	    panelDetallesSeñal.add(etiquetaDetallesSeñal2);
+	    panelDetallesSeñal.add(campoTiempoCicloSemaforo);
+	    
+	    
+	    
 /*	    if(comboTipoSeñales.getSelectedItem()=="Semaforo"){
 	    	String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular (¿?)"};
 	    	JComboBox comboTipoSemaforos = new JComboBox(tiposSemaforos);
@@ -108,7 +140,6 @@ private JPanel panelPropiedades = new JPanel();
 	    /*JLabel etiquetaValorSeñal = new JLabel("Valor");
 	    panelSeñales.add(etiquetaValorSeñal);
 	    panelSeñales.add(comboValor);*/
-	    panelSeñales.setBorder(BorderFactory.createTitledBorder("Tipo de Señales"));
 	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");
 	    
 	}
