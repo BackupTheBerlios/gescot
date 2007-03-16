@@ -274,8 +274,21 @@ public class Nodo implements ElementoMapa {
 	 * Mutador para establecer el controlador del semaforo
 	 * @param controladorSemaforo
 	 */
-	public void setControladorSemaforo(MasterSemaforo controladorSemaforo) {
+	public void setControladorSemaforo(MasterSemaforo controladorSemaforo) { 
 		ControladorSemaforo = controladorSemaforo;
+	}
+	
+	/**
+	 * Este clone() sirve unicamente para utilizarlo en la herramienta de mover, ya que sólo necesitaremos conocer
+	 * los valores ID y de las posiciones del nodo.
+	 * @return
+	 */
+	public Nodo cloneParaMover() {
+		Nodo nodoClon = new Nodo(this.es, this.ID, this.nombre, new Posicion(pos.getLat(),pos.getLon()), 
+				this.señal, this.tipo, this.tramos);
+		nodoClon.setControladorSemaforo(this.ControladorSemaforo);
+		return nodoClon;
+		//{{{
 	}
 
 
