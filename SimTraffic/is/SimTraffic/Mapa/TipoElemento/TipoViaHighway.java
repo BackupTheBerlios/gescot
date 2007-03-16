@@ -54,6 +54,31 @@ public class TipoViaHighway implements ITipoElemento {
 	public String traduciraCastellano(String valorTipo) {
 		return null;
 	}
+	/**
+	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
+	 */
+	public String[][] crearTablaTraduccion() {
+		String[][] tTraduccion = { {"Autovia"," motorway"}, 
+								   {"acceso/salida Autovia","motorway_link"},
+								   {"Carretera Nacional","trunk"},
+								   {"acceso/salida Carretera Nacional","trunk_link"},
+								   {"Carreteras principales","primary"},
+								   {"Conexiones  principales y secundarias","primary_link"},
+								   {"Carreteras secundarias","secondary"},
+								   {"Carreteras terciarias","tertiary"},
+								   {"Carreteras sin clasificar","unclassified"},
+								   {"Caminos forestales","track"},
+								   {"Calles residenciales","residential"},
+								   {"Vias de servicio","service"},	
+								   //{"","bridleway"}, (No tiene equivalente en España)
+								   {"Carril-bici","cycleway"},
+								   {"Via peatonal","footway"},
+								   {"Calle peatonal","pedestrian"},
+								   {"Escaleras","steps"},
+								   //{"Definido por el usuario","User Defined"},
+									};
+		return tTraduccion;
+	}
 
 	public String getTipo() {
 		return tipo;
