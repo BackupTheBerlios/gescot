@@ -24,7 +24,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 
-public class PanelNodo extends JFrame{
+public class PanelNodo extends JFrame
+{
 
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane panelDatos;

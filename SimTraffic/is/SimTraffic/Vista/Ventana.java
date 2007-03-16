@@ -49,8 +49,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.BevelBorder;
+
+import com.sun.org.apache.xerces.internal.impl.xs.opti.DefaultNode;
 
 /**
  * Ventana que contiene la interfaz gráfica de la aplicación.
@@ -132,6 +138,8 @@ public class Ventana extends JFrame {
 	private JComboBox comboTipo;
 
 	private JComboBox comboValor;
+
+	private JComboBox comboFun;
 	
 	/**
 	 * Constructor de la ventana.
@@ -489,20 +497,53 @@ public class Ventana extends JFrame {
 	{
 		barraCrearNodo = new JToolBar(); 
 		
-		JLabel etiquetaTipo = new JLabel("Tipo");
+		JLabel etiquetaTipo = new JLabel("  Tipo  ");
 		String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "Infraestructura", "No definido"};
 		comboTipo = new JComboBox(tiposNodos);
 		
-		JLabel etiquetaValor = new JLabel("Valor");
+		JLabel etiquetaValor = new JLabel("  Valor  ");
 		String[] valorNodos = { "                  "};
 		comboValor = new JComboBox(valorNodos);
 	
-	    comboTipo.addActionListener(new AccionSeleccionarTipo(comboTipo,comboValor));
+		JLabel etiquetaFuncionalidad = new JLabel("  Funcionalidad  ");
+	    String[] valorFun = {"Normal", "Entrada/Salida"};
+	    comboFun = new JComboBox(valorFun);
+	    final JLabel etiquetaFrecuencia = new JLabel("  Frecuencia  ");
+	    final JSpinner valorFrec = new JSpinner(new SpinnerNumberModel(50,1,100,1));
+	    etiquetaFrecuencia.setEnabled(false);
+		valorFrec.setEnabled(false);
+		
+		JLabel etiquetaNombre = new JLabel("  Nombre  ");
+		JTextField nombre = new JTextField();
 	    
+		comboTipo.addActionListener(new AccionSeleccionarTipo(comboTipo,comboValor));
+	    comboFun.addActionListener(new ActionListener(){
+	    		public void actionPerformed(ActionEvent e)
+	    		{
+	    			if (comboFun.getSelectedItem().equals("Entrada/Salida"))
+	    			{
+	    				etiquetaFrecuencia.setEnabled(true);
+	    				valorFrec.setEnabled(true);
+	    			}
+	    			else
+	    			{
+	    				etiquetaFrecuencia.setEnabled(false);
+	    				valorFrec.setEnabled(false);
+	    			}
+	    				
+	    		}
+	    });
+		
 	    barraCrearNodo.add(etiquetaTipo);
 	    barraCrearNodo.add(comboTipo);
 	    barraCrearNodo.add(etiquetaValor);
 	    barraCrearNodo.add(comboValor);
+	    barraCrearNodo.add(etiquetaFuncionalidad);
+	    barraCrearNodo.add(comboFun);
+	    barraCrearNodo.add(etiquetaFrecuencia);
+	    barraCrearNodo.add(valorFrec);
+	    barraCrearNodo.add(etiquetaNombre);
+	    barraCrearNodo.add(nombre);
 	}
 	
 	private void crearBarraSeleccionar() 
