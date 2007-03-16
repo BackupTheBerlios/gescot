@@ -205,7 +205,7 @@ public class Mapa {
 				temp = it.next();
 				if (via.equals(temp))
 					return;
-				if (via.getID() >= idMax)
+				if (temp.getID() >= idMax)
 					idMax = via.getID();
 			}
 

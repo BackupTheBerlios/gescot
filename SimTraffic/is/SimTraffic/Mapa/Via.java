@@ -34,6 +34,7 @@ public class Via implements ElementoMapa {
 	
 	public Via() {
 		Tramos = new ArrayList<Tramo>();
+		//ID=asignarIDunico();
 	}
 
 	public int getID() {
