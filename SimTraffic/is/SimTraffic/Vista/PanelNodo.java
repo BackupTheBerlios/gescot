@@ -130,6 +130,12 @@ public class PanelNodo extends JFrame
 	    panelDetallesSeñal.add(etiquetaDetallesSeñal2);
 	    panelDetallesSeñal.add(campoTiempoCicloSemaforo);
 	    
+	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");	    
+	    
+	    // Cargar los datos del nodo al formulario
+	    
+	    
+	    
 	    
 	    
 /*	    if(comboTipoSeñales.getSelectedItem()=="Semaforo"){
@@ -141,7 +147,7 @@ public class PanelNodo extends JFrame
 	    /*JLabel etiquetaValorSeñal = new JLabel("Valor");
 	    panelSeñales.add(etiquetaValorSeñal);
 	    panelSeñales.add(comboValor);*/
-	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Nodo");
+	    
 	    
 	}
 	
@@ -255,6 +261,8 @@ public class PanelNodo extends JFrame
 	public void crearAcciones() {
 		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
 	    comboTipo.addActionListener(accionSeleccionarTipo);
+	    
+	    // Oyentes para los botones aceptar y cancelar
 	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this, mapa);
 	    botonAceptar.addActionListener(accionAceptar);
 	    final PanelNodo panelPpal=this;
