@@ -34,7 +34,12 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 				}
 				else if (aux.equalsIgnoreCase("Stop"))
 				{
-					
+					try {
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Stop.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				else if (aux.equalsIgnoreCase("Cruce"))
 				{
@@ -57,63 +62,199 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					
 				}
 			}
-			else if (aux.equalsIgnoreCase("Campo de golf"))
-			{
+			else if (aux.equalsIgnoreCase("Tiempo Libre"))
+				{
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Campo de golf"))
+						{
+							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+							try {
+								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\golf.png"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 				
-			}
-			else if (aux.equalsIgnoreCase("Estadio"))
-			{
+			
+				else if (aux.equalsIgnoreCase("Estadio"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Pista de carreras"))
-			{
+				}
+				else if (aux.equalsIgnoreCase("Pista de carreras"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Campo de deporte"))
-			{
+				}
+				else if (aux.equalsIgnoreCase("Campo de deporte"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Parque acuático"))
-			{
+				}
+				else if (aux.equalsIgnoreCase("Parque acuático"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Parque"))
-			{
+				}
+				else if (aux.equalsIgnoreCase("Parque"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Jardín"))
-			{
+				}
+				else if (aux.equalsIgnoreCase("Jardín"))
+				{
 				
-			}
-			else if (aux.equalsIgnoreCase("Planta eólica"))
-			{
+				}
+			} 
+			else if (aux.equalsIgnoreCase("Construccion"))
+				{
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Planta eólica"))
+						{
+							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+							try {
+								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Torre_de_electricidad.PNG"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					else if (aux.equalsIgnoreCase("Planta Hidroeléctrica"))
+					{
 				
-			}
-			else if (aux.equalsIgnoreCase("Planta eólica"))
-			{
+					}
+					else if (aux.equalsIgnoreCase("Central Hidroeléctrica"))
+					{
 				
-			}
-			else if (aux.equalsIgnoreCase("Planta Hidroeléctrica"))
-			{
+					}
+					else if (aux.equalsIgnoreCase("Central nuclear"))
+					{
 				
-			}
-			else if (aux.equalsIgnoreCase("Central Hidroeléctrica"))
-			{
+					}
+					else if (aux.equalsIgnoreCase("Faro"))
+					{
 				
+					}
+			} else if (aux.equalsIgnoreCase("Infraestructura"))
+				{
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Pub"))
+						{
+							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+							try {
+								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\puff.png"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					else if (aux.equalsIgnoreCase("Parking"))
+					{
+						{
+							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+							try {
+								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Parking.png"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+					else if (aux.equalsIgnoreCase("Gasolinera"))
+					{
+						{
+							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+							try {
+								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Gasolinera.png"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+					else if (aux.equalsIgnoreCase("Cabina de telefono"))
+					{
+						{
+						//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
+						try {
+							buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Cabinadetelefono.png"));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					}
+					else if (aux.equalsIgnoreCase("Aseos Publicos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Edificio Publico"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Iglesia"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Cementerio"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Oficina de Correos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Oficina de Correos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Buzon de Correos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Colegio"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Supermercado"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Hospital"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Libreria"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Comisaria"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Parque de bomberos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Terrazas"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Restaurante"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Cadena de comida rapida"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Estacion de autobus"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Teatro"))
+					{
+						
+					}
+				}
+			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-9, y_MapaARep(nodo.getPos().getLat())-9, null);
 			}
-			else if (aux.equalsIgnoreCase("Central nuclear"))
-			{
-				
 			}
-			else if (aux.equalsIgnoreCase("Faro"))
-			{
-				
-			}
-			else if (aux.equalsIgnoreCase("Pub"))
-			{
-				
-			}
-			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()), y_MapaARep(nodo.getPos().getLat()), null);
+			
 		}
-	}
-}
