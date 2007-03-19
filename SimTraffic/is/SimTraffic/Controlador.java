@@ -66,6 +66,7 @@ public class Controlador implements IControlador {
 	 * @see is.SimTraffic.IControlador#deshacer()
 	 */
 	public int deshacer() {
+		modelo.getMapa().limpiaSeleccion();
 		if (herramientas.size() > 0) {
 			int resultado = herramientas.get(herramientas.size() - 1).deshacer(
 					modelo);
