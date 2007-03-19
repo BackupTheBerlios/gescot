@@ -12,13 +12,14 @@ public class AccionAceptarTramo implements ActionListener
 	private Tramo tramo;
 	private boolean seleccionadoUnidireccional;
 	private boolean seleccionadoSentido1;
-	private int numCarr1, numCarr2, velSent1, velSent2;
+	private int numCarr1, numCarr2;
+	private float vel;
 	private PanelMapa mapa;
 	private PanelTramo panel;
 	
 	
 	
-	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,Tramo tramo, boolean seleccionadoUnidireccional, boolean seleccionadoSentido1, int numCarr1, int numCarr2, int velSent1, int velSent2) 
+	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,Tramo tramo, boolean seleccionadoUnidireccional, boolean seleccionadoSentido1, int numCarr1, int numCarr2, int vel) 
 	{
 		this.panel = panel;
 		this.mapa = mapa;
@@ -27,8 +28,7 @@ public class AccionAceptarTramo implements ActionListener
 		this.seleccionadoSentido1 = seleccionadoSentido1;
 		this.numCarr1 = numCarr1;
 		this.numCarr2 = numCarr2;
-		this.velSent1 = velSent1;
-		this.velSent2 = velSent2;
+		this.vel = vel;
 	}
 
 	public void actionPerformed(ActionEvent arg0) 
@@ -39,21 +39,20 @@ public class AccionAceptarTramo implements ActionListener
 			{
 				tramo.setNumCarrilesDir1(numCarr1);
 				tramo.setNumCarrilesDir2(0);
-				tramo.setVelMax(velSent1);
+				tramo.setVelMax(vel);
 			}
 			else
 			{
 				tramo.setNumCarrilesDir2(numCarr2);
 				tramo.setNumCarrilesDir2(0);
-				tramo.setVelMax(velSent2);
+				tramo.setVelMax(vel);
 			}
 		}
 		else
 		{
 			tramo.setNumCarrilesDir1(numCarr1);
 			tramo.setNumCarrilesDir2(numCarr2);
-			tramo.setVelMax(velSent1);  //¿Falta un atributo en los tramos para que ambos sentidos puedan tener velocidades distintas
-										// o sobra un spinner en la ventana de propiedades de los tramos?
+			tramo.setVelMax(vel); 
 		}
 		mapa.repaint();
 		mapa.recrearMapa();
