@@ -1,6 +1,6 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public abstract class TipoElemento {
+public abstract class TipoElemento implements ITipoElemento{
 
 	/**
 	 * Categoría del tipo de elemento (nodo, tramo, vía)
