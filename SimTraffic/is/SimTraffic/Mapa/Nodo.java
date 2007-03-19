@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class Nodo implements ElementoMapa {
 	
+	public static int id = 0;
+
 	//Decidimos incluir la clase de entradaSalida e incluir un atributo aqui de ese tipo
 	//que represente mejor las proporciones de los coches en franjas horarias
 	/**
@@ -84,6 +86,7 @@ public class Nodo implements ElementoMapa {
 		es = null;
 		señal = null;
 		tramos = new ArrayList<Tramo>();
+		id++;
 	}
 
 	public Nodo(int id, String nombre, Posicion pos, ITipoElemento tipo) {
@@ -93,6 +96,7 @@ public class Nodo implements ElementoMapa {
 		this.pos = pos;
 		this.tipo = tipo;
 		tramos = new ArrayList<Tramo>();
+		id++;
 	}
 
 	public Nodo(EntradaSalida es, int id, String nombre, Posicion pos, Señal señal, ITipoElemento tipo, List<Tramo> tramos) {
@@ -105,6 +109,7 @@ public class Nodo implements ElementoMapa {
 		this.señal = señal;
 		this.tipo = tipo;
 		this.tramos = tramos;
+		id++;
 	}
 
 	/**

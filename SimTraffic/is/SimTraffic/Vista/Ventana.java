@@ -2,7 +2,14 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
+import is.SimTraffic.Vista.Acciones.AccionBarra;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
 import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
@@ -12,10 +19,8 @@ import is.SimTraffic.Vista.Acciones.AccionDeshacer;
 import is.SimTraffic.Vista.Acciones.AccionGuardar;
 import is.SimTraffic.Vista.Acciones.AccionNuevo;
 import is.SimTraffic.Vista.Acciones.AccionPegar;
-import is.SimTraffic.Vista.Acciones.AccionBarra;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
@@ -50,16 +55,12 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.BevelBorder;
-
-import com.sun.org.apache.xerces.internal.impl.xs.opti.DefaultNode;
 
 /**
  * Ventana que contiene la interfaz gráfica de la aplicación.
@@ -137,12 +138,14 @@ public class Ventana extends JFrame {
 	private boolean panel_añadido;
 	
 	private JToolBar barraCrearNodo;
-
+	
 	private JComboBox comboTipo;
-
+	
 	private JComboBox comboValor;
-
+	
 	private JComboBox comboFun;
+	
+	private JTextField nombre;
 	
 	/**
 	 * Constructor de la ventana.
@@ -158,6 +161,7 @@ public class Ventana extends JFrame {
 		setSize(800, 600);
 		setTitle("SimTraffic™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); //La ventana aparece maximizada.
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
 		
@@ -320,6 +324,8 @@ public class Ventana extends JFrame {
 		seleccionarButton.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
 		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
+		seleccionarButton.addActionListener(new AccionSobreMapa(
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		seleccionarButton.addActionListener(new AccionBarra(this, barraSeleccionar));
 		panel.add(seleccionarButton);
 		
@@ -336,7 +342,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
 		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado));
 		añadirNodoButton.addActionListener(new AccionBarra(this, barraCrearNodo));
 		panel.add(añadirNodoButton);
 		//Aquí también habría que añadir el oyente de teclado al añadirNodoButton (y en el resto de botones),
@@ -377,7 +383,7 @@ public class Ventana extends JFrame {
 				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		panel.add(añadirLineaAutobus);
 		
-//		 Botón añadir semaforos
+//		Botón añadir semaforos
 		JButton añadirSemaforos = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\semaforo1.png"));
 		añadirSemaforos.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo2.png"; 
@@ -523,46 +529,46 @@ public class Ventana extends JFrame {
 		JLabel etiquetaValor = new JLabel("  Valor  ");
 		String[] valorNodos = { "                  "};
 		comboValor = new JComboBox(valorNodos);
-	
+		
 		JLabel etiquetaFuncionalidad = new JLabel("  Funcionalidad  ");
-	    String[] valorFun = {"Normal", "Entrada/Salida"};
-	    comboFun = new JComboBox(valorFun);
-	    final JLabel etiquetaFrecuencia = new JLabel("  Frecuencia  ");
-	    final JSpinner valorFrec = new JSpinner(new SpinnerNumberModel(50,1,100,1));
-	    etiquetaFrecuencia.setEnabled(false);
+		String[] valorFun = {"Normal", "Entrada/Salida"};
+		comboFun = new JComboBox(valorFun);
+		final JLabel etiquetaFrecuencia = new JLabel("  Frecuencia  ");
+		final JSpinner valorFrec = new JSpinner(new SpinnerNumberModel(50,1,100,1));
+		etiquetaFrecuencia.setEnabled(false);
 		valorFrec.setEnabled(false);
 		
 		JLabel etiquetaNombre = new JLabel("  Nombre  ");
-		JTextField nombre = new JTextField();
-	    
-		comboTipo.addActionListener(new AccionSeleccionarTipo(comboTipo,comboValor));
-	    comboFun.addActionListener(new ActionListener(){
-	    		public void actionPerformed(ActionEvent e)
-	    		{
-	    			if (comboFun.getSelectedItem().equals("Entrada/Salida"))
-	    			{
-	    				etiquetaFrecuencia.setEnabled(true);
-	    				valorFrec.setEnabled(true);
-	    			}
-	    			else
-	    			{
-	    				etiquetaFrecuencia.setEnabled(false);
-	    				valorFrec.setEnabled(false);
-	    			}
-	    				
-	    		}
-	    });
+		nombre = new JTextField();
 		
-	    barraCrearNodo.add(etiquetaTipo);
-	    barraCrearNodo.add(comboTipo);
-	    barraCrearNodo.add(etiquetaValor);
-	    barraCrearNodo.add(comboValor);
-	    barraCrearNodo.add(etiquetaFuncionalidad);
-	    barraCrearNodo.add(comboFun);
-	    barraCrearNodo.add(etiquetaFrecuencia);
-	    barraCrearNodo.add(valorFrec);
-	    barraCrearNodo.add(etiquetaNombre);
-	    barraCrearNodo.add(nombre);
+		comboTipo.addActionListener(new AccionSeleccionarTipo(comboTipo,comboValor));
+		comboFun.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				if (comboFun.getSelectedItem().equals("Entrada/Salida"))
+				{
+					etiquetaFrecuencia.setEnabled(true);
+					valorFrec.setEnabled(true);
+				}
+				else
+				{
+					etiquetaFrecuencia.setEnabled(false);
+					valorFrec.setEnabled(false);
+				}
+				
+			}
+		});
+		
+		barraCrearNodo.add(etiquetaTipo);
+		barraCrearNodo.add(comboTipo);
+		barraCrearNodo.add(etiquetaValor);
+		barraCrearNodo.add(comboValor);
+		barraCrearNodo.add(etiquetaFuncionalidad);
+		barraCrearNodo.add(comboFun);
+		barraCrearNodo.add(etiquetaFrecuencia);
+		barraCrearNodo.add(valorFrec);
+		barraCrearNodo.add(etiquetaNombre);
+		barraCrearNodo.add(nombre);
 	}
 	
 	private void crearBarraSeleccionar() 
@@ -674,5 +680,23 @@ public class Ventana extends JFrame {
 	
 	public void setBarraSeleccionar(JToolBar barraSeleccionar) {
 		this.barraSeleccionar = barraSeleccionar;
+	}
+	
+	public Nodo prepararNodo(Posicion p) 
+	{
+		ITipoElemento tipo;
+		String type = (String) comboTipo.getSelectedItem();
+		if (type.equals("Carretera"))
+			tipo = new TipoNodoHighway((String) comboValor.getSelectedItem());
+		else if (type.equals("Infraestructura"))
+			tipo = new TipoNodoAmenity((String) comboValor.getSelectedItem());
+		else if (type.equals("Tiempo Libre"))
+			tipo = new TipoNodoLeisure((String) comboValor.getSelectedItem());
+		else if (type.equals("Construcción"))
+			tipo = new TipoNodoManMade((String) comboValor.getSelectedItem());
+		else 
+			tipo = null;
+		Nodo nodo = new Nodo(Nodo.id, nombre.getText(), p, tipo);
+		return nodo;
 	}
 }

@@ -15,170 +15,119 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 	public void pintar(Graphics2D g, Nodo nodo)
 	{
 		super.pintar(g,nodo);
-		if (nodo.getTipo() != null)
-		{	
-			String aux = nodo.getTipo().getTipoCastellano();
-			BufferedImage buffer = null;
-			if (aux.equalsIgnoreCase("Carretera"))
-			{
-				aux = nodo.getTipo().getValorTipoCastellano();
-				if (aux.equalsIgnoreCase("Mini-rotonda"))
+		try
+		{
+			if (nodo.getTipo() != null)
+			{	
+				String aux = nodo.getTipo().getTipoCastellano();
+				BufferedImage buffer = null;
+				if (aux.equalsIgnoreCase("Carretera"))
 				{
-					//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-					try {
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Mini-rotonda"))
+					{
 						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Rotonda.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
-				}
-				else if (aux.equalsIgnoreCase("Stop"))
-				{
-					try {
+					else if (aux.equalsIgnoreCase("Stop"))
+					{
 						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Stop.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					}
+					else if (aux.equalsIgnoreCase("Cruce"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Portón para vehículos"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Cambio De Rasante"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Puente"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Viaducto"))
+					{
+						
 					}
 				}
-				else if (aux.equalsIgnoreCase("Cruce"))
-				{
-					
-				}
-				else if (aux.equalsIgnoreCase("Portón para vehículos"))
-				{
-					
-				}
-				else if (aux.equalsIgnoreCase("Cambio De Rasante"))
-				{
-					
-				}
-				else if (aux.equalsIgnoreCase("Puente"))
-				{
-					
-				}
-				else if (aux.equalsIgnoreCase("Viaducto"))
-				{
-					
-				}
-			}
-			else if (aux.equalsIgnoreCase("Tiempo Libre"))
+				else if (aux.equalsIgnoreCase("Tiempo Libre"))
 				{
 					aux = nodo.getTipo().getValorTipoCastellano();
 					if (aux.equalsIgnoreCase("Campo de golf"))
-						{
-							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-							try {
-								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\golf.png"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-				
-			
-				else if (aux.equalsIgnoreCase("Estadio"))
-				{
-				
-				}
-				else if (aux.equalsIgnoreCase("Pista de carreras"))
-				{
-				
-				}
-				else if (aux.equalsIgnoreCase("Campo de deporte"))
-				{
-				
-				}
-				else if (aux.equalsIgnoreCase("Parque acuático"))
-				{
-				
-				}
-				else if (aux.equalsIgnoreCase("Parque"))
-				{
-				
-				}
-				else if (aux.equalsIgnoreCase("Jardín"))
-				{
-				
-				}
-			} 
-			else if (aux.equalsIgnoreCase("Construccion"))
+					{
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Campo_Golf.png"));
+					}
+					
+					
+					else if (aux.equalsIgnoreCase("Estadio"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Pista de carreras"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Campo de deporte"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Parque acuático"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Parque"))
+					{
+						
+					}
+					else if (aux.equalsIgnoreCase("Jardín"))
+					{
+						
+					}
+				} 
+				else if (aux.equalsIgnoreCase("Construcción"))
 				{
 					aux = nodo.getTipo().getValorTipoCastellano();
 					if (aux.equalsIgnoreCase("Planta eólica"))
-						{
-							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-							try {
-								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Torre_de_electricidad.PNG"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+					{
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Torre_de_electricidad.PNG"));
+					}
 					else if (aux.equalsIgnoreCase("Planta Hidroeléctrica"))
 					{
-				
+						
 					}
 					else if (aux.equalsIgnoreCase("Central Hidroeléctrica"))
 					{
-				
+						
 					}
 					else if (aux.equalsIgnoreCase("Central nuclear"))
 					{
-				
+						
 					}
 					else if (aux.equalsIgnoreCase("Faro"))
 					{
-				
+						
 					}
-			} else if (aux.equalsIgnoreCase("Infraestructura"))
+				} else if (aux.equalsIgnoreCase("Infraestructura"))
 				{
 					aux = nodo.getTipo().getValorTipoCastellano();
 					if (aux.equalsIgnoreCase("Pub"))
-						{
-							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-							try {
-								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\puff.png"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+					{
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\puff.png"));
+					}
 					else if (aux.equalsIgnoreCase("Parking"))
 					{
-						{
-							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-							try {
-								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Parking.png"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Parking.png"));
 					}
 					else if (aux.equalsIgnoreCase("Gasolinera"))
 					{
-						{
-							//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-							try {
-								buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Gasolinera.png"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Gasolinera.png"));
 					}
 					else if (aux.equalsIgnoreCase("Cabina de telefono"))
 					{
-						{
-						//ImageIcon icono = new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\Re.png");
-						try {
-							buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Cabinadetelefono.png"));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
+						//buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Cabinadetelefono.png"));
 					}
 					else if (aux.equalsIgnoreCase("Aseos Publicos"))
 					{
@@ -253,8 +202,10 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 						
 					}
 				}
-			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-9, y_MapaARep(nodo.getPos().getLat())-9, null);
+				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-9, y_MapaARep(nodo.getPos().getLat())-9, null);
 			}
-			}
-			
 		}
+		catch (IOException e) {e.printStackTrace();}
+	}
+	
+}
