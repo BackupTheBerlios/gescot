@@ -6,6 +6,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.PanelTramo;
@@ -80,12 +81,17 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 						panelNod.setBounds(80, 120, 500, 600);
 						panelNod.setVisible(true);
 					}
-					else if (this.buscarTramo(arg0.getX(), arg0.getY()) != null) {
-						JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
-						PanelTramo panelTram = new PanelTramo();
-						ventanaTramo.add(panelTram);
-						ventanaTramo.setBounds(80, 120, 400, 600);
-						ventanaTramo.setVisible(true);
+					else
+					{
+						Tramo tramoAux = this.buscarTramo(arg0.getX(), arg0.getY());
+						if (tramoAux != null) 
+						{
+							//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
+							PanelTramo panelTram = new PanelTramo(tramoAux, panel);
+							panelTram.setTitle("Propiedades del Tramo");
+							panelTram.setBounds(80, 120, 400, 600);
+							panelTram.setVisible(true);
+						}	
 					}
 				}
 				estado = 0;

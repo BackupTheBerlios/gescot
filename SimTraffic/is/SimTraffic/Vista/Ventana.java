@@ -513,8 +513,9 @@ public class Ventana extends JFrame {
 		
 	}
 	
-	private void crearBarraTramo() {
-		// TODO Auto-generated method stub
+	private void crearBarraTramo() 
+	{
+		
 		
 	}
 	
