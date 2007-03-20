@@ -7,53 +7,55 @@ import is.SimTraffic.Vista.PanelTramo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
+
 public class AccionAceptarTramo implements ActionListener
 {
 	private Tramo tramo;
-	private boolean seleccionadoUnidireccional;
-	private boolean seleccionadoSentido1;
-	private int numCarr1, numCarr2;
-	private float vel;
+	private JRadioButton seleccionadoUnidireccional;
+	private JRadioButton seleccionadoSentido1;
+	JSpinner numCarr1;
+	private JSpinner numCarr2;
+	private JSpinner vel;
 	private PanelMapa mapa;
 	private PanelTramo panel;
 	
 	
 	
-	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,Tramo tramo, boolean seleccionadoUnidireccional, boolean seleccionadoSentido1, int numCarr1, int numCarr2, int vel) 
+	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad) 
 	{
 		this.panel = panel;
 		this.mapa = mapa;
 		this.tramo = tramo;
-		this.seleccionadoUnidireccional = seleccionadoUnidireccional;
-		this.seleccionadoSentido1 = seleccionadoSentido1;
-		this.numCarr1 = numCarr1;
-		this.numCarr2 = numCarr2;
-		this.vel = vel;
+		this.seleccionadoUnidireccional = radioUnidireccional;
+		this.seleccionadoSentido1 = radioSentido1;
+		this.numCarr1 = campoCarril1Numero;
+		this.numCarr2 = campoCarril2Numero;
+		this.vel = campoVelocidad;
 	}
 
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		if (seleccionadoUnidireccional)
+		if (seleccionadoUnidireccional.isSelected())
 		{
-			if (seleccionadoSentido1)
+			if (seleccionadoSentido1.isSelected())
 			{
-				tramo.setNumCarrilesDir1(numCarr1);
+				tramo.setNumCarrilesDir1(((Integer)(numCarr1.getValue())).intValue());
 				tramo.setNumCarrilesDir2(0);
-				tramo.setVelMax(vel);
 			}
 			else
 			{
-				tramo.setNumCarrilesDir2(numCarr2);
-				tramo.setNumCarrilesDir2(0);
-				tramo.setVelMax(vel);
+				tramo.setNumCarrilesDir2(((Integer)(numCarr2.getValue())).intValue());
+				tramo.setNumCarrilesDir1(0);
 			}
 		}
 		else
 		{
-			tramo.setNumCarrilesDir1(numCarr1);
-			tramo.setNumCarrilesDir2(numCarr2);
-			tramo.setVelMax(vel); 
+			tramo.setNumCarrilesDir1(((Integer)(numCarr1.getValue())).intValue());
+			tramo.setNumCarrilesDir2(((Integer)(numCarr2.getValue())).intValue());
 		}
+		tramo.setVelMax(((Integer)(vel.getValue())).floatValue()); 
 		mapa.repaint();
 		mapa.recrearMapa();
 		panel.dispose();

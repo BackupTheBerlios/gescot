@@ -201,28 +201,21 @@ public class PanelTramo extends JFrame
 	    });
 	    
 	    radioUnidireccional.addActionListener(
-				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
+				new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						if (radioUnidireccional.isSelected())
 						{
-							if (radioSentido1.isSelected())
-							{
+								radioSentido1.setSelected(true);
 								radioSentido1.setEnabled(true);
 								radioSentido2.setEnabled(true);
 								campoCarril1Numero.setEnabled(true);
 								campoCarril2Numero.setEnabled(false);
-								}
-							else
-							{
-								radioSentido1.setEnabled(true);
-								radioSentido2.setEnabled(true);
-								campoCarril1Numero.setEnabled(false);
-								campoCarril2Numero.setEnabled(true);
-			
-							}
 						}
-            }
-	    });
+					}
+				}
+	    	);
 	    
 	    radioSentido1.addActionListener(
 				new ActionListener(){
@@ -266,9 +259,8 @@ public class PanelTramo extends JFrame
 		botonCancelar = new JButton("Cancelar");
 		
 		final PanelTramo panelPpal = this;
-		AccionAceptarTramo accion = new AccionAceptarTramo(panel, this, tramo, radioUnidireccional.isSelected(), 
-				radioSentido1.isSelected(), ((Integer)(campoCarril1Numero.getValue())).intValue(), ((Integer)(campoCarril2Numero.getValue())).intValue(),
-				((Integer)(campoVelocidad.getValue())).intValue());
+		AccionAceptarTramo accion = new AccionAceptarTramo(panel, this, tramo, radioUnidireccional, 
+				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad);
 		botonAceptar.addActionListener(accion);
 		botonCancelar.addActionListener(new ActionListener()
 		{
