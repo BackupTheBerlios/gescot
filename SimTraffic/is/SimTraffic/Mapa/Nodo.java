@@ -293,8 +293,10 @@ public class Nodo implements ElementoMapa {
 				this.señal, this.tipo, this.tramos);
 		nodoClon.setControladorSemaforo(this.ControladorSemaforo);
 		return nodoClon;
-		//{{{
+
 	}
+
+
 
 
 }
