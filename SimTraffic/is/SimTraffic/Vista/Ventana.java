@@ -329,9 +329,9 @@ public class Ventana extends JFrame {
 		seleccionarButton.addActionListener(new AccionBarra(this, barraSeleccionar));
 		panel.add(seleccionarButton);
 		
-		JButton moverButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-1.png"));
+		JButton moverButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\mover1.png"));
 		moverButton.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\mover2.png"; 
 		moverButton.setToolTipText("<html>Mover <img src="+imageName+"></html>");
 		moverButton.addActionListener(new AccionSobreMapa(
 				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado));
