@@ -414,4 +414,6 @@ public class PanelMapa extends JPanel {
 	public void setRecrear(boolean recrear) {
 		this.recrear = recrear;
 	}
+	
+
 }

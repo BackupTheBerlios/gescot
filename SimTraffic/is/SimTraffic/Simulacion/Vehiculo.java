@@ -3,7 +3,7 @@ package is.SimTraffic.Simulacion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
-public abstract class IVehiculo {
+public abstract class Vehiculo {
 
 	/**
 	 * Velocidad a la que esta ciruculando el vehiculo.
@@ -40,12 +40,25 @@ public abstract class IVehiculo {
 	 */
 	protected int distanciaSeguridad;
 
+	/**
+	 * Posicion del vehiculo a lo largo del tramo
+	 */
 	protected double posicion;
 
+	/**
+	 * Tramo en el que se encuentra el vehiculo
+	 */
 	protected Tramo tramo;
 
+	/**
+	 * Nodo de origen del vehiculo
+	 */
 	protected Nodo nodoOrigen;
+	
 
+	/**
+	 * Nodo al que se dirige el vehiculo
+	 */
 	protected Nodo nodoDestino;
 
 	/**

@@ -17,7 +17,7 @@ public class Simulacion {
 	/**
 	 * Lista de los vehiculos que se estan simulando
 	 */
-	private List<IVehiculo> vehiculos;
+	private List<Vehiculo> vehiculos;
 
 	/**
 	 * Parámetros de la simulación
@@ -28,7 +28,7 @@ public class Simulacion {
 	 * Tabla que mantiene por cada tramo una lista de los vehiculos que estan
 	 * ciruclando por ahi
 	 */
-	private Hashtable<Tramo, ArrayList<IVehiculo>> tabla;
+	private Hashtable<Tramo, ArrayList<Vehiculo>> tabla;
 
 	/**
 	 * Mapa en el que se esta realizando la simulación
@@ -36,8 +36,8 @@ public class Simulacion {
 	private Mapa mapa;
 
 	public Simulacion() {
-		vehiculos = new ArrayList<IVehiculo>();
-		tabla = new Hashtable<Tramo, ArrayList<IVehiculo>>();
+		vehiculos = new ArrayList<Vehiculo>();
+		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 	}
 
 	public ParametrosSimulacion getParametros() {
@@ -65,7 +65,7 @@ public class Simulacion {
 		return 0;
 	}
 
-	public List<IVehiculo> getVehiculos() {
+	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
 
@@ -79,7 +79,7 @@ public class Simulacion {
 	private void rellenarTabla() {
 		Iterator<Tramo> it = mapa.getTramos().iterator();
 		while (it.hasNext()) {
-			tabla.put(it.next(), new ArrayList<IVehiculo>());
+			tabla.put(it.next(), new ArrayList<Vehiculo>());
 		}
 	}
 }

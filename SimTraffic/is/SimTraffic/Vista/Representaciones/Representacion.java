@@ -300,7 +300,7 @@ abstract public class Representacion {
 		g.setColor(Color.LIGHT_GRAY);
 		g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
 				BasicStroke.JOIN_ROUND, 1, array, 1));
-		DecimalFormat cincoCifras = new DecimalFormat("0.00000");
+		//DecimalFormat cincoCifras = new DecimalFormat("0.00000");
 
 		int lat, lon;
 		for (int i = 0; i < 30; i++) {
@@ -309,11 +309,11 @@ abstract public class Representacion {
 			lon = x_MapaARep(((int) (Lon0 / (100 * consx)) + i) * (100 * consx)) - tamX/2;
 
 			g.drawLine(lon, 13, lon, 3000);
-			g.drawString("" + cincoCifras.format(lon_RepAMapa(lon)), lon - 5,
+			g.drawString("" + pasarAGrados(lon_RepAMapa(lon)), lon - 5,
 					13);
 			g.drawLine(0, lat, 3000, lat);
 			g
-					.drawString("" + cincoCifras.format(lat_RepAMapa(lat)), 5,
+					.drawString("" + pasarAGrados(lat_RepAMapa(lat)), 5,
 							lat - 2);
 		}
 		g.setStroke(new BasicStroke(1));
@@ -388,5 +388,19 @@ abstract public class Representacion {
 		double latlon[] = ConversorUTM.UTMXYToLatLon(xy[0], xy[1], zona, hem);
 		consx = Math.abs(latlon[1] - Lon0) / 100;
 		consy = Math.abs(latlon[0] - Lat0) / 100;
+	}
+	
+	public String pasarAGrados(double lat) {
+		String resultado = "";
+		if (lat < 0) resultado += "-";
+		lat = Math.abs(lat);
+		resultado += (int)(Math.floor(lat)) + "º ";
+		lat = lat - Math.floor(lat);
+		lat = lat * 60;
+		resultado += (int)(Math.floor(lat)) + "' ";
+		lat = lat - Math.floor(lat);
+		lat = lat * 60;
+		resultado += (int)(Math.floor(lat)) +"\"";
+		return resultado;
 	}
 }

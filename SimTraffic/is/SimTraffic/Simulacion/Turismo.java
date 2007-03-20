@@ -10,7 +10,7 @@ import java.awt.Dimension;
  * @author Grupo ISTrafico
  *
  */
-public class Turismo extends IVehiculo {
+public class Turismo extends Vehiculo {
 	public Turismo () {
 		
 	}

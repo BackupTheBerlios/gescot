@@ -1,7 +1,7 @@
 package is.SimTraffic;
 
 import is.SimTraffic.Mapa.Mapa;
-import is.SimTraffic.Simulacion.IVehiculo;
+import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Simulacion.Simulacion;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class Modelo implements IModelo {
 	 * @return java.util.ArrayList
 	 * @roseuid 45C1E1C800BB
 	 */
-	public List<IVehiculo> getVehiculos() {
+	public List<Vehiculo> getVehiculos() {
 		return simulacion.getVehiculos();
 	}
 

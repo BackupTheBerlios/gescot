@@ -10,7 +10,7 @@ import java.awt.Dimension;
  * @author Grupo ISTrafico
  *
  */
-public class Camion extends IVehiculo {
+public class Camion extends Vehiculo {
 	public Camion() {
 		
 	}

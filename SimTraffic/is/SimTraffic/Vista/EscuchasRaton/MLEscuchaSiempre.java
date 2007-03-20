@@ -165,7 +165,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	public void mouseMoved(MouseEvent e) {  
 		double posX = panel.lon_RepAMapa(e.getX());
 		double posY = panel.lat_RepAMapa(e.getY());
-		posicionX.setText("" + cincoCifras.format(posX)+"º");
-		posicionY.setText("" + cincoCifras.format(posY)+"º");
+		posicionX.setText(panel.getRepresentacion().pasarAGrados(posX));//"" + cincoCifras.format(posX)+"º");
+		posicionY.setText(panel.getRepresentacion().pasarAGrados(posY));//"" + cincoCifras.format(posY)+"º");
 	}
 }
