@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Semaforos.MasterSemaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
@@ -135,8 +136,10 @@ public class PanelNodo extends JFrame
 	    // Cargar los datos del nodo al formulario
 	    
 	    
-	    
-	    
+	    MasterSemaforo semaforoDelNodo=(MasterSemaforo)this.nodo.getSeñal();
+	    if (semaforoDelNodo!=null){
+	    	    campoTiempoCicloSemaforo.setText(Integer.toString(semaforoDelNodo.getTiempoDeCiclo())+" s");
+	   	    }
 	    
 /*	    if(comboTipoSeñales.getSelectedItem()=="Semaforo"){
 	    	String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular (¿?)"};
