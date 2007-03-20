@@ -63,6 +63,12 @@ public class Mapa {
 	 */
 	private Seleccion portapapeles;
 	
+	/**
+	 * Nodo que sirve de referencia para saber donde pegar el contenido
+	 * del portapapeles
+	 */
+	private Nodo nodoReferenciaPortapapeles;
+	
 	private double maxLon;
 
 	private double minLon;
@@ -84,6 +90,7 @@ public class Mapa {
 		LineasAutobuses = new ArrayList<Via>();
 		
 		seleccion = new Seleccion();
+		portapapeles = new Seleccion();
 	}
 
 	/**
@@ -546,6 +553,30 @@ public class Mapa {
 
 	public void setTramos(ArrayList<Tramo> tramos) {
 		Tramos = tramos;
+	}
+
+	public Seleccion getPortapapeles() {
+		return portapapeles;
+	}
+
+	public void setPortapapeles(Seleccion portapapeles) {
+		this.portapapeles = portapapeles;
+	}
+
+	public Nodo getNodoReferenciaPortapapeles() {
+		return nodoReferenciaPortapapeles;
+	}
+
+	public void setNodoReferenciaPortapapeles(Nodo nodoReferenciaPortapapeles) {
+		this.nodoReferenciaPortapapeles = nodoReferenciaPortapapeles;
+	}
+	
+	public Nodo existeNodo (Nodo nodo) {
+		for (int i=0; i<Nodos.size(); i++) {
+			if (nodo.getPos().equals(Nodos.get(i)))
+				return Nodos.get(i);
+		}
+		return null;
 	}
 
 }
