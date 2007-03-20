@@ -3,7 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
-import is.SimTraffic.Mapa.Tramo;
+
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -20,25 +20,13 @@ public class HMover implements IHerramienta{
 	 * Lista de nodos que se quieren desplazar.
 	 */
 	private List<Nodo> nodos;
-	/**
-	 * Lista de tramos que se quieren desplazar.
-	 */
-	private List<Tramo> tramos;
+	
 	
 	/**
 	 * Lista de nodos que se quieren desplazar.
 	 */
 	private List<Nodo> nodosAnteriores;
 
-	/**
-	 * Punto inicial donde el usuario hace click.
-	 */
-	private Point2D puntoOrigen;
-
-	/**
-	 * Punto donde el usuario pretende mover la selección. 
-	 */
-	private Point2D puntoDestino;
 	
 	/**
 	 * Cuánto se ha movido con respecto a la posición inicial en el eje X.
@@ -67,8 +55,6 @@ public class HMover implements IHerramienta{
 	}
 	
 	public void estableceInicioYFin(Point2D puntoOrigen, Point2D puntoDestino){
-		this.puntoOrigen = puntoOrigen;
-		this.puntoDestino = puntoDestino;
 		diferenciaX = puntoDestino.getX()-puntoOrigen.getX();
 		diferenciaY = puntoDestino.getY()-puntoOrigen.getY();
 	}
