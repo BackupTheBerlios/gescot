@@ -67,4 +67,9 @@ public class Posicion {
 	public double getLon() {
 		return lon;
 	}
+	
+	public Posicion clone () {
+		Posicion clon = new Posicion(lat,lon);
+		return clon;
+	}
 }
