@@ -36,6 +36,8 @@ import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
+import is.SimTraffic.Vista.EscuchasRaton.MLCopiar;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -256,7 +258,8 @@ public class Ventana extends JFrame {
 		edicionMenu.addSeparator();
 		
 		JMenuItem copiarMenuItem = new JMenuItem();
-		copiarMenuItem.addActionListener(new AccionCopiar());
+		copiarMenuItem.addActionListener(new AccionCopiar(modelo,controlador,panel_mapa));
+		//copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
 		edicionMenu.add(copiarMenuItem);
 		
@@ -459,9 +462,11 @@ public class Ventana extends JFrame {
 		JButton copiarTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
-		copiarTB.addActionListener(new AccionCopiar());
+		copiarTB.addActionListener(new AccionCopiar(modelo,controlador,this.panel_mapa));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-copy2.png"; 
 		copiarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
+		//copiarTB.addActionListener(new AccionSobreMapa(
+		//		new MLCopiar(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		
 		JButton pegarTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
