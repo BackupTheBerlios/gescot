@@ -63,4 +63,22 @@ public class Seleccion {
 		this.tramosSeleccionados = tramosSeleccionados;
 	}
 	
+	public void modificaNodo (Nodo nodo) {
+		for (int i=0; i<nodosSeleccionados.size(); i++) {
+			Nodo nodoTemp = nodosSeleccionados.get(i);
+			if (nodoTemp.equals(nodo)) {
+				nodoTemp = nodo;
+			}
+		}
+	}
+	
+	public Nodo existeNodo (Nodo nodo) {
+		Posicion pos = nodo.getPos();
+		for (int i=0; i<nodosSeleccionados.size(); i++){
+			if (nodosSeleccionados.get(i).getPos().equals(pos))
+				return nodosSeleccionados.get(i);
+		}
+		return null;
+	}
+	
 }
