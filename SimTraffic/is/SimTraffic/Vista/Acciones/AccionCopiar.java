@@ -54,22 +54,22 @@ public class AccionCopiar implements ActionListener {
 			for (int j=0; j<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); j++) {
 				Tramo tramoMapa = modelo.getMapa().getSeleccion().
 										getTramosSeleccionados().get(j);
-				Nodo nodoInicial = tramoMapa.getNodoInicial().pseudoClone();
-				Nodo nodoFinal = tramoMapa.getNodoFinal().pseudoClone();
-				Tramo tramoPortapapeles = tramoMapa.pseudoClone(nodoInicial,nodoFinal);
+								
+				Nodo nodoInicialEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoInicial());
+				if (nodoInicialEnPortapapeles==null)
+					nodoInicialEnPortapapeles = tramoMapa.getNodoInicial().pseudoClone();
+				
+				Nodo nodoFinalEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoFinal());
+				if (nodoFinalEnPortapapeles==null)
+					nodoFinalEnPortapapeles = tramoMapa.getNodoFinal().pseudoClone();
+				
+				modelo.getMapa().getPortapapeles().añadirNodo(nodoInicialEnPortapapeles);
+				modelo.getMapa().getPortapapeles().añadirNodo(nodoFinalEnPortapapeles);
+				
+				Tramo tramoPortapapeles = tramoMapa.pseudoClone(nodoInicialEnPortapapeles,nodoFinalEnPortapapeles);
 				modelo.getMapa().getPortapapeles().añadirTramo(tramoPortapapeles);
-				nodoInicial.añadirTramo(tramoPortapapeles);
-				nodoFinal.añadirTramo(tramoPortapapeles);
-				Nodo nodoInicialEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(nodoInicial);
-				if (nodoInicialEnPortapapeles!=null)
-					nodoInicialEnPortapapeles.añadirTramo(tramoPortapapeles);
-				else
-					modelo.getMapa().getPortapapeles().añadirNodo(nodoInicial);
-				Nodo nodoFinalEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(nodoFinal);
-				if (nodoFinalEnPortapapeles!=null)
-					nodoFinalEnPortapapeles.añadirTramo(tramoPortapapeles);
-				else
-					modelo.getMapa().getPortapapeles().añadirNodo(nodoFinal);					
+				nodoInicialEnPortapapeles.añadirTramo(tramoPortapapeles);
+				nodoFinalEnPortapapeles.añadirTramo(tramoPortapapeles);									
 			}
 		}
 		Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
