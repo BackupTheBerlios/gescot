@@ -18,13 +18,15 @@ import java.util.Iterator;
 
 public class CargadorMapa implements DocHandler {
 	
-	static int idUltimoNodo;
-
+	static int idUltimoElemReconocido;
+	static String ultimoElemReconocido;
 	static CargadorMapa cargadormapa = new CargadorMapa();
 
 	static ArrayList<Nodo> nodos;
 
 	static ArrayList<Tramo> tramos;
+	
+	static ArrayList<Via> vias;
 	
 	public CargadorMapa() {
 	//	this.nodos = new ArrayList<Nodo>();
@@ -111,17 +113,40 @@ public class CargadorMapa implements DocHandler {
 			System.out.println("reconocido nodo");
 			Posicion pos = new Posicion(lat,lon);
 			//Luego poner nombre y tipo en vez de null,null.
-			idUltimoNodo=id;
+			ultimoElemReconocido=elem;
+			idUltimoElemReconocido=id;
 			nodos.add(new Nodo(id,null,pos,null));
 			
 		}
 		if (elem.compareTo("tag")==0){
-			System.out.println("tag de nodo reconocido");
-			Nodo nodoAux = buscarNodoConId(idUltimoNodo);
-			if (k.compareTo("nombre")==0){
-				nodoAux.setNombre(v);
+			if (ultimoElemReconocido.compareTo("node") == 0){
+				System.out.println("tag de nodo reconocido");
+				Nodo nodoAux = buscarNodoConId(idUltimoElemReconocido);
+				if (k.compareTo("nombre")==0){
+					nodoAux.setNombre(v);
+				}
+				else nodoAux.setTipo(identificarTipoElem(k,v));
 			}
-			else nodoAux.setTipo(identificarTipoElem(k,v));		
+			else if (ultimoElemReconocido.compareTo("segment") == 0){
+				System.out.println("tag de segmento reconocido");
+				Tramo tramoAux = buscarTramoConId(idUltimoElemReconocido);
+				if (k.compareTo("nCarrilesIda") == 0)
+					tramoAux.setNumCarrilesDir1(new Integer(v).intValue());
+				else if (k.compareTo("nCarrilesVuelta") == 0)
+					tramoAux.setNumCarrilesDir2(new Integer(v).intValue());
+				else if (k.compareTo("velMax") == 0)
+					tramoAux.setVelMax(new Float(v).floatValue());				
+			}
+			else if (ultimoElemReconocido.compareTo("way") == 0){
+				System.out.println("tag de via reconocido");
+				Via viaAux = buscarViaConId(idUltimoElemReconocido);
+				if (k.compareTo("nombre")==0){
+					viaAux.setNombre(v);
+				}
+				else 
+					viaAux.setTipo(identificarTipoElem(k,v));
+			}
+		
 		}
 		  if (elem.compareTo("segment") == 0) {
 			System.out.println("reconoce tramo");
@@ -131,11 +156,44 @@ public class CargadorMapa implements DocHandler {
 			nodoI.añadirTramo(nuevoTramo);
 			nodoF.añadirTramo(nuevoTramo);
 			tramos.add(nuevoTramo);
+			ultimoElemReconocido=elem;
+			idUltimoElemReconocido=id;
 			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
 					false));*/
 		}
+		  if (elem.compareTo("way") == 0 && id>0){
+			  System.out.println("reconoce via");
+			  Via nuevaVia = new Via();
+			  nuevaVia.setID(id);
+			  vias.add(nuevaVia);
+			  ultimoElemReconocido=elem;
+			  idUltimoElemReconocido=id;
+		  }
+		  if (elem.compareTo("way") == 0 && id<0){
+			  ultimoElemReconocido=elem;
+			  idUltimoElemReconocido=id;
+		  } 
+		  if(elem.compareTo("seg") == 0){
+			  if(idUltimoElemReconocido > 0){
+				System.out.println("segmento de via reconocido");
+				Via viaAux = buscarViaConId(idUltimoElemReconocido);
+				Tramo tramoAux = buscarTramoConId(id);
+				viaAux.addTramo(tramoAux);
+			  }
+		  }
 
+	}
+	
+	public Tramo buscarTramoConId(int idtramo){
+		Iterator<Tramo> tram = tramos.iterator();
+		Tramo tramaux;
+		while(tram.hasNext()){
+			tramaux = tram.next();
+			if(tramaux.getID() == idtramo)
+				return tramaux;
+		}
+		return null;
 	}
 	
 	public Nodo buscarNodoConId(int idnodo) {
@@ -145,6 +203,17 @@ public class CargadorMapa implements DocHandler {
 			nodoaux = nod.next();
 			if (nodoaux.getID() == idnodo) 
 				return nodoaux;
+		}
+		return null;
+	}
+	
+	public Via buscarViaConId(int idvia){
+		Iterator<Via> itVia = vias.iterator();
+		Via viaAux;
+		while (itVia.hasNext()){
+			viaAux = itVia.next();
+			if(viaAux.getID() == idvia)
+				return viaAux;
 		}
 		return null;
 	}
@@ -191,6 +260,7 @@ public class CargadorMapa implements DocHandler {
 
 		nodos = new ArrayList<Nodo>();
 		tramos = new ArrayList<Tramo>();
+		vias = new ArrayList<Via>();
 
 		// This is all the code we need to parse
 		// a document with our DocHandler.
@@ -198,8 +268,9 @@ public class CargadorMapa implements DocHandler {
 		QDParser.parse(cargadormapa, fr);
 		
 		fr.close();
-		System.out.println("Tamaño de nodos:"+nodos.size());
-		System.out.println("Tamaño de tramos:"+tramos.size());
+		System.out.println("Tamaño de nodos: "+nodos.size());
+		System.out.println("Tamaño de tramos: "+tramos.size());
+		System.out.println("Tamaño de vias: " + vias.size());
 		
 		System.out.println("Localización de nodo: "+nodos.get(0).getID());
 		System.out.println("Lat:"+nodos.get(0).getPos().getLat());
