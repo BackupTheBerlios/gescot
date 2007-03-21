@@ -26,24 +26,28 @@ public class MLPegar extends EscuchaRaton {
 
 		//for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size(); i++) {
 		for (int i=0; i<modelo.getMapa().getPortapapeles().getTramosSeleccionados().size(); i++) {
-			Tramo tramoTemp = modelo.getMapa().getPortapapeles().getTramosSeleccionados().get(i);
+			Tramo tramoTemp = modelo.getMapa().getPortapapeles().getTramosSeleccionados().get(i);			
 			Nodo nodoInicial = tramoTemp.getNodoInicial();
 			Nodo nodoFinal = tramoTemp.getNodoFinal();
-			Nodo nodoTemp = new Nodo (nodoInicial.getPos().clone());
-			nodoTemp.setPos(new Posicion(nodoTemp.getPos().getLat()+difY,nodoTemp.getPos().getLon()+difX));
-			Nodo nodoMapa = modelo.getMapa().existeNodo(nodoTemp);
-			if (nodoMapa!=null)
-				nodoMapa.añadirTramo(tramoTemp);
-			else
-				modelo.getMapa().insertar(nodoTemp);
+			Nodo nodoInicialTemp = new Nodo (nodoInicial.getPos().clone());
+			nodoInicialTemp.setPos(new Posicion(nodoInicialTemp.getPos().getLat()+difY,nodoInicialTemp.getPos().getLon()+difX));
+			Nodo nodoInicialMapa = modelo.getMapa().existeNodo(nodoInicialTemp);
+			if (nodoInicialMapa==null) {
+				nodoInicialMapa = nodoInicialTemp;
+				modelo.getMapa().insertar(nodoInicialMapa);
+			}
 
-			nodoTemp = new Nodo (nodoFinal.getPos().clone());
-			nodoTemp.setPos(new Posicion(nodoTemp.getPos().getLat()+difY,nodoTemp.getPos().getLon()+difX));
-			nodoMapa = modelo.getMapa().existeNodo(nodoTemp);
-			if (nodoMapa!=null)
-				nodoMapa.añadirTramo(tramoTemp);
-			else
-				modelo.getMapa().insertar(nodoTemp);
+			Nodo nodoFinalTemp = new Nodo (nodoFinal.getPos().clone());
+			nodoFinalTemp.setPos(new Posicion(nodoFinalTemp.getPos().getLat()+difY,nodoFinalTemp.getPos().getLon()+difX));
+			Nodo nodoFinalMapa = modelo.getMapa().existeNodo(nodoFinalTemp);
+			if (nodoFinalMapa==null) {
+				nodoFinalMapa = nodoFinalTemp;
+				modelo.getMapa().insertar(nodoFinalMapa);
+			}
+			Tramo tramoMapa = tramoTemp.pseudoClone(nodoInicialMapa,nodoFinalMapa);
+			nodoInicialMapa.añadirTramo(tramoMapa);
+			nodoFinalMapa.añadirTramo(tramoMapa);
+			modelo.getMapa().insertar(tramoMapa);
 		}
 		panel.setRecrear(true);
 		panel.repaint();
