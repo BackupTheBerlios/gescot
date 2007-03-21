@@ -55,9 +55,25 @@ public class Via implements ElementoMapa {
 		}
 		if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
 		if (nombre!=null) s=s.concat("<tag k='nombre' v='"+nombre+"' />\n");
+		s=s.concat("<tag k ='bus line' v='no' />\n");
 		s=s.concat("</way>\n");
 		return s;
 	}
+	public String transformarLineaBusaOSM() {
+		String s=new String();
+		Iterator<Tramo> tram = Tramos.iterator();
+		s=s.concat("<way id='"+ID+"'>\n");
+		while (tram.hasNext()) {
+			Tramo tramoaux = tram.next();
+			s=s.concat("<seg id='"+tramoaux.getID()+"'/>\n");
+		}
+		if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
+		if (nombre!=null) s=s.concat("<tag k='nombre' v='"+nombre+"' />\n");
+		s=s.concat("<tag k ='bus line' v='yes' />\n");
+		s=s.concat("</way>\n");
+		return s;
+	}
+	
 
 	public ITipoElemento getTipo() {
 		return tipo;

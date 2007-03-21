@@ -28,6 +28,8 @@ public class CargadorMapa implements DocHandler {
 	
 	static ArrayList<Via> vias;
 	
+	static ArrayList<Via> lineasAutobuses;
+	
 	public CargadorMapa() {
 	//	this.nodos = new ArrayList<Nodo>();
 	//	this.tramos = new ArrayList<Tramo>();
@@ -142,6 +144,14 @@ public class CargadorMapa implements DocHandler {
 				Via viaAux = buscarViaConId(idUltimoElemReconocido);
 				if (k.compareTo("nombre")==0){
 					viaAux.setNombre(v);
+				}
+				else if (k.compareTo("bus line") == 0 && v.compareTo("yes") == 0){
+					//Iterator<Via> itVia = vias.iterator();
+					vias.remove(viaAux);
+					lineasAutobuses.add(viaAux);					
+				}
+				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
+					//no hacer nada
 				}
 				else 
 					viaAux.setTipo(identificarTipoElem(k,v));
@@ -261,6 +271,8 @@ public class CargadorMapa implements DocHandler {
 		nodos = new ArrayList<Nodo>();
 		tramos = new ArrayList<Tramo>();
 		vias = new ArrayList<Via>();
+		lineasAutobuses = new ArrayList<Via>();
+		
 
 		// This is all the code we need to parse
 		// a document with our DocHandler.
@@ -271,12 +283,15 @@ public class CargadorMapa implements DocHandler {
 		System.out.println("Tamaño de nodos: "+nodos.size());
 		System.out.println("Tamaño de tramos: "+tramos.size());
 		System.out.println("Tamaño de vias: " + vias.size());
+		System.out.println("Tamaño de lineas de autobuses: " + lineasAutobuses.size());
 		
 		System.out.println("Localización de nodo: "+nodos.get(0).getID());
 		System.out.println("Lat:"+nodos.get(0).getPos().getLat());
 		System.out.println("Lon:"+nodos.get(0).getPos().getLon());
 		
 		Mapa mapaADevolver = new Mapa(nodos,tramos); 
+		mapaADevolver.setVias(vias);
+		mapaADevolver.setLineasAutobuses(lineasAutobuses);
 		return mapaADevolver;
 		//return null;
 	}

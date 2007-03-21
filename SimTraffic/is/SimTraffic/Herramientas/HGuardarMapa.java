@@ -85,8 +85,8 @@ public class HGuardarMapa implements IHerramienta {
 				
 				Iterator<Via> buses = mapa.getLineasAutobuses().iterator();
 				while (buses.hasNext()) {
-					Via viaAux = buses.next();
-					salida.println(viaAux.transformaraOSM());
+					Via lineaBusAux = buses.next();
+					salida.println(lineaBusAux.transformarLineaBusaOSM());
 				}
 
 				// Parte de vías (en proceso)
