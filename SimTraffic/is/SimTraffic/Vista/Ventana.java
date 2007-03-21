@@ -460,6 +460,13 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-save2.png"; 
 		guardarTB.setToolTipText("<html>Guardar mapa <img src="+imageName+"></html>");
 		
+		JButton cortarTB = new JButton(new ImageIcon(
+		"is\\SimTraffic\\Vista\\Imagenes\\cortar-1.png"));
+		cortarTB.setMargin(new Insets(1, 1, 1, 1));
+		cortarTB.addActionListener(new AccionCortar(modelo,controlador,this.panel_mapa));
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\cortar-2.png"; 
+		cortarTB.setToolTipText("<html>Cortar <img src="+imageName+"></html>");
+		
 		JButton copiarTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
 		copiarTB.setMargin(new Insets(1, 1, 1, 1));
@@ -501,6 +508,7 @@ public class Ventana extends JFrame {
 		archivoTB.add(nuevoTB);
 		archivoTB.add(cargarTB);
 		archivoTB.add(guardarTB);
+		edicionTB.add(cortarTB);
 		edicionTB.add(copiarTB);
 		edicionTB.add(pegarTB);
 		edicionTB.add(deshacerTB);
