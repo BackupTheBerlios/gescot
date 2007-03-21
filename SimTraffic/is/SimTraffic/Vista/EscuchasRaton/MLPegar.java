@@ -52,6 +52,19 @@ public class MLPegar extends EscuchaRaton {
 			nodoFinalMapa.añadirTramo(tramoMapa);
 			modelo.getMapa().insertar(tramoMapa);
 		}
+		
+		for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size(); i++) {
+			Nodo nodoTemp = modelo.getMapa().getPortapapeles().getNodosSeleccionados().get(i);
+			Nodo nodoMapa = nodoTemp.pseudoClone();
+			nodoMapa.setPos(new Posicion(nodoMapa.getPos().getLat()+difY,nodoMapa.getPos().getLon()+difX));
+			if (modelo.getMapa().existeNodo(nodoMapa)==null) {
+				//Nodo nodoMapa = nodoTemp.pseudoClone();
+				modelo.getMapa().insertar(nodoMapa);
+				//nodoMapa.setPos(new Posicion(nodoMapa.getPos().getLat()+difY,nodoMapa.getPos().getLon()+difX));
+			}
+				
+		}
+		
 		panel.setRecrear(true);
 		panel.repaint();
 	}

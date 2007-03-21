@@ -71,6 +71,14 @@ public class AccionCopiar implements ActionListener {
 				nodoInicialEnPortapapeles.añadirTramo(tramoPortapapeles);
 				nodoFinalEnPortapapeles.añadirTramo(tramoPortapapeles);									
 			}
+			for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
+				Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
+				Nodo nodoPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(nodoTemp);
+				if (nodoPortapapeles==null) {
+					nodoPortapapeles = nodoTemp.pseudoClone();
+					modelo.getMapa().getPortapapeles().añadirNodo(nodoPortapapeles);
+				}
+			}
 		}
 		Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
 		for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size();i++){
