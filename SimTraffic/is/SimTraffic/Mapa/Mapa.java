@@ -573,10 +573,9 @@ public class Mapa {
 	
 	public Nodo existeNodo (Nodo nodo) {
 		for (int i=0; i<Nodos.size(); i++) {
-			if (nodo.getPos().equals(Nodos.get(i)))
+			if (nodo.getPos().equals(Nodos.get(i).getPos()))
 				return Nodos.get(i);
 		}
 		return null;
 	}
-
 }
