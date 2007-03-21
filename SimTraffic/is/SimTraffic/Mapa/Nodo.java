@@ -295,6 +295,11 @@ public class Nodo implements ElementoMapa {
 		return nodoClon;
 
 	}
+	
+	public Nodo pseudoClone() {
+		Nodo clon = new Nodo(this.pos.clone());
+		return clon;
+	}
 
 
 
