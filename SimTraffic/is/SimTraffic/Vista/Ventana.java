@@ -37,6 +37,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
 import is.SimTraffic.Vista.EscuchasRaton.MLCopiar;
+import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 
 
 import java.awt.BorderLayout;
@@ -471,9 +472,11 @@ public class Ventana extends JFrame {
 		JButton pegarTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
-		pegarTB.addActionListener(new AccionCortar());
+		//pegarTB.addActionListener(new AccionCortar());
+		pegarTB.addActionListener(new AccionSobreMapa(
+				new MLPegar(modelo, controlador, panel_mapa), this, escuchaTeclado));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-paste2.png"; 
-		pegarTB.setToolTipText("<html>Copiar <img src="+imageName+"></html>");
+		pegarTB.setToolTipText("<html>Pegar <img src="+imageName+"></html>");
 		
 		JButton deshacerTB = new JButton(new ImageIcon(
 		"is\\SimTraffic\\Vista\\Imagenes\\edit-undo.png"));
