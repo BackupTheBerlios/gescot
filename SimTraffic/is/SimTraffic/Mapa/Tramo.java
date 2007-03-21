@@ -214,8 +214,8 @@ public class Tramo implements ElementoMapa {
 		return tipo;
 	}
 	
-	public Tramo pseudoClone(Nodo nodoInicial, Nodo nodoFinal) {
-		Tramo clon = new Tramo (nodoInicial, nodoFinal);
+	public Tramo pseudoClone(Nodo nodo1, Nodo nodo2) {
+		Tramo clon = new Tramo (nodo1, nodo2);
 		clon.setNombre(this.nombre);
 		clon.setVelMax(this.velocidadMax);
 		clon.setNumCarrilesDir1(this.numCarrilesDir1);
