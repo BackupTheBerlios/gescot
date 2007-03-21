@@ -7,6 +7,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Seleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -49,12 +50,13 @@ public class AccionCopiar implements ActionListener {
 		// TODO Auto-generated method stub
 		panel.setFocusable(true);		
 		if (modelo.getMapa().getSeleccion()!=null) {
+			modelo.getMapa().setPortapapeles(new Seleccion());
 			for (int j=0; j<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); j++) {
 				Tramo tramoMapa = modelo.getMapa().getSeleccion().
-				getTramosSeleccionados().get(j);
-				Nodo nodoInicial = new Nodo(tramoMapa.getNodoInicial().getPos().clone());
-				Nodo nodoFinal = new Nodo (tramoMapa.getNodoFinal().getPos().clone());
-				Tramo tramoPortapapeles = new Tramo(nodoInicial,nodoFinal);
+										getTramosSeleccionados().get(j);
+				Nodo nodoInicial = tramoMapa.getNodoInicial().pseudoClone();
+				Nodo nodoFinal = tramoMapa.getNodoFinal().pseudoClone();
+				Tramo tramoPortapapeles = tramoMapa.pseudoClone(nodoInicial,nodoFinal);
 				modelo.getMapa().getPortapapeles().añadirTramo(tramoPortapapeles);
 				nodoInicial.añadirTramo(tramoPortapapeles);
 				nodoFinal.añadirTramo(tramoPortapapeles);
