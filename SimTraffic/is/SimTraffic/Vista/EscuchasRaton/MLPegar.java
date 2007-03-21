@@ -36,6 +36,7 @@ public class MLPegar extends EscuchaRaton {
 				nodoInicialMapa = nodoInicialTemp;
 				modelo.getMapa().insertar(nodoInicialMapa);
 			}
+			
 
 			Nodo nodoFinalTemp = new Nodo (nodoFinal.getPos().clone());
 			nodoFinalTemp.setPos(new Posicion(nodoFinalTemp.getPos().getLat()+difY,nodoFinalTemp.getPos().getLon()+difX));
@@ -44,6 +45,8 @@ public class MLPegar extends EscuchaRaton {
 				nodoFinalMapa = nodoFinalTemp;
 				modelo.getMapa().insertar(nodoFinalMapa);
 			}
+			
+			
 			Tramo tramoMapa = tramoTemp.pseudoClone(nodoInicialMapa,nodoFinalMapa);
 			nodoInicialMapa.añadirTramo(tramoMapa);
 			nodoFinalMapa.añadirTramo(tramoMapa);
