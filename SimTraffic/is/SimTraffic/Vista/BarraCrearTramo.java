@@ -61,10 +61,10 @@ public class BarraCrearTramo extends JToolBar
 		//Inicializamos:
 		sentidoLabel.setEnabled(false);
 		opcionesSentidoTramo.setEnabled(false);
-		numCarrDir1Label.setEnabled(false);
-		numCarrDir1.setEnabled(false);
-		numCarrDir2Label.setEnabled(false);
-		numCarrDir2.setEnabled(false);
+		numCarrDir1Label.setEnabled(true);
+		numCarrDir1.setEnabled(true);
+		numCarrDir2Label.setEnabled(true);
+		numCarrDir2.setEnabled(true);
 		
 		
 		//Oyentes:
