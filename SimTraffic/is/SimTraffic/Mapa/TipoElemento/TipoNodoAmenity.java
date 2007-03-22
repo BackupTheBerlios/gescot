@@ -3,7 +3,7 @@ package is.SimTraffic.Mapa.TipoElemento;
 public class TipoNodoAmenity extends TipoElemento implements ITipoElemento {
 
 	/**
-	 * Características de Nodos asociadas a Servicios (Amenity)
+	 * Características de Nodos asociadas a Infraestructuras (Amenity)
 	 */
 	//private String tipo="amenity";
 	
