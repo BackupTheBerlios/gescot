@@ -3,6 +3,7 @@
  */
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.IControlador;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.PanelTramo.AccionAceptarTramo;
 
@@ -35,9 +36,12 @@ public class PanelTramo extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+	
 	private JTabbedPane panelDatos;
 	private JPanel panelBotones;
 	
+	private IControlador controlador;
 	private Tramo tramo;
 	private PanelMapa panel;
 
@@ -56,9 +60,10 @@ public class PanelTramo extends JFrame
 	
 	
 	
-	public PanelTramo(Tramo tramoAux, PanelMapa panel)
+	public PanelTramo(Tramo tramoAux, PanelMapa panel,IControlador controlador)
 	{
 		tramo = tramoAux;
+		this.controlador=controlador;
 		this.panel = panel;
 		
 		this.setLayout(new BorderLayout(2,2));
@@ -259,7 +264,7 @@ public class PanelTramo extends JFrame
 		botonCancelar = new JButton("Cancelar");
 		
 		final PanelTramo panelPpal = this;
-		AccionAceptarTramo accion = new AccionAceptarTramo(panel, this, tramo, radioUnidireccional, 
+		AccionAceptarTramo accion = new AccionAceptarTramo(panel,this,controlador, tramo, radioUnidireccional, 
 				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad);
 		botonAceptar.addActionListener(accion);
 		botonCancelar.addActionListener(new ActionListener()
@@ -277,5 +282,9 @@ public class PanelTramo extends JFrame
 		
 		panelBotones.setBorder(BorderFactory.createEtchedBorder());
 }
+	public void accionBotones(){
+		
+		
+	}
 	
 }

@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista.Acciones.PanelTramo;
 
+import is.SimTraffic.IControlador;
+import is.SimTraffic.Herramientas.HModificarTramo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelTramo;
@@ -15,24 +17,29 @@ public class AccionAceptarTramo implements ActionListener
 	private Tramo tramo;
 	private JRadioButton seleccionadoUnidireccional;
 	private JRadioButton seleccionadoSentido1;
-	JSpinner numCarr1;
+	private JSpinner numCarr1;
 	private JSpinner numCarr2;
 	private JSpinner vel;
 	private PanelMapa mapa;
 	private PanelTramo panel;
+	private int auxCarriles1,auxCarriles2;
+	private IControlador controlador;
 	
 	
 	
-	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad) 
+	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,IControlador controlador,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad) 
 	{
 		this.panel = panel;
 		this.mapa = mapa;
+		this.controlador =controlador;
 		this.tramo = tramo;
 		this.seleccionadoUnidireccional = radioUnidireccional;
 		this.seleccionadoSentido1 = radioSentido1;
 		this.numCarr1 = campoCarril1Numero;
 		this.numCarr2 = campoCarril2Numero;
 		this.vel = campoVelocidad;
+		this.auxCarriles1=0;
+		this.auxCarriles2=0;
 	}
 
 	public void actionPerformed(ActionEvent arg0) 
@@ -41,21 +48,20 @@ public class AccionAceptarTramo implements ActionListener
 		{
 			if (seleccionadoSentido1.isSelected())
 			{
-				tramo.setNumCarrilesDir1(((Integer)(numCarr1.getValue())).intValue());
-				tramo.setNumCarrilesDir2(0);
+				auxCarriles1=((Integer)(numCarr1.getValue())).intValue();
 			}
 			else
 			{
-				tramo.setNumCarrilesDir2(((Integer)(numCarr2.getValue())).intValue());
-				tramo.setNumCarrilesDir1(0);
+				auxCarriles2=((Integer)(numCarr2.getValue())).intValue();
 			}
 		}
 		else
 		{
-			tramo.setNumCarrilesDir1(((Integer)(numCarr1.getValue())).intValue());
-			tramo.setNumCarrilesDir2(((Integer)(numCarr2.getValue())).intValue());
+			auxCarriles1=((Integer)(numCarr1.getValue())).intValue();
+		    auxCarriles2=((Integer)(numCarr2.getValue())).intValue();
 		}
-		tramo.setVelMax(((Integer)(vel.getValue())).floatValue()); 
+		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue());
+		controlador.herramienta(nueva);
 		mapa.repaint();
 		mapa.recrearMapa();
 		panel.dispose();

@@ -87,7 +87,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 						if (tramoAux != null) 
 						{
 							//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
-							PanelTramo panelTram = new PanelTramo(tramoAux, panel);
+							PanelTramo panelTram = new PanelTramo(tramoAux, panel,controlador);
 							panelTram.setTitle("Propiedades del Tramo");
 							panelTram.setBounds(80, 120, 400, 600);
 							panelTram.setVisible(true);
