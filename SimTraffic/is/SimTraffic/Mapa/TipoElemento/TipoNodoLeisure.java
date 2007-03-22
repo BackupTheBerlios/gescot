@@ -22,7 +22,7 @@ public class TipoNodoLeisure implements ITipoElemento {
 	 park	Parque
 	 garden	Jardín
 	 common	Plazas
-	 User Defined
+	 User Defined	Definido por el usuario
 	 */
 	private String valorTipo;
 	

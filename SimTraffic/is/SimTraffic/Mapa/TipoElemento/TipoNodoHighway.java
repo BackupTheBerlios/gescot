@@ -23,7 +23,7 @@ public class TipoNodoHighway extends TipoElemento implements ITipoElemento {
 		viaduct:	Viaducto. 		
 		ford	Punto de un río que se puede atravesar fácilmente sin un puente. 	
 		bus_stop	Parada de autobús 	
-		User Defined
+		User Defined	Definido por el usuario
 	 */
 	//private String valorTipo;
 	
