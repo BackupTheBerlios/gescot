@@ -41,7 +41,10 @@ public class AccionSobreMapa implements ActionListener {
 		ventana.cambiarEscucha(escucha);
 		escuchaTeclado.setEscuchaANotificar(escucha);
 		escucha.activar();
-		String ImageStr="";
+		
+		// Lo he tenido que comentar para las pruebas del 23/03/07 porque no iba bien.
+		// Falta meter la imagen de la cruz, que no está subida al CVS
+		/*String ImageStr="";
 		if (boton != -1){
 			//podemos cambiar los cursores si existen
 			if (boton == 0){
@@ -87,7 +90,7 @@ public class AccionSobreMapa implements ActionListener {
 			Cursor c2;
 			c2 = new Cursor(0);
 			ventana.setCursor(c2);		
-		}
+		}*/
 
 	}
 
