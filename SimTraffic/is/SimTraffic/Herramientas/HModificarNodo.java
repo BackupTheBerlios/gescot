@@ -58,7 +58,6 @@ public class HModificarNodo implements IHerramienta {
 	     nodo.setTipo(tipoNodo);
 	    if (pos !=nodo.getPos())
 	     nodo.setPos(pos);
-		
 		return 0;
 	}
 
