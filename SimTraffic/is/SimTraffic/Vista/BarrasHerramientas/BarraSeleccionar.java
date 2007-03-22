@@ -24,7 +24,7 @@ public class BarraSeleccionar extends JToolBar
 		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodos-2.png"; 
 		seleccion_nodo.setToolTipText("<html>Seleccionar nodos <img src="+imageName+"></html>");
 		seleccion_nodo.addActionListener(new AccionSobreMapa(
-				escuchaSeleccion, ventana, escuchaTeclado));
+				escuchaSeleccion, ventana, escuchaTeclado,-1));
 		seleccion_nodo.addKeyListener(escuchaTeclado);
 		
 		JButton seleccion_tramo = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos.png"));
@@ -32,7 +32,7 @@ public class BarraSeleccionar extends JToolBar
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-tramos-2.png"; 
 		seleccion_tramo.setToolTipText("<html>Seleccionar tramos <img src="+imageName+"></html>");
 		seleccion_tramo.addActionListener(new AccionSobreMapa(
-				escuchaSeleccionTramos, ventana, escuchaTeclado));
+				escuchaSeleccionTramos, ventana, escuchaTeclado,-1));
 		seleccion_tramo.addKeyListener(escuchaTeclado);
 		
 		JButton seleccion_area =  new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos.png"));
@@ -40,7 +40,7 @@ public class BarraSeleccionar extends JToolBar
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-nodosytramos-2.png"; 
 		seleccion_area.setToolTipText("<html>Seleccionar componentes dentro de área <img src="+imageName+"></html>");
 		seleccion_area.addActionListener(new AccionSobreMapa(
-				escuchaSeleccionNodosYTramos, ventana, escuchaTeclado));
+				escuchaSeleccionNodosYTramos, ventana, escuchaTeclado,-1));
 		seleccion_area.addKeyListener(escuchaTeclado);
 		
 		add(seleccion_nodo);

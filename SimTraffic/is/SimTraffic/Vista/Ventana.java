@@ -449,7 +449,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\seleccionar-2.png"; 
 		seleccionarButton.setToolTipText("<html>Seleccionar <img src="+imageName+"></html>");
 		seleccionarButton.addActionListener(new AccionSobreMapa(
-				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado,-1));
 		seleccionarButton.addActionListener(new AccionBarra(this, barraSeleccionar));
 		panel.add(seleccionarButton);
 		
@@ -458,7 +458,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\mover2.png"; 
 		moverButton.setToolTipText("<html>Mover <img src="+imageName+"></html>");
 		moverButton.addActionListener(new AccionSobreMapa(
-				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado,-1));
 		panel.add(moverButton);
 		
 		JButton añadirNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo.png"));
@@ -466,7 +466,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png"; 
 		añadirNodoButton.setToolTipText("<html>Añadir Nodo <img src="+imageName+"></html>");
 		añadirNodoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado));
+				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado,0));
 		añadirNodoButton.addActionListener(new AccionBarra(this, barraCrearNodo));
 		panel.add(añadirNodoButton);
 		//Aquí también habría que añadir el oyente de teclado al añadirNodoButton (y en el resto de botones),
@@ -477,7 +477,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png"; 
 		añadirTramoButton.setToolTipText("<html>Añadir Tramo <img src="+imageName+"></html>");
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
-				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado));
+				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado,1));
 		añadirNodoButton.addActionListener(new AccionBarra(this, barraCrearTramo));
 		panel.add(añadirTramoButton);
 		
@@ -486,7 +486,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo2.png"; 
 		eliminarNodoButton.setToolTipText("<html>Eliminar Nodo <img src="+imageName+"></html>");
 		eliminarNodoButton.addActionListener(new AccionSobreMapa(
-				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado,2));
 		panel.add(eliminarNodoButton);
 		
 		
@@ -495,7 +495,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\eliminar_tramo2.png"; 
 		eliminarTramoButton.setToolTipText("<html>Eliminar Tramo <img src="+imageName+"></html>");
 		eliminarTramoButton.addActionListener(new AccionSobreMapa(
-				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado,3));
 		panel.add(eliminarTramoButton);	
 		
 		//Aqui se añadirán los nuevos botones.
@@ -505,7 +505,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\add_bus2.png"; 
 		añadirLineaAutobus.setToolTipText("<html>Añadir linea de autobus <img src="+imageName+"></html>");
 		añadirLineaAutobus.addActionListener(new AccionSobreMapa(
-				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado,4));
 		panel.add(añadirLineaAutobus);
 		
 //		Botón añadir semaforos
@@ -513,7 +513,7 @@ public class Ventana extends JFrame {
 		añadirSemaforos.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\semaforo2.png"; 
 		añadirSemaforos.setToolTipText("<html>Añadir semaforo <img src="+imageName+"></html>");
-		añadirSemaforos.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado));
+		añadirSemaforos.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado,5));
 		panel.add(añadirSemaforos);
 		seleccionarButton.addKeyListener(escuchaTeclado);
 		
@@ -523,7 +523,7 @@ public class Ventana extends JFrame {
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_via.png"; 
 		añadirVia.setToolTipText("<html>Añadir una via <img src="+imageName+"></html>");
 		añadirVia.addActionListener(new AccionSobreMapa(
-				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado,6));
 		panel.add(añadirVia);
 		
 		JButton simulacion = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\simular.png"));
@@ -602,7 +602,7 @@ public class Ventana extends JFrame {
 		pegarTB.setMargin(new Insets(1, 1, 1, 1));
 		//pegarTB.addActionListener(new AccionCortar());
 		pegarTB.addActionListener(new AccionSobreMapa(
-				new MLPegar(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLPegar(modelo, controlador, panel_mapa), this, escuchaTeclado,-1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-paste2.png"; 
 		pegarTB.setToolTipText("<html>Pegar <img src="+imageName+"></html>");
 		

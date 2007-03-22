@@ -4,8 +4,13 @@ import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 
 /**
  * Clase que extiende ActionListener para los botones que activan un esucha del
@@ -23,17 +28,67 @@ public class AccionSobreMapa implements ActionListener {
 	EscuchaTeclado escuchaTeclado;
 
 	Ventana ventana;
+	int boton;
 
-	public AccionSobreMapa(EscuchaRaton escucha, Ventana ventana, EscuchaTeclado escuchaTeclado) {
+	public AccionSobreMapa(EscuchaRaton escucha, Ventana ventana, EscuchaTeclado escuchaTeclado, int boton) {
 		this.escucha = escucha;
 		this.ventana = ventana;
 		this.escuchaTeclado = escuchaTeclado;
+		this.boton = boton;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		ventana.cambiarEscucha(escucha);
 		escuchaTeclado.setEscuchaANotificar(escucha);
 		escucha.activar();
+		String ImageStr="";
+		if (boton != -1){
+			//podemos cambiar los cursores si existen
+			if (boton == 0){
+				//ImageStr = "añadir_nodo.png";
+				ImageStr = "cruz.gif";
+			}
+			else if (boton == 1){
+				//ImageStr = "añadir_tramo.png";
+				ImageStr = "cruz.gif";
+			}			
+			else if (boton == 2){
+				//ImageStr = "eliminar_nodo.png";
+				ImageStr = "cruz.gif";
+			}
+			else if (boton == 3){
+				//ImageStr = "eliminar_tramo.png";
+				ImageStr = "cruz.gif";
+			}
+			else if (boton == 4){
+				//ImageStr = "añadir_nodo.png";	
+				ImageStr = "cruz.gif";
+			}
+			else if (boton == 5){
+				//ImageStr = "añadir_nodo.png";
+				ImageStr = "cruz.gif";
+			}
+			else if (boton == 6){
+				//ImageStr = "añadir_nodo.png";
+				ImageStr = "cruz.gif";
+			}
+			
+			String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
+			
+			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor( 
+					  new ImageIcon( direccion).getImage(), 
+					  new Point(15,12), "Cursor" );
+			ventana.setCursor(c);			
+			
+			
+		}
+		else {
+			 
+			Cursor c2;
+			c2 = new Cursor(0);
+			ventana.setCursor(c2);		
+		}
+
 	}
 
 }
