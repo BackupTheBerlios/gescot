@@ -203,6 +203,14 @@ public class Ventana extends JFrame {
 		crearMenuArchivo();
 		
 		crearMenuEdicion();
+		
+		crearMenuVis();
+		
+		crearMenuMapa();
+		
+		crearMenuSimulacion();
+		
+		crearMenuAyuda();
 	}
 	
 	/**
@@ -258,6 +266,12 @@ public class Ventana extends JFrame {
 		
 		edicionMenu.addSeparator();
 		
+		JMenuItem cortarMenuItem = new JMenuItem();
+		cortarMenuItem.addActionListener(new AccionCortar(modelo,controlador,panel_mapa));
+		//copiarMenuItem.addActionListener(new AccionCopiar());
+		cortarMenuItem.setText("Cortar");
+		edicionMenu.add(cortarMenuItem);
+
 		JMenuItem copiarMenuItem = new JMenuItem();
 		copiarMenuItem.addActionListener(new AccionCopiar(modelo,controlador,panel_mapa));
 		//copiarMenuItem.addActionListener(new AccionCopiar());
@@ -269,11 +283,152 @@ public class Ventana extends JFrame {
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
 		
+		edicionMenu.addSeparator();
+		
 		JMenuItem imagenMenuItem = new JMenuItem();
 		imagenMenuItem.addActionListener(new AccionCargarImagen(controlador, panel_mapa));
 		imagenMenuItem.setText("Cargar imagen");
 		edicionMenu.add(imagenMenuItem);
 		
+		edicionMenu.addSeparator();
+		
+		JMenuItem selecMenuItem = new JMenuItem();
+		selecMenuItem.addActionListener(new AccionSobreMapa(
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		selecMenuItem.addActionListener(new AccionBarra(this, barraSeleccionar));
+		selecMenuItem.setText("Seleccionar...");
+		edicionMenu.add(selecMenuItem);
+		
+		JMenuItem moverMenuItem = new JMenuItem();
+		moverMenuItem.addActionListener(new AccionSobreMapa(
+				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		moverMenuItem.setText("Mover...");
+		edicionMenu.add(moverMenuItem);
+	}
+	
+	public void crearMenuVis() {
+		JMenu menuVis = new JMenu();
+		menuVis.setText("Visualización");
+		menuBar.add(menuVis);
+		
+		JMenuItem zoomIn = new JMenuItem();
+		zoomIn.addActionListener(new AccionZoom(panel_mapa, 0.5));
+		zoomIn.setText("Zoom in");
+		menuVis.add(zoomIn);
+
+		JMenuItem zoomOut = new JMenuItem();
+		zoomOut.addActionListener(new AccionZoom(panel_mapa, 2));
+		zoomOut.setText("Zoom out");
+		menuVis.add(zoomOut);
+		
+		menuVis.addSeparator();
+		
+		JMenuItem cambiarRep = new JMenuItem();
+		// TODO falta el action listener
+		cambiarRep.addActionListener(null);
+		cambiarRep.setText("Cambiar representación");
+		menuVis.add(cambiarRep);
+	}
+	
+	public void crearMenuMapa() {
+		JMenu mapaMenu = new JMenu();
+		mapaMenu.setText("Mapa");
+		menuBar.add(mapaMenu);
+
+		JMenuItem añadirNodo = new JMenuItem();
+		añadirNodo.addActionListener(new AccionSobreMapa(
+				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado));
+		añadirNodo.setText("Añadir nodo");
+		mapaMenu.add(añadirNodo);
+		
+		JMenuItem añadirTramo = new JMenuItem();
+		añadirTramo.addActionListener(new AccionSobreMapa(
+				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado));
+		añadirTramo.setText("Añadir tramo");
+		mapaMenu.add(añadirTramo);
+		
+		mapaMenu.addSeparator();
+		
+		JMenuItem eliminarNodo = new JMenuItem();
+		eliminarNodo.addActionListener(new AccionSobreMapa(
+				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		eliminarNodo.setText("Eliminar nodo");
+		mapaMenu.add(eliminarNodo);
+		
+		JMenuItem elminarTramo = new JMenuItem();
+		elminarTramo.addActionListener(new AccionSobreMapa(
+				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		elminarTramo.setText("Eliminar tramo");
+		mapaMenu.add(elminarTramo);
+	
+	}
+	
+	public void crearMenuSimulacion() {
+		JMenu simMenu = new JMenu();
+		simMenu.setText("Simulación");
+		menuBar.add(simMenu);
+		
+		JMenuItem añadirBus = new JMenuItem();
+		añadirBus.addActionListener(new AccionSobreMapa(
+				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		añadirBus.setText("Añadir linea autobus");
+		simMenu.add(añadirBus);
+		
+		JMenuItem añadirSem = new JMenuItem();
+		añadirSem.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado));
+		añadirSem.setText("Añadir semáforo");
+		simMenu.add(añadirSem);
+		
+		JMenuItem añadirVia = new JMenuItem();
+		añadirVia.addActionListener(new AccionSobreMapa(
+				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
+		añadirVia.setText("Añadir vía");
+		simMenu.add(añadirVia);
+		
+		simMenu.addSeparator();
+		
+		JMenuItem comenarSim = new JMenuItem();
+		comenarSim.addActionListener(new AccionComenzarSimulacion
+				(controlador,modelo));
+		comenarSim.setText("Comenzar");
+		simMenu.add(comenarSim);
+		
+		JMenuItem pausarSim = new JMenuItem();
+		// TODO falta el action listener
+		pausarSim.addActionListener(null);
+		pausarSim.setText("Pausar");
+		simMenu.add(pausarSim);
+		
+		JMenuItem terminarSim = new JMenuItem();
+		// TODO falta el action listener
+		terminarSim.addActionListener(null);
+		terminarSim.setText("Detener");
+		simMenu.add(terminarSim);
+		
+	}
+	
+	public void crearMenuAyuda() {
+		JMenu ayudaMenu = new JMenu();
+		ayudaMenu.setText("Ayuda");
+		menuBar.add(ayudaMenu);
+		
+		JMenuItem abrirAyuda = new JMenuItem();
+		// TODO ventana de ayuda
+		abrirAyuda.addActionListener(null);
+		abrirAyuda.setText("Abrir ayuda");
+		ayudaMenu.add(abrirAyuda);
+		
+		ayudaMenu.addSeparator();
+		
+		JMenuItem acercaDE = new JMenuItem();
+		acercaDE.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				new AcercaDe();
+			}
+		});
+		acercaDE.setText("Acerca de SimTraffic");
+		ayudaMenu.add(acercaDE);
 	}
 	
 	/**
@@ -362,7 +517,7 @@ public class Ventana extends JFrame {
 		panel.add(añadirSemaforos);
 		seleccionarButton.addKeyListener(escuchaTeclado);
 		
-		//Añadir Vias
+		//Añadir Viasn
 		JButton añadirVia = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\añadir_via2.png"));
 		añadirVia.setMargin(new Insets(1, 1, 1, 1));
 		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\añadir_via.png"; 

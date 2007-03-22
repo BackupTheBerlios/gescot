@@ -294,7 +294,7 @@ public class PanelMapa extends JPanel
 
 	public void cambiaZoom(double cambio) {
 		this.zoom = this.zoom * cambio;
-		if (zoom > 8 || zoom < 0.25) {
+		if (zoom > 16 || zoom < 0.5) {
 			this.zoom = this.zoom / cambio;
 			return;
 		}

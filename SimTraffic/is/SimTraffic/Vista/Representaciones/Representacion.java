@@ -300,7 +300,6 @@ abstract public class Representacion {
 		g.setColor(Color.LIGHT_GRAY);
 		g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
 				BasicStroke.JOIN_ROUND, 1, array, 1));
-		//DecimalFormat cincoCifras = new DecimalFormat("0.00000");
 
 		int lat, lon;
 		for (int i = 0; i < 30; i++) {
@@ -317,10 +316,13 @@ abstract public class Representacion {
 							lat - 2);
 		}
 		g.setStroke(new BasicStroke(1));
-		g.drawLine(25, 40, 25 + (int) (50 * zoom), 40);
+		int dist = 50;
+		
+		if (zoom >= 4) dist = 500;
+		g.drawLine(25, 40, 25 + (int) (dist / zoom), 40);
 		g.drawLine(25, 35, 25, 45);
-		g.drawLine(25 + (int) (50 * zoom), 35, 25 + (int) (50 * zoom), 45);
-		g.drawString("50 m", 40, 35);
+		g.drawLine(25 + (int) (dist / zoom), 35, 25 + (int) (dist / zoom), 45);
+		g.drawString("" + dist + " m", 40, 35);
 	}
 
 	/**
@@ -390,6 +392,14 @@ abstract public class Representacion {
 		consy = Math.abs(latlon[0] - Lat0) / 100;
 	}
 	
+	/**
+	 * Transforma un número double en notación de grados, minutos y segundos.<p>
+	 * 
+	 * @param lat
+	 * Double que representa una latitud o longitud
+	 * @return
+	 * String con los grados, minutos y segundos
+	 */
 	public String pasarAGrados(double lat) {
 		String resultado = "";
 		if (lat < 0) resultado += "-";
