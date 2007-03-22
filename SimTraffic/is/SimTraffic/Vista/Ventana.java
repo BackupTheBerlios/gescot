@@ -294,14 +294,14 @@ public class Ventana extends JFrame {
 		
 		JMenuItem selecMenuItem = new JMenuItem();
 		selecMenuItem.addActionListener(new AccionSobreMapa(
-				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this, escuchaTeclado,-1));
 		selecMenuItem.addActionListener(new AccionBarra(this, barraSeleccionar));
 		selecMenuItem.setText("Seleccionar...");
 		edicionMenu.add(selecMenuItem);
 		
 		JMenuItem moverMenuItem = new JMenuItem();
 		moverMenuItem.addActionListener(new AccionSobreMapa(
-				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLMover(modelo, controlador, panel_mapa), this, escuchaTeclado,-1));
 		moverMenuItem.setText("Mover...");
 		edicionMenu.add(moverMenuItem);
 	}
@@ -337,13 +337,13 @@ public class Ventana extends JFrame {
 
 		JMenuItem añadirNodo = new JMenuItem();
 		añadirNodo.addActionListener(new AccionSobreMapa(
-				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado));
+				new MLAñadirNodo(modelo, controlador, panel_mapa, this), this, escuchaTeclado,0));
 		añadirNodo.setText("Añadir nodo");
 		mapaMenu.add(añadirNodo);
 		
 		JMenuItem añadirTramo = new JMenuItem();
 		añadirTramo.addActionListener(new AccionSobreMapa(
-				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado));
+				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado,1));
 		añadirTramo.setText("Añadir tramo");
 		mapaMenu.add(añadirTramo);
 		
@@ -351,13 +351,13 @@ public class Ventana extends JFrame {
 		
 		JMenuItem eliminarNodo = new JMenuItem();
 		eliminarNodo.addActionListener(new AccionSobreMapa(
-				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLEliminarNodo(modelo, controlador, panel_mapa), this, escuchaTeclado,2));
 		eliminarNodo.setText("Eliminar nodo");
 		mapaMenu.add(eliminarNodo);
 		
 		JMenuItem elminarTramo = new JMenuItem();
 		elminarTramo.addActionListener(new AccionSobreMapa(
-				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLEliminarTramo(modelo, controlador, panel_mapa), this, escuchaTeclado,3));
 		elminarTramo.setText("Eliminar tramo");
 		mapaMenu.add(elminarTramo);
 	
@@ -370,18 +370,18 @@ public class Ventana extends JFrame {
 		
 		JMenuItem añadirBus = new JMenuItem();
 		añadirBus.addActionListener(new AccionSobreMapa(
-				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa), this, escuchaTeclado,4));
 		añadirBus.setText("Añadir linea autobus");
 		simMenu.add(añadirBus);
 		
 		JMenuItem añadirSem = new JMenuItem();
-		añadirSem.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado));
+		añadirSem.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador, panel_mapa),this,escuchaTeclado,5));
 		añadirSem.setText("Añadir semáforo");
 		simMenu.add(añadirSem);
 		
 		JMenuItem añadirVia = new JMenuItem();
 		añadirVia.addActionListener(new AccionSobreMapa(
-				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado));
+				new MLAñadirVia(modelo, controlador, panel_mapa), this, escuchaTeclado,6));
 		añadirVia.setText("Añadir vía");
 		simMenu.add(añadirVia);
 		
