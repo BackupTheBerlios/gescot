@@ -141,13 +141,7 @@ public class Ventana extends JFrame {
 	/**
 	 * Elementos de la barra Crear Tramo
 	 */
-	private JToolBar barraCrearTramo;
-	
-	private JTextField numCarrDir1TextField;
-	
-	private JTextField numCarrDir2TextField;
-	
-	private JTextField velMaxTextField;
+	private BarraCrearTramo barraCrearTramo;
 	
 	
 	/**
@@ -478,7 +472,7 @@ public class Ventana extends JFrame {
 		añadirTramoButton.setToolTipText("<html>Añadir Tramo <img src="+imageName+"></html>");
 		añadirTramoButton.addActionListener(new AccionSobreMapa(
 				new MLAñadirTramo(modelo, controlador, panel_mapa,this), this, escuchaTeclado,1));
-		añadirNodoButton.addActionListener(new AccionBarra(this, barraCrearTramo));
+		añadirTramoButton.addActionListener(new AccionBarra(this, barraCrearTramo));
 		panel.add(añadirTramoButton);
 		
 		JButton eliminarNodoButton = new JButton(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\eliminar_nodo.png"));
@@ -639,42 +633,10 @@ public class Ventana extends JFrame {
 	
 	private void crearBarraPropiedades() 
 	{	
-		crearBarraNodo();
-		crearBarraTramo();
-		crearBarraEliminar();
+		barraCrearNodo = new BarraCrearNodo();
+		barraCrearTramo = new BarraCrearTramo();
+		//crearBarraEliminar();
 		barraSeleccionar = new BarraSeleccionar(this, escuchaSeleccionTramos, escuchaSeleccionNodosYTramos, escuchaSeleccion, escuchaTeclado);
-	}
-	
-	private void crearBarraEliminar() {
-		// TODO Auto-generated method stub
-		
-	}
-		
-		
-	
-	private void crearBarraNodo() 
-	{
-		barraCrearNodo = new BarraCrearNodo(); 
-		
-		
-	}
-	
-	private void crearBarraTramo() 
-	{
-		barraCrearTramo = new JToolBar(); 
-		JLabel numCarrDir1Label = new JLabel(" Numero Carriles Dir1 ");
-		numCarrDir1TextField = new JTextField("1");
-		JLabel numCarrDir2Label = new JLabel(" Numero Carriles Dir2 ");
-		numCarrDir2TextField = new JTextField("1");
-		JLabel velMaxLabel = new JLabel(" Velocidad Maxima ");
-		velMaxTextField = new JTextField("90");
-		
-		barraCrearTramo.add(numCarrDir1Label);
-		barraCrearTramo.add(numCarrDir1TextField);
-		barraCrearTramo.add(numCarrDir2Label);
-		barraCrearTramo.add(numCarrDir2TextField);
-		barraCrearTramo.add(velMaxLabel);
-		barraCrearTramo.add(velMaxTextField);
 	}
 	
 	/**
@@ -760,13 +722,8 @@ public class Ventana extends JFrame {
 		return barraCrearNodo.prepararNodo(p);
 	}
 	
-	public Tramo prepararTramo(Nodo i,Nodo f){
-		Tramo tramo = new Tramo(i,f);
-		//Faltan Hacer las comprobaciones para que el usuario no ponga datos erroneos
-		tramo.setNumCarrilesDir1(Integer.parseInt(numCarrDir1TextField.getText()));
-		tramo.setNumCarrilesDir2(Integer.parseInt(numCarrDir2TextField.getText()));
-		tramo.setVelMax(Integer.parseInt(velMaxTextField.getText()));
-		return tramo;
+	public Tramo prepararTramo(Nodo i,Nodo f)
+	{
+		return barraCrearTramo.prepararTramo(i,f);
 	}
-	
 }
