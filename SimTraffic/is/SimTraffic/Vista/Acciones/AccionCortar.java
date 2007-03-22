@@ -5,6 +5,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
@@ -19,7 +20,7 @@ import java.awt.event.ActionListener;
  *
  */
 public class AccionCortar implements ActionListener {
-
+	
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -40,8 +41,8 @@ public class AccionCortar implements ActionListener {
 			modelo.getMapa().setPortapapeles(new Seleccion());
 			for (int j=0; j<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); j++) {
 				Tramo tramoMapa = modelo.getMapa().getSeleccion().
-										getTramosSeleccionados().get(j);
-								
+				getTramosSeleccionados().get(j);
+				
 				Nodo nodoInicialEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoInicial());
 				if (nodoInicialEnPortapapeles==null)
 					nodoInicialEnPortapapeles = tramoMapa.getNodoInicial().pseudoClone();
@@ -65,39 +66,47 @@ public class AccionCortar implements ActionListener {
 					nodoPortapapeles = nodoTemp.pseudoClone();
 					modelo.getMapa().getPortapapeles().añadirNodo(nodoPortapapeles);
 				}
-			}
-		}
-		Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
-		for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size();i++){
-			Nodo nodoTemp = modelo.getMapa().getPortapapeles().getNodosSeleccionados().get(i);
-			if (nodoTemp.getPos().getLon()<=posMinima.getLon()) {
-				if (nodoTemp.getPos().getLat()<=posMinima.getLat()) {
-					posMinima = nodoTemp.getPos();
-					modelo.getMapa().setNodoReferenciaPortapapeles(nodoTemp);
+			}		
+			Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
+			for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size();i++){
+				Nodo nodoTemp = modelo.getMapa().getPortapapeles().getNodosSeleccionados().get(i);
+				if (nodoTemp.getPos().getLon()<=posMinima.getLon()) {
+					if (nodoTemp.getPos().getLat()<=posMinima.getLat()) {
+						posMinima = nodoTemp.getPos();
+						modelo.getMapa().setNodoReferenciaPortapapeles(nodoTemp);
+					}
 				}
 			}
-		}
-		for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
-			Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
-			if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
-				modelo.getMapa().getTramos().remove(i);
-				i--;
-			}
 			
-		}
-		
-		for (int i=0; i<modelo.getMapa().getNodos().size();i++) {
-			Nodo nodoTemp = modelo.getMapa().getNodos().get(i);
-			if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoTemp)) {
-				modelo.getMapa().getNodos().remove(i);
-				i--;
-			}
+//			for(int i=0; i<modelo.getMapa().getPortapapeles().)
+			
+			
+			/*HEliminarSeleccion herramientaBorrar = new HEliminarSeleccion(modelo.getMapa().getPortapapeles().getNodosSeleccionados(),
+					modelo.getMapa().getPortapapeles().getTramosSeleccionados());
+			controlador.herramienta(herramientaBorrar);
+			*/
+			for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
+				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
+				if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
+					modelo.getMapa().getTramos().remove(i);
+					i--;
+				}
 				
+			}
 			
+			for (int i=0; i<modelo.getMapa().getNodos().size();i++) {
+				Nodo nodoTemp = modelo.getMapa().getNodos().get(i);
+				if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoTemp)) {
+					modelo.getMapa().getNodos().remove(i);
+					i--;
+				}
+				
+				
+			}
+			modelo.getMapa().setSeleccion(new Seleccion());
+			panel.setRecrear(true);
+			panel.repaint();
 		}
-		modelo.getMapa().setSeleccion(new Seleccion());
-		panel.setRecrear(true);
-		panel.repaint();
 	}
-
+	
 }
