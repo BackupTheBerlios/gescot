@@ -163,7 +163,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					}
 					else if (aux.equalsIgnoreCase("Supermercado"))
 					{
-						
+						int a;
 					}
 					else if (aux.equalsIgnoreCase("Hospital"))
 					{
