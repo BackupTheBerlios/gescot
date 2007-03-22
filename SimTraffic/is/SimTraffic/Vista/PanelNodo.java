@@ -8,6 +8,7 @@ import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,8 @@ public class PanelNodo extends JFrame
 	private JPanel panelBotones;
 	private JPanel panelAuxiliar;
 	private JComboBox comboTipoSeñales;
+	private JComboBox comboTipoSemaforos;
+	private JTextField campoTiempoCicloSemaforo;
 	private JComboBox comboTipo;
 	private JComboBox comboValor;
 	private JTextField campoFrecuencia;
@@ -119,12 +122,13 @@ public class PanelNodo extends JFrame
 	    
 	    JLabel etiquetaDetallesSeñal1= new JLabel("Tipo de Semaforo");
 	    String[] tiposSemaforos = { "                  ", "Circular", "Perpendicular"};
-	    JComboBox comboTipoSemaforos = new JComboBox();
+	    comboTipoSemaforos = new JComboBox();
 	    comboTipoSemaforos = new JComboBox(tiposSemaforos);
-	    JLabel etiquetaDetallesSeñal2= new JLabel("Tiempo de cliclo");
-	    JTextField campoTiempoCicloSemaforo= new JTextField("      ");
+	    JLabel etiquetaDetallesSeñal2= new JLabel("Tiempo de ciclo (segundos)");
+	    campoTiempoCicloSemaforo= new JTextField("");
+	    campoTiempoCicloSemaforo.setPreferredSize(new Dimension(30,20));
 	    
-	    
+
 	    
 	    panelDetallesSeñal.add(etiquetaDetallesSeñal1);
 	    panelDetallesSeñal.add(comboTipoSemaforos);
@@ -138,7 +142,7 @@ public class PanelNodo extends JFrame
 	    
 	    MasterSemaforo semaforoDelNodo=(MasterSemaforo)this.nodo.getSeñal();
 	    if (semaforoDelNodo!=null){
-	    	    campoTiempoCicloSemaforo.setText(Integer.toString(semaforoDelNodo.getTiempoDeCiclo())+" s");
+	    	    campoTiempoCicloSemaforo.setText(Integer.toString(semaforoDelNodo.getTiempoDeCiclo()));
 	   	    }
 	    
 /*	    if(comboTipoSeñales.getSelectedItem()=="Semaforo"){
@@ -266,7 +270,10 @@ public class PanelNodo extends JFrame
 	    comboTipo.addActionListener(accionSeleccionarTipo);
 	    
 	    // Oyentes para los botones aceptar y cancelar
-	    ActionListener accionAceptar = new AccionAceptar(nodo,comboTipo,comboValor,campoFrecuencia,campoNombre,this, mapa);
+	    ActionListener accionAceptar = new AccionAceptar(nodo,
+	    		comboTipo,comboValor,campoFrecuencia,campoNombre,this,
+	    		comboTipoSemaforos, campoTiempoCicloSemaforo, comboTipoSeñales,
+	    		mapa);
 	    botonAceptar.addActionListener(accionAceptar);
 	    final PanelNodo panelPpal=this;
 	    botonCancelar.addActionListener(

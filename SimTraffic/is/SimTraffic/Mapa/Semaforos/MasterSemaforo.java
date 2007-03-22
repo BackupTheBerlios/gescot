@@ -117,6 +117,13 @@ public void setEstadoSemaforos(int Estado){
 	this.estadoSemaforos=Estado;
 }
 
+public void setEstadoSemaforos(String Estado){
+	if (Estado.equalsIgnoreCase("Circular"))
+		estadoSemaforos=0;
+	else if (Estado.equalsIgnoreCase("Perpendicular"))
+		estadoSemaforos=1;
+}
+
 public void setMasterSemaforo(int x, int y, boolean value){
 	this.ArraySemaforos[x][y]=value;
 }
