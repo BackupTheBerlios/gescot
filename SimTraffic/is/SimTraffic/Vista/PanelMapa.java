@@ -36,7 +36,8 @@ import javax.swing.JScrollBar;
  * @author Grupo ISTrafico
  * 
  */
-public class PanelMapa extends JPanel {
+public class PanelMapa extends JPanel 
+{
 
 	private static final long serialVersionUID = -3680412115222562074L;
 

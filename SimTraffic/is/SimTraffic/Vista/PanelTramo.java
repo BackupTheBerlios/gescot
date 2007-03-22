@@ -201,6 +201,10 @@ public class PanelTramo extends JFrame
 							radioSentido2.setEnabled(false);
 							campoCarril1Numero.setEnabled(true);
 							campoCarril2Numero.setEnabled(true);
+							if (((Integer)campoCarril1Numero.getValue()).intValue() == 0)
+								campoCarril1Numero.setValue(1);
+							if (((Integer)campoCarril2Numero.getValue()).intValue() == 0)
+								campoCarril2Numero.setValue(1);
 						}
             }
 	    });
@@ -214,6 +218,8 @@ public class PanelTramo extends JFrame
 						{
 								radioSentido1.setSelected(true);
 								radioSentido1.setEnabled(true);
+								if (((Integer)campoCarril1Numero.getValue()).intValue() == 0)
+									campoCarril1Numero.setValue(1);
 								radioSentido2.setEnabled(true);
 								campoCarril1Numero.setEnabled(true);
 								campoCarril2Numero.setEnabled(false);
@@ -229,6 +235,8 @@ public class PanelTramo extends JFrame
 						{
 							campoCarril1Numero.setEnabled(true);
 							campoCarril2Numero.setEnabled(false);
+							if (((Integer)campoCarril1Numero.getValue()).intValue() == 0)
+								campoCarril1Numero.setValue(1);
 						}
             }
 	    });
@@ -239,6 +247,8 @@ public class PanelTramo extends JFrame
 						if (radioUnidireccional.isSelected() && radioSentido2.isSelected()){
 							campoCarril1Numero.setEnabled(false);
 							campoCarril2Numero.setEnabled(true);
+							if (((Integer)campoCarril2Numero.getValue()).intValue() == 0)
+								campoCarril2Numero.setValue(1);
 						}
             }
 	    });
