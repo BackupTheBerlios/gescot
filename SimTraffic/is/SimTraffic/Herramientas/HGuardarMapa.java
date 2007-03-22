@@ -97,7 +97,7 @@ public class HGuardarMapa implements IHerramienta {
 				// pero incluido para tener toda la información de nodos y
 				// tramos guardada.
 				// 1 segmento por vía.
-				String s = new String();
+				/*String s = new String();
 				tram = mapa.getTramos().iterator();
 				while (tram.hasNext()) {
 					Tramo tramoaux = tram.next();
@@ -114,7 +114,7 @@ public class HGuardarMapa implements IHerramienta {
 								+ tramoaux.getNombre() + "' />\n");
 					s = s.concat("</way>\n");
 				}
-				salida.println(s);
+				salida.println(s);*/
 				salida.println("</osm>");
 				salida.close();
 			} catch (IOException e) {

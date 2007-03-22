@@ -172,7 +172,7 @@ public class CargadorMapa implements DocHandler {
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
 					false));*/
 		}
-		  if (elem.compareTo("way") == 0 && id>0){
+		  if (elem.compareTo("way") == 0 /*&& id>0*/){
 			  System.out.println("reconoce via");
 			  Via nuevaVia = new Via();
 			  nuevaVia.setID(id);
@@ -180,10 +180,10 @@ public class CargadorMapa implements DocHandler {
 			  ultimoElemReconocido=elem;
 			  idUltimoElemReconocido=id;
 		  }
-		  if (elem.compareTo("way") == 0 && id<0){
+		  /*if (elem.compareTo("way") == 0 && id<0){
 			  ultimoElemReconocido=elem;
 			  idUltimoElemReconocido=id;
-		  } 
+		  } */
 		  if(elem.compareTo("seg") == 0){
 			  if(idUltimoElemReconocido > 0){
 				System.out.println("segmento de via reconocido");
