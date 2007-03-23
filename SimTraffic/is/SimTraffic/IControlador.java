@@ -15,27 +15,27 @@ public interface IControlador {
 	public void crear();
 
 	/**
-	 * Establece la instancia del modelo que se utilizara en la aplicación
+	 * Establece la instancia del modelo que se utilizará en la aplicación.
 	 * 
 	 * @param modelo
 	 */
 	public void setModelo(IModelo modelo);
 
 	/**
-	 * Establece la instancia de la vista que se utilizara en la aplicación
+	 * Establece la instancia de la vista que se utilizará en la aplicación.
 	 * 
 	 * @param vista
 	 */
 	public void setVista(IVista vista);
 
 	/**
-	 * Método que intenta deshacer la aplicación de la ultima herramienta.
+	 * Método que intenta deshacer la aplicación de la última herramienta.
 	 * <p>
-	 * Este metodo tratar de deshacer los cambios realizados por la ultima
-	 * herramienta aplicada sobre el modelo, eliminandola de la lista si es
+	 * Este método trata de deshacer los cambios realizados por la última
+	 * herramienta aplicada sobre el modelo, eliminándola de la lista si es
 	 * exitoso.
 	 * 
-	 * @return 0 en el caso de exito, codigo de error en otro caso
+	 * @return 0 en el caso de éxito, código de error en otro caso.
 	 */
 	public int deshacer();
 
@@ -43,12 +43,11 @@ public interface IControlador {
 	 * Método que intenta aplicar una herramienta sobre el modelo.
 	 * <p>
 	 * Este método intenta aplicar una herramienta sobre el modelo, y en el caso
-	 * de ser exito la almacena para poder deshacer los cambios. En caso de
-	 * exito o fracaso, se lo indica al usuario
+	 * de éxito la almacena para poder deshacer los cambios. Concluya con
+	 * éxito o fracaso, se lo indica al usuario
 	 * 
-	 * @param herramienta
-	 *            IHerramienta con la herramienta que se desea aplicar al modelo
-	 * @return int 0 en caso de exito, codigo de error en otro caso
+	 * @param herramienta IHerramienta con la herramienta que se desea aplicar al modelo
+	 * @return int 0 en caso de éxito, código de error en otro caso.
 	 * @roseuid 45B8A7B80386
 	 */
 	public int herramienta(IHerramienta herramienta);

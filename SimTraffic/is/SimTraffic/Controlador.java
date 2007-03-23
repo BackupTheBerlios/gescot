@@ -11,25 +11,25 @@ import is.SimTraffic.Vista.IVista;
  */
 public class Controlador implements IControlador {
 	/**
-	 * Mantiene la instancia acutal de la vista
+	 * Mantiene la instancia actual de la vista.
 	 */
 	public IVista vista;
 
 	/**
-	 * Mantiene la instancia actual del modelo
+	 * Mantiene la instancia actual del modelo.
 	 */
 	public IModelo modelo;
 
 	/**
-	 * Lista de herramientas apliacadas sobre el modelo, para poder deshacer los
-	 * cambios realizados
+	 * Lista de herramientas aplicadas sobre el modelo, para poder deshacer los
+	 * cambios realizados.
 	 */
 	public List<IHerramienta> herramientas;
 
 	/**
 	 * Constructor de la clase.
 	 * <p>
-	 * Metodo que simplemente inicializa la lista. Todavía hace falta establecer
+	 * Método que simplemente inicializa la lista. Todavía hace falta establecer
 	 * el modelo y la vista que se desean utilizar.
 	 * 
 	 * @roseuid 45B8B3A90134

@@ -7,9 +7,9 @@ import is.SimTraffic.Simulacion.Simulacion;
 import java.util.List;
 
 /**
- * Clase Modelo donde se mantiene toda la infromación actual del mapa y de la simulación.
+ * Clase Modelo donde se mantiene toda la información actual del mapa y de la simulación.
  * <p>
- * Esta clase implementa la interfaz IModelo, y forma parte del patron MVC. En el modelo
+ * Esta clase implementa la interfaz IModelo, y forma parte del patrón MVC. En el modelo
  * se almacena toda la información de la instancia actual de la aplicación, en este caso
  * compuesta por el mapa (clase tipo Mapa) y la simulación (clase tipo Simulacion).
  * 
@@ -18,12 +18,12 @@ import java.util.List;
 public class Modelo implements IModelo {
 	
 	/**
-	 * Mantiene la instancia actual del mapa
+	 * Mantiene la instancia actual del mapa.
 	 */
 	private Mapa mapa;
 
 	/**
-	 * Mantiene la simulacion actual
+	 * Mantiene la simulación actual.
 	 */
 	private Simulacion simulacion;
 
