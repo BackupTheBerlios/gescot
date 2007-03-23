@@ -32,6 +32,7 @@ public class AccionCambiarRep implements ActionListener {
 	public AccionCambiarRep(PanelMapa panel, Representacion rep) {
 		this.panel = panel;
 		this.rep = rep;
+		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

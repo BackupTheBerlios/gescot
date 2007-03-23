@@ -6,6 +6,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.AccionBarra;
+import is.SimTraffic.Vista.Acciones.AccionCambiarRep;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
 import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
@@ -34,6 +35,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarTramos;
+import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -318,8 +320,8 @@ public class Ventana extends JFrame {
 		menuVis.addSeparator();
 		
 		JMenuItem cambiarRep = new JMenuItem();
-		// TODO falta el action listener
-		cambiarRep.addActionListener(null);
+		// TODO falta que se pueda elegir entre representaciones
+		cambiarRep.addActionListener(new AccionCambiarRep(panel_mapa,new RepresentacionAvanzada())); 
 		cambiarRep.setText("Cambiar representación");
 		menuVis.add(cambiarRep);
 	}
@@ -576,10 +578,10 @@ public class Ventana extends JFrame {
 		guardarTB.setToolTipText("<html>Guardar mapa <img src="+imageName+"></html>");
 		
 		JButton cortarTB = new JButton(new ImageIcon(
-		"is\\SimTraffic\\Vista\\Imagenes\\cortar-1.png"));
+		"is\\SimTraffic\\Vista\\Imagenes\\edit-cut.png"));
 		cortarTB.setMargin(new Insets(1, 1, 1, 1));
 		cortarTB.addActionListener(new AccionCortar(modelo,controlador,this.panel_mapa));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\cortar-2.png"; 
+		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-cut2.png"; 
 		cortarTB.setToolTipText("<html>Cortar <img src="+imageName+"></html>");
 		
 		JButton copiarTB = new JButton(new ImageIcon(
