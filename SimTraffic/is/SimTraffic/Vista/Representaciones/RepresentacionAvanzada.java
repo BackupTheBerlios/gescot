@@ -64,7 +64,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					
 					else if (aux.equalsIgnoreCase("Estadio"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Estadio.png"));
 					}
 					else if (aux.equalsIgnoreCase("Pista de carreras"))
 					{
@@ -139,7 +139,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					}
 					else if (aux.equalsIgnoreCase("Iglesia"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Iglesia.png"));
 					}
 					else if (aux.equalsIgnoreCase("Cementerio"))
 					{
@@ -147,31 +147,27 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					}
 					else if (aux.equalsIgnoreCase("Oficina de Correos"))
 					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Oficina de Correos"))
-					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos.png"));
 					}
 					else if (aux.equalsIgnoreCase("Buzon de Correos"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos2.png"));
 					}
 					else if (aux.equalsIgnoreCase("Colegio"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Colegio.png"));
 					}
 					else if (aux.equalsIgnoreCase("Supermercado"))
 					{
-						int a;
+						
 					}
 					else if (aux.equalsIgnoreCase("Hospital"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Hospital.png"));
 					}
-					else if (aux.equalsIgnoreCase("Libreria"))
+					else if (aux.equalsIgnoreCase("Librería"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Libreria.png"));
 					}
 					else if (aux.equalsIgnoreCase("Comisaria"))
 					{
@@ -187,7 +183,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					}
 					else if (aux.equalsIgnoreCase("Restaurante"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Restaurante.png"));
 					}
 					else if (aux.equalsIgnoreCase("Cadena de comida rapida"))
 					{
@@ -199,7 +195,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					}
 					else if (aux.equalsIgnoreCase("Teatro"))
 					{
-						
+						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Teatro.png"));
 					}
 				}
 				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-9, y_MapaARep(nodo.getPos().getLat())-9, null);
