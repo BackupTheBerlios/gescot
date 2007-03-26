@@ -1,6 +1,8 @@
 package is.SimTraffic.Vista;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,8 +25,16 @@ public class AcercaDe extends JFrame {
 		setLayout(new BorderLayout());
 		
 		add(texto, BorderLayout.NORTH);
-		add(new JButton("Acceptar"), BorderLayout.SOUTH);
+		JButton aceptar = new JButton("Aceptar");
+		aceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AcercaDe.this.setVisible(false);
+			}
+		});
+		
+		add(aceptar, BorderLayout.SOUTH);
 		this.pack();
-	
+		this.setResizable(false);
+		this.setLocation(50, 50);
 	}
 }

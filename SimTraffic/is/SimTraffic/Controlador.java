@@ -39,13 +39,6 @@ public class Controlador implements IControlador {
 	}
 
 	/**
-	 * @roseuid 45C1E08103C8
-	 */
-	public void crear() {
-
-	}
-
-	/**
 	 * @param herramienta
 	 * @return int
 	 * @roseuid 45C1E08103E7
@@ -60,11 +53,6 @@ public class Controlador implements IControlador {
 		return 0;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see is.SimTraffic.IControlador#deshacer()
-	 */
 	public int deshacer() {
 		modelo.getMapa().limpiaSeleccion();
 		if (herramientas.size() > 0) {
@@ -97,7 +85,6 @@ public class Controlador implements IControlador {
 	/**
 	 * @param tipoError
 	 * @return String
-	 * @roseuid 45C1E082004D
 	 */
 	public String obtenerMensajeError(int tipoError) {
 		return null;
@@ -106,7 +93,6 @@ public class Controlador implements IControlador {
 	/**
 	 * @param ayuda
 	 * @return String
-	 * @roseuid 45C1E082009B
 	 */
 	public String obtenerVinculoAyuda(int ayuda) {
 		return null;

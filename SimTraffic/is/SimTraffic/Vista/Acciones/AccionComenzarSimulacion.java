@@ -2,8 +2,6 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Herramientas.HCargarMapa;
-import is.SimTraffic.Vista.PanelVehiculos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -27,12 +27,9 @@ public class Modelo implements IModelo {
 	 */
 	private Simulacion simulacion;
 
-
-	
 	/**
 	 * Constructor de la clase modelo.<p>
 	 * Este constructor inicializa el mapa y la simulación a sus valores por defecto.
-	 * @roseuid 45B8B3A901D0
 	 */
 	public Modelo() {
 		mapa = new Mapa();
@@ -40,39 +37,20 @@ public class Modelo implements IModelo {
 
 	}
 
-	/**
-	 * @return Mapa
-	 * @roseuid 45C1E1C8009B
-	 */
 	public Mapa getMapa() {
 		return mapa;
 	}
 
-	/**
-	 * @return java.util.ArrayList
-	 * @roseuid 45C1E1C800BB
-	 */
 	public List<Vehiculo> getVehiculos() {
 		return simulacion.getVehiculos();
 	}
 
-	/**
-	 * @return Simulacion
-	 * @roseuid 45C1E1C800CA
-	 */
 	public Simulacion getSimulacion() {
 		return simulacion;
 	}
 
-	/**
-	 * @param mapa
-	 * @roseuid 45C1E1C800E9
-	 */
 	public void setMapa(Mapa mapa) {
 		if (mapa != null)
 			this.mapa = mapa;
 	}
-	
-
-
 }

@@ -60,7 +60,8 @@ import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
 
 /**
- * Ventana que contiene la interfaz gráfica de la aplicación.
+ * Ventana que contiene la interfaz gráfica de la aplicación.<p>
+ * Iconos tomados del tema de escritorio Tango de linux (http://tango.freedesktop.org/Tango_Icon_Gallery).
  * 
  * @author Grupo ISTrafico
  * 

@@ -13,7 +13,6 @@ import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
-import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class HGuardarMapa implements IHerramienta {
 

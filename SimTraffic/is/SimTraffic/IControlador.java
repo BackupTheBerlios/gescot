@@ -10,11 +10,6 @@ import is.SimTraffic.Vista.IVista;
 public interface IControlador {
 
 	/**
-	 * @roseuid 45B8A7B103D4
-	 */
-	public void crear();
-
-	/**
 	 * Establece la instancia del modelo que se utilizará en la aplicación.
 	 * 
 	 * @param modelo

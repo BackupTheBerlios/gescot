@@ -65,10 +65,6 @@ public class Simulacion {
 		return 0;
 	}
 
-	public List<Vehiculo> getVehiculos() {
-		return vehiculos;
-	}
-
 	/**
 	 * Rellena la tabla que mantiene la relacion entre tramos y vehiculos.
 	 * <p>
@@ -81,5 +77,17 @@ public class Simulacion {
 		while (it.hasNext()) {
 			tabla.put(it.next(), new ArrayList<Vehiculo>());
 		}
+	}
+
+	public List<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+	
+	public synchronized Hashtable<Tramo, ArrayList<Vehiculo>> getTabla() {
+		return tabla;
+	}
+	
+	public synchronized ParametrosSimulacion getParam (){
+		return param;
 	}
 }
