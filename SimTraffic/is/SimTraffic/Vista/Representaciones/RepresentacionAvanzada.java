@@ -149,7 +149,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 					{
 						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos.png"));
 					}
-					else if (aux.equalsIgnoreCase("Buzon de Correos"))
+					else if (aux.equalsIgnoreCase("Buzón de Correos"))
 					{
 						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos2.png"));
 					}
@@ -198,7 +198,7 @@ public class RepresentacionAvanzada extends RepresentacionSimple
 						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Teatro.png"));
 					}
 				}
-				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-9, y_MapaARep(nodo.getPos().getLat())-9, null);
+				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()), y_MapaARep(nodo.getPos().getLat()), null);
 			}
 		}
 		catch (IOException e) {e.printStackTrace();}
