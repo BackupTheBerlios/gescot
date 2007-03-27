@@ -6,12 +6,14 @@ package is.SimTraffic.Simulacion;
 import java.util.ArrayList;
 
 /**
- * Clase que procesa un grupo de vehiculos.<p>
- * Esta clase extiende la clase Thread, permitiendo procear un grupo de vehiculos en paralelo
- * con otro. Se utiliza esta estructura por cuestiones de eficiencia. El nro de vehiculos se
- * define como una constante, establecida por experimentación en un valor óptimo.<br>
- * Esta clase crea su propia instancia de la inteligencia, donde se realiza el procesamiento
- * real de los vehiculos considerando su entorno.
+ * Clase que procesa un grupo de vehiculos.
+ * <p>
+ * Esta clase extiende la clase Thread, permitiendo procear un grupo de
+ * vehiculos en paralelo con otro. Se utiliza esta estructura por cuestiones de
+ * eficiencia. El nro de vehiculos se define como una constante, establecida por
+ * experimentación en un valor óptimo.<br>
+ * Esta clase crea su propia instancia de la inteligencia, donde se realiza el
+ * procesamiento real de los vehiculos considerando su entorno.
  * 
  * @author Grupo ISTrafico
  * 
@@ -28,20 +30,20 @@ public class GrupoVehiculos extends Thread {
 	private Vehiculo[] lista;
 
 	/**
-	 * Clase encargada de procesar cada uno de los vehiculos
+	 * Clase encargada de procesar cada uno de los vehículos
 	 */
 	private Inteligencia intel;
 
 	/**
-	 * Booleano que indica si se termino de procesar el vehiculo
+	 * Booleano que indica si se terminó de procesar el vehículo
 	 */
 	private boolean termino = false;
 
 	/**
 	 * Método constructor de la clase.
 	 * <p>
-	 * Este método crea la "memoria" que procesara los coches e inicializa la
-	 * lista de vehiculos.
+	 * Este método crea la "inteligencia" que procesará los coches e inicializa
+	 * la lista de vehiculos.
 	 * 
 	 * @param vehiculos
 	 *            ArrayList con todos los vehiculos de la simulación
@@ -49,7 +51,7 @@ public class GrupoVehiculos extends Thread {
 	 *            Indice del primer vehiculo en el ArrayList perteneciente al
 	 *            grupo
 	 * @param sim
-	 *            Simulacion que se esta ejecutando
+	 *            Simulación que se está ejecutando
 	 */
 	public GrupoVehiculos(ArrayList<Vehiculo> vehiculos, int indice,
 			Simulacion sim) {

@@ -3,6 +3,17 @@ package is.SimTraffic.Simulacion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
+/**
+ * Clase abstracta que representa un vehiculo.
+ * <p>
+ * Esta clase tiene las variables principales de un vehiculo y los métodos para
+ * accederlas, así como otros métodos requeridos por los vehículos para la
+ * simulación.<br>
+ * 
+ * 
+ * @author Grupo ISTrafico
+ * 
+ */
 public abstract class Vehiculo {
 
 	/**
@@ -54,7 +65,6 @@ public abstract class Vehiculo {
 	 * Nodo de origen del vehiculo
 	 */
 	protected Nodo nodoOrigen;
-	
 
 	/**
 	 * Nodo al que se dirige el vehiculo

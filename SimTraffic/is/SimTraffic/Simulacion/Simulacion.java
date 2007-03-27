@@ -9,6 +9,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
+ * Clase que ejecuta la simulación en un mapa.
+ * <p>
+ * Esta clase mentienen los valores principales de la simulación y los
+ * vehículos.<br>
+ * Implementa principalmente dos métodos, uno para comenzar una simulación y
+ * otro para temrinarla. También mantiene, además de una lista dinámica de
+ * vehículos, una tabla hash que metiene la relación entre los coches y los
+ * tramos que ocupan para facilitar el procesamiento de estos.<br>
+ * 
  * @author Grupo ISTrafico
  * 
  */
@@ -44,11 +53,33 @@ public class Simulacion {
 		return this.param;
 	}
 
+	/**
+	 * Método que modifica los parámetros actuales de la simulación.
+	 * <p>
+	 * Este método se utiliza en lugar de setParametros porque puede devolver
+	 * información en el caso de que surga algún problema al cambiar los
+	 * parámetros (por ejemplo, porque esta en ejecución una simulación y se
+	 * cambia un valor no permitido.<br>
+	 * 
+	 * @param parametros
+	 * @return
+	 */
 	public int modificaParametros(ParametrosSimulacion parametros) {
 		this.param = parametros;
 		return 0;
 	}
 
+	/**
+	 * Método para comenzar la simulación a partir de un mapa.
+	 * <p>
+	 * Este método comienza la simulación a partir de un mapa, utilizando los
+	 * paramentros de param que es del tipo ParametroSimulacion.<br>
+	 * 
+	 * @param mapa
+	 *            Mapa en el que se hace la simulación
+	 * @return Entero que indica el resultado de la simulación:<br> + 0 -
+	 *         comienzo satisfactorio de la simulación
+	 */
 	public int comenzar(Mapa mapa) {
 		tabla.clear();
 		this.mapa = mapa;
@@ -56,11 +87,29 @@ public class Simulacion {
 		return 0;
 	}
 
+	/**
+	 * Método para detener la simulación.
+	 * <p>
+	 * Este método destruye todas las instancias de vehiculos, con lo cual no se
+	 * podrá continuar con la misma simulación.
+	 * 
+	 * @return Entero que indica el resultado del método:<br>
+	 *         0 - ejecución satisfactoria
+	 */
 	public int detener() {
 
 		return 0;
 	}
 
+	/**
+	 * Método que detiene temporalmente la simulación y la reanuda si esta
+	 * detenida.
+	 * <p>
+	 * Este método deteniene la simulación, envitando el avance de los coches
+	 * hasta que se vuelva a ejecutar.
+	 * 
+	 * @return 0 en caso de funcionar satisfactoriamente.
+	 */
 	public int pausar() {
 		return 0;
 	}
@@ -82,12 +131,16 @@ public class Simulacion {
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
-	
+
 	public synchronized Hashtable<Tramo, ArrayList<Vehiculo>> getTabla() {
 		return tabla;
 	}
-	
-	public synchronized ParametrosSimulacion getParam (){
+
+	public synchronized ParametrosSimulacion getParam() {
 		return param;
+	}
+	
+	public synchronized Mapa getMapa() {
+		return mapa;
 	}
 }

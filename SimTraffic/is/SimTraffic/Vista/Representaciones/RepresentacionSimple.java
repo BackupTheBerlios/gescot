@@ -12,18 +12,27 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
+/**
+ * Clase que extiende Representacion.
+ * <p>
+ * Esta clase implementa la representación de forma simple, pero con todas las
+ * funciones necesarias para mostrar todos las opciones del osm y de la
+ * simulación.
+ * 
+ * @author Grupo ISTrafico
+ * 
+ */
 public class RepresentacionSimple extends Representacion {
 	/**
 	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
 	 */
-	private double tamaño_carril;
+	private double tamaño_carril = 2.5;
 
 	/**
 	 * Constructor por defecto de la RepresentacionSimple
 	 */
 	public RepresentacionSimple() {
 		super();
-		tamaño_carril = 2.5;
 	}
 
 	/**
@@ -34,7 +43,6 @@ public class RepresentacionSimple extends Representacion {
 	 */
 	public RepresentacionSimple(Representacion rep) {
 		super(rep);
-		tamaño_carril = 2.5;
 	}
 
 	public void pintar(Graphics2D g, Nodo nodo) {
@@ -74,14 +82,14 @@ public class RepresentacionSimple extends Representacion {
 						* carriles_ida * Math.sin(angulo)),
 				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
 						* carriles_vuelta * (-Math.sin(angulo))),
-				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom 
+				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
 						* carriles_vuelta * (-Math.sin(angulo))) };
 		int y[] = {
 				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 						* carriles_ida * (-Math.cos(angulo))),
 				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 						* carriles_ida * (-Math.cos(angulo))),
-				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom 
+				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 						* carriles_vuelta * Math.cos(angulo)),
 				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 						* carriles_vuelta * Math.cos(angulo)) };
@@ -104,8 +112,8 @@ public class RepresentacionSimple extends Representacion {
 			else
 				g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
 						BasicStroke.JOIN_ROUND, 1, array, 1));
-			g.drawLine((int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
-					* (i + 1) * Math.sin(angulo)),
+			g.drawLine((int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
+					/ zoom * (i + 1) * Math.sin(angulo)),
 					(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 							* (i + 1) * (-Math.cos(angulo))),
 					(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
@@ -121,8 +129,8 @@ public class RepresentacionSimple extends Representacion {
 			else
 				g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND,
 						BasicStroke.JOIN_ROUND, 1, array, 1));
-			g.drawLine((int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
-					* -(i + 1) * Math.sin(angulo)),
+			g.drawLine((int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
+					/ zoom * -(i + 1) * Math.sin(angulo)),
 					(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 							* -(i + 1) * (-Math.cos(angulo))),
 					(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
@@ -193,7 +201,7 @@ public class RepresentacionSimple extends Representacion {
 				Tramo t = (Tramo) elemento;
 				Polygon p = generarAreaTramo(t);
 				Color colorTransparente = new Color((float) 0.1, (float) 0.8,
-						(float) 0.05, (float)0.6);
+						(float) 0.05, (float) 0.6);
 				g.setColor(colorTransparente);
 				g.fillPolygon(p);
 			}
@@ -214,22 +222,22 @@ public class RepresentacionSimple extends Representacion {
 
 		// genera los puntos (x,y) de las esquinas del poligono
 		int x[] = {
-				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril/ zoom
+				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
 						* carriles_ida * Math.sin(angulo)),
-				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril/ zoom
+				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
 						* carriles_ida * Math.sin(angulo)),
-				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril/ zoom
+				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
 						* carriles_vuelta * (-Math.sin(angulo))),
-				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril/ zoom
+				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
 						* carriles_vuelta * (-Math.sin(angulo))) };
 		int y[] = {
-				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril/ zoom
+				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 						* carriles_ida * (-Math.cos(angulo))),
-				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril/ zoom
+				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 						* carriles_ida * (-Math.cos(angulo))),
-				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril/ zoom
+				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 						* carriles_vuelta * Math.cos(angulo)),
-				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril/ zoom
+				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 						* carriles_vuelta * Math.cos(angulo)) };
 		Polygon p = new Polygon(x, y, 4);
 		return p;
