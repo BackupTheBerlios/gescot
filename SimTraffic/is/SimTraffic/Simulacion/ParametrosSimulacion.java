@@ -34,10 +34,14 @@ public class ParametrosSimulacion {
 	 * ¿como se guarda la información en esta variable?
 	 * ¿los valores de array suman 1, o hay que normalizarlos?
 	 */
-	private ArrayList porcentajeTipo;
+	private ArrayList<Integer> porcentajeTipo;
 
 	public ParametrosSimulacion() {
-
+		clima = 1;
+		numVehiculos = 40;
+		hora = 0;
+		estadoCoches = 0;
+		porcentajeTipo = new ArrayList<Integer>();
 	}
 
 	public synchronized int getClima() {

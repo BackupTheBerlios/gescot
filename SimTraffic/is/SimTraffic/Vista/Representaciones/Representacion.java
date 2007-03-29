@@ -373,7 +373,10 @@ abstract public class Representacion {
 		for (int i = 0; i < imagenes.size(); i++) {
 			g.drawImage(imagenes.get(i),
 					x_MapaARep(posiciones.get(i).getLon()),
-					y_MapaARep(posiciones.get(i).getLat()), null);
+					y_MapaARep(posiciones.get(i).getLat()),
+					(int)(imagenes.get(i).getWidth(null) / zoom),
+					(int)(imagenes.get(i).getHeight(null) / zoom),
+					null);
 		}
 	}
 

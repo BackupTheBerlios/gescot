@@ -1,6 +1,8 @@
 package is.SimTraffic.Simulacion;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
@@ -45,17 +47,21 @@ public class Controlador extends Thread {
 	 * @param listaVehiculo
 	 *            Lista de los vehiculos a simular
 	 */
-	Controlador(ArrayList<Vehiculo> listaVehiculo, Simulacion sim) {
+	Controlador(List<Vehiculo> listaVehiculo, Simulacion sim) {
 		int N = calculaNroThread(listaVehiculo.size());
 		this.sim = sim;
+		lista = new ArrayList<GrupoVehiculos>();
+		barrera = new CyclicBarrier(N);
 		for (int i = 0; i < N - 1; i++) {
 			lista.add(new GrupoVehiculos(listaVehiculo,
 					GrupoVehiculos.nroVehiculos * i, sim, barrera));
 		}
-		barrera = new CyclicBarrier(N);
 	}
-
+	
 	public void run() {
+		Iterator<GrupoVehiculos> it = lista.iterator();
+		while (it.hasNext())
+			it.next().start();
 		while (!termino) {
 			try {
 				barrera.await();
@@ -89,6 +95,10 @@ public class Controlador extends Thread {
 	 * Método para finalizar la ejecución del thread.
 	 */
 	synchronized public void terminar() {
+		Iterator<GrupoVehiculos> it = lista.iterator();
+		while (it.hasNext())
+			it.next().terminar();
+		lista.clear();
 		termino = true;
 	}
 }

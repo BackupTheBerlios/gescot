@@ -1,4 +1,8 @@
-package is.SimTraffic.Vista;
+package is.SimTraffic.Vista.PanelesSimulacion;
+
+import is.SimTraffic.IControlador;
+import is.SimTraffic.Herramientas.HComenzar;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -21,14 +25,19 @@ import javax.swing.JPanel;
  * @author Sergio Perez Jimenez
  *
  */
-public class PanelVehiculos extends JPanel {
+public class PanelVehiculos extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelVehiculos(){
+	private IControlador controlador;
+	
+	public PanelVehiculos(IControlador controlador){
+		this.controlador = controlador;
+		this.setResizable(false);
+		this.setTitle("Tipos de Vehículos");
 		
 		String[] cantidadVehiculos = { "No aparece", "Muy pocos", "Algunos", "Normal", "Bastantes", "Muchos" };
 		
@@ -143,6 +152,7 @@ public class PanelVehiculos extends JPanel {
 	    JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER,40,5));
 		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.addActionListener(new accionAceptar());
 		JButton botonCancelar = new JButton("Cancelar");		
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
@@ -227,5 +237,14 @@ public class PanelVehiculos extends JPanel {
 					}
 				}
 		);
+	}
+	
+	private class accionAceptar implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			controlador.herramienta(new HComenzar());
+			PanelVehiculos.this.setVisible(false);
+		}
+		
 	}
 }

@@ -50,9 +50,12 @@ public class Simulacion {
 	 */
 	private Mapa mapa;
 
+	private Controlador controlador;
+	
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+		param = new ParametrosSimulacion();
 	}
 
 	public ParametrosSimulacion getParametros() {
@@ -89,9 +92,11 @@ public class Simulacion {
 	public int comenzar(Mapa mapa) {
 		tabla.clear();
 		this.mapa = mapa;
+		vehiculos = new ArrayList<Vehiculo>(param.getNumVehiculos());
 		rellenarTabla();
 		crearVehiculos();
-		
+		controlador = new Controlador(vehiculos, this);
+		controlador.start();
 		return 0;
 	}
 
@@ -105,7 +110,7 @@ public class Simulacion {
 	 *         0 - ejecución satisfactoria
 	 */
 	public int detener() {
-
+		controlador.terminar();
 		return 0;
 	}
 

@@ -1,6 +1,7 @@
 package is.SimTraffic.Simulacion;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
@@ -58,7 +59,7 @@ public class GrupoVehiculos extends Thread {
 	 * @param sim
 	 *            Simulación que se está ejecutando
 	 */
-	public GrupoVehiculos(ArrayList<Vehiculo> vehiculos, int indice,
+	public GrupoVehiculos(List<Vehiculo> vehiculos, int indice,
 			Simulacion sim, CyclicBarrier barrera) {
 		lista = new Vehiculo[nroVehiculos];
 		for (int i = indice; i < indice + nroVehiculos; i++) {
@@ -71,6 +72,7 @@ public class GrupoVehiculos extends Thread {
 	public void run() {
 		while (!termino) {
 			intel.actualizarInteligencia();
+			System.out.println("procesando coche");
 			for (int i = 0; i < nroVehiculos; i++)
 				intel.procesar(lista[i]);
 			// TODO
