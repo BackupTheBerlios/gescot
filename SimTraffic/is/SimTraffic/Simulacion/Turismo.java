@@ -7,8 +7,12 @@ package is.SimTraffic.Simulacion;
  *
  */
 public class Turismo extends Vehiculo {
+	/**
+	 * 
+	 */
 	public Turismo () {
-		
+		// TODO este constructor deberia dar valores a todos
+		//   los atributos de un vehiculo
 	}
 
 }

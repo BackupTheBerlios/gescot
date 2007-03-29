@@ -1,9 +1,8 @@
-/**
- * 
- */
 package is.SimTraffic.Simulacion;
 
 import java.util.ArrayList;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * Clase que procesa un grupo de vehiculos.
@@ -40,6 +39,12 @@ public class GrupoVehiculos extends Thread {
 	private boolean termino = false;
 
 	/**
+	 * Elemento de sincronización, perimite que todos los threads terminen un
+	 * ciclo antes de comenzar el siguiente
+	 */
+	private CyclicBarrier barrera;
+
+	/**
 	 * Método constructor de la clase.
 	 * <p>
 	 * Este método crea la "inteligencia" que procesará los coches e inicializa
@@ -54,12 +59,13 @@ public class GrupoVehiculos extends Thread {
 	 *            Simulación que se está ejecutando
 	 */
 	public GrupoVehiculos(ArrayList<Vehiculo> vehiculos, int indice,
-			Simulacion sim) {
+			Simulacion sim, CyclicBarrier barrera) {
 		lista = new Vehiculo[nroVehiculos];
 		for (int i = indice; i < indice + nroVehiculos; i++) {
 			lista[i - indice] = vehiculos.get(i);
 		}
 		intel = new Inteligencia(sim);
+		this.barrera = barrera;
 	}
 
 	public void run() {
@@ -68,6 +74,13 @@ public class GrupoVehiculos extends Thread {
 			for (int i = 0; i < nroVehiculos; i++)
 				intel.procesar(lista[i]);
 			// TODO
+			try {
+				barrera.await();
+			} catch (InterruptedException e) {
+				// TODO error porque se paro la espera en este thread
+			} catch (BrokenBarrierException e) {
+				// TODO error porque se paro la espera en otro thread
+			}
 		}
 	}
 

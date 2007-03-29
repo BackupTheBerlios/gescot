@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Clase que ejecuta la simulación en un mapa.
@@ -22,6 +23,11 @@ import java.util.ArrayList;
  * 
  */
 public class Simulacion {
+
+	/**
+	 * Máximo de vehiculos que se pueden simular
+	 */
+	private static int maxVehiculos = 2000;
 
 	/**
 	 * Lista de los vehiculos que se estan simulando
@@ -84,6 +90,8 @@ public class Simulacion {
 		tabla.clear();
 		this.mapa = mapa;
 		rellenarTabla();
+		crearVehiculos();
+		
 		return 0;
 	}
 
@@ -128,6 +136,29 @@ public class Simulacion {
 		}
 	}
 
+	/**
+	 * Método que crea los vehiculos necesarios para esta simulación y los añada
+	 * a la lista de vehiculos
+	 * <p>
+	 * Este método se encarga de crear el porcentaje de los vehiculos de acuerdo
+	 * a lo establecido en los parámetros de simulación, pero lo hace
+	 * aleatoriamente usando los porcentajes como probabilidad para conseguir
+	 * una distribución homegenea.
+	 */
+	private void crearVehiculos() {
+		int cant = param.getNumVehiculos();
+		if (cant > maxVehiculos)
+			cant = maxVehiculos;
+		Random rand = new Random();
+		// param.getPorcentajeTipo();
+		// TODO crear vehiculos de cada tipo segun la infromacón que hay
+		// en los parametros. No se puede hacer ahora porque no se
+		// entiende como se guarda esa información
+		for (int i = 0; i < cant; i++) {
+			vehiculos.add(new Turismo());
+		}
+	}
+
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
@@ -139,7 +170,7 @@ public class Simulacion {
 	public synchronized ParametrosSimulacion getParam() {
 		return param;
 	}
-	
+
 	public synchronized Mapa getMapa() {
 		return mapa;
 	}

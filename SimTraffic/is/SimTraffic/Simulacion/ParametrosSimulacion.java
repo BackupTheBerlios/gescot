@@ -31,6 +31,8 @@ public class ParametrosSimulacion {
 
 	/**
 	 * porcentaje de coches que hay de cada tipo en la simulacion actual
+	 * ¿como se guarda la información en esta variable?
+	 * ¿los valores de array suman 1, o hay que normalizarlos?
 	 */
 	private ArrayList porcentajeTipo;
 
