@@ -66,26 +66,55 @@ public class AccionCortar implements ActionListener {
 					nodoPortapapeles = nodoTemp.pseudoClone();
 					modelo.getMapa().getPortapapeles().añadirNodo(nodoPortapapeles);
 				}
-			}		
+			}			
 			Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
 			for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size();i++){
 				Nodo nodoTemp = modelo.getMapa().getPortapapeles().getNodosSeleccionados().get(i);
 				if (nodoTemp.getPos().getLon()<=posMinima.getLon()) {
-					if (nodoTemp.getPos().getLat()<=posMinima.getLat()) {
-						posMinima = nodoTemp.getPos();
-						modelo.getMapa().setNodoReferenciaPortapapeles(nodoTemp);
-					}
+					//if (nodoTemp.getPos().getLat()<=posMinima.getLat()) {
+					posMinima = nodoTemp.getPos();
+					modelo.getMapa().setNodoReferenciaPortapapeles(nodoTemp);
+					
 				}
 			}
 			
-//			for(int i=0; i<modelo.getMapa().getPortapapeles().)
-			
-			
+		
 			/*HEliminarSeleccion herramientaBorrar = new HEliminarSeleccion(modelo.getMapa().getPortapapeles().getNodosSeleccionados(),
 					modelo.getMapa().getPortapapeles().getTramosSeleccionados());
 			controlador.herramienta(herramientaBorrar);
 			*/
+			
 			for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
+				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
+				if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
+					modelo.getMapa().getTramos().remove(i);
+					i--;
+				}
+				
+			}
+			
+			
+			for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++) {
+				Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
+				boolean existeTramoEnMapa=false;
+				for (int j=0; j<modelo.getMapa().getTramos().size()&& !existeTramoEnMapa;j++) {
+					if (modelo.getMapa().getTramos().get(j).getNodoInicial().equals(nodoTemp)
+							|| modelo.getMapa().getTramos().get(j).getNodoFinal().equals(nodoTemp))
+						existeTramoEnMapa=true;
+						
+				}
+				if (!existeTramoEnMapa) {
+					boolean nodoEliminado = false;
+					for (int k=0; k<modelo.getMapa().getNodos().size()&& !nodoEliminado; k++) {
+						if (modelo.getMapa().getNodos().get(k).equals(nodoTemp)) {
+							modelo.getMapa().getNodos().remove(k);
+							nodoEliminado=true;
+						}
+					}
+				}
+			}
+			
+			/*for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
 				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
 				if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
 					modelo.getMapa().getTramos().remove(i);
@@ -99,10 +128,8 @@ public class AccionCortar implements ActionListener {
 				if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoTemp)) {
 					modelo.getMapa().getNodos().remove(i);
 					i--;
-				}
-				
-				
-			}
+				}				
+			}*/
 			modelo.getMapa().setSeleccion(new Seleccion());
 			panel.setRecrear(true);
 			panel.repaint();
