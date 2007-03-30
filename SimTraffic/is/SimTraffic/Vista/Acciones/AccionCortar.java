@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Clase que se encarga de cortar una selección de elementos del mapa
  * @author Grupo ISTrafico
  *
  */
@@ -28,12 +29,24 @@ public class AccionCortar implements ActionListener {
 	IControlador controlador;
 	PanelMapa panel;
 	
+	/**
+	 * Constructora que guarda en sus atributos los valores de modelo, controlador y panel
+	 * @param modelo
+	 * @param controlador
+	 * @param panel
+	 */
+	
 	public AccionCortar (IModelo modelo, IControlador controlador, PanelMapa panel) {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		this.panel = panel;
 	}
 	
+	/**
+	 * Método que coge los elementos de la selección, los mete en el portapapeles y los elimina del mapa.
+	 * 
+	 * 
+	 */	
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		panel.setFocusable(true);		
@@ -79,10 +92,10 @@ public class AccionCortar implements ActionListener {
 			}
 			
 		
-			/*HEliminarSeleccion herramientaBorrar = new HEliminarSeleccion(modelo.getMapa().getPortapapeles().getNodosSeleccionados(),
+			HEliminarSeleccion herramientaBorrar = new HEliminarSeleccion(modelo.getMapa().getPortapapeles().getNodosSeleccionados(),
 					modelo.getMapa().getPortapapeles().getTramosSeleccionados());
 			controlador.herramienta(herramientaBorrar);
-			*/
+			
 			
 			for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
 				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
@@ -92,8 +105,7 @@ public class AccionCortar implements ActionListener {
 				}
 				
 			}
-			
-			
+				
 			for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++) {
 				Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
 				boolean existeTramoEnMapa=false;
@@ -114,22 +126,6 @@ public class AccionCortar implements ActionListener {
 				}
 			}
 			
-			/*for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
-				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
-				if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
-					modelo.getMapa().getTramos().remove(i);
-					i--;
-				}
-				
-			}
-			
-			for (int i=0; i<modelo.getMapa().getNodos().size();i++) {
-				Nodo nodoTemp = modelo.getMapa().getNodos().get(i);
-				if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoTemp)) {
-					modelo.getMapa().getNodos().remove(i);
-					i--;
-				}				
-			}*/
 			modelo.getMapa().setSeleccion(new Seleccion());
 			panel.setRecrear(true);
 			panel.repaint();
