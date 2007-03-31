@@ -7,7 +7,11 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
-
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class MLEliminarNodo extends EscuchaRaton
 {
 

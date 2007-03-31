@@ -8,7 +8,11 @@ import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class MLSeleccionarTramos extends EscuchaRaton{
 	
 	private boolean drag;
@@ -18,12 +22,10 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 		
 		drag = false;
 		panel.setFocusable(true);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
@@ -50,14 +52,12 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		panel.setPuntoInicial(arg0.getPoint());
 		panel.setModoSeleccion(true);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		//panel.setModoSeleccion(false);		
 		//panel.repaint();
 		//panel.notificaSeleccion(2);		
@@ -86,7 +86,6 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	

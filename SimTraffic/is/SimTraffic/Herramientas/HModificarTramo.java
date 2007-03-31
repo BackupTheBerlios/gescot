@@ -3,6 +3,11 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Tramo;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class HModificarTramo implements IHerramienta {
 
 	
@@ -23,14 +28,19 @@ public class HModificarTramo implements IHerramienta {
 		this.velocidadMaxGuardada=tramo.getVelMax();
 	}
 	
-	
+	/**
+	 * 
+	 */
 	public int deshacer(IModelo modelo) {
 		tramo.setNumCarrilesDir1(numCarrilesGuardados1);
 		tramo.setNumCarrilesDir2(numCarrilesGuardados2);
 		tramo.setVelMax(velocidadMaxGuardada);
 		return 0;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public int hacer(IModelo modelo) {
 		tramo.setNumCarrilesDir1(numCarrilesDir1);
 		tramo.setNumCarrilesDir2(numCarrilesDir2);

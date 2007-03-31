@@ -316,7 +316,11 @@ public class Ventana extends JFrame {
 		moverMenuItem.setText("Mover...");
 		edicionMenu.add(moverMenuItem);
 	}
-
+	
+	/**
+	 * 
+	 *
+	 */
 	public void crearMenuVis() {
 		JMenu menuVis = new JMenu();
 		menuVis.setText("Visualización");
@@ -342,6 +346,10 @@ public class Ventana extends JFrame {
 		menuVis.add(cambiarRep);
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	public void crearMenuMapa() {
 		JMenu mapaMenu = new JMenu();
 		mapaMenu.setText("Mapa");
@@ -377,7 +385,11 @@ public class Ventana extends JFrame {
 		mapaMenu.add(elminarTramo);
 
 	}
-
+	
+	/**
+	 * 
+	 *
+	 */
 	public void crearMenuSimulacion() {
 		JMenu simMenu = new JMenu();
 		simMenu.setText("Simulación");
@@ -424,6 +436,10 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	public void crearMenuAyuda() {
 		JMenu ayudaMenu = new JMenu();
 		ayudaMenu.setText("Ayuda");
@@ -664,6 +680,10 @@ public class Ventana extends JFrame {
 		zoomTB.add(zoomout);
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	private void crearBarraPropiedades() {
 		barraCrearNodo = new BarraCrearNodo();
 		barraCrearTramo = new BarraCrearTramo();

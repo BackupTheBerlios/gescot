@@ -8,6 +8,11 @@ import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class MLEliminarTramo extends EscuchaRaton
 {
 	

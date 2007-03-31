@@ -9,6 +9,11 @@ import is.SimTraffic.Mapa.Posicion;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class MLPegar extends EscuchaRaton {
 
 	public MLPegar(IModelo modelo, IControlador controlador, PanelMapa panel) {

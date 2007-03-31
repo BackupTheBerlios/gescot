@@ -14,6 +14,7 @@ public class HCargarMapa implements IHerramienta {
 	IControlador controlador;
 
 	/**
+	 * @param controlador
 	 * @roseuid 45B8B3A70182
 	 */
 	public HCargarMapa(IControlador controlador) {

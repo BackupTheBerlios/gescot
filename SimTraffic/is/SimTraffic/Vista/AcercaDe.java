@@ -8,6 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class AcercaDe extends JFrame {
 	/**
 	 * 

@@ -1,7 +1,11 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
-
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public interface IHerramienta 
 {
    

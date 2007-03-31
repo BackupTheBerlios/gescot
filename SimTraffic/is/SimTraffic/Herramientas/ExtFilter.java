@@ -50,7 +50,7 @@ public class ExtFilter extends FileFilter {
 		description = (descr == null ? exts[0] + " files" : descr);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc) Método hereadado
 	 * 
 	 * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
@@ -68,7 +68,7 @@ public class ExtFilter extends FileFilter {
 		return false;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc) Método heredado
 	 * 
 	 * @see javax.swing.filechooser.FileFilter#getDescription()

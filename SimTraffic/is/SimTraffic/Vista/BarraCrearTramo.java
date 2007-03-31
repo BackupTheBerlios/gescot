@@ -15,6 +15,11 @@ import javax.swing.JToolBar;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class BarraCrearTramo extends JToolBar 
 {
 	private JComboBox opcionesTipoTramo;

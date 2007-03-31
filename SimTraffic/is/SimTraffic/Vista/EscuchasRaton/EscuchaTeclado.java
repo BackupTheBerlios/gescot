@@ -5,7 +5,11 @@ import is.SimTraffic.Vista.PanelMapa;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class EscuchaTeclado implements KeyListener {
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */public class EscuchaTeclado implements KeyListener {
 
 	PanelMapa panel;
 	

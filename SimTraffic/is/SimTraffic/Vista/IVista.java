@@ -3,6 +3,11 @@ package is.SimTraffic.Vista;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public interface IVista {
 
 	/**

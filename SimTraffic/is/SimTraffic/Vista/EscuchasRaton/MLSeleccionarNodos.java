@@ -18,7 +18,6 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 		super(modelo, controlador, panel);
 		drag = false;
 		panel.setFocusable(true);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,26 +36,22 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		panel.setPuntoInicial(arg0.getPoint());
 		panel.setModoSeleccion(true);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		panel.setModoSeleccion(false);
 		panel.repaint();
 		
@@ -71,7 +66,6 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		Point puntoDrag = arg0.getPoint();
 		panel.setPuntoDrag(puntoDrag);
 		panel.repaint();
@@ -81,11 +75,10 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * Sobreescribo el método del padre para añadir funciones extra.
 	 * @see is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton#notificar(int)
 	 */

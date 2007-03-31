@@ -158,6 +158,10 @@ public class PanelNodo extends JFrame
 	    
 	}
 	
+	/**
+	 * 
+	 *
+	 */
 	public void creaPanelTipo(){
 					  
 	    JPanel panelTipo = new JPanel();
@@ -265,6 +269,10 @@ public class PanelNodo extends JFrame
 		
 	}
 	
+	/**
+	 * 
+	 *
+	 */
 	public void crearAcciones() {
 		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
 	    comboTipo.addActionListener(accionSeleccionarTipo);
@@ -285,6 +293,10 @@ public class PanelNodo extends JFrame
 	    );
 	}
 	
+	/**
+	 * 
+	 *
+	 */
 	public void creaPanelBotones(){
 		
 		botonAceptar = new JButton("Aceptar");
@@ -314,7 +326,10 @@ public class PanelNodo extends JFrame
 		}
 	}
 	
-	
+	/**
+	 * 
+	 *
+	 */
 	public void configurarValoresNodo() {
 		if (comboTipo.getSelectedItem().equals("Carretera")) {
 			String[] s1={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};

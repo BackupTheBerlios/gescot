@@ -12,7 +12,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 
+ * @author Grupo ISTrafico
+ *
+ */
 public class MLCopiar extends EscuchaRaton{
 
 	/**

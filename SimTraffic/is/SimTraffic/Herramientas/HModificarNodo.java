@@ -10,6 +10,7 @@ public class HModificarNodo implements IHerramienta {
 	Nodo nodo;
 	ITipoElemento tipoNodo;
 	Posicion pos;
+	
 	/**
 	 * Estos booleanos nos permiten modificar el nodo cuando queremos
 	 * borrar el nodo como punto de entrada salida o la señal que tiene en el.
@@ -29,6 +30,10 @@ public class HModificarNodo implements IHerramienta {
 	    this.señal = señal;
 	 
 	}
+	
+	/**
+	 * 
+	 */
 	public int hacer(IModelo modelo) {
 		
 		/**
@@ -61,6 +66,9 @@ public class HModificarNodo implements IHerramienta {
 		return 0;
 	}
 
+	/**
+	 * 
+	 */
 	public int deshacer(IModelo modelo) {
 		
 		//Deshacemos el cambio restaurando los parametros con el anterior

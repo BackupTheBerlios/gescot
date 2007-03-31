@@ -59,7 +59,12 @@ public class PanelTramo extends JFrame
 	private JSpinner campoVelocidad;
 	
 	
-	
+	/**
+	 * 
+	 * @param tramoAux
+	 * @param panel
+	 * @param controlador
+	 */
 	public PanelTramo(Tramo tramoAux, PanelMapa panel,IControlador controlador)
 	{
 		tramo = tramoAux;
@@ -79,6 +84,10 @@ public class PanelTramo extends JFrame
 	    
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	public void creaPanelDatos(){
 				
 		JPanel panelPropiedades = new JPanel();
@@ -265,6 +274,10 @@ public class PanelTramo extends JFrame
 	    panelDatos.addTab("Tramos", null, panelNodos,"Nodos asociados al Tramo");
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	public void creaPanelBotones(){
 	
 		JButton botonAceptar;

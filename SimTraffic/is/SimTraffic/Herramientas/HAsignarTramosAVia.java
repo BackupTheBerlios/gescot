@@ -11,7 +11,7 @@ import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 /**
- * @author usuario_local
+ * @author Grupo ISTrafico
  *
  */
 public class HAsignarTramosAVia implements IHerramienta {
@@ -33,7 +33,7 @@ public class HAsignarTramosAVia implements IHerramienta {
 		this.viaAInsertar=configurarVia();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see is.SimTraffic.Herramientas.IHerramienta#hacer(is.SimTraffic.IModelo)
 	 */
 	public int hacer(IModelo modelo) {
@@ -42,7 +42,7 @@ public class HAsignarTramosAVia implements IHerramienta {
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see is.SimTraffic.Herramientas.IHerramienta#deshacer(is.SimTraffic.IModelo)
 	 */
 	public int deshacer(IModelo modelo) {
@@ -50,7 +50,11 @@ public class HAsignarTramosAVia implements IHerramienta {
 		//modelo.getMapa().eliminar(this.viaAInsertar);		
 		return 0;
 	}
-
+	
+	/**
+	 * 
+	 * @return void
+	 */
 	public Via configurarVia(){
 		Via viaATratar = new Via();
 		viaATratar.setID(this.id);

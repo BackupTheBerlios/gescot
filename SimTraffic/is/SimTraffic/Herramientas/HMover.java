@@ -59,6 +59,9 @@ public class HMover implements IHerramienta{
 		diferenciaY = puntoDestino.getY()-puntoOrigen.getY();
 	}
 	
+	/**
+	 * 
+	 */
 	public int hacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++) {
 			Nodo nodoTemp = nodos.get(i);
@@ -68,13 +71,16 @@ public class HMover implements IHerramienta{
 		}
 		return 0;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public int deshacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++ ) {
 			Nodo nodoTemp = nodos.get(i);
 			nodoTemp.setPos(nodosAnteriores.get(i).getPos());
 		}
-		
+
 		return 0;
 	}
 
