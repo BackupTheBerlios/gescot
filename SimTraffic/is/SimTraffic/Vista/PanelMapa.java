@@ -258,9 +258,6 @@ public class PanelMapa extends JPanel
 			recrearMapa();
 			recrear = false;
 		}
-		System.out.println("hola");
-		if (this.modelo.getSimulacion().estaActiva())
-			dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos());			
 		g.drawImage(mapa, 0, 0, null);
 		// Si estamos seleccionando, entonces dibujar el rectangulo de
 		// selección.
@@ -293,6 +290,11 @@ public class PanelMapa extends JPanel
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getNodosSeleccionados().get(i));
 		}
+		
+		// Aquí se pintan los coches
+		System.out.println("hola");
+		if (this.modelo.getSimulacion().estaActiva())
+			dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos());			
 
 	}
 

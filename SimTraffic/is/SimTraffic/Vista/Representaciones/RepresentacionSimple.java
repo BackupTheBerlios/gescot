@@ -247,7 +247,7 @@ public class RepresentacionSimple extends Representacion {
 		Posicion posnodo1 = vehiculo.getNodoOrigen().getPos();
 		Posicion posnodo2 = vehiculo.getNodoDestino().getPos();
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
-		g.setColor(Color.RED);
+		g.setColor(Color.BLUE);
 		int posX1, posY1, posX2, posY2, posX, posY;
 		if (tramo.getNodoFinal() == vehiculo.getNodoDestino()) {
 			posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
@@ -259,18 +259,18 @@ public class RepresentacionSimple extends Representacion {
 			posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 					* (vehiculo.getCarril() - 0.5) * Math.cos(tramo.getAngulo()));
 		} else {
-			posX2 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
+			posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
 					* (vehiculo.getCarril() - 0.5) * Math.sin(tramo.getAngulo()));
-			posY2 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
+			posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 					* (vehiculo.getCarril() - 0.5) * (-Math.cos(tramo.getAngulo())));
-			posX1 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
+			posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
 					* (vehiculo.getCarril() - 0.5) * Math.sin(tramo.getAngulo()));
-			posY1 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
+			posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
 					* (vehiculo.getCarril() - 0.5) * (-Math.cos(tramo.getAngulo())));
 		}
 		posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 		posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
-		
+		System.out.print(posX + " ");
 		g.drawRect(posX, posY, 3, 3);
 	}
 

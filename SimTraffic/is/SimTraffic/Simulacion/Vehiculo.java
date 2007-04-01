@@ -29,12 +29,12 @@ public abstract class Vehiculo {
 	/**
 	 * Aceleración actual del vehiculo.
 	 */
-	protected float aceleracion;
+	protected double aceleracion;
 
 	/**
 	 * Aceleración máxima que puede alcanzar el vehiculo.
 	 */
-	protected float aceleracionMax;
+	protected double aceleracionMax;
 
 	/**
 	 * Carril que esta ocupando el vehiculo.
@@ -79,6 +79,20 @@ public abstract class Vehiculo {
 	 */
 	public abstract void variarAceleracion(int cuanto);
 
+	public synchronized void actualizarVelocidad() {
+		velocidad += aceleracion;
+		if (velocidad > velocidadMax) {
+			velocidad = velocidadMax;
+			aceleracion = 0;
+		}
+		if (velocidad < 0) {
+			velocidad = 0;
+			if (aceleracion < 0)
+				aceleracion = 0;
+		}
+		
+	}
+	
 	/**
 	 * Estos metodos se incluyen porque son necesarios para relacionar los
 	 * vehiculos con los nodos de entrada salida y poder mantener el numero de
@@ -107,12 +121,20 @@ public abstract class Vehiculo {
 	public synchronized Tramo getTramo() {
 		return tramo;
 	}
+	
+	public synchronized void setTramo(Tramo tramo) {
+		this.tramo = tramo;
+	}
 
+	public synchronized void resetaerPosicion() {
+		this.posicion = 0;
+	}
+	
 	public synchronized double getVelocidad() {
 		return this.velocidad;
 	}
 
-	public float getAceleracion() {
+	public double getAceleracion() {
 		return this.aceleracion;
 	}
 
@@ -124,4 +146,7 @@ public abstract class Vehiculo {
 		return this.carril;
 	}
 
+	public synchronized void setCarril(int carril) {
+		this.carril = carril;
+	}
 }

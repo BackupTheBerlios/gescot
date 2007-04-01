@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Tramo;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Clase que, de acuerdo con el patrón Flyweight, agrupa las funciones de
@@ -36,6 +37,8 @@ public class Inteligencia {
 
 	private Iterator<Vehiculo> iterador;
 
+	Random random;
+	
 	/**
 	 * Double que en cada proceso almacena la velocidad del coche de delante o
 	 * -1 si no hay ninguno cerca
@@ -55,6 +58,7 @@ public class Inteligencia {
 		this.sim = sim;
 		tabla = sim.getTabla();
 		actualizarInteligencia();
+		random = new Random();
 	}
 
 	/**
@@ -104,7 +108,12 @@ public class Inteligencia {
 		// momento el camino que debe recorrer.
 		// tambien puede ser una buena optimización que si ya tiene un camino,lo
 		// vuevla a recorrer con una probabilidad dada
-		
+		int i = random.nextInt(sim.getMapa().getTramos().size());
+		vehiculo.setTramo(sim.getMapa().getTramos().get(i));
+		vehiculo.setNodoOrigen(vehiculo.getTramo().getNodoInicial());
+		vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
+		vehiculo.resetaerPosicion();
+		vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);
 	}
 
 	/**
@@ -153,6 +162,20 @@ public class Inteligencia {
 		// muy distinto si es un autobus (que ira por el recorrido) o un camion
 		// (que debería elegir calles ampilas),etc.
 		if (vehiculo.getTramo() == null) return;
+		
+		int i = random.nextInt(vehiculo.getNodoDestino().getTramos().size());
+		vehiculo.setTramo(vehiculo.getNodoDestino().getTramos().get(i));
+		
+		vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
+		if (vehiculo.getTramo().getNodoInicial() == vehiculo.getNodoOrigen()) {
+			vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
+		} else
+			vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
+		
+		vehiculo.resetaerPosicion();
+		vehiculo.aceleracion = 0;
+		vehiculo.velocidad = 0;
+
 	}
 
 	/**
@@ -250,8 +273,9 @@ public class Inteligencia {
 	 */
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
 		if (vehiculo.getTramo() == null) return;
-		vehiculo.velocidad += vehiculo.aceleracion;
-		vehiculo.posicion += vehiculo.velocidad;
+		//vehiculo.velocidad += vehiculo.aceleracion;
+		vehiculo.actualizarVelocidad();
+		vehiculo.posicion += vehiculo.velocidad / 40;
 		// TODO aqui se podría verificar si hay accidentes
 		
 	}
