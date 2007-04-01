@@ -5,6 +5,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HCortar;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
@@ -50,86 +51,12 @@ public class AccionCortar implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		panel.setFocusable(true);		
-		if (modelo.getMapa().getSeleccion()!=null) {
-			modelo.getMapa().setPortapapeles(new Seleccion());
-			for (int j=0; j<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); j++) {
-				Tramo tramoMapa = modelo.getMapa().getSeleccion().
-				getTramosSeleccionados().get(j);
-				
-				Nodo nodoInicialEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoInicial());
-				if (nodoInicialEnPortapapeles==null)
-					nodoInicialEnPortapapeles = tramoMapa.getNodoInicial().pseudoClone();
-				
-				Nodo nodoFinalEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoFinal());
-				if (nodoFinalEnPortapapeles==null)
-					nodoFinalEnPortapapeles = tramoMapa.getNodoFinal().pseudoClone();
-				
-				modelo.getMapa().getPortapapeles().añadirNodo(nodoInicialEnPortapapeles);
-				modelo.getMapa().getPortapapeles().añadirNodo(nodoFinalEnPortapapeles);
-				
-				Tramo tramoPortapapeles = tramoMapa.pseudoClone(nodoInicialEnPortapapeles,nodoFinalEnPortapapeles);
-				modelo.getMapa().getPortapapeles().añadirTramo(tramoPortapapeles);
-				nodoInicialEnPortapapeles.añadirTramo(tramoPortapapeles);
-				nodoFinalEnPortapapeles.añadirTramo(tramoPortapapeles);									
-			}
-			for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
-				Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
-				Nodo nodoPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(nodoTemp);
-				if (nodoPortapapeles==null) {
-					nodoPortapapeles = nodoTemp.pseudoClone();
-					modelo.getMapa().getPortapapeles().añadirNodo(nodoPortapapeles);
-				}
-			}			
-			Posicion posMinima= new Posicion(Double.MAX_VALUE,Double.MAX_VALUE);
-			for (int i=0; i<modelo.getMapa().getPortapapeles().getNodosSeleccionados().size();i++){
-				Nodo nodoTemp = modelo.getMapa().getPortapapeles().getNodosSeleccionados().get(i);
-				if (nodoTemp.getPos().getLon()<=posMinima.getLon()) {
-					//if (nodoTemp.getPos().getLat()<=posMinima.getLat()) {
-					posMinima = nodoTemp.getPos();
-					modelo.getMapa().setNodoReferenciaPortapapeles(nodoTemp);
-					
-				}
-			}
-			
-		
-			HEliminarSeleccion herramientaBorrar = new HEliminarSeleccion(modelo.getMapa().getPortapapeles().getNodosSeleccionados(),
-					modelo.getMapa().getPortapapeles().getTramosSeleccionados());
-			controlador.herramienta(herramientaBorrar);
-			
-			
-			for (int i=0; i<modelo.getMapa().getTramos().size();i++) {
-				Tramo tramoTemp = modelo.getMapa().getTramos().get(i);
-				if (modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoTemp)) {
-					modelo.getMapa().getTramos().remove(i);
-					i--;
-				}
-				
-			}
-				
-			for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size();i++) {
-				Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
-				boolean existeTramoEnMapa=false;
-				for (int j=0; j<modelo.getMapa().getTramos().size()&& !existeTramoEnMapa;j++) {
-					if (modelo.getMapa().getTramos().get(j).getNodoInicial().equals(nodoTemp)
-							|| modelo.getMapa().getTramos().get(j).getNodoFinal().equals(nodoTemp))
-						existeTramoEnMapa=true;
-						
-				}
-				if (!existeTramoEnMapa) {
-					boolean nodoEliminado = false;
-					for (int k=0; k<modelo.getMapa().getNodos().size()&& !nodoEliminado; k++) {
-						if (modelo.getMapa().getNodos().get(k).equals(nodoTemp)) {
-							modelo.getMapa().getNodos().remove(k);
-							nodoEliminado=true;
-						}
-					}
-				}
-			}
-			
-			modelo.getMapa().setSeleccion(new Seleccion());
-			panel.setRecrear(true);
-			panel.repaint();
-		}
+		HCortar herramientaCortar = new HCortar(modelo.getMapa().getSeleccion().getNodosSeleccionados(),
+					modelo.getMapa().getSeleccion().getTramosSeleccionados());
+		controlador.herramienta(herramientaCortar);
+		modelo.getMapa().setSeleccion(new Seleccion());
+		panel.setRecrear(true);
+		panel.repaint();
 	}
 	
 }
