@@ -7,7 +7,7 @@ import is.SimTraffic.IModelo;
 /**
  * Herramienta que permite realizar la operación de hacer/deshacer
  * la eliminación de una selección de elementos del mapa
- * AÚN NO ESTÁ PROBADA
+ * 
  */
 
 public class HEliminarSeleccion implements IHerramienta {
