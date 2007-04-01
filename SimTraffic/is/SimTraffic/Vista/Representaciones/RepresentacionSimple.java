@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Vehiculo;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -241,6 +242,12 @@ public class RepresentacionSimple extends Representacion {
 						* carriles_vuelta * Math.cos(angulo)) };
 		Polygon p = new Polygon(x, y, 4);
 		return p;
+	}
+
+	@Override
+	public void pintarVehiculo(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

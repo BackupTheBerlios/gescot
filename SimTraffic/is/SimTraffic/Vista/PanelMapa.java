@@ -7,6 +7,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
 import is.SimTraffic.Vista.Representaciones.Representacion;
@@ -22,6 +23,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -232,6 +234,13 @@ public class PanelMapa extends JPanel
 		contador++;
 	}
 
+	private void dibujarVehiculos(List<Vehiculo> vehiculos) {
+		Iterator<Vehiculo> it = vehiculos.iterator();
+		while (it.hasNext()) {
+			representacion.pintarVehiculo(it.next());
+		}
+	}
+	
 	public void repaint() {
 		if (tamX != getSize().width || tamY != getSize().height
 				|| (posLon != posLontemp) || (posLat != posLattemp)) {
@@ -249,6 +258,8 @@ public class PanelMapa extends JPanel
 			recrearMapa();
 			recrear = false;
 		}
+		if (this.modelo.getSimulacion().estaActiva())
+			dibujarVehiculos(this.modelo.getSimulacion().getVehiculos());			
 		g.drawImage(mapa, 0, 0, null);
 		// Si estamos seleccionando, entonces dibujar el rectangulo de
 		// selección.

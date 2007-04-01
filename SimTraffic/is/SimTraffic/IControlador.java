@@ -48,6 +48,12 @@ public interface IControlador {
 	public int herramienta(IHerramienta herramienta);
 
 	/**
+	 * Método para el que controlador indique a la vista que han cambiado los coches y los
+	 * debe pintar.<p>
+	 */
+	public void repintarCoches();
+	
+	/**
 	 * @param tipoError
 	 * @return String
 	 * @roseuid 45B8A814000B

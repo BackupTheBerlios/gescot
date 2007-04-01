@@ -15,4 +15,10 @@ public class Turismo extends Vehiculo {
 		//   los atributos de un vehiculo
 	}
 
+	@Override
+	public synchronized void incrementarAceleracion(int cuanto) {
+		// TODO
+		
+	}
+
 }

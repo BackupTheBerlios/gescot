@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista.Representaciones;
 
 import is.SimTraffic.Mapa.*;
+import is.SimTraffic.Simulacion.Vehiculo;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -235,6 +236,9 @@ abstract public class Representacion {
 	 */
 	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
 
+	abstract public void pintarVehiculo(Vehiculo vehiculo);
+	
+	
 	public void setLon0(double Lon0) {
 		this.Lon0 = Lon0;
 	}

@@ -2,6 +2,7 @@ package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Vista;
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -50,7 +51,11 @@ public class Simulacion {
 	 */
 	private Mapa mapa;
 
-	private Controlador controlador;
+	private ControladorSim controladorSim;
+	
+	private Vista vista;
+	
+	private boolean activa = false;
 	
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
@@ -89,14 +94,16 @@ public class Simulacion {
 	 * @return Entero que indica el resultado de la simulación:<br> + 0 -
 	 *         comienzo satisfactorio de la simulación
 	 */
-	public int comenzar(Mapa mapa) {
+	public int comenzar(Mapa mapa, Vista vista) {
 		tabla.clear();
 		this.mapa = mapa;
 		vehiculos = new ArrayList<Vehiculo>(param.getNumVehiculos());
 		rellenarTabla();
 		crearVehiculos();
-		controlador = new Controlador(vehiculos, this);
-		controlador.start();
+		this.vista = vista;
+		controladorSim = new ControladorSim(vehiculos, this);
+		controladorSim.start();
+		activa = true;
 		return 0;
 	}
 
@@ -110,7 +117,10 @@ public class Simulacion {
 	 *         0 - ejecución satisfactoria
 	 */
 	public int detener() {
-		controlador.terminar();
+		controladorSim.terminar();
+		activa = false;
+		vehiculos = null;
+		tabla = null;
 		return 0;
 	}
 
@@ -164,6 +174,10 @@ public class Simulacion {
 		}
 	}
 
+	public void actualizar() {
+		vista.actualizar();
+	}
+	
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
@@ -178,5 +192,9 @@ public class Simulacion {
 
 	public synchronized Mapa getMapa() {
 		return mapa;
+	}
+	
+	public boolean estaActiva() {
+		return activa;
 	}
 }

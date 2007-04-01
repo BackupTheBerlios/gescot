@@ -11,4 +11,10 @@ public class Camion extends Vehiculo {
 		
 	}
 
+	@Override
+	public void variarAceleracion(int cuanto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

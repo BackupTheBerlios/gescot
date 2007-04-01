@@ -19,27 +19,22 @@ public abstract class Vehiculo {
 	/**
 	 * Velocidad a la que esta ciruculando el vehiculo.
 	 */
-	protected int velocidadActual;
+	protected double velocidad;
 
 	/**
 	 * Máxima velocidad a la que puede cirucular el vehiculo.
 	 */
-	protected int velocidadMax;
+	protected double velocidadMax;
 
 	/**
 	 * Aceleración actual del vehiculo.
 	 */
-	protected float aceleracionActual;
+	protected float aceleracion;
 
 	/**
 	 * Aceleración máxima que puede alcanzar el vehiculo.
 	 */
 	protected float aceleracionMax;
-
-	/**
-	 * Desacelaración que esta sufriendo el vehiculo.
-	 */
-	protected float desaceleracion;
 
 	/**
 	 * Carril que esta ocupando el vehiculo.
@@ -72,6 +67,19 @@ public abstract class Vehiculo {
 	protected Nodo nodoDestino;
 
 	/**
+	 * Método para variar la aceleración.
+	 * <p>
+	 * Este método controla que se mantengan los valores correctos, y permite
+	 * indicar mediante un entero si se desea que incremente mucho o poco, o si
+	 * se quiere reducir.
+	 * 
+	 * @param cuanto
+	 *            Entero que indica cuanto se quiere variar, siendo 0 nada, -5
+	 *            desacelerar mucho y 5 acelerar mucho.
+	 */
+	public abstract void variarAceleracion(int cuanto);
+
+	/**
 	 * Estos metodos se incluyen porque son necesarios para relacionar los
 	 * vehiculos con los nodos de entrada salida y poder mantener el numero de
 	 * coches que salen de un nodo acorde a las especificaciones
@@ -80,7 +88,7 @@ public abstract class Vehiculo {
 		nodoOrigen = nodo;
 	}
 
-	public Nodo getNodoOrigen() {
+	public synchronized Nodo getNodoOrigen() {
 		return nodoOrigen;
 	}
 
@@ -88,39 +96,32 @@ public abstract class Vehiculo {
 		nodoDestino = nodo;
 	}
 
-	public Nodo getNodoDestino() {
+	public synchronized Nodo getNodoDestino() {
 		return nodoDestino;
 	}
 
-	public double getPosicion() {
+	public synchronized double getPosicion() {
 		return posicion;
 	}
 
-	public Tramo getTramo() {
+	public synchronized Tramo getTramo() {
 		return tramo;
 	}
 
-	public int getVelActual() {
-		return this.velocidadActual;
+	public synchronized double getVelocidad() {
+		return this.velocidad;
 	}
 
-	public float getAceleracionActual() {
-		return this.aceleracionActual;
-	}
-
-	public float getDesaceleracion() {
-		return this.desaceleracion;
+	public float getAceleracion() {
+		return this.aceleracion;
 	}
 
 	public int getDistanciaSeguridad() {
 		return this.distanciaSeguridad;
 	}
 
-	public float getAceleracionMax() {
-		return this.aceleracionMax;
-	}
-
-	public int getCarril() {
+	public synchronized int getCarril() {
 		return this.carril;
 	}
+
 }

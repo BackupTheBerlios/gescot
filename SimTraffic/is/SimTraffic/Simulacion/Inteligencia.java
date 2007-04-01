@@ -4,6 +4,7 @@ import is.SimTraffic.Mapa.Tramo;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 /**
  * Clase que, de acuerdo con el patrón Flyweight, agrupa las funciones de
@@ -32,6 +33,14 @@ public class Inteligencia {
 	 * Alamacena la relación entre tramos y vehiculos en un determinado momento.
 	 */
 	private Hashtable<Tramo, ArrayList<Vehiculo>> tabla;
+
+	private Iterator<Vehiculo> iterador;
+
+	/**
+	 * Double que en cada proceso almacena la velocidad del coche de delante o
+	 * -1 si no hay ninguno cerca
+	 */
+	private double velDelante;
 
 	/**
 	 * Constructor de la clase.
@@ -73,7 +82,7 @@ public class Inteligencia {
 		if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
 			procesarTramoSiguiente(vehiculo);
 
-		controlarCochesDelante(vehiculo);
+		velDelante = controlarCochesDelante(vehiculo);
 
 		procesarCambioCarril(vehiculo);
 
@@ -105,7 +114,9 @@ public class Inteligencia {
 	 * @return booleano que sera verdadero si ya se llego al fin del tramo
 	 */
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
-		// TODO
+		// TODO temporalmente controla que no supere el 98% de la dist del tramo
+		if (vehiculo.getPosicion() > 0.98)
+			return true;
 		return false;
 	}
 
@@ -144,14 +155,42 @@ public class Inteligencia {
 	/**
 	 * Método para controlar si hay coches delante.
 	 * <p>
-	 * (Explicar implementacion)
+	 * Este método crea un iterador para recorrer los coches que estan en el
+	 * mismo tramo que el que se quiere analizar. Luego, controla uno a uno que
+	 * se cumpla que:<br> + no es el mismo que el actual<br> + esta
+	 * recorriendo el tramo en el mismo sentido<br> + esta en el mismo carril<br> +
+	 * esta delante y no se habia encontrado uno más cerca<br>
+	 * Si se cumplen las condiciones, guarda la velocidad del coche y la
+	 * distancia hasta este.<br>
+	 * Al final devuelve la velocidad encontrada.
+	 * </p>
 	 * 
-	 * @return Double que será la velocidad del coche de delante si hay uno cera
-	 *         y 0 en otro caso
+	 * @return Double que será la velocidad del coche de delante si hay uno
+	 *         cerca y -1 en otro caso
 	 */
 	private double controlarCochesDelante(Vehiculo vehiculo) {
-		// TODO utilizar "tabla" para solo controlar entre los coches del tramo
-		return 0;
+		// TODO verificar correcto funcionamiento, probar empiricamente si 0.4
+		// esta bien como constante de acercamiento
+		if (vehiculo.tramo == null)
+			return -1;
+		iterador = tabla.get(vehiculo.tramo).iterator();
+		Vehiculo temp = null;
+		double velocidad = -1.0;
+		double distancia = 0.4;
+		while (iterador.hasNext()) {
+			temp = iterador.next();
+			if (temp != vehiculo) {
+				if (temp.getNodoDestino() == vehiculo.getNodoDestino()
+						&& temp.getCarril() == temp.getCarril())
+					if (temp.getPosicion() > vehiculo.getPosicion()
+							&& temp.getPosicion() - vehiculo.getPosicion() < distancia) {
+						velocidad = temp.getVelocidad();
+						distancia = temp.getPosicion() - vehiculo.getPosicion();
+					}
+			}
+
+		}
+		return velocidad;
 	}
 
 	/**
@@ -161,13 +200,19 @@ public class Inteligencia {
 	 * (Explicar implementacion)
 	 */
 	private void procesarCambioCarril(Vehiculo vehiculo) {
-		// TODO
+		// TODO controlar que se cumple alguna condición sobre velDelante
+		// si cambia de carril, recalcular velDelante
 	}
 
 	/**
 	 * Método para recalcular la acelearción de acuerdo a las condiciones dadas.
 	 * <p>
-	 * (Explicar implmentacion)
+	 * En principio, controla que la velocidad del coche que tiene en frente sea
+	 * mayor que la suya. Si es asi y todavia puede ir más rápido y acelerar
+	 * más, entonces acelera.<br>
+	 * Luego, si no hay coches delantes, acelrará hasta alcanzar la velocidad
+	 * máxima del tramo.<br>
+	 * En otros casos, comenzará a desacelerar.
 	 */
 	private void recalcularAceleracion(Vehiculo vehiculo) {
 		// TODO
@@ -176,6 +221,20 @@ public class Inteligencia {
 		// considerar también la utilización del método controlarSeñales,
 		// dado que si hay una señal que obliga al coche adetenerse
 		// mas adelante, debe ir frenando
+		if (velDelante > vehiculo.getVelocidad()) {
+			vehiculo.variarAceleracion(2);
+			return;
+		}
+		if (velDelante == -1
+				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
+			vehiculo.variarAceleracion(5);
+			return;
+		}
+		if (velDelante < vehiculo.getVelocidad()) {
+			vehiculo.variarAceleracion(-5);
+			return;
+		}
+		vehiculo.variarAceleracion(-1);
 	}
 
 	/**
@@ -185,6 +244,9 @@ public class Inteligencia {
 	 * (Explicar implementacion)
 	 */
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
-		// TODO
+		vehiculo.velocidad += vehiculo.aceleracion;
+		vehiculo.posicion += vehiculo.velocidad;
+		// TODO aqui se podría verificar si hay accidentes
+		
 	}
 }

@@ -106,4 +106,8 @@ public class Controlador implements IControlador {
 		this.vista = vista;
 
 	}
+
+	public void repintarCoches() {
+		vista.actualizar();
+	}
 }

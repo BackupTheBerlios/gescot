@@ -16,7 +16,7 @@ import java.util.concurrent.CyclicBarrier;
  * @author Grupo ISTrafico
  * 
  */
-public class Controlador extends Thread {
+public class ControladorSim extends Thread {
 
 	/**
 	 * Booleano que indica si se termino la ejecución del thread.
@@ -47,7 +47,7 @@ public class Controlador extends Thread {
 	 * @param listaVehiculo
 	 *            Lista de los vehiculos a simular
 	 */
-	Controlador(List<Vehiculo> listaVehiculo, Simulacion sim) {
+	ControladorSim(List<Vehiculo> listaVehiculo, Simulacion sim) {
 		int N = calculaNroThread(listaVehiculo.size());
 		this.sim = sim;
 		lista = new ArrayList<GrupoVehiculos>();
@@ -64,7 +64,9 @@ public class Controlador extends Thread {
 			it.next().start();
 		while (!termino) {
 			try {
+				ControladorSim.sleep(50);
 				barrera.await();
+
 			} catch (InterruptedException e) {
 				// TODO error porque se paro la espera en este thread
 			} catch (BrokenBarrierException e) {
