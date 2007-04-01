@@ -30,8 +30,8 @@ public class MLPegar extends EscuchaRaton {
 		double x = panel.lon_RepAMapa(arg0.getX());
 		double y = panel.lat_RepAMapa(arg0.getY());
 		Point2D puntoPegar = new Point2D.Double(x,y);
-		HPegar herramientaPegar = new HPegar (modelo.getMapa().getSeleccion().getNodosSeleccionados(),
-			modelo.getMapa().getSeleccion().getTramosSeleccionados(),puntoPegar);
+		//getSeleccion o getPortapapeles ??
+		HPegar herramientaPegar = new HPegar (puntoPegar);
 		controlador.herramienta(herramientaPegar);
 		panel.setRecrear(true);
 		panel.repaint();		
