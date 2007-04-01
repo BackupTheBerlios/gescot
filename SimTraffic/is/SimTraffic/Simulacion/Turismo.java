@@ -16,9 +16,10 @@ public class Turismo extends Vehiculo {
 	}
 
 	@Override
-	public synchronized void incrementarAceleracion(int cuanto) {
-		// TODO
+	public void variarAceleracion(int cuanto) {
+		// TODO Auto-generated method stub
 		
 	}
+
 
 }

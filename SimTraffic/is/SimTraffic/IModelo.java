@@ -34,5 +34,7 @@ public interface IModelo {
 	public Simulacion getSimulacion();
 
 	public void setMapa(Mapa mapa);
+	
+	public void setControlador(IControlador controlador);
 
 }

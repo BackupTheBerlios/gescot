@@ -28,6 +28,11 @@ public class Modelo implements IModelo {
 	private Simulacion simulacion;
 
 	/**
+	 * Mantiene la instancia acutal del controlador del equema MVC
+	 */
+	private IControlador controlador;
+	
+	/**
 	 * Constructor de la clase modelo.<p>
 	 * Este constructor inicializa el mapa y la simulación a sus valores por defecto.
 	 */
@@ -52,5 +57,10 @@ public class Modelo implements IModelo {
 	public void setMapa(Mapa mapa) {
 		if (mapa != null)
 			this.mapa = mapa;
+	}
+
+	public void setControlador(IControlador controlador) {
+		this.controlador = controlador;
+		simulacion.setControlador(controlador);
 	}
 }

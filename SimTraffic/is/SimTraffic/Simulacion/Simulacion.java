@@ -1,5 +1,6 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.IControlador;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Vista;
@@ -51,9 +52,9 @@ public class Simulacion {
 	 */
 	private Mapa mapa;
 
-	private ControladorSim controladorSim;
+	private IControlador controlador;
 	
-	private Vista vista;
+	private ControladorSim controladorSim;
 	
 	private boolean activa = false;
 	
@@ -94,13 +95,13 @@ public class Simulacion {
 	 * @return Entero que indica el resultado de la simulación:<br> + 0 -
 	 *         comienzo satisfactorio de la simulación
 	 */
-	public int comenzar(Mapa mapa, Vista vista) {
+	public int comenzar(Mapa mapa) {
 		tabla.clear();
 		this.mapa = mapa;
 		vehiculos = new ArrayList<Vehiculo>(param.getNumVehiculos());
 		rellenarTabla();
 		crearVehiculos();
-		this.vista = vista;
+		//this.vista = vista;
 		controladorSim = new ControladorSim(vehiculos, this);
 		controladorSim.start();
 		activa = true;
@@ -175,7 +176,7 @@ public class Simulacion {
 	}
 
 	public void actualizar() {
-		vista.actualizar();
+		controlador.repintarCoches();
 	}
 	
 	public List<Vehiculo> getVehiculos() {
@@ -192,6 +193,10 @@ public class Simulacion {
 
 	public synchronized Mapa getMapa() {
 		return mapa;
+	}
+	
+	public void setControlador(IControlador controlador) {
+		this.controlador = controlador;
 	}
 	
 	public boolean estaActiva() {

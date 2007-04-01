@@ -32,6 +32,7 @@ public class Principal {
 		IVista vista = new Vista(modelo);
 		IControlador controlador = new Controlador();
 		vista.setControlador(controlador);
+		modelo.setControlador(controlador);
 		controlador.setModelo(modelo);
 		controlador.setVista(vista);
 		vista.mostrar();

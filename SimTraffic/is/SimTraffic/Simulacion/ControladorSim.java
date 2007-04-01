@@ -66,7 +66,7 @@ public class ControladorSim extends Thread {
 			try {
 				ControladorSim.sleep(50);
 				barrera.await();
-
+				sim.actualizar();
 			} catch (InterruptedException e) {
 				// TODO error porque se paro la espera en este thread
 			} catch (BrokenBarrierException e) {

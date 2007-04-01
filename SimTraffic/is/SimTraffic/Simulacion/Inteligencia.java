@@ -104,6 +104,7 @@ public class Inteligencia {
 		// momento el camino que debe recorrer.
 		// tambien puede ser una buena optimización que si ya tiene un camino,lo
 		// vuevla a recorrer con una probabilidad dada
+		
 	}
 
 	/**
@@ -115,6 +116,7 @@ public class Inteligencia {
 	 */
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
 		// TODO temporalmente controla que no supere el 98% de la dist del tramo
+		if (vehiculo.getTramo() == null) return false;
 		if (vehiculo.getPosicion() > 0.98)
 			return true;
 		return false;
@@ -150,6 +152,7 @@ public class Inteligencia {
 		// puede sobrecargar para cada uno de los tipos de vehiculos ya que sera
 		// muy distinto si es un autobus (que ira por el recorrido) o un camion
 		// (que debería elegir calles ampilas),etc.
+		if (vehiculo.getTramo() == null) return;
 	}
 
 	/**
@@ -202,6 +205,7 @@ public class Inteligencia {
 	private void procesarCambioCarril(Vehiculo vehiculo) {
 		// TODO controlar que se cumple alguna condición sobre velDelante
 		// si cambia de carril, recalcular velDelante
+		if (vehiculo.getTramo() == null) return;
 	}
 
 	/**
@@ -221,6 +225,7 @@ public class Inteligencia {
 		// considerar también la utilización del método controlarSeñales,
 		// dado que si hay una señal que obliga al coche adetenerse
 		// mas adelante, debe ir frenando
+		if (vehiculo.getTramo() == null) return;
 		if (velDelante > vehiculo.getVelocidad()) {
 			vehiculo.variarAceleracion(2);
 			return;
@@ -244,6 +249,7 @@ public class Inteligencia {
 	 * (Explicar implementacion)
 	 */
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
+		if (vehiculo.getTramo() == null) return;
 		vehiculo.velocidad += vehiculo.aceleracion;
 		vehiculo.posicion += vehiculo.velocidad;
 		// TODO aqui se podría verificar si hay accidentes

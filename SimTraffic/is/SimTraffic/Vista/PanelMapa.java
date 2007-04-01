@@ -234,10 +234,10 @@ public class PanelMapa extends JPanel
 		contador++;
 	}
 
-	private void dibujarVehiculos(List<Vehiculo> vehiculos) {
+	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos) {
 		Iterator<Vehiculo> it = vehiculos.iterator();
 		while (it.hasNext()) {
-			representacion.pintarVehiculo(it.next());
+			representacion.pintarVehiculo(g, it.next());
 		}
 	}
 	
@@ -258,8 +258,9 @@ public class PanelMapa extends JPanel
 			recrearMapa();
 			recrear = false;
 		}
+		System.out.println("hola");
 		if (this.modelo.getSimulacion().estaActiva())
-			dibujarVehiculos(this.modelo.getSimulacion().getVehiculos());			
+			dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos());			
 		g.drawImage(mapa, 0, 0, null);
 		// Si estamos seleccionando, entonces dibujar el rectangulo de
 		// selección.

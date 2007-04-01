@@ -62,6 +62,11 @@ public class Tramo implements ElementoMapa {
 	private Nodo nodoFinal;
 
 	/**
+	 * Double que almacea el angulo del tramo para evitar recacularlo
+	 */
+	private double angulo;
+	
+	/**
 	 * Constructor de la clase Tramo con nodos inicial y final.
 	 * <p>
 	 * Este constructuro crea un nuevo tramo a partir de dos nodos, y le da el
@@ -77,6 +82,9 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
 		ID=asignarIDunico();
+		double largo = nodoInicial.getPos().getLon() - nodoFinal.getPos().getLon();
+		double alto = nodoInicial.getPos().getLat() - nodoFinal.getPos().getLat();
+		angulo = Math.atan(-alto / largo);
 	}
 	
 	/**
@@ -90,11 +98,7 @@ public class Tramo implements ElementoMapa {
 	 * @roseuid 45B8B3A800B7
 	 */
 	public Tramo(int ID, Nodo nodoInicial, Nodo nodoFinal) {
-		this.nodoInicial = nodoInicial;
-		this.nodoFinal = nodoFinal;
-		numCarrilesDir1 = 1;
-		numCarrilesDir2 = 1;
-		velocidadMax = 40;
+		this(nodoInicial, nodoFinal);
 		this.ID=ID;
 	}
 
@@ -196,6 +200,10 @@ public class Tramo implements ElementoMapa {
 		ID = id;
 	}
 
+	public double getAngulo() {
+		return angulo;
+	}
+	
 	/**
 	 * Devuelve un string con la traducción del tramo al formato osm(segment), necesario 
 	 * para el proceso de guardar el mapa.
