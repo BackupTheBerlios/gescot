@@ -1,11 +1,13 @@
 package is.SimTraffic.Herramientas;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Seleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -26,14 +28,13 @@ public class HPegar implements IHerramienta {
 	 */	
 	private Point2D puntoPegar;	
 	
-	public HPegar (List<Nodo> nodos, List<Tramo> tramos, Point2D puntoPegar) {
-		this.nodos = nodos;
-		this.tramos = tramos;
+	public HPegar (Point2D puntoPegar) {
+		this.nodos = new ArrayList<Nodo>();
+		this.tramos = new ArrayList<Tramo>();
 		this.puntoPegar = puntoPegar;
 	}
 	
 	public int deshacer(IModelo modelo) {
-		// TODO Auto-generated method stub
 		for (int i=0; i<tramos.size(); i++)
 			modelo.getMapa().eliminar(tramos.get(i));
 		for (int i=0; i<nodos.size(); i++)
@@ -43,30 +44,36 @@ public class HPegar implements IHerramienta {
 
 	public int hacer(IModelo modelo) {
 		if (!modelo.getMapa().getPortapapeles().getNodosSeleccionados().isEmpty()) {
-			nodos.clear();
-			tramos.clear();
+			//nodos.clear();
+			//tramos.clear();
+			modelo.getMapa().setSeleccion(new Seleccion());
 			double difX = puntoPegar.getX() - modelo.getMapa().getNodoReferenciaPortapapeles().getPos().getLon();
 			double difY = puntoPegar.getY() - modelo.getMapa().getNodoReferenciaPortapapeles().getPos().getLat();
 			for (int i=0; i<modelo.getMapa().getPortapapeles().getTramosSeleccionados().size(); i++) {
 				Tramo tramoTemp = modelo.getMapa().getPortapapeles().getTramosSeleccionados().get(i);			
 				Nodo nodoInicial = tramoTemp.getNodoInicial();
 				Nodo nodoFinal = tramoTemp.getNodoFinal();
-				Nodo nodoInicialTemp = new Nodo (nodoInicial.getPos().clone());
+				//Nodo nodoInicialTemp = new Nodo (nodoInicial.getPos().clone());
+				Nodo nodoInicialTemp = nodoInicial.pseudoClone();//
 				nodoInicialTemp.setPos(new Posicion(nodoInicialTemp.getPos().getLat()+difY,nodoInicialTemp.getPos().getLon()+difX));
 				Nodo nodoInicialMapa = modelo.getMapa().existeNodo(nodoInicialTemp);
 				if (nodoInicialMapa==null) {
 					nodoInicialMapa = nodoInicialTemp;
 					modelo.getMapa().insertar(nodoInicialMapa);
+					modelo.getMapa().getSeleccion().añadirNodo(nodoInicialMapa);
+					//Nodo nodoInicialHerramienta = nodoInicialMapa.pseudoClone();
 					nodos.add(nodoInicialMapa);///
 				}
 				
-
-				Nodo nodoFinalTemp = new Nodo (nodoFinal.getPos().clone());
+				Nodo nodoFinalTemp = nodoFinal.pseudoClone();//
+				//Nodo nodoFinalTemp = new Nodo (nodoFinal.getPos().clone());
 				nodoFinalTemp.setPos(new Posicion(nodoFinalTemp.getPos().getLat()+difY,nodoFinalTemp.getPos().getLon()+difX));
 				Nodo nodoFinalMapa = modelo.getMapa().existeNodo(nodoFinalTemp);
 				if (nodoFinalMapa==null) {
 					nodoFinalMapa = nodoFinalTemp;
 					modelo.getMapa().insertar(nodoFinalMapa);
+					modelo.getMapa().getSeleccion().añadirNodo(nodoFinalMapa);
+					//Nodo nodoFinalHerramienta = nodoFinalMapa.pseudoClone();
 					nodos.add(nodoFinalMapa);///
 				}
 				
@@ -75,6 +82,7 @@ public class HPegar implements IHerramienta {
 				nodoInicialMapa.añadirTramo(tramoMapa);
 				nodoFinalMapa.añadirTramo(tramoMapa);
 				modelo.getMapa().insertar(tramoMapa);
+				modelo.getMapa().getSeleccion().añadirTramo(tramoMapa);
 				tramos.add(tramoMapa);///
 			}
 			
@@ -85,6 +93,7 @@ public class HPegar implements IHerramienta {
 				if (modelo.getMapa().existeNodo(nodoMapa)==null) {
 					//Nodo nodoMapa = nodoTemp.pseudoClone();
 					modelo.getMapa().insertar(nodoMapa);
+					modelo.getMapa().getSeleccion().añadirNodo(nodoMapa);
 					nodos.add(nodoMapa);///
 					//nodoMapa.setPos(new Posicion(nodoMapa.getPos().getLat()+difY,nodoMapa.getPos().getLon()+difX));
 				}
