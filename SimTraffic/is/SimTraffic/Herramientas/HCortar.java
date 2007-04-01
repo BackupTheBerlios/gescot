@@ -30,6 +30,8 @@ public class HCortar implements IHerramienta {
 	 * de cortar
 	 */
 	private Seleccion portapapelesAntiguo;
+	
+	private Nodo antiguoNodoReferencia;
 
 	/**
 	 * Construye la herramienta guardando los datos de nodos y
@@ -50,6 +52,7 @@ public class HCortar implements IHerramienta {
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
 		modelo.getMapa().setPortapapeles(portapapelesAntiguo);
+		modelo.getMapa().setNodoReferenciaPortapapeles(antiguoNodoReferencia);
 		for (int i=0; i<nodos.size(); i++)
 			modelo.getMapa().insertar(nodos.get(i));	
 
@@ -71,7 +74,8 @@ public class HCortar implements IHerramienta {
 	public int hacer(IModelo modelo) {
 		// TODO Auto-generated method stub
 		if (modelo.getMapa().getSeleccion()!=null) {
-			portapapelesAntiguo = modelo.getMapa().getPortapapeles();		
+			portapapelesAntiguo = modelo.getMapa().getPortapapeles();
+			antiguoNodoReferencia = modelo.getMapa().getNodoReferenciaPortapapeles();
 			modelo.getMapa().setPortapapeles(new Seleccion());
 			for (int j=0; j<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); j++) {
 				Tramo tramoMapa = modelo.getMapa().getSeleccion().
