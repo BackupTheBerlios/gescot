@@ -56,18 +56,18 @@ public class HCopiar implements IHerramienta {
 								getTramosSeleccionados().get(j);
 
 				Nodo nodoInicialEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoInicial());
-				if (nodoInicialEnPortapapeles==null)
+				if (nodoInicialEnPortapapeles==null) {					
 					nodoInicialEnPortapapeles = tramoMapa.getNodoInicial().pseudoClone();
+					modelo.getMapa().getPortapapeles().añadirNodo(nodoInicialEnPortapapeles);
+				}
 
 				Nodo nodoFinalEnPortapapeles = modelo.getMapa().getPortapapeles().existeNodo(tramoMapa.getNodoFinal());
-				if (nodoFinalEnPortapapeles==null)
+				if (nodoFinalEnPortapapeles==null) {							
 					nodoFinalEnPortapapeles = tramoMapa.getNodoFinal().pseudoClone();
-
-				modelo.getMapa().getPortapapeles().añadirNodo(nodoInicialEnPortapapeles);
-				modelo.getMapa().getPortapapeles().añadirNodo(nodoFinalEnPortapapeles);
-
+					modelo.getMapa().getPortapapeles().añadirNodo(nodoFinalEnPortapapeles);
+				}
 				Tramo tramoPortapapeles = tramoMapa.pseudoClone(nodoInicialEnPortapapeles,nodoFinalEnPortapapeles);
-								modelo.getMapa().getPortapapeles().añadirTramo(tramoPortapapeles);
+				modelo.getMapa().getPortapapeles().añadirTramo(tramoPortapapeles);
 				nodoInicialEnPortapapeles.añadirTramo(tramoPortapapeles);
 				nodoFinalEnPortapapeles.añadirTramo(tramoPortapapeles);									
 			}
