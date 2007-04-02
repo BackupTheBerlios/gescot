@@ -10,9 +10,7 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
-import is.SimTraffic.Vista.Representaciones.Representacion;
-import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
-import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
+import is.SimTraffic.Vista.Representaciones.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

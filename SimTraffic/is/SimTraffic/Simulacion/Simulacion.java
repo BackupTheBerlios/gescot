@@ -3,13 +3,11 @@ package is.SimTraffic.Simulacion;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Vista.Vista;
 
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Clase que ejecuta la simulación en un mapa.
@@ -165,11 +163,13 @@ public class Simulacion {
 		int cant = param.getNumVehiculos();
 		if (cant > maxVehiculos)
 			cant = maxVehiculos;
-		Random rand = new Random();
-		// param.getPorcentajeTipo();
 		// TODO crear vehiculos de cada tipo segun la infromacón que hay
 		// en los parametros. No se puede hacer ahora porque no se
 		// entiende como se guarda esa información
+		
+		//Random rand = new Random();
+		// param.getPorcentajeTipo();
+		
 		for (int i = 0; i < cant; i++) {
 			vehiculos.add(new Turismo());
 		}

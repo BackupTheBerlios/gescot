@@ -110,6 +110,7 @@ public class Inteligencia {
 		// vuevla a recorrer con una probabilidad dada
 		int i = random.nextInt(sim.getMapa().getTramos().size());
 		vehiculo.setTramo(sim.getMapa().getTramos().get(i));
+		tabla.get(vehiculo.getTramo()).add(vehiculo);
 		vehiculo.setNodoOrigen(vehiculo.getTramo().getNodoInicial());
 		vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
 		vehiculo.resetaerPosicion();
@@ -164,7 +165,9 @@ public class Inteligencia {
 		if (vehiculo.getTramo() == null) return;
 		
 		int i = random.nextInt(vehiculo.getNodoDestino().getTramos().size());
+		tabla.get(vehiculo.getTramo()).remove(vehiculo);
 		vehiculo.setTramo(vehiculo.getNodoDestino().getTramos().get(i));
+		tabla.get(vehiculo.getTramo()).add(vehiculo);
 		
 		vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
 		if (vehiculo.getTramo().getNodoInicial() == vehiculo.getNodoOrigen()) {
@@ -194,12 +197,13 @@ public class Inteligencia {
 	 * @return Double que será la velocidad del coche de delante si hay uno
 	 *         cerca y -1 en otro caso
 	 */
-	private double controlarCochesDelante(Vehiculo vehiculo) {
+	private synchronized double controlarCochesDelante(Vehiculo vehiculo) {
 		// TODO verificar correcto funcionamiento, probar empiricamente si 0.4
 		// esta bien como constante de acercamiento
 		if (vehiculo.tramo == null)
 			return -1;
 		iterador = tabla.get(vehiculo.tramo).iterator();
+		
 		Vehiculo temp = null;
 		double velocidad = -1.0;
 		double distancia = 0.4;
