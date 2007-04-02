@@ -85,6 +85,10 @@ public abstract class Vehiculo {
 			velocidad = velocidadMax;
 			aceleracion = 0;
 		}
+		if (velocidad > tramo.getVelMax()) {
+			velocidad = tramo.getVelMax();
+			aceleracion = 0;
+		}
 		if (velocidad < 0) {
 			velocidad = 0;
 			if (aceleracion < 0)

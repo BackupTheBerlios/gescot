@@ -19,7 +19,9 @@ import is.SimTraffic.Vista.Acciones.AccionPegar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.BarrasHerramientas.BarraCrearNodo;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraHerramientas;
 import is.SimTraffic.Vista.BarrasHerramientas.BarraSeleccionar;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraSuperior;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
@@ -316,10 +318,10 @@ public class Ventana extends JFrame {
 		moverMenuItem.setText("Mover...");
 		edicionMenu.add(moverMenuItem);
 	}
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	public void crearMenuVis() {
 		JMenu menuVis = new JMenu();
@@ -348,7 +350,7 @@ public class Ventana extends JFrame {
 
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	public void crearMenuMapa() {
 		JMenu mapaMenu = new JMenu();
@@ -385,10 +387,10 @@ public class Ventana extends JFrame {
 		mapaMenu.add(elminarTramo);
 
 	}
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	public void crearMenuSimulacion() {
 		JMenu simMenu = new JMenu();
@@ -438,7 +440,7 @@ public class Ventana extends JFrame {
 
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	public void crearMenuAyuda() {
 		JMenu ayudaMenu = new JMenu();
@@ -472,101 +474,16 @@ public class Ventana extends JFrame {
 		panel_herramientas.setLayout(new BorderLayout());
 		getContentPane().add(panel_herramientas, BorderLayout.WEST);
 
-		panel = new JToolBar(JToolBar.VERTICAL);
+		panel = new BarraHerramientas(controlador, modelo, this);
 		panel_herramientas.add(panel, BorderLayout.NORTH);
 
-		JButton boton;
-
-		boton = añadirBoton("seleccionar-1.png", "seleccionar-2.png",
-				"Seleccionar", new AccionSobreMapa(new MLSeleccionarNodos(
-						modelo, controlador, panel_mapa), this, escuchaTeclado,
-						-1));
-		boton.addActionListener(new AccionBarra(this, barraSeleccionar));
-		boton.addKeyListener(escuchaTeclado);
-
-		añadirBoton("mover1.png", "mover2.png", "Mover la selección actual",
-				new AccionSobreMapa(
-						new MLMover(modelo, controlador, panel_mapa), this,
-						escuchaTeclado, -1));
-
-		boton = añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
-				"Añadir Nodo",
-				new AccionSobreMapa(new MLAñadirNodo(modelo, controlador,
-						panel_mapa, this), this, escuchaTeclado, 0));
-		boton.addActionListener(new AccionBarra(this, barraCrearNodo));
-		// Aquí también habría que añadir el oyente de teclado al
-		// boton (y en el resto de botones),
-		// pero de momento no lo pongo por si encontramos una alternativa mejor.
-
-		boton = añadirBoton("añadir_tramo.png", "añadir_tramo2.png",
-				"Añadir Tramo",
-				new AccionSobreMapa(new MLAñadirTramo(modelo, controlador,
-						panel_mapa, this), this, escuchaTeclado, 1));
-		boton.addActionListener(new AccionBarra(this, barraCrearTramo));
-
-		añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
-				new AccionSobreMapa(new MLEliminarNodo(modelo, controlador,
-						panel_mapa), this, escuchaTeclado, 2));
-
-		añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
-				"Eliminar Tramo", new AccionSobreMapa(new MLEliminarTramo(
-						modelo, controlador, panel_mapa), this, escuchaTeclado,
-						3));
-
-		// Aqui se añadirán los nuevos botones.
-		añadirBoton("add_bus.png", "add_bus2.png", "Añadir linea de autobus",
-				new AccionSobreMapa(new MLAñadirLineaAutobus(modelo,
-						controlador, panel_mapa), this, escuchaTeclado, 4));
-
-		// Botón añadir semaforos
-		añadirBoton("semaforo1.png", "semaforo2.png", "Añadir semaforo",
-				new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador,
-						panel_mapa), this, escuchaTeclado, 5));
-
-		// Añadir Vias
-		añadirBoton("añadir_via2.png", "añadir_via.png", "Añadir una via",
-				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
-						panel_mapa), this, escuchaTeclado, 6));
-
-		añadirBoton("simular.png", "simular2.png", "Comenzar simulación",
-				new AccionComenzarSimulacion(controlador, modelo));
-	}
-
-	/**
-	 * Método para crear un boton de herramienta.
-	 * <p>
-	 * Este método perminte repetir no repetir código cada vez que se crea un
-	 * nuevo boton de herramienta.
-	 * 
-	 * @param icono
-	 *            Icono pequeño que mostrara el boton
-	 * @param iconoGrande
-	 *            Icono de mayor tamaño, que aparece en el tooltip
-	 * @param tooltip
-	 *            Texto del tooltip
-	 * @param accion
-	 *            Accion asociada al boton
-	 * @return El JButton creado
-	 */
-	private JButton añadirBoton(String icono, String iconoGrande,
-			String tooltip, ActionListener accion) {
-		JButton boton = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\" + icono));
-		boton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\"
-				+ iconoGrande;
-		boton.setToolTipText("<html>" + tooltip + " <img src=" + imageName
-				+ "></html>");
-		boton.addActionListener(accion);
-		panel.add(boton);
-		return boton;
 	}
 
 	/**
 	 * Crea los botones de la parte superior.
 	 */
 	public void crearBotonesSuperiores() {
-		JPanel superior_arriba = new JPanel();
+		JPanel superior_arriba = new BarraSuperior(controlador, modelo, this);
 		superior_abajo = new JPanel();
 		superior = new JPanel(new GridLayout(0, 1));
 		getContentPane().add(superior, BorderLayout.NORTH);
@@ -575,114 +492,16 @@ public class Ventana extends JFrame {
 
 		crearBarraPropiedades();
 
-		JToolBar archivoTB = new JToolBar();
-		JToolBar edicionTB = new JToolBar();
-		JToolBar zoomTB = new JToolBar();
-		superior_arriba.add(archivoTB);
-		superior_arriba.add(edicionTB);
-		superior_arriba.add(zoomTB);
-
-		superior_arriba.setLayout(new BoxLayout(superior_arriba,
-				BoxLayout.LINE_AXIS));
+	
 		superior_abajo.setLayout(new BoxLayout(superior_abajo,
 				BoxLayout.LINE_AXIS));
-		JButton nuevoTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-new.png"));
-		nuevoTB.setMargin(new Insets(1, 1, 1, 1));
-		nuevoTB.addActionListener(new AccionNuevo(modelo));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-new2.png";
-		nuevoTB.setToolTipText("<html>Nuevo mapa <img src=" + imageName
-				+ "></html>");
+		
 
-		JButton cargarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-open.png"));
-		cargarTB.setMargin(new Insets(1, 1, 1, 1));
-		cargarTB.addActionListener(new AccionCargar(controlador, panel_mapa));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-open2.png";
-		cargarTB.setToolTipText("<html>Cargar mapa <img src=" + imageName
-				+ "></html>");
-
-		JButton guardarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\document-save.png"));
-		guardarTB.setMargin(new Insets(1, 1, 1, 1));
-		guardarTB.addActionListener(new AccionGuardar(controlador));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\document-save2.png";
-		guardarTB.setToolTipText("<html>Guardar mapa <img src=" + imageName
-				+ "></html>");
-
-		JButton cortarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-cut.png"));
-		cortarTB.setMargin(new Insets(1, 1, 1, 1));
-		cortarTB.addActionListener(new AccionCortar(modelo, controlador,
-				this.panel_mapa));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-cut2.png";
-		cortarTB.setToolTipText("<html>Cortar <img src=" + imageName
-				+ "></html>");
-
-		JButton copiarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-copy.png"));
-		copiarTB.setMargin(new Insets(1, 1, 1, 1));
-		copiarTB.addActionListener(new AccionCopiar(modelo, controlador,
-				this.panel_mapa));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-copy2.png";
-		copiarTB.setToolTipText("<html>Copiar <img src=" + imageName
-				+ "></html>");
-		// copiarTB.addActionListener(new AccionSobreMapa(
-		// new MLCopiar(modelo, controlador, panel_mapa), this,
-		// escuchaTeclado));
-
-		JButton pegarTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-paste.png"));
-		pegarTB.setMargin(new Insets(1, 1, 1, 1));
-		// pegarTB.addActionListener(new AccionCortar());
-		pegarTB.addActionListener(new AccionSobreMapa(new MLPegar(modelo,
-				controlador, panel_mapa), this, escuchaTeclado, -1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-paste2.png";
-		pegarTB
-				.setToolTipText("<html>Pegar <img src=" + imageName
-						+ "></html>");
-
-		JButton deshacerTB = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\edit-undo.png"));
-		deshacerTB.setMargin(new Insets(1, 1, 1, 1));
-		deshacerTB
-				.addActionListener(new AccionDeshacer(controlador, panel_mapa));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\edit-undo2.png";
-		deshacerTB.setToolTipText("<html>Deshacer <img src=" + imageName
-				+ "></html>");
-
-		JButton zoomin = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\zoom_in.png"));
-		zoomin.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_in2.png";
-		zoomin.addActionListener(new AccionZoom(panel_mapa, 0.5));
-		zoomin
-				.setToolTipText("<html>Disminuir tamaño de la representación <img src="
-						+ imageName + "></html>");
-
-		JButton zoomout = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\zoom_out.png"));
-		zoomout.setMargin(new Insets(1, 1, 1, 1));
-		imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\zoom_out2.png";
-		zoomout.addActionListener(new AccionZoom(panel_mapa, 2));
-		zoomout
-				.setToolTipText("<html>Aumentar tamaño de la representación <img src="
-						+ imageName + "></html>");
-
-		archivoTB.add(nuevoTB);
-		archivoTB.add(cargarTB);
-		archivoTB.add(guardarTB);
-		edicionTB.add(cortarTB);
-		edicionTB.add(copiarTB);
-		edicionTB.add(pegarTB);
-		edicionTB.add(deshacerTB);
-		zoomTB.add(zoomin);
-		zoomTB.add(zoomout);
 	}
 
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	private void crearBarraPropiedades() {
 		barraCrearNodo = new BarraCrearNodo();
@@ -773,5 +592,21 @@ public class Ventana extends JFrame {
 
 	public Tramo prepararTramo(Nodo i, Nodo f) {
 		return barraCrearTramo.prepararTramo(i, f);
+	}
+
+	public JToolBar getBarraCrearNodo() {
+		return barraCrearNodo;
+	}
+
+	public JToolBar getBarraCrearTramo() {
+		return barraCrearTramo;
+	}
+
+	public PanelMapa getPanel_mapa() {
+		return panel_mapa;
+	}
+
+	public EscuchaTeclado getEscuchaTeclado() {
+		return escuchaTeclado;
 	}
 }

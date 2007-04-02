@@ -96,7 +96,7 @@ public class Simulacion {
 	 *         comienzo satisfactorio de la simulación
 	 */
 	public int comenzar(Mapa mapa) {
-		tabla.clear();
+		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
 		vehiculos = new ArrayList<Vehiculo>(param.getNumVehiculos());
 		rellenarTabla();

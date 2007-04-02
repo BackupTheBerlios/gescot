@@ -72,7 +72,6 @@ public class GrupoVehiculos extends Thread {
 	public void run() {
 		while (!termino) {
 			intel.actualizarInteligencia();
-			System.out.println("procesando coche");
 			for (int i = 0; i < nroVehiculos; i++)
 				intel.procesar(lista[i]);
 			// TODO

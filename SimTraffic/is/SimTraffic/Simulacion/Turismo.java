@@ -29,7 +29,6 @@ public class Turismo extends Vehiculo {
 	public void variarAceleracion(int cuanto) {
 		// TODO Auto-generated method stub
 		this.aceleracion += (double) cuanto / 200;
-		System.out.println(aceleracion + " " + velocidad);
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
 	}

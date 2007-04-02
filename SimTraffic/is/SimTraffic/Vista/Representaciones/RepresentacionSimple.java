@@ -270,7 +270,7 @@ public class RepresentacionSimple extends Representacion {
 		}
 		posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 		posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
-		System.out.print(posX + " ");
+	
 		g.drawRect(posX, posY, 3, 3);
 	}
 

@@ -17,7 +17,6 @@ public class AccionComenzarSimulacion implements ActionListener {
 
 	public AccionComenzarSimulacion(IControlador controlador, IModelo modelo) {
 		super();
-		// TODO Auto-generated constructor stub
 		this.controlador = controlador;
 		this.modelo = modelo;
 	}
