@@ -1,6 +1,5 @@
 package is.SimTraffic.Simulacion;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

@@ -24,30 +24,30 @@ public class Tramo implements ElementoMapa {
 	private int numCarrilesDir2;
 
 	/**
-	 * Tipo de nodo
-	 * private int tipo;
+	 * Tipo de nodo private int tipo;
 	 * 
 	 */
-	
+
 	/**
-	 * Identificador en OSM del nodo. Cada nodo tiene un identificador entero único, que puede
-	 * ser positivo o negativo pero siempre distinto de 0.
+	 * Identificador en OSM del nodo. Cada nodo tiene un identificador entero
+	 * único, que puede ser positivo o negativo pero siempre distinto de 0.
 	 */
 	private int ID;
-	
+
 	/**
-	 * Indica el tipo de vía (inicialmente crearemos para cada tramo una vía con dicho tramo, para 
-	 * simplificar la tarea y debido a que no aprovechamos aun las posibilidades de las vías 
-	 * (de momento su uso se reduce a las lineas de autobuses)), posteriormente puede moverse 
-	 * su inclusión a una futura clase vía. No conviene redefinirlo a tipoTramo por cuestiones 
-	 * de compatibilidad, pues el formato osm etiqueta las vías, no los tramos.
+	 * Indica el tipo de vía (inicialmente crearemos para cada tramo una vía con
+	 * dicho tramo, para simplificar la tarea y debido a que no aprovechamos aun
+	 * las posibilidades de las vías (de momento su uso se reduce a las lineas
+	 * de autobuses)), posteriormente puede moverse su inclusión a una futura
+	 * clase vía. No conviene redefinirlo a tipoTramo por cuestiones de
+	 * compatibilidad, pues el formato osm etiqueta las vías, no los tramos.
 	 */
 	private ITipoElemento tipo;
-	
+
 	/**
-	 * Atributo opcional que permitirá al usuario dar nombre concreto a una vía (función 
-	 * meramente complementaria, ya que dicho nombre no determina de forma unívoca el nodo).
-	 * (También le afecta el comentario de tipoVía).
+	 * Atributo opcional que permitirá al usuario dar nombre concreto a una vía
+	 * (función meramente complementaria, ya que dicho nombre no determina de
+	 * forma unívoca el nodo). (También le afecta el comentario de tipoVía).
 	 */
 	private String nombre;
 
@@ -65,7 +65,12 @@ public class Tramo implements ElementoMapa {
 	 * Double que almacea el angulo del tramo para evitar recacularlo
 	 */
 	private double angulo;
-	
+
+	/**
+	 * Double que almacena el largo del tramo
+	 */
+	private int largo;
+
 	/**
 	 * Constructor de la clase Tramo con nodos inicial y final.
 	 * <p>
@@ -81,14 +86,18 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
-		ID=asignarIDunico();
-		double largo = nodoInicial.getPos().getLon() - nodoFinal.getPos().getLon();
-		double alto = nodoInicial.getPos().getLat() - nodoFinal.getPos().getLat();
+		ID = asignarIDunico();
+		double largo = nodoInicial.getPos().getLon()
+				- nodoFinal.getPos().getLon();
+		double alto = nodoInicial.getPos().getLat()
+				- nodoFinal.getPos().getLat();
 		angulo = Math.atan(-alto / largo);
+		System.out.println(angulo);
+		calculaLargo();
 	}
-	
+
 	/**
-	 * Constructor de la clase Tramo con id (para la herramienta cargar mapa), 
+	 * Constructor de la clase Tramo con id (para la herramienta cargar mapa),
 	 * nodos inicial y final.
 	 * <p>
 	 * Este constructuro crea un nuevo tramo a partir de dos nodos, y le da el
@@ -99,17 +108,18 @@ public class Tramo implements ElementoMapa {
 	 */
 	public Tramo(int ID, Nodo nodoInicial, Nodo nodoFinal) {
 		this(nodoInicial, nodoFinal);
-		this.ID=ID;
+		this.ID = ID;
 	}
 
 	/**
-	 * Método que genera el ID de un tramo tomando los IDs de sus nodos (y 
-	 * como los IDs de los nodos son únicos, este es también único)
+	 * Método que genera el ID de un tramo tomando los IDs de sus nodos (y como
+	 * los IDs de los nodos son únicos, este es también único)
+	 * 
 	 * @return el ID generado para identificar el tramo.
 	 */
 	public int asignarIDunico() {
-		String IDstring=""+nodoInicial.getID()+nodoFinal.getID();
-		int IDtramo=Integer.parseInt(IDstring);
+		String IDstring = "" + nodoInicial.getID() + nodoFinal.getID();
+		int IDtramo = Integer.parseInt(IDstring);
 		return IDtramo;
 	}
 
@@ -127,6 +137,29 @@ public class Tramo implements ElementoMapa {
 		if (nodoFinal.equals(nodo))
 			return true;
 		return false;
+	}
+
+	private void calculaLargo() {
+		Posicion posnodo1 = nodoInicial.getPos();
+		Posicion posnodo2 = nodoFinal.getPos();
+
+		int zona1 = ConversorUTM.recalculaZona(posnodo1.getLon());
+		boolean hem1 = ConversorUTM.recalculaHem(posnodo1.getLat());
+		double xy1[] = ConversorUTM.LatLonToUTMXY(posnodo1.getLat(), posnodo1
+				.getLon(), zona1);
+
+		// int zona2 = ConversorUTM.recalculaZona(posnodo2.getLon());
+		boolean hem2 = ConversorUTM.recalculaHem(posnodo2.getLat());
+		double xy2[] = ConversorUTM.LatLonToUTMXY(posnodo2.getLat(), posnodo2
+				.getLon(), zona1);
+
+		double largo = xy1[0] - xy2[0];
+		double alto = xy1[1] - xy2[1];
+		this.largo = (int) Math.sqrt(largo * largo + alto * alto);
+		if (this.largo > 10000)
+			this.largo = 10000000 - this.largo;
+
+		return;
 	}
 
 	/*
@@ -203,33 +236,40 @@ public class Tramo implements ElementoMapa {
 	public double getAngulo() {
 		return angulo;
 	}
-	
+
+	public int getLargo() {
+		return largo;
+	}
+
 	/**
-	 * Devuelve un string con la traducción del tramo al formato osm(segment), necesario 
-	 * para el proceso de guardar el mapa.
+	 * Devuelve un string con la traducción del tramo al formato osm(segment),
+	 * necesario para el proceso de guardar el mapa.
 	 */
 	public String transformaraOSM() {
-		String s=("<segment id='"+ID+"' from='" + nodoInicial.getID() + "' to='" + nodoFinal.getID() + "'>\n");
-		if (this.numCarrilesDir1 >0)
-			s = s + ("<tag k='nCarrilesIda' v='"+this.numCarrilesDir1+"' />\n");
+		String s = ("<segment id='" + ID + "' from='" + nodoInicial.getID()
+				+ "' to='" + nodoFinal.getID() + "'>\n");
+		if (this.numCarrilesDir1 > 0)
+			s = s
+					+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
 		if (this.numCarrilesDir2 > 0)
-			s= s + ("<tag k='nCarrilesVuelta' v='"+this.numCarrilesDir2+"' />\n");
-		s= s + ("<tag k='velMax' v='"+this.velocidadMax+"' />\n");
-		s= s + ("</segment>");
+			s = s
+					+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
+		s = s + ("<tag k='velMax' v='" + this.velocidadMax + "' />\n");
+		s = s + ("</segment>");
 		return s;
 	}
 
 	public ITipoElemento getTipo() {
 		return tipo;
 	}
-	
+
 	public Tramo pseudoClone(Nodo nodo1, Nodo nodo2) {
-		Tramo clon = new Tramo (nodo1, nodo2);
+		Tramo clon = new Tramo(nodo1, nodo2);
 		clon.setNombre(this.nombre);
 		clon.setVelMax(this.velocidadMax);
 		clon.setNumCarrilesDir1(this.numCarrilesDir1);
 		clon.setNumCarrilesDir2(this.numCarrilesDir2);
 		return clon;
-				
+
 	}
 }

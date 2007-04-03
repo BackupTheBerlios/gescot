@@ -290,7 +290,6 @@ public class PanelMapa extends JPanel
 		}
 		
 		// Aquí se pintan los coches
-		System.out.println("hola");
 		if (this.modelo.getSimulacion().estaActiva())
 			dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos());			
 

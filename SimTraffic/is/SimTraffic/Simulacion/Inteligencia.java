@@ -127,7 +127,7 @@ public class Inteligencia {
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
 		// TODO temporalmente controla que no supere el 98% de la dist del tramo
 		if (vehiculo.getTramo() == null) return false;
-		if (vehiculo.getPosicion() > 0.98)
+		if ((1 - vehiculo.getPosicion())*vehiculo.getTramo().getLargo() < 2)
 			return true;
 		return false;
 	}
@@ -202,7 +202,7 @@ public class Inteligencia {
 		// esta bien como constante de acercamiento
 		if (vehiculo.tramo == null)
 			return -1;
-		iterador = tabla.get(vehiculo.tramo).iterator();
+		iterador = (new ArrayList(tabla.get(vehiculo.tramo))).iterator();
 		
 		Vehiculo temp = null;
 		double velocidad = -1.0;

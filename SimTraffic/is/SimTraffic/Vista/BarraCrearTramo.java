@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +9,7 @@ import is.SimTraffic.Mapa.Tramo;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -22,6 +19,11 @@ import javax.swing.SpinnerNumberModel;
  */
 public class BarraCrearTramo extends JToolBar 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2569930154399115790L;
+
 	private JComboBox opcionesTipoTramo;
 
 	private JComboBox opcionesSentidoTramo;
