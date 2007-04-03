@@ -4,6 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.Acciones.AccionBarra;
+import is.SimTraffic.Vista.Acciones.AccionBuscar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
@@ -90,6 +91,10 @@ public class BarraHerramientas extends JToolBar {
 				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 6));
+		
+		//Añadir Buscar
+		añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
+				new AccionBuscar(controlador,ventana.getPanel_mapa()));
 	}
 
 	/**

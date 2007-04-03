@@ -578,4 +578,81 @@ public class Mapa {
 		}
 		return null;
 	}
+	
+	/**
+	 * Devuelve el primer nodo (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * @param nombre
+	 * @return
+	 */
+	public Nodo buscarNodo(String nombre) {
+		Iterator<Nodo> nod = Nodos.iterator();
+		Nodo nodoaux=null;
+		String nomaux;
+		boolean encontrado = false;
+		while (nod.hasNext() && !encontrado) {
+			nodoaux = nod.next();
+			nomaux=nodoaux.getNombre();
+			if (nomaux!=null && nomaux.equals(nombre))
+				encontrado=true;
+		}
+		return nodoaux;
+	}
+	
+	/**
+	 * Devuelve el primer tramo (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * @param nombre
+	 * @return
+	 */
+	public Tramo buscarTramo(String nombre) {
+		Iterator<Tramo> tram = Tramos.iterator();
+		Tramo tramoaux=null;
+		String nomaux;
+		boolean encontrado = false;
+		while (tram.hasNext() && !encontrado) {
+			tramoaux = tram.next();
+			nomaux=tramoaux.getNombre();
+			if (nomaux!=null && nomaux.equals(nombre))
+				encontrado=true;
+		}
+		return tramoaux;
+	}
+	
+	/**
+	 * Devuelve la primera vía (no desambigua si hay varias) que tiene como nombre el parámetro.
+	 * @param nombre
+	 * @return
+	 */
+	public Via buscarVia(String nombre) {
+		Iterator<Via> v = Vias.iterator();
+		Via viaaux=null;
+		String nomaux;
+		boolean encontrado = false;
+		while (v.hasNext() && !encontrado) {
+			viaaux = v.next();
+			nomaux=viaaux.getNombre();
+			if (nomaux!=null && nomaux.equals(nombre))
+				encontrado=true;
+		}
+		return viaaux;
+	}
+	
+	/**
+	 * Devuelve la primera línea de bus (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * @param nombre
+	 * @return
+	 */
+	public Via buscarLineaBus(String nombre) {
+		Iterator<Via> v = LineasAutobuses.iterator();
+		Via viaaux=null;
+		String nomaux;
+		boolean encontrado = false;
+		while (v.hasNext() && !encontrado) {
+			viaaux = v.next();
+			nomaux=viaaux.getNombre();
+			if (nomaux!=null && nomaux.equals(nombre))
+				encontrado=true;
+		}
+		return viaaux;
+	}
+	
 }

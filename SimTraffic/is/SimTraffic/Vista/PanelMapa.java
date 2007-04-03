@@ -333,6 +333,18 @@ public class PanelMapa extends JPanel
 		recrear = true;
 		this.repaint();
 	}
+	
+	public void centrarEnPosicion(double lat, double lon) {
+		if ( lat > 180 || lat < -180
+				|| lon > 180 || lon <-180 )
+			return;
+		else {
+			posLat = lat;
+			posLon = lon;
+		}
+		recrear=true;
+		this.repaint();
+	}
 
 	public void cambiaPosY(int cambio) {
 		posLat = posLat - ((double) cambio * zoom) / 60000;
