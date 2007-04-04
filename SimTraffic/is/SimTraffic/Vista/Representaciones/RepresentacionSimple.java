@@ -151,14 +151,32 @@ public class RepresentacionSimple extends Representacion {
 		if (elemento != null) {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
+				/*
 				Nodo nodo = (Nodo) elemento;
 				g.setColor(Color.RED);
 				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
 						tamaño, tamaño);
+					*/
+				Nodo nodo = (Nodo) elemento;
+				g.setColor(Color.yellow);
+				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
+						tamaño, tamaño);
+				Color colorTransparente = new Color((float) 1, (float) 0.6,
+						(float) 0, (float) 0.7);
+				g.setColor(colorTransparente);
+				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
+						tamaño, tamaño);
+				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
+						tamaño, tamaño);
+				
 			}
 			if (elemento.getClass() == Tramo.class) {
 				// pintar un tramo sugerido
+				/*
 				Posicion posnodo1 = ((Tramo) elemento).getNodoInicial()
 						.getPos();
 				Posicion posnodo2 = ((Tramo) elemento).getNodoFinal().getPos();
@@ -168,10 +186,23 @@ public class RepresentacionSimple extends Representacion {
 						.getLat()), x_MapaARep(posnodo2.getLon()),
 						y_MapaARep(posnodo2.getLat()));
 				g.setStroke(new BasicStroke(1));
+				*/
+				Posicion posnodo1 = ((Tramo) elemento).getNodoInicial().getPos();
+				Posicion posnodo2 = ((Tramo) elemento).getNodoFinal().getPos();
+				Tramo t = new Tramo(new Nodo(posnodo1),new Nodo(posnodo2));
+				t.setNumCarrilesDir1(2);
+				t.setNumCarrilesDir2(2);				
+				this.pintar(g,t);
+				Polygon p = generarAreaTramo(t);
+				Color colorTransparente = new Color((float) 1, (float) 0.5,
+						(float) 0, (float) 0.7);
+				g.setColor(colorTransparente);
+				g.fillPolygon(p);
+				
 			}
 		}
 	}
-
+	
 	/**
 	 * Pinta una sugerencia de nodos y tramos para los elementos seleccionados
 	 */
@@ -181,12 +212,12 @@ public class RepresentacionSimple extends Representacion {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
-				g.setColor(Color.yellow);
+				g.setColor(Color.red);//yellow
 				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
 						tamaño, tamaño);
-				Color colorTransparente = new Color((float) 1, (float) 0.6,
-						(float) 0, (float) 0.6);
+				Color colorTransparente = new Color((float) 1, (float) 0,
+						(float) 0, (float) 0.6);//1,0.6,0
 				g.setColor(colorTransparente);
 				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
