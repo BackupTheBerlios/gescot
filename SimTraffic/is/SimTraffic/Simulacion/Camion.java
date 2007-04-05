@@ -1,5 +1,7 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Mapa.Tramo;
+
 
 
 /**
@@ -15,6 +17,12 @@ public class Camion extends Vehiculo {
 	public void variarAceleracion(int cuanto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Tramo siguienteTramo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

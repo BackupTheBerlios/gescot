@@ -45,6 +45,8 @@ public class Inteligencia {
 	 */
 	private double velDelante;
 
+	private int distDelante;
+	
 	/**
 	 * Constructor de la clase.
 	 * <p>
@@ -79,14 +81,13 @@ public class Inteligencia {
 	 * @param vehiculo
 	 */
 	public void procesar(Vehiculo vehiculo) {
-		// TODO
 		if (vehiculo.getTramo() == null)
 			inicializarVehiculo(vehiculo);
 
 		if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
 			procesarTramoSiguiente(vehiculo);
 
-		velDelante = controlarCochesDelante(vehiculo);
+		controlarCochesDelante(vehiculo);
 
 		procesarCambioCarril(vehiculo);
 
@@ -163,21 +164,21 @@ public class Inteligencia {
 		// muy distinto si es un autobus (que ira por el recorrido) o un camion
 		// (que debería elegir calles ampilas),etc.
 		if (vehiculo.getTramo() == null) return;
-		
-		int i = random.nextInt(vehiculo.getNodoDestino().getTramos().size());
+
+		Tramo tramo = vehiculo.siguienteTramo();
 		tabla.get(vehiculo.getTramo()).remove(vehiculo);
-		vehiculo.setTramo(vehiculo.getNodoDestino().getTramos().get(i));
-		tabla.get(vehiculo.getTramo()).add(vehiculo);
+		vehiculo.setTramo(tramo);
+		tabla.get(tramo).add(vehiculo);
 		
 		vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
-		if (vehiculo.getTramo().getNodoInicial() == vehiculo.getNodoOrigen()) {
-			vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
+		if (tramo.getNodoInicial() == vehiculo.getNodoOrigen()) {
+			vehiculo.setNodoDestino(tramo.getNodoFinal());
 		} else
-			vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
+			vehiculo.setNodoDestino(tramo.getNodoInicial());
 		
 		vehiculo.resetaerPosicion();
-		vehiculo.aceleracion = 0;
-		vehiculo.velocidad = 0;
+		//vehiculo.aceleracion = 0;
+		//vehiculo.velocidad = 0;
 
 	}
 
@@ -194,33 +195,30 @@ public class Inteligencia {
 	 * Al final devuelve la velocidad encontrada.
 	 * </p>
 	 * 
-	 * @return Double que será la velocidad del coche de delante si hay uno
-	 *         cerca y -1 en otro caso
 	 */
-	private synchronized double controlarCochesDelante(Vehiculo vehiculo) {
-		// TODO verificar correcto funcionamiento, probar empiricamente si 0.4
-		// esta bien como constante de acercamiento
+	private synchronized void controlarCochesDelante(Vehiculo vehiculo) {
+		// TODO 
 		if (vehiculo.tramo == null)
-			return -1;
-		iterador = (new ArrayList(tabla.get(vehiculo.tramo))).iterator();
+			return;
+		iterador = (new ArrayList<Vehiculo>(tabla.get(vehiculo.tramo))).iterator();
 		
 		Vehiculo temp = null;
 		double velocidad = -1.0;
-		double distancia = 0.4;
+		double distancia = 1.0;
 		while (iterador.hasNext()) {
 			temp = iterador.next();
 			if (temp != vehiculo) {
 				if (temp.getNodoDestino() == vehiculo.getNodoDestino()
-						&& temp.getCarril() == temp.getCarril())
+						&& temp.getCarril() == vehiculo.getCarril())
 					if (temp.getPosicion() > vehiculo.getPosicion()
 							&& temp.getPosicion() - vehiculo.getPosicion() < distancia) {
 						velocidad = temp.getVelocidad();
 						distancia = temp.getPosicion() - vehiculo.getPosicion();
 					}
 			}
-
 		}
-		return velocidad;
+		velDelante = velocidad;
+		distDelante = (int) (distancia * vehiculo.getTramo().getLargo());
 	}
 
 	/**
@@ -253,19 +251,25 @@ public class Inteligencia {
 		// dado que si hay una señal que obliga al coche adetenerse
 		// mas adelante, debe ir frenando
 		if (vehiculo.getTramo() == null) return;
-		if (velDelante > vehiculo.getVelocidad()) {
-			vehiculo.variarAceleracion(2);
-			return;
-		}
-		if (velDelante == -1
+		if ((velDelante == -1 || distDelante > 40)
 				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
 			vehiculo.variarAceleracion(5);
 			return;
 		}
-		if (velDelante < vehiculo.getVelocidad()) {
-			vehiculo.variarAceleracion(-5);
+		if (velDelante > vehiculo.getVelocidad() || distDelante > 25)  {
+			vehiculo.variarAceleracion(2);
 			return;
 		}
+		if (velDelante < vehiculo.getVelocidad()) {
+			if (vehiculo.getDistanciaSeguridad() < distDelante) {
+				vehiculo.variarAceleracion(-5);
+			}
+			else {
+				vehiculo.variarAceleracion(-2);
+			}
+			return;
+		}
+		
 		vehiculo.variarAceleracion(-1);
 	}
 
@@ -279,7 +283,7 @@ public class Inteligencia {
 		if (vehiculo.getTramo() == null) return;
 		//vehiculo.velocidad += vehiculo.aceleracion;
 		vehiculo.actualizarVelocidad();
-		vehiculo.posicion += vehiculo.velocidad / 40;
+		vehiculo.posicion += vehiculo.velocidad / vehiculo.getTramo().getLargo();
 		// TODO aqui se podría verificar si hay accidentes
 		
 	}

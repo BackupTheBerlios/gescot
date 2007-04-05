@@ -9,23 +9,35 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JScrollBar;
 
+/**
+ * Action listener utilizado sobre el scroll horizontal.
+ * <p>
+ * Este action listener implenta accionadores para cuando se hace click en los
+ * botones con flechas y ejecuta el thread correspondiente para cuando se
+ * arrastra el scroll.
+ * 
+ * @author Grupo ISTrafico
+ * 
+ */
 public class AccionScrollY implements AdjustmentListener, MouseListener {
 
 	private PanelMapa panel;
-	
+
 	AuxScrollY thread;
-	
+
 	public AccionScrollY(PanelMapa panel) {
 		this.panel = panel;
 	}
-	
+
 	public void adjustmentValueChanged(AdjustmentEvent e) {
 		JScrollBar barra = (JScrollBar) e.getSource();
 		if (!barra.getValueIsAdjusting()) {
 			int valor = barra.getValue();
-			if (valor >= 10) valor = 11;
-			else valor = 9;
-			panel.cambiaPosY((valor-10)*8);
+			if (valor >= 10)
+				valor = 11;
+			else
+				valor = 9;
+			panel.cambiaPosY((valor - 10) * 8);
 			barra.setValue(valor);
 		}
 	}
@@ -36,12 +48,12 @@ public class AccionScrollY implements AdjustmentListener, MouseListener {
 
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void mousePressed(MouseEvent arg0) {

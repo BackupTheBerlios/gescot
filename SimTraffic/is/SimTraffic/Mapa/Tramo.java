@@ -92,7 +92,6 @@ public class Tramo implements ElementoMapa {
 		double alto = nodoInicial.getPos().getLat()
 				- nodoFinal.getPos().getLat();
 		angulo = Math.atan(-alto / largo);
-		System.out.println(angulo);
 		calculaLargo();
 	}
 
@@ -144,12 +143,12 @@ public class Tramo implements ElementoMapa {
 		Posicion posnodo2 = nodoFinal.getPos();
 
 		int zona1 = ConversorUTM.recalculaZona(posnodo1.getLon());
-		boolean hem1 = ConversorUTM.recalculaHem(posnodo1.getLat());
+		//boolean hem1 = ConversorUTM.recalculaHem(posnodo1.getLat());
 		double xy1[] = ConversorUTM.LatLonToUTMXY(posnodo1.getLat(), posnodo1
 				.getLon(), zona1);
 
 		// int zona2 = ConversorUTM.recalculaZona(posnodo2.getLon());
-		boolean hem2 = ConversorUTM.recalculaHem(posnodo2.getLat());
+		//boolean hem2 = ConversorUTM.recalculaHem(posnodo2.getLat());
 		double xy2[] = ConversorUTM.LatLonToUTMXY(posnodo2.getLat(), posnodo2
 				.getLon(), zona1);
 

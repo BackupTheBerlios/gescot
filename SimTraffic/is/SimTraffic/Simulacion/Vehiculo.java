@@ -97,6 +97,8 @@ public abstract class Vehiculo {
 		
 	}
 	
+	public abstract Tramo siguienteTramo();
+	
 	/**
 	 * Estos metodos se incluyen porque son necesarios para relacionar los
 	 * vehiculos con los nodos de entrada salida y poder mantener el numero de
