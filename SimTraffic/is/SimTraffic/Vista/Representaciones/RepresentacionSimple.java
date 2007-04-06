@@ -12,6 +12,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Clase que extiende Representacion.
@@ -111,13 +114,15 @@ public class RepresentacionSimple extends Representacion {
 		int posx1 = x_MapaARep(posnodo1.getLon());
 		int posx2 = x_MapaARep(posnodo2.getLon());
 		int dist = posx2 - posx1;
-		posx2 = (int) (posx1 + dist - 5 * dist / tramo.getLargo());
-		posx1 = (int) (posx1 + 5 * dist / tramo.getLargo());
+		int delta = (int) 5 * dist / tramo.getLargo();
+		posx2 = (int) (posx1 + dist - delta);
+		posx1 = (int) (posx1 + delta);
 		int posy1 = y_MapaARep(posnodo1.getLat());
 		int posy2 = y_MapaARep(posnodo2.getLat());
 		dist = posy2 - posy1;
-		posy2 = (int) (posy1 + dist - 5 * dist / tramo.getLargo());
-		posy1 = (int) (posy1 + 5 * dist / tramo.getLargo());
+		delta = (int) 5 * dist / tramo.getLargo();
+		posy2 = (int) (posy1 + dist - delta);
+		posy1 = (int) (posy1 + delta);
 
 		for (int i = 0; i < carriles_ida; i++) {
 			if (i == carriles_ida - 1)
@@ -280,6 +285,10 @@ public class RepresentacionSimple extends Representacion {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null)
 			return;
+
+		Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
+
+		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
@@ -289,29 +298,29 @@ public class RepresentacionSimple extends Representacion {
 			if ((tramo.getNodoInicial().getPos().getLon() - tramo
 					.getNodoFinal().getPos().getLon()) < 0) {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* (-Math.sin(tramo.getAngulo())));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* Math.cos(tramo.getAngulo()));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* (-Math.sin(tramo.getAngulo())));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* Math.cos(tramo.getAngulo()));
 			} else {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() - 1 )
 						* Math.sin(tramo.getAngulo()));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* (-Math.cos(tramo.getAngulo())));
 			}
 			posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
@@ -320,35 +329,48 @@ public class RepresentacionSimple extends Representacion {
 			if ((tramo.getNodoInicial().getPos().getLon() - tramo
 					.getNodoFinal().getPos().getLon()) > 0) {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* (-Math.sin(tramo.getAngulo())));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  )
 						* Math.cos(tramo.getAngulo()));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* (-Math.sin(tramo.getAngulo())));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() )
 						* Math.cos(tramo.getAngulo()));
 			} else {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril()  - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 0.5)
+						/ zoom * (vehiculo.getCarril() - 1 )
 						* (-Math.cos(tramo.getAngulo())));
 			}
 			posX = posX2 + (int) ((posX1 - posX2) * vehiculo.getPosicion());
 			posY = posY2 + (int) ((posY1 - posY2) * vehiculo.getPosicion());
 		}
-		g.drawRect(posX - 1, posY - 1, 2, 2);
+		AffineTransform rot = new AffineTransform();
+		AffineTransform trans = new AffineTransform();
+		AffineTransform zoom = new AffineTransform();
+		zoom.scale(1/this.zoom, 1/this.zoom);
+		rot.rotate(vehiculo.getTramo().getAngulo());
+		rot.concatenate(zoom);
+		trans.translate(posX, posY);
+		trans.concatenate(rot);
+		AffineTransform temp = g.getTransform();
+		g.transform(trans);
+		g.draw(rect);
+		g.setTransform(temp);
+
+		//g.drawRect(posX - 1, posY - 1, 2, 2);
 
 	}
 

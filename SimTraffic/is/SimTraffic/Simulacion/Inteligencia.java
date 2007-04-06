@@ -207,8 +207,8 @@ public class Inteligencia {
 		double distancia = 1.0;
 		while (iterador.hasNext()) {
 			temp = iterador.next();
-			if (temp != vehiculo) {
-				if (temp.getNodoDestino() == vehiculo.getNodoDestino()
+			if (temp != null && temp != vehiculo) {
+				if (temp.getNodoDestino() != null && temp.getNodoDestino() == vehiculo.getNodoDestino()
 						&& temp.getCarril() == vehiculo.getCarril())
 					if (temp.getPosicion() > vehiculo.getPosicion()
 							&& temp.getPosicion() - vehiculo.getPosicion() < distancia) {
