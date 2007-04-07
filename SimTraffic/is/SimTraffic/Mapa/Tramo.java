@@ -86,7 +86,7 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
-		ID = asignarIDunico();
+		//ID = asignarIDunico();
 		double largo = nodoInicial.getPos().getLon()
 				- nodoFinal.getPos().getLon();
 		double alto = nodoInicial.getPos().getLat()
@@ -116,10 +116,14 @@ public class Tramo implements ElementoMapa {
 	 * 
 	 * @return el ID generado para identificar el tramo.
 	 */
+	/**
+	 * Método descartado. No utilizar.
+	 */
 	public int asignarIDunico() {
-		String IDstring = "" + nodoInicial.getID() + nodoFinal.getID();
-		int IDtramo = Integer.parseInt(IDstring);
-		return IDtramo;
+		//String IDstring = "" + nodoInicial.getID() + nodoFinal.getID();
+		//int IDtramo = Integer.parseInt(IDstring);
+		//return IDtramo;
+		return 0;
 	}
 
 	/**
