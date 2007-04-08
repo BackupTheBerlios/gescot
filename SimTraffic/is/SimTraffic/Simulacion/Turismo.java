@@ -27,7 +27,8 @@ public class Turismo extends Vehiculo {
 		this.posicion = 0;
 		this.velocidad = 0;
 		this.velocidadMax = (double) random.nextInt(60) / 100 + 0.6;
-		
+		this.id = ncochesglobal;
+		ncochesglobal++;
 	}
 
 	@Override

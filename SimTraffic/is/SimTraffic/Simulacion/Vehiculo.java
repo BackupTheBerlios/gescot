@@ -65,6 +65,16 @@ public abstract class Vehiculo {
 	 * Nodo al que se dirige el vehiculo
 	 */
 	protected Nodo nodoDestino;
+	
+	/**
+	 * Identificador del vehículo
+	 * */
+	protected int id;
+	
+	/**
+	 * Número global de coches creados.
+	 * */
+	protected static int ncochesglobal = 0;
 
 	/**
 	 * Método para variar la aceleración.
@@ -155,4 +165,8 @@ public abstract class Vehiculo {
 	public synchronized void setCarril(int carril) {
 		this.carril = carril;
 	}
+
+	public int getId() {	
+		return this.id;	
+		}
 }

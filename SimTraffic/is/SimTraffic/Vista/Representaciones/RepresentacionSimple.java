@@ -12,9 +12,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Clase que extiende Representacion.
@@ -31,12 +34,19 @@ public class RepresentacionSimple extends Representacion {
 	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
 	 */
 	private double tamaño_carril = 2.5;
+	
+	/** 
+	 * Almacena las imagenes de los coches para dibujarlos de manera más eficiente.
+	 * */
+	private BufferedImage coches[];
 
 	/**
 	 * Constructor por defecto de la RepresentacionSimple
 	 */
-	public RepresentacionSimple() {
+	public RepresentacionSimple() 
+	{	
 		super();
+		inicializarImagenes();
 	}
 
 	/**
@@ -45,8 +55,28 @@ public class RepresentacionSimple extends Representacion {
 	 * 
 	 * @param rep
 	 */
-	public RepresentacionSimple(Representacion rep) {
+	public RepresentacionSimple(Representacion rep) 
+	{
 		super(rep);
+		inicializarImagenes();
+	}
+
+	/** Inicializa las imagenes de los coches.*/
+	private void inicializarImagenes() 
+	{
+		coches = new BufferedImage[7];
+		try {
+			coches[0] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche1.png"));
+			coches[1] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche2.png"));
+			coches[2] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche3.png"));
+			coches[3] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche4.png"));
+			coches[4] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche5.png"));
+			coches[5] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche6.png"));
+			coches[6] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche7.png"));
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void pintar(Graphics2D g, Nodo nodo) {
@@ -286,7 +316,8 @@ public class RepresentacionSimple extends Representacion {
 		if (tramo == null)
 			return;
 
-		Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
+		//Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
+		BufferedImage rect = coches[vehiculo.getId() % 7];
 
 		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
@@ -367,7 +398,8 @@ public class RepresentacionSimple extends Representacion {
 		trans.concatenate(rot);
 		AffineTransform temp = g.getTransform();
 		g.transform(trans);
-		g.draw(rect);
+		//g.draw(rect);
+		g.drawImage(rect, -5, -2, 4, 2, null);
 		g.setTransform(temp);
 
 		//g.drawRect(posX - 1, posY - 1, 2, 2);
