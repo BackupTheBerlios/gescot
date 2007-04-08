@@ -310,10 +310,10 @@ public class RepresentacionSimple extends Representacion {
 		return p;
 	}
 
-	@Override
-	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo) {
+	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) 
+	{
 		Tramo tramo = vehiculo.getTramo();
-		if (tramo == null)
+		if (tramo == null || !tramo2.equals(tramo))
 			return;
 
 		//Shape rect = new Rectangle2D.Double(-5, -2, 5,2);

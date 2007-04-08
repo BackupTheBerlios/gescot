@@ -236,7 +236,7 @@ abstract public class Representacion {
 	 */
 	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
 
-	abstract public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo);
+	abstract public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo);
 	
 	
 	public void setLon0(double Lon0) {

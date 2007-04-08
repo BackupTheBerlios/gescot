@@ -218,7 +218,7 @@ public class PanelMapa extends JPanel
 		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
-			representacion.pintar(g, itramos.next());
+			representacion.pintar(g, itramos.next());		
 		}
 
 		// dibujar nodos
@@ -232,10 +232,10 @@ public class PanelMapa extends JPanel
 		contador++;
 	}
 
-	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos) {
+	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {
 		Iterator<Vehiculo> it = vehiculos.iterator();
 		while (it.hasNext()) {
-			representacion.pintarVehiculo(g, it.next());
+			representacion.pintarVehiculo(g, it.next(), tramo);
 		}
 	}
 	
@@ -273,7 +273,15 @@ public class PanelMapa extends JPanel
 		 * representacion.pintarSugerencia(g, modelo.getMapa().getSeleccion()
 		 * .getNodosSeleccionados().get(i)); }
 		 */
-
+		
+		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
+		while (itramos.hasNext()) {
+			Tramo tramo = itramos.next();
+			representacion.pintar(g, tramo);	
+			if (this.modelo.getSimulacion().estaActiva())
+				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);		
+		}
+		
 		// Se pintan los tramos que están seleccionados
 		for (int i = 0; i < modelo.getMapa().getSeleccion()
 				.getTramosSeleccionados().size(); i++) {
@@ -290,9 +298,7 @@ public class PanelMapa extends JPanel
 		}
 		
 		// Aquí se pintan los coches
-		if (this.modelo.getSimulacion().estaActiva())
-			dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos());			
-
+		
 	}
 
 	public void setRepresentacion(Representacion representacion) {
@@ -305,7 +311,7 @@ public class PanelMapa extends JPanel
 
 	public void cambiaZoom(double cambio) {
 		this.zoom = this.zoom * cambio;
-		if (zoom > 16 || zoom < 0.25) {
+		if (zoom > 32 || zoom < 0.125) {
 			this.zoom = this.zoom / cambio;
 			return;
 		}
