@@ -18,12 +18,13 @@ import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-public class BarraHerramientas extends JToolBar {
+public class BarraHerramientas extends Barra {
 	/**
 	 * 
 	 */
@@ -75,7 +76,7 @@ public class BarraHerramientas extends JToolBar {
 						ventana.getEscuchaTeclado(), 3));
 
 		// Aqui se añadirán los nuevos botones.
-		añadirBoton("add_bus.png", "add_bus2.png", "Añadir linea de autobus",
+		añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
 				new AccionSobreMapa(new MLAñadirLineaAutobus(modelo,
 						controlador, ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 4));
@@ -97,33 +98,4 @@ public class BarraHerramientas extends JToolBar {
 				new AccionBuscar(controlador,ventana.getPanel_mapa()));
 	}
 
-	/**
-	 * Método para crear un boton de herramienta.
-	 * <p>
-	 * Este método perminte repetir no repetir código cada vez que se crea un
-	 * nuevo boton de herramienta.
-	 * 
-	 * @param icono
-	 *            Icono pequeño que mostrara el boton
-	 * @param iconoGrande
-	 *            Icono de mayor tamaño, que aparece en el tooltip
-	 * @param tooltip
-	 *            Texto del tooltip
-	 * @param accion
-	 *            Accion asociada al boton
-	 * @return El JButton creado
-	 */
-	private JButton añadirBoton(String icono, String iconoGrande,
-			String tooltip, ActionListener accion) {
-		JButton boton = new JButton(new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\" + icono));
-		boton.setMargin(new Insets(1, 1, 1, 1));
-		String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\"
-				+ iconoGrande;
-		boton.setToolTipText("<html>" + tooltip + " <img src=" + imageName
-				+ "></html>");
-		boton.addActionListener(accion);
-		add(boton);
-		return boton;
-	}
 }

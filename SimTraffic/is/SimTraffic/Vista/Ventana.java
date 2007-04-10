@@ -196,7 +196,7 @@ public class Ventana extends JFrame {
 		menuBar.add(archivoMenu);
 
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
-		nuevoMapaMenuItem.addActionListener(new AccionNuevo(modelo));
+		nuevoMapaMenuItem.addActionListener(new AccionNuevo(modelo, panel_mapa));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		archivoMenu.add(nuevoMapaMenuItem);
 

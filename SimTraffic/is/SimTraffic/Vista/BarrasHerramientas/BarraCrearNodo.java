@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SpinnerNumberModel;
 
-public class BarraCrearNodo extends JToolBar 
+public class BarraCrearNodo extends Barra 
 {
 	private static final long serialVersionUID = 1L;
 	private JComboBox comboTipo;
