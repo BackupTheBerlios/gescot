@@ -23,7 +23,9 @@ import java.awt.RenderingHints;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 
 /**
@@ -98,6 +100,8 @@ public class PanelMapa extends JPanel
 	private JScrollBar largo;
 
 	private JScrollBar alto;
+	
+	private JPopupMenu emergente;
 
 	/**
 	 * Punto que limitan el rectángulo del área de selección.
@@ -143,6 +147,7 @@ public class PanelMapa extends JPanel
 		posLontemp = 0;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
+		añadirMenuEmergente();
 	}
 
 	/**
@@ -159,6 +164,18 @@ public class PanelMapa extends JPanel
 		recrear = true;
 	}
 
+	public void añadirMenuEmergente(){
+		emergente = new JPopupMenu();
+		JMenuItem moverItem = new JMenuItem("Mover");
+		JMenuItem eliminarItem = new JMenuItem("Eliminar"); 
+		emergente.add(moverItem);
+		emergente.add(eliminarItem);
+	}
+	
+	public JPopupMenu getMenuEmergente(){
+		return emergente;
+	}
+	
 	/*
 	 * public void setSize(int tamX, int tamY) { this.tamX = tamX; this.tamY =
 	 * tamY; recrear = true; super.setSize(tamX, tamY); }
