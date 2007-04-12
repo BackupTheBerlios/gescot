@@ -60,11 +60,12 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		// derecho en el mapa, te salga la ventana de propiedades
 		// del nodo
 		
-		
+
 		// Esta parte no se para que vale, creo que sobra, ademas de milis, estado y mismo punto
 		// ¿que pasa cuando se hace un click?
 		if (arg0.getClickCount() == 1) 
 		{	
+
 			if (estado == 0)
 			{
 				estado = 1;
@@ -160,8 +161,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		//if(arg0.isPopupTrigger() == false) 
-		//	panel.getMenuEmergente().setVisible(false);
+		if(!arg0.isPopupTrigger()) 
+			panel.getMenuEmergente().setVisible(false);
 	}
 	
 	/*
