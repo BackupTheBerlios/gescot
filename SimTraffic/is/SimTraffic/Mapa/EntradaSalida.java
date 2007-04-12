@@ -9,71 +9,85 @@ package is.SimTraffic.Mapa;
 public class EntradaSalida {
 
 	/**
-	 * Este valor representa la frecuencia con la que salen los coches del nodo
+	 * Este valor representa el peso de este nodo en la entrada de coches al mapa.
+	 * <p>
+	 * Este valor es dado a lo largo del dia, despues se deberá explicitar cuantos de
+	 * estos entran en cada franja horaria.
 	 */
-	int cochesUnidadTiempo;
+	int entran;
+	
+	/**
+	 * Este valor representa el peso de este nodo en la salida de coches al mapa.
+	 * <p>
+	 * Este valor es dado a lo largo del dia, despues se deberá explicitar cuantos de
+	 * estos salen en cada franja horaria.
+	 */
+	int salen;
+	
 
 	/**
-	 * Porcentajes entre 0 y 100 del numero total de coches del mapa en dicha
-	 * franja horaria que salen por este punto de E/S. Esto es para que en cada
-	 * franja horaria pueda salir diferente número de coches de cada nodo.
+	 * Porcentaje del total de coches que entran que lo hacen en cada franja horaria de
+	 * 2 horas.
 	 */
-	int[] valoresFranjaHoraria;
-
+	int[] porcentajesEntrada = new int[12];
+	
 	/**
-	 * Contador que mide el número de coches que han entrado por este nodo en el
-	 * mapa y no han salido del mapa, necesario para mantener constante el
-	 * número de coches que hay en el mapa (para no sobrecargarlo).
+	 * Porcentaje del total de coches que salen de este nodo que lo hacen en cada franja
+	 * horaria de 2 horas.
 	 */
-	int cochesQueHanEntradoYnoHanSalido;
+	int[] porcentajesSalida = new int[12];
 
-	public EntradaSalida(int cut, int[] franjas) {
-		cochesUnidadTiempo = cut;
-		valoresFranjaHoraria = franjas;
-		cochesQueHanEntradoYnoHanSalido = 0;
+	public EntradaSalida(int entran, int salen, int[] porcentajesEntrada, int[] porcentajesSalida) {
+		this.entran = entran;
+		this.salen = salen;
+		this.porcentajesEntrada = normalizar(porcentajesEntrada);
+		this.porcentajesSalida = normalizar(porcentajesSalida);
+
+	}
+	
+	private int[] normalizar(int [] porcentajes) {
+		int cont = 0;
+		int[] nuevos = new int[12];
+		for (int i = 0; i < 12; i++) {
+			cont += porcentajes[i];
+		}
+		for (int i = 0; i < 12; i++) {
+			nuevos[i] = (int) (porcentajes[i] * 100 / cont);
+		}
+		return nuevos;
 	}
 
-	/**
-	 * Cada vez que un coche sale del mapa se puede volver a lanzar un coche
-	 * desde este nodo,es lo que representan estos contadores Obviamente cuando
-	 * un coche sale del mapa es porque entra por un nodo de e/s
-	 */
-	public void saleCocheDelMapa() {
-		cochesQueHanEntradoYnoHanSalido--;
+	public int getEntran() {
+		return entran;
 	}
 
-	/**
-	 * Cada vez que un coche entra en el mapa impide que se pueda lanzar un
-	 * coche menos hasta que este salga del mapa. Obviamente cuando un coche
-	 * entra en el mapa es porque sale de este nodo de e/s
-	 */
-	public void entraCocheEnMapa() {
-		cochesQueHanEntradoYnoHanSalido++;
+	public void setEntran(int entran) {
+		this.entran = entran;
 	}
 
-	public int getCochesQueHanEntradoYnoHanSalido() {
-		return cochesQueHanEntradoYnoHanSalido;
+	public int[] getPorcentajesEntrada() {
+		return porcentajesEntrada;
 	}
 
-	public void setCochesQueHanEntradoYnoHanSalido(
-			int cochesQueHanEntradoYnoHanSalido) {
-		this.cochesQueHanEntradoYnoHanSalido = cochesQueHanEntradoYnoHanSalido;
+	public void setPorcentajesEntrada(int[] porcentajesEntrada) {
+		this.porcentajesEntrada = porcentajesEntrada;
 	}
 
-	public int getCochesUnidadTiempo() {
-		return cochesUnidadTiempo;
+	public int[] getPorcentajesSalida() {
+		return porcentajesSalida;
 	}
 
-	public void setCochesUnidadTiempo(int cochesUnidadTiempo) {
-		this.cochesUnidadTiempo = cochesUnidadTiempo;
+	public void setPorcentajesSalida(int[] porcentajesSalida) {
+		this.porcentajesSalida = porcentajesSalida;
 	}
 
-	public int[] getValoresFranjaHoraria() {
-		return valoresFranjaHoraria;
+	public int getSalen() {
+		return salen;
 	}
 
-	public void setValoresFranjaHoraria(int[] valoresFranjaHoraria) {
-		this.valoresFranjaHoraria = valoresFranjaHoraria;
+	public void setSalen(int salen) {
+		this.salen = salen;
 	}
 
+	
 }

@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Semaforos.MasterSemaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
@@ -23,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -38,7 +40,9 @@ public class PanelNodo extends JFrame
 	private JTextField campoTiempoCicloSemaforo;
 	private JComboBox comboTipo;
 	private JComboBox comboValor;
-	private JTextField campoFrecuencia;
+	private EntradaSalida es;
+    JTextField[] entrada = new JTextField[12];
+    JTextField[] salida = new JTextField[12];
 	private JTextField campoNombre;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
@@ -202,33 +206,7 @@ public class PanelNodo extends JFrame
 	    panelTipo.add(comboValor);
 	    panelTipo.setBorder(BorderFactory.createTitledBorder("Tipo de Nodo"));
 	    
-	    JPanel panelEntrada = new JPanel();
-	    panelEntrada.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
-	  
-	    JPanel panelRadioButtons = new JPanel();
-	    panelRadioButtons.setLayout(new GridLayout(3,1));
-	    JRadioButton radioNormal = new JRadioButton("Normal");
-	    JRadioButton radioEntradaSalida = new JRadioButton("Entrada/Salida");
-	    //JRadioButton radioSalida = new JRadioButton("Salida");
-	    radioNormal.setSelected(true);
-	    ButtonGroup radioGrupo = new ButtonGroup();
-	    radioGrupo.add(radioNormal);
-	    radioGrupo.add(radioEntradaSalida);
-	    //radioGrupo.add(radioSalida);
-	    panelRadioButtons.add(radioNormal);
-	    panelRadioButtons.add(radioEntradaSalida);
-	    //panelRadioButtons.add(radioSalida);
-	    
-	    JPanel panelFrecuencia = new JPanel();
-	    panelFrecuencia.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
-	    JLabel etiquetaFrecuencia = new JLabel("Frecuencia");
-	    campoFrecuencia = new JTextField(5);
-	    panelFrecuencia.add(etiquetaFrecuencia);
-	    panelFrecuencia.add(campoFrecuencia);
-	    
-	    panelEntrada.add(panelRadioButtons);
-	    panelEntrada.add(panelFrecuencia);
-	    panelEntrada.setBorder(BorderFactory.createTitledBorder("Funcionalidad del Nodo"));
+	    JPanel panelEntrada = crearSeccionEntradaSalida();
 	    
 	    panelAuxiliar = new JPanel();
 	    panelAuxiliar.setLayout(new BorderLayout());
@@ -277,9 +255,11 @@ public class PanelNodo extends JFrame
 		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
 	    comboTipo.addActionListener(accionSeleccionarTipo);
 	    
+	    generarEs();
+	    
 	    // Oyentes para los botones aceptar y cancelar
 	    ActionListener accionAceptar = new AccionAceptar(nodo,
-	    		comboTipo,comboValor,campoFrecuencia,campoNombre,this,
+	    		comboTipo,comboValor, es ,campoNombre,this,
 	    		comboTipoSemaforos, campoTiempoCicloSemaforo, comboTipoSeñales,
 	    		mapa);
 	    botonAceptar.addActionListener(accionAceptar);
@@ -365,5 +345,44 @@ public class PanelNodo extends JFrame
 			comboValor.addItem("No definido");
 		}
 	}
+
+	private JPanel crearSeccionEntradaSalida() {
+	    JPanel panelEntrada = new JPanel();
+	    panelEntrada.setLayout(new GridLayout(2,1));
+	    JPanel panel = new JPanel();
+	    panel.setLayout(new GridLayout(3,13));
+
+	    
+	    
+	    panel.add(new JLabel("Int\\Hr"));
+	    for (int i = 0; i < 12; i++) {
+	    	panel.add(new JLabel("" + i*2 + "-" + (i*2 + 1)));
+	    }
+	    
+	    panel.add(new JLabel("Entran"));
+	    for (int i = 0; i < 12; i++) {
+	    	entrada[i] = new JTextField(3);
+	    	panel.add(entrada[i]);
+	    }
+
+	    panel.add(new JLabel("Salen"));
+	    for (int i = 0; i < 12; i++) {
+	    	salida[i] = new JTextField(3);
+	    	panel.add(salida[i]);
+	    }
+
+	    panelEntrada.add(new JTextArea("Por favor indique con un número del 0 al 999 la importancia de este nodo como\nentrada o como salida a las distintas horas del día"));
+	    panelEntrada.add(panel);
+	    panelEntrada.setBorder(BorderFactory.createTitledBorder("Funcionalidad del Nodo"));
+	    
+	    return panelEntrada;
+	}
+	
+	/**
+	 * Método que lee los valores ingresados por el usario sobre frecuencias y genera el
+	 * atributo es del tipo EntradaSalida
+	 */
+	private void generarEs() {
 		
+	}
 }

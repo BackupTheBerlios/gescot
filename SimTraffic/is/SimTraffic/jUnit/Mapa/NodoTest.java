@@ -73,25 +73,7 @@ public class NodoTest extends TestCase {
 		
 	}
 	
-	/**
-	 * Método de prueba para getEs() 
-	 * Se comprueba que el valor de EntradaSalida proporcionado 
-	 * por el nodo es correcto
-	 */
-	public void testGetEs(){
-		Nodo nodo = new Nodo (new Posicion(100,100));
-		int[] franjas = new int [3];
-		franjas[0]=60;
-		franjas[1]=10;
-		franjas[2]=30;
-		int cut = 5;
-		nodo.setEs(new EntradaSalida(cut,franjas));
-		EntradaSalida es = nodo.getEs();
-		assertEquals(es.getCochesUnidadTiempo(),cut);
-		assertEquals(es.getValoresFranjaHoraria(),franjas);
-		
-	}
-	
+
 	/**
 	 * Método de prueba para setEs(EntradaSalida)
 	 * Se comprueba que se puede modificar correctamente el atributo
@@ -100,12 +82,11 @@ public class NodoTest extends TestCase {
 	 */
 	public void testSetEsEntradaSalida (){
 		Nodo nodo = new Nodo (new Posicion(100,100));
-		int[] franjas = new int [3];
-		franjas[0]=60;
-		franjas[1]=10;
-		franjas[2]=30;
-		int cut = 5;
-		EntradaSalida es = new EntradaSalida(cut,franjas);
+		int entran = 100;
+		int salen = 100;
+		int[] entradas = {1,2,3,4,5,6,7,8,9,10,11,12};
+		int[] salidas = {1,2,3,4,5,6,7,8,9,10,11,12};
+		EntradaSalida es = new EntradaSalida(entran, salen, entradas, salidas);
 		nodo.setEs(es);
 		assertEquals(nodo.getEs(),es);
 			

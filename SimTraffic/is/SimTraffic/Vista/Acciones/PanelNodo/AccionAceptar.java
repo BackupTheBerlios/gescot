@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Acciones.PanelNodo;
 
+import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
@@ -13,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class AccionAceptar implements ActionListener {
@@ -21,7 +21,7 @@ public class AccionAceptar implements ActionListener {
 	private Nodo nodo;
 	private JComboBox comboTipoNodo;
 	private JComboBox comboValorNodo;
-	private JTextField campoFrecuenciaNodo;
+	private EntradaSalida es;
 	private JTextField campoNombreNodo;
 	private PanelNodo panelNodo;
 	private JComboBox comboTipoSeñales;
@@ -30,14 +30,14 @@ public class AccionAceptar implements ActionListener {
 	private PanelMapa mapa;
 
 	public AccionAceptar(Nodo nodo, JComboBox comboTipoNodo, JComboBox comboValorNodo,
-			JTextField campoFrecuenciaNodo,	JTextField campoNombreNodo, PanelNodo panelNodo, 
+			EntradaSalida es,	JTextField campoNombreNodo, PanelNodo panelNodo, 
 			JComboBox comboTipoSemaforos, JTextField campoTiempoCicloSemaforo, JComboBox comboTipoSeñales,
 			PanelMapa mapa) {
 		
 		this.nodo = nodo;
 		this.comboTipoNodo = comboTipoNodo;
 		this.comboValorNodo = comboValorNodo;
-		this.campoFrecuenciaNodo = campoFrecuenciaNodo;
+		this.es = es;
 		this.campoNombreNodo = campoNombreNodo;
 		this.panelNodo = panelNodo;
 		this.comboTipoSeñales=comboTipoSeñales;
@@ -64,6 +64,10 @@ public class AccionAceptar implements ActionListener {
 			//nodo.setTipo(tipo);
 		}
 		nodo.setTipo(tipo);
+		
+		if (es != null) {
+			nodo.setEs(es);
+		}
 		
 		String nuevoNombre=campoNombreNodo.getText();
 		//System.out.println(nuevoNombre);

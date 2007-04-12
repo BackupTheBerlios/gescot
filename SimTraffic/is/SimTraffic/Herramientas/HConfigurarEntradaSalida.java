@@ -9,31 +9,29 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 	//y los valores de entrada salida
 
 	Nodo nodo;
-	int[] valoresFranjas;
-	int  frecuencia;
+	int[] porcentajesEntrada;
+	int[] porcentajesSalida;
+	int entran;
+	int salen;
 	EntradaSalida esGuardado;
 	
-	public HConfigurarEntradaSalida(Nodo nodo, int[] valoresFranjas,int frecuencia) {
+	public HConfigurarEntradaSalida(Nodo nodo, int entran, int salen, int[] porcentajesEntrada, int[] porcentajesSalida) {
 		this.nodo = nodo;
-		this.valoresFranjas = valoresFranjas;
-		this.frecuencia = frecuencia; 
+		this.entran = entran;
+		this.salen = salen;
+		this.porcentajesEntrada = porcentajesEntrada;
+		this.porcentajesSalida = porcentajesSalida;		
 	}
 	
 	public int hacer(IModelo modelo) {
 	    esGuardado = nodo.getEs();
-		for (int i = 0 ; i < valoresFranjas.length; i++){
-		 if ((valoresFranjas[i]>100) ||(valoresFranjas[i]<0)) 
-		  return i;
-		}
-		EntradaSalida es = new EntradaSalida(frecuencia,valoresFranjas);
+		EntradaSalida es = new EntradaSalida(entran, salen, porcentajesEntrada, porcentajesSalida);
 		nodo.setEs(es);
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int deshacer(IModelo modelo) {
 		nodo.setEs(esGuardado);
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
