@@ -72,6 +72,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 				x1 = panel.lon_RepAMapa(arg0.getX());
 				y1 = panel.lat_RepAMapa(arg0.getY());
 			}
+				
 			/*else
 			{
 				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 250)
@@ -159,7 +160,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		
+		if(arg0.isPopupTrigger() == false) panel.getMenuEmergente().setVisible(false);
 	}
 	
 	/*
