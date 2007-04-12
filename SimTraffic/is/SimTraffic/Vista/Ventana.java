@@ -58,11 +58,6 @@ public class Ventana extends JFrame {
 	private JMenuBar menuBar;
 
 	/**
-	 * Barra de estado situada en la parte inferior de la interfaz
-	 */
-	private JPanel barraEstado;
-
-	/**
 	 * Modelo asociado a la interfaz.
 	 */
 	private IModelo modelo;
@@ -118,6 +113,8 @@ public class Ventana extends JFrame {
 	 * Elementos de la barra Crear Tramo
 	 */
 	private BarraCrearTramo barraCrearTramo;
+
+	private JLabel ayudaDinamica;
 
 	/**
 	 * Constructor de la ventana.
@@ -483,22 +480,29 @@ public class Ventana extends JFrame {
 	 * Crea la barra de estado
 	 * 
 	 */
-	public void crearBarraEstado() {
-
-		barraEstado = new JPanel();
-		barraEstado.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
-
+	public void crearBarraEstado() 
+	{
+		JPanel barraEstado = new JPanel(new BorderLayout());
+		JPanel barraPosicion = new JPanel();
+		barraPosicion.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+		JPanel barraAyudaDinamica = new JPanel();
+		barraAyudaDinamica.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
+		
 		JLabel etiquetaPosicion = new JLabel("Posición: ");
 		JLabel puntitos = new JLabel(" : ");
 		posicionX = new JLabel();
 		posicionY = new JLabel();
-
-		barraEstado.add(etiquetaPosicion);
-		barraEstado.add(posicionX);
-		barraEstado.add(puntitos);
-		barraEstado.add(posicionY);
+		ayudaDinamica = new JLabel("  Ayuda");
+		
+		barraAyudaDinamica.add(ayudaDinamica);
+		barraPosicion.add(etiquetaPosicion);
+		barraPosicion.add(posicionX);
+		barraPosicion.add(puntitos);
+		barraPosicion.add(posicionY);
 
 		getContentPane().add(barraEstado, BorderLayout.SOUTH);
+		barraEstado.add(barraAyudaDinamica, BorderLayout.WEST);
+		barraEstado.add(barraPosicion, BorderLayout.EAST);
 	}
 
 	/**
