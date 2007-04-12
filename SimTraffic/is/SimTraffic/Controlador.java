@@ -30,7 +30,7 @@ public class Controlador implements IControlador {
 	/**
 	 * Lista que contiene las distintas acciones realizadas por el usuario.
 	 */
-	public List<String> historial;
+	public List<String> historial =new ArrayList<String>() ;
 	
 	/**
 	 * Constructor de la clase.
@@ -52,7 +52,7 @@ public class Controlador implements IControlador {
 	public int herramienta(IHerramienta herramienta) {
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
-	//	historial.add(herramienta.toString());
+		historial.add(herramienta.toString());
 		if (resultado != 0) { // fallo
 			return resultado;
 		}

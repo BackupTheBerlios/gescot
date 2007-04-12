@@ -41,8 +41,10 @@ public class PanelNodo extends JFrame
 	private JComboBox comboTipo;
 	private JComboBox comboValor;
 	private EntradaSalida es;
-    JTextField[] entrada = new JTextField[12];
-    JTextField[] salida = new JTextField[12];
+	private JTextField entran;
+	private JTextField salen;
+    private JTextField[] entrada = new JTextField[12];
+    private JTextField[] salida = new JTextField[12];
 	private JTextField campoNombre;
 	private JButton botonAceptar;
 	private JButton botonCancelar;
@@ -254,8 +256,7 @@ public class PanelNodo extends JFrame
 	public void crearAcciones() {
 		ActionListener accionSeleccionarTipo = new AccionSeleccionarTipo(comboTipo,comboValor);
 	    comboTipo.addActionListener(accionSeleccionarTipo);
-	    
-	    generarEs();
+	   
 	    
 	    // Oyentes para los botones aceptar y cancelar
 	    ActionListener accionAceptar = new AccionAceptar(nodo,
@@ -382,7 +383,22 @@ public class PanelNodo extends JFrame
 	 * Método que lee los valores ingresados por el usario sobre frecuencias y genera el
 	 * atributo es del tipo EntradaSalida
 	 */
-	private void generarEs() {
-		
+	private void generarEs () {
+		int[] entradas = new int[12];
+		int[] salidas = new int[12];
+		int entran;
+		int salen;
+		entran = Integer.parseInt(this.entran.getText());
+		salen = Integer.parseInt(this.salen.getText());
+		for (int i = 0; i < 12; i ++) {
+			entradas[i] = Integer.parseInt(this.entrada[i].getText());
+			System.out.print(entradas[i]);
+		}
+		System.out.println();
+		for (int i = 0; i < 12; i++) {
+			salidas[i] = Integer.parseInt(this.salida[i].getText());
+			System.out.print(salidas[i]);
+		}
+		es = new EntradaSalida(entran, salen, entradas, salidas);
 	}
 }
