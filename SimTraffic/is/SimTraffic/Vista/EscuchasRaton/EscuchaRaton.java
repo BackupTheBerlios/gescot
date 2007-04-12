@@ -100,9 +100,9 @@ abstract public class EscuchaRaton implements MouseListener,
 	 * posicion (x,y) similar a la pasada como parámetro.
 	 * 
 	 * @param posX
-	 *            Posicion a lo largo del eje x
+	 *            Posicion a lo largo del eje x (coordenadas del panel)
 	 * @param posY
-	 *            Posicion a lo largo del eje y
+	 *            Posicion a lo largo del eje y (coordenadas del panel)
 	 * @return Nodo encontrado en la posicion dada o null
 	 */
 	public Nodo buscarNodo(int posX, int posY) {
@@ -135,9 +135,9 @@ abstract public class EscuchaRaton implements MouseListener,
 	 * posicion (x,y) similar a la pasada como parámetro.
 	 * 
 	 * @param x
-	 *            Posicion a lo largo del eje x
+	 *            Posicion a lo largo del eje x (coordenadas del panel)
 	 * @param y
-	 *            Posicion a lo largo del eje y
+	 *            Posicion a lo largo del eje y (coordenadas del panel)
 	 * @return Tramo encontrado en la posicion dada o null
 	 */
 	public Tramo buscarTramo(int posX, int posY) {
