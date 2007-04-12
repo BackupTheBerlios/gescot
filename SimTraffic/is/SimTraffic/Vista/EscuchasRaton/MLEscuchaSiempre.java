@@ -59,7 +59,11 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		// Esta puesto de prueba que cuando le des con el boton
 		// derecho en el mapa, te salga la ventana de propiedades
 		// del nodo
-		if (arg0.getButton() == MouseEvent.BUTTON1) 
+		
+		
+		// Esta parte no se para que vale, creo que sobra, ademas de milis, estado y mismo punto
+		// ¿que pasa cuando se hace un click?
+		if (arg0.getClickCount() == 1) 
 		{	
 			if (estado == 0)
 			{
@@ -68,7 +72,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 				x1 = panel.lon_RepAMapa(arg0.getX());
 				y1 = panel.lat_RepAMapa(arg0.getY());
 			}
-			else
+			/*else
 			{
 				if (estado == 1 && mismoPunto(arg0) && (System.currentTimeMillis() - millis) < 250)
 				{
@@ -94,9 +98,31 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 					}
 				}
 				estado = 0;
-			}
+			}*/
 		}
-		
+		// Que hacer si hay doble click
+		else if (arg0.getClickCount() == 2) {
+				// Si es doble click soble un nodo
+				Nodo nodoAux=this.buscarNodo(arg0.getX(), arg0.getY());
+				Tramo tramoAux = this.buscarTramo(arg0.getX(), arg0.getY());
+				if (nodoAux != null) {
+					//JFrame ventanaNodo = new JFrame();
+					PanelNodo panelNod = new PanelNodo(nodoAux, panel);
+					panelNod.setTitle("Propiedades del Nodo");
+					panelNod.setBounds(80, 120, 500, 600);
+					panelNod.setVisible(true);
+				}
+				// Si es doble click sobre un tramo
+				
+				else if (tramoAux != null) 
+				{
+					//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
+					PanelTramo panelTram = new PanelTramo(tramoAux, panel,controlador);
+					panelTram.setTitle("Propiedades del Tramo");
+					panelTram.setBounds(80, 120, 400, 600);
+					panelTram.setVisible(true);
+				}
+			}
 	}
 	
 	private boolean mismoPunto(MouseEvent arg0) 
