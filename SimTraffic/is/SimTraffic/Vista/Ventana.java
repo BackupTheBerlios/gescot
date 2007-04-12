@@ -96,6 +96,10 @@ public class Ventana extends JFrame {
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
 
 	MLSeleccionarTramos escuchaSeleccionTramos;
+	
+	//En prueba
+	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;
+	//
 
 	EscuchaTeclado escuchaTeclado;
 
@@ -151,7 +155,12 @@ public class Ventana extends JFrame {
 				panel_mapa);
 		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo,
 				controlador, panel_mapa);
-
+		
+		//En pruebas
+		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo, controlador, panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
+		//
+		
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccion);
 
 		crearBotonesSuperiores();
