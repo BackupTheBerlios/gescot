@@ -22,4 +22,9 @@ public interface IHerramienta
    @roseuid 45B8B01B024D
     */
    public int deshacer(IModelo modelo);
+   
+   /**
+    * @return accion realizada por la herramienta
+    */
+   public String toString();
 }

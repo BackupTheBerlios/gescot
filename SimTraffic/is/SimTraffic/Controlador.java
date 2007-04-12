@@ -26,6 +26,12 @@ public class Controlador implements IControlador {
 	 */
 	public List<IHerramienta> herramientas;
 
+	
+	/**
+	 * Lista que contiene las distintas acciones realizadas por el usuario.
+	 */
+	public List<String> historial;
+	
 	/**
 	 * Constructor de la clase.
 	 * <p>
@@ -46,6 +52,7 @@ public class Controlador implements IControlador {
 	public int herramienta(IHerramienta herramienta) {
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
+		historial.add(herramienta.toString());
 		if (resultado != 0) { // fallo
 			return resultado;
 		}
