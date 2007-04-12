@@ -353,6 +353,9 @@ public class RepresentacionSimple extends Representacion {
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
 						/ zoom * (vehiculo.getCarril()  - 1)
 						* (-Math.cos(tramo.getAngulo())));
+				AffineTransform at = new AffineTransform();
+				at.rotate(Math.PI + vehiculo.getTramo().getAngulo(), rect.getWidth()/2, rect.getHeight()/2);
+				rect.createGraphics().transform(at);
 			}
 			posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
@@ -384,6 +387,9 @@ public class RepresentacionSimple extends Representacion {
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
 						/ zoom * (vehiculo.getCarril() - 1 )
 						* (-Math.cos(tramo.getAngulo())));
+				AffineTransform at = new AffineTransform();
+				at.rotate(Math.PI + vehiculo.getTramo().getAngulo(), rect.getWidth()/2, rect.getHeight()/2);
+				rect.createGraphics().transform(at);
 			}
 			posX = posX2 + (int) ((posX1 - posX2) * vehiculo.getPosicion());
 			posY = posY2 + (int) ((posY1 - posY2) * vehiculo.getPosicion());

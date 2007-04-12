@@ -6,6 +6,7 @@ import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.Acciones.AccionBarra;
 import is.SimTraffic.Vista.Acciones.AccionBuscar;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirSemaforo;
@@ -41,12 +42,14 @@ public class BarraHerramientas extends Barra {
 						ventana.getEscuchaTeclado(), -1));
 		boton.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraSeleccionar()));
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí y seleccione uno de los tres botones superiores de selección para elegir el tipo de la misma.", ventana));
 		boton.addKeyListener(ventana.getEscuchaTeclado());
 
-		añadirBoton("mover1.png", "mover2.png", "Mover la selección actual",
+		boton = añadirBoton("mover1.png", "mover2.png", "Mover la selección actual",
 				new AccionSobreMapa(new MLMover(modelo, controlador, ventana
 						.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1));
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse en los elementos seleccionados y arrastre el ratón hasta que los elementos estén en la posición deseada.", ventana));
 
 		boton = añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
 				"Añadir Nodo", new AccionSobreMapa(new MLAñadirNodo(modelo,

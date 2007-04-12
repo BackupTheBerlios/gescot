@@ -25,6 +25,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
 
@@ -114,7 +115,7 @@ public class Ventana extends JFrame {
 	 */
 	private BarraCrearTramo barraCrearTramo;
 
-	private JLabel ayudaDinamica;
+	private JTextField ayudaDinamica;
 
 	/**
 	 * Constructor de la ventana.
@@ -492,7 +493,8 @@ public class Ventana extends JFrame {
 		JLabel puntitos = new JLabel(" : ");
 		posicionX = new JLabel();
 		posicionY = new JLabel();
-		ayudaDinamica = new JLabel("  Ayuda");
+		ayudaDinamica = new JTextField("  Ayuda", 70);
+		ayudaDinamica.setEditable(false);
 		
 		barraAyudaDinamica.add(ayudaDinamica);
 		barraPosicion.add(etiquetaPosicion);
@@ -580,5 +582,12 @@ public class Ventana extends JFrame {
 
 	public EscuchaTeclado getEscuchaTeclado() {
 		return escuchaTeclado;
+	}
+
+	public void cambiarAyuda(String string) 
+	{
+		ayudaDinamica.setText(string);
+		//ayudaDinamica.setVisible(true);
+		ayudaDinamica.repaint();
 	}
 }
