@@ -103,4 +103,7 @@ public class HAsignarTramosAVia implements IHerramienta {
 	public void setviaAInsertar(Via viaAInsertar){
 		this.viaAInsertar=viaAInsertar;
 	}
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

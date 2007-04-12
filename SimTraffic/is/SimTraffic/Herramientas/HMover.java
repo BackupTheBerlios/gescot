@@ -83,5 +83,7 @@ public class HMover implements IHerramienta{
 
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

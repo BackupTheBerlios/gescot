@@ -123,5 +123,7 @@ public class HGuardarMapa implements IHerramienta {
 		}
 
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

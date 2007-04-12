@@ -102,5 +102,7 @@ public class HPegar implements IHerramienta {
 		}
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

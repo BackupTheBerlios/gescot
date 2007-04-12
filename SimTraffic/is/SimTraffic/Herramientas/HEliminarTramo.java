@@ -47,5 +47,7 @@ public class HEliminarTramo implements IHerramienta {
 		modelo.getMapa().insertar(tramo);
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

@@ -35,5 +35,7 @@ public class HModificarParamSimulacion implements IHerramienta {
 		this.parametros=this.parametrosGuardados;
 		return modelo.getSimulacion().modificaParametros(this.parametros);		
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

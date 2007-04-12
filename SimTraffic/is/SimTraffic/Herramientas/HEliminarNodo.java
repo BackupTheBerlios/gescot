@@ -61,4 +61,8 @@ public class HEliminarNodo implements IHerramienta {
 		modelo.getMapa().insertar(nodo);
 		return 0;
 	}
+
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

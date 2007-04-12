@@ -28,4 +28,7 @@ public class HComenzar implements IHerramienta {
 		modelo.getSimulacion().detener();
 		return 0;
 	}
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

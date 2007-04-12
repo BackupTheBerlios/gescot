@@ -419,6 +419,19 @@ public class Ventana extends JFrame {
 		abrirAyuda.setText("Abrir ayuda");
 		ayudaMenu.add(abrirAyuda);
 
+		
+		JMenuItem log = new JMenuItem();
+		log.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Log();
+			}
+		});
+		log.setText("Mostrar historial de eventos");
+		ayudaMenu.add(log);
+		
+		
+		
+		
 		ayudaMenu.addSeparator();
 
 		JMenuItem acercaDE = new JMenuItem();

@@ -47,5 +47,7 @@ public class HModificarTramo implements IHerramienta {
 		tramo.setVelMax(velocidadMax);
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

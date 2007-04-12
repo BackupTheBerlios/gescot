@@ -27,5 +27,7 @@ public class HCrearNuevoMapa implements IHerramienta {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

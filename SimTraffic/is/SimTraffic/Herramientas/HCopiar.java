@@ -113,5 +113,7 @@ public class HCopiar implements IHerramienta {
 
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

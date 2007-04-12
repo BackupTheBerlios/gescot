@@ -98,5 +98,7 @@ public class HBuscarElemento implements IHerramienta {
 		// TODO Auto-generated method stub
 
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

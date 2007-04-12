@@ -66,4 +66,7 @@ public class HCargarMapa implements IHerramienta {
 	public int deshacer(IModelo modelo) {
 		return 0;
 	}
-}
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
+	}

@@ -149,4 +149,7 @@ public class HCortar implements IHerramienta {
 		}
 		return 0;
 	}
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }
