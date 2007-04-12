@@ -34,5 +34,7 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 		nodo.setEs(esGuardado);
 		return 0;
 	}
-
+	public String toString(){
+		return "Evento-Solo es temporal";
+	}
 }

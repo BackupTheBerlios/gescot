@@ -52,7 +52,7 @@ public class Controlador implements IControlador {
 	public int herramienta(IHerramienta herramienta) {
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
-		historial.add(herramienta.toString());
+	//	historial.add(herramienta.toString());
 		if (resultado != 0) { // fallo
 			return resultado;
 		}
