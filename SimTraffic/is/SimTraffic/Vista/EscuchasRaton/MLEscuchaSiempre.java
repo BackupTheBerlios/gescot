@@ -120,7 +120,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 					//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
 					PanelTramo panelTram = new PanelTramo(tramoAux, panel,controlador);
 					panelTram.setTitle("Propiedades del Tramo");
-					panelTram.setBounds(80, 120, 400, 600);
+					panelTram.setBounds(80, 120, 480, 600);
 					panelTram.setVisible(true);
 				}
 			}
@@ -160,7 +160,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		if(arg0.isPopupTrigger() == false) panel.getMenuEmergente().setVisible(false);
+		//if(arg0.isPopupTrigger() == false) 
+		//	panel.getMenuEmergente().setVisible(false);
 	}
 	
 	/*

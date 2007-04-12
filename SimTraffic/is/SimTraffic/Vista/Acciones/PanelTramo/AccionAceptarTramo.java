@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 public class AccionAceptarTramo implements ActionListener
 {
@@ -24,10 +25,11 @@ public class AccionAceptarTramo implements ActionListener
 	private PanelTramo panel;
 	private int auxCarriles1,auxCarriles2;
 	private IControlador controlador;
+	private JTextField campoNombre;
+	private String nombre;
 	
 	
-	
-	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,IControlador controlador,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad) 
+	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,IControlador controlador,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad, JTextField campoNombre) 
 	{
 		this.panel = panel;
 		this.mapa = mapa;
@@ -40,6 +42,7 @@ public class AccionAceptarTramo implements ActionListener
 		this.vel = campoVelocidad;
 		this.auxCarriles1=0;
 		this.auxCarriles2=0;
+		this.campoNombre = campoNombre;
 	}
 
 	public void actionPerformed(ActionEvent arg0) 
@@ -60,7 +63,9 @@ public class AccionAceptarTramo implements ActionListener
 			auxCarriles1=((Integer)(numCarr1.getValue())).intValue();
 		    auxCarriles2=((Integer)(numCarr2.getValue())).intValue();
 		}
-		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue());
+		
+		nombre = campoNombre.getText();
+		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre);
 		controlador.herramienta(nueva);
 		mapa.repaint();
 		mapa.recrearMapa();

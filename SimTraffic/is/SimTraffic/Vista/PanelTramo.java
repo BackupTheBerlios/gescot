@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -36,7 +37,7 @@ public class PanelTramo extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	private JTextField campoNombre;
 	
 	private JTabbedPane panelDatos;
 	private JPanel panelBotones;
@@ -150,6 +151,16 @@ public class PanelTramo extends JFrame
 	    panelNumCarriles.add(panelEtiquetasNumero,BorderLayout.NORTH);
 	    panelNumCarriles.add(panelCamposNumero,BorderLayout.SOUTH);
 	    
+	    //Añadido para el nombre
+	    JPanel panelNombre = new JPanel();
+	    panelNombre.setLayout(new FlowLayout(FlowLayout.CENTER,30,10));
+	    JLabel etiquetaNombre = new JLabel("Nombre");
+	    campoNombre = new JTextField(14);
+	    if (tramo.getNombre()!=null)
+	    	campoNombre.setText(tramo.getNombre());
+	    panelNombre.add(etiquetaNombre);
+	    panelNombre.add(campoNombre);
+	    
 	    JPanel panelVelocidad = new JPanel();
 	    panelVelocidad.setLayout(new BorderLayout());
 	  
@@ -158,12 +169,24 @@ public class PanelTramo extends JFrame
 	    
 	    JPanel panelCamposVelocidad = new JPanel();
 	    panelCamposVelocidad.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    JLabel etiqVelocidad = new JLabel("Velocidad");
+	    JLabel etiqLongitud = new JLabel("Longitud (en metros)");
+
+	    int longitud = tramo.getLargo();
+	    String auxLongitud = String.valueOf(longitud);
+	    JLabel etiqInfoLongitud = new JLabel(auxLongitud);
+	    panelCamposVelocidad.add(etiqLongitud);
+	    panelCamposVelocidad.add(etiqInfoLongitud);
+	    
 	    campoVelocidad = new JSpinner(new SpinnerNumberModel(60,20,120,10));
+	    panelCamposVelocidad.add(etiqVelocidad);
 	    panelCamposVelocidad.add(campoVelocidad);
 	    
-	    panelVelocidad.setBorder(BorderFactory.createTitledBorder("Velocidad de los carriles"));
-	    panelVelocidad.add(panelCamposVelocidad,BorderLayout.SOUTH);
-	      
+	    
+	    panelVelocidad.setBorder(BorderFactory.createTitledBorder("Otras propiedades"));
+	    panelVelocidad.add(panelCamposVelocidad,BorderLayout.NORTH);
+	    //Añadido
+	    panelVelocidad.add(panelNombre,BorderLayout.SOUTH);    
 	    
 	    //Mostramos los valores actuales del tramo:
 	    int numCarr1 = tramo.getNumCarrilesDir1();
@@ -262,16 +285,16 @@ public class PanelTramo extends JFrame
             }
 	    });
 	    
-	    panelPropiedades.setLayout(new BorderLayout(10,20));
+	    panelPropiedades.setLayout(new BorderLayout(10,40));
 	    panelPropiedades.add(panelSentido,BorderLayout.NORTH);
 	    panelPropiedades.add(panelNumCarriles,BorderLayout.CENTER);
-	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);
+	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);  
 	    
 	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
 	    panelDatos.setSelectedIndex(0);
 		
 	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Tramo");
-	    panelDatos.addTab("Tramos", null, panelNodos,"Nodos asociados al Tramo");
+	    panelDatos.addTab("Nodos", null, panelNodos,"Nodos asociados al Tramo");
 	}
 
 	/**
@@ -288,7 +311,7 @@ public class PanelTramo extends JFrame
 		
 		final PanelTramo panelPpal = this;
 		AccionAceptarTramo accion = new AccionAceptarTramo(panel,this,controlador, tramo, radioUnidireccional, 
-				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad);
+				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad, campoNombre);
 		botonAceptar.addActionListener(accion);
 		botonCancelar.addActionListener(new ActionListener()
 		{
