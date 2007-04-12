@@ -29,15 +29,29 @@ public class HCopiar implements IHerramienta {
 	 * de cortar
 	 */
 	private Seleccion portapapelesAntiguo;
-	
+
+	/**
+	 * Guarda la información del antiguo nodo de referencia
+	 * para pegar
+	 */
 	private Nodo antiguoNodoReferencia;
 
+	/**
+	 * Constructora de la herramienta.
+	 * Guarda los datos de los nodos y tramos que se van a copiar
+	 * @param nodos nodos seleccionados
+	 * @param tramos tramos seleccionados
+	 */
 	public HCopiar (List<Nodo> nodos, List<Tramo> tramos) {
 		this.nodos = nodos;
 		this.tramos = tramos;
 	}
 
-
+	/**
+	 * Método que se ejecuta al deshacer la función de la herramienta copiar.
+	 * Se restaura el valor del antiguo portapapeles y
+	 * se restaura el valor del antiguo nodo de referencia para pegar.
+	 */
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
 		modelo.getMapa().setPortapapeles(portapapelesAntiguo);
@@ -45,6 +59,12 @@ public class HCopiar implements IHerramienta {
 		return 0;
 	}
 
+	/**
+	 * Método que se ejecuta cuando se ejecuta la herramienta.
+	 * Copia en el portapapeles todos los tramos y nodos seleccionados.
+	 * Guarda en el nodo de referencia la posición del nodo más a la izquierda
+	 * para tener una posición de referencia en el momento de pegar. 
+	 */
 	public int hacer(IModelo modelo) {
 		// TODO Auto-generated method stub
 		if (modelo.getMapa().getSeleccion()!=null) {
