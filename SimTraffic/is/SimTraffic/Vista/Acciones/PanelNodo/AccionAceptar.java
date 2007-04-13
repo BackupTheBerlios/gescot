@@ -37,7 +37,7 @@ public class AccionAceptar implements ActionListener {
 		this.nodo = nodo;
 		this.comboTipoNodo = comboTipoNodo;
 		this.comboValorNodo = comboValorNodo;
-		this.es = panelNodo.generarEs();
+		this.es = es;
 		this.campoNombreNodo = campoNombreNodo;
 		this.panelNodo = panelNodo;
 		this.comboTipoSeñales=comboTipoSeñales;
@@ -65,9 +65,7 @@ public class AccionAceptar implements ActionListener {
 		}
 		nodo.setTipo(tipo);
 		
-		if (es != null) {
-			nodo.setEs(es);
-		}
+		nodo.setEs(panelNodo.generarEs());
 		
 		String nuevoNombre=campoNombreNodo.getText();
 		//System.out.println(nuevoNombre);

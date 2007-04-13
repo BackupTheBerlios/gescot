@@ -379,16 +379,21 @@ public class PanelNodo extends JFrame {
 		for (int i = 0; i < 12; i++) {
 			panel.add(new JLabel("" + i * 2 + "-" + (i * 2 + 1)));
 		}
+		es = nodo.getEs();
 
 		panel.add(new JLabel("Entran"));
 		for (int i = 0; i < 12; i++) {
 			entrada[i] = new JTextField(3);
+			if (es != null)
+				entrada[i].setText("" + es.getPorcentajesEntrada()[i]);
 			panel.add(entrada[i]);
 		}
 
 		panel.add(new JLabel("Salen"));
 		for (int i = 0; i < 12; i++) {
 			salida[i] = new JTextField(3);
+			if (es != null)
+				salida[i].setText(""+ es.getPorcentajesSalida()[i]);
 			panel.add(salida[i]);
 		}
 
@@ -402,7 +407,10 @@ public class PanelNodo extends JFrame {
 		panel2.add(this.salen);
 		
 		
-		
+		if (es != null) {
+			entran.setText("" + es.getEntran());
+			salen.setText("" + es.getSalen());
+		}
 		panelEntrada.add(panel2);
 		panelEntrada.add(panel);
 		panelEntrada.setBorder(BorderFactory
