@@ -208,8 +208,8 @@ public class AEstrella implements IAlgoritmoInformado {
 			nodoActual = abiertos.poll();
 			generarNodosHijos(nodoActual);
 			cerrados.add(nodoActual);
-			System.out.println("Nuevo nodo expandido pasa a cerrados:");
-			nodoActual.mostrarInfo();
+			//System.out.println("Nuevo nodo expandido pasa a cerrados:");
+			//nodoActual.mostrarInfo();
 			nodoActual = abiertos.peek();
 			//Así permitimos detener la búsqueda al encontrar un fallo.
 			falloProducido = pararEjecucion();

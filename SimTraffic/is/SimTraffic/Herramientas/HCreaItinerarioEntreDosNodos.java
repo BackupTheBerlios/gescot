@@ -10,6 +10,7 @@ import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Utils.Tiempo;
 
 public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 
@@ -22,7 +23,7 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 	}
 
 	public int hacer(IModelo modelo) {
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos();
+		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(nodoInicial,nodoObjetivo);
 		AEstrella algoritmoAEstrella=new AEstrella(problemaDistancias.getEstadoInicial(), 
 				problemaDistancias.getEstadoObjetivo(),problemaDistancias.getOperadores(),problemaDistancias.getHeuristica());
 		boolean resul = algoritmoAEstrella.ejecutar();
@@ -51,6 +52,10 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 		//Deshacer sería eliminar la selección en el momento de ejecutar la herramienta, por lo que no 
 		//tiene mucho sentido (como mucho, guardar la selección anterior). Aun por decidir.
 		return 0;
+	}
+	
+	public String toString(){
+		return Tiempo.Hora()+" - "+"Creado itinerario por carretera entre 2 nodos";
 	}
 
 	/**

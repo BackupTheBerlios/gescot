@@ -2,6 +2,9 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HAñadirLineaAutobus;
+import is.SimTraffic.Herramientas.HCreaItinerarioEntreDosNodos;
+import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -38,15 +41,26 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 					nodoOrigen =  seleccionado;
 					modelo.getMapa().limpiaSeleccion();
 					modelo.getMapa().getSeleccion().añadirNodo(nodoOrigen);
-					//Ver si necesario
+					
+					//Repintar
 					panel.recrearMapa();
 					panel.repaint();
 				}
 				else /*if (estado==1)*/ { //Solo hay 2 valores para el estado, luego ya sabemos que estado vale 1.
+					if (seleccionado != nodoOrigen) {
+						//Llamar a la herramienta adecuada (notificándoselo al controlador)
+						Nodo nodoDestino = seleccionado;
+						IHerramienta nueva = new HCreaItinerarioEntreDosNodos(nodoOrigen,nodoDestino);
+						controlador.herramienta(nueva);
 					
-					//Llamar a la herramienta adecuada (notificándoselo al controlador)
-					
-					//Reiniciar valores de nodoOrigen
+						//Reiniciar valores de nodoOrigen
+						estado = 0;
+						nodoOrigen = null;
+						
+						//Repintar
+						panel.recrearMapa();
+						panel.repaint();
+					}
 				}
 			}
 		}

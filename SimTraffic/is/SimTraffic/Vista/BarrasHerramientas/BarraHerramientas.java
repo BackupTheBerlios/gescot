@@ -14,6 +14,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaItinerario;
 import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 
@@ -113,6 +114,15 @@ public class BarraHerramientas extends Barra {
 		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
 				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
+		grupoherramientas.add(boton);
+		
+		//Mostrar itinerario entre 2 nodos
+		boton = (JToggleButton) añadirBoton("como_ir_a_icon1.GIF", "como_ir_a_icon2.GIF", "Mostrar itinerario entre 2 nodos",
+				new AccionSobreMapa(new MLEscuchaItinerario(
+						modelo, controlador, ventana.getPanel_mapa()), ventana,
+						ventana.getEscuchaTeclado(), 0), true);
+			//Faltaría por ajustar la escucha de teclado y el numero (ahora 0) para el cursor.
+		boton.addMouseMotionListener(new EscuchaAyuda("Mostrar itinerario entre 2 nodos", ventana));
 		grupoherramientas.add(boton);
 	}
 
