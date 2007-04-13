@@ -108,6 +108,16 @@ public class Tramo implements ElementoMapa {
 	public Tramo(int ID, Nodo nodoInicial, Nodo nodoFinal) {
 		this(nodoInicial, nodoFinal);
 		this.ID = ID;
+		//Seguramente sobre ya esta parte, pero asegurándome de que funciona bien el largo (a 14/4)
+		numCarrilesDir1 = 1;
+		numCarrilesDir2 = 1;
+		velocidadMax = 40;
+		double largo = nodoInicial.getPos().getLon()
+				- nodoFinal.getPos().getLon();
+		double alto = nodoInicial.getPos().getLat()
+				- nodoFinal.getPos().getLat();
+		angulo = Math.atan(-alto / largo);
+		calculaLargo();
 	}
 
 	/**

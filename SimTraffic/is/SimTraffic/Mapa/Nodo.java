@@ -105,6 +105,7 @@ public class Nodo implements ElementoMapa {
 		this.nombre = nombre;
 		this.pos = pos;
 		this.señal = señal;
+		tramos = new ArrayList<Tramo>();
 		id++;
 	}
 

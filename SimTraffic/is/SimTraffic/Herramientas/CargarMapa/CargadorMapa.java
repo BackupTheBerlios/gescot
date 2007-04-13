@@ -179,12 +179,17 @@ public class CargadorMapa implements DocHandler {
 			System.out.println("reconoce tramo");
 			Nodo nodoI=buscarNodoConId(indexFrom);
 			Nodo nodoF=buscarNodoConId(indexTo);
-			Tramo nuevoTramo = new Tramo(id,nodoI,nodoF);
-			nodoI.añadirTramo(nuevoTramo);
-			nodoF.añadirTramo(nuevoTramo);
-			tramos.add(nuevoTramo);
-			ultimoElemReconocido=elem;
-			idUltimoElemReconocido=id;
+			if (nodoI != nodoF) { 
+				Tramo nuevoTramo = new Tramo(id,nodoI,nodoF);
+				nodoI.añadirTramo(nuevoTramo);
+				nodoF.añadirTramo(nuevoTramo);
+				tramos.add(nuevoTramo);
+				ultimoElemReconocido=elem;
+				idUltimoElemReconocido=id;
+			}
+			else { //Si el inicial y el final son el mismo nodo se descarta el tramo.
+				System.out.println("Se descarta el tramo \n");
+			}
 			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
 					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
 					false));*/
