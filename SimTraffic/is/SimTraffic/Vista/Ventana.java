@@ -296,7 +296,7 @@ public class Ventana extends JFrame {
 		JMenuItem lineasBusMenuItem = new JMenuItem();
 		lineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,modelo,this));
 		lineasBusMenuItem.setText("Ver Lineas Autobuses");
-		edicionMenu.add(lineasBusMenuItem);
+		//edicionMenu.add(lineasBusMenuItem);
 	}
 
 	/**
