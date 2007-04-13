@@ -4,8 +4,10 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
 /**
@@ -38,7 +40,7 @@ public class Barra extends JToolBar {
 	/**
 	 * Método para crear un boton de herramienta.
 	 * <p>
-	 * Este método perminte repetir no repetir código cada vez que se crea un
+	 * Este método permite no repetir código cada vez que se crea un
 	 * nuevo boton de herramienta.
 	 * 
 	 * @param icono
@@ -49,15 +51,21 @@ public class Barra extends JToolBar {
 	 *            Texto del tooltip
 	 * @param accion
 	 *            Accion asociada al boton
+	 * @param toggle
+	 * 			  Indica si el boton será de tipo "toggle" o no.
 	 * @return El JButton creado
 	 */
-	protected JButton añadirBoton(String icono, String iconoGrande,
-			String tooltip, ActionListener accion) {
+	protected AbstractButton añadirBoton(String icono, String iconoGrande,
+			String tooltip, ActionListener accion, boolean toggle) {
 
 		ClassLoader cl = this.getClass().getClassLoader();
 		ImageIcon imagen = new ImageIcon(cl
 				.getResource("is/SimTraffic/Vista/Imagenes/" + icono), tooltip);
-		JButton boton = new JButton(imagen);
+		AbstractButton boton = null;
+		if (toggle)
+			boton = new JToggleButton(imagen);
+		else
+			boton = new JButton(imagen);
 		// JButton boton = new JButton(new ImageIcon(
 		// "is\\SimTraffic\\Vista\\Imagenes\\" + icono));
 

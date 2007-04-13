@@ -17,12 +17,8 @@ import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
 public class BarraHerramientas extends Barra {
@@ -34,71 +30,90 @@ public class BarraHerramientas extends Barra {
 	public BarraHerramientas(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 		super(JToolBar.VERTICAL);
-		JButton boton;
-
-		boton = añadirBoton("seleccionar-1.png", "seleccionar-2.png",
+		JToggleButton boton;
+		ButtonGroup grupoherramientas = new ButtonGroup();
+		boton = (JToggleButton) añadirBoton("seleccionar-1.png", "seleccionar-2.png",
 				"Seleccionar", new AccionSobreMapa(new MLSeleccionarNodos(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), -1));
+						ventana.getEscuchaTeclado(), -1), true);
 		boton.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraSeleccionar()));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí y seleccione uno de los tres botones superiores de selección para elegir el tipo de la misma.", ventana));
 		boton.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(boton);
 
-		boton = añadirBoton("mover1.png", "mover2.png", "Mover la selección actual",
+		boton = (JToggleButton) añadirBoton("mover1.png", "mover2.png", "Mover la selección actual",
 				new AccionSobreMapa(new MLMover(modelo, controlador, ventana
 						.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), -1));
+						ventana.getEscuchaTeclado(), -1), true);
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse en los elementos seleccionados y arrastre el ratón hasta que los elementos estén en la posición deseada.", ventana));
-
-		boton = añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
+		grupoherramientas.add(boton);
+		
+		boton = (JToggleButton) añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
 				"Añadir Nodo", new AccionSobreMapa(new MLAñadirNodo(modelo,
 						controlador, ventana.getPanel_mapa(), ventana),
-						ventana, ventana.getEscuchaTeclado(), 0));
+						ventana, ventana.getEscuchaTeclado(), 0), true);
 		boton.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraCrearNodo()));
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", ventana));
+		grupoherramientas.add(boton);
+		
 		// Aquí también habría que añadir el oyente de teclado al
 		// boton (y en el resto de botones),
 		// pero de momento no lo pongo por si encontramos una alternativa mejor.
 
-		boton = añadirBoton("añadir_tramo.png", "añadir_tramo2.png",
+		boton = (JToggleButton) añadirBoton("añadir_tramo.png", "añadir_tramo2.png",
 				"Añadir Tramo", new AccionSobreMapa(new MLAñadirTramo(modelo,
 						controlador, ventana.getPanel_mapa(), ventana),
-						ventana, ventana.getEscuchaTeclado(), 1));
+						ventana, ventana.getEscuchaTeclado(), 1), true);
 		boton.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraCrearTramo()));
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", ventana));
+		grupoherramientas.add(boton);
 
-		añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
+		boton = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
 				new AccionSobreMapa(new MLEliminarNodo(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 2));
+						.getEscuchaTeclado(), 2), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", ventana));
+		grupoherramientas.add(boton);
 
-		añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
+		boton = (JToggleButton) añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
 				"Eliminar Tramo", new AccionSobreMapa(new MLEliminarTramo(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), 3));
+						ventana.getEscuchaTeclado(), 3), true);		
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", ventana));
+		grupoherramientas.add(boton);
 
 		// Aqui se añadirán los nuevos botones.
-		añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
+		boton = (JToggleButton) añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
 				new AccionSobreMapa(new MLAñadirLineaAutobus(modelo,
 						controlador, ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 4));
+						.getEscuchaTeclado(), 4), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
+		grupoherramientas.add(boton);
 
 		// Botón añadir semaforos
-		añadirBoton("semaforo1.png", "semaforo2.png", "Añadir semaforo",
+		boton = (JToggleButton) añadirBoton("semaforo1.png", "semaforo2.png", "Añadir semaforo",
 				new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 5));
+						.getEscuchaTeclado(), 5), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo semáforo.", ventana));
+		grupoherramientas.add(boton);
 
 		// Añadir Vias
-		añadirBoton("añadir_via2.png", "añadir_via.png", "Añadir una via",
+		boton = (JToggleButton) añadirBoton("añadir_via2.png", "añadir_via.png", "Añadir una via",
 				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 6));
+						.getEscuchaTeclado(), 6), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva vía.", ventana));
+		grupoherramientas.add(boton);
 		
 		//Añadir Buscar
-		añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
-				new AccionBuscar(controlador,ventana.getPanel_mapa()));
+		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
+				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
+		grupoherramientas.add(boton);
 	}
 
 }
