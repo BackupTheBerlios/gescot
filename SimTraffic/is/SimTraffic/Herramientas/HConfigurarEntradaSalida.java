@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Utils.Tiempo;
 
 public class HConfigurarEntradaSalida implements IHerramienta {
 	//Suponemos que recibimos como parametros el nodo
@@ -35,6 +36,6 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Entrada/Salida Configurada";
 	}
 }

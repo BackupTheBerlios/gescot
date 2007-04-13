@@ -9,6 +9,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelMapa;
 
 public class HPegar implements IHerramienta {
@@ -103,6 +104,6 @@ public class HPegar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Acción pegar";
 	}
 }

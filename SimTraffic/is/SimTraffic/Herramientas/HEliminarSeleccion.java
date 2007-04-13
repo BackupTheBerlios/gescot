@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import java.util.List;
 import is.SimTraffic.Mapa.*;
+import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.IModelo;
 
 /**
@@ -57,5 +58,6 @@ public class HEliminarSeleccion implements IHerramienta {
 	}
 
 	public String toString(){
-		return "Evento-Solo es temporal";
-	}}
+		return Tiempo.Hora()+" - "+"Selección eliminada";
+		}
+	}

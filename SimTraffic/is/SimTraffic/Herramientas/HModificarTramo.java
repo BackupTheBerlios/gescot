@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * 
@@ -54,6 +55,6 @@ public class HModificarTramo implements IHerramienta {
 	}
 	
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+ "Tramo modificado";
 	}
 }

@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.*;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * Herramienta que permite realizar/deshacer la operacion de eliminar un 
@@ -48,6 +49,6 @@ public class HEliminarTramo implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Tramo Eliminado";
 	}
 }

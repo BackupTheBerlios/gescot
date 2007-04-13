@@ -5,6 +5,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * @author Grupo ISTrafico
@@ -36,6 +37,6 @@ public class HModificarParamSimulacion implements IHerramienta {
 		return modelo.getSimulacion().modificaParametros(this.parametros);		
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+ "Parámetros de Simulación modificados";
 	}
 }

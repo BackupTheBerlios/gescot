@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.*;
+import is.SimTraffic.Utils.Tiempo;
 
 public class HDetener implements IHerramienta {
 
@@ -27,6 +28,6 @@ public class HDetener implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
-	}
+		return Tiempo.Hora()+" - "+"Simulación detenida";
+		}
 }

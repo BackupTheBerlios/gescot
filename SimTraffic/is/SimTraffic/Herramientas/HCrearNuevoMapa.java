@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Mapa;
+import is.SimTraffic.Utils.Tiempo;
 
 public class HCrearNuevoMapa implements IHerramienta {
 
@@ -28,6 +29,6 @@ public class HCrearNuevoMapa implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Nuevo Mapa creado";
 	}
 }

@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Utils.Tiempo;
 
 
 import java.awt.geom.Point2D;
@@ -84,6 +85,6 @@ public class HMover implements IHerramienta{
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+ "Acción Mover";
 	}
 }

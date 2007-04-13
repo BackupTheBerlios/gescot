@@ -7,6 +7,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * Herramienta para la operación copiar
@@ -114,6 +115,6 @@ public class HCopiar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Selección copiada";
 	}
 }

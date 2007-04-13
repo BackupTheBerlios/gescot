@@ -6,6 +6,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Utils.Tiempo;
 //import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class HCrearVia implements IHerramienta {
@@ -68,6 +69,6 @@ public class HCrearVia implements IHerramienta {
 	}
 
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Vía Creada";
 	}
 	}

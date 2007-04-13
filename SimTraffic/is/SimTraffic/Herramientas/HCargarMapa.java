@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 
 import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
+import is.SimTraffic.Utils.Tiempo;
 
 public class HCargarMapa implements IHerramienta {
 	IControlador controlador;
@@ -67,6 +68,6 @@ public class HCargarMapa implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Mapa Cargado";
 	}
 	}

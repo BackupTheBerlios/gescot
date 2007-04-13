@@ -9,6 +9,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * @author Grupo ISTrafico
@@ -104,6 +105,6 @@ public class HAsignarTramosAVia implements IHerramienta {
 		this.viaAInsertar=viaAInsertar;
 	}
 	public String toString(){
-		return "Evento-Solo es temporal";
+		return Tiempo.Hora()+" - "+"Tramos asignados a vía";
 	}
 }

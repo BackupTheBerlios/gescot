@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.*;
 import is.SimTraffic.Mapa.*;
+import is.SimTraffic.Utils.Tiempo;
 
 /**
  * Herramienta que permite realizar/deshacer la operacion de eliminar un nodo
@@ -63,6 +64,6 @@ public class HEliminarNodo implements IHerramienta {
 	}
 
 	public String toString(){
-		return "Evento-Solo es temporal";
-	}
+		return Tiempo.Hora()+" - "+"Nodo eliminado";
+		}
 }
