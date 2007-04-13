@@ -37,7 +37,7 @@ public class AccionAceptar implements ActionListener {
 		this.nodo = nodo;
 		this.comboTipoNodo = comboTipoNodo;
 		this.comboValorNodo = comboValorNodo;
-		this.es = es;
+		this.es = panelNodo.generarEs();
 		this.campoNombreNodo = campoNombreNodo;
 		this.panelNodo = panelNodo;
 		this.comboTipoSeñales=comboTipoSeñales;

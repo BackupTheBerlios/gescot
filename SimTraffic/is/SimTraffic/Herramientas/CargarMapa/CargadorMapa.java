@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 
 public class CargadorMapa implements DocHandler {
@@ -59,6 +60,7 @@ public class CargadorMapa implements DocHandler {
 		int id = 0;		
 		double lat = 0;
 		double lon = 0;
+		EntradaSalida es = null;
 		int indexFrom = 0, indexTo = 0;
 		Integer integer;
 		Boolean bool;
@@ -115,10 +117,24 @@ public class CargadorMapa implements DocHandler {
 			System.out.println("reconocido nodo");
 			Posicion pos = new Posicion(lat,lon);
 			//Luego poner nombre y tipo en vez de null,null.
+			if (k.compareTo("entradasalida") == 0) {
+				int entran;
+				int salen;
+				int[] salida = new int[12];
+				int[] entrada = new int[12];
+				StringTokenizer st = new StringTokenizer(v, ",");
+				entran = Integer.parseInt(st.nextToken());
+				for (int i = 0; i < 12; i++)
+					entrada[i] = Integer.parseInt(st.nextToken());
+				salen = Integer.parseInt(st.nextToken());
+				for (int i = 0; i< 12; i++)
+					salida[i] = Integer.parseInt(st.nextToken());
+				es = new EntradaSalida(entran, salen, salida, entrada);
+			}
 			ultimoElemReconocido=elem;
 			idUltimoElemReconocido=id;
-			nodos.add(new Nodo(id,null,pos,null));
-			
+			nodos.add(new Nodo(es,id,null,pos,null));
+			es = null;
 		}
 		if (elem.compareTo("tag")==0){
 			if (ultimoElemReconocido.compareTo("node") == 0){

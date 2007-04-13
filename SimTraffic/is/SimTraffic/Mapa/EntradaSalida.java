@@ -45,6 +45,18 @@ public class EntradaSalida {
 
 	}
 	
+	public String transformaOSM() {
+		String valor = "<tag k='entradasalida' v='";
+		valor += entran + ",";
+		for (int i = 0; i < 12; i++)
+			valor += porcentajesEntrada[i] + ",";
+		valor += salen;
+		for (int i = 0; i < 12; i++)
+			valor += "," + porcentajesSalida[i];
+		valor += "' />\n";
+		return valor;
+	}
+	
 	private int[] normalizar(int [] porcentajes) {
 		int cont = 0;
 		int[] nuevos = new int[12];

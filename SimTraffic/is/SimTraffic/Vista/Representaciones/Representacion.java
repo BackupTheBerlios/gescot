@@ -407,7 +407,7 @@ abstract public class Representacion {
 	 * @return
 	 * String con los grados, minutos y segundos
 	 */
-	public String pasarAGrados(double lat) {
+	static public String pasarAGrados(double lat) {
 		String resultado = "";
 		if (lat < 0) resultado += "-";
 		lat = Math.abs(lat);

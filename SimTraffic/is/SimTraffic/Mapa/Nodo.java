@@ -90,7 +90,6 @@ public class Nodo implements ElementoMapa {
 	}
 
 	public Nodo(int id, String nombre, Posicion pos, ITipoElemento tipo) {
-		// TODO Auto-generated constructor stub
 		ID = id;
 		this.nombre = nombre;
 		this.pos = pos;
@@ -99,9 +98,18 @@ public class Nodo implements ElementoMapa {
 		id++;
 	}
 
+	public Nodo(EntradaSalida es, int id, String nombre, Posicion pos, Señal señal) {
+		super();
+		this.es = es;
+		ID = id;
+		this.nombre = nombre;
+		this.pos = pos;
+		this.señal = señal;
+		id++;
+	}
+
 	public Nodo(EntradaSalida es, int id, String nombre, Posicion pos, Señal señal, ITipoElemento tipo, List<Tramo> tramos) {
 		super();
-		// TODO Auto-generated constructor stub
 		this.es = es;
 		ID = id;
 		this.nombre = nombre;
@@ -212,14 +220,15 @@ public class Nodo implements ElementoMapa {
 	 */
 	public String transformaraOSM() {
 		String s=new String();
-		if (tipo==null && nombre==null)
-			s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
-		else {
+		//if (tipo==null && nombre==null)
+		//	s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
+		//else {
 			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >\n");
 			if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
 			if (nombre!=null) s=s.concat("<tag k='nombre' v='"+getNombre()+"' />\n");
+			if (es!=null) s=s.concat(es.transformaOSM());
 			s=s.concat("</node>");
-		}
+		//}
 		return s;
 	}
 
