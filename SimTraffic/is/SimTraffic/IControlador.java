@@ -1,5 +1,7 @@
 package is.SimTraffic;
 
+import java.util.List;
+
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Vista.IVista;
 
@@ -66,4 +68,7 @@ public interface IControlador {
 	 * @roseuid 45B8A85C03B5
 	 */
 	public String obtenerVinculoAyuda(int ayuda);
+	
+	
+	public List getHistorial();
 }

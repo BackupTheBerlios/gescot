@@ -436,8 +436,9 @@ public class Ventana extends JFrame {
 		
 		JMenuItem log = new JMenuItem();
 		log.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				new Log();
+				new Log(controlador.getHistorial());
 			}
 		});
 		log.setText("Mostrar historial de eventos");

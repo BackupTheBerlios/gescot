@@ -113,7 +113,11 @@ public class Controlador implements IControlador {
 		this.vista = vista;
 
 	}
-
+	
+	public List getHistorial(){
+		return this.historial;
+	}
+	
 	public void repintarCoches() {
 		vista.actualizar();
 	}
