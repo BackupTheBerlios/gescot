@@ -56,7 +56,7 @@ public class AEstrella implements IAlgoritmoInformado {
 		return s;
 	}
 
-	public Vector getSolucion() {
+	public Vector<NodoIA> getSolucion() {
 		return solucion;
 	}
 

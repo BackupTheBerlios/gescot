@@ -85,4 +85,12 @@ public class ExploraNodo implements IOperador {
 		this.nodoOrigen = nodoOrigen;
 	}
 
+	public Tramo getTramoElegido() {
+		return tramoElegido;
+	}
+
+	public void setTramoElegido(Tramo tramoElegido) {
+		this.tramoElegido = tramoElegido;
+	}
+
 }
