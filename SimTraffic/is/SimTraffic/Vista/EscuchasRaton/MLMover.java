@@ -140,4 +140,9 @@ public class MLMover extends EscuchaRaton{
 		
 	}
 
+	@Override
+	public String getAyuda() {
+		return "Arrastre la selección hasta el lugar deseado.";
+	}
+
 }

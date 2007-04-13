@@ -75,5 +75,10 @@ public class MLEliminarTramo extends EscuchaRaton
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getAyuda() {
+		return "Haga click sobre el tramo que desea eliminar.";
+	}
 	
 }

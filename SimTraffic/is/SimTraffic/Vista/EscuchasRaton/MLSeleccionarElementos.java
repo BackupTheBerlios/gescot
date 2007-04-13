@@ -120,4 +120,9 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 		
 	}
 
+	@Override
+	public String getAyuda() {
+		return "Pulse y arrastre para crear el rectángulo de selección de elementos.";
+	}
+
 }

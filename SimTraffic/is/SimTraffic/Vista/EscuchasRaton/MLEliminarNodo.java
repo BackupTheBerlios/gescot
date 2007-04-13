@@ -78,4 +78,9 @@ public class MLEliminarNodo extends EscuchaRaton
 		
 	}
 
+	@Override
+	public String getAyuda() {
+		return "Haga click sobre el nodo que desea eliminar.";
+	}
+
 }

@@ -104,8 +104,10 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 			panel.setRecrear(true);
 			panel.repaint();
 			//panel.setRecrear(false);
-		}
-		
+		}	
 	}
-
+	
+	public String getAyuda() {
+		return "Pulse y arrastre para crear el rectángulo de selección de tramos.";
+	}
 }

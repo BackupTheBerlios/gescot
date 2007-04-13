@@ -10,6 +10,7 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.PanelTramo;
+import is.SimTraffic.Vista.Ventana;
 
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
@@ -35,8 +36,9 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	private double x1;
 	private double y1;
 	private DecimalFormat cincoCifras;
+	private Ventana ventana;
 	
-	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY) 
+	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY, Ventana ventana) 
 	{
 		super(modelo, controlador, panel);
 		this.posicionX = posicionX;
@@ -44,6 +46,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		estado = 0;
 		millis = 0;
 		cincoCifras = new DecimalFormat("0.00000");
+		this.ventana = ventana;
 	}
 	
 	/*
@@ -190,5 +193,12 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		double posY = panel.lat_RepAMapa(e.getY());
 		posicionX.setText(panel.getRepresentacion().pasarAGrados(posX));//"" + cincoCifras.format(posX)+"º");
 		posicionY.setText(panel.getRepresentacion().pasarAGrados(posY));//"" + cincoCifras.format(posY)+"º");
+		ventana.cambiarAyuda(panel.getAyudaInf());
+	}
+
+	@Override
+	public String getAyuda() {
+		// TODO Auto-generated method stub
+		return "";
 	}
 }

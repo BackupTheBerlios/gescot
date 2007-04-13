@@ -78,6 +78,12 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	public void mouseMoved(MouseEvent arg0) {
 		
 	}
+
+	@Override
+	public String getAyuda() 
+	{
+		return "";
+	}
 	
 
 }

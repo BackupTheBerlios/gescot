@@ -145,7 +145,7 @@ public class Ventana extends JFrame {
 		crearBarraEstado();
 
 		EscuchaRaton escuchaSiempre = new MLEscuchaSiempre(modelo, controlador,
-				panel_mapa, posicionX, posicionY);
+				panel_mapa, posicionX, posicionY, this);
 		this.panel_mapa.addMouseListener(escuchaSiempre);
 		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
 
@@ -562,6 +562,7 @@ public class Ventana extends JFrame {
 		if (this.escucha != null)
 			this.escucha.desactivar();
 		panel_mapa.sugerir(null);
+		panel_mapa.setAyudaInf(escucha.getAyuda());
 		this.escucha = escucha;
 	}
 

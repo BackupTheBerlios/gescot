@@ -110,6 +110,12 @@ public class MLCopiar extends EscuchaRaton{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public String getAyuda() {
+		return "";
+	}
 	
 	
 

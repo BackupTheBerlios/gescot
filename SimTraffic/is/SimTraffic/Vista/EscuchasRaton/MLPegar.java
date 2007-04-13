@@ -73,6 +73,11 @@ public class MLPegar extends EscuchaRaton {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getAyuda() {
+		return "Haga click en el punto del mapa donde desea pegar la selección.";
+	}
 	
 
 }

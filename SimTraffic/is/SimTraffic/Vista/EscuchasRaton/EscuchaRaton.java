@@ -198,4 +198,6 @@ abstract public class EscuchaRaton implements MouseListener,
 		this.modificadorDeTeclado = modificadorDeTeclado;
 	}
 
+	abstract public String getAyuda();
+
 }

@@ -101,4 +101,8 @@ public class MLSeleccionarNodos extends EscuchaRaton {
 		}
 		
 	}
+	
+	public String getAyuda() {
+		return "Pulse y arrastre para crear el rectángulo de selección de nodos.";
+	}
 }

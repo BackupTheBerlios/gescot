@@ -121,6 +121,25 @@ public class PanelMapa extends JPanel
 	boolean modoSeleccion;
 
 	/**
+	 * String que muestra la ayuda al usuario en la parte inferior del interfaz.
+	 */
+	private String ayudaInf;
+	
+	/**
+	 * @return Returns the ayudaInf.
+	 */
+	public String getAyudaInf() {
+		return ayudaInf;
+	}
+
+	/**
+	 * @param ayudaInf The ayudaInf to set.
+	 */
+	public void setAyudaInf(String ayudaInf) {
+		this.ayudaInf = ayudaInf;
+	}
+
+	/**
 	 * Constructor de la clase PanelMapa.
 	 * <p>
 	 * Este constructor toma como parámetros el tamaño que se le quiere dar
