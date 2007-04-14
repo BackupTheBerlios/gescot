@@ -9,6 +9,7 @@ import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
+import is.SimTraffic.Vista.Acciones.AccionEliminarNodo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
 import is.SimTraffic.Vista.Representaciones.*;
@@ -24,6 +25,7 @@ import java.awt.RenderingHints;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -103,6 +105,10 @@ public class PanelMapa extends JPanel
 	private JScrollBar alto;
 	
 	private JPopupMenu emergente;
+	
+	private int posEx;
+	
+	private int posEy;
 
 	/**
 	 * Punto que limitan el rectángulo del área de selección.
@@ -167,7 +173,7 @@ public class PanelMapa extends JPanel
 		posLontemp = 0;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
-		añadirMenuEmergente();
+	//	añadirMenuEmergente();
 	}
 
 	/**
@@ -184,16 +190,25 @@ public class PanelMapa extends JPanel
 		recrear = true;
 	}
 
-	public void añadirMenuEmergente(){
+	/*public void añadirMenuEmergente(){
 		emergente = new JPopupMenu();
+		this.add(emergente,BorderLayout.EAST);
 		JMenuItem moverItem = new JMenuItem("Mover");
-		JMenuItem eliminarItem = new JMenuItem("Eliminar"); 
+		JMenuItem eliminarItem = new JMenuItem("Eliminar");
+		JMenuItem propiedadesItem = new JMenuItem("Porpiedades");
+		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,this,emergente.getX(), emergente.getY()));
 		emergente.add(moverItem);
 		emergente.add(eliminarItem);
-	}
+		emergente.add(propiedadesItem);
+		
+	}*/
 	
 	public JPopupMenu getMenuEmergente(){
 		return emergente;
+	}
+	
+	public void setMenuEmergente(JPopupMenu emergente){
+		this.emergente= emergente;
 	}
 	
 	/*
@@ -482,6 +497,19 @@ public class PanelMapa extends JPanel
 
 	public void setRecrear(boolean recrear) {
 		this.recrear = recrear;
+	}
+	
+	public void setPosE(int posEx, int posEy){
+		this.posEx = posEx;
+		this.posEy = posEy;
+	}
+	
+	public int getPosEx(){
+		return posEx;
+	}
+	
+	public int getPosEy(){
+		return posEy;
 	}
 	
 

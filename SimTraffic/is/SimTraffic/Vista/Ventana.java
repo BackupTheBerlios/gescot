@@ -17,6 +17,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
@@ -139,6 +141,7 @@ public class Ventana extends JFrame {
 		// maximizada.
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
+		añadirMenuEmergente();
 
 		panel_añadido = false;
 
@@ -174,6 +177,16 @@ public class Ventana extends JFrame {
 		panel.setFocusable(true);
 	}
 
+	public void añadirMenuEmergente(){
+		JPopupMenu emergente = new JPopupMenu("menuEmergente");
+		panel_mapa.add(emergente,BorderLayout.EAST);
+		JMenuItem eliminarItem = new JMenuItem("Eliminar");
+		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,controlador,panel_mapa));
+	//	moverItem.addActionListener(new AccionMoverNodo(modelo,controlador,panel_mapa)));
+		emergente.add(eliminarItem);
+		panel_mapa.setMenuEmergente(emergente);
+		
+	}
 	/**
 	 * Crea la barra de menús.
 	 */

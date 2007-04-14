@@ -20,12 +20,15 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 
 		public void mouseClicked(MouseEvent arg0) {
 			if(arg0.isPopupTrigger()){
-			Nodo seleccionado = buscarNodo(arg0.getX(), arg0.getY());
-			if (seleccionado != null)
-				if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(seleccionado)){
-					modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(seleccionado);
-				} else {
-					modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
+				Nodo seleccionado = buscarNodo(arg0.getX(), arg0.getY());
+				if (seleccionado != null){
+					if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(seleccionado)){
+						modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(seleccionado);
+					} else {
+						modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
+					}
+					panel.setPosE(arg0.getX(), arg0.getY());
+					System.out.println(panel.getPosEx());
 				}
 			}
 		}
@@ -42,8 +45,9 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		if(arg0.isPopupTrigger()){
-			
+		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY())!= null){
+			panel.setPosE(arg0.getX(), arg0.getY());
+			System.out.println(panel.getPosEx());
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.setModoSeleccion(true);
 			panel.getMenuEmergente().setLocation(arg0.getX()+30,arg0.getY()+76);
@@ -53,7 +57,9 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		if(arg0.isPopupTrigger()){
+		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY()) != null){
+			panel.setPosE(arg0.getX(), arg0.getY());
+			System.out.println(panel.getPosEx());
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.setModoSeleccion(true);
 			panel.getMenuEmergente().setLocation(arg0.getX()+30,arg0.getY()+76);
