@@ -28,7 +28,6 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 						modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
 					}
 					panel.setPosE(arg0.getX(), arg0.getY());
-					System.out.println(panel.getPosEx());
 				}
 			}
 		}
@@ -47,7 +46,6 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	public void mousePressed(MouseEvent arg0) {
 		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY())!= null){
 			panel.setPosE(arg0.getX(), arg0.getY());
-			System.out.println(panel.getPosEx());
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.setModoSeleccion(true);
 			panel.getMenuEmergente().setLocation(arg0.getX()+30,arg0.getY()+76);
@@ -59,7 +57,6 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	public void mouseReleased(MouseEvent arg0) {
 		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY()) != null){
 			panel.setPosE(arg0.getX(), arg0.getY());
-			System.out.println(panel.getPosEx());
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.setModoSeleccion(true);
 			panel.getMenuEmergente().setLocation(arg0.getX()+30,arg0.getY()+76);
