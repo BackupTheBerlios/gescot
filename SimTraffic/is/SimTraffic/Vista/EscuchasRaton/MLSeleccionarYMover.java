@@ -35,56 +35,69 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	private Tramo tramoInicial;
 	private Point puntoInicial;
 	private boolean estaSeleccionado;
+	private boolean simpleClic;
 	
 	
 	public MLSeleccionarYMover(IModelo modelo, IControlador controlador, PanelMapa panel) {
 		super(modelo, controlador, panel);
 		drag = false;
-		panel.setFocusable(true);		
+		panel.setFocusable(true);
+		simpleClic=false;
 	}
 	
 	@Override
+	/**
+	 * Este mouseClicked detecta si se ha hecho clic en un nodo, en un tramo o
+	 * en el mapa. Si estaba pulsado el control, se añade el elemento correspondiente
+	 * a la selección. Si no, se borra la selección y se añade ese elemento. 
+	 */
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		modoHerramienta=0; //seleccionar
 		puntoDrag = puntoInicial; //es un clic
+		simpleClic = true;
 		nodoInicial=null;
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());
 		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
-		if (posibleNodo!=null) {			
+		if (posibleNodo!=null) { //si se hace clic sobre un nodo	
 			nodoInicial=posibleNodo;		
 		}
 		Tramo posibleTramo = buscarTramo(arg0.getX(),arg0.getY());
-		if (posibleTramo!=null) {
+		if (posibleTramo!=null) { //si se hace clic sobre un tramo
 			tramoInicial = posibleTramo;					
 		}
-		if (nodoInicial!=null) {
-			if (this.getModificadorDeTeclado()==17) { //si pulsas control
+		if (nodoInicial!=null) { //si se ha pulsado sobre un nodo
+			if (this.getModificadorDeTeclado()==17) { //si se pulsa control
+				//se añade el nodo si no está en la selección
 				if (!modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoInicial))
 					modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
+				//si no, se elimina
 				else
 					modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoInicial);
 			}
-			else {				
+			else { //si no se pulsa control
+				//se borra la seleccion antigua y se selecciona el nodo
 				modelo.getMapa().setSeleccion(new Seleccion());
 				modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
 			}
 		}
-		else {
-			if (tramoInicial!=null) {
-				if (this.getModificadorDeTeclado()==17) { //control
+		else { //si no se ha pulsado sobre un nodo
+			if (tramoInicial!=null) { //si se ha pulsado sobre un tramo
+				if (this.getModificadorDeTeclado()==17) { //si se pulsa control
+					//si no está en la selección se añade el tramo
 					if (!modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoInicial))
 						modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
-					else
+					else //si está en la salección, se elimina de la selección
 						modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(tramoInicial);
 				}
-				else {
+				else { //si no se pulsa control
+					//se borra la seleccion y se selecciona el tramo
 					modelo.getMapa().setSeleccion(new Seleccion());
 					modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
 				}
 			}
-			else {
+			else { //si se ha pulsado sobre el mapa, se borra la selección
 				modelo.getMapa().setSeleccion(new Seleccion());
 			}
 				
@@ -105,6 +118,10 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	}
 	
 	@Override
+	/**
+	 * Método mousePressed que detecta si se mantiene pulsado el ratón estando
+	 * en el modo selección/mover.
+	 */
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		/*	
@@ -121,17 +138,19 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());
 		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
-		if (posibleNodo!=null) {			
+		if (posibleNodo!=null) { //si se ha pulsado sobre un nodo, se va a mover		
 			nodoInicial=posibleNodo;
 			modoHerramienta=1;//mover
 		}
 		Tramo posibleTramo = buscarTramo(arg0.getX(),arg0.getY());
-		if (posibleTramo!=null) {
+		if (posibleTramo!=null) { //si se ha pulsado sobre un tramo, se va a seleccionar
 			tramoInicial = posibleTramo;
 			modoHerramienta=0;//seleccionar
 			
 		}
 		if (posibleNodo==null && posibleTramo==null) {
+			//si no se ha pulsado sobre nodo ni tramo, se va a hacer un rectángulo
+			//de selección
 			modoHerramienta=0;//seleccionar
 			puntoDrag = puntoInicial;
 			panel.setPuntoInicial(arg0.getPoint());
@@ -141,41 +160,30 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	}
 	
 	@Override
+	/**
+	 * Método mouseReleased que se encarga de seleccionar nuevos elementos, o
+	 * de mover los elementos seleccionados
+	 */
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
 		
 		if (modoHerramienta==0) { //seleccionar
-			if (puntoInicial.equals(puntoDrag)) {//es un clic
+			//if (puntoInicial.equals(puntoDrag)) {//es un clic
+			if (simpleClic) { //si es un clic
+				simpleClic=false;
 				panel.setModoSeleccion(false);
 				panel.repaint();
+			}
+			else { //era un pressed
 				//if (this.getModificadorDeTeclado() != 17 && drag)
 				//	this.modelo.getMapa().limpiaSeleccion();
+				panel.setModoSeleccion(false);
+				panel.repaint();
 				if (drag && panel.isModoSeleccion())
 					panel.notificaSeleccion(1);
-
-				drag = false;				
-				if (nodoInicial!=null) {
-					if (this.getModificadorDeTeclado()==17) { //si pulsas control
-						if (!modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoInicial))
-							modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
-						else
-							modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoInicial);
-					}
-					else
-						modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
-				}
-				else {
-					if (tramoInicial!=null)
-						modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
-				}
+				drag = false;											
 			}
-			else {//es un rectangulo de seleccion
-				
-			}
-			
 		}
-		
 		else { //mover
 			HMover herramientaMover = new HMover(modelo.getMapa().getSeleccion().getNodosSeleccionados());
 			controlador.herramienta(herramientaMover);						
@@ -187,25 +195,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-		/*
-		//copiado de MLSeleccionarElementos
-		
-		panel.setModoSeleccion(true);
-		Point puntoDrag = arg0.getPoint();
-		panel.setPuntoDrag(puntoDrag);
-		panel.repaint();
-		drag = true;
-		
-		//hasta aqui
-		*/
-
-		
 		//puntoDrag = new Point(arg0.getX(),arg0.getY());
-		if (nodoInicial!=null && modoHerramienta!=1)
-			modoHerramienta=1; //mover
-		else {
-			modoHerramienta=0; //seleccionar
-		}
 		if (modoHerramienta==0) { //seleccionar
 			panel.setModoSeleccion(true);
 			Point puntoDrag = arg0.getPoint();
@@ -213,13 +203,13 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.repaint();
 			drag = true;
 		}
-		else { //mover
+		else { //modoHerramienta=1, mover		
 			Point puntoDrag = arg0.getPoint();
 			panel.setPuntoDrag(puntoDrag);
 			panel.repaint();
 			drag = true;
-			
 		}
+		
 		//dibujar o cuadrado o fantasma
 			
 	}
