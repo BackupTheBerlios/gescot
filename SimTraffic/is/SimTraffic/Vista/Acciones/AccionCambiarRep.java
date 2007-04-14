@@ -36,9 +36,12 @@ public class AccionCambiarRep implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		if (rep != null)
+		if (rep != null) {
 			panel.setRepresentacion(rep);
-
+			panel.recrear();
+			panel.recrearMapa();
+			panel.repaint();
+		}
 	}
 
 }

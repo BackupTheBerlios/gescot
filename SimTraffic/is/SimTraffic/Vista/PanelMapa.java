@@ -5,6 +5,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
+import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
@@ -157,7 +158,7 @@ public class PanelMapa extends JPanel
 		this.tamY = tamY;
 		recrear = true;
 		contador = 0;
-		representacion = new RepresentacionAvanzada();
+		representacion = new RepresentacionSimple();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
 		posLat = 0; // latitud cero
@@ -253,8 +254,10 @@ public class PanelMapa extends JPanel
 
 		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
+		Tramo tramo;
 		while (itramos.hasNext()) {
-			representacion.pintar(g, itramos.next());		
+			tramo = itramos.next();
+			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));		
 		}
 
 		// dibujar nodos
@@ -313,7 +316,7 @@ public class PanelMapa extends JPanel
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		while (itramos.hasNext()) {
 			Tramo tramo = itramos.next();
-			representacion.pintar(g, tramo);	
+			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));	
 			if (this.modelo.getSimulacion().estaActiva())
 				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);		
 		}

@@ -41,34 +41,35 @@ public class Mapa {
 	 * Mantiene la lista de tramos del Mapa
 	 */
 	private ArrayList<Tramo> Tramos;
-	
+
 	/**
 	 * Mantiene la lista de vías del mapa.
 	 */
 	private ArrayList<Via> Vias;
-	
+
 	/**
-	 * Guarda la información sobre los itinerarios de las lineas de autobuses (en vías).
+	 * Guarda la información sobre los itinerarios de las lineas de autobuses
+	 * (en vías).
 	 */
 	private ArrayList<Via> LineasAutobuses;
-	
+
 	/**
 	 * Indica la seleccion actual del mapa (nodos, tramos y señales).
 	 */
 	private Seleccion seleccion;
-	
+
 	/**
-	 * Contiene los nodos y tramos que están temporalmente en el 
-	 * portapapeles con el fin de reutilizarlos posteriormente. 
+	 * Contiene los nodos y tramos que están temporalmente en el portapapeles
+	 * con el fin de reutilizarlos posteriormente.
 	 */
 	private Seleccion portapapeles;
-	
+
 	/**
-	 * Nodo que sirve de referencia para saber donde pegar el contenido
-	 * del portapapeles
+	 * Nodo que sirve de referencia para saber donde pegar el contenido del
+	 * portapapeles
 	 */
 	private Nodo nodoReferenciaPortapapeles;
-	
+
 	private double maxLon;
 
 	private double minLon;
@@ -88,13 +89,14 @@ public class Mapa {
 		Tramos = new ArrayList<Tramo>();
 		Vias = new ArrayList<Via>();
 		LineasAutobuses = new ArrayList<Via>();
-		
+
 		seleccion = new Seleccion();
 		portapapeles = new Seleccion();
 	}
 
 	/**
 	 * Utilizado para cargar el mapa.
+	 * 
 	 * @param nodos
 	 * @param tramos
 	 */
@@ -105,7 +107,7 @@ public class Mapa {
 		Señales = new ArrayList<Señal>();
 		Vias = new ArrayList<Via>();
 		LineasAutobuses = new ArrayList<Via>();
-		
+
 		seleccion = new Seleccion();
 	}
 
@@ -138,11 +140,11 @@ public class Mapa {
 				temp = it.next();
 				if (nodo.equals(temp))
 					return;
-				if (temp.getID() >= idMax) //Antes nodo.getID()
+				if (temp.getID() >= idMax) // Antes nodo.getID()
 					idMax = temp.getID();
 			}
-			
-			//añade el nodo
+
+			// añade el nodo
 			Nodos.add(nodo);
 			nodo.setID(idMax + 1);
 
@@ -178,8 +180,9 @@ public class Mapa {
 	public void insertar(Tramo tramo) {
 		int idMax = 1;
 		if (tramo != null) {
-			// busca si el tramo no esta ya en el mapa, y el id de tramo mas grande
-			//  para no repetir
+			// busca si el tramo no esta ya en el mapa, y el id de tramo mas
+			// grande
+			// para no repetir
 			Iterator<Tramo> it = Tramos.iterator();
 			Tramo temp;
 			while (it.hasNext()) {
@@ -197,22 +200,20 @@ public class Mapa {
 					tramo.getNodoInicial().añadirTramo(tramo);
 					tramo.getNodoFinal().añadirTramo(tramo);
 					Tramos.add(tramo);
-					tramo.setID(idMax+1);
-					//Cambio en el método de asignación de ID
-					//tramo.asignarIDunico();
+					tramo.setID(idMax + 1);
+					// Cambio en el método de asignación de ID
+					// tramo.asignarIDunico();
 				}
-		
+
 		}
-		
 
 	}
-	
-	
+
 	public void insertar(Via via) {
 		int idMax = 1;
 		if (via != null) {
 			// busca si la vía no esta ya en el mapa, y el id de via mas grande
-			//  para no repetir
+			// para no repetir
 			Iterator<Via> it = Vias.iterator();
 			Via temp;
 			while (it.hasNext()) {
@@ -222,9 +223,9 @@ public class Mapa {
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-			
-			//Debe buscar también en la lista de lineas de autobuses 
-			//para poder asignar un id de vía único.
+
+			// Debe buscar también en la lista de lineas de autobuses
+			// para poder asignar un id de vía único.
 			it = LineasAutobuses.iterator();
 			while (it.hasNext()) {
 				temp = it.next();
@@ -233,25 +234,28 @@ public class Mapa {
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-			
+
 			Vias.add(via);
-			via.setID(idMax+1);
-		
+			via.setID(idMax + 1);
+
 		}
-		
+
 	}
-	
+
 	/**
-	 * Método que inserta una vía dada como parámetro como un itinerario que seguirá un autobus.
-	 * Estos itinerarios se guardarán como vías, pero en un array de vias diferente a Vias,
-	 * por eso se crea este otro método aparte de insertar(Via via).
-	 * @param via Itinerario que seguirá un autobus.
+	 * Método que inserta una vía dada como parámetro como un itinerario que
+	 * seguirá un autobus. Estos itinerarios se guardarán como vías, pero en un
+	 * array de vias diferente a Vias, por eso se crea este otro método aparte
+	 * de insertar(Via via).
+	 * 
+	 * @param via
+	 *            Itinerario que seguirá un autobus.
 	 */
 	public void insertarLineaAutobus(Via via) {
 		int idMax = 1;
 		if (via != null) {
 			// busca si la vía no esta ya en el mapa, y el id de via mas grande
-			//  para no repetir
+			// para no repetir
 			Iterator<Via> it = Vias.iterator();
 			Via temp;
 			while (it.hasNext()) {
@@ -261,9 +265,9 @@ public class Mapa {
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-			
-			//Debe buscar también en la lista de lineas de autobuses 
-			//para poder asignar un id de vía único.
+
+			// Debe buscar también en la lista de lineas de autobuses
+			// para poder asignar un id de vía único.
 			it = LineasAutobuses.iterator();
 			while (it.hasNext()) {
 				temp = it.next();
@@ -272,12 +276,12 @@ public class Mapa {
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-			
+
 			LineasAutobuses.add(via);
-			via.setID(idMax+1);	
+			via.setID(idMax + 1);
 		}
 	}
-	
+
 	/**
 	 * Metodo para insertar una señal relacionada con un nodo al mapa.
 	 * <p>
@@ -341,12 +345,13 @@ public class Mapa {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Método para eliminar una vía del mapa.
 	 * <p>
-	 * Este método se encarga de eliminar la vía creada, junto a los segmentos y nodos creados con ella.
-	 * (la operación de isnertar y eliminar una vía es atómica))
+	 * Este método se encarga de eliminar la vía creada, junto a los segmentos y
+	 * nodos creados con ella. (la operación de isnertar y eliminar una vía es
+	 * atómica))
 	 * 
 	 * @param tramo
 	 *            Tramo que se desea quitar de la lista
@@ -354,14 +359,16 @@ public class Mapa {
 	 */
 	public boolean eliminar(Via via) {
 		if (via != null && Vias.contains(via)) {
-			
-			//Borrar segmentos que aparezcan en la lista de tramos de la vía concreta
-			//Ese borrar segmentos ya borrará los nodos correspondientes (recursivo)
+
+			// Borrar segmentos que aparezcan en la lista de tramos de la vía
+			// concreta
+			// Ese borrar segmentos ya borrará los nodos correspondientes
+			// (recursivo)
 			Iterator<Tramo> tram = via.getTramos().iterator();
 			while (tram.hasNext()) {
 				Tramo aux = tram.next();
 				this.eliminar(aux);
-				eliminar(aux.getNodoInicial());				
+				eliminar(aux.getNodoInicial());
 				eliminar(aux.getNodoFinal());
 			}
 			Vias.remove(via);
@@ -369,14 +376,15 @@ public class Mapa {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Método que elimina una linea de autobus. Deberá ampliarse cuando cada nodo posea 
-	 * información sobre los autobuses que paran en si mismo, para actualizar la información
-	 * de esos nodos.
-	 * Al contrario que eliminar(Via via) no elimina del mapa los tramos y nodos que pertenecen 
-	 * a la via. 
-	 * @param via Itinerario de un autobus que se pretende eliminar.
+	 * Método que elimina una linea de autobus. Deberá ampliarse cuando cada
+	 * nodo posea información sobre los autobuses que paran en si mismo, para
+	 * actualizar la información de esos nodos. Al contrario que eliminar(Via
+	 * via) no elimina del mapa los tramos y nodos que pertenecen a la via.
+	 * 
+	 * @param via
+	 *            Itinerario de un autobus que se pretende eliminar.
 	 * @return
 	 */
 	public boolean eliminarLineaAutobus(Via via) {
@@ -390,56 +398,63 @@ public class Mapa {
 	public void eliminar(Señal señal) {
 		Señales.remove(señal);
 	}
-	
+
 	/**
-	 * En función de un rectangulo pasado como parámetro, modifica la seleccion con todos los elementos
-	 * que estén contenido en dicho rectángulo.
+	 * En función de un rectangulo pasado como parámetro, modifica la seleccion
+	 * con todos los elementos que estén contenido en dicho rectángulo.
+	 * 
 	 * @param rectanguloSeleccion
 	 */
-	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion,int tipoDeSeleccion,Representacion rep){
-		
-		if (tipoDeSeleccion==0) { //se elige seleccionar nodos
+	public void seleccionaEnRectangulo(Rectangle rectanguloSeleccion,
+			int tipoDeSeleccion, Representacion rep) {
+
+		if (tipoDeSeleccion == 0) { // se elige seleccionar nodos
 			Nodo nodoTemp;
 			Point punto;
-			for (int i=0;i<Nodos.size();i++){
+			for (int i = 0; i < Nodos.size(); i++) {
 				nodoTemp = Nodos.get(i);
-				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
-				if (rectanguloSeleccion.contains(punto)){
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()),
+						rep.y_MapaARep(nodoTemp.getPos().getLat()));
+				if (rectanguloSeleccion.contains(punto)) {
 					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
 						this.seleccion.añadirNodo(nodoTemp);
-				}			
+				}
 			}
 		}
-		if (tipoDeSeleccion==1) { //se elige seleccionar elementos
+		if (tipoDeSeleccion == 1) { // se elige seleccionar elementos
 			Nodo nodoTemp;
 			Point punto;
-			for (int i=0;i<Nodos.size();i++){
+			for (int i = 0; i < Nodos.size(); i++) {
 				nodoTemp = Nodos.get(i);
-				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
-				if (rectanguloSeleccion.contains(punto)){
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()),
+						rep.y_MapaARep(nodoTemp.getPos().getLat()));
+				if (rectanguloSeleccion.contains(punto)) {
 					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
 						this.seleccion.añadirNodo(nodoTemp);
-				}			
+				}
 			}
 			Tramo tramoTemp;
-			for (int i=0;i<Tramos.size();i++) {
+			for (int i = 0; i < Tramos.size(); i++) {
 				tramoTemp = Tramos.get(i);
-				boolean encontradoInicial=false;
-				boolean encontradoFinal=false;
-				int j=0;
+				boolean encontradoInicial = false;
+				boolean encontradoFinal = false;
+				int j = 0;
 				Nodo posibleNodoInicial;
-				while (j<seleccion.getNodosSeleccionados().size() && !encontradoInicial) {
-					posibleNodoInicial = seleccion.getNodosSeleccionados().get(j);
+				while (j < seleccion.getNodosSeleccionados().size()
+						&& !encontradoInicial) {
+					posibleNodoInicial = seleccion.getNodosSeleccionados().get(
+							j);
 					if (posibleNodoInicial.equals(tramoTemp.getNodoInicial()))
-						encontradoInicial=true;
+						encontradoInicial = true;
 					j++;
 				}
-				j=0;
+				j = 0;
 				Nodo posibleNodoFinal;
-				while (j<seleccion.getNodosSeleccionados().size() && !encontradoFinal) {
+				while (j < seleccion.getNodosSeleccionados().size()
+						&& !encontradoFinal) {
 					posibleNodoFinal = seleccion.getNodosSeleccionados().get(j);
 					if (posibleNodoFinal.equals(tramoTemp.getNodoFinal()))
-						encontradoFinal=true;
+						encontradoFinal = true;
 					j++;
 				}
 				if (encontradoInicial && encontradoFinal) {
@@ -447,39 +462,40 @@ public class Mapa {
 						this.seleccion.añadirTramo(tramoTemp);
 				}
 			}
-			
+
 		}
-		if (tipoDeSeleccion==2) { //se elige seleccionar tramos
+		if (tipoDeSeleccion == 2) { // se elige seleccionar tramos
 			Nodo nodoTemp;
 			Point punto;
 			ArrayList<Nodo> nodosSeleccionados = new ArrayList<Nodo>();
-			for (int i=0;i<Nodos.size();i++){
+			for (int i = 0; i < Nodos.size(); i++) {
 				nodoTemp = Nodos.get(i);
-				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()), rep.y_MapaARep(nodoTemp.getPos().getLat()));
-				if (rectanguloSeleccion.contains(punto)){
+				punto = new Point(rep.x_MapaARep(nodoTemp.getPos().getLon()),
+						rep.y_MapaARep(nodoTemp.getPos().getLat()));
+				if (rectanguloSeleccion.contains(punto)) {
 					if (!seleccion.getNodosSeleccionados().contains(nodoTemp))
 						nodosSeleccionados.add(nodoTemp);
-				}			
+				}
 			}
 			Tramo tramoTemp;
-			for (int i=0;i<Tramos.size();i++) {
+			for (int i = 0; i < Tramos.size(); i++) {
 				tramoTemp = Tramos.get(i);
-				boolean encontradoInicial=false;
-				boolean encontradoFinal=false;
-				int j=0;
+				boolean encontradoInicial = false;
+				boolean encontradoFinal = false;
+				int j = 0;
 				Nodo posibleNodoInicial;
-				while (j<nodosSeleccionados.size() && !encontradoInicial) {
+				while (j < nodosSeleccionados.size() && !encontradoInicial) {
 					posibleNodoInicial = nodosSeleccionados.get(j);
 					if (posibleNodoInicial.equals(tramoTemp.getNodoInicial()))
-						encontradoInicial=true;
+						encontradoInicial = true;
 					j++;
 				}
-				j=0;
+				j = 0;
 				Nodo posibleNodoFinal;
-				while (j<nodosSeleccionados.size() && !encontradoFinal) {
+				while (j < nodosSeleccionados.size() && !encontradoFinal) {
 					posibleNodoFinal = nodosSeleccionados.get(j);
 					if (posibleNodoFinal.equals(tramoTemp.getNodoFinal()))
-						encontradoFinal=true;
+						encontradoFinal = true;
 					j++;
 				}
 				if (encontradoInicial && encontradoFinal) {
@@ -489,14 +505,29 @@ public class Mapa {
 			}
 		}
 	}
-	
+
 	/**
-	 * Deselecciona todos los elementos que estaban seleccionados. 
+	 * Deselecciona todos los elementos que estaban seleccionados.
 	 */
-	public void limpiaSeleccion(){
+	public void limpiaSeleccion() {
 		if (this.seleccion != null)
 			this.seleccion = null;
 		this.seleccion = new Seleccion();
+	}
+
+	public String getTipoVia(Tramo tramo) {
+		try {
+			Iterator<Via> it = Vias.iterator();
+			Via temp;
+			while (it.hasNext()) {
+				temp = it.next();
+				if (temp.tieneTramo(tramo))
+					return temp.getTipo().getTipo();
+			}
+		} catch (NullPointerException e) {
+			return null;
+		}
+		return null;
 	}
 
 	public ArrayList<Nodo> getNodos() {
@@ -570,89 +601,97 @@ public class Mapa {
 	public void setNodoReferenciaPortapapeles(Nodo nodoReferenciaPortapapeles) {
 		this.nodoReferenciaPortapapeles = nodoReferenciaPortapapeles;
 	}
-	
-	public Nodo existeNodo (Nodo nodo) {
-		for (int i=0; i<Nodos.size(); i++) {
+
+	public Nodo existeNodo(Nodo nodo) {
+		for (int i = 0; i < Nodos.size(); i++) {
 			if (nodo.getPos().equals(Nodos.get(i).getPos()))
 				return Nodos.get(i);
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Devuelve el primer nodo (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * Devuelve el primer nodo (no desambigua si hay varios) que tiene como
+	 * nombre el parámetro.
+	 * 
 	 * @param nombre
 	 * @return
 	 */
 	public Nodo buscarNodo(String nombre) {
 		Iterator<Nodo> nod = Nodos.iterator();
-		Nodo nodoaux=null;
+		Nodo nodoaux = null;
 		String nomaux;
 		boolean encontrado = false;
 		while (nod.hasNext() && !encontrado) {
 			nodoaux = nod.next();
-			nomaux=nodoaux.getNombre();
-			if (nomaux!=null && nomaux.equals(nombre))
-				encontrado=true;
+			nomaux = nodoaux.getNombre();
+			if (nomaux != null && nomaux.equals(nombre))
+				encontrado = true;
 		}
 		return nodoaux;
 	}
-	
+
 	/**
-	 * Devuelve el primer tramo (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * Devuelve el primer tramo (no desambigua si hay varios) que tiene como
+	 * nombre el parámetro.
+	 * 
 	 * @param nombre
 	 * @return
 	 */
 	public Tramo buscarTramo(String nombre) {
 		Iterator<Tramo> tram = Tramos.iterator();
-		Tramo tramoaux=null;
+		Tramo tramoaux = null;
 		String nomaux;
 		boolean encontrado = false;
 		while (tram.hasNext() && !encontrado) {
 			tramoaux = tram.next();
-			nomaux=tramoaux.getNombre();
-			if (nomaux!=null && nomaux.equals(nombre))
-				encontrado=true;
+			nomaux = tramoaux.getNombre();
+			if (nomaux != null && nomaux.equals(nombre))
+				encontrado = true;
 		}
 		return tramoaux;
 	}
-	
+
 	/**
-	 * Devuelve la primera vía (no desambigua si hay varias) que tiene como nombre el parámetro.
+	 * Devuelve la primera vía (no desambigua si hay varias) que tiene como
+	 * nombre el parámetro.
+	 * 
 	 * @param nombre
 	 * @return
 	 */
 	public Via buscarVia(String nombre) {
 		Iterator<Via> v = Vias.iterator();
-		Via viaaux=null;
+		Via viaaux = null;
 		String nomaux;
 		boolean encontrado = false;
 		while (v.hasNext() && !encontrado) {
 			viaaux = v.next();
-			nomaux=viaaux.getNombre();
-			if (nomaux!=null && nomaux.equals(nombre))
-				encontrado=true;
+			nomaux = viaaux.getNombre();
+			if (nomaux != null && nomaux.equals(nombre))
+				encontrado = true;
 		}
 		return viaaux;
 	}
-	
+
 	/**
-	 * Devuelve la primera línea de bus (no desambigua si hay varios) que tiene como nombre el parámetro.
+	 * Devuelve la primera línea de bus (no desambigua si hay varios) que tiene
+	 * como nombre el parámetro.
+	 * 
 	 * @param nombre
 	 * @return
 	 */
 	public Via buscarLineaBus(String nombre) {
 		Iterator<Via> v = LineasAutobuses.iterator();
-		Via viaaux=null;
+		Via viaaux = null;
 		String nomaux;
 		boolean encontrado = false;
 		while (v.hasNext() && !encontrado) {
 			viaaux = v.next();
-			nomaux=viaaux.getNombre();
-			if (nomaux!=null && nomaux.equals(nombre))
-				encontrado=true;
+			nomaux = viaaux.getNombre();
+			if (nomaux != null && nomaux.equals(nombre))
+				encontrado = true;
 		}
 		return viaaux;
 	}
-	
+
 }

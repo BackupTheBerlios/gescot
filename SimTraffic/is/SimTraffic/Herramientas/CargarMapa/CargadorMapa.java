@@ -144,7 +144,9 @@ public class CargadorMapa implements DocHandler {
 					es = new EntradaSalida(entran, salen, salida, entrada);
 					nodoAux.setEs(es);
 				}
-				else nodoAux.setTipo(identificarTipoElem(k,v));
+				else {
+					if (identificarTipoElem(k,v) != null)
+					nodoAux.setTipo(identificarTipoElem(k,v));}
 			}
 			else if (ultimoElemReconocido.compareTo("segment") == 0){
 				System.out.println("tag de segmento reconocido");
@@ -170,8 +172,10 @@ public class CargadorMapa implements DocHandler {
 				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
 					//no hacer nada
 				}
-				else 
+				else {
+					if (identificarTipoElem(k,v) != null)
 					viaAux.setTipo(identificarTipoElem(k,v));
+				}
 			}
 		
 		}

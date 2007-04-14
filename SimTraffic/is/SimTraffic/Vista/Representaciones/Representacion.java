@@ -205,7 +205,7 @@ abstract public class Representacion {
 	 * @param tramo
 	 *            Tramo a dibujar
 	 */
-	abstract public void pintar(Graphics2D g, Tramo tramo);
+	abstract public void pintar(Graphics2D g, Tramo tramo, String tipo);
 
 	/**
 	 * Método abstracto que se debe implementar para pintar una señal.

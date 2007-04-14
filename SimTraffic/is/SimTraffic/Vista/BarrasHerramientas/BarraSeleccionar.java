@@ -17,16 +17,16 @@ public class BarraSeleccionar extends Barra {
 	public BarraSeleccionar(Ventana ventana, MLSeleccionarTramos escuchaSeleccionTramos,MLSeleccionarElementos escuchaSeleccionNodosYTramos,			MLSeleccionarNodos escuchaSeleccion, EscuchaTeclado escuchaTeclado) 
 	{
 		ButtonGroup selecciones = new ButtonGroup();
-		JToggleButton seleccion_nodo = (JToggleButton) this.añadirBoton("seleccionar-nodos.png",
-				"seleccionar-nodos-2.png", "Seleccionar nodos",
+		JToggleButton seleccion_nodo = (JToggleButton) this.añadirBoton("seleccionar-nodos.PNG",
+				"seleccionar-nodos-2.PNG", "Seleccionar nodos",
 				new AccionSobreMapa(escuchaSeleccion, ventana, escuchaTeclado,-1), true);
 		seleccion_nodo.addKeyListener(escuchaTeclado);
 		seleccion_nodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para seleccionar nodos.", ventana));
 		seleccion_nodo.setSelected(true);
 		selecciones.add(seleccion_nodo);
 
-		JToggleButton seleccion_tramo = (JToggleButton) this.añadirBoton("seleccionar-tramos.png",
-				"seleccionar-tramos-2.png", "Seleccionar tramos",
+		JToggleButton seleccion_tramo = (JToggleButton) this.añadirBoton("seleccionar-tramos.PNG",
+				"seleccionar-tramos-2.PNG", "Seleccionar tramos",
 				new AccionSobreMapa(escuchaSeleccionTramos, ventana,
 						escuchaTeclado, -1), true);
 		seleccion_tramo.addKeyListener(escuchaTeclado);
@@ -34,8 +34,8 @@ public class BarraSeleccionar extends Barra {
 		selecciones.add(seleccion_tramo);
 
 		JToggleButton seleccion_area = (JToggleButton) this.añadirBoton(
-				"seleccionar-nodosytramos.png",
-				"seleccionar-nodosytramos-2.png",
+				"seleccionar-nodosytramos.PNG",
+				"seleccionar-nodosytramos-2.PNG",
 				"Seleccionar componentes dentro de área", new AccionSobreMapa(
 						escuchaSeleccionNodosYTramos, ventana, escuchaTeclado,-1), true);
 		seleccion_area.addKeyListener(escuchaTeclado);

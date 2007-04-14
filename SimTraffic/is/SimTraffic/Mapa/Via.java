@@ -90,6 +90,13 @@ public class Via implements ElementoMapa {
 	public ArrayList<Tramo> getTramos() {
 		return Tramos;
 	}
+	
+	public boolean tieneTramo(Tramo tramo) {
+		Iterator it = Tramos.iterator();
+		while (it.hasNext())
+			if (it.next() == tramo) return true;
+		return false;
+	}
 
 	public void setTramos(ArrayList<Tramo> tramos) {
 		Tramos = tramos;
