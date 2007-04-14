@@ -156,7 +156,10 @@ public class AEstrella implements IAlgoritmoInformado {
 			if (encontrado) {
 				if (nodoaux.getCoste_camino() > nodoNuevo.getCoste_camino()) {
 					nodoaux.setNodoPadre(nodoPadre); //Con lo cual, es como insertar el nuevo.
-					nodoaux.setCoste_camino(nodoNuevo.getCoste_camino());	
+					nodoaux.setCoste_camino(nodoNuevo.getCoste_camino());					
+					//Añadido y necesario para respetar el camino
+					nodoaux.setOperador(nodoNuevo.getOperador());
+					nodoaux.setProfundidad(nodoNuevo.getProfundidad());
 				}
 			}
 			else {
