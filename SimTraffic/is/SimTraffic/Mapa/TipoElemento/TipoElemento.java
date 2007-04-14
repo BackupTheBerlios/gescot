@@ -94,6 +94,14 @@ public abstract class TipoElemento implements ITipoElemento{
 		this.valorTipo=valorTipo;
 	}
 	
+	public boolean equals(TipoElemento tipo)
+	{
+		if (this.tipo!=tipo.tipo) return false;
+		if (this.valorTipo!=tipo.valorTipo) return false;
+		return true;
+		
+	}
+	
 	/**
 	 * @param args
 	 */
