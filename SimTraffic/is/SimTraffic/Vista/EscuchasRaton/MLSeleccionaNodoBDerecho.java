@@ -19,6 +19,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	}
 
 		public void mouseClicked(MouseEvent arg0) {
+			if(arg0.isPopupTrigger()){
 			Nodo seleccionado = buscarNodo(arg0.getX(), arg0.getY());
 			if (seleccionado != null)
 				if (modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(seleccionado)){
@@ -26,7 +27,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 				} else {
 					modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
 				}
-
+			}
 		}
 
 	@Override
