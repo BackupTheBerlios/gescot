@@ -46,22 +46,19 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		modoHerramienta=0; //seleccionar
+		puntoDrag = puntoInicial; //es un clic
 		nodoInicial=null;
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());
 		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
 		if (posibleNodo!=null) {			
-			nodoInicial=posibleNodo;
+			nodoInicial=posibleNodo;		
 		}
 		Tramo posibleTramo = buscarTramo(arg0.getX(),arg0.getY());
 		if (posibleTramo!=null) {
-			tramoInicial = posibleTramo;
-			modoHerramienta=0;//seleccionar			
+			tramoInicial = posibleTramo;					
 		}
-		if (posibleNodo==null && posibleTramo==null)
-			modoHerramienta=0;//seleccionar
-		puntoDrag = puntoInicial;
-
 		if (nodoInicial!=null) {
 			if (this.getModificadorDeTeclado()==17) { //si pulsas control
 				if (!modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoInicial))
@@ -152,10 +149,9 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			if (puntoInicial.equals(puntoDrag)) {//es un clic
 				panel.setModoSeleccion(false);
 				panel.repaint();
-				if (this.getModificadorDeTeclado() != 17 && drag)
-					this.modelo.getMapa().limpiaSeleccion();
-
-				if (drag)
+				//if (this.getModificadorDeTeclado() != 17 && drag)
+				//	this.modelo.getMapa().limpiaSeleccion();
+				if (drag && panel.isModoSeleccion())
 					panel.notificaSeleccion(1);
 
 				drag = false;				
