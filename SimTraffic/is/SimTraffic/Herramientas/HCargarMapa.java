@@ -10,26 +10,21 @@ import javax.swing.JFileChooser;
 import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Utils.Tiempo;
+import is.SimTraffic.Vista.PanelMapa;
 
 public class HCargarMapa implements IHerramienta {
 	IControlador controlador;
-
+	PanelMapa panel;
+	double lat, lon;
+	
 	/**
 	 * @param controlador
 	 * @roseuid 45B8B3A70182
 	 */
-	public HCargarMapa(IControlador controlador) {
+	public HCargarMapa(IControlador controlador, PanelMapa panel) {
 		this.controlador = controlador;
+		this.panel = panel;
 	}
-
-	/**
-	 * @param archivo
-	 * @roseuid 45B8B1430105
-	 */
-	/*
-	 * public HCargarMapa(File archivo) {
-	 *  }
-	 */
 
 	/**
 	 * @param modelo
@@ -48,13 +43,18 @@ public class HCargarMapa implements IHerramienta {
 			// Faltaría definir comportamiento ante fallos.
 			try {
 				mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
+				if (mapaNuevo.getNodos().get(0) != null) {
+					panel.centrarEnPosicion(mapaNuevo.getNodos().get(0).getPos().getLat(), mapaNuevo.getNodos().get(0).getPos().getLon());
+				}
+				modelo.setMapa(mapaNuevo);
+
+			
 			} catch (Exception e) {
 				System.out.println("Error al leer archivo");
 				e.printStackTrace();
 			}
 			// if (mapaNuevo==null)
 			// System.out.println("Mapa vacío?");
-			modelo.setMapa(mapaNuevo);
 		}
 		return 0;
 	}

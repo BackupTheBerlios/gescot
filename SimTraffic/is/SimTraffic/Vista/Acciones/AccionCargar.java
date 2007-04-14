@@ -20,7 +20,7 @@ public class AccionCargar implements ActionListener {
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(controlador!= null) {
-			controlador.herramienta(new HCargarMapa(controlador));
+			controlador.herramienta(new HCargarMapa(controlador, panel));
 	     panel.repaint();
 	     panel.recrear();
 		}

@@ -19,25 +19,26 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
-public class RepresentacionAvanzada extends Representacion 
-{
+public class RepresentacionAvanzada extends Representacion {
 	/**
 	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
 	 */
 	private double tamaño_carril = 2.5;
-	
-	/** 
-	 * Almacena las imagenes de los coches para dibujarlos de manera más eficiente.
-	 * */
+
+	/**
+	 * Almacena las imagenes de los coches para dibujarlos de manera más
+	 * eficiente.
+	 */
 	private BufferedImage coches[];
 
 	/**
 	 * Constructor por defecto de la RepresentacionSimple
 	 */
-	public RepresentacionAvanzada() 
-	{	
+	public RepresentacionAvanzada() {
 		super();
 		inicializarImagenes();
 	}
@@ -48,29 +49,22 @@ public class RepresentacionAvanzada extends Representacion
 	 * 
 	 * @param rep
 	 */
-	public RepresentacionAvanzada(Representacion rep) 
-	{
+	public RepresentacionAvanzada(Representacion rep) {
 		super(rep);
 		inicializarImagenes();
 	}
 
-	/** Inicializa las imagenes de los coches.*/
-	private void inicializarImagenes() 
-	{
+	/** Inicializa las imagenes de los coches. */
+	private void inicializarImagenes() {
 		coches = new BufferedImage[7];
-		try {
-			coches[0] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche1.png"));
-			coches[1] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche2.png"));
-			coches[2] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche3.png"));
-			coches[3] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche4.png"));
-			coches[4] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche5.png"));
-			coches[5] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche6.png"));
-			coches[6] = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Coche7.png"));
-		
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
+			coches[0] = cargarImagen("Coche1.png");
+			coches[1] = cargarImagen("Coche2.png");
+			coches[2] = cargarImagen("Coche3.png");
+			coches[3] = cargarImagen("Coche4.png");
+			coches[4] = cargarImagen("Coche5.png");
+			coches[5] = cargarImagen("Coche6.png");
+			coches[6] = cargarImagen("Coche7.png");
+
 	}
 
 	public void pintar(Graphics2D g, Nodo nodo) {
@@ -78,196 +72,112 @@ public class RepresentacionAvanzada extends Representacion
 		g.drawRect(x_MapaARep(nodo.getPos().getLon()) - 2, y_MapaARep(nodo
 				.getPos().getLat()) - 2, 4, 4);
 
-		try
-		{
-			if (nodo.getTipo() != null)
-			{	
+
+			if (nodo.getTipo() != null) {
 				String aux = nodo.getTipo().getTipoCastellano();
 				BufferedImage buffer = null;
-				if (aux.equalsIgnoreCase("Carretera"))
-				{
+				if (aux.equalsIgnoreCase("Carretera")) {
 					aux = nodo.getTipo().getValorTipoCastellano();
-					if (aux.equalsIgnoreCase("Mini-rotonda"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Rotonda.png"));
+					if (aux.equalsIgnoreCase("Mini-rotonda")) {
+						buffer = cargarImagen("Rotonda.PNG");
+					} else if (aux.equalsIgnoreCase("Stop")) {
+						buffer = cargarImagen("Stop.PNG");
+					} else if (aux.equalsIgnoreCase("Cruce")) {
+
+					} else if (aux.equalsIgnoreCase("Portón para vehículos")) {
+
+					} else if (aux.equalsIgnoreCase("Cambio De Rasante")) {
+
+					} else if (aux.equalsIgnoreCase("Puente")) {
+
+					} else if (aux.equalsIgnoreCase("Viaducto")) {
+
 					}
-					else if (aux.equalsIgnoreCase("Stop"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Stop.png"));
+				} else if (aux.equalsIgnoreCase("Tiempo Libre")) {
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Campo de golf")) {
+						buffer = cargarImagen("Campo_Golf.PNG");
 					}
-					else if (aux.equalsIgnoreCase("Cruce"))
-					{
-						
+
+					else if (aux.equalsIgnoreCase("Estadio")) {
+						buffer = cargarImagen("Estadio.png");
+					} else if (aux.equalsIgnoreCase("Pista de carreras")) {
+
+					} else if (aux.equalsIgnoreCase("Campo de deporte")) {
+
+					} else if (aux.equalsIgnoreCase("Parque acuático")) {
+
+					} else if (aux.equalsIgnoreCase("Parque")) {
+
+					} else if (aux.equalsIgnoreCase("Jardín")) {
+
 					}
-					else if (aux.equalsIgnoreCase("Portón para vehículos"))
-					{
-						
+				} else if (aux.equalsIgnoreCase("Construcción")) {
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Planta eólica")) {
+						buffer = cargarImagen("Torre_de_electricidad.PNG");
+					} else if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {
+
+					} else if (aux.equalsIgnoreCase("Central Hidroeléctrica")) {
+
+					} else if (aux.equalsIgnoreCase("Central nuclear")) {
+
+					} else if (aux.equalsIgnoreCase("Faro")) {
+
 					}
-					else if (aux.equalsIgnoreCase("Cambio De Rasante"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Puente"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Viaducto"))
-					{
-						
+				} else if (aux.equalsIgnoreCase("Infraestructura")) {
+					aux = nodo.getTipo().getValorTipoCastellano();
+					if (aux.equalsIgnoreCase("Pub")) {
+						buffer = cargarImagen("Puff.PNG");
+					} else if (aux.equalsIgnoreCase("Parking")) {
+						buffer = cargarImagen("Parking.PNG");
+					} else if (aux.equalsIgnoreCase("Gasolinera")) {
+						buffer = cargarImagen("Gasolinera.PNG");
+					} else if (aux.equalsIgnoreCase("Cabina de telefono")) {
+						// buffer = ImageIO.read(new
+						// File("is\\SimTraffic\\Vista\\Imagenes\\Representacion
+						// Avanzada\\Cabinadetelefono.png"));
+					} else if (aux.equalsIgnoreCase("Aseos Publicos")) {
+
+					} else if (aux.equalsIgnoreCase("Edificio Publico")) {
+
+					} else if (aux.equalsIgnoreCase("Iglesia")) {
+						buffer = cargarImagen("Iglesia.PNG");
+					} else if (aux.equalsIgnoreCase("Cementerio")) {
+
+					} else if (aux.equalsIgnoreCase("Oficina de Correos")) {
+						buffer = cargarImagen("Correos.PNG");
+					} else if (aux.equalsIgnoreCase("Buzón de Correos")) {
+						buffer = cargarImagen("Correos2.PNG");
+					} else if (aux.equalsIgnoreCase("Colegio")) {
+						buffer = cargarImagen("Colegio.PNG");
+					} else if (aux.equalsIgnoreCase("Supermercado")) {
+
+					} else if (aux.equalsIgnoreCase("Hospital")) {
+						buffer = cargarImagen("Hospital.PNG");
+					} else if (aux.equalsIgnoreCase("Librería")) {
+						buffer = cargarImagen("Libreria.PNG");
+					} else if (aux.equalsIgnoreCase("Comisaria")) {
+
+					} else if (aux.equalsIgnoreCase("Parque de bomberos")) {
+
+					} else if (aux.equalsIgnoreCase("Terrazas")) {
+
+					} else if (aux.equalsIgnoreCase("Restaurante")) {
+						buffer = cargarImagen("Restaurante.PNG");
+					} else if (aux.equalsIgnoreCase("Cadena de comida rapida")) {
+
+					} else if (aux.equalsIgnoreCase("Estacion de autobus")) {
+
+					} else if (aux.equalsIgnoreCase("Teatro")) {
+						buffer = cargarImagen("Teatro.PNG");
 					}
 				}
-				else if (aux.equalsIgnoreCase("Tiempo Libre"))
-				{
-					aux = nodo.getTipo().getValorTipoCastellano();
-					if (aux.equalsIgnoreCase("Campo de golf"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Campo_Golf.png"));
-					}
-					
-					
-					else if (aux.equalsIgnoreCase("Estadio"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Estadio.png"));
-					}
-					else if (aux.equalsIgnoreCase("Pista de carreras"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Campo de deporte"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Parque acuático"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Parque"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Jardín"))
-					{
-						
-					}
-				} 
-				else if (aux.equalsIgnoreCase("Construcción"))
-				{
-					aux = nodo.getTipo().getValorTipoCastellano();
-					if (aux.equalsIgnoreCase("Planta eólica"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Torre_de_electricidad.PNG"));
-					}
-					else if (aux.equalsIgnoreCase("Planta Hidroeléctrica"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Central Hidroeléctrica"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Central nuclear"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Faro"))
-					{
-						
-					}
-				} else if (aux.equalsIgnoreCase("Infraestructura"))
-				{
-					aux = nodo.getTipo().getValorTipoCastellano();
-					if (aux.equalsIgnoreCase("Pub"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\puff.png"));
-					}
-					else if (aux.equalsIgnoreCase("Parking"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Parking.png"));
-					}
-					else if (aux.equalsIgnoreCase("Gasolinera"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Gasolinera.png"));
-					}
-					else if (aux.equalsIgnoreCase("Cabina de telefono"))
-					{
-						//buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Cabinadetelefono.png"));
-					}
-					else if (aux.equalsIgnoreCase("Aseos Publicos"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Edificio Publico"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Iglesia"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Iglesia.png"));
-					}
-					else if (aux.equalsIgnoreCase("Cementerio"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Oficina de Correos"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos.png"));
-					}
-					else if (aux.equalsIgnoreCase("Buzón de Correos"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Correos2.png"));
-					}
-					else if (aux.equalsIgnoreCase("Colegio"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Colegio.png"));
-					}
-					else if (aux.equalsIgnoreCase("Supermercado"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Hospital"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Hospital.png"));
-					}
-					else if (aux.equalsIgnoreCase("Librería"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Libreria.png"));
-					}
-					else if (aux.equalsIgnoreCase("Comisaria"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Parque de bomberos"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Terrazas"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Restaurante"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Restaurante.png"));
-					}
-					else if (aux.equalsIgnoreCase("Cadena de comida rapida"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Estacion de autobus"))
-					{
-						
-					}
-					else if (aux.equalsIgnoreCase("Teatro"))
-					{
-						buffer = ImageIO.read(new File("is\\SimTraffic\\Vista\\Imagenes\\Representacion Avanzada\\Teatro.png"));
-					}
-				}
-				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()), y_MapaARep(nodo.getPos().getLat()), null);
+				g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()),
+						y_MapaARep(nodo.getPos().getLat()), null);
 			}
-		}
-		catch (IOException e) {e.printStackTrace();}
+
 	}
-
-
 
 	public void pintar(Graphics2D g, Rectangle rectanguloSeleccion) {
 		g.draw(rectanguloSeleccion);
@@ -278,6 +188,40 @@ public class RepresentacionAvanzada extends Representacion
 	}
 
 	public void pintar(Graphics2D g, Tramo tramo, String tipo) {
+		// almacena posiciones de los nodos
+		Posicion posnodo1 = tramo.getNodoInicial().getPos();
+		Posicion posnodo2 = tramo.getNodoFinal().getPos();
+
+		if (tipo == null) {
+			dibujarCarretera(g, tramo);
+		} else if (tipo.compareTo("leisure") == 0) {
+			g.setColor(Color.green);
+			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
+					.getLat()), x_MapaARep(posnodo2.getLon()),
+					y_MapaARep(posnodo2.getLat()));
+		} else if (tipo.compareTo("amenity") == 0) {
+			g.setColor(Color.gray);
+			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
+					.getLat()), x_MapaARep(posnodo2.getLon()),
+					y_MapaARep(posnodo2.getLat()));
+		} else if (tipo.compareTo("highway") == 0) {
+			dibujarCarretera(g, tramo);
+			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
+					.getLat()), x_MapaARep(posnodo2.getLon()),
+					y_MapaARep(posnodo2.getLat()));
+		} else if (tipo.compareTo("manmade") == 0) {
+			g.setColor(Color.pink);
+			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
+					.getLat()), x_MapaARep(posnodo2.getLon()),
+					y_MapaARep(posnodo2.getLat()));
+		} else {
+			dibujarCarretera(g, tramo);
+		}
+
+	}
+
+	private void dibujarCarretera(Graphics2D g, Tramo tramo) {
+
 		// almacena posiciones de los nodos
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
@@ -362,16 +306,16 @@ public class RepresentacionAvanzada extends Representacion
 		}
 		g.drawLine((int) (posx1 + tamaño_carril / zoom * -(carriles_vuelta)
 				* Math.sin(angulo)), (int) (posy1 + tamaño_carril / zoom
-				* -(carriles_vuelta ) * (-Math.cos(angulo))),
-				(int) (posx1 + tamaño_carril / zoom * (carriles_ida )
+				* -(carriles_vuelta) * (-Math.cos(angulo))),
+				(int) (posx1 + tamaño_carril / zoom * (carriles_ida)
 						* Math.sin(angulo)), (int) (posy1 + tamaño_carril
-						/ zoom * (carriles_ida ) * (-Math.cos(angulo))));
-		g.drawLine((int) (posx2 + tamaño_carril / zoom * -(carriles_vuelta )
+						/ zoom * (carriles_ida) * (-Math.cos(angulo))));
+		g.drawLine((int) (posx2 + tamaño_carril / zoom * -(carriles_vuelta)
 				* Math.sin(angulo)), (int) (posy2 + tamaño_carril / zoom
-				* -(carriles_vuelta ) * (-Math.cos(angulo))),
-				(int) (posx2 + tamaño_carril / zoom * (carriles_ida )
+				* -(carriles_vuelta) * (-Math.cos(angulo))),
+				(int) (posx2 + tamaño_carril / zoom * (carriles_ida)
 						* Math.sin(angulo)), (int) (posy2 + tamaño_carril
-						/ zoom * (carriles_ida ) * (-Math.cos(angulo))));
+						/ zoom * (carriles_ida) * (-Math.cos(angulo))));
 	}
 
 	@Override
@@ -409,12 +353,11 @@ public class RepresentacionAvanzada extends Representacion
 					this.pintar(g, tramo, null);
 					Polygon p = generarAreaTramo(tramo);
 					Color colorTransparente = new Color((float) 1, (float) 0.5,
-						(float) 0, (float) 0.7);
+							(float) 0, (float) 0.7);
 					g.setColor(colorTransparente);
 					g.fillPolygon(p);
-				}
-				catch(ArithmeticException e) {
-					
+				} catch (ArithmeticException e) {
+
 				}
 			}
 		}
@@ -488,17 +431,15 @@ public class RepresentacionAvanzada extends Representacion
 		return p;
 	}
 
-	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) 
-	{
+	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
 		AffineTransform rot = new AffineTransform();
 
-		//Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
+		// Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
 		BufferedImage rect = coches[vehiculo.getId() % 7];
 
-		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
@@ -508,30 +449,30 @@ public class RepresentacionAvanzada extends Representacion
 			if ((tramo.getNodoInicial().getPos().getLon() - tramo
 					.getNodoFinal().getPos().getLon()) < 0) {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* (-Math.sin(tramo.getAngulo())));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* Math.cos(tramo.getAngulo()));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* (-Math.sin(tramo.getAngulo())));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* Math.cos(tramo.getAngulo()));
 				rot.rotate(vehiculo.getTramo().getAngulo());
 			} else {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 1 )
+						/ zoom * (vehiculo.getCarril() - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				rot.rotate(Math.PI + vehiculo.getTramo().getAngulo());
 			}
@@ -541,30 +482,30 @@ public class RepresentacionAvanzada extends Representacion
 			if ((tramo.getNodoInicial().getPos().getLon() - tramo
 					.getNodoFinal().getPos().getLon()) > 0) {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* (-Math.sin(tramo.getAngulo())));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  )
+						/ zoom * (vehiculo.getCarril())
 						* Math.cos(tramo.getAngulo()));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* (-Math.sin(tramo.getAngulo())));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
+						/ zoom * (vehiculo.getCarril())
 						* Math.cos(tramo.getAngulo()));
 				rot.rotate(vehiculo.getTramo().getAngulo());
 			} else {
 				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
+						/ zoom * (vehiculo.getCarril() - 1)
 						* Math.sin(tramo.getAngulo()));
 				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 1 )
+						/ zoom * (vehiculo.getCarril() - 1)
 						* (-Math.cos(tramo.getAngulo())));
 				rot.rotate(Math.PI + vehiculo.getTramo().getAngulo());
 			}
@@ -573,19 +514,36 @@ public class RepresentacionAvanzada extends Representacion
 		}
 		AffineTransform trans = new AffineTransform();
 		AffineTransform zoom = new AffineTransform();
-		zoom.scale(1/this.zoom, 1/this.zoom);
+		zoom.scale(1 / this.zoom, 1 / this.zoom);
 		rot.rotate(vehiculo.getTramo().getAngulo());
 		rot.concatenate(zoom);
 		trans.translate(posX, posY);
 		trans.concatenate(rot);
 		AffineTransform temp = g.getTransform();
 		g.transform(trans);
-		//g.draw(rect);
+		// g.draw(rect);
 		g.drawImage(rect, -5, -2, 4, 2, null);
 		g.setTransform(temp);
 
-		//g.drawRect(posX - 1, posY - 1, 2, 2);
+		// g.drawRect(posX - 1, posY - 1, 2, 2);
 
 	}
+	
+	private BufferedImage cargarImagen(String nombre) {
+		BufferedImage imagen;
+		try {
+			ClassLoader cl = this.getClass().getClassLoader();
+			imagen = ImageIO.read(new File((cl.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/" + nombre)).getFile()));
+			
+		} catch (IOException e) {
+			System.out.println(nombre);
+			return null;
+		}catch (NullPointerException e) {
+			System.out.println(nombre);
+			return null;
+		}
+		return imagen;
 		
+	}
+
 }
