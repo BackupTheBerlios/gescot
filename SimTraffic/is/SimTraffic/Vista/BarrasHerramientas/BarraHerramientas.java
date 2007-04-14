@@ -17,6 +17,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaItinerario;
 import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarYMover;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
@@ -124,6 +125,19 @@ public class BarraHerramientas extends Barra {
 			//Faltaría por ajustar la escucha de teclado y el numero (ahora 0) para el cursor.
 		boton.addMouseMotionListener(new EscuchaAyuda("Mostrar itinerario entre 2 nodos", ventana));
 		grupoherramientas.add(boton);
+		
+		//Nuevo seleccionar
+		boton = (JToggleButton) añadirBoton("seleccionar-1.png", "seleccionar-2.png",
+				"Seleccionar", new AccionSobreMapa(new MLSeleccionarYMover(
+						modelo, controlador, ventana.getPanel_mapa()), ventana,
+						ventana.getEscuchaTeclado(), -1), true);
+		boton.addActionListener(new AccionBarra(ventana, ventana
+				.getBarraSeleccionar()));
+		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí y seleccione uno de los tres botones superiores de selección para elegir el tipo de la misma.", ventana));
+		boton.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(boton);
+		
+		
 	}
 
 }
