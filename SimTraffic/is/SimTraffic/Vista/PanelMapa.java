@@ -173,7 +173,6 @@ public class PanelMapa extends JPanel
 		posLontemp = 0;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
-	//	añadirMenuEmergente();
 	}
 
 	/**
@@ -190,19 +189,6 @@ public class PanelMapa extends JPanel
 		recrear = true;
 	}
 
-	/*public void añadirMenuEmergente(){
-		emergente = new JPopupMenu();
-		this.add(emergente,BorderLayout.EAST);
-		JMenuItem moverItem = new JMenuItem("Mover");
-		JMenuItem eliminarItem = new JMenuItem("Eliminar");
-		JMenuItem propiedadesItem = new JMenuItem("Porpiedades");
-		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,this,emergente.getX(), emergente.getY()));
-		emergente.add(moverItem);
-		emergente.add(eliminarItem);
-		emergente.add(propiedadesItem);
-		
-	}*/
-	
 	public JPopupMenu getMenuEmergente(){
 		return emergente;
 	}
