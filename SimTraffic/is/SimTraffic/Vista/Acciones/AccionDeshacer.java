@@ -18,10 +18,25 @@ import java.awt.event.ActionListener;
  */
 public class AccionDeshacer implements ActionListener {
 
-	IControlador controlador;
+	/**
+	 * Controlador de la aplicación en el MVC
+	 */
+	private IControlador controlador;
 
-	PanelMapa panel_mapa;
+	/**
+	 * Panel con la representación del mapa
+	 */
+	private PanelMapa panel_mapa;
 
+	/**
+	 * Único constructur de la clase.
+	 * <p>
+	 * 
+	 * @param controlador
+	 *            IControlador correspondiente al controlador de la aplicación
+	 * @param panel_mapa
+	 *            Panel de representación del mapa
+	 */
 	public AccionDeshacer(IControlador controlador, PanelMapa panel_mapa) {
 		this.controlador = controlador;
 		this.panel_mapa = panel_mapa;
@@ -30,8 +45,7 @@ public class AccionDeshacer implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (controlador != null)
 			controlador.deshacer();
-		if (panel_mapa != null)
-		{
+		if (panel_mapa != null) {
 			panel_mapa.recrearMapa();
 			panel_mapa.repaint();
 		}

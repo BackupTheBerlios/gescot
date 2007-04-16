@@ -25,22 +25,47 @@ public class AccionCambiarRep implements ActionListener {
 	private PanelMapa panel;
 
 	/**
-	 * Clase de representacion del mapa que se utilizara
+	 * Una de las representaciones entra las que se alterna
 	 */
-	private Representacion rep;
+	private Representacion rep1;
 
-	public AccionCambiarRep(PanelMapa panel, Representacion rep) {
+	/**
+	 * La otra representación entre la que se alterna
+	 */
+	private Representacion rep2;
+
+	/**
+	 * Booleano para poder saber cual de las representaciones se esta utilizando
+	 */
+	boolean cambio;
+
+	public AccionCambiarRep(PanelMapa panel, Representacion rep1,
+			Representacion rep2) {
 		this.panel = panel;
-		this.rep = rep;
-		
+		this.rep1 = rep1;
+		this.rep2 = rep2;
+		cambio = false;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		if (rep != null) {
-			panel.setRepresentacion(rep);
-			panel.recrear();
-			panel.recrearMapa();
-			panel.repaint();
+		// TODO posiblemente se podría añadir un menú, pero así funciona bien
+		if (!cambio) {
+			if (rep1 != null) {
+				panel.setRepresentacion(rep1);
+				panel.recrear();
+				panel.recrearMapa();
+				panel.repaint();
+			}
+			cambio = true;
+		} else {
+			if (rep2 != null) {
+				panel.setRepresentacion(rep2);
+				panel.recrear();
+				panel.recrearMapa();
+				panel.repaint();
+			}
+			cambio = false;
+
 		}
 	}
 

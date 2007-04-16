@@ -42,21 +42,22 @@ public class BarraSuperior extends JPanel {
 		Barra archivoTB = new Barra();
 
 		JButton nuevoTB = (JButton) archivoTB.añadirBoton("document-new.png",
-				"document-new2.png", "Nuevo mapa", new AccionNuevo(modelo, ventana.getPanel_mapa()), false);
-		nuevoTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para crear un nuevo mapa.", ventana));
-
+				"document-new2.png", "Nuevo mapa", new AccionNuevo(modelo,
+						ventana.getPanel_mapa()), false);
+		nuevoTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para crear un nuevo mapa.", ventana));
 
 		JButton cargarTB = (JButton) archivoTB.añadirBoton("document-open.png",
 				"document-open2.png", "Cargar mapa", new AccionCargar(
 						controlador, ventana.getPanel_mapa()), false);
-		cargarTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cargar un mapa.", ventana));
+		cargarTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para cargar un mapa.", ventana));
 
-
-		JButton guardarTB = (JButton) archivoTB.añadirBoton("document-save.png",
-				"document-save2.png", "Guardar mapa", new AccionGuardar(
-						controlador), false);
-		guardarTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para guardar el mapa actual.", ventana));
-
+		JButton guardarTB = (JButton) archivoTB.añadirBoton(
+				"document-save.png", "document-save2.png", "Guardar mapa",
+				new AccionGuardar(controlador), false);
+		guardarTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para guardar el mapa actual.", ventana));
 
 		return archivoTB;
 	}
@@ -68,27 +69,32 @@ public class BarraSuperior extends JPanel {
 		JButton cortarTB = (JButton) edicionTB.añadirBoton("edit-cut.png",
 				"edit-cut2.png", "Cortar", new AccionCortar(modelo,
 						controlador, ventana.getPanel_mapa()), false);
-		cortarTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cortar los elementos seleccionados.", ventana));
-
+		cortarTB
+				.addMouseMotionListener(new EscuchaAyuda(
+						"Pulse aquí para cortar los elementos seleccionados.",
+						ventana));
 
 		JButton copiarTB = (JButton) edicionTB.añadirBoton("edit-copy.png",
 				"edit-copy2.png", "Copiar", new AccionCopiar(modelo,
 						controlador, ventana.getPanel_mapa()), false);
-		copiarTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para copiar los elementos seleccionados.", ventana));
-
+		copiarTB
+				.addMouseMotionListener(new EscuchaAyuda(
+						"Pulse aquí para copiar los elementos seleccionados.",
+						ventana));
 
 		JButton pegarTB = (JButton) edicionTB.añadirBoton("edit-paste.png",
 				"edit-paste2.png", "Pegar", new AccionSobreMapa(new MLPegar(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), false);
-		pegarTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para pegar los elementos cortados o copiados.", ventana));
-
+		pegarTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para pegar los elementos cortados o copiados.",
+				ventana));
 
 		JButton deshacerTB = (JButton) edicionTB.añadirBoton("edit-undo.png",
 				"edit-undo2.png", "Deshacer", new AccionDeshacer(controlador,
 						ventana.getPanel_mapa()), false);
-		deshacerTB.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para deshacer la última acción.", ventana));
-
+		deshacerTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para deshacer la última acción.", ventana));
 
 		return edicionTB;
 	}
@@ -97,16 +103,17 @@ public class BarraSuperior extends JPanel {
 			Ventana ventana) {
 		Barra zoomTB = new Barra();
 
-		JButton zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png", "zoom_in2.png",
-				"Aumentar tamaño de la representación", new AccionZoom(ventana
-						.getPanel_mapa(), 0.5), false);
-		zoomin.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para acercar el zoom.", ventana));
+		JButton zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png",
+				"zoom_in2.png", "Aumentar tamaño de la representación",
+				new AccionZoom(ventana.getPanel_mapa(), 0.5), false);
+		zoomin.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para acercar el zoom.", ventana));
 
-
-		JButton zoomout = (JButton) zoomTB.añadirBoton("zoom_out.png", "zoom_out2.png",
-				"Disminuir tamaño de la representación", new AccionZoom(ventana
-						.getPanel_mapa(), 2), false);
-		zoomout.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para alejar el zoom.", ventana));
+		JButton zoomout = (JButton) zoomTB.añadirBoton("zoom_out.png",
+				"zoom_out2.png", "Disminuir tamaño de la representación",
+				new AccionZoom(ventana.getPanel_mapa(), 2), false);
+		zoomout.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para alejar el zoom.", ventana));
 
 		return zoomTB;
 	}
@@ -115,15 +122,19 @@ public class BarraSuperior extends JPanel {
 			IModelo modelo, Ventana ventana) {
 		Barra esto = new Barra();
 
-		JButton boton1 = (JButton) esto.añadirBoton("simular.png", "simular2.png",
-				"Comenzar simulación", new AccionComenzarSimulacion(
-						controlador, modelo), false);
-		boton1.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para comenzar una nueva simulación sobre el mapa actual.", ventana));
+		JButton boton1 = (JButton) esto.añadirBoton("simular.png",
+				"simular2.png", "Comenzar simulación",
+				new AccionComenzarSimulacion(controlador), false);
+		boton1
+				.addMouseMotionListener(new EscuchaAyuda(
+						"Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",
+						ventana));
 
 		JButton boton2 = (JButton) esto.añadirBoton("parar.png", "parar2.png",
-				"Detener simulación", new AccionDetenerSimulacion(controlador,
-						modelo), false);
-		boton2.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para parar la simulación actual.", ventana));
+				"Detener simulación", new AccionDetenerSimulacion(controlador),
+				false);
+		boton2.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para parar la simulación actual.", ventana));
 
 		return esto;
 	}

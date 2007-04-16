@@ -6,24 +6,38 @@ import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
-
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que extiende ActionListener para permitir a los botones o elementos del
+ * menú eliminar un nodo del mapa.
+ * <p>
+ * <p>
+ * Esta clase tomara el modelo, el controlador y el panel con la representación
+ * del mapa como parámetros en su construcutor y lo almacenará para que cuando
+ * se ejecute la acción poder llamar a la herramienta HEliminarNodo encargada
+ * eliminar efectivametne el nodo del mapa.
+ * 
+ * @author Grupo ISTrafico
+ * 
+ */
 public class AccionEliminarNodo extends AccionesPopUpMenu {
 
-		public AccionEliminarNodo(IModelo modelo, IControlador controlador, PanelMapa panel_mapa) {
-			super(modelo,controlador,panel_mapa);
-		}
+	public AccionEliminarNodo(IModelo modelo, IControlador controlador,
+			PanelMapa panel_mapa) {
+		super(modelo, controlador, panel_mapa);
+	}
 
-		public void actionPerformed(ActionEvent arg0) {
-			Nodo seleccionado = buscarNodo(panel_mapa.getPosEx(), panel_mapa.getPosEy());
-			if(seleccionado != null){
-					panel_mapa.getMenuEmergente().setVisible(false);
-					controlador.herramienta(new HEliminarNodo(seleccionado));
-					panel_mapa.sugerir(null);
-					panel_mapa.recrearMapa();
-					panel_mapa.repaint();
-			}
+	public void actionPerformed(ActionEvent arg0) {
+		Nodo seleccionado = buscarNodo(panel_mapa.getPosEx(), panel_mapa
+				.getPosEy());
+		if (seleccionado != null) {
+			panel_mapa.getMenuEmergente().setVisible(false);
+			controlador.herramienta(new HEliminarNodo(seleccionado));
+			panel_mapa.sugerir(null);
+			panel_mapa.recrearMapa();
+			panel_mapa.repaint();
+		}
 	}
 
 }

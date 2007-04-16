@@ -9,6 +9,7 @@ import is.SimTraffic.Vista.Acciones.*;
 import is.SimTraffic.Vista.BarrasHerramientas.*;
 import is.SimTraffic.Vista.EscuchasRaton.*;
 import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,7 +18,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -98,9 +98,10 @@ public class Ventana extends JFrame {
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
 
 	MLSeleccionarTramos escuchaSeleccionTramos;
-	
-	//En prueba
+
+	// En prueba
 	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;
+
 	//
 
 	EscuchaTeclado escuchaTeclado;
@@ -158,12 +159,13 @@ public class Ventana extends JFrame {
 				panel_mapa);
 		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo,
 				controlador, panel_mapa);
-		
-		//En pruebas
-		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo, controlador, panel_mapa);
+
+		// En pruebas
+		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
+				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
 		//
-		
+
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccion);
 
 		crearBotonesSuperiores();
@@ -177,16 +179,19 @@ public class Ventana extends JFrame {
 		panel.setFocusable(true);
 	}
 
-	public void añadirMenuEmergente(){
+	public void añadirMenuEmergente() {
 		JPopupMenu emergente = new JPopupMenu("menuEmergente");
-		panel_mapa.add(emergente,BorderLayout.NORTH);
+		panel_mapa.add(emergente, BorderLayout.NORTH);
 		JMenuItem eliminarItem = new JMenuItem("Eliminar");
-		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,controlador,panel_mapa));
-	//	moverItem.addActionListener(new AccionMoverNodo(modelo,controlador,panel_mapa)));
+		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
+				controlador, panel_mapa));
+		// moverItem.addActionListener(new
+		// AccionMoverNodo(modelo,controlador,panel_mapa)));
 		emergente.add(eliminarItem);
 		panel_mapa.setMenuEmergente(emergente);
-		
+
 	}
+
 	/**
 	 * Crea la barra de menús.
 	 */
@@ -216,7 +221,8 @@ public class Ventana extends JFrame {
 		menuBar.add(archivoMenu);
 
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
-		nuevoMapaMenuItem.addActionListener(new AccionNuevo(modelo, panel_mapa));
+		nuevoMapaMenuItem
+				.addActionListener(new AccionNuevo(modelo, panel_mapa));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		archivoMenu.add(nuevoMapaMenuItem);
 
@@ -305,15 +311,22 @@ public class Ventana extends JFrame {
 				controlador, panel_mapa), this, escuchaTeclado, -1));
 		moverMenuItem.setText("Mover...");
 		edicionMenu.add(moverMenuItem);
-		
+
 		JMenuItem lineasBusMenuItem = new JMenuItem();
-		lineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,modelo,this));
+		lineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
+				modelo, this));
 		lineasBusMenuItem.setText("Ver Lineas Autobuses");
-		//edicionMenu.add(lineasBusMenuItem);
+		// edicionMenu.add(lineasBusMenuItem);
 	}
 
 	/**
-	 * 
+	 * Método que crea el menú con el nombre de "Visualiazación".
+	 * <p>
+	 * En este menú se encuentran distinas herramientas relaciónadas con la
+	 * visualización del mapa por el usuario. Consta de las siguientes opciones: *
+	 * zoom in: para acercar la representacion * zoom out: para alejarla *
+	 * cambiar representacion: permite alternar entre las distintas
+	 * representaciones disponibles
 	 * 
 	 */
 	public void crearMenuVis() {
@@ -334,9 +347,8 @@ public class Ventana extends JFrame {
 		menuVis.addSeparator();
 
 		JMenuItem cambiarRep = new JMenuItem();
-		// TODO falta que se pueda elegir entre representaciones
 		cambiarRep.addActionListener(new AccionCambiarRep(panel_mapa,
-				new RepresentacionAvanzada()));
+				new RepresentacionAvanzada(), new RepresentacionSimple()));
 		cambiarRep.setText("Cambiar representación");
 		menuVis.add(cambiarRep);
 	}
@@ -412,8 +424,7 @@ public class Ventana extends JFrame {
 		simMenu.addSeparator();
 
 		JMenuItem comenarSim = new JMenuItem();
-		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador,
-				modelo));
+		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador));
 		comenarSim.setText("Comenzar");
 		simMenu.add(comenarSim);
 
@@ -424,8 +435,7 @@ public class Ventana extends JFrame {
 		simMenu.add(pausarSim);
 
 		JMenuItem terminarSim = new JMenuItem();
-		// TODO falta el action listener
-		terminarSim.addActionListener(null);
+		terminarSim.addActionListener(new AccionDetenerSimulacion(controlador));
 		terminarSim.setText("Detener");
 		simMenu.add(terminarSim);
 
@@ -446,20 +456,16 @@ public class Ventana extends JFrame {
 		abrirAyuda.setText("Abrir ayuda");
 		ayudaMenu.add(abrirAyuda);
 
-		
 		JMenuItem log = new JMenuItem();
 		log.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				new Log(controlador.getHistorial());
 			}
 		});
 		log.setText("Mostrar historial de eventos");
 		ayudaMenu.add(log);
-		
-		
-		
-		
+
 		ayudaMenu.addSeparator();
 
 		JMenuItem acercaDE = new JMenuItem();
@@ -499,10 +505,8 @@ public class Ventana extends JFrame {
 
 		crearBarraPropiedades();
 
-	
 		superior_abajo.setLayout(new BoxLayout(superior_abajo,
 				BoxLayout.LINE_AXIS));
-		
 
 	}
 
@@ -522,21 +526,20 @@ public class Ventana extends JFrame {
 	 * Crea la barra de estado
 	 * 
 	 */
-	public void crearBarraEstado() 
-	{
+	public void crearBarraEstado() {
 		JPanel barraEstado = new JPanel(new BorderLayout());
 		JPanel barraPosicion = new JPanel();
 		barraPosicion.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 		JPanel barraAyudaDinamica = new JPanel();
 		barraAyudaDinamica.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
-		
+
 		JLabel etiquetaPosicion = new JLabel("Posición: ");
 		JLabel puntitos = new JLabel(" : ");
 		posicionX = new JLabel();
 		posicionY = new JLabel();
 		ayudaDinamica = new JTextField("  Ayuda", 70);
 		ayudaDinamica.setEditable(false);
-		
+
 		barraAyudaDinamica.add(ayudaDinamica);
 		barraPosicion.add(etiquetaPosicion);
 		barraPosicion.add(posicionX);
@@ -593,15 +596,13 @@ public class Ventana extends JFrame {
 		superior_abajo.add(bar);
 		repaint();
 	}
-	
-	public void ocultarBarraSuperior(){
+
+	public void ocultarBarraSuperior() {
 		superior_abajo.removeAll();
 		superior.remove(superior_abajo);
 		panel_añadido = false;
 		repaint();
 	}
-	
-	
 
 	public JToolBar getBarraSeleccionar() {
 		return barraSeleccionar;
@@ -635,10 +636,9 @@ public class Ventana extends JFrame {
 		return escuchaTeclado;
 	}
 
-	public void cambiarAyuda(String string) 
-	{
+	public void cambiarAyuda(String string) {
 		ayudaDinamica.setText(string);
-		//ayudaDinamica.setVisible(true);
+		// ayudaDinamica.setVisible(true);
 		ayudaDinamica.repaint();
 	}
 }
