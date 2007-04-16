@@ -40,6 +40,7 @@ public class BarraHerramientas extends Barra {
 				"Seleccionar y Mover", new AccionSobreMapa(new MLSeleccionarYMover(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
 		boton.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(boton);
@@ -84,18 +85,22 @@ public class BarraHerramientas extends Barra {
 				.getBarraCrearTramo()));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", ventana));
 		grupoherramientas.add(boton);
-
+		
+		//Eliminar nodo.
 		boton = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
 				new AccionSobreMapa(new MLEliminarNodo(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 2), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", ventana));
 		grupoherramientas.add(boton);
 
+		//Eliminar tramo.
 		boton = (JToggleButton) añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
 				"Eliminar Tramo", new AccionSobreMapa(new MLEliminarTramo(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 3), true);		
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", ventana));
 		grupoherramientas.add(boton);
 
@@ -104,6 +109,7 @@ public class BarraHerramientas extends Barra {
 				new AccionSobreMapa(new MLAñadirLineaAutobus(modelo,
 						controlador, ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 4), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
 		grupoherramientas.add(boton);
 
@@ -112,6 +118,7 @@ public class BarraHerramientas extends Barra {
 				new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 5), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo semáforo.", ventana));
 		grupoherramientas.add(boton);
 
@@ -120,12 +127,14 @@ public class BarraHerramientas extends Barra {
 				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 6), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva vía.", ventana));
 		grupoherramientas.add(boton);
 		
 		//Añadir Buscar
 		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
 				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
 		grupoherramientas.add(boton);
 		
@@ -134,6 +143,7 @@ public class BarraHerramientas extends Barra {
 				new AccionSobreMapa(new MLEscuchaItinerario(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 0), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
 			//Faltaría por ajustar la escucha de teclado y el numero (ahora 0) para el cursor.
 		boton.addMouseMotionListener(new EscuchaAyuda("Mostrar itinerario entre 2 nodos", ventana));
 		grupoherramientas.add(boton);
