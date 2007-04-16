@@ -34,7 +34,19 @@ public class BarraHerramientas extends Barra {
 		super(JToolBar.VERTICAL);
 		JToggleButton boton;
 		ButtonGroup grupoherramientas = new ButtonGroup();
-		boton = (JToggleButton) añadirBoton("seleccionar-1.png", "seleccionar-2.png",
+		
+		//Seleccionar y Mover.
+		boton = (JToggleButton) añadirBoton("seleccionarYMover.png", "seleccionarYMover2.png",
+				"Seleccionar y Mover", new AccionSobreMapa(new MLSeleccionarYMover(
+						modelo, controlador, ventana.getPanel_mapa()), ventana,
+						ventana.getEscuchaTeclado(), -1), true);
+		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
+		boton.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(boton);
+		
+		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
+		
+		/*boton = (JToggleButton) añadirBoton("seleccionar-1.png", "seleccionar-2.png",
 				"Seleccionar", new AccionSobreMapa(new MLSeleccionarNodos(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), true);
@@ -49,7 +61,7 @@ public class BarraHerramientas extends Barra {
 						.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), true);
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse en los elementos seleccionados y arrastre el ratón hasta que los elementos estén en la posición deseada.", ventana));
-		grupoherramientas.add(boton);
+		grupoherramientas.add(boton);*/
 		
 		boton = (JToggleButton) añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
 				"Añadir Nodo", new AccionSobreMapa(new MLAñadirNodo(modelo,
@@ -124,17 +136,6 @@ public class BarraHerramientas extends Barra {
 						ventana.getEscuchaTeclado(), 0), true);
 			//Faltaría por ajustar la escucha de teclado y el numero (ahora 0) para el cursor.
 		boton.addMouseMotionListener(new EscuchaAyuda("Mostrar itinerario entre 2 nodos", ventana));
-		grupoherramientas.add(boton);
-		
-		//Nuevo seleccionar
-		boton = (JToggleButton) añadirBoton("seleccionar-1.png", "seleccionar-2.png",
-				"Seleccionar", new AccionSobreMapa(new MLSeleccionarYMover(
-						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), -1), true);
-		boton.addActionListener(new AccionBarra(ventana, ventana
-				.getBarraSeleccionar()));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí y seleccione uno de los tres botones superiores de selección para elegir el tipo de la misma.", ventana));
-		boton.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(boton);
 		
 		
