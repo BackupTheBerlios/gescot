@@ -22,7 +22,11 @@ public class AccionBarra implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) 
 	{
-		panel.mostrar(barra);
+		if (barra != null){
+			panel.mostrar(barra);
+		} else {
+			panel.ocultar();
+		}
 	}
 	
 }
