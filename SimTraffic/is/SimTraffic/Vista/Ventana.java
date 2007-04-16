@@ -135,7 +135,7 @@ public class Ventana extends JFrame {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		setSize(800, 600);
-		setTitle("SimTraffic™ v1.0");
+		setTitle("SimTraffic?™ v1.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); // La ventana aparece
 		// maximizada.
@@ -593,6 +593,15 @@ public class Ventana extends JFrame {
 		superior_abajo.add(bar);
 		repaint();
 	}
+	
+	public void ocultarBarraSuperior(){
+		superior_abajo.removeAll();
+		superior.remove(superior_abajo);
+		panel_añadido = false;
+		repaint();
+	}
+	
+	
 
 	public JToolBar getBarraSeleccionar() {
 		return barraSeleccionar;
