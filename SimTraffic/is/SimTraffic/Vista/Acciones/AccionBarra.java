@@ -25,7 +25,7 @@ public class AccionBarra implements ActionListener {
 		if (barra != null){
 			panel.mostrar(barra);
 		} else {
-			panel.ocultar();
+			panel.ocultarBarraSuperior();
 		}
 	}
 	
