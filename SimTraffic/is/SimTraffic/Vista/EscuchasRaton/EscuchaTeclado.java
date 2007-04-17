@@ -6,11 +6,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * 
+ * Clase que implementa KeyListener.
+ * Se encarga de escuchar si se ha pulsado una tecla.
  * @author Grupo ISTrafico
  *
  */public class EscuchaTeclado implements KeyListener {
 
+	
+	/**
+	 * Panel del mapa
+	 */
 	PanelMapa panel;
 	
 	/**
@@ -18,6 +23,12 @@ import java.awt.event.KeyListener;
 	 */
 	EscuchaRaton escuchaANotificar;
 	
+	/**
+	 * Constructora de la Escucha de teclado. Se inicializan los valores
+	 * del panel y de la escucha
+	 * @param panel
+	 * @param escuchaANotificar
+	 */
 	public EscuchaTeclado(PanelMapa panel, EscuchaRaton escuchaANotificar){
 		this.panel = panel;
 		this.escuchaANotificar = escuchaANotificar;
