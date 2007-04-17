@@ -18,7 +18,7 @@ public class TipoNodoAmenityTest extends TestCase {
 			fail("Tipos con distintos tipos deberían ser diferentes");	
 	}
 	
-	public void testtraduciraOSMOSM()
+	public void testtraduciraOSM()
 	{
 		TipoNodoAmenity tipo1 = new TipoNodoAmenity("Parking");
 		TipoNodoAmenity tipo2= new TipoNodoAmenity("Parking");
