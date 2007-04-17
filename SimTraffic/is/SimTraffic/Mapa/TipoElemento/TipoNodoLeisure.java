@@ -113,6 +113,14 @@ public class TipoNodoLeisure implements ITipoElemento {
 		return s;
 	}
 	
+	public boolean equals(TipoNodoLeisure tipo)
+	{
+		if (this.tipo!=tipo.tipo) return false;
+		if (this.valorTipo!=tipo.valorTipo) return false;
+		return true;
+		
+	}
+	
 	/**
 	 * @param args
 	 */
