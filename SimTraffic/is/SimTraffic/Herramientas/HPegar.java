@@ -12,6 +12,13 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelMapa;
 
+/**
+ * Herramienta que se encarga de pegar una selección de elementos
+ * que esté en el portapapeles
+ * @author GrupoISTrafico
+ *
+ */
+
 public class HPegar implements IHerramienta {
 
 	
@@ -29,12 +36,20 @@ public class HPegar implements IHerramienta {
 	 */	
 	private Point2D puntoPegar;	
 	
+	/**
+	 * Constructora de la herramienta.
+	 * Se le pasa el punto en el que se va a pegar
+	 * @param puntoPegar
+	 */
 	public HPegar (Point2D puntoPegar) {
 		this.nodos = new ArrayList<Nodo>();
 		this.tramos = new ArrayList<Tramo>();
 		this.puntoPegar = puntoPegar;
 	}
-	
+	/**
+	 * Método deshacer que se encarga de eliminar del mapa 
+	 * los tramos y nodos que se han pegado
+	 */
 	public int deshacer(IModelo modelo) {
 		for (int i=0; i<tramos.size(); i++)
 			modelo.getMapa().eliminar(tramos.get(i));
@@ -43,6 +58,15 @@ public class HPegar implements IHerramienta {
 		return 0;
 	}
 
+	/**
+	 * Método hacer.
+	 * Si el portapapeles no está vacío, calcula la diferencia de la posición del
+	 * nodo de referencia almacenado al punto en el que se pega.
+	 * Se comienza introduciendo en el mapa los tramos que están en el portapapeles.
+	 * Si los nodos origen o destino de ese tramo no están en el mapa, se introducen.
+	 * Finalmente, se introducen los nodos del portapapeles que no estuvieran unidos
+	 * a ningún tramo cortado
+	 */
 	public int hacer(IModelo modelo) {
 		if (!modelo.getMapa().getPortapapeles().getNodosSeleccionados().isEmpty()) {
 			//nodos.clear();

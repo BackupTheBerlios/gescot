@@ -55,13 +55,21 @@ public class HMover implements IHerramienta{
 
 	}
 	
+	/**
+	 * Método que se encarga de calcular la diferencia entre los puntos de comienzo
+	 * del movimiento y el punto de destino.
+	 * @param puntoOrigen Punto desde el que se empieza a mover
+	 * @param puntoDestino Punto en el que termina el movimiento
+	 */
 	public void estableceInicioYFin(Point2D puntoOrigen, Point2D puntoDestino){
 		diferenciaX = puntoDestino.getX()-puntoOrigen.getX();
 		diferenciaY = puntoDestino.getY()-puntoOrigen.getY();
 	}
 	
 	/**
-	 * 
+	 * Método hacer.
+	 * Actualiza las posiciones de los nodos teniendo en cuenta el movimiento
+	 * que han sufrido
 	 */
 	public int hacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++) {
@@ -74,7 +82,9 @@ public class HMover implements IHerramienta{
 	}
 	
 	/**
-	 * 
+	 * Método deshacer.
+	 * Restaura las posiciones anteriores al movimiento de todos los nodos
+	 * afectados.
 	 */
 	public int deshacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++ ) {
