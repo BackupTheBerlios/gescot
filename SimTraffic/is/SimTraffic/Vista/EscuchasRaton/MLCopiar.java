@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Clase que extiende a la escucha de ratón. Se encarga de escuchar a 
+ * la acción copiar, que copia una selección de elementos al portapapeles 
  * @author Grupo ISTrafico
  *
  */
