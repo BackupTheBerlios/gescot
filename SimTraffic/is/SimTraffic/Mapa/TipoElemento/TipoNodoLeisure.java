@@ -1,11 +1,11 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoNodoLeisure implements ITipoElemento {
+public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 
 	/**
 	 * Características de Nodos asociadas a  Recreo (Leisure)
 	 */
-	private String tipo="leisure";
+	//private String tipo="leisure";
 	
 	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a un lugar de recreo)
@@ -24,18 +24,20 @@ public class TipoNodoLeisure implements ITipoElemento {
 	 common	Plazas
 	 User Defined	Definido por el usuario
 	 */
-	private String valorTipo;
+	//private String valorTipo;
 	
 	/**
 	 * Tabla de 2 columnas utilizada para traducir términos relativos a valores de este tipo de elemento: 
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
-	private String[][] tablaTraduccion;
+	//private String[][] tablaTraduccion;
 	
 	public TipoNodoLeisure(String vTipo) {
-		tablaTraduccion=crearTablaTraduccion();
-		String valorOSM =traduciraOSM(vTipo);
-		this.valorTipo = valorOSM;
+		super(vTipo);
+		tipo="leisure";
+		//tablaTraduccion=crearTablaTraduccion();
+		//String valorOSM =traduciraOSM(vTipo);
+		//this.valorTipo = valorOSM;
 	}
 	
 	/**
@@ -53,12 +55,13 @@ public class TipoNodoLeisure implements ITipoElemento {
 									};
 		return tTraduccion;
 	}
-	
+	/*
 	/**
 	 * Método que traduce de las palabras utilizadas por el usuario (castellano) 
 	 * a las palabras que utiliza el estándar osm (en inglés). Si no encuentra la 
 	 * traducción devuelve la palabra dada.
 	 */
+	/*
 	public String traduciraOSM(String vTipo) {
 		String traducido=vTipo;
 		
@@ -79,6 +82,7 @@ public class TipoNodoLeisure implements ITipoElemento {
 	 * Método que traduce de las palabras utilizadas por el estándar osm (en inglés) 
 	 * a las palabras que utiliza el usuario (en castellano).
 	 */
+	/*
 	public String traduciraCastellano(String vTipo) {
 		
 		String traducido=vTipo;
@@ -124,10 +128,10 @@ public class TipoNodoLeisure implements ITipoElemento {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 	public String getTipoCastellano() {
 		return "Tiempo Libre";

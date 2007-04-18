@@ -1,11 +1,11 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoViaHighway implements ITipoElemento {
+public class TipoViaHighway extends TipoElemento implements ITipoElemento {
 
 	/**
 	 * Características de Tipo de Vías asociadas a Carreteras (Highway)
 	 */
-	private String tipo="highway";
+	//private String tipo="highway";
 	
 	/**
 	 *  Palabras reservadas para los valores concretos de osm (un tipo de carretera para una vía)
@@ -28,32 +28,34 @@ public class TipoViaHighway implements ITipoElemento {
 	 	steps	Tramos de escaleras (en vías para uso de peatones)	
 	 	User Defined
 	 */
-	private String valorTipo;
+	//private String valorTipo;
 	
 	public TipoViaHighway(String valorTipo) {
+		super(valorTipo);
+		tipo="highway";
 		// TODO Auto-generated constructor stub
-		this.valorTipo = valorTipo;
+		//this.valorTipo = valorTipo;
 	}
 	
 	/**
 	 * Método que traduce de las palabras utilizadas por el usuario (castellano) 
 	 * a las palabras que utiliza el estándar osm (en inglés).
 	 */
-	public String traduciraOSM(String valorTipo) {
+	/*public String traduciraOSM(String valorTipo) {
 		String traducido=valorTipo;
 		/*if (valorTipo.equals("")) traducido="";
 		else if (valorTipo.equals("Mini-rotonda")) traducido="mini_roundabout";
-		*/
+		
 		return traducido;
-	}
+	}*/
 	
 	/**
 	 * Método que traduce de las palabras utilizadas por el estándar osm (en inglés) 
 	 * a las palabras que utiliza el usuario (en castellano).
 	 */
-	public String traduciraCastellano(String valorTipo) {
+	/*public String traduciraCastellano(String valorTipo) {
 		return null;
-	}
+	}*/
 	/**
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
@@ -79,7 +81,7 @@ public class TipoViaHighway implements ITipoElemento {
 									};
 		return tTraduccion;
 	}
-
+/*
 	public String getTipo() {
 		return tipo;
 	}
@@ -96,6 +98,7 @@ public class TipoViaHighway implements ITipoElemento {
 	/**
 	 * 
 	 */
+	/*
 	public void setValorTipo(String valorTipo) {
 		this.valorTipo=valorTipo;
 	}
@@ -103,10 +106,11 @@ public class TipoViaHighway implements ITipoElemento {
 	/**
 	 * @param args
 	 */
+	/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 	public String getTipoCastellano() {
 		return "Carretera";
