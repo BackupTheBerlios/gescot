@@ -3,9 +3,15 @@ package is.SimTraffic.jUnit.Mapa.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import junit.framework.TestCase;
 
-
+/**
+ * Clase JUnit para probar la clase TipoNodoAmenity
+ */
 public class TipoNodoAmenityTest extends TestCase {
 
+	/**
+	 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity.equals(Object)'
+	 * Se comprueba que dos nodos son iguales
+	 */
 	public void testEqualsObject() {
 		TipoNodoAmenity tipo1 = new TipoNodoAmenity("Parking");
 		TipoNodoAmenity tipo2= new TipoNodoAmenity("Parking");
@@ -17,7 +23,10 @@ public class TipoNodoAmenityTest extends TestCase {
 		if (tipo1.equals(tipo3))
 			fail("Tipos con distintos tipos deberían ser diferentes");	
 	}
-	
+	/**
+	 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity.testtraduciraOSM'
+	 * Se comprueba que dos nodos obtienen la misma traducion OSM
+	 */
 	public void testtraduciraOSM()
 	{
 		TipoNodoAmenity tipo1 = new TipoNodoAmenity("Parking");
@@ -30,6 +39,10 @@ public class TipoNodoAmenityTest extends TestCase {
 		if (tipo1.traduciraOSM(tipo1.getValorTipo())==tipo3.traduciraOSM(tipo3.getValorTipo()))
 			fail("Los tipos deberian tener una traduccion distinta");
 	}
+	/**
+	 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity.testtraduciraCastellano'
+	 * Se comprueba que dos nodos obtienen la misma traducion a castellano
+	 */
 	public void testtraduciraCastellano()
 	{
 		TipoNodoAmenity tipo1 = new TipoNodoAmenity("Parking");

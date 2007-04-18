@@ -1,21 +1,21 @@
 package is.SimTraffic.jUnit.Mapa.TipoElemento;
 
-import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
 import junit.framework.TestCase;
 
 /**
- * Clase JUnit para probar la clase TipoNodoHigway
+ * Clase JUnit para probar la clase TipoNodoManMade
  */
-public class TipoNodoHigwayTest extends TestCase {
+public class TipoNodoManMadeTest extends TestCase {
 
-	/**
-	 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoHigway.equals(Object)'
-	 * Se comprueba que dos nodos son iguales
-	 */
+		/**
+		 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade.equals(Object)'
+		 * Se comprueba que dos nodos son iguales
+		 */
 		public void testEqualsObject() {
-			TipoNodoHighway tipo1 = new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo2= new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo3= new TipoNodoHighway("Stop");
+			TipoNodoManMade tipo1 = new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo2= new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo3= new TipoNodoManMade("Faro");
 			if (tipo1 != tipo1)
 				fail("Tipo deberia ser igual a si misma");
 			if (!tipo1.equals(tipo2))
@@ -24,14 +24,14 @@ public class TipoNodoHigwayTest extends TestCase {
 				fail("Tipos con distintos tipos deberían ser diferentes");	
 		}
 		/**
-		 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoHigway.testtraduciraOSM'
+		 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade.testtraduciraOSM'
 		 * Se comprueba que dos nodos obtienen la misma traducion OSM
 		 */
 		public void testtraduciraOSM()
 		{
-			TipoNodoHighway tipo1 = new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo2= new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo3= new TipoNodoHighway("Stop");
+			TipoNodoManMade tipo1 = new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo2= new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo3= new TipoNodoManMade("Faro");
 			if (tipo1.traduciraOSM(tipo1.getValorTipo())!=tipo1.traduciraOSM(tipo1.getValorTipo()))
 				fail("Tipo deberia tener la misma traduccion");
 			if (tipo1.traduciraOSM(tipo1.getValorTipo())!=tipo2.traduciraOSM(tipo2.getValorTipo()))
@@ -40,14 +40,14 @@ public class TipoNodoHigwayTest extends TestCase {
 				fail("Los tipos deberian tener una traduccion distinta");
 		}
 		/**
-		 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoHigway.testtraduciraCastellano'
+		 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade.testtraduciraCastellano'
 		 * Se comprueba que dos nodos obtienen la misma traducion a castellano
 		 */
 		public void testtraduciraCastellano()
 		{
-			TipoNodoHighway tipo1 = new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo2= new TipoNodoHighway("Mini-rotonda");
-			TipoNodoHighway tipo3= new TipoNodoHighway("Stop");
+			TipoNodoManMade tipo1 = new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo2= new TipoNodoManMade("Planta eólica");
+			TipoNodoManMade tipo3= new TipoNodoManMade("Faro");
 			if (tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo()))!=tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo())))
 				fail("Tipo deberia tener la misma traduccion");
 			if (tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo()))!=tipo2.traduciraCastellano(tipo2.traduciraOSM(tipo2.getValorTipo())))
