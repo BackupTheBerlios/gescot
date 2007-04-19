@@ -62,10 +62,6 @@ public class Simulacion {
 		param = new ParametrosSimulacion();
 	}
 
-	public ParametrosSimulacion getParametros() {
-		return this.param;
-	}
-
 	/**
 	 * Método que modifica los parámetros actuales de la simulación.
 	 * <p>
@@ -96,7 +92,9 @@ public class Simulacion {
 	public int comenzar(Mapa mapa) {
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
-		vehiculos = new ArrayList<Vehiculo>(param.getNumVehiculos());
+		int max = max(param.getNumVehiculos());
+		max = max + max % 10;
+		vehiculos = new ArrayList<Vehiculo>(max + 20);
 		rellenarTabla();
 		crearVehiculos();
 		//this.vista = vista;
@@ -160,7 +158,7 @@ public class Simulacion {
 	 * una distribución homegenea.
 	 */
 	private void crearVehiculos() {
-		int cant = param.getNumVehiculos();
+		int cant = param.getNumVehiculos()[0];
 		if (cant > maxVehiculos)
 			cant = maxVehiculos;
 		// TODO crear vehiculos de cada tipo segun la infromacón que hay
@@ -173,6 +171,15 @@ public class Simulacion {
 		for (int i = 0; i < cant; i++) {
 			vehiculos.add(new Turismo());
 		}
+	}
+	
+	private int max(int[] numeros) {
+		int res = 0;
+		for (int i = 0; i < numeros.length; i++) {
+			if (numeros[i] > res)
+				res = numeros[i];
+		}
+		return res;
 	}
 
 	public void actualizar() {

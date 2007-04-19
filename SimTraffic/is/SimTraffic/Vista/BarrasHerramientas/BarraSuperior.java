@@ -124,7 +124,7 @@ public class BarraSuperior extends JPanel {
 
 		JButton boton1 = (JButton) esto.añadirBoton("simular.png",
 				"simular2.png", "Comenzar simulación",
-				new AccionComenzarSimulacion(controlador), false);
+				new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()), false);
 		boton1
 				.addMouseMotionListener(new EscuchaAyuda(
 						"Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",

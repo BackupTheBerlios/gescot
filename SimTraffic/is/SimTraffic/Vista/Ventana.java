@@ -418,7 +418,7 @@ public class Ventana extends JFrame {
 		simMenu.addSeparator();
 
 		JMenuItem comenarSim = new JMenuItem();
-		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador));
+		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()));
 		comenarSim.setText("Comenzar");
 		simMenu.add(comenarSim);
 

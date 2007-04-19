@@ -111,7 +111,6 @@ public class Controlador implements IControlador {
 
 	public void setVista(IVista vista) {
 		this.vista = vista;
-
 	}
 	
 	public List getHistorial(){

@@ -152,8 +152,7 @@ public class PanelNodo extends JFrame {
 		panelDatos.addTab("Señales", null, panelSeñales,
 				"Señales asociadas al Nodo");
 
-		//TODO  Cargar los datos del nodo al formulario
-
+		// TODO Cargar los datos del nodo al formulario
 
 	}
 
@@ -224,8 +223,10 @@ public class PanelNodo extends JFrame {
 		JLabel etiquetaPosicion = new JLabel("Posición=  ");
 		JLabel etiquetaposicionX = new JLabel("Lat:");
 		JLabel etiquetaposicionY = new JLabel("Lon:");
-		JLabel posicionX = new JLabel(("" + Representacion.pasarAGrados(nodo.getPos().getLat())));
-		JLabel posicionY = new JLabel(("" + Representacion.pasarAGrados(nodo.getPos().getLon())));
+		JLabel posicionX = new JLabel(("" + Representacion.pasarAGrados(nodo
+				.getPos().getLat())));
+		JLabel posicionY = new JLabel(("" + Representacion.pasarAGrados(nodo
+				.getPos().getLon())));
 		panelPosicion.add(etiquetaPosicion);
 		panelPosicion.add(etiquetaposicionX);
 		panelPosicion.add(posicionX);
@@ -353,7 +354,7 @@ public class PanelNodo extends JFrame {
 		panelEntrada.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 13));
-		
+
 		panel.add(new JLabel("Int\\Hr"));
 		panel.add(new JLabel("Mañana"));
 		panel.add(new JLabel("Tarde"));
@@ -373,15 +374,16 @@ public class PanelNodo extends JFrame {
 		for (int i = 0; i < 3; i++) {
 			salida[i] = new JTextField(3);
 			if (es != null)
-				salida[i].setText(""+ es.getPorcentajesSalida()[i]);
+				salida[i].setText("" + es.getPorcentajesSalida()[i]);
 			panel.add(salida[i]);
 		}
 
-		//JPanel panel2 = new JPanel();
-		//panel2.setLayout(new FlowLayout());
-		//panel2.add(new JLabel("Estos valores indican cuantos coches entran por este"));
-		
-		//panelEntrada.add(panel2);
+		// JPanel panel2 = new JPanel();
+		// panel2.setLayout(new FlowLayout());
+		// panel2.add(new JLabel("Estos valores indican cuantos coches entran
+		// por este"));
+
+		// panelEntrada.add(panel2);
 		panelEntrada.add(panel, BorderLayout.CENTER);
 		panelEntrada.setBorder(BorderFactory
 				.createTitledBorder("Entradas y salidas por el nodo"));

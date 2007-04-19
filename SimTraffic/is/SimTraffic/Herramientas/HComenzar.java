@@ -8,11 +8,9 @@ public class HComenzar implements IHerramienta {
 	/**
 	 */
 	public HComenzar() {
-
 	}
 
 	/**
-	 * 
 	 * @param modelo
 	 * @return int
 	 */

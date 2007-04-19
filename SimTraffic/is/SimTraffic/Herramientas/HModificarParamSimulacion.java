@@ -25,7 +25,7 @@ public class HModificarParamSimulacion implements IHerramienta {
 	 * 
 	 */
 	public int hacer(IModelo modelo) {
-		this.parametrosGuardados=modelo.getSimulacion().getParametros();
+		this.parametrosGuardados=modelo.getSimulacion().getParam();
 		return modelo.getSimulacion().modificaParametros(this.parametros);		
 	}
 

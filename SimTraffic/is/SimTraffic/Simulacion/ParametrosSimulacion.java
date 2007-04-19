@@ -15,9 +15,9 @@ public class ParametrosSimulacion {
 	private int clima;
 
 	/**
-	 * Numero de vehiculos que se deben simular
+	 * Numero de vehiculos que se deben simular en cada franja horaria
 	 */
-	private int numVehiculos;
+	private int[] numVehiculos = new int[3];
 
 	/**
 	 * Float que representa la hora del dia
@@ -38,7 +38,9 @@ public class ParametrosSimulacion {
 
 	public ParametrosSimulacion() {
 		clima = 1;
-		numVehiculos = 40;
+		numVehiculos[0] = 100;
+		numVehiculos[1] = 100;
+		numVehiculos[2] = 100;
 		hora = 0;
 		estadoCoches = 0;
 		porcentajeTipo = new ArrayList<Integer>();
@@ -48,7 +50,11 @@ public class ParametrosSimulacion {
 		return this.clima;
 	}
 
-	public int getNumVehiculos() {
+	public void setNumVehiculos(int[] numVehiculos) {
+		this.numVehiculos = numVehiculos;
+	}
+	
+	public int[] getNumVehiculos() {
 		return this.numVehiculos;
 	}
 

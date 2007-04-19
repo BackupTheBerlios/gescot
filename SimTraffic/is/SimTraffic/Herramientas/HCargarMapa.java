@@ -12,11 +12,24 @@ import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelMapa;
 
+/**
+ * Herramienta para cargar un mapa desde un fichero osm.
+ * <p>
+ * 
+ * @author Grupo ISTrafico
+ * 
+ */
 public class HCargarMapa implements IHerramienta {
+	/**
+	 * 
+	 */
 	IControlador controlador;
+
+	/**
+	 * 
+	 */
 	PanelMapa panel;
-	double lat, lon;
-	
+
 	/**
 	 * @param controlador
 	 * @roseuid 45B8B3A70182
@@ -44,11 +57,12 @@ public class HCargarMapa implements IHerramienta {
 			try {
 				mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
 				if (mapaNuevo.getNodos().get(0) != null) {
-					panel.centrarEnPosicion(mapaNuevo.getNodos().get(0).getPos().getLat(), mapaNuevo.getNodos().get(0).getPos().getLon());
+					panel.centrarEnPosicion(mapaNuevo.getNodos().get(0)
+							.getPos().getLat(), mapaNuevo.getNodos().get(0)
+							.getPos().getLon());
 				}
 				modelo.setMapa(mapaNuevo);
 
-			
 			} catch (Exception e) {
 				System.out.println("Error al leer archivo");
 				e.printStackTrace();
@@ -67,7 +81,8 @@ public class HCargarMapa implements IHerramienta {
 	public int deshacer(IModelo modelo) {
 		return 0;
 	}
-	public String toString(){
-		return Tiempo.Hora()+" - "+"Mapa Cargado";
+
+	public String toString() {
+		return Tiempo.Hora() + " - " + "Mapa Cargado";
 	}
-	}
+}
