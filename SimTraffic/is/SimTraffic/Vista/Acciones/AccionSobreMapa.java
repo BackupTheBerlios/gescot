@@ -60,17 +60,21 @@ public class AccionSobreMapa implements ActionListener {
 				ImageStr = "eliminar_tramo.png";
 			}
 			else if (boton == 4){
-				ImageStr = "cruz.gif";
+				ImageStr = "autobus.png";
 			}
 			else if (boton == 5){
 				ImageStr = "cruz.gif";
 			}
 			else if (boton == 6){
-				ImageStr = "cruz.gif";
+				ImageStr = "via.png";
 			}
 			else if (boton == 7){
 				ImageStr = "select.png";
-			}			
+			}
+			else if (boton == 8){
+				ImageStr = "itinerario.png";
+			}
+
 			String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
 			
 			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor( 

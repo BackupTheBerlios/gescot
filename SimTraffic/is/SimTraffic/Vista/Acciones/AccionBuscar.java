@@ -4,6 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.Vista.PanelBuscar;
 import is.SimTraffic.Vista.PanelMapa;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,6 +39,9 @@ public class AccionBuscar implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		Cursor c;
+		c = new Cursor(0);
+		panel.setCursor(c);
 		JFrame ventanaBuscar = new PanelBuscar(controlador, panel);
 		ventanaBuscar.setVisible(true);
 	}
