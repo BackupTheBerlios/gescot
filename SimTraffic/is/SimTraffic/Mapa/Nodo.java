@@ -1,6 +1,7 @@
 package is.SimTraffic.Mapa;
 
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -118,8 +119,19 @@ public class Nodo implements ElementoMapa {
 	 * Tramo a añadir
 	 */
 	public void añadirTramo(Tramo tramo) {
-		if (tramo!= null && !tramos.contains(tramo)) {
-			tramos.add(tramo);
+		if (tramo!= null && !tramos.contains(tramo)) 
+		{			
+			Iterator<Tramo> it = tramos.iterator();
+			Tramo temp;
+			int anterior = 0; // Tramo que irá antes en la lista ordenada del que vamos a insertar.
+			double angulo = tramo.getAngulo();
+			while (it.hasNext()) 
+			{
+				temp = it.next();
+				if (angulo > temp.getAngulo())
+					anterior++;
+			}
+			tramos.add(anterior,tramo);
 		}
 	}
 	

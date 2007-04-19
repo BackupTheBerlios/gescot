@@ -185,7 +185,8 @@ public class Mapa {
 			// para no repetir
 			Iterator<Tramo> it = Tramos.iterator();
 			Tramo temp;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				temp = it.next();
 				if (tramo.equals(temp))
 					return;
