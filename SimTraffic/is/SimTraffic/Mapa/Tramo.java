@@ -152,7 +152,7 @@ public class Tramo implements ElementoMapa {
 		return false;
 	}
 
-	private void calculaLargo() {
+	public void calculaLargo() {
 		Posicion posnodo1 = nodoInicial.getPos();
 		Posicion posnodo2 = nodoFinal.getPos();
 
