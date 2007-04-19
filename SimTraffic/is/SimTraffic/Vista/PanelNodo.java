@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCrearSemaforo;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 
@@ -21,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -62,6 +64,8 @@ public class PanelNodo extends JFrame {
 	private JPanel panelSeñales = new JPanel();
 
 	private JPanel panelTramos = new JPanel();
+	
+	private JPanel panelSemaforos = new JPanel();
 
 	private Nodo nodo;
 
@@ -85,7 +89,6 @@ public class PanelNodo extends JFrame {
 		crearAcciones();
 		this.add(panelDatos, BorderLayout.NORTH);
 		this.add(panelBotones, BorderLayout.SOUTH);
-
 	}
 
 	/**
@@ -95,6 +98,7 @@ public class PanelNodo extends JFrame {
 	public void creaPanelDatos() {
 		creaPanelTipo();
 		creaPanelSeñales();
+		creaPanelSemaforos();
 		// creaPanelTramos();
 	}
 
@@ -107,6 +111,57 @@ public class PanelNodo extends JFrame {
 				"Tramos asociados al Nodo");
 	}
 
+	
+	/**
+	 * Hace que la pestaña que aparece resaltada por defecto sea la de los semáforos. 
+	 */
+	public void daFocoAPanelSemaforo(){
+		panelDatos.setSelectedIndex(2);
+	}
+	
+	public void creaPanelSemaforos(){
+		panelSemaforos.removeAll();
+		panelDatos.addTab("Semáforos", null, panelSemaforos,"Semáforos del tramo");
+		
+		
+		//Si no se ha insertado todavía un semáforo.
+		if (nodo.getSeñal() == null){
+			JLabel etiquetaNuevo = new JLabel("No existe un semáforo en el nodo");
+			JButton botonCrearSemaforo = new JButton("Crear Semáforo");
+			AccionCrearSemaforo oyenteBotonSemaforo = new AccionCrearSemaforo(nodo,this);
+			botonCrearSemaforo.addActionListener(oyenteBotonSemaforo);
+			panelSemaforos.add(etiquetaNuevo);
+			panelSemaforos.add(botonCrearSemaforo);
+		//Si ya existe un semáforo en el nodo
+		} else if(nodo.getSeñal() != null){
+			JPanel panelInterior = new JPanel();
+			String[] valoresTiempoTotal = {"30","60","120","240"};
+			JComboBox electorTiempoTotal = new JComboBox(valoresTiempoTotal);
+			JLabel etiqElector = new JLabel("Elija el tiempo total de ciclo del semáforo");
+			panelSemaforos.add(etiqElector);
+			panelSemaforos.add(electorTiempoTotal);
+			
+			JScrollPane panelScroll = new JScrollPane(panelInterior);
+			panelScroll.setPreferredSize(new Dimension(450,250));
+			panelSemaforos.add(panelScroll);
+			
+			JButton añadirIntervalo = new JButton("Haga Click para añadir intervalo");
+			panelSemaforos.add(añadirIntervalo);
+			JLabel etiqDe = new JLabel("De");
+			panelSemaforos.add(etiqDe);
+			JTextField tiempoInicial= new JTextField("0");
+			tiempoInicial.setColumns(3);
+			panelSemaforos.add(tiempoInicial);
+			JLabel etiqA = new JLabel("a");
+			panelSemaforos.add(etiqA);
+			JTextField tiempoFinal = new JTextField((String)electorTiempoTotal.getSelectedItem());
+			tiempoFinal.setColumns(3);
+			panelSemaforos.add(tiempoFinal);
+			
+		}
+		
+	}
+	
 	/**
 	 * Esto correponde a la pestaña de las propiedades de las señales de un nodo
 	 * falta mucho por hacer TODO casi todo
