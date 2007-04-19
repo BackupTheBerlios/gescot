@@ -95,12 +95,12 @@ public class PanelNodo extends JFrame {
 	public void creaPanelDatos() {
 		creaPanelTipo();
 		creaPanelSeñales();
-		creaPanelTramos();
+		// creaPanelTramos();
 	}
 
 	/**
 	 * Esto correponde a la pestaña de las propiedades de los tramos de un nodo
-	 * TODO Todo
+	 * @deprecated  De momento no se usa y se ha deshabilitado.
 	 */
 	public void creaPanelTramos() {
 		panelDatos.addTab("Tramos", null, panelTramos,

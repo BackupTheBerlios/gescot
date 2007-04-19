@@ -26,42 +26,29 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 /**
- * Es el panel de propiedades del tramo. Falta terminarla
- *
+ * Es el panel de propiedades del tramo.
+ *    No tiene pestañas de propiedades de los nodos extremos
  */
 public class PanelTramo extends JFrame 
 {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField campoNombre;
-	
-	private JTabbedPane panelDatos;
 	private JPanel panelBotones;
-	
 	private IControlador controlador;
 	private Tramo tramo;
 	private PanelMapa panel;
-
 	private JRadioButton radioUnidireccional;
 	private JRadioButton radioBidireccional;
-
 	private JRadioButton radioSentido1;
-
 	private JRadioButton radioSentido2;
-
 	private JSpinner campoCarril1Numero;
-
 	private JSpinner campoCarril2Numero;
-
 	private JSpinner campoVelocidad;
+//	private JTabbedPane panelDatos;
 	
 	
 	/**
-	 * 
 	 * @param tramoAux
 	 * @param panel
 	 * @param controlador
@@ -74,13 +61,13 @@ public class PanelTramo extends JFrame
 		
 		this.setLayout(new BorderLayout(2,2));
 		
-		panelDatos = new JTabbedPane();
+		//panelDatos = new JTabbedPane();
 		creaPanelDatos();
 		
 		panelBotones = new JPanel();
 		creaPanelBotones();
 		
-	    this.add(panelDatos,BorderLayout.NORTH);
+	    //this.add(panelDatos,BorderLayout.NORTH);
 	    this.add(panelBotones,BorderLayout.SOUTH);
 	    
 	}
@@ -92,8 +79,8 @@ public class PanelTramo extends JFrame
 	public void creaPanelDatos(){
 				
 		JPanel panelPropiedades = new JPanel();
-		JPanel panelNodos = new JPanel();
-	    JPanel panelSeñales = new JPanel();
+		// JPanel panelNodos = new JPanel();
+	    // JPanel panelSeñales = new JPanel();
 	      
 	    JPanel panelSentido = new JPanel();
 	    panelSentido.setLayout(new BorderLayout());
@@ -289,12 +276,13 @@ public class PanelTramo extends JFrame
 	    panelPropiedades.add(panelSentido,BorderLayout.NORTH);
 	    panelPropiedades.add(panelNumCarriles,BorderLayout.CENTER);
 	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);  
+	    this.add(panelPropiedades);
 	    
-	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
+	  /*panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
 	    panelDatos.setSelectedIndex(0);
-		
-	    panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Tramo");
+		panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Tramo");
 	    panelDatos.addTab("Nodos", null, panelNodos,"Nodos asociados al Tramo");
+	    */
 	}
 
 	/**
