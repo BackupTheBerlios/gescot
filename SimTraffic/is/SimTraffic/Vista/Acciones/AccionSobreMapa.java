@@ -44,44 +44,39 @@ public class AccionSobreMapa implements ActionListener {
 		
 		// Lo he tenido que comentar para las pruebas del 23/03/07 porque no iba bien.
 		// Falta meter la imagen de la cruz, que no está subida al CVS
-		/*String ImageStr="";
+		String ImageStr="";
 		if (boton != -1){
 			//podemos cambiar los cursores si existen
 			if (boton == 0){
-				//ImageStr = "añadir_nodo.png";
-				ImageStr = "cruz.gif";
+				ImageStr = "añadir_nodo.png";
 			}
 			else if (boton == 1){
-				//ImageStr = "añadir_tramo.png";
-				ImageStr = "cruz.gif";
+				ImageStr = "añadir_tramo.png";
 			}			
 			else if (boton == 2){
-				//ImageStr = "eliminar_nodo.png";
-				ImageStr = "cruz.gif";
+				ImageStr = "eliminar_nodo.png";
 			}
 			else if (boton == 3){
-				//ImageStr = "eliminar_tramo.png";
-				ImageStr = "cruz.gif";
+				ImageStr = "eliminar_tramo.png";
 			}
 			else if (boton == 4){
-				//ImageStr = "añadir_nodo.png";	
 				ImageStr = "cruz.gif";
 			}
 			else if (boton == 5){
-				//ImageStr = "añadir_nodo.png";
 				ImageStr = "cruz.gif";
 			}
 			else if (boton == 6){
-				//ImageStr = "añadir_nodo.png";
 				ImageStr = "cruz.gif";
 			}
-			
+			else if (boton == 7){
+				ImageStr = "select.png";
+			}			
 			String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
 			
 			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor( 
 					  new ImageIcon( direccion).getImage(), 
 					  new Point(15,12), "Cursor" );
-			ventana.setCursor(c);			
+			ventana.getPanel_mapa().setCursor(c);			
 			
 			
 		}
@@ -89,8 +84,8 @@ public class AccionSobreMapa implements ActionListener {
 			 
 			Cursor c2;
 			c2 = new Cursor(0);
-			ventana.setCursor(c2);		
-		}*/
+			ventana.getPanel_mapa().setCursor(c2);		
+		}
 
 	}
 

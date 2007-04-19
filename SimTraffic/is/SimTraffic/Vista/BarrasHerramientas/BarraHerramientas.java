@@ -38,7 +38,7 @@ public class BarraHerramientas extends Barra {
 		boton = (JToggleButton) añadirBoton("seleccionarYMover.png", "seleccionarYMover2.png",
 				"Seleccionar y Mover", new AccionSobreMapa(new MLSeleccionarYMover(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), -1), true);
+						ventana.getEscuchaTeclado(), 7), true);
 		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
 		boton.addKeyListener(ventana.getEscuchaTeclado());
@@ -132,7 +132,7 @@ public class BarraHerramientas extends Barra {
 		boton = (JToggleButton) añadirBoton("como_ir_a_icon1.GIF", "como_ir_a_icon2.GIF", "Mostrar itinerario entre 2 nodos",
 				new AccionSobreMapa(new MLEscuchaItinerario(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), 0), true);
+						ventana.getEscuchaTeclado(), -1), true);
 		boton.addActionListener(new AccionBarra(ventana, null));
 			//Faltaría por ajustar la escucha de teclado y el numero (ahora 0) para el cursor.
 		boton.addMouseMotionListener(new EscuchaAyuda("Mostrar itinerario entre 2 nodos", ventana));
