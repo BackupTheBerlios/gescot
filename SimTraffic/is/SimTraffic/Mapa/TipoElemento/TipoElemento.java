@@ -94,8 +94,13 @@ public abstract class TipoElemento implements ITipoElemento{
 		this.valorTipo=valorTipo;
 	}
 	
-	public boolean equals(TipoElemento tipo)
+	public boolean equals(Object objeto)
 	{
+		if (objeto == null)
+			return false;
+		if (objeto.getClass() != this.getClass())
+			return false;
+		TipoElemento tipo = (TipoElemento) objeto;
 		if (this.tipo!=tipo.tipo) return false;
 		if (this.valorTipo!=tipo.valorTipo) return false;
 		return true;
