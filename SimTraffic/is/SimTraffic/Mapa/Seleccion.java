@@ -81,4 +81,14 @@ public class Seleccion {
 		return null;
 	}
 	
+	public Tramo existeTramo (Tramo tramo) {
+		for (int i=0; i<tramosSeleccionados.size(); i++){
+			if (tramosSeleccionados.get(i).getNodoInicial().getPos().equals(tramo.getNodoInicial().getPos()) &&
+					tramosSeleccionados.get(i).getNodoFinal().getPos().equals(tramo.getNodoFinal().getPos())
+					)
+				return tramosSeleccionados.get(i);
+		}
+		return null;
+	}
+	
 }
