@@ -82,11 +82,10 @@ public class NodoTest extends TestCase {
 	 */
 	public void testSetEsEntradaSalida (){
 		Nodo nodo = new Nodo (new Posicion(100,100));
-		int entran = 100;
-		int salen = 100;
-		int[] entradas = {1,2,3,4,5,6,7,8,9,10,11,12};
-		int[] salidas = {1,2,3,4,5,6,7,8,9,10,11,12};
-		EntradaSalida es = new EntradaSalida(entran, salen, entradas, salidas);
+
+		int[] entradas = {1,2,3};
+		int[] salidas = {1,2,3};
+		EntradaSalida es = new EntradaSalida( entradas, salidas);
 		nodo.setEs(es);
 		assertEquals(nodo.getEs(),es);
 			

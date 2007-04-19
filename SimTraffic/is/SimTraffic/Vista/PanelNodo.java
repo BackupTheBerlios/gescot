@@ -47,13 +47,9 @@ public class PanelNodo extends JFrame {
 
 	private EntradaSalida es;
 
-	private JTextField entran;
+	private JTextField[] entrada = new JTextField[3];
 
-	private JTextField salen;
-
-	private JTextField[] entrada = new JTextField[12];
-
-	private JTextField[] salida = new JTextField[12];
+	private JTextField[] salida = new JTextField[3];
 
 	private JTextField campoNombre;
 
@@ -354,18 +350,19 @@ public class PanelNodo extends JFrame {
 
 	private JPanel crearSeccionEntradaSalida() {
 		JPanel panelEntrada = new JPanel();
-		panelEntrada.setLayout(new GridLayout(2, 1));
+		panelEntrada.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 13));
-			
+		
 		panel.add(new JLabel("Int\\Hr"));
-		for (int i = 0; i < 12; i++) {
-			panel.add(new JLabel("" + i * 2 + "-" + (i * 2 + 1)));
-		}
+		panel.add(new JLabel("Mañana"));
+		panel.add(new JLabel("Tarde"));
+		panel.add(new JLabel("Noche"));
+
 		es = nodo.getEs();
 
 		panel.add(new JLabel("Entran"));
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 3; i++) {
 			entrada[i] = new JTextField(3);
 			if (es != null)
 				entrada[i].setText("" + es.getPorcentajesEntrada()[i]);
@@ -373,31 +370,21 @@ public class PanelNodo extends JFrame {
 		}
 
 		panel.add(new JLabel("Salen"));
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 3; i++) {
 			salida[i] = new JTextField(3);
 			if (es != null)
 				salida[i].setText(""+ es.getPorcentajesSalida()[i]);
 			panel.add(salida[i]);
 		}
 
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new FlowLayout());
-		panel2.add(new JLabel("Importancia de este nodo como entrada (0 a 999): "));
-		this.entran = new JTextField(3);
-		panel2.add(this.entran);
-		panel2.add(new JLabel("Importancia de este nodo como salida (0 a 999): "));
-		this.salen = new JTextField(3);
-		panel2.add(this.salen);
+		//JPanel panel2 = new JPanel();
+		//panel2.setLayout(new FlowLayout());
+		//panel2.add(new JLabel("Estos valores indican cuantos coches entran por este"));
 		
-		
-		if (es != null) {
-			entran.setText("" + es.getEntran());
-			salen.setText("" + es.getSalen());
-		}
-		panelEntrada.add(panel2);
-		panelEntrada.add(panel);
+		//panelEntrada.add(panel2);
+		panelEntrada.add(panel, BorderLayout.CENTER);
 		panelEntrada.setBorder(BorderFactory
-				.createTitledBorder("Funcionalidad del Nodo"));
+				.createTitledBorder("Entradas y salidas por el nodo"));
 
 		return panelEntrada;
 	}
@@ -407,14 +394,10 @@ public class PanelNodo extends JFrame {
 	 * genera el atributo es del tipo EntradaSalida
 	 */
 	public EntradaSalida generarEs() {
-		int[] entradas = new int[12];
-		int[] salidas = new int[12];
-		int entran;
-		int salen;
+		int[] entradas = new int[3];
+		int[] salidas = new int[3];
 		try {
-			entran = Integer.parseInt(this.entran.getText());
-			salen = Integer.parseInt(this.salen.getText());
-			for (int i = 0; i < 12; i++) {
+			for (int i = 0; i < 3; i++) {
 				try {
 					entradas[i] = Integer.parseInt(this.entrada[i].getText());
 				} catch (Exception e) {
@@ -423,7 +406,7 @@ public class PanelNodo extends JFrame {
 				System.out.print(entradas[i]);
 			}
 			System.out.println();
-			for (int i = 0; i < 12; i++) {
+			for (int i = 0; i < 3; i++) {
 				try {
 					salidas[i] = Integer.parseInt(this.salida[i].getText());
 				} catch (Exception e) {
@@ -431,7 +414,7 @@ public class PanelNodo extends JFrame {
 				}
 				System.out.print(salidas[i]);
 			}
-			es = new EntradaSalida(entran, salen, entradas, salidas);
+			es = new EntradaSalida(entradas, salidas);
 		} catch (Exception e) {
 			es = null;
 		}

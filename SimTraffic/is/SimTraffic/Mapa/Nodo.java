@@ -71,7 +71,7 @@ public class Nodo implements ElementoMapa {
 	 */
 	public Nodo(Posicion pos) {
 		this.pos = pos;
-		es = null;
+		es = new EntradaSalida();
 		señal = null;
 		tramos = new ArrayList<Tramo>();
 		id++;
@@ -82,6 +82,7 @@ public class Nodo implements ElementoMapa {
 		this.nombre = nombre;
 		this.pos = pos;
 		this.tipo = tipo;
+		this.es = new EntradaSalida();
 		tramos = new ArrayList<Tramo>();
 		id++;
 	}

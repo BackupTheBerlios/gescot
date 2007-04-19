@@ -28,11 +28,10 @@ public class ControladorTest extends TestCase {
 		super.setUp();
 		controlador = new Controlador();
 		Posicion pos = new Posicion(100, 100);
-		int entran = 5;
-		int salen = 3;
-		int[] entradas = {1,2,3,4,5,6,7,8,9,10,11,12};
-		int[] salidas = {1,2,3,4,5,6,7,8,9,10,11,12};
-		EntradaSalida es = new EntradaSalida(entran, salen, entradas, salidas);
+
+		int[] entradas = {1,2,3};
+		int[] salidas = {1,2,3};
+		EntradaSalida es = new EntradaSalida(entradas, salidas);
 		herramienta = new HAñadirNodo(pos, es);
 		controlador.modelo = new Modelo();
 	}

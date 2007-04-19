@@ -2,79 +2,52 @@ package is.SimTraffic.Mapa;
 
 /**
  * Esta clase define las propiedades de los nodos que estan configurados como
- * nodos de E/S
+ * nodos de E/S.
+ * <p>
+ * En el programa se consta de tres franjas horarias, mañana, tarde y noche.
+ * Para cada una de estas horas el nodo puede ser de entrada, salida, ambas o
+ * ninguna, y esto se representa por los valores que toman dos vectores de tres
+ * enteros. Los valores se normalizan a lo largo del mapa para representar
+ * porcentajes.
  * 
  * @author Grupo ISTrafico
  */
 public class EntradaSalida {
 
 	/**
-	 * Este valor representa el peso de este nodo en la entrada de coches al mapa.
-	 * <p>
-	 * Este valor es dado a lo largo del dia, despues se deberá explicitar cuantos de
-	 * estos entran en cada franja horaria.
+	 * Peso de este nodo como entrada en cada fraja horaria. Este valor se
+	 * normalizara.
 	 */
-	int entran;
-	
-	/**
-	 * Este valor representa el peso de este nodo en la salida de coches al mapa.
-	 * <p>
-	 * Este valor es dado a lo largo del dia, despues se deberá explicitar cuantos de
-	 * estos salen en cada franja horaria.
-	 */
-	int salen;
-	
+	int[] porcentajesEntrada = new int[3];
 
 	/**
-	 * Porcentaje del total de coches que entran que lo hacen en cada franja horaria de
-	 * 2 horas.
+	 * Peso de este nodo como salida en cada fraja horaria. Este valor se
+	 * normalizara.
 	 */
-	int[] porcentajesEntrada = new int[12];
-	
-	/**
-	 * Porcentaje del total de coches que salen de este nodo que lo hacen en cada franja
-	 * horaria de 2 horas.
-	 */
-	int[] porcentajesSalida = new int[12];
+	int[] porcentajesSalida = new int[3];
 
-	public EntradaSalida(int entran, int salen, int[] porcentajesEntrada, int[] porcentajesSalida) {
-		this.entran = entran;
-		this.salen = salen;
-		this.porcentajesEntrada = normalizar(porcentajesEntrada);
-		this.porcentajesSalida = normalizar(porcentajesSalida);
+	public EntradaSalida(int[] porcentajesEntrada, int[] porcentajesSalida) {
+		this.porcentajesEntrada = porcentajesEntrada;
+		this.porcentajesSalida = porcentajesSalida;
 
 	}
-	
+
+	public EntradaSalida() {
+		for (int i = 0; i < 3; i++) {
+			porcentajesEntrada[i] = 0;
+			porcentajesSalida[i] = 0;
+		}
+	}
+
 	public String transformaOSM() {
 		String valor = "<tag k='entradasalida' v='";
-		valor += entran + ",";
-		for (int i = 0; i < 12; i++)
+		for (int i = 0; i < 2; i++)
 			valor += porcentajesEntrada[i] + ",";
-		valor += salen;
-		for (int i = 0; i < 12; i++)
+		valor += porcentajesEntrada[3] + ",";
+		for (int i = 0; i < 3; i++)
 			valor += "," + porcentajesSalida[i];
 		valor += "' />\n";
 		return valor;
-	}
-	
-	private int[] normalizar(int [] porcentajes) {
-		int cont = 0;
-		int[] nuevos = new int[12];
-		for (int i = 0; i < 12; i++) {
-			cont += porcentajes[i];
-		}
-		for (int i = 0; i < 12; i++) {
-			nuevos[i] = (int) (porcentajes[i] * 100 / cont);
-		}
-		return nuevos;
-	}
-
-	public int getEntran() {
-		return entran;
-	}
-
-	public void setEntran(int entran) {
-		this.entran = entran;
 	}
 
 	public int[] getPorcentajesEntrada() {
@@ -92,14 +65,4 @@ public class EntradaSalida {
 	public void setPorcentajesSalida(int[] porcentajesSalida) {
 		this.porcentajesSalida = porcentajesSalida;
 	}
-
-	public int getSalen() {
-		return salen;
-	}
-
-	public void setSalen(int salen) {
-		this.salen = salen;
-	}
-
-	
 }

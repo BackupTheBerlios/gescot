@@ -130,18 +130,14 @@ public class CargadorMapa implements DocHandler {
 				if (k.compareTo("nombre")==0){
 					nodoAux.setNombre(v);
 				} else if (k.compareTo("entradasalida") == 0) {
-					int entran;
-					int salen;
 					int[] salida = new int[12];
 					int[] entrada = new int[12];
 					StringTokenizer st = new StringTokenizer(v, ",");
-					entran = Integer.parseInt(st.nextToken());
-					for (int i = 0; i < 12; i++)
+					for (int i = 0; i < 3; i++)
 						entrada[i] = Integer.parseInt(st.nextToken());
-					salen = Integer.parseInt(st.nextToken());
-					for (int i = 0; i< 12; i++)
+					for (int i = 0; i< 3; i++)
 						salida[i] = Integer.parseInt(st.nextToken());
-					es = new EntradaSalida(entran, salen, salida, entrada);
+					es = new EntradaSalida(salida, entrada);
 					nodoAux.setEs(es);
 				}
 				else {

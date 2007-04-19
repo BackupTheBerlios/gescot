@@ -12,21 +12,18 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 	Nodo nodo;
 	int[] porcentajesEntrada;
 	int[] porcentajesSalida;
-	int entran;
-	int salen;
+
 	EntradaSalida esGuardado;
 	
-	public HConfigurarEntradaSalida(Nodo nodo, int entran, int salen, int[] porcentajesEntrada, int[] porcentajesSalida) {
+	public HConfigurarEntradaSalida(Nodo nodo, int[] porcentajesEntrada, int[] porcentajesSalida) {
 		this.nodo = nodo;
-		this.entran = entran;
-		this.salen = salen;
 		this.porcentajesEntrada = porcentajesEntrada;
 		this.porcentajesSalida = porcentajesSalida;		
 	}
 	
 	public int hacer(IModelo modelo) {
 	    esGuardado = nodo.getEs();
-		EntradaSalida es = new EntradaSalida(entran, salen, porcentajesEntrada, porcentajesSalida);
+		EntradaSalida es = new EntradaSalida(porcentajesEntrada, porcentajesSalida);
 		nodo.setEs(es);
 		return 0;
 	}
