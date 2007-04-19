@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
@@ -31,13 +32,11 @@ public class Log extends JFrame {
 	
 	
 	/**
-	 * Campo de texto para almacenar los eventos
+	 * Campo de texto para mostrar los eventos
 	 */
 	private JTextArea texto;
 	
-	/**
-	 * 
-	 */
+	
 	private JScrollPane scrollPane;
 	
 	Log(List h) {
@@ -45,31 +44,36 @@ public class Log extends JFrame {
 		setVisible(true);
 		this.historial= h;
 		texto = new JTextArea ();
-		texto.setText("Historial de eventos\nen construcion\n");
 		texto.setEditable(false);
 		setLayout(new BorderLayout());
 		
 		
 		
 		scrollPane = new JScrollPane (texto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
-		
-		
 		add(scrollPane, BorderLayout.CENTER);
+		
 		JButton aceptar = new JButton("Aceptar");
 		aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Log.this.setVisible(false);
+				//Log.this.setVisible(false);
+				Log.this.dispose();
 			}
-		});
-		
+		}
+		);
 		add(aceptar, BorderLayout.SOUTH);
+		
+		this.setPreferredSize(new Dimension(400,200));
 		this.pack();
 		this.setResizable(true);
 		this.setLocation(50, 50);
-		escribirTexto();
+		if (historial.isEmpty()) texto.setText("Sin eventos");
+		else escribirTexto();
 	}
 	
-	
+	/**
+	 * Escribe los eventos del historial en el campo de texto
+	 * 
+	 */
 	private void escribirTexto(){
 		Iterator it = this.historial.iterator();
 		this.texto.setText("");
