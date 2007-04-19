@@ -125,6 +125,7 @@ public class Nodo implements ElementoMapa {
 			Tramo temp;
 			int anterior = 0; // Tramo que irá antes en la lista ordenada del que vamos a insertar.
 			double angulo = tramo.getAngulo();
+			System.out.println(angulo);
 			while (it.hasNext()) 
 			{
 				temp = it.next();

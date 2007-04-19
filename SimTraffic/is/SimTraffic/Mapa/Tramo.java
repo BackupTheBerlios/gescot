@@ -87,11 +87,14 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
 		//ID = asignarIDunico();
-		double largo = nodoInicial.getPos().getLon()
-				- nodoFinal.getPos().getLon();
-		double alto = nodoInicial.getPos().getLat()
-				- nodoFinal.getPos().getLat();
-		angulo = Math.atan(-alto / largo);
+		double largo = nodoFinal.getPos().getLon()
+		- nodoInicial.getPos().getLon();
+		double alto = nodoFinal.getPos().getLat()
+		- nodoInicial.getPos().getLat();
+		angulo = Math.atan(alto / largo);
+		if (largo < 0)
+			angulo = Math.PI + angulo;
+		System.out.println("Angulo: " + angulo*180/Math.PI + " Coseno: " + Math.cos(angulo) + " Seno: " + Math.sin(angulo));
 		calculaLargo();
 	}
 
@@ -112,11 +115,13 @@ public class Tramo implements ElementoMapa {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
-		double largo = nodoInicial.getPos().getLon()
-				- nodoFinal.getPos().getLon();
-		double alto = nodoInicial.getPos().getLat()
-				- nodoFinal.getPos().getLat();
-		angulo = Math.atan(-alto / largo);
+		double largo = nodoFinal.getPos().getLon()
+		- nodoInicial.getPos().getLon();
+		double alto = nodoFinal.getPos().getLat()
+		- nodoInicial.getPos().getLat();
+		angulo = Math.atan(alto / largo);
+		if (largo < 0)
+			angulo = Math.PI + angulo;
 		calculaLargo();
 	}
 
@@ -266,10 +271,10 @@ public class Tramo implements ElementoMapa {
 				+ "' to='" + nodoFinal.getID() + "'>\n");
 		if (this.numCarrilesDir1 > 0)
 			s = s
-					+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
+			+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
 		if (this.numCarrilesDir2 > 0)
 			s = s
-					+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
+			+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
 		s = s + ("<tag k='velMax' v='" + this.velocidadMax + "' />\n");
 		s = s + ("</segment>");
 		return s;
