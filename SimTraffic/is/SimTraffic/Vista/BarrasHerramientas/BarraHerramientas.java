@@ -9,7 +9,6 @@ import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
-import is.SimTraffic.Vista.EscuchasRaton.MLAñadirSemaforo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
@@ -111,15 +110,6 @@ public class BarraHerramientas extends Barra {
 						.getEscuchaTeclado(), 4), true);
 		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
-		grupoherramientas.add(boton);
-
-		// Botón añadir semaforos
-		boton = (JToggleButton) añadirBoton("semaforo1.png", "semaforo2.png", "Añadir semaforo",
-				new AccionSobreMapa(new MLAñadirSemaforo(modelo, controlador,
-						ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 5), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo semáforo.", ventana));
 		grupoherramientas.add(boton);
 
 		// Añadir Vias

@@ -16,12 +16,15 @@ public interface ElementoMapa {
 	 * @return
 	 */
 	public int getID();
+	
 	/**
 	 * Devuelve un string con la traducción del elemento al formato osm, necesario 
 	 * para el proceso de guardar el mapa. De este modo se modulariza (y simplifica) 
 	 * el proceso de guardar el mapa, obligando a todo ElementoMapa a saber traducirse.
 	 */
+	
 	public String transformaraOSM();
+	
 	/**
 	 * Devuelve el tipo de información adicional que puede tener un elemento osm 
 	 * (y que posteriormente se traducirá a información en tags).

@@ -26,16 +26,11 @@ public class SeleccionTest extends TestCase {
 		n2 = new Nodo(new Posicion(30, 40));
 		n3 = new Nodo(new Posicion(10, 10));
 		n4 = new Nodo(new Posicion(20, 20));
-		s1 = new Señal("Stop");
-		s2 = new Señal("Ceda el paso");
 		t1 = new Tramo(n1, n2);
 		t2 = new Tramo(n3, n4);
 		an = new ArrayList<Nodo>();
 		an.add(n1);
 		an.add(n3);
-		as = new ArrayList<Señal>();
-		as.add(s1);
-		as.add(s2);
 		at = new ArrayList<Tramo>();
 		at.add(t1);
 		

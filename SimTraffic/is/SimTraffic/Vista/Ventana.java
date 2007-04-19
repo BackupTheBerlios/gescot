@@ -409,12 +409,6 @@ public class Ventana extends JFrame {
 		añadirBus.setText("Añadir linea autobus");
 		simMenu.add(añadirBus);
 
-		JMenuItem añadirSem = new JMenuItem();
-		añadirSem.addActionListener(new AccionSobreMapa(new MLAñadirSemaforo(
-				modelo, controlador, panel_mapa), this, escuchaTeclado, 5));
-		añadirSem.setText("Añadir semáforo");
-		simMenu.add(añadirSem);
-
 		JMenuItem añadirVia = new JMenuItem();
 		añadirVia.addActionListener(new AccionSobreMapa(new MLAñadirVia(modelo,
 				controlador, panel_mapa), this, escuchaTeclado, 6));

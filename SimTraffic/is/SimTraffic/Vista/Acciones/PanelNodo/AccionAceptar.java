@@ -77,19 +77,8 @@ public class AccionAceptar implements ActionListener {
 		}
 		
 		
-		//// Guardar los atributos del nodo referentes a las señales
-		if((this.comboTipoSeñales.getSelectedItem()).equals("Semáforos")){
-			if (this.nodo.getMasterSemaforo()==null){
-				nodo.CrearControladorDeSemaforo();
-			}
-			
-			try{
-				this.nodo.getMasterSemaforo().setTiempoDeCiclo(Integer.parseInt(this.campoTiempoCicloSemaforo.getText()));
-			}
-			catch (NumberFormatException e){System.err.println("Error en el formato del numero del campo 'Tiempo de  ciclo'");}
-			this.nodo.getMasterSemaforo().setEstadoSemaforos((String)this.comboTipoSemaforos.getSelectedItem());
-		}	
-		
+		// TODO Guardar los atributos del nodo referentes a las señales
+
 		
 		
 	

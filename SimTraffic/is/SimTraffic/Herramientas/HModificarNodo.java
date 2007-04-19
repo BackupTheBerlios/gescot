@@ -42,12 +42,8 @@ public class HModificarNodo implements IHerramienta {
 		 */
 		nodoGuardado = nodo;
 		
-		/**
-		 * En caso de que quitemos una señal de semáforo del nodo,esta linea lo comprueba
-		 * y si es asi lo borra de la lista de semaforos que mantiene el modelo
-		 */
-		if (nodo.getSeñal().getTipo()=="semaforo")
-			modelo.getMapa().eliminar(nodo.getSeñal());
+		// TODO verificar si hay que cambiar algo en la lista de señales
+		
 		/**
 		 * Borramos la señal o el punto de e/s
 		 * (Ojo,las señales sólo se eliminan de esta manera,para 

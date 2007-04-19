@@ -1,7 +1,6 @@
 package is.SimTraffic.Mapa;
 
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
-import is.SimTraffic.Mapa.Semaforos.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,8 +13,6 @@ public class Nodo implements ElementoMapa {
 	
 	public static int id = 0;
 
-	//Decidimos incluir la clase de entradaSalida e incluir un atributo aqui de ese tipo
-	//que represente mejor las proporciones de los coches en franjas horarias
 	/**
 	 * Variable tipo EntradaSalida que almacena la proporción de coches que entran
 	 * y salen del nodo en las diferentes franjas horarias.
@@ -66,21 +63,12 @@ public class Nodo implements ElementoMapa {
 	private int ID;
 	
 	/**
-	 * Atributo que controla los semaforos del nodo 
-	 * //TODO Se deberia quitar este atributo e unificarlo todo en el atributo señal??
-	 */
-	private MasterSemaforo ControladorSemaforo;
-	
-
-	
-	/**
 	 * Constructor de la clase nodo.<p>
 	 * Este constructor solo requiere la posicion donde se ubica el nodo,
 	 * el resto de la información la completa con valores por defecto.
 	 * 
 	 * @roseuid 45B8B3A80192
 	 */
-		
 	public Nodo(Posicion pos) {
 		this.pos = pos;
 		es = null;
@@ -147,18 +135,6 @@ public class Nodo implements ElementoMapa {
 		}
 	}
 	
-	
-	
-	/**
-	 * Metodo que crea e inicializa el controlador de los semaforos del nodo 
-	 *
-	 */
-	public void CrearControladorDeSemaforo(){
-		ControladorSemaforo = new MasterSemaforo(this);
-		this.ControladorSemaforo.inicializarSemaforos();
-	}
-
-
 	public boolean equals(Object objeto) {
 		if (objeto == null)
 			return false;
@@ -181,7 +157,6 @@ public class Nodo implements ElementoMapa {
 	public void setEs(EntradaSalida es){
 		this.es=es;
 	}
-
 
 	public void setSeñal(Señal señal) {
 		this.señal = señal;
@@ -249,11 +224,6 @@ public class Nodo implements ElementoMapa {
 		this.tramos = tramos;
 	}
 	
-	public MasterSemaforo getMasterSemaforo(){
-		return this.ControladorSemaforo;
-		
-	}
-	
 	/**
 	 * Método auxiliar definido para resolver si dos nodos tienen un tramo
 	 * que les comunique. 
@@ -277,21 +247,8 @@ public class Nodo implements ElementoMapa {
 			return null; //No ha encontrado ningún tramo, luego devuelve null.
 		}
 	}
-	/**
-	 * Accedente para obtener el Mastersemaforo del nodo
-	 * @return en el MasterSemaforo almacenado en el nodo
-	 */
-	public MasterSemaforo getControladorSemaforo() {
-		return ControladorSemaforo;
-	}
 
-	/**
-	 * Mutador para establecer el controlador del semaforo
-	 * @param controladorSemaforo
-	 */
-	public void setControladorSemaforo(MasterSemaforo controladorSemaforo) { 
-		ControladorSemaforo = controladorSemaforo;
-	}
+
 	
 	/**
 	 * Este clone() sirve unicamente para utilizarlo en la herramienta de mover, ya que sólo necesitaremos conocer
@@ -301,7 +258,6 @@ public class Nodo implements ElementoMapa {
 	public Nodo cloneParaMover() {
 		Nodo nodoClon = new Nodo(this.es, this.ID, this.nombre, new Posicion(pos.getLat(),pos.getLon()), 
 				this.señal, this.tipo, this.tramos);
-		nodoClon.setControladorSemaforo(this.ControladorSemaforo);
 		return nodoClon;
 
 	}
