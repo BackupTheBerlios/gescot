@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Utils.Tiempo;
 
 
@@ -18,13 +19,13 @@ import java.util.List;
 public class HMover implements IHerramienta{
 
 	/**
-	 * Lista de nodos que se quieren desplazar.
+	 * Lista de nodos que se quieren desplazar con sus posiciones actualizadas
 	 */
 	private List<Nodo> nodos;
 	
 	
 	/**
-	 * Lista de nodos que se quieren desplazar.
+	 * Lista de nodos con las posiciones anteriores, sin desplazar
 	 */
 	private List<Nodo> nodosAnteriores;
 
@@ -70,6 +71,7 @@ public class HMover implements IHerramienta{
 	 * Método hacer.
 	 * Actualiza las posiciones de los nodos teniendo en cuenta el movimiento
 	 * que han sufrido
+	 * También actualiza el largo de los tramos afectados
 	 */
 	public int hacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++) {
@@ -77,6 +79,10 @@ public class HMover implements IHerramienta{
 			nodoTemp.setPos(nodosAnteriores.get(i).getPos());
 			nodoTemp.setPos(new Posicion(nodoTemp.getPos().getLat()+diferenciaY,
 						nodoTemp.getPos().getLon()+diferenciaX));
+			for (int j=0; j<nodoTemp.getTramos().size(); j++) {
+				Tramo tramoTemp = nodoTemp.getTramos().get(j);
+				tramoTemp.calculaLargo();
+			}
 		}
 		return 0;
 	}
@@ -85,11 +91,16 @@ public class HMover implements IHerramienta{
 	 * Método deshacer.
 	 * Restaura las posiciones anteriores al movimiento de todos los nodos
 	 * afectados.
+	 * También restaura el largo de los tramos afectados
 	 */
 	public int deshacer(IModelo modelo) {
 		for (int i=0; i< nodos.size(); i++ ) {
 			Nodo nodoTemp = nodos.get(i);
 			nodoTemp.setPos(nodosAnteriores.get(i).getPos());
+			for (int j=0; j<nodoTemp.getTramos().size(); j++) {
+				Tramo tramoTemp = nodoTemp.getTramos().get(j);
+				tramoTemp.calculaLargo();
+			}			
 		}
 
 		return 0;
