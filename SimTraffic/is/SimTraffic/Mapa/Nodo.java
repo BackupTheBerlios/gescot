@@ -211,7 +211,7 @@ public class Nodo implements ElementoMapa {
 	 */
 	public String transformaraOSM() {
 		String s=new String();
-		//if (tipo==null && nombre==null)
+		//if (tipo==null && nombre==null && es==null)
 		//	s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
 		//else {
 			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >\n");
