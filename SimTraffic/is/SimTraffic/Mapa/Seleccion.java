@@ -91,4 +91,8 @@ public class Seleccion {
 		return null;
 	}
 	
+	public boolean esVacia () {
+		return (nodosSeleccionados.isEmpty() && tramosSeleccionados.isEmpty() && señalesSeleccionadas.isEmpty());
+	}
+	
 }
