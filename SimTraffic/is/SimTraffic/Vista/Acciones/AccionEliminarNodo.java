@@ -34,6 +34,13 @@ public class AccionEliminarNodo extends AccionesPopUpMenu {
 		if (seleccionado != null) {
 			panel_mapa.getMenuEmergente().setVisible(false);
 			controlador.herramienta(new HEliminarNodo(seleccionado));
+			Nodo nodoSeleccion = modelo.getMapa().getSeleccion().existeNodo(seleccionado);
+			if (nodoSeleccion!=null) {
+				for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
+					if (modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i).equals(nodoSeleccion)) 
+						modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(i);
+				}
+			}
 			panel_mapa.sugerir(null);
 			panel_mapa.recrearMapa();
 			panel_mapa.repaint();
