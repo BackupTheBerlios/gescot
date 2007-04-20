@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 /**
  * Clase que extiende MouseListener para recoger todos los eventos que ocurran
@@ -66,7 +67,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 
 		// Esta parte no se para que vale, creo que sobra, ademas de milis, estado y mismo punto
 		// ¿que pasa cuando se hace un click?
-		if (arg0.getClickCount() == 1) 
+		if (arg0.getClickCount() == 1 && arg0.getButton() == MouseEvent.BUTTON1) 
 		{	
 
 			if (estado == 0)
@@ -106,7 +107,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 			}*/
 		}
 		// Que hacer si hay doble click
-		else if (arg0.getClickCount() == 2) {
+		else if (arg0.getClickCount() == 2 && arg0.getButton() == MouseEvent.BUTTON1) {
 				// Si es doble click soble un nodo
 				Nodo nodoAux=this.buscarNodo(arg0.getX(), arg0.getY());
 				Tramo tramoAux = this.buscarTramo(arg0.getX(), arg0.getY());
