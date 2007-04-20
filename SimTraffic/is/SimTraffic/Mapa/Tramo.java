@@ -289,6 +289,5 @@ public class Tramo implements ElementoMapa {
 		clon.setNumCarrilesDir1(this.numCarrilesDir1);
 		clon.setNumCarrilesDir2(this.numCarrilesDir2);
 		return clon;
-
 	}
 }
