@@ -269,7 +269,6 @@ public class PanelMapa extends JPanel
 
 		representacion.pintarCoordenadas(g);
 		representacion.pintarSugerencia(g, sugerencia);
-		contador++;
 	}
 
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {
@@ -286,6 +285,7 @@ public class PanelMapa extends JPanel
 			posLattemp = posLat;
 			recrear = true;
 		}
+		contador++;
 		super.repaint();
 	}
 
