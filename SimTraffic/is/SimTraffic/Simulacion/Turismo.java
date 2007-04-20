@@ -76,11 +76,18 @@ public class Turismo extends Vehiculo {
 			// Mostrar solución en el mapa
 			tramos.clear();
 			cuentaTramos = 0;
-			for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
+			
+			//Puede que influya el orden de inserción de los tramos (por comprobar).
+			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0 ; i--) {
+			//for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
 				 // Solo es null en la raíz (se puede mejorar)
-				if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
+				/*if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
 					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
 							.getSolucion().elementAt(i).getOperador()))
+							.getTramoElegido();*/
+				  if (algoritmoAEstrella.getSolucion().elementAt(i-1).getOperador() != null) {
+					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
+							.getSolucion().elementAt(i-1).getOperador()))
 							.getTramoElegido();
 					tramos.add(tramoAux);
 					// Ver luego si almacenarlo en algún sitio.

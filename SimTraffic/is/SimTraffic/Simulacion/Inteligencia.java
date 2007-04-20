@@ -117,6 +117,13 @@ public class Inteligencia {
 		if (entrada == null)
 			return;
 		Nodo salida = sim.getSalida();
+		
+		//Añadida comprobación (para evitar que el nodo de entrada y de salida sea el mismo, lo cual 
+		//no es lógico y además genera problemas adicionales)
+		while (salida==entrada) {
+			salida = sim.getSalida();
+		}
+		
 		if (vehiculo.inicializar(entrada, salida)) {;
 			vehiculo.setTramo(vehiculo.siguienteTramo());
 			tabla.get(vehiculo.getTramo()).add(vehiculo);

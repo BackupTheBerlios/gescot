@@ -41,6 +41,7 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 							"No ha sido posible establecer un itinerario entre los 2 nodos especificados",
 							JOptionPane.INFORMATION_MESSAGE);
 			modelo.getMapa().limpiaSeleccion();
+			return -1;
 		} else {
 			// Mostrar solución en el mapa
 			modelo.getMapa().limpiaSeleccion();
