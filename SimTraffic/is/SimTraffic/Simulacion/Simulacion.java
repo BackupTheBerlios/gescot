@@ -2,12 +2,14 @@ package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Mapa.Mapa;
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Clase que ejecuta la simulación en un mapa.
@@ -55,6 +57,8 @@ public class Simulacion {
 	private ControladorSim controladorSim;
 	
 	private boolean activa = false;
+	
+	Random random;
 	
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
@@ -184,6 +188,30 @@ public class Simulacion {
 
 	public void actualizar() {
 		controlador.repintarCoches();
+	}
+	
+	
+	/**
+	 * Método que devuelve un nodo, que será entrada para un coche, según
+	 * la necesidad de estos.<p>
+	 * En este método se aprovecha para incrementar el número de coches activos
+	 * que hay en el mapa si se le pasa un valor. En caso de no querese nuevos
+	 * vehiculos se devolverá null.
+	 * @return
+	 * Nodo de entrada o null
+	 */
+	synchronized public Nodo getEntrada() {
+		// TODO temporalmente da un nodo aleatorio
+		int i = random.nextInt(mapa.getNodos().size());
+		return mapa.getNodos().get(i); 
+		//return null;
+	}
+	
+	synchronized public Nodo getSalida() {
+		// TODO temporalmente da un nodo aleatorio
+		int i = random.nextInt(mapa.getNodos().size());
+		return mapa.getNodos().get(i); 
+		//return null;
 	}
 	
 	public List<Vehiculo> getVehiculos() {

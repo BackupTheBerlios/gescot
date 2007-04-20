@@ -1,5 +1,6 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.util.ArrayList;
@@ -83,7 +84,8 @@ public class Inteligencia {
 	public void procesar(Vehiculo vehiculo) {
 		if (vehiculo.getTramo() == null)
 			inicializarVehiculo(vehiculo);
-
+		else {
+	
 		if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
 			procesarTramoSiguiente(vehiculo);
 
@@ -94,6 +96,7 @@ public class Inteligencia {
 		recalcularAceleracion(vehiculo);
 
 		recalcularVelocidadYPosicion(vehiculo);
+		}
 	}
 
 	/**
@@ -109,6 +112,13 @@ public class Inteligencia {
 		// momento el camino que debe recorrer.
 		// tambien puede ser una buena optimización que si ya tiene un camino,lo
 		// vuevla a recorrer con una probabilidad dada
+		
+		Nodo entrada = sim.getEntrada();
+		if (entrada == null)
+			return;
+		Nodo salida = sim.getSalida();
+		vehiculo.inicializar(entrada, salida);
+		
 		int i = random.nextInt(sim.getMapa().getTramos().size());
 		vehiculo.setTramo(sim.getMapa().getTramos().get(i));
 		tabla.get(vehiculo.getTramo()).add(vehiculo);
