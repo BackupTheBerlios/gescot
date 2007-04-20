@@ -4,9 +4,11 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
 
+import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,4 +51,6 @@ public class AccionesPopUpMenu implements ActionListener {
 			else
 				return null;
 		}
+		
+
 }
