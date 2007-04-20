@@ -37,17 +37,17 @@ public class RepresentacionSimple extends Representacion {
 	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
 	 */
 	private double tamaño_carril = 2.5;
-	
-	/** 
-	 * Almacena las imagenes de los coches para dibujarlos de manera más eficiente.
-	 * */
+
+	/**
+	 * Almacena las imagenes de los coches para dibujarlos de manera más
+	 * eficiente.
+	 */
 	private BufferedImage coches[];
 
 	/**
 	 * Constructor por defecto de la RepresentacionSimple
 	 */
-	public RepresentacionSimple() 
-	{	
+	public RepresentacionSimple() {
 		super();
 	}
 
@@ -57,8 +57,7 @@ public class RepresentacionSimple extends Representacion {
 	 * 
 	 * @param rep
 	 */
-	public RepresentacionSimple(Representacion rep) 
-	{
+	public RepresentacionSimple(Representacion rep) {
 		super(rep);
 	}
 
@@ -67,21 +66,16 @@ public class RepresentacionSimple extends Representacion {
 		if (nodo.getTipo() != null)
 			tipo = nodo.getTipo().getTipo();
 		if (tipo == null) {
-			g.setColor(Color.black);			
-		}
-		else if (tipo.compareTo("leisure") == 0){
+			g.setColor(Color.black);
+		} else if (tipo.compareTo("leisure") == 0) {
 			g.setColor(Color.green);
-		}
-		else if (tipo.compareTo("amenity") == 0) {
+		} else if (tipo.compareTo("amenity") == 0) {
 			g.setColor(Color.gray);
-		}
-		else if (tipo.compareTo("highway") == 0) {
+		} else if (tipo.compareTo("highway") == 0) {
 			g.setColor(Color.blue);
-		}
-		else if (tipo.compareTo("manmade") == 0) {
+		} else if (tipo.compareTo("manmade") == 0) {
 			g.setColor(Color.pink);
-		}
-		else {
+		} else {
 			g.setColor(Color.red);
 		}
 
@@ -101,35 +95,30 @@ public class RepresentacionSimple extends Representacion {
 		// almacena posiciones de los nodos
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
-		
+
 		// almacena numero de carriles en cada sentido
 		int carriles_ida = tramo.getNumCarrilesDir1();
 		int carriles_vuelta = tramo.getNumCarrilesDir2();
 
 		double angulo = tramo.getAngulo();
 
-	
 		if (tipo == null) {
-			g.setColor(Color.black);			
-		}
-		else if (tipo.compareTo("leisure") == 0){
+			g.setColor(Color.black);
+		} else if (tipo.compareTo("leisure") == 0) {
 			g.setColor(Color.green);
-		}
-		else if (tipo.compareTo("amenity") == 0) {
+		} else if (tipo.compareTo("amenity") == 0) {
 			g.setColor(Color.gray);
-		}
-		else if (tipo.compareTo("highway") == 0) {
+		} else if (tipo.compareTo("highway") == 0) {
 			g.setColor(Color.blue);
-		}
-		else if (tipo.compareTo("manmade") == 0) {
+		} else if (tipo.compareTo("manmade") == 0) {
 			g.setColor(Color.pink);
-		}
-		else {
+		} else {
 			g.setColor(Color.red);
 		}
-		g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1.getLat()), x_MapaARep(posnodo2.getLon()), y_MapaARep(posnodo2.getLat()));
+		g.drawLine(x_MapaARep(posnodo1.getLon()),
+				y_MapaARep(posnodo1.getLat()), x_MapaARep(posnodo2.getLon()),
+				y_MapaARep(posnodo2.getLat()));
 
-		
 	}
 
 	@Override
@@ -167,12 +156,11 @@ public class RepresentacionSimple extends Representacion {
 					this.pintar(g, tramo, null);
 					Polygon p = generarAreaTramo(tramo);
 					Color colorTransparente = new Color((float) 1, (float) 0.5,
-						(float) 0, (float) 0.7);
+							(float) 0, (float) 0.7);
 					g.setColor(colorTransparente);
 					g.fillPolygon(p);
-				}
-				catch(ArithmeticException e) {
-					
+				} catch (ArithmeticException e) {
+
 				}
 			}
 		}
@@ -224,125 +212,78 @@ public class RepresentacionSimple extends Representacion {
 		double angulo = tramo.getAngulo();
 
 		// genera los puntos (x,y) de las esquinas del poligono
-		int x[] = {
-				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
-						* carriles_ida * Math.sin(angulo)),
-				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
-						* carriles_ida * Math.sin(angulo)),
-				(int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril / zoom
-						* carriles_vuelta * (-Math.sin(angulo))),
-				(int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril / zoom
-						* carriles_vuelta * (-Math.sin(angulo))) };
-		int y[] = {
-				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
-						* carriles_ida * (-Math.cos(angulo))),
-				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
-						* carriles_ida * (-Math.cos(angulo))),
-				(int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril / zoom
-						* carriles_vuelta * Math.cos(angulo)),
-				(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
-						* carriles_vuelta * Math.cos(angulo)) };
+		int temp1 = (int) (tamaño_carril / zoom * carriles_ida * Math
+				.sin(angulo));
+		int temp2 = (int) (-tamaño_carril / zoom * carriles_vuelta * Math
+				.sin(angulo));
+		int x[] = { x_MapaARep(posnodo1.getLon()) + temp1,
+				x_MapaARep(posnodo2.getLon()) + temp1,
+				x_MapaARep(posnodo2.getLon()) + temp2,
+				x_MapaARep(posnodo1.getLon()) + temp2 };
+
+		temp1 = (int) (tamaño_carril / zoom * carriles_ida * Math.cos(angulo));
+		temp2 = (int) (-tamaño_carril / zoom * carriles_vuelta * Math
+				.cos(angulo));
+		int y[] = { y_MapaARep(posnodo1.getLat()) + temp1,
+				y_MapaARep(posnodo2.getLat()) + temp1,
+				y_MapaARep(posnodo2.getLat()) + temp2,
+				y_MapaARep(posnodo1.getLat()) + temp2 };
 		Polygon p = new Polygon(x, y, 4);
 		return p;
 	}
 
-	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) 
-	{
+	/* (non-Javadoc)
+	 * @see is.SimTraffic.Vista.Representaciones.Representacion#pintarVehiculo(java.awt.Graphics2D, is.SimTraffic.Simulacion.Vehiculo, is.SimTraffic.Mapa.Tramo)
+	 */
+	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
-		AffineTransform rot = new AffineTransform();
 
-		Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
-		//BufferedImage rect = coches[vehiculo.getId() % 7];
+		Shape rect = new Rectangle2D.Double(-5, 0, 5, tamaño_carril);
+		// BufferedImage rect = coches[vehiculo.getId() % 7];
 
-		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
 		g.setColor(Color.PINK);
 		int posX1, posY1, posX2, posY2, posX, posY;
-		if (tramo.getNodoFinal() == vehiculo.getNodoDestino()) {
-			if ((tramo.getNodoInicial().getPos().getLon() - tramo
-					.getNodoFinal().getPos().getLon()) < 0) {
-				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* (-Math.sin(tramo.getAngulo())));
-				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* Math.cos(tramo.getAngulo()));
-				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* (-Math.sin(tramo.getAngulo())));
-				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* Math.cos(tramo.getAngulo()));
-				rot.rotate(vehiculo.getTramo().getAngulo());
-			} else {
-				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 1 )
-						* Math.sin(tramo.getAngulo()));
-				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* (-Math.cos(tramo.getAngulo())));
-				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* Math.sin(tramo.getAngulo()));
-				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* (-Math.cos(tramo.getAngulo())));
-				rot.rotate(Math.PI + vehiculo.getTramo().getAngulo());
-			}
+
+		posX1 = x_MapaARep(posnodo1.getLon());
+		posX2 = x_MapaARep(posnodo2.getLon());
+		posY1 = y_MapaARep(posnodo1.getLat());
+		posY2 = y_MapaARep(posnodo2.getLat());
+		
+		// rotacion de la imagen
+		AffineTransform rot = new AffineTransform();
+		
+		// translacion en el mapa
+		AffineTransform trans = new AffineTransform();
+		
+		// zoom y desplazamiento por carril
+		AffineTransform zoom = new AffineTransform();
+		if (vehiculo.getTramo().getNodoFinal() == vehiculo.getNodoDestino()) {
+			rot.rotate(-vehiculo.getTramo().getAngulo());
 			posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
-		} else {
-			if ((tramo.getNodoInicial().getPos().getLon() - tramo
-					.getNodoFinal().getPos().getLon()) > 0) {
-				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* (-Math.sin(tramo.getAngulo())));
-				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  )
-						* Math.cos(tramo.getAngulo()));
-				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* (-Math.sin(tramo.getAngulo())));
-				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() )
-						* Math.cos(tramo.getAngulo()));
-				rot.rotate(vehiculo.getTramo().getAngulo());
-			} else {
-				posX1 = (int) (x_MapaARep(posnodo1.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* Math.sin(tramo.getAngulo()));
-				posY1 = (int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* (-Math.cos(tramo.getAngulo())));
-				posX2 = (int) (x_MapaARep(posnodo2.getLon()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril()  - 1)
-						* Math.sin(tramo.getAngulo()));
-				posY2 = (int) (y_MapaARep(posnodo2.getLat()) + tamaño_carril
-						/ zoom * (vehiculo.getCarril() - 1 )
-						* (-Math.cos(tramo.getAngulo())));
-				rot.rotate(Math.PI + vehiculo.getTramo().getAngulo());
-			}
-			posX = posX2 + (int) ((posX1 - posX2) * vehiculo.getPosicion());
-			posY = posY2 + (int) ((posY1 - posY2) * vehiculo.getPosicion());
 		}
-		AffineTransform trans = new AffineTransform();
-		AffineTransform zoom = new AffineTransform();
-		zoom.scale(1/this.zoom, 1/this.zoom);
-		//rot.rotate(vehiculo.getTramo().getAngulo());
+		else {
+			rot.rotate(Math.PI - vehiculo.getTramo().getAngulo());
+			posX = posX2 - (int) ((posX2 - posX1) * vehiculo.getPosicion());
+			posY = posY2 - (int) ((posY2 - posY1) * vehiculo.getPosicion());
+		}
+		zoom.scale(1 / this.zoom, 1 / this.zoom);
+		zoom.translate(0, -tamaño_carril * vehiculo.getCarril());
 		rot.concatenate(zoom);
 		trans.translate(posX, posY);
 		trans.concatenate(rot);
 		AffineTransform temp = g.getTransform();
 		g.transform(trans);
 		g.draw(rect);
-		//g.drawImage(rect, -5, -2, 4, 2, null);
+		// g.drawImage(rect, -5, -2, 4, 2, null);
 		g.setTransform(temp);
 
-		//g.drawRect(posX - 1, posY - 1, 2, 2);
+		// g.drawRect(posX - 1, posY - 1, 2, 2);
 
 	}
 

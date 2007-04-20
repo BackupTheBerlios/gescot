@@ -98,8 +98,13 @@ public class Tramo implements ElementoMapa {
 		double alto = nodoFinal.getPos().getLat()
 		- nodoInicial.getPos().getLat();
 		angulo = Math.atan(alto / largo);
-		if (largo < 0)
-			angulo = Math.PI + angulo;	
+		if (largo < 0 & alto > 0)
+			angulo = Math.PI + angulo;
+		if (largo < 0 & alto < 0)
+			angulo = angulo - Math.PI;
+		// NOTA: el angulo toma valores entre -PI y PI, teniendo angulo 0 un tramo que va de oeste a este
+		//       tambien cabe destacar que creece hacia arriba y decrece hacia abajo
+		// System.out.println("Angulo: " + angulo*180/Math.PI + " Coseno: " + Math.cos(angulo) + " Seno: " + Math.sin(angulo));
 	}
 
 	/**
