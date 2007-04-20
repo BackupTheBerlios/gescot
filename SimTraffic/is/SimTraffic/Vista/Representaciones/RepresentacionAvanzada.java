@@ -347,6 +347,56 @@ public class RepresentacionAvanzada extends Representacion {
 				(int) (posy2 + tamaño_carril / zoom * -(carriles_vuelta) * (Math.cos(angulo))),
 				(int) (posx2 + tamaño_carril / zoom * (carriles_ida) * Math.sin(angulo)), 
 				(int) (posy2 + tamaño_carril / zoom * (carriles_ida) * (Math.cos(angulo))));
+		pintarSemaforosTramo(tramo, g);
+	}
+
+	private void pintarSemaforosTramo(Tramo tramo, Graphics2D g) 
+	{
+		Color color = Color.RED;
+		Nodo ninicial = tramo.getNodoInicial();
+		if (ninicial.comprobarAlgunVerde(tramo))
+			color = Color.GREEN;
+		pintarSemaforo(g, color, tramo);
+		
+		color = Color.RED;
+		Nodo nfinal = tramo.getNodoFinal();
+		if (nfinal.comprobarAlgunVerde(tramo)) 
+			color = Color.GREEN;
+	}
+
+	private void pintarSemaforo(Graphics2D g, Color color, Tramo tramo) 
+	{
+		Posicion posnodo1 = tramo.getNodoInicial().getPos();
+		Posicion posnodo2 = tramo.getNodoFinal().getPos();
+		// almacena numero de carriles en cada sentido
+		int carriles_ida = tramo.getNumCarrilesDir1();
+		int carriles_vuelta = tramo.getNumCarrilesDir2();
+
+		double angulo = tramo.getAngulo();
+		int posx1 = x_MapaARep(posnodo1.getLon());
+		int posx2 = x_MapaARep(posnodo2.getLon());
+		int dist = posx2 - posx1;
+		int delta = (int) 5 * dist / tramo.getLargo();
+		posx2 = (int) (posx1 + dist - delta);
+		posx1 = (int) (posx1 + delta);
+		int posy1 = y_MapaARep(posnodo1.getLat());
+		int posy2 = y_MapaARep(posnodo2.getLat());
+		dist = posy2 - posy1;
+		delta = (int) 5 * dist / tramo.getLargo();
+		posy2 = (int) (posy1 + dist - delta);
+		posy1 = (int) (posy1 + delta);
+		
+		g.setColor(color);
+		g.setStroke(new BasicStroke(5));
+		g.drawLine((int) (posx1 + tamaño_carril / zoom * -(carriles_vuelta) * Math.sin(angulo)), 
+				(int) (posy1 + tamaño_carril / zoom * -(carriles_vuelta) * (Math.cos(angulo))),
+				(int) (posx1),
+				(int) (posy1));
+		g.drawLine((int) (posx2), 
+				(int) (posy2),
+				(int) (posx2 + tamaño_carril / zoom * (carriles_ida) * Math.sin(angulo)), 
+				(int) (posy2 + tamaño_carril / zoom * (carriles_ida) * (Math.cos(angulo))));
+		g.setStroke(new BasicStroke(1));
 	}
 
 	@Override

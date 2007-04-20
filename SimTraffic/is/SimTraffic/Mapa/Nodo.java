@@ -1,5 +1,6 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 import java.util.ArrayList;
@@ -262,8 +263,6 @@ public class Nodo implements ElementoMapa {
 		}
 	}
 
-
-	
 	/**
 	 * Este clone() sirve unicamente para utilizarlo en la herramienta de mover, ya que sólo necesitaremos conocer
 	 * los valores ID y de las posiciones del nodo.
@@ -281,7 +280,14 @@ public class Nodo implements ElementoMapa {
 		return clon;
 	}
 
-
-
-
+	public boolean comprobarAlgunVerde(Tramo tramo)
+	{
+		if (señal == null || !(señal instanceof Semaforo))
+			return false;
+		else
+		{
+			int posicionTramo = tramos.indexOf(tramo);
+			return ((Semaforo) señal).comprobarAlgunVerde(posicionTramo);
+		}
+	}
 }
