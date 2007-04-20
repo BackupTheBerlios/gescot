@@ -1,6 +1,7 @@
 package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
@@ -53,17 +54,24 @@ public class Simulacion {
 	private Mapa mapa;
 
 	private IControlador controlador;
-	
+
 	private ControladorSim controladorSim;
-	
+
 	private boolean activa = false;
-	
+
 	Random random;
-	
+
+	private int[] entradas = new int[3];
+
+	private int[] salidas = new int[3];
+
+	private int vehiculosActivos;
+
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		param = new ParametrosSimulacion();
+		random = new Random();
 	}
 
 	/**
@@ -99,12 +107,26 @@ public class Simulacion {
 		int max = max(param.getNumVehiculos());
 		max = max + max % 10;
 		vehiculos = new ArrayList<Vehiculo>(max + 20);
+		vehiculosActivos = 0;
 		rellenarTabla();
 		crearVehiculos();
-		//this.vista = vista;
+		// this.vista = vista;
 		controladorSim = new ControladorSim(vehiculos, this);
 		controladorSim.start();
 		activa = true;
+		Iterator<Nodo> it = mapa.getNodos().iterator();
+		EntradaSalida es;
+		for (int i = 0; i < 3; i++) {
+			entradas[i] = 0;
+			salidas[i] = 0;
+		}
+		while (it.hasNext()) {
+			es = it.next().getEs();
+			for (int i = 0; i < 3; i++) {
+				entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
+				salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+			}
+		}
 		return 0;
 	}
 
@@ -168,15 +190,15 @@ public class Simulacion {
 		// TODO crear vehiculos de cada tipo segun la infromacón que hay
 		// en los parametros. No se puede hacer ahora porque no se
 		// entiende como se guarda esa información
-		
-		//Random rand = new Random();
+
+		// Random rand = new Random();
 		// param.getPorcentajeTipo();
-		
+
 		for (int i = 0; i < cant; i++) {
 			vehiculos.add(new Turismo());
 		}
 	}
-	
+
 	private int max(int[] numeros) {
 		int res = 0;
 		for (int i = 0; i < numeros.length; i++) {
@@ -189,31 +211,72 @@ public class Simulacion {
 	public void actualizar() {
 		controlador.repintarCoches();
 	}
-	
-	
+
 	/**
-	 * Método que devuelve un nodo, que será entrada para un coche, según
-	 * la necesidad de estos.<p>
+	 * Método que devuelve un nodo, que será entrada para un coche, según la
+	 * necesidad de estos.
+	 * <p>
 	 * En este método se aprovecha para incrementar el número de coches activos
 	 * que hay en el mapa si se le pasa un valor. En caso de no querese nuevos
 	 * vehiculos se devolverá null.
-	 * @return
-	 * Nodo de entrada o null
+	 * 
+	 * @return Nodo de entrada o null
 	 */
 	synchronized public Nodo getEntrada() {
-		// TODO temporalmente da un nodo aleatorio
-		int i = random.nextInt(mapa.getNodos().size());
-		return mapa.getNodos().get(i); 
-		//return null;
+		// TODO da los nodos como corresponde, pero no mira la franja horaria en
+		// la que se esta
+		int franjaHoraria = 0;
+		if (vehiculosActivos < param.getNumVehiculos()[franjaHoraria]) {
+			// si no hay nodos de entrada, elegir aleatoriamente
+			if (entradas[franjaHoraria] == 0) {
+				int i = random.nextInt(mapa.getNodos().size());
+				vehiculosActivos++;
+				return mapa.getNodos().get(i);
+			}
+			// si hay nodos de entrada, elegir por eso
+			int i = random.nextInt(entradas[franjaHoraria]);
+			Iterator<Nodo> it = mapa.getNodos().iterator();
+			while (it.hasNext()) {
+				Nodo nodo = it.next();
+				i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
+				if (i <= 0) {
+					vehiculosActivos++;
+					return nodo;
+				}
+			}
+		}
+		// si no hacen falta más coches
+		return null;
 	}
-	
+
 	synchronized public Nodo getSalida() {
-		// TODO temporalmente da un nodo aleatorio
-		int i = random.nextInt(mapa.getNodos().size());
-		return mapa.getNodos().get(i); 
-		//return null;
+		// TODO da los nodos como corresponde, pero no mira la franja horaria en
+		// la que se esta
+		int franjaHoraria = 0;
+		// si no hay nodos de salida, elegir aleatoriamente
+		if (salidas[franjaHoraria] == 0) {
+			int i = random.nextInt(mapa.getNodos().size());
+			return mapa.getNodos().get(i);
+		}
+		// si hay nodos de entrada, elegir por eso
+		int i = random.nextInt(salidas[franjaHoraria]);
+		Iterator<Nodo> it = mapa.getNodos().iterator();
+		Nodo nodo = mapa.getNodos().get(0);
+		while (it.hasNext()) {
+			nodo = it.next();
+			i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
+			if (i <= 0) {
+				return nodo;
+			}
+		}
+		return nodo;
+
 	}
-	
+
+	public synchronized void saleVehiculo() {
+		vehiculosActivos--;
+	}
+
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
@@ -229,11 +292,11 @@ public class Simulacion {
 	public synchronized Mapa getMapa() {
 		return mapa;
 	}
-	
+
 	public void setControlador(IControlador controlador) {
 		this.controlador = controlador;
 	}
-	
+
 	public boolean estaActiva() {
 		return activa;
 	}

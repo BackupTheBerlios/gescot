@@ -117,15 +117,14 @@ public class Inteligencia {
 		if (entrada == null)
 			return;
 		Nodo salida = sim.getSalida();
-		vehiculo.inicializar(entrada, salida);
-		
-		int i = random.nextInt(sim.getMapa().getTramos().size());
-		vehiculo.setTramo(sim.getMapa().getTramos().get(i));
-		tabla.get(vehiculo.getTramo()).add(vehiculo);
-		vehiculo.setNodoOrigen(vehiculo.getTramo().getNodoInicial());
-		vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
-		vehiculo.resetaerPosicion();
-		vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);
+		if (vehiculo.inicializar(entrada, salida)) {;
+			vehiculo.setTramo(vehiculo.siguienteTramo());
+			tabla.get(vehiculo.getTramo()).add(vehiculo);
+			vehiculo.resetaerPosicion();
+			vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);		
+		}
+		else
+			sim.saleVehiculo();
 	}
 
 	/**
@@ -176,6 +175,16 @@ public class Inteligencia {
 		if (vehiculo.getTramo() == null) return;
 
 		Tramo tramo = vehiculo.siguienteTramo();
+		// en el caso de que el coche tenga que salir
+		if (tramo == null) {
+			sim.saleVehiculo();
+			vehiculo.setNodoDestino(null);
+			vehiculo.setNodoDestino(null);
+			tabla.get(vehiculo.getTramo()).remove(vehiculo);
+			vehiculo.setTramo(null);
+			return;
+		}
+		
 		tabla.get(vehiculo.getTramo()).remove(vehiculo);
 		vehiculo.setTramo(tramo);
 		tabla.get(tramo).add(vehiculo);

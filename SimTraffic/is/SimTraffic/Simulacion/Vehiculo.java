@@ -110,10 +110,10 @@ public abstract class Vehiculo {
 	public abstract Tramo siguienteTramo();
 	
 	
-	public void inicializar(Nodo origen, Nodo destino) {
+	public boolean inicializar(Nodo origen, Nodo destino) {
 		nodoOrigen = origen;
 		nodoDestino = destino; 
-		
+		return true;
 	}
 	/**
 	 * Estos metodos se incluyen porque son necesarios para relacionar los

@@ -15,33 +15,43 @@ import is.SimTraffic.Utils.Tiempo;
 public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 
 	Nodo nodoInicial;
+
 	Nodo nodoObjetivo;
-	
+
 	public HCreaItinerarioEntreDosNodos(Nodo nodoInicial, Nodo nodoObjetivo) {
 		this.nodoInicial = nodoInicial;
 		this.nodoObjetivo = nodoObjetivo;
 	}
 
 	public int hacer(IModelo modelo) {
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(nodoInicial,nodoObjetivo);
-		AEstrella algoritmoAEstrella=new AEstrella(problemaDistancias.getEstadoInicial(), 
-				problemaDistancias.getEstadoObjetivo(),problemaDistancias.getOperadores(),problemaDistancias.getHeuristica());
+		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
+				nodoInicial, nodoObjetivo);
+		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
+				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
+				problemaDistancias.getOperadores(), problemaDistancias
+						.getHeuristica());
 		boolean resul = algoritmoAEstrella.ejecutar();
 		if (resul == false) {
-			//Mostrar ventana, no ha sido posible encontrar un camino entre esos puntos.
-			 JOptionPane.showMessageDialog(null, "Puntos no comunicados por carretera",
-			            "No ha sido posible establecer un itinerario entre los 2 nodos especificados", 
-			            JOptionPane.INFORMATION_MESSAGE);
-			 modelo.getMapa().limpiaSeleccion();
-		}
-		else {
-			//Mostrar solución en el mapa
+			// Mostrar ventana, no ha sido posible encontrar un camino entre
+			// esos puntos.
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Puntos no comunicados por carretera",
+							"No ha sido posible establecer un itinerario entre los 2 nodos especificados",
+							JOptionPane.INFORMATION_MESSAGE);
 			modelo.getMapa().limpiaSeleccion();
-			for (int i=0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
-				if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) { //Solo es null en la raíz (se puede mejorar)
-					Tramo tramoAux= ((ExploraNodo)(algoritmoAEstrella.getSolucion().elementAt(i).getOperador())).getTramoElegido();
+		} else {
+			// Mostrar solución en el mapa
+			modelo.getMapa().limpiaSeleccion();
+			for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
+				 // Solo es null en la raíz (se puede mejorar)
+				if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
+					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
+							.getSolucion().elementAt(i).getOperador()))
+							.getTramoElegido();
 					modelo.getMapa().getSeleccion().añadirTramo(tramoAux);
-					//Ver luego si almacenarlo en algún sitio.
+					// Ver luego si almacenarlo en algún sitio.
 				}
 			}
 		}
@@ -49,13 +59,16 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 	}
 
 	public int deshacer(IModelo modelo) {
-		//Deshacer sería eliminar la selección en el momento de ejecutar la herramienta, por lo que no 
-		//tiene mucho sentido (como mucho, guardar la selección anterior). Aun por decidir.
+		// Deshacer sería eliminar la selección en el momento de ejecutar la
+		// herramienta, por lo que no
+		// tiene mucho sentido (como mucho, guardar la selección anterior). Aun
+		// por decidir.
 		return 0;
 	}
-	
-	public String toString(){
-		return Tiempo.Hora()+" - "+"Creado itinerario por carretera entre 2 nodos";
+
+	public String toString() {
+		return Tiempo.Hora() + " - "
+				+ "Creado itinerario por carretera entre 2 nodos";
 	}
 
 	/**

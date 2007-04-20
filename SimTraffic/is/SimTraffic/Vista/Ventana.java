@@ -185,7 +185,6 @@ public class Ventana extends JFrame {
 	 */
 	public void añadirMenuEmergente() {
 		JPopupMenu emergente = new JPopupMenu("menuEmergente");
-		panel_mapa.add(emergente, BorderLayout.NORTH);
 		JMenuItem eliminarItem = new JMenuItem("Eliminar");
 		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));

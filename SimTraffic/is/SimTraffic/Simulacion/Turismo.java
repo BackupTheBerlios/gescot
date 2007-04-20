@@ -1,8 +1,16 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.LibreriaIA.IPrincipal;
+import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
+import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
+import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -12,8 +20,11 @@ import java.util.Random;
  */
 public class Turismo extends Vehiculo {
 
-	Random random;
+	private Random random;
 	
+	private ArrayList<Tramo> tramos = new ArrayList<Tramo>();
+	
+	private int cuentaTramos = 0;
 	/**
 	 * 
 	 */
@@ -41,9 +52,42 @@ public class Turismo extends Vehiculo {
 
 	@Override
 	public Tramo siguienteTramo() {
-		// TODO por ahora hace un recorrido aleatorio
-		return nodoDestino.getTramos().get(random.nextInt(nodoDestino.getTramos().size()));
+		// TODO da el tramo siguiente
+		cuentaTramos++;
+		if (tramos.size() < cuentaTramos) {
+			return null;
+		}
+		return tramos.get(cuentaTramos - 1);
 	}
 
+	public boolean inicializar(Nodo origen, Nodo destino) {
+		super.inicializar(origen, destino);
+		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
+				origen, destino);
+		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
+				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
+				problemaDistancias.getOperadores(), problemaDistancias
+						.getHeuristica());
+		boolean resul = algoritmoAEstrella.ejecutar();
+		if (resul == false) {
+			// no ha sido posible encontrar un camino entre los nodos
+			return false;
+		} else {
+			// Mostrar solución en el mapa
+			tramos.clear();
+			cuentaTramos = 0;
+			for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
+				 // Solo es null en la raíz (se puede mejorar)
+				if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
+					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
+							.getSolucion().elementAt(i).getOperador()))
+							.getTramoElegido();
+					tramos.add(tramoAux);
+					// Ver luego si almacenarlo en algún sitio.
+				}
+			}
+			return true;
+		}
+	}
 
 }
