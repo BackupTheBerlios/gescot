@@ -164,8 +164,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	 * @see is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		if(!arg0.isPopupTrigger()) 
+	public void mousePressed(MouseEvent e) {
+		if(!e.isPopupTrigger()) 
 			panel.getMenuEmergente().setVisible(false);
 	}
 	
@@ -190,6 +190,11 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	}
 	
 	public void mouseMoved(MouseEvent e) {  
+	//Estas lineas comentadas son para sugerir el nodo encima del cual apunta el raton 
+		/*	panel.sugerir(null);
+		Nodo nodoSugerir = buscarNodo(e.getX(), e.getY());
+		panel.sugerir(nodoSugerir); //sea null o no
+		*/
 		double posX = panel.lon_RepAMapa(e.getX());
 		double posY = panel.lat_RepAMapa(e.getY());
 		posicionX.setText(panel.getRepresentacion().pasarAGrados(posX));//"" + cincoCifras.format(posX)+"º");
