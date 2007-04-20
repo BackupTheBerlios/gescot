@@ -6,7 +6,9 @@ import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCambiarTiempoTotalSem;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCrearSemaforo;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionInsertarIntervalo;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 
@@ -27,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class PanelNodo extends JFrame {
 
@@ -71,6 +74,10 @@ public class PanelNodo extends JFrame {
 	private Nodo nodo;
 
 	private PanelMapa mapa;
+	
+	private JTextField tiempoInicial;
+	
+	private JTextField tiempoFinal;
 
 	public PanelNodo(Nodo nodo) {
 
@@ -139,50 +146,68 @@ public class PanelNodo extends JFrame {
 			String[] valoresTiempoTotal = {"30","60","120","240"};
 			JComboBox electorTiempoTotal = new JComboBox(valoresTiempoTotal);
 			JLabel etiqElector = new JLabel("Elija el tiempo total de ciclo del semáforo");
+			JButton botonAplicar = new JButton("Aplicar Cambios");
+			botonAplicar.setToolTipText("¡Aviso! Se borrarán todos los intervalos creados");
+			AccionCambiarTiempoTotalSem oyenteBotonAplicar = new AccionCambiarTiempoTotalSem(nodo, Integer.parseInt((String)electorTiempoTotal.getSelectedItem()),this);
+			botonAplicar.addActionListener(oyenteBotonAplicar);
 			panelSemaforos.add(etiqElector);
 			panelSemaforos.add(electorTiempoTotal);
+			panelSemaforos.add(botonAplicar);
 			
 			JScrollPane panelScroll = new JScrollPane(panelInterior);
 			panelScroll.setPreferredSize(new Dimension(450,250));
 			panelSemaforos.add(panelScroll);
-			
-			creaPanelesIntervalos(panelScroll);
+			int valorScrollVertical = ((Semaforo)nodo.getSeñal()).getListaIntervalos().size()*70;
+			panelInterior.setPreferredSize(new Dimension(440,valorScrollVertical));
+			creaPanelesIntervalos(panelInterior);
 			
 			JButton añadirIntervalo = new JButton("Haga Click para añadir intervalo");
 			panelSemaforos.add(añadirIntervalo);
 			JLabel etiqDe = new JLabel("De");
 			panelSemaforos.add(etiqDe);
-			JTextField tiempoInicial= new JTextField("0");
+			tiempoInicial= new JTextField("0");
 			tiempoInicial.setColumns(3);
 			panelSemaforos.add(tiempoInicial);
 			JLabel etiqA = new JLabel("a");
 			panelSemaforos.add(etiqA);
-			JTextField tiempoFinal = new JTextField((String)electorTiempoTotal.getSelectedItem());
+			tiempoFinal = new JTextField((String)electorTiempoTotal.getSelectedItem());
 			tiempoFinal.setColumns(3);
 			panelSemaforos.add(tiempoFinal);
-			
-		}
-		
+			AccionInsertarIntervalo oyenteBotonAñadirIntervalo = new AccionInsertarIntervalo(nodo,Integer.parseInt(tiempoInicial.getText()),Integer.parseInt(tiempoFinal.getText()),this);
+			añadirIntervalo.addActionListener(oyenteBotonAñadirIntervalo);	
+		}		
 	}
 	
-	private void creaPanelesIntervalos(JScrollPane panelScroll){
+	public int dameTiempoInicial(){
+		return Integer.parseInt(this.tiempoInicial.getText());
+	}
+
+	public int dameTiempoFinal(){
+		return Integer.parseInt(this.tiempoFinal.getText());
+	}
+	
+	private void creaPanelesIntervalos(JPanel panelInterno){
+		panelInterno.removeAll();
 		for (int i=0;i<((Semaforo)nodo.getSeñal()).getListaIntervalos().size();i++) {
-		JLabel etiqDe = new JLabel("De");
-		JTextField tiempoDe = new JTextField("0");
-		JLabel etiqA = new JLabel("a");
-		JTextField tiempoA = new JTextField("0");
-		JButton mostrarM = new JButton("MostrarMatriz");
-		JButton aplicarC = new JButton("AplicarCambios");
-		JPanel intervaloI = new JPanel();
-		//intervaloI.setLayout(new FlowLayout());
-		intervaloI.add(etiqDe);
-		intervaloI.add(tiempoDe);
-		intervaloI.add(etiqA);
-		intervaloI.add(tiempoA);
-		intervaloI.add(mostrarM);
-		intervaloI.add(aplicarC);
-		intervaloI.setBorder(BorderFactory.createTitledBorder("Intervalo " + i));
-		panelScroll.add(intervaloI);
+			JLabel etiqDe = new JLabel("De");
+			String valor1 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoInicial());
+			JTextField tiempoDe = new JTextField(valor1);
+			tiempoDe.setColumns(3);
+			JLabel etiqA = new JLabel("a");
+			String valor2 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoFinal());
+			JTextField tiempoA = new JTextField(valor2);
+			tiempoA.setColumns(3);
+			JButton mostrarM = new JButton("MostrarMatriz");
+			JButton aplicarC = new JButton("AplicarCambios");
+			JPanel intervaloI = new JPanel();
+			intervaloI.add(etiqDe);
+			intervaloI.add(tiempoDe);
+			intervaloI.add(etiqA);
+			intervaloI.add(tiempoA);
+			intervaloI.add(mostrarM);
+			intervaloI.add(aplicarC);
+			intervaloI.setBorder(BorderFactory.createTitledBorder("Intervalo " + i));
+			panelInterno.add(intervaloI);
 		}
 		
 	}
