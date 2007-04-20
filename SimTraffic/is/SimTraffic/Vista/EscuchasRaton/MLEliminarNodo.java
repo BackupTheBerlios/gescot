@@ -4,6 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
@@ -32,6 +33,13 @@ public class MLEliminarNodo extends EscuchaRaton
 			if (seleccionado.getTramos().isEmpty())   //Solo se eliminan los nodos que no tienen ningun tramo. ¿Eliminar también los tramos?
 			{
 				controlador.herramienta(new HEliminarNodo(seleccionado));
+				Nodo nodoSeleccion = modelo.getMapa().getSeleccion().existeNodo(seleccionado);
+				if (nodoSeleccion!=null) {
+					for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
+						if (modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i).equals(nodoSeleccion)) 
+							modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(i);
+					}
+				}
 				panel.sugerir(null);
 				panel.recrearMapa();
 				panel.repaint();
