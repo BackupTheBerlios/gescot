@@ -30,7 +30,14 @@ public class MLEliminarTramo extends EscuchaRaton
 		Tramo seleccionado = buscarTramo(e.getX(), e.getY());
 		if (seleccionado != null)
 		{
-			controlador.herramienta(new HEliminarTramo(seleccionado));
+			controlador.herramienta(new HEliminarTramo(seleccionado));			
+			Tramo tramoSeleccion = modelo.getMapa().getSeleccion().existeTramo(seleccionado);
+			if (tramoSeleccion!=null) {
+				for (int i=0; i<modelo.getMapa().getSeleccion().getTramosSeleccionados().size(); i++) {
+					if (modelo.getMapa().getSeleccion().getTramosSeleccionados().get(i).equals(tramoSeleccion)) 
+						modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(i);
+				}
+			}			
 			panel.sugerir(null);
 			panel.recrearMapa();
 			panel.repaint();
