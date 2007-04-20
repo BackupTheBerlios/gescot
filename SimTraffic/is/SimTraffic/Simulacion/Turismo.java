@@ -60,10 +60,10 @@ public class Turismo extends Vehiculo {
 		return tramos.get(cuentaTramos - 1);
 	}
 
-	public boolean inicializar(Nodo origen, Nodo destino) {
-		super.inicializar(origen, destino);
+	public boolean inicializar(Nodo entrada, Nodo salida) {
+		super.inicializar(entrada, salida);
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
-				origen, destino);
+				entrada, salida);
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias

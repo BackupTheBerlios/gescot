@@ -29,12 +29,14 @@ public class AccionSobreMapa implements ActionListener {
 
 	Ventana ventana;
 	int boton;
+	ClassLoader cl;
 
 	public AccionSobreMapa(EscuchaRaton escucha, Ventana ventana, EscuchaTeclado escuchaTeclado, int boton) {
 		this.escucha = escucha;
 		this.ventana = ventana;
 		this.escuchaTeclado = escuchaTeclado;
 		this.boton = boton;
+		cl = this.getClass().getClassLoader();
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -75,17 +77,15 @@ public class AccionSobreMapa implements ActionListener {
 				ImageStr = "itinerario.png";
 			}
 
-			String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
-			
+			//String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
+			ImageIcon imagen = new ImageIcon(cl
+					.getResource("is/SimTraffic/Vista/Imagenes/Cursores/" + ImageStr));
 			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor( 
-					  new ImageIcon( direccion).getImage(), 
+					  imagen.getImage(), 
 					  new Point(15,12), "Cursor" );
-			ventana.getPanel_mapa().setCursor(c);			
-			
-			
+			ventana.getPanel_mapa().setCursor(c);					
 		}
-		else {
-			 
+		else {			 
 			Cursor c2;
 			c2 = new Cursor(0);
 			ventana.getPanel_mapa().setCursor(c2);		

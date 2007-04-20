@@ -66,6 +66,9 @@ public abstract class Vehiculo {
 	 */
 	protected Nodo nodoDestino;
 	
+	protected Nodo nodoEntrada;
+	protected Nodo nodoSalida;
+	
 	/**
 	 * Identificador del vehículo
 	 * */
@@ -110,9 +113,9 @@ public abstract class Vehiculo {
 	public abstract Tramo siguienteTramo();
 	
 	
-	public boolean inicializar(Nodo origen, Nodo destino) {
-		nodoOrigen = origen;
-		nodoDestino = destino; 
+	public boolean inicializar(Nodo entrada, Nodo salida) {
+		nodoEntrada = entrada;
+		nodoSalida = salida; 
 		return true;
 	}
 	/**

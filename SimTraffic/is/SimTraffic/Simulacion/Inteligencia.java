@@ -128,7 +128,13 @@ public class Inteligencia {
 			vehiculo.setTramo(vehiculo.siguienteTramo());
 			tabla.get(vehiculo.getTramo()).add(vehiculo);
 			vehiculo.resetaerPosicion();
-			vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);		
+			vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);
+			vehiculo.setNodoOrigen(entrada);
+			if (vehiculo.getTramo().getNodoInicial() == entrada) {
+				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
+			}
+			else
+				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
 		}
 		else
 			sim.saleVehiculo();
