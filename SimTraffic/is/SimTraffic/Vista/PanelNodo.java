@@ -2,6 +2,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
@@ -133,7 +134,7 @@ public class PanelNodo extends JFrame {
 			panelSemaforos.add(etiquetaNuevo);
 			panelSemaforos.add(botonCrearSemaforo);
 		//Si ya existe un semáforo en el nodo
-		} else if(nodo.getSeñal() != null){
+		} else if(nodo.getSeñal().getNombre() == "Semaforo"){
 			JPanel panelInterior = new JPanel();
 			String[] valoresTiempoTotal = {"30","60","120","240"};
 			JComboBox electorTiempoTotal = new JComboBox(valoresTiempoTotal);
@@ -144,6 +145,8 @@ public class PanelNodo extends JFrame {
 			JScrollPane panelScroll = new JScrollPane(panelInterior);
 			panelScroll.setPreferredSize(new Dimension(450,250));
 			panelSemaforos.add(panelScroll);
+			
+			creaPanelesIntervalos(panelScroll);
 			
 			JButton añadirIntervalo = new JButton("Haga Click para añadir intervalo");
 			panelSemaforos.add(añadirIntervalo);
@@ -158,6 +161,28 @@ public class PanelNodo extends JFrame {
 			tiempoFinal.setColumns(3);
 			panelSemaforos.add(tiempoFinal);
 			
+		}
+		
+	}
+	
+	private void creaPanelesIntervalos(JScrollPane panelScroll){
+		for (int i=0;i<((Semaforo)nodo.getSeñal()).getListaIntervalos().size();i++) {
+		JLabel etiqDe = new JLabel("De");
+		JTextField tiempoDe = new JTextField("0");
+		JLabel etiqA = new JLabel("a");
+		JTextField tiempoA = new JTextField("0");
+		JButton mostrarM = new JButton("MostrarMatriz");
+		JButton aplicarC = new JButton("AplicarCambios");
+		JPanel intervaloI = new JPanel();
+		//intervaloI.setLayout(new FlowLayout());
+		intervaloI.add(etiqDe);
+		intervaloI.add(tiempoDe);
+		intervaloI.add(etiqA);
+		intervaloI.add(tiempoA);
+		intervaloI.add(mostrarM);
+		intervaloI.add(aplicarC);
+		intervaloI.setBorder(BorderFactory.createTitledBorder("Intervalo " + i));
+		panelScroll.add(intervaloI);
 		}
 		
 	}

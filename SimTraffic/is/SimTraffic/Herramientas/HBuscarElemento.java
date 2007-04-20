@@ -1,5 +1,7 @@
 package is.SimTraffic.Herramientas;
 
+import javax.swing.JOptionPane;
+
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
@@ -28,8 +30,12 @@ public class HBuscarElemento implements IHerramienta {
 		if (elementoACambiar.equals("Nodo")) {
 			Nodo nodoEncontrado;
 			nodoEncontrado = modelo.getMapa().buscarNodo(nombre);
-			if (nodoEncontrado==null) 
+			if (nodoEncontrado==null) { 
+				 JOptionPane.showMessageDialog(null,"No existe ningún nodo con el nombre especificado",
+						 "Nodo no encontrado", 
+				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
+			}
 			else {
 				//Faltaría ver si hay que desambiguar (si se repiten los nombres).
 				panel.centrarEnPosicion(nodoEncontrado.getPos().getLat(),nodoEncontrado.getPos().getLon());
@@ -40,8 +46,12 @@ public class HBuscarElemento implements IHerramienta {
 		else if (elementoACambiar.equals("Tramo")) {
 			Tramo tramoEncontrado;
 			tramoEncontrado = modelo.getMapa().buscarTramo(nombre);
-			if (tramoEncontrado==null) 
+			if (tramoEncontrado==null) {
+				 JOptionPane.showMessageDialog(null,"No existe ningún tramo con el nombre especificado",
+						 "Tramo no encontrado", 
+				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
+			}
 			else {
 				//Faltaría ver si hay que desambiguar (si se repiten los nombres).
 				panel.centrarEnPosicion(tramoEncontrado.getNodoInicial().getPos().getLat(),tramoEncontrado.getNodoInicial().getPos().getLon());
@@ -56,7 +66,7 @@ public class HBuscarElemento implements IHerramienta {
 		else if (elementoACambiar.equals("Vía")) {
 			Via viaEncontrada;
 			viaEncontrada = modelo.getMapa().buscarVia(nombre);
-			if (viaEncontrada==null) 
+			if (viaEncontrada==null)
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
 			else {
 				//Faltaría ver si hay que desambiguar (si se repiten los nombres).
@@ -90,6 +100,12 @@ public class HBuscarElemento implements IHerramienta {
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public void mostrarError(String s) {
+		 JOptionPane.showMessageDialog(null,"No existe ningún " + s + " con el nombre especificado",
+				 s+ " no encontrado", 
+		            JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/**

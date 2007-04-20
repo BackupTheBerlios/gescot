@@ -629,7 +629,10 @@ public class Mapa {
 			if (nomaux != null && nomaux.equals(nombre))
 				encontrado = true;
 		}
-		return nodoaux;
+		if (encontrado)
+			return nodoaux;
+		else
+			return null;
 	}
 
 	/**
