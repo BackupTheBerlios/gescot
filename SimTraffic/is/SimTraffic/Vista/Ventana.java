@@ -179,15 +179,26 @@ public class Ventana extends JFrame {
 		panel.setFocusable(true);
 	}
 
+	
+	/**
+	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
+	 */
 	public void añadirMenuEmergente() {
 		JPopupMenu emergente = new JPopupMenu("menuEmergente");
 		panel_mapa.add(emergente, BorderLayout.NORTH);
 		JMenuItem eliminarItem = new JMenuItem("Eliminar");
 		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));
-		// moverItem.addActionListener(new
-		// AccionMoverNodo(modelo,controlador,panel_mapa)));
+		JMenuItem propiedadesItem = new JMenuItem("Propiedades");
+		propiedadesItem.addActionListener(new AccionPropiedadesNodo(modelo,
+				controlador, panel_mapa));
+		JMenuItem moverItem = new JMenuItem("Mover");
+		moverItem.addActionListener(new AccionMoverNodo(modelo,
+				controlador, panel_mapa));
 		emergente.add(eliminarItem);
+		emergente.add(moverItem);
+		emergente.add(propiedadesItem);
+
 		panel_mapa.setMenuEmergente(emergente);
 
 	}
