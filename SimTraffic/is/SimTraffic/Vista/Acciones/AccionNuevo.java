@@ -26,6 +26,10 @@ public class AccionNuevo implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (modelo.getMapa().getNodos().size() != 0) {
+			//Preguntar si desea guardar el mapa actual: Si el usuario dice que sí,
+			//crear aquí una herramienta de guardar mapa (Faltaría crear ventana para ello).
+		}
 		modelo.setMapa(new Mapa());
 		panel_mapa.recrearMapa();
 		panel_mapa.repaint();
