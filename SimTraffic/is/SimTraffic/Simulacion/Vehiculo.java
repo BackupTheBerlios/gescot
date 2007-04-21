@@ -1,5 +1,8 @@
 package is.SimTraffic.Simulacion;
 
+import java.awt.Color;
+import java.util.Random;
+
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
@@ -16,6 +19,16 @@ import is.SimTraffic.Mapa.Tramo;
  */
 public abstract class Vehiculo {
 
+	/**
+	 * Nombre que identificará al tipo de vehículo (turismo, camión, etc.)
+	 */
+	protected String nombre;
+	
+	/**
+	 * Color del vehículo (para una posible representación)
+	 */
+	protected Color color; 
+	
 	/**
 	 * Velocidad a la que esta ciruculando el vehiculo.
 	 */
@@ -182,4 +195,37 @@ public abstract class Vehiculo {
 	public int getId() {	
 		return this.id;	
 		}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	public void generarColorAleatorio() {
+		Random r = new Random();
+		int auxColor = r.nextInt(5);
+		if (auxColor == 0)
+			color = Color.RED;
+		else if (auxColor == 1)
+			color = Color.BLUE;
+		else if (auxColor == 2)
+			color = Color.GREEN;
+		else if (auxColor == 3)
+			color = Color.ORANGE;
+		else if (auxColor == 4)
+			color = Color.PINK;
+		else
+			color = Color.WHITE;
+	}
 }

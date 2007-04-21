@@ -243,13 +243,28 @@ public class RepresentacionSimple extends Representacion {
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
 
-		Shape rect = new Rectangle2D.Double(-5, -tamaño_carril, 5,
+		Shape rect;
+		if (vehiculo.getNombre() == "Turismo")
+			rect = new Rectangle2D.Double(-4, -tamaño_carril, 4,
 				tamaño_carril);
+		else if (vehiculo.getNombre() == "Camion") {
+			rect = new Rectangle2D.Double(-6, -tamaño_carril, 6,
+					tamaño_carril);
+		}
+		else {
+			rect = new Rectangle2D.Double(-4, -tamaño_carril, 4,
+					tamaño_carril);
+		}
 		// BufferedImage rect = coches[vehiculo.getId() % 7];
 
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
 
-		g.setColor(Color.RED);
+		if (vehiculo.getColor()==null)
+			g.setColor(Color.RED);
+		else {
+			g.setColor(vehiculo.getColor());
+		}
+		
 		int posX1, posY1, posX2, posY2, posX, posY;
 
 		posX1 = x_MapaARep(tramo.getNodoInicial().getPos().getLon());

@@ -7,6 +7,7 @@ import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,6 +32,11 @@ public class Turismo extends Vehiculo {
 	public Turismo () {
 		// TODO este constructor deberia dar valores a todos
 		//   los atributos de un vehiculo
+		nombre = "Turismo";
+		
+		//Se genera un color aleatorio
+		generarColorAleatorio();
+		
 		random = new Random();
 		this.aceleracion = 0;
 		this.aceleracionMax = (double) random.nextInt(30) / 100 + 0.2;

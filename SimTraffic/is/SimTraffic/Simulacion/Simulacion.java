@@ -194,7 +194,13 @@ public class Simulacion {
 		// param.getPorcentajeTipo();
 
 		for (int i = 0; i < cant; i++) {
-			vehiculos.add(new Turismo());
+			Random r = new Random();
+			int aux = r.nextInt(10);
+			//Se generan ahora mismo 3 camiones por cada 10 vehiculos (debería ser un parámetro).
+			if (aux>2)
+				vehiculos.add(new Turismo());
+			else
+				vehiculos.add(new Camion());
 		}
 	}
 
