@@ -38,6 +38,22 @@ public class EntradaSalida {
 			porcentajesSalida[i] = 0;
 		}
 	}
+	
+	public boolean equals(Object objeto) {
+		if (objeto == null)
+			return false;
+		if (objeto.getClass() != this.getClass())
+			return false;
+		EntradaSalida es = (EntradaSalida) objeto;
+		boolean iguales =true;
+		for (int i=0;i<3;i++)
+		{
+			if ((this.porcentajesEntrada[i]!=es.getPorcentajesEntrada()[i])||(this.porcentajesSalida[i]!=es.getPorcentajesSalida()[i]))
+				iguales=false;
+		}
+		return iguales;
+	}
+	
 
 	public String transformaOSM() {
 		String valor = "<tag k='entradasalida' v='";
