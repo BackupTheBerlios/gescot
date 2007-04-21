@@ -5,8 +5,17 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import junit.framework.TestCase;
 
+/**
+ * Clase de testo de la clase EntradaSalida
+ * @author Nacho
+ *
+ */
+
 public class EntradaSalidaTest extends TestCase {
 	
+	/**
+	 * Metodo para probar que el metodo equals esta bien implementado
+	 */
 	public void testEquals()
 	{
 		int entrada1 []={10,34,14};
@@ -22,6 +31,10 @@ public class EntradaSalidaTest extends TestCase {
 			fail("EntradaSalida tendrian que ser diferentes");	
 	
 	}
+	/**
+	 * Metodo que comprueba que el metodo transformaOSM esta correctamente implementado
+	 *
+	 */
 		public void testtransformaOSM()
 		{
 		int entrada1 []={10,34,14};
