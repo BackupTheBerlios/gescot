@@ -159,6 +159,10 @@ public abstract class Vehiculo {
 		return this.velocidad;
 	}
 
+	public synchronized double getVelocidadMax() {
+		return this.velocidadMax;
+	}
+	
 	public double getAceleracion() {
 		return this.aceleracion;
 	}

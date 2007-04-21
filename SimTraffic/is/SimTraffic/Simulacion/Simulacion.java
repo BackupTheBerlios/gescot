@@ -23,7 +23,6 @@ import java.util.Random;
  * tramos que ocupan para facilitar el procesamiento de estos.<br>
  * 
  * @author Grupo ISTrafico
- * 
  */
 public class Simulacion {
 
@@ -264,7 +263,7 @@ public class Simulacion {
 		Nodo nodo = mapa.getNodos().get(0);
 		while (it.hasNext()) {
 			nodo = it.next();
-			i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
+			i -= nodo.getEs().getPorcentajesSalida()[franjaHoraria];
 			if (i <= 0) {
 				return nodo;
 			}

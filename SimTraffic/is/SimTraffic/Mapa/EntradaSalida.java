@@ -43,7 +43,7 @@ public class EntradaSalida {
 		String valor = "<tag k='entradasalida' v='";
 		for (int i = 0; i < 2; i++)
 			valor += porcentajesEntrada[i] + ",";
-		valor += porcentajesEntrada[2] + ","; //Cambiado, antes 3
+		valor += porcentajesEntrada[2] + ",";
 		for (int i = 0; i < 3; i++)
 			valor += "," + porcentajesSalida[i];
 		valor += "' />\n";

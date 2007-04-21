@@ -1,6 +1,7 @@
 package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class Inteligencia {
 	private Iterator<Vehiculo> iterador;
 
 	Random random;
-	
+
 	/**
 	 * Double que en cada proceso almacena la velocidad del coche de delante o
 	 * -1 si no hay ninguno cerca
@@ -47,7 +48,7 @@ public class Inteligencia {
 	private double velDelante;
 
 	private int distDelante;
-	
+
 	/**
 	 * Constructor de la clase.
 	 * <p>
@@ -85,17 +86,17 @@ public class Inteligencia {
 		if (vehiculo.getTramo() == null)
 			inicializarVehiculo(vehiculo);
 		else {
-	
-		if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
-			procesarTramoSiguiente(vehiculo);
 
-		controlarCochesDelante(vehiculo);
+			if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
+				procesarTramoSiguiente(vehiculo);
 
-		procesarCambioCarril(vehiculo);
+			controlarCochesDelante(vehiculo);
 
-		recalcularAceleracion(vehiculo);
+			procesarCambioCarril(vehiculo);
 
-		recalcularVelocidadYPosicion(vehiculo);
+			recalcularAceleracion(vehiculo);
+
+			recalcularVelocidadYPosicion(vehiculo);
 		}
 	}
 
@@ -112,31 +113,31 @@ public class Inteligencia {
 		// momento el camino que debe recorrer.
 		// tambien puede ser una buena optimización que si ya tiene un camino,lo
 		// vuevla a recorrer con una probabilidad dada
-		
+
 		Nodo entrada = sim.getEntrada();
 		if (entrada == null)
 			return;
 		Nodo salida = sim.getSalida();
-		
-		//Añadida comprobación (para evitar que el nodo de entrada y de salida sea el mismo, lo cual 
-		//no es lógico y además genera problemas adicionales)
-		while (salida==entrada) {
+
+		// Añadida comprobación (para evitar que el nodo de entrada y de salida
+		// sea el mismo, lo cual
+		// no es lógico y además genera problemas adicionales)
+		while (salida == entrada) {
 			salida = sim.getSalida();
 		}
-		
-		if (vehiculo.inicializar(entrada, salida)) {;
+
+		if (vehiculo.inicializar(entrada, salida)) {
 			vehiculo.setTramo(vehiculo.siguienteTramo());
 			tabla.get(vehiculo.getTramo()).add(vehiculo);
 			vehiculo.resetaerPosicion();
-			vehiculo.setCarril(random.nextInt(vehiculo.getTramo().getNumCarrilesDir1()) +1);
+			vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
+					.getNumCarrilesDir1()) + 1);
 			vehiculo.setNodoOrigen(entrada);
 			if (vehiculo.getTramo().getNodoInicial() == entrada) {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
-			}
-			else
+			} else
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
-		}
-		else
+		} else
 			sim.saleVehiculo();
 	}
 
@@ -149,8 +150,9 @@ public class Inteligencia {
 	 */
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
 		// TODO temporalmente controla que no supere el 98% de la dist del tramo
-		if (vehiculo.getTramo() == null) return false;
-		if ((1 - vehiculo.getPosicion())*vehiculo.getTramo().getLargo() < 2)
+		if (vehiculo.getTramo() == null)
+			return false;
+		if ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo() < 2)
 			return true;
 		return false;
 	}
@@ -169,7 +171,17 @@ public class Inteligencia {
 	 *         detenerse
 	 */
 	private boolean controlarSeñales(Vehiculo vehiculo) {
-		// TODO
+		Tramo tramo1 = vehiculo.getTramo();
+		Tramo tramo2 = vehiculo.siguienteTramo();
+		
+		if (tramo2 != null) {
+			Señal señal = vehiculo.getNodoDestino().getSeñal();
+			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) > 0) {
+				// TODO frena demasiado... habria que hacerlo distinto
+				vehiculo.velocidad = 0;
+				return false;
+			}
+		}
 		return true;
 
 	}
@@ -185,33 +197,31 @@ public class Inteligencia {
 		// puede sobrecargar para cada uno de los tipos de vehiculos ya que sera
 		// muy distinto si es un autobus (que ira por el recorrido) o un camion
 		// (que debería elegir calles ampilas),etc.
-		if (vehiculo.getTramo() == null) return;
+		if (vehiculo.getTramo() == null)
+			return;
 
 		Tramo tramo = vehiculo.siguienteTramo();
 		// en el caso de que el coche tenga que salir
 		if (tramo == null) {
 			sim.saleVehiculo();
 			vehiculo.setNodoDestino(null);
-			vehiculo.setNodoDestino(null);
+			vehiculo.setNodoOrigen(null);
 			tabla.get(vehiculo.getTramo()).remove(vehiculo);
 			vehiculo.setTramo(null);
 			return;
 		}
-		
+
 		tabla.get(vehiculo.getTramo()).remove(vehiculo);
 		vehiculo.setTramo(tramo);
 		tabla.get(tramo).add(vehiculo);
-		
+
 		vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
 		if (tramo.getNodoInicial() == vehiculo.getNodoOrigen()) {
 			vehiculo.setNodoDestino(tramo.getNodoFinal());
 		} else
 			vehiculo.setNodoDestino(tramo.getNodoInicial());
-		
-		vehiculo.resetaerPosicion();
-		//vehiculo.aceleracion = 0;
-		//vehiculo.velocidad = 0;
 
+		vehiculo.resetaerPosicion();
 	}
 
 	/**
@@ -229,18 +239,20 @@ public class Inteligencia {
 	 * 
 	 */
 	private synchronized void controlarCochesDelante(Vehiculo vehiculo) {
-		// TODO 
+		// TODO
 		if (vehiculo.tramo == null)
 			return;
-		iterador = (new ArrayList<Vehiculo>(tabla.get(vehiculo.tramo))).iterator();
-		
+		iterador = (new ArrayList<Vehiculo>(tabla.get(vehiculo.tramo)))
+				.iterator();
+
 		Vehiculo temp = null;
 		double velocidad = -1.0;
 		double distancia = 1.0;
 		while (iterador.hasNext()) {
 			temp = iterador.next();
 			if (temp != null && temp != vehiculo) {
-				if (temp.getNodoDestino() != null && temp.getNodoDestino() == vehiculo.getNodoDestino()
+				if (temp.getNodoDestino() != null
+						&& temp.getNodoDestino() == vehiculo.getNodoDestino()
 						&& temp.getCarril() == vehiculo.getCarril())
 					if (temp.getPosicion() > vehiculo.getPosicion()
 							&& temp.getPosicion() - vehiculo.getPosicion() < distancia) {
@@ -262,7 +274,20 @@ public class Inteligencia {
 	private void procesarCambioCarril(Vehiculo vehiculo) {
 		// TODO controlar que se cumple alguna condición sobre velDelante
 		// si cambia de carril, recalcular velDelante
-		if (vehiculo.getTramo() == null) return;
+		if (vehiculo.getTramo() == null)
+			return;
+		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoFinal() && vehiculo.getTramo().getNumCarrilesDir1() <= 1) {
+			return;
+		}
+		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoInicial() && vehiculo.getTramo().getNumCarrilesDir2() <= 1) {
+			return;
+		}
+
+		if (velDelante < vehiculo.getTramo().getVelMax() && velDelante < vehiculo.getVelocidadMax()) {
+			// TODO aqui se cumplen las condiciones para que se tenga que hacer camibo de carril
+			// sin embargo, falta verificar que sea posible y que no sea porque los otros coches
+			// estan en un semáforo o algo asi
+		}
 	}
 
 	/**
@@ -282,26 +307,26 @@ public class Inteligencia {
 		// considerar también la utilización del método controlarSeñales,
 		// dado que si hay una señal que obliga al coche adetenerse
 		// mas adelante, debe ir frenando
-		if (vehiculo.getTramo() == null) return;
+		if (vehiculo.getTramo() == null)
+			return;
 		if ((velDelante == -1 || distDelante > 40)
 				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
 			vehiculo.variarAceleracion(5);
 			return;
 		}
-		if (velDelante > vehiculo.getVelocidad() || distDelante > 25)  {
+		if (velDelante > vehiculo.getVelocidad() || distDelante > 25) {
 			vehiculo.variarAceleracion(2);
 			return;
 		}
 		if (velDelante < vehiculo.getVelocidad()) {
 			if (vehiculo.getDistanciaSeguridad() < distDelante) {
 				vehiculo.variarAceleracion(-5);
-			}
-			else {
+			} else {
 				vehiculo.variarAceleracion(-2);
 			}
 			return;
 		}
-		
+
 		vehiculo.variarAceleracion(-1);
 	}
 
@@ -312,11 +337,13 @@ public class Inteligencia {
 	 * (Explicar implementacion)
 	 */
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
-		if (vehiculo.getTramo() == null) return;
-		//vehiculo.velocidad += vehiculo.aceleracion;
+		if (vehiculo.getTramo() == null)
+			return;
+		// vehiculo.velocidad += vehiculo.aceleracion;
 		vehiculo.actualizarVelocidad();
-		vehiculo.posicion += vehiculo.velocidad / vehiculo.getTramo().getLargo();
+		vehiculo.posicion += vehiculo.velocidad
+				/ vehiculo.getTramo().getLargo();
 		// TODO aqui se podría verificar si hay accidentes
-		
+
 	}
 }

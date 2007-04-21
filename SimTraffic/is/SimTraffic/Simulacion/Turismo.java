@@ -53,11 +53,15 @@ public class Turismo extends Vehiculo {
 	@Override
 	public Tramo siguienteTramo() {
 		// TODO da el tramo siguiente
-		cuentaTramos++;
-		if (tramos.size() < cuentaTramos) {
+		if (tramos.size() <= cuentaTramos) {
 			return null;
 		}
-		return tramos.get(cuentaTramos - 1);
+		return tramos.get(cuentaTramos);
+	}
+
+	public synchronized void setTramo(Tramo tramo) {
+		cuentaTramos++;
+		this.tramo = tramo;
 	}
 
 	public boolean inicializar(Nodo entrada, Nodo salida) {

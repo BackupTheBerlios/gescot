@@ -232,48 +232,50 @@ public class RepresentacionSimple extends Representacion {
 		return p;
 	}
 
-	/* (non-Javadoc)
-	 * @see is.SimTraffic.Vista.Representaciones.Representacion#pintarVehiculo(java.awt.Graphics2D, is.SimTraffic.Simulacion.Vehiculo, is.SimTraffic.Mapa.Tramo)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see is.SimTraffic.Vista.Representaciones.Representacion#pintarVehiculo(java.awt.Graphics2D,
+	 *      is.SimTraffic.Simulacion.Vehiculo, is.SimTraffic.Mapa.Tramo)
 	 */
 	public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo2) {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
 
-		Shape rect = new Rectangle2D.Double(-5, 0, 5, tamaño_carril);
+		Shape rect = new Rectangle2D.Double(-5, -tamaño_carril, 5,
+				tamaño_carril);
 		// BufferedImage rect = coches[vehiculo.getId() % 7];
 
-		Posicion posnodo1 = tramo.getNodoInicial().getPos();
-		Posicion posnodo2 = tramo.getNodoFinal().getPos();
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
-		g.setColor(Color.PINK);
+
+		g.setColor(Color.RED);
 		int posX1, posY1, posX2, posY2, posX, posY;
 
-		posX1 = x_MapaARep(posnodo1.getLon());
-		posX2 = x_MapaARep(posnodo2.getLon());
-		posY1 = y_MapaARep(posnodo1.getLat());
-		posY2 = y_MapaARep(posnodo2.getLat());
-		
+		posX1 = x_MapaARep(tramo.getNodoInicial().getPos().getLon());
+		posX2 = x_MapaARep(tramo.getNodoFinal().getPos().getLon());
+		posY1 = y_MapaARep(tramo.getNodoInicial().getPos().getLat());
+		posY2 = y_MapaARep(tramo.getNodoFinal().getPos().getLat());
+
 		// rotacion de la imagen
 		AffineTransform rot = new AffineTransform();
-		
+
 		// translacion en el mapa
 		AffineTransform trans = new AffineTransform();
-		
+
 		// zoom y desplazamiento por carril
 		AffineTransform zoom = new AffineTransform();
 		if (vehiculo.getTramo().getNodoFinal() == vehiculo.getNodoDestino()) {
 			rot.rotate(-vehiculo.getTramo().getAngulo());
 			posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
-		}
-		else {
+		} else {
 			rot.rotate(Math.PI - vehiculo.getTramo().getAngulo());
 			posX = posX2 - (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY2 - (int) ((posY2 - posY1) * vehiculo.getPosicion());
 		}
 		zoom.scale(1 / this.zoom, 1 / this.zoom);
-		zoom.translate(0, -tamaño_carril * vehiculo.getCarril());
+		zoom.translate(0, tamaño_carril * vehiculo.getCarril());
 		rot.concatenate(zoom);
 		trans.translate(posX, posY);
 		trans.concatenate(rot);
