@@ -14,14 +14,13 @@ public class AccionCambiarTiempoTotalSem implements ActionListener {
 	private int nuevoTiempoTotal;
 	private JFrame ventanaPadre;
 	
-	public AccionCambiarTiempoTotalSem(Nodo nodo, int nuevoTiempoTotal, JFrame ventanaPadre) {
+	public AccionCambiarTiempoTotalSem(Nodo nodo, JFrame ventanaPadre) {
 		this.nodo = nodo;
-		this.nuevoTiempoTotal = nuevoTiempoTotal;
 		this.ventanaPadre = ventanaPadre;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		((Semaforo)nodo.getSeñal()).setTiempoTotal(nuevoTiempoTotal);
+		((Semaforo)nodo.getSeñal()).setTiempoTotal(((PanelNodo)ventanaPadre).dameTiempoTotal());
 		((Semaforo)nodo.getSeñal()).getListaIntervalos().clear();
 		((PanelNodo)ventanaPadre).creaPanelSemaforos();
 		((PanelNodo)ventanaPadre).daFocoAPanelSemaforo();

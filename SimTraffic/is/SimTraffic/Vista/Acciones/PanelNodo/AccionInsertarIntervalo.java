@@ -15,16 +15,14 @@ public class AccionInsertarIntervalo implements ActionListener {
 	private int tiempoFinal;
 	private JFrame ventanaPadre;
 	
-	public AccionInsertarIntervalo(Nodo nodo, int tiempoInicial, int tiempoFinal, JFrame ventanaPadre){
+	public AccionInsertarIntervalo(Nodo nodo, JFrame ventanaPadre){
 		this.nodo = nodo;
-		this.tiempoInicial = tiempoInicial;
-		this.tiempoFinal = tiempoFinal;
 		this.ventanaPadre = ventanaPadre;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		int tiempo1 = ((PanelNodo)ventanaPadre).dameTiempoInicial();
-		int tiempo2 = ((PanelNodo)ventanaPadre).dameTiempoFinal();
+		int tiempo1 = ((PanelNodo)ventanaPadre).dameTiempoInicialSemaforo();
+		int tiempo2 = ((PanelNodo)ventanaPadre).dameTiempoFinalSemaforo();
 		((Semaforo)nodo.getSeñal()).añadirIntervalo(tiempo1,tiempo2 );
 		//((Semaforo)nodo.getSeñal()).añadirIntervalo(tiempoInicial, tiempoFinal);
 		((PanelNodo)ventanaPadre).creaPanelSemaforos();
