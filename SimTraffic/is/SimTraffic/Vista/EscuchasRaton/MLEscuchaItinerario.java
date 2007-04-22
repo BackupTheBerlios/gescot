@@ -105,8 +105,7 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Haga click en 2 nodos: el primero será el nodo del que parte (nodo origen) y el segundo el nodo al que llegará (nodo destino).";
 	}
 
 	/**
