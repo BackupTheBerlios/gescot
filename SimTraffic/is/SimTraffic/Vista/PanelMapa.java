@@ -95,6 +95,10 @@ public class PanelMapa extends JPanel
 	private ElementoMapa sugerencia;
 
 	/**
+	 * Segunda sugerencia, necesaria cuando se desean sugerir dos elementos a la vez. 
+	 */
+	private ElementoMapa sugerencia2;
+	/**
 	 * Alamcena la representacion que se utiliza para mostrar el mapa por
 	 * pantalla.
 	 */
@@ -269,6 +273,7 @@ public class PanelMapa extends JPanel
 
 		representacion.pintarCoordenadas(g);
 		representacion.pintarSugerencia(g, sugerencia);
+		representacion.pintarSugerencia(g, sugerencia2);
 	}
 
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {
@@ -303,6 +308,7 @@ public class PanelMapa extends JPanel
 			representacion.pintar(g, this.rectanguloSeleccion);
 
 		representacion.pintarSugerencia(g, sugerencia);
+		representacion.pintarSugerencia(g, sugerencia2);
 		g.drawString("Redibujando: " + contador, 80, 80);
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
@@ -366,6 +372,17 @@ public class PanelMapa extends JPanel
 				|| (this.sugerencia != sugerencia))
 			refresco = true;
 		this.sugerencia = sugerencia;
+		if (refresco)
+			this.repaint();
+	}
+	
+	public void sugerir2(ElementoMapa sugerencia) {
+		boolean refresco = false;
+		if ((this.sugerencia2 != null && sugerencia == null)
+				|| (this.sugerencia2 == null && sugerencia != null)
+				|| (this.sugerencia2 != sugerencia))
+			refresco = true;
+		this.sugerencia2 = sugerencia;
 		if (refresco)
 			this.repaint();
 	}
