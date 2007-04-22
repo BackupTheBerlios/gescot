@@ -9,6 +9,7 @@ import is.SimTraffic.Vista.PanelTramo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -27,9 +28,13 @@ public class AccionAceptarTramo implements ActionListener
 	private IControlador controlador;
 	private JTextField campoNombre;
 	private String nombre;
+	//Info de vía
+	private JTextField nombreVia;
+	private JComboBox combo_tipoVia;
+	private String nombreStringVia;
+	private String tipoStringVia;
 	
-	
-	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,IControlador controlador,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad, JTextField campoNombre) 
+	public AccionAceptarTramo(PanelMapa mapa, PanelTramo panel,IControlador controlador,Tramo tramo, JRadioButton radioUnidireccional, JRadioButton radioSentido1, JSpinner campoCarril1Numero, JSpinner campoCarril2Numero, JSpinner campoVelocidad, JTextField campoNombre,JTextField nombreVia, JComboBox combo_tipoVia) 
 	{
 		this.panel = panel;
 		this.mapa = mapa;
@@ -43,6 +48,8 @@ public class AccionAceptarTramo implements ActionListener
 		this.auxCarriles1=0;
 		this.auxCarriles2=0;
 		this.campoNombre = campoNombre;
+		this.nombreVia = nombreVia;
+		this.combo_tipoVia = combo_tipoVia;
 	}
 
 	public void actionPerformed(ActionEvent arg0) 
@@ -65,7 +72,10 @@ public class AccionAceptarTramo implements ActionListener
 		}
 		
 		nombre = campoNombre.getText();
-		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre);
+		nombreStringVia = nombreVia.getText();
+		tipoStringVia = (String) combo_tipoVia.getSelectedItem();
+		System.out.println(tipoStringVia);
+		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre,nombreStringVia,tipoStringVia);
 		controlador.herramienta(nueva);
 		mapa.repaint();
 		mapa.recrearMapa();

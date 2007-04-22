@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -45,7 +46,11 @@ public class PanelTramo extends JFrame
 	private JSpinner campoCarril1Numero;
 	private JSpinner campoCarril2Numero;
 	private JSpinner campoVelocidad;
-//	private JTabbedPane panelDatos;
+	private JTabbedPane panelDatos;
+	
+	//Info de vía
+	private JTextField nombreVia;
+	private JComboBox combo_tipoVia;
 	
 	
 	/**
@@ -61,13 +66,16 @@ public class PanelTramo extends JFrame
 		
 		this.setLayout(new BorderLayout(2,2));
 		
-		//panelDatos = new JTabbedPane();
+		//Antes comentado
+		panelDatos = new JTabbedPane();
 		creaPanelDatos();
 		
 		panelBotones = new JPanel();
 		creaPanelBotones();
 		
-	    //this.add(panelDatos,BorderLayout.NORTH);
+		//Antes comentado
+	    this.add(panelDatos,BorderLayout.NORTH);
+	    
 	    this.add(panelBotones,BorderLayout.SOUTH);
 	    
 	}
@@ -79,8 +87,46 @@ public class PanelTramo extends JFrame
 	public void creaPanelDatos(){
 				
 		JPanel panelPropiedades = new JPanel();
-		// JPanel panelNodos = new JPanel();
-	    // JPanel panelSeñales = new JPanel();
+		
+		//Antes comentado
+		JPanel panelVias = new JPanel();
+		if (tramo.getVia() != null) {
+			JLabel asociadoVia = new JLabel("Este tramo pertenece a una vía.");
+			JLabel observacionVia = new JLabel("Si cambia los datos aquí afectará a las propiedades de la via, no del tramo.");
+			panelVias.add(asociadoVia);
+			panelVias.add(observacionVia);
+			if (tramo.getVia().getNombre() != null) {
+				JLabel nombreEtiqVia=new JLabel("Nombre");				
+				nombreVia=new JTextField(20);
+				nombreVia.setText(tramo.getVia().getNombre());
+				panelVias.add(nombreEtiqVia);
+				panelVias.add(nombreVia);
+			}
+			if (tramo.getVia().getTipo()!=null /*&& tramo.getVia().getTipo().equals("highway")*/) {
+				JLabel tipoEtiqVia = new JLabel("Tipo de la Vía");
+				//JLabel tipoVia = new JLabel(tramo.getVia().getTipo().getValorTipoCastellano());
+				String[] tiposVias = { "Autovia", "Acceso/salida Autovia","Carretera Nacional", "Acceso/salida Carretera Nacional",
+					"Carreteras principales","Conexiones  principales y secundarias","Carreteras secundarias","Carreteras terciarias"
+					,"Carreteras sin clasificar","Caminos forestales","Calles residenciales","Via de servicio","Carril-bici",
+					"Via peatonal","Calle peatonal","Escaleras"};
+			    combo_tipoVia = new JComboBox(tiposVias);
+				panelVias.add(combo_tipoVia);
+				panelVias.add(tipoEtiqVia);
+				//System.out.println(tramo.getVia().getTipo().getValorTipoCastellano());
+				for (int i=0;i<tiposVias.length;i++) {
+					if ( tramo.getVia().getTipo().getValorTipoCastellano().equals(tiposVias[i]) )
+						combo_tipoVia.setSelectedIndex(i);
+				}
+				panelVias.add(combo_tipoVia);
+			}
+		}
+		else {
+			JLabel noAsociadoVia = new JLabel("Este tramo no pertenece a ninguna vía");
+			panelVias.add(noAsociadoVia);
+		}
+		
+		//JPanel panelNodos = new JPanel();
+	    //JPanel panelSeñales = new JPanel();
 	      
 	    JPanel panelSentido = new JPanel();
 	    panelSentido.setLayout(new BorderLayout());
@@ -278,6 +324,10 @@ public class PanelTramo extends JFrame
 	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);  
 	    this.add(panelPropiedades);
 	    
+	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
+	    panelDatos.addTab("Via asociada",null, panelVias, "Propiedades de Vía");
+	    panelDatos.setSelectedIndex(0);
+	    
 	  /*panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
 	    panelDatos.setSelectedIndex(0);
 		panelDatos.addTab("Señales", null, panelSeñales,"Señales asociadas al Tramo");
@@ -299,7 +349,8 @@ public class PanelTramo extends JFrame
 		
 		final PanelTramo panelPpal = this;
 		AccionAceptarTramo accion = new AccionAceptarTramo(panel,this,controlador, tramo, radioUnidireccional, 
-				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad, campoNombre);
+				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad, campoNombre, nombreVia,
+				combo_tipoVia);
 		botonAceptar.addActionListener(accion);
 		botonCancelar.addActionListener(new ActionListener()
 		{

@@ -2,6 +2,8 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import is.SimTraffic.Utils.Tiempo;
 
 /**
@@ -18,10 +20,16 @@ public class HModificarTramo implements IHerramienta {
 	private float velocidadMax,velocidadMaxGuardada;
 	private String nombre;
 	private String nombreGuardado;
+	private String nombreStringVia;// = nombreVia.getText();
+	private String tipoStringVia;// = (String) combo_tipoVia.getSelectedItem();
+	private String nombreStringViaGuardado;	
+	private String tipoStringViaGuardado;
+	private Via via;
 	
-	public HModificarTramo(Tramo tramo,int numCarrilesDir1,int numCarrilesDir2,float velocidadMax, String nombre){
+	public HModificarTramo(Tramo tramo,int numCarrilesDir1,int numCarrilesDir2,float velocidadMax, String nombre,String nombreStringVia,String tipoStringVia){
 	  
 		this.tramo=tramo;
+		this.via = tramo.getVia();
 		this.numCarrilesDir1=numCarrilesDir1;
 		this.numCarrilesDir2=numCarrilesDir2;
 		this.velocidadMax=velocidadMax;
@@ -30,6 +38,14 @@ public class HModificarTramo implements IHerramienta {
 		this.numCarrilesGuardados2=tramo.getNumCarrilesDir2();
 		this.velocidadMaxGuardada=tramo.getVelMax();
 		this.nombreGuardado=nombre;
+		this.nombreStringVia = nombreStringVia;
+		if (via!=null) {
+			if (via.getNombre()!=null)
+				this.nombreStringViaGuardado = via.getNombre();
+			if (via.getTipo()!=null)
+				this.tipoStringViaGuardado = via.getTipo().getValorTipoCastellano();
+		}
+		this.tipoStringVia = tipoStringVia;
 	}
 	
 	/**
@@ -40,6 +56,10 @@ public class HModificarTramo implements IHerramienta {
 		tramo.setNumCarrilesDir2(numCarrilesGuardados2);
 		tramo.setVelMax(velocidadMaxGuardada);
 		tramo.setNombre(nombreGuardado);
+		if (via!=null) {
+			via.setNombre(nombreStringViaGuardado);
+			via.setTipo(new TipoViaHighway(tipoStringViaGuardado));
+		}
 		return 0;
 	}
 	
@@ -51,6 +71,10 @@ public class HModificarTramo implements IHerramienta {
 		tramo.setNumCarrilesDir2(numCarrilesDir2);
 		tramo.setVelMax(velocidadMax);
 		tramo.setNombre(nombre);
+		if (via!=null) {
+			via.setNombre(nombreStringVia);
+			via.setTipo(new TipoViaHighway(tipoStringVia));
+		}
 		return 0;
 	}
 	

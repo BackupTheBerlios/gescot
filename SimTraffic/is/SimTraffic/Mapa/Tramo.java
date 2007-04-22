@@ -7,6 +7,11 @@ import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
  */
 public class Tramo implements ElementoMapa {
 	/**
+	 * Conoce la vía a la que pertenece, para poder mostrar de alguna forma la información de las vías.
+	 */
+	private Via via;
+	
+	/**
 	 * Velocidad maxima a la que se puede cirucular por el tramo
 	 */
 	private float velocidadMax;
@@ -294,5 +299,13 @@ public class Tramo implements ElementoMapa {
 		clon.setNumCarrilesDir1(this.numCarrilesDir1);
 		clon.setNumCarrilesDir2(this.numCarrilesDir2);
 		return clon;
+	}
+
+	public Via getVia() {
+		return via;
+	}
+
+	public void setVia(Via via) {
+		this.via = via;
 	}
 }

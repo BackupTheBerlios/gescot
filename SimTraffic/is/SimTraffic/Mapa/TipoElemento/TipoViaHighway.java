@@ -61,9 +61,9 @@ public class TipoViaHighway extends TipoElemento implements ITipoElemento {
 	 */
 	public String[][] crearTablaTraduccion() {
 		String[][] tTraduccion = { {"Autovia"," motorway"}, 
-								   {"acceso/salida Autovia","motorway_link"},
+								   {"Acceso/salida Autovia","motorway_link"},
 								   {"Carretera Nacional","trunk"},
-								   {"acceso/salida Carretera Nacional","trunk_link"},
+								   {"Acceso/salida Carretera Nacional","trunk_link"},
 								   {"Carreteras principales","primary"},
 								   {"Conexiones  principales y secundarias","primary_link"},
 								   {"Carreteras secundarias","secondary"},
