@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
+import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAbrirMatrizDePaso;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCambiarTiempoTotalSem;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCrearSemaforo;
@@ -12,6 +13,8 @@ import is.SimTraffic.Vista.Acciones.PanelNodo.AccionInsertarIntervalo;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionModificarIntervalo;
 import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import is.SimTraffic.Vista.Representaciones.Representacion;
+import is.SimTraffic.Vista.VentanaMatrizPaso.OyenteVentanaMatrizDePaso;
+import is.SimTraffic.Vista.VentanaMatrizPaso.VentanaMatrizDePaso;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -105,6 +108,11 @@ public class PanelNodo extends JFrame {
 	 */
 	private List<JSpinner> listaTiempoFinalIntervalo;
 	
+	/**
+	 * Ventana Auxiliar que permitirá modificar los valores de interconexión entre los tramos.
+	 */
+	private VentanaMatrizDePaso ventanaMatriz;
+	
 	public PanelNodo(Nodo nodo) {
 
 	}
@@ -194,15 +202,11 @@ public class PanelNodo extends JFrame {
 			panelSemaforos.add(añadirIntervalo);
 			JLabel etiqDe = new JLabel("De");
 			panelSemaforos.add(etiqDe);
-			//tiempoInicialSemaforo= new JTextField("0");
 			tiempoInicialSemaforo = new JSpinner(new SpinnerNumberModel(0, 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
-			//tiempoInicialSemaforo.setColumns(3);
 			panelSemaforos.add(tiempoInicialSemaforo);
 			JLabel etiqA = new JLabel("a");
 			panelSemaforos.add(etiqA);
-			//tiempoFinalSemaforo = new JTextField((String)electorTiempoTotal.getSelectedItem());
 			tiempoFinalSemaforo = new JSpinner(new SpinnerNumberModel(((Semaforo)nodo.getSeñal()).getTiempoTotal(), 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
-			//tiempoFinalSemaforo.setColumns(3);
 			panelSemaforos.add(tiempoFinalSemaforo);
 			AccionInsertarIntervalo oyenteBotonAñadirIntervalo = new AccionInsertarIntervalo(nodo,this);
 			añadirIntervalo.addActionListener(oyenteBotonAñadirIntervalo);	
@@ -244,15 +248,16 @@ public class PanelNodo extends JFrame {
 			String valor2 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoFinal());
 			JSpinner tiempoDe = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor1), 0, Integer.parseInt(valor2), 5));
 			listaTiempoInicialIntervalo.add(tiempoDe);
-			//tiempoDe.setColumns(3);
 			JLabel etiqA = new JLabel("a");
 			JSpinner tiempoA = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor2), 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
 			listaTiempoFinalIntervalo.add(tiempoA);
-			//tiempoA.setColumns(3);
 			JButton mostrarM = new JButton("MostrarMatriz");
+			AccionAbrirMatrizDePaso oyenteBotonMatriz = new AccionAbrirMatrizDePaso(this);
 			JButton aplicarC = new JButton("AplicarCambios");
 			AccionModificarIntervalo oyenteBotonAplicar = new AccionModificarIntervalo(nodo,this);
 			//Asignamos un nombre al botón para poder diferenciar en el oyente que intervalo estamos modificando.
+			mostrarM.addActionListener(oyenteBotonMatriz);
+			mostrarM.setName(String.valueOf(i));
 			aplicarC.addActionListener(oyenteBotonAplicar);
 			aplicarC.setName(String.valueOf(i));
 			JPanel intervaloI = new JPanel();
@@ -266,6 +271,13 @@ public class PanelNodo extends JFrame {
 			panelInterno.add(intervaloI);
 		}
 		
+	}
+	
+	public void abrirVentanaMatrizDePaso(int i){
+		this.ventanaMatriz = new VentanaMatrizDePaso(nodo,this,i);
+		OyenteVentanaMatrizDePaso oyenteMatrizPaso = new OyenteVentanaMatrizDePaso(this);
+		this.ventanaMatriz.addWindowListener(oyenteMatrizPaso);
+		this.setVisible(false);
 	}
 	
 	/**
@@ -582,5 +594,21 @@ public class PanelNodo extends JFrame {
 			es = null;
 		}
 		return es;
+	}
+
+	public PanelMapa getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(PanelMapa mapa) {
+		this.mapa = mapa;
+	}
+
+	public Nodo getNodo() {
+		return nodo;
+	}
+
+	public void setNodo(Nodo nodo) {
+		this.nodo = nodo;
 	}
 }
