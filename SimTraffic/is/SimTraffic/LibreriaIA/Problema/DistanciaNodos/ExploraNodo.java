@@ -14,17 +14,20 @@ public class ExploraNodo implements IOperador {
 	String descripcion;
 	Nodo nodoOrigen;
 	Tramo tramoElegido;
+	int tipoCoste;
 	
 	public ExploraNodo(Nodo origen, Tramo elegido) {
 		super();
 		// TODO Auto-generated constructor stub
 		nodoOrigen = origen;
 		tramoElegido = elegido;
+		this.tipoCoste = 0;
 		descripcion = "Explora nodo"; //Habría que completarlo.
 	}
 
-	public ExploraNodo() {
+	public ExploraNodo(int tipoCoste) {
 		super();
+		this.tipoCoste = 0;
 		this.descripcion = "Explora Nodo";
 	}
 

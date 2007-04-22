@@ -15,6 +15,12 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 	IEstado estadoObjetivo;
 	IHeuristica heuristica;
 	
+	/**
+	 * 0 - El coste es la distancia.
+	 * 1 - El coste es la distancia + la densidad del tramo.
+	 */
+	int tipoCoste;
+	
 	//Constructor que se adapta a la información que recibe del usuario (nodoOrigen y nodoDestino)
 	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo) {
 		super();
@@ -23,6 +29,17 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
+		this.tipoCoste = 0;
+	}
+	
+	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, int tipoCoste) {
+		super();
+		// TODO Auto-generated constructor stub
+		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
+		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
+		operadores=generarOperadores();
+		heuristica=seleccionarHeuristica();
+		this.tipoCoste = tipoCoste;
 	}
 
 	public PrincipalDistanciaNodos(IEstado inicial, IEstado objetivo, IHeuristica heuristica, Vector<IOperador> operadores) {
@@ -86,7 +103,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 
 	public Vector<IOperador> generarOperadores() {
 		Vector<IOperador> vOperadores=new Vector<IOperador>();
-		IOperador operador = new ExploraNodo();
+		IOperador operador = new ExploraNodo(tipoCoste);
 		
 		//Se inserta
 		vOperadores.add(operador);

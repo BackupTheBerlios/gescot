@@ -305,4 +305,22 @@ public class Simulacion {
 	public boolean estaActiva() {
 		return activa;
 	}
+	
+	/**
+	 * Método para mejorar la elección de caminos (no solo en función de la distancia, sino en función del tráfico actual)
+	 * @param tramo
+	 * @return
+	 */
+	public double densidadTramo(Tramo tramo) { 
+		ArrayList<Vehiculo> listaVehiculos= tabla.get(tramo);
+		int longitudT = tramo.getLargo();
+		int numCoches = listaVehiculos.size();
+		//Versión simple, realmente debería comprobar el tramo en el sentido en que quiere recorrerlo y no en ambos.
+		int numCarriles = tramo.getNumCarrilesDir1() + tramo.getNumCarrilesDir2();
+		//Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
+		double densidad = numCoches / (longitudT * numCarriles);
+		//Se normaliza con la distancia (devolverá un valor entre 0 y la distancia del tramo).
+		densidad = longitudT * densidad;
+		return densidad;
+	}
 }
