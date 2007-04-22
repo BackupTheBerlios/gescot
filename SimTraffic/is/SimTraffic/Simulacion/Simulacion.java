@@ -29,7 +29,7 @@ public class Simulacion {
 	/**
 	 * Máximo de vehiculos que se pueden simular
 	 */
-	private static int maxVehiculos = 2000;
+	public static int maxVehiculos = 2000;
 
 	/**
 	 * Lista de los vehiculos que se estan simulando
@@ -104,11 +104,14 @@ public class Simulacion {
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
 		int max = max(param.getNumVehiculos());
-		max = max + max % 10;
+		max = max + 10 - max % GrupoVehiculos.nroVehiculos;
+		if (max > maxVehiculos)
+			max = maxVehiculos;
+		System.out.println(" " + max);
 		vehiculos = new ArrayList<Vehiculo>(max + 20);
 		vehiculosActivos = 0;
 		rellenarTabla();
-		crearVehiculos();
+		crearVehiculos(max);
 		// this.vista = vista;
 		controladorSim = new ControladorSim(vehiculos, this);
 		controladorSim.start();
@@ -182,10 +185,7 @@ public class Simulacion {
 	 * aleatoriamente usando los porcentajes como probabilidad para conseguir
 	 * una distribución homegenea.
 	 */
-	private void crearVehiculos() {
-		int cant = param.getNumVehiculos()[0];
-		if (cant > maxVehiculos)
-			cant = maxVehiculos;
+	private void crearVehiculos(int cant) {
 		// TODO crear vehiculos de cada tipo segun la infromacón que hay
 		// en los parametros. No se puede hacer ahora porque no se
 		// entiende como se guarda esa información

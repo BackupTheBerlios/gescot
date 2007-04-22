@@ -24,7 +24,7 @@ public class Reloj {
 		tiempo = tiempo + 1;
 	}
 	
-	public long getTiempo(){
+	public synchronized long getTiempo(){
 		return tiempo;
 	}
 

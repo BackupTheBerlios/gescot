@@ -3,6 +3,7 @@ package is.SimTraffic.Vista.PanelesSimulacion;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HComenzar;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
+import is.SimTraffic.Simulacion.Simulacion;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,13 +12,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTextField;
 
 /**
@@ -34,8 +39,8 @@ public class PanelVehiculos extends JFrame {
 
 	private IControlador controlador;
 
-	private JTextField vehiculos[] = new JTextField[3];
-	
+	private JScrollBar vehiculos[] = new JScrollBar[3];
+
 	private ParametrosSimulacion param;
 
 	public PanelVehiculos(IControlador controlador, ParametrosSimulacion param) {
@@ -46,39 +51,32 @@ public class PanelVehiculos extends JFrame {
 
 		String[] cantidadVehiculos = { "No aparece", "Muy pocos", "Algunos",
 				"Normal", "Bastantes", "Muchos" };
+		String[] cantidadTurismos = { "Muy pocos", "Algunos",
+				"Normal", "Bastantes", "Muchos" };
 
+		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));
 		JLabel etiquetaTitulo = new JLabel("CANTIDAD DE VEHÍCULOS");
 		etiquetaTitulo.setFont(new Font(null, Font.BOLD, 15));
 		panelTitulo.add(etiquetaTitulo);
 
-		JPanel panelCantidades = new JPanel();
-		panelCantidades.setLayout(new GridLayout(3, 2));
-		panelCantidades.add(new JLabel("Mañana"));
-		vehiculos[0] = new JTextField("100");
-		panelCantidades.add(vehiculos[0]);
-		panelCantidades.add(new JLabel("Tarde"));
-		vehiculos[1] = new JTextField("100");
-		panelCantidades.add(vehiculos[1]);
-		panelCantidades.add(new JLabel("Noche"));
-		vehiculos[2] = new JTextField("100");
-		panelCantidades.add(vehiculos[2]);
-
-		JPanel panelTurismo = crearOpcionesVehiculo(cantidadVehiculos,
-				"Turismo.jpg", "Turismo");
+		JPanel panelCantidades = panelCantidades();
+		
+		JPanel panelTurismo = crearOpcionesVehiculo(cantidadTurismos,
+				"Turismo.jpg", "Turismo  ");
 
 		JPanel panelTaxi = crearOpcionesVehiculo(cantidadVehiculos, "taxi.jpg",
-				"Taxi");
+				"Taxi      ");
 
 		JPanel panelCamion = crearOpcionesVehiculo(cantidadVehiculos,
-				"camion.jpg", "Camion");
+				"camion.jpg", "Camion    ");
 
 		JPanel panelBus = crearOpcionesVehiculo(cantidadVehiculos,
-				"autobus.jpg", "Bus");
+				"autobus.jpg", "Bus         ");
 
 		JPanel panelMoto = crearOpcionesVehiculo(cantidadVehiculos,
-				"Turismo.jpg", "Turismo");
+				"moto.jpg", "Moto     ");
 
 		JPanel panelAmbulancia = crearOpcionesVehiculo(cantidadVehiculos,
 				"ambulancia.jpg", "Ambulancia");
@@ -93,6 +91,7 @@ public class PanelVehiculos extends JFrame {
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
 		this.setLayout(gbl);
 
 		int cont = 0;
@@ -104,9 +103,12 @@ public class PanelVehiculos extends JFrame {
 		this.add(panelTitulo, gbc);
 
 		gbc.gridy = ++cont;
+		cont += 2;
+		gbc.gridheight = 3;
 		this.add(panelCantidades, gbc);
 
 		gbc.gridy = ++cont;
+		gbc.gridheight = 1;
 		this.add(panelTurismo, gbc);
 
 		gbc.gridy = ++cont;
@@ -148,6 +150,12 @@ public class PanelVehiculos extends JFrame {
 		 */
 	}
 
+	private void addPanel(JPanel p, JComponent comp, GridBagLayout gb,
+			GridBagConstraints c) {
+		gb.setConstraints(comp, c);
+		p.add(comp);
+	}
+
 	private JPanel crearOpcionesVehiculo(String[] cantidades, String icono,
 			String nombre) {
 		JPanel panel = new JPanel();
@@ -169,6 +177,75 @@ public class PanelVehiculos extends JFrame {
 		panel.add(panelaux2);
 		return panel;
 	}
+	
+	private JPanel panelCantidades() {
+		int min = 20;
+		int max = Simulacion.maxVehiculos;
+
+		JPanel panelCantidades = new JPanel();
+		panelCantidades.setSize(300, 100);
+		GridBagLayout bg = new GridBagLayout();
+		panelCantidades.setLayout(bg);
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.BOTH;
+
+		JTextField text1 = new JTextField(2);
+		text1.setEditable(false);
+		c.weightx = 0.3;
+		addPanel(panelCantidades, new JLabel("Mañana"), bg, c);
+		addPanel(panelCantidades, text1, bg,c);
+		c.weightx = 4.0;
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		vehiculos[0] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
+				/ 10, 100, min, max);
+		text1.setText(""+ vehiculos[0].getValue());
+		vehiculos[0].addAdjustmentListener(new ajuste(text1));
+		addPanel(panelCantidades, vehiculos[0], bg, c);
+
+		c.gridwidth = GridBagConstraints.BOTH;
+		JTextField text2 = new JTextField(2);
+		text2.setEditable(false);
+		c.weightx = 0.3;
+		addPanel(panelCantidades, new JLabel("Tarde"), bg, c);
+		addPanel(panelCantidades, text2, bg,c);
+		c.weightx = 4.0;
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		vehiculos[1] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
+				/ 10, 100, min, max);
+		text2.setText(""+ vehiculos[1].getValue());
+		vehiculos[1].addAdjustmentListener(new ajuste(text2));
+		addPanel(panelCantidades, vehiculos[1], bg, c);
+
+		c.gridwidth = GridBagConstraints.BOTH;
+		JTextField text3 = new JTextField(2);
+		text3.setEditable(false);
+		c.weightx = 0.3;
+		addPanel(panelCantidades, new JLabel("Noche"), bg, c);
+		addPanel(panelCantidades, text3, bg,c);
+		c.weightx = 4.0;
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		vehiculos[2] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
+				/ 10, 100, min, max);
+		text3.setText(""+ vehiculos[2].getValue());
+		vehiculos[2].addAdjustmentListener(new ajuste(text3));
+		addPanel(panelCantidades, vehiculos[2], bg, c);
+
+		return panelCantidades;
+	}
+
+	private class ajuste implements AdjustmentListener{
+		JTextField text;
+		
+		public ajuste(JTextField text) {
+			this.text = text;
+		}
+		
+	    public void adjustmentValueChanged(AdjustmentEvent ae){
+	      int value = ae.getValue();
+	      String st = Integer.toString(value);
+	      text.setText(st);
+	    }
+	  }
 
 	private class accionAceptar implements ActionListener {
 
@@ -176,11 +253,11 @@ public class PanelVehiculos extends JFrame {
 			int[] totales = new int[3];
 			for (int i = 0; i < 3; i++) {
 				try {
-					totales[i] = Integer.parseInt(vehiculos[i].getText());
-				}
-				catch (Exception e) {
+					totales[i] = vehiculos[i].getValue();
+				} catch (Exception e) {
 					totales[i] = 100;
 				}
+				//totales[i] = 200;
 			}
 			param.setNumVehiculos(totales);
 			controlador.herramienta(new HComenzar());
