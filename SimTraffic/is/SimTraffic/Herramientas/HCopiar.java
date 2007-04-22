@@ -20,11 +20,15 @@ public class HCopiar implements IHerramienta {
 	/**
 	 * Lista de nodos seleccionados
 	 */
+	@SuppressWarnings("unused")
 	private List<Nodo> nodos;
+	
 	/**
 	 * Lista de tramos seleccionados
 	 */
+	@SuppressWarnings("unused")
 	private List<Tramo> tramos;
+	
 	/**
 	 * Guarda la información del portapapeles que había antes
 	 * de cortar

@@ -1,7 +1,6 @@
 package is.SimTraffic.LibreriaIA.Problema.DistanciaNodos;
 
 import is.SimTraffic.LibreriaIA.IEstado;
-import is.SimTraffic.LibreriaIA.NodoIA;
 import is.SimTraffic.Mapa.Nodo;
 
 public class EstadoDistanciaNodos implements IEstado {

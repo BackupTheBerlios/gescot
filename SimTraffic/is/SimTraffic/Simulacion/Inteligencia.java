@@ -30,6 +30,7 @@ public class Inteligencia {
 	/**
 	 * Almacena los parametros de la simulación actual
 	 */
+	@SuppressWarnings("unused")
 	private ParametrosSimulacion param;
 
 	/**

@@ -7,12 +7,8 @@ import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.JOptionPane;
-
 
 
 /**

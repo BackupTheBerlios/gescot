@@ -63,10 +63,12 @@ public class CargadorMapa implements DocHandler {
 		EntradaSalida es = null;
 		int indexFrom = 0, indexTo = 0;
 		Integer integer;
+		@SuppressWarnings("unused")
 		Boolean bool;
 		Double vdouble;
 		String v = null;
 		String k = null;
+		@SuppressWarnings("unused")
 		boolean visible;
 		Enumeration e = h.keys();
 		while (e.hasMoreElements()) {
@@ -319,6 +321,7 @@ public class CargadorMapa implements DocHandler {
 	}
 	
 	public static void main(String[] args) throws Exception{
+		@SuppressWarnings("unused")
 		Mapa mapa=cargar("C:/Documents and Settings/Ignacio/Escritorio/IS-ultimamente/Mapas-hechos/prueba110307_2.osm");
 		System.out.println("cargado");
 	}

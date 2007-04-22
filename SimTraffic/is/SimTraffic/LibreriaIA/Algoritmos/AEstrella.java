@@ -36,6 +36,7 @@ public class AEstrella implements IAlgoritmoInformado {
 	/**
 	 * Constructor por defecto.
 	 */
+	@SuppressWarnings("unchecked")
 	public AEstrella(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores, IHeuristica heuristica/*,InfoHabitaciones infoBase*/) {
 		this.inicial = inicial;
 		this.objetivo = objetivo;

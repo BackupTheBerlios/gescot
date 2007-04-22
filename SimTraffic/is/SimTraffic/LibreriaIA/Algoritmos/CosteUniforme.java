@@ -42,6 +42,7 @@ public class CosteUniforme implements IAlgoritmo {
 	/**
 	 * Constructor por defecto.
 	 */
+	@SuppressWarnings("unchecked")
 	public CosteUniforme(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores,int tipoControlCiclos/*, InfoHabitaciones infoBase*/) {
 		this.inicial = inicial;
 		this.objetivo = objetivo;

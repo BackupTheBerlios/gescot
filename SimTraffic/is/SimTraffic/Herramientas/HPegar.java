@@ -10,7 +10,6 @@ import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Utils.Tiempo;
-import is.SimTraffic.Vista.PanelMapa;
 
 /**
  * Herramienta que se encarga de pegar una selección de elementos

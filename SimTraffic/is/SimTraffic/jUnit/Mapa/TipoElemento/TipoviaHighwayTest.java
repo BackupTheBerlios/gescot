@@ -1,6 +1,5 @@
 package is.SimTraffic.jUnit.Mapa.TipoElemento;
 
-import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
 import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import junit.framework.TestCase;
 

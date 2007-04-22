@@ -1,8 +1,6 @@
 package is.SimTraffic.jUnit.Mapa;
 
 import is.SimTraffic.Mapa.EntradaSalida;
-import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Posicion;
 import junit.framework.TestCase;
 
 /**

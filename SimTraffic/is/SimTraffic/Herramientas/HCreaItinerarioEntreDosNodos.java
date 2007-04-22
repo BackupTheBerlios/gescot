@@ -3,7 +3,6 @@ package is.SimTraffic.Herramientas;
 import javax.swing.JOptionPane;
 
 import is.SimTraffic.IModelo;
-import is.SimTraffic.LibreriaIA.IAlgoritmo;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
