@@ -120,14 +120,14 @@ public class PanelTramo extends JFrame
 	    panelNumCarriles.setLayout(new BorderLayout());
 	  
 	    JPanel panelEtiquetasNumero = new JPanel();
-	    panelEtiquetasNumero.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    panelEtiquetasNumero.setLayout(new FlowLayout(FlowLayout.CENTER,30,5));
 	    JLabel etiquetaCarril1Numero = new JLabel("Carril sentido 1");
 	    JLabel etiquetaCarril2Numero = new JLabel("Carril sentido 2");
 	    panelEtiquetasNumero.add(etiquetaCarril1Numero);
 	    panelEtiquetasNumero.add(etiquetaCarril2Numero);
 	    
 	    JPanel panelCamposNumero = new JPanel();
-	    panelCamposNumero.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
+	    panelCamposNumero.setLayout(new FlowLayout(FlowLayout.CENTER,30,5));
 	    campoCarril1Numero = new JSpinner(new SpinnerNumberModel(2,1,4,1));
 	    campoCarril2Numero = new JSpinner(new SpinnerNumberModel(2,1,4,1));
 	    campoCarril2Numero.setEnabled(false);
