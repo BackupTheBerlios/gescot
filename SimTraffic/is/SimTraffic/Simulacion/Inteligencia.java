@@ -151,7 +151,7 @@ public class Inteligencia {
 			}
 		} else
 			sim.saleVehiculo();
-		
+
 		if (salir) {
 			vehiculo.setTramo(null);
 			vehiculo.setNodoDestino(null);
@@ -192,7 +192,7 @@ public class Inteligencia {
 	private boolean controlarSeñales(Vehiculo vehiculo) {
 		Tramo tramo1 = vehiculo.getTramo();
 		Tramo tramo2 = vehiculo.siguienteTramo();
-		
+
 		if (tramo2 != null) {
 			Señal señal = vehiculo.getNodoDestino().getSeñal();
 			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) > 0) {
@@ -230,17 +230,47 @@ public class Inteligencia {
 			return;
 		}
 
-		tabla.get(vehiculo.getTramo()).remove(vehiculo);
-		vehiculo.setTramo(tramo);
-		tabla.get(tramo).add(vehiculo);
+		if (puedeEntrar(vehiculo, tramo)) {
+			tabla.get(vehiculo.getTramo()).remove(vehiculo);
+			vehiculo.setTramo(tramo);
+			tabla.get(tramo).add(vehiculo);
 
-		vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
-		if (tramo.getNodoInicial() == vehiculo.getNodoOrigen()) {
-			vehiculo.setNodoDestino(tramo.getNodoFinal());
-		} else
-			vehiculo.setNodoDestino(tramo.getNodoInicial());
+			vehiculo.setNodoOrigen(vehiculo.getNodoDestino());
+			if (tramo.getNodoInicial() == vehiculo.getNodoOrigen()) {
+				vehiculo.setNodoDestino(tramo.getNodoFinal());
+				if (vehiculo.getCarril() > tramo.getNumCarrilesDir1()) {
+					vehiculo.setCarril(random.nextInt(tramo.getNumCarrilesDir1()));
+				}
+			} else {
+				vehiculo.setNodoDestino(tramo.getNodoInicial());
+				if (vehiculo.getCarril() > tramo.getNumCarrilesDir2()) {
+					vehiculo.setCarril(random.nextInt(tramo.getNumCarrilesDir2()));
+				}
+			}
+			vehiculo.resetaerPosicion();
+		}
+	}
 
-		vehiculo.resetaerPosicion();
+	/**
+	 * Método que controla que no haya ningun vehiculo al comienzo del tramo
+	 * en el que quiere entrar un nuevo vehiculo.
+	 * @param vehiculo
+	 * @param tramo
+	 * @return
+	 */
+	private boolean puedeEntrar(Vehiculo vehiculo, Tramo tramo) {
+		iterador = (new ArrayList<Vehiculo>(tabla.get(tramo))).iterator();
+		Vehiculo temp;
+		while (iterador.hasNext()) {
+			temp = iterador.next();
+			if (temp.nodoOrigen == vehiculo.nodoDestino) {
+				if (temp.carril == vehiculo.carril) {
+					if (temp.posicion < 0.1)
+						return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -295,16 +325,21 @@ public class Inteligencia {
 		// si cambia de carril, recalcular velDelante
 		if (vehiculo.getTramo() == null)
 			return;
-		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoFinal() && vehiculo.getTramo().getNumCarrilesDir1() <= 1) {
+		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoFinal()
+				&& vehiculo.getTramo().getNumCarrilesDir1() <= 1) {
 			return;
 		}
-		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoInicial() && vehiculo.getTramo().getNumCarrilesDir2() <= 1) {
+		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoInicial()
+				&& vehiculo.getTramo().getNumCarrilesDir2() <= 1) {
 			return;
 		}
 
-		if (velDelante < vehiculo.getTramo().getVelMax() && velDelante < vehiculo.getVelocidadMax()) {
-			// TODO aqui se cumplen las condiciones para que se tenga que hacer camibo de carril
-			// sin embargo, falta verificar que sea posible y que no sea porque los otros coches
+		if (velDelante < vehiculo.getTramo().getVelMax()
+				&& velDelante < vehiculo.getVelocidadMax()) {
+			// TODO aqui se cumplen las condiciones para que se tenga que hacer
+			// camibo de carril
+			// sin embargo, falta verificar que sea posible y que no sea porque
+			// los otros coches
 			// estan en un semáforo o algo asi
 		}
 	}
@@ -350,6 +385,33 @@ public class Inteligencia {
 	}
 
 	/**
+	 * Funcion para evitar que los coches se superpongan.<p>
+	 * Esta función indica si hay un coche en el mismo sentido y en el mismo carril, que acabe
+	 * de entrar al tramo, para que solo el primero de ellos pueda entrar al tramo.
+	 * 
+	 * @param vehiculo
+	 * @return
+	 */
+	private boolean tieneQueEsperar(Vehiculo vehiculo) {
+		if (vehiculo.posicion > 0)
+			return false;
+		iterador = tabla.get(vehiculo.getTramo()).iterator();
+		Vehiculo temp;
+		while (iterador.hasNext()) {
+			temp = iterador.next();
+			if (temp != vehiculo) {
+				if (temp.nodoDestino == vehiculo.nodoDestino
+						&& temp.carril == vehiculo.carril) {
+					if (temp.posicion > 0 && temp.posicion < 0.1) {
+						return true;
+					}
+				}
+				
+			}
+		}
+		return false;
+	}
+	/**
 	 * Método para recalcular la velocidad a la que circula el vehiculo y su
 	 * posicion.
 	 * <p>
@@ -358,6 +420,10 @@ public class Inteligencia {
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
 		if (vehiculo.getTramo() == null)
 			return;
+		if (tieneQueEsperar(vehiculo)) {
+			vehiculo.aceleracion = 0;
+			return;
+		}
 		// vehiculo.velocidad += vehiculo.aceleracion;
 		vehiculo.actualizarVelocidad();
 		vehiculo.posicion += vehiculo.velocidad

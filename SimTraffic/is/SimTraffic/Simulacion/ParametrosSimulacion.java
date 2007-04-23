@@ -1,7 +1,5 @@
 package is.SimTraffic.Simulacion;
 
-import java.util.ArrayList;
-
 /**
  * Clase que almacena los parámetros de la simulación en un determinado momento.
  * 

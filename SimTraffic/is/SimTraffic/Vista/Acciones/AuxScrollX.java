@@ -38,9 +38,9 @@ public class AuxScrollX extends Thread {
 				valor -= 10;
 			if (valor > 9 && valor < 11)
 				valor = 10;
-			panel.cambiaPosX((valor - 10) * 8);
+			panel.cambiaPosX((valor - 10));
 			try {
-				Thread.currentThread().sleep(100);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
