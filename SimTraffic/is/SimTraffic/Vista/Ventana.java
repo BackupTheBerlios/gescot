@@ -93,16 +93,16 @@ public class Ventana extends JFrame {
 	/**
 	 * Oyentes para teclado y ratón.
 	 */
-	MLSeleccionarNodos escuchaSeleccion;
+	
+	//MLSeleccionarNodos escuchaSeleccion;
 
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
 
-	MLSeleccionarTramos escuchaSeleccionTramos;
+	//MLSeleccionarTramos escuchaSeleccionTramos;
 
-	// En prueba
 	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;
-
-	//
+	
+	MLSeleccionaTramoBDerecho escuchaSeleccionTramoBDerecho;
 
 	EscuchaTeclado escuchaTeclado;
 
@@ -152,21 +152,24 @@ public class Ventana extends JFrame {
 				panel_mapa, posicionX, posicionY, this);
 		this.panel_mapa.addMouseListener(escuchaSiempre);
 		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
-
+		/*
 		escuchaSeleccion = new MLSeleccionarNodos(modelo, controlador,
 				panel_mapa);
 		escuchaSeleccionTramos = new MLSeleccionarTramos(modelo, controlador,
 				panel_mapa);
+		*/
 		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo,
 				controlador, panel_mapa);
-
-		// En pruebas
+		 
 		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
-		//
 
-		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccion);
+		escuchaSeleccionTramoBDerecho = new MLSeleccionaTramoBDerecho(modelo,
+				controlador, panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSeleccionTramoBDerecho);
+
+		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccionNodosYTramos);
 
 		crearBotonesSuperiores();
 
@@ -184,22 +187,49 @@ public class Ventana extends JFrame {
 	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
 	 */
 	public void añadirMenuEmergente() {
-		JPopupMenu emergente = new JPopupMenu("menuEmergente");
+		JPopupMenu emergenteNodo = new JPopupMenu("menuEmergente");
 		JMenuItem eliminarItem = new JMenuItem("Eliminar Nodo");
 		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));
 		JMenuItem eliminarSeleccionItem = new JMenuItem("Eliminar Seleccion");
 		eliminarSeleccionItem.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
-		JMenuItem propiedadesItem = new JMenuItem("Propiedades");
+		JMenuItem propiedadesItem = new JMenuItem("Propiedades del nodo");
 		propiedadesItem.addActionListener(new AccionPropiedadesNodo(modelo,
 				controlador, panel_mapa));		
 		
-		emergente.add(eliminarItem);
-		emergente.add(eliminarSeleccionItem);		
-		emergente.add(propiedadesItem);
+		emergenteNodo.add(eliminarItem);
+		emergenteNodo.add(eliminarSeleccionItem);		
+		emergenteNodo.add(propiedadesItem);
 
-		panel_mapa.setMenuEmergente(emergente);
+		panel_mapa.setMenuEmergenteNodo(emergenteNodo);
+		
+		JPopupMenu emergenteTramo = new JPopupMenu("menuEmergente2");
+		JMenuItem eliminarItem2 = new JMenuItem("Eliminar Tramo");
+		eliminarItem2.addActionListener(new AccionEliminarTramo(modelo,
+				controlador, panel_mapa));
+		JMenuItem eliminarSeleccionItem2 = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccionItem2.addActionListener(new AccionEliminarSeleccion(
+				modelo, controlador, panel_mapa));
+		JMenuItem propiedadesItem2 = new JMenuItem("Propiedades del tramo");		
+		propiedadesItem2.addActionListener(new AccionPropiedadesTramo(modelo,
+				controlador, panel_mapa));		
+		
+		emergenteTramo.add(eliminarItem2);
+		emergenteTramo.add(eliminarSeleccionItem2);		
+		emergenteTramo.add(propiedadesItem2);
+
+		panel_mapa.setMenuEmergenteTramo(emergenteTramo);
+		
+		JPopupMenu emergenteMapa = new JPopupMenu("menuEmergente3");
+		
+		JMenuItem eliminarSeleccionItem3 = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccionItem3.addActionListener(new AccionEliminarSeleccion(
+				modelo, controlador, panel_mapa));
+				
+		emergenteMapa.add(eliminarSeleccionItem3);		
+		
+		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 
 	}
 
@@ -523,8 +553,8 @@ public class Ventana extends JFrame {
 		barraCrearNodo = new BarraCrearNodo();
 		barraCrearTramo = new BarraCrearTramo();
 		// crearBarraEliminar();
-		barraSeleccionar = new BarraSeleccionar(this, escuchaSeleccionTramos,
-				escuchaSeleccionNodosYTramos, escuchaSeleccion, escuchaTeclado);
+		//barraSeleccionar = new BarraSeleccionar(this, escuchaSeleccionTramos,
+		//	escuchaSeleccionNodosYTramos, escuchaSeleccion, escuchaTeclado);
 	}
 
 	/**
