@@ -33,7 +33,7 @@ public class AccionEliminarSeleccion extends AccionesPopUpMenu {
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (!modelo.getMapa().getSeleccion().esVacia()) {			
-			panel_mapa.getMenuEmergente().setVisible(false);
+			panel_mapa.getMenuEmergenteActivo().setVisible(false);
 			controlador.herramienta(new HEliminarSeleccion(
 					modelo.getMapa().getSeleccion().getNodosSeleccionados(),
 					modelo.getMapa().getSeleccion().getTramosSeleccionados()));
