@@ -32,7 +32,7 @@ public class AccionEliminarNodo extends AccionesPopUpMenu {
 		Nodo seleccionado = buscarNodo(panel_mapa.getPosEx(), panel_mapa
 				.getPosEy());
 		if (seleccionado != null) {
-			panel_mapa.getMenuEmergente().setVisible(false);
+			panel_mapa.getMenuEmergenteActivo().setVisible(false);
 			controlador.herramienta(new HEliminarNodo(seleccionado));
 			Nodo nodoSeleccion = modelo.getMapa().getSeleccion().existeNodo(seleccionado);
 			if (nodoSeleccion!=null) {
