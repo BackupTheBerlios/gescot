@@ -164,9 +164,10 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	 * @see is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
-	public void mousePressed(MouseEvent e) {
-		if(!e.isPopupTrigger()) 
-			panel.getMenuEmergente().setVisible(false);
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		if(!arg0.isPopupTrigger()) 
+			panel.menusInvisibles();		
 	}
 	
 	/*
@@ -207,4 +208,5 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		// TODO Auto-generated method stub
 		return "";
 	}
+
 }
