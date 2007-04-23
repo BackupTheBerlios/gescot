@@ -165,14 +165,49 @@ public class CargadorMapa implements DocHandler {
 				else if (k.compareTo("bus line") == 0 && v.compareTo("yes") == 0){
 					//Iterator<Via> itVia = vias.iterator();
 					vias.remove(viaAux);
+					//Eliminar info de via de cada tramo que la forma (noe s que pertenezca a una vía, sino que es parte de una linea de bus)
+					/*Iterator<Tramo> tram = viaAux.getTramos().iterator();
+					while (tram.hasNext()) {
+						Tramo tramoaux=tram.next();
+						if (tramoaux.getVia()==viaAux ) {
+							tramoaux.setVia(null);
+						}
+					}*/
 					lineasAutobuses.add(viaAux);					
 				}
 				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
 					//no hacer nada
 				}
+				else if(k.compareTo("seg") == 0){
+						  if(idUltimoElemReconocido > 0){
+							System.out.println("segmento de via reconocido");
+							//Via viaAux = buscarViaConId(idUltimoElemReconocido);
+							/*Tramo tramoAux = buscarTramoConId(id);
+							//Probando
+							if (tramoAux!=null) {
+								//if (tramoAux.getVia()==null) {
+								//	tramoAux.setVia(viaAux);
+								//}
+								viaAux.addTramo(tramoAux);
+							}*/
+						  }
+				}
 				else {
 					if (identificarTipoElem(k,v) != null)
-					viaAux.setTipo(identificarTipoElem(k,v));
+						viaAux.setTipo(identificarTipoElem(k,v));
+					
+					//Probando
+					/*Iterator<Tramo> tram = viaAux.getTramos().iterator();
+					boolean encontrado = false;
+					while (tram.hasNext() && (!encontrado)) {
+						Tramo tramoaux=tram.next();
+						if (tramoaux.getVia()!=null) {
+							encontrado = true;
+						}
+						else {
+							tramoaux.setVia(viaAux);
+						}
+					}*/
 				}
 			}
 		
@@ -213,7 +248,13 @@ public class CargadorMapa implements DocHandler {
 				System.out.println("segmento de via reconocido");
 				Via viaAux = buscarViaConId(idUltimoElemReconocido);
 				Tramo tramoAux = buscarTramoConId(id);
-				viaAux.addTramo(tramoAux);
+				//Probando
+				if (tramoAux!=null) {
+				//	if (tramoAux.getVia()==null) {
+				//		tramoAux.setVia(viaAux);
+				//	}
+					viaAux.addTramo(tramoAux);
+				}
 			  }
 		  }
 
@@ -316,6 +357,17 @@ public class CargadorMapa implements DocHandler {
 		Mapa mapaADevolver = new Mapa(nodos,tramos); 
 		mapaADevolver.setVias(vias);
 		mapaADevolver.setLineasAutobuses(lineasAutobuses);
+		
+		for (int i=0;i<vias.size();i++) {
+			Via viaAuxiliar=vias.get(i);
+			Iterator<Tramo> tramosIt = viaAuxiliar.getTramos().iterator();
+			while (tramosIt.hasNext()) {
+				Tramo tramoAuxiliar = tramosIt.next();
+				tramoAuxiliar.setVia(viaAuxiliar);
+			}
+		}
+			
+		
 		return mapaADevolver;
 		//return null;
 	}
