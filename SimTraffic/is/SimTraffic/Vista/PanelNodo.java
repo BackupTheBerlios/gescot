@@ -140,7 +140,7 @@ public class PanelNodo extends JFrame {
 	 */
 	public void creaPanelDatos() {
 		creaPanelTipo();
-		creaPanelSeñales();
+		//creaPanelSeñales();
 		creaPanelSemaforos();
 		// creaPanelTramos();
 	}
@@ -159,7 +159,7 @@ public class PanelNodo extends JFrame {
 	 * Hace que la pestaña que aparece resaltada por defecto sea la de los semáforos. 
 	 */
 	public void daFocoAPanelSemaforo(){
-		panelDatos.setSelectedIndex(2);
+		panelDatos.setSelectedIndex(1);
 	}
 	
 	public void creaPanelSemaforos(){
@@ -275,6 +275,7 @@ public class PanelNodo extends JFrame {
 	
 	public void abrirVentanaMatrizDePaso(int i){
 		this.ventanaMatriz = new VentanaMatrizDePaso(nodo,this,i);
+		ventanaMatriz.validate();
 		OyenteVentanaMatrizDePaso oyenteMatrizPaso = new OyenteVentanaMatrizDePaso(this);
 		this.ventanaMatriz.addWindowListener(oyenteMatrizPaso);
 		this.setVisible(false);
