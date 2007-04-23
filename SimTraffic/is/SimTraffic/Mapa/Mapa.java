@@ -653,7 +653,10 @@ public class Mapa {
 			if (nomaux != null && nomaux.equals(nombre))
 				encontrado = true;
 		}
-		return tramoaux;
+		if (encontrado)
+			return tramoaux;
+		else
+			return null;
 	}
 
 	/**
@@ -674,7 +677,10 @@ public class Mapa {
 			if (nomaux != null && nomaux.equals(nombre))
 				encontrado = true;
 		}
-		return viaaux;
+		if (encontrado)
+			return viaaux;
+		else
+			return null;
 	}
 
 	/**
@@ -695,7 +701,10 @@ public class Mapa {
 			if (nomaux != null && nomaux.equals(nombre))
 				encontrado = true;
 		}
-		return viaaux;
+		if (encontrado)
+			return viaaux;
+		else
+			return null;
 	}
 	
 	public boolean tieneHospitales() {
