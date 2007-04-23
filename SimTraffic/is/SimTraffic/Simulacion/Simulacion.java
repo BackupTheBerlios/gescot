@@ -58,7 +58,7 @@ public class Simulacion {
 
 	private boolean activa = false;
 
-	Random random;
+	private Random random;
 
 	private int[] entradas = new int[3];
 
@@ -111,7 +111,7 @@ public class Simulacion {
 		vehiculos = new ArrayList<Vehiculo>(max + 20);
 		vehiculosActivos = 0;
 		rellenarTabla();
-		crearVehiculos(max);
+		crearVehiculos(max + 20);
 		// this.vista = vista;
 		controladorSim = new ControladorSim(vehiculos, this);
 		controladorSim.start();
@@ -195,12 +195,39 @@ public class Simulacion {
 
 		for (int i = 0; i < cant; i++) {
 			Random r = new Random();
-			int aux = r.nextInt(10);
-			//Se generan ahora mismo 3 camiones por cada 10 vehiculos (debería ser un parámetro).
-			if (aux>2)
+			int aux = r.nextInt(100);
+			int[] por = param.getPorcentajeTipo();
+			aux = aux - por[0];
+			if (aux <= 0)
 				vehiculos.add(new Turismo());
-			else
-				vehiculos.add(new Camion());
+			else {
+				aux = aux - por[1];
+				if (aux <= 0)
+					vehiculos.add(new Taxi());
+				else {
+					aux = aux - por[2];
+					if (aux <= 0)
+						vehiculos.add(new Camion());
+					else {
+						aux = aux - por[3];
+						if (aux <= 0)
+							vehiculos.add(new Bus());
+						else {
+							aux = aux - por[4];
+							if (aux <= 0)
+								vehiculos.add(new Moto());
+							else {
+								aux = aux - por[5];
+								if (aux <= 0)
+									vehiculos.add(new Ambulancia());
+								else {
+									vehiculos.add(new Turismo());
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -305,21 +332,26 @@ public class Simulacion {
 	public boolean estaActiva() {
 		return activa;
 	}
-	
+
 	/**
-	 * Método para mejorar la elección de caminos (no solo en función de la distancia, sino en función del tráfico actual)
+	 * Método para mejorar la elección de caminos (no solo en función de la
+	 * distancia, sino en función del tráfico actual)
+	 * 
 	 * @param tramo
 	 * @return
 	 */
-	public double densidadTramo(Tramo tramo) { 
-		ArrayList<Vehiculo> listaVehiculos= tabla.get(tramo);
+	public double densidadTramo(Tramo tramo) {
+		ArrayList<Vehiculo> listaVehiculos = tabla.get(tramo);
 		int longitudT = tramo.getLargo();
 		int numCoches = listaVehiculos.size();
-		//Versión simple, realmente debería comprobar el tramo en el sentido en que quiere recorrerlo y no en ambos.
-		int numCarriles = tramo.getNumCarrilesDir1() + tramo.getNumCarrilesDir2();
-		//Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
+		// Versión simple, realmente debería comprobar el tramo en el sentido en
+		// que quiere recorrerlo y no en ambos.
+		int numCarriles = tramo.getNumCarrilesDir1()
+				+ tramo.getNumCarrilesDir2();
+		// Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
 		double densidad = numCoches / (longitudT * numCarriles);
-		//Se normaliza con la distancia (devolverá un valor entre 0 y la distancia del tramo).
+		// Se normaliza con la distancia (devolverá un valor entre 0 y la
+		// distancia del tramo).
 		densidad = longitudT * densidad;
 		return densidad;
 	}

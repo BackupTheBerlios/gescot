@@ -697,5 +697,17 @@ public class Mapa {
 		}
 		return viaaux;
 	}
+	
+	public boolean tieneHospitales() {
+		Iterator<Nodo> nodos = Nodos.iterator();
+		while(nodos.hasNext()) {
+			Nodo nodo = nodos.next();
+			if (nodo.getTipo() != null) {
+				if (nodo.getTipo().getValorTipo().compareToIgnoreCase("hospital") == 0)
+					return true;
+			}
+		}
+		return false;
+	}
 
 }

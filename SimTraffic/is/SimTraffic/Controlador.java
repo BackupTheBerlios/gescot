@@ -120,4 +120,8 @@ public class Controlador implements IControlador {
 	public void repintarCoches() {
 		vista.actualizar();
 	}
+	
+	public boolean mapaTieneHospital() {
+		return modelo.getMapa().tieneHospitales();
+	}
 }

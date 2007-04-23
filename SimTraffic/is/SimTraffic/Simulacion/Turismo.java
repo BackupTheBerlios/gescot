@@ -83,7 +83,6 @@ public class Turismo extends Vehiculo {
 			tramos.clear();
 			cuentaTramos = 0;
 			
-			//Puede que influya el orden de inserción de los tramos (por comprobar).
 			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0 ; i--) {
 			//for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
 				 // Solo es null en la raíz (se puede mejorar)

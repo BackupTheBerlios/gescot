@@ -127,19 +127,37 @@ public class Inteligencia {
 			salida = sim.getSalida();
 		}
 
+		boolean salir = false;
 		if (vehiculo.inicializar(entrada, salida)) {
 			vehiculo.setTramo(vehiculo.siguienteTramo());
 			tabla.get(vehiculo.getTramo()).add(vehiculo);
 			vehiculo.resetaerPosicion();
-			vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
-					.getNumCarrilesDir1()) + 1);
 			vehiculo.setNodoOrigen(entrada);
 			if (vehiculo.getTramo().getNodoInicial() == entrada) {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
-			} else
+				if (vehiculo.getTramo().getNumCarrilesDir1() == 0) {
+					salir = true;
+				}
+				vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
+						.getNumCarrilesDir1()) + 1);
+			} else {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
+				if (vehiculo.getTramo().getNumCarrilesDir2() == 0) {
+					salir = true;
+				}
+				vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
+						.getNumCarrilesDir2()) + 1);
+
+			}
 		} else
 			sim.saleVehiculo();
+		
+		if (salir) {
+			vehiculo.setTramo(null);
+			vehiculo.setNodoDestino(null);
+			vehiculo.setNodoOrigen(null);
+			sim.saleVehiculo();
+		}
 	}
 
 	/**

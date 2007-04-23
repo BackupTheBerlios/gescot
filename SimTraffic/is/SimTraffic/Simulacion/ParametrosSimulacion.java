@@ -30,11 +30,11 @@ public class ParametrosSimulacion {
 	private int estadoCoches;
 
 	/**
-	 * porcentaje de coches que hay de cada tipo en la simulacion actual
-	 * ¿como se guarda la información en esta variable?
-	 * ¿los valores de array suman 1, o hay que normalizarlos?
+	 * porcentaje de coches que hay de cada tipo en la simulacion actual.<br>
+	 * Los valores deben estar normalizados para sumar 100, los valores se corresponden con:
+	 * turismos, taxis, camiones, autobuses, motos, ambulancias
 	 */
-	private ArrayList<Integer> porcentajeTipo;
+	private int[] porcentajeTipo;
 
 	public ParametrosSimulacion() {
 		clima = 1;
@@ -43,7 +43,7 @@ public class ParametrosSimulacion {
 		numVehiculos[2] = 100;
 		hora = 0;
 		estadoCoches = 0;
-		porcentajeTipo = new ArrayList<Integer>();
+		porcentajeTipo = new int[6];
 	}
 
 	public synchronized int getClima() {
@@ -66,7 +66,11 @@ public class ParametrosSimulacion {
 		return this.estadoCoches;
 	}
 
-	public ArrayList getPorcentajeTipo() {
+	public void setPorcentajeTipo(int[] porcent) {
+		this.porcentajeTipo = porcent;
+	}
+	
+	public int[] getPorcentajeTipo() {
 		return this.porcentajeTipo;
 	}
 }

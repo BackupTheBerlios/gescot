@@ -69,6 +69,7 @@ public interface IControlador {
 	 */
 	public String obtenerVinculoAyuda(int ayuda);
 	
+	public boolean mapaTieneHospital();
 	
 	public List getHistorial();
 }
