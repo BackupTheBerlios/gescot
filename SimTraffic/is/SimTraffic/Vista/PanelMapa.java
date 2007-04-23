@@ -105,9 +105,7 @@ public class PanelMapa extends JPanel
 	private JScrollBar largo;
 
 	private JScrollBar alto;
-	
-	private JPopupMenu emergente;
-	
+		
 	private int posEx;
 	
 	private int posEy;
@@ -135,6 +133,12 @@ public class PanelMapa extends JPanel
 	private String ayudaInf;
 
 	private Flecha flecha;
+
+	private JPopupMenu emergenteNodo;
+	
+	private JPopupMenu emergenteTramo;
+	
+	private JPopupMenu emergenteMapa;
 	
 	/**
 	 * @return Returns the ayudaInf.
@@ -193,12 +197,46 @@ public class PanelMapa extends JPanel
 		recrear = true;
 	}
 
-	public JPopupMenu getMenuEmergente(){
-		return emergente;
+	public JPopupMenu getMenuEmergenteNodo(){
+		return emergenteNodo;
 	}
 	
-	public void setMenuEmergente(JPopupMenu emergente){
-		this.emergente= emergente;
+	public JPopupMenu getMenuEmergenteTramo(){
+		return emergenteTramo;
+	}
+	
+	public JPopupMenu getMenuEmergenteMapa(){
+		return emergenteMapa;
+	}
+	
+	public void setMenuEmergenteNodo(JPopupMenu emergenteNodo){
+		this.emergenteNodo= emergenteNodo;
+	}
+	
+	public void setMenuEmergenteTramo(JPopupMenu emergenteTramo) {
+		this.emergenteTramo = emergenteTramo;
+		
+	}
+	
+	public void setMenuEmergenteMapa(JPopupMenu emergenteMapa) {
+		this.emergenteMapa = emergenteMapa;
+		
+	}
+	
+	public void menusInvisibles () {
+		getMenuEmergenteNodo().setVisible(false);
+		getMenuEmergenteTramo().setVisible(false);
+		getMenuEmergenteMapa().setVisible(false);
+	}
+
+	public JPopupMenu getMenuEmergenteActivo () {					  	
+		if (getMenuEmergenteNodo().isVisible())
+			return getMenuEmergenteNodo();
+		else if (getMenuEmergenteTramo().isVisible())
+			return getMenuEmergenteTramo();
+		else if (getMenuEmergenteMapa().isVisible())
+			return getMenuEmergenteMapa();
+		else return getMenuEmergenteNodo();
 	}
 	
 	/*
@@ -524,6 +562,5 @@ public class PanelMapa extends JPanel
 	{
 		this.flecha = null;
 	}
-	
 
 }
