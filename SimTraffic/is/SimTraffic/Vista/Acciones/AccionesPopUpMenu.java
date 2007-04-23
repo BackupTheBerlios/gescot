@@ -52,5 +52,35 @@ public class AccionesPopUpMenu implements ActionListener {
 				return null;
 		}
 		
+		/**
+		 * Método para obtener un tramo a partir de un punto en el panel del mapa.
+		 * <p>
+		 * Este método recorre la lista de tramos y busca el tramo que tiene una
+		 * posicion (x,y) similar a la pasada como parámetro.
+		 * 
+		 * @param x
+		 *            Posicion a lo largo del eje x (coordenadas del panel)
+		 * @param y
+		 *            Posicion a lo largo del eje y (coordenadas del panel)
+		 * @return Tramo encontrado en la posicion dada o null
+		 */
+		public Tramo buscarTramo(int posX, int posY) {
+			Iterator<Tramo> iter = modelo.getMapa().getTramos().iterator();
+			Tramo sel = null;
+			boolean encontrado = false;
+			while (!encontrado && iter.hasNext()) {
+				Tramo next = iter.next();
+				Polygon p = panel_mapa.getRepresentacion().generarAreaTramo(next);
+				if (p.contains(posX, posY)) {
+					encontrado = true;
+					sel = next;
+				}
+			}
+			if (encontrado)
+				return sel;
+			else
+				return null;
+		}
+		
 
 }
