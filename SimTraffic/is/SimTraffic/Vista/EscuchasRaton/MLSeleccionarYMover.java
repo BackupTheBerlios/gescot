@@ -52,51 +52,53 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		modoHerramienta=0; //seleccionar
-		nodoInicial=null;
-		tramoInicial=null;
-		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
-		if (posibleNodo!=null) { //si se hace clic sobre un nodo	
-			nodoInicial=posibleNodo;		
-		}
-		Tramo posibleTramo = buscarTramo(arg0.getX(),arg0.getY());
-		if (posibleTramo!=null) { //si se hace clic sobre un tramo
-			tramoInicial = posibleTramo;					
-		}
-		if (nodoInicial!=null) { //si se ha pulsado sobre un nodo
-			if (this.getModificadorDeTeclado()==17) { //si se pulsa control
-				//se añade el nodo si no está en la selección
-				if (!modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoInicial))
-					modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
-				//si no, se elimina
-				else
-					modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoInicial);
+		if (!arg0.isPopupTrigger()) { 
+			modoHerramienta=0; //seleccionar
+			nodoInicial=null;
+			tramoInicial=null;
+			Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
+			if (posibleNodo!=null) { //si se hace clic sobre un nodo	
+				nodoInicial=posibleNodo;		
 			}
-			else { //si no se pulsa control
-				//se borra la seleccion antigua y se selecciona el nodo
-				modelo.getMapa().setSeleccion(new Seleccion());
-				modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
+			Tramo posibleTramo = buscarTramo(arg0.getX(),arg0.getY());
+			if (posibleTramo!=null) { //si se hace clic sobre un tramo
+				tramoInicial = posibleTramo;					
 			}
-		}
-		else { //si no se ha pulsado sobre un nodo
-			if (tramoInicial!=null) { //si se ha pulsado sobre un tramo
+			if (nodoInicial!=null) { //si se ha pulsado sobre un nodo
 				if (this.getModificadorDeTeclado()==17) { //si se pulsa control
-					//si no está en la selección se añade el tramo
-					if (!modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoInicial))
-						modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
-					else //si está en la salección, se elimina de la selección
-						modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(tramoInicial);
+					//se añade el nodo si no está en la selección
+					if (!modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoInicial))
+						modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
+					//si no, se elimina
+					else
+						modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(nodoInicial);
 				}
 				else { //si no se pulsa control
-					//se borra la seleccion y se selecciona el tramo
+					//se borra la seleccion antigua y se selecciona el nodo
 					modelo.getMapa().setSeleccion(new Seleccion());
-					modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
+					modelo.getMapa().getSeleccion().añadirNodo(nodoInicial);
 				}
 			}
-			else { //si se ha pulsado sobre el mapa, se borra la selección
-				modelo.getMapa().setSeleccion(new Seleccion());
+			else { //si no se ha pulsado sobre un nodo
+				if (tramoInicial!=null) { //si se ha pulsado sobre un tramo
+					if (this.getModificadorDeTeclado()==17) { //si se pulsa control
+						//si no está en la selección se añade el tramo
+						if (!modelo.getMapa().getSeleccion().getTramosSeleccionados().contains(tramoInicial))
+							modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
+						else //si está en la salección, se elimina de la selección
+							modelo.getMapa().getSeleccion().getTramosSeleccionados().remove(tramoInicial);
+					}
+					else { //si no se pulsa control
+						//se borra la seleccion y se selecciona el tramo
+						modelo.getMapa().setSeleccion(new Seleccion());
+						modelo.getMapa().getSeleccion().añadirTramo(tramoInicial);
+					}
+				}
+				else { //si se ha pulsado sobre el mapa, se borra la selección
+					modelo.getMapa().setSeleccion(new Seleccion());
+				}
+
 			}
-				
 		}
 
 	}
@@ -120,7 +122,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		if (!arg0.isPopupTrigger()) {
 		nodoInicial=null;
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());		
@@ -159,6 +161,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.setModoSeleccion(true);
 		}
+		}
 		
 	}
 	
@@ -169,7 +172,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if (!arg0.isPopupTrigger()) {
 		if (modoHerramienta==0) { //seleccionar
 			panel.setModoSeleccion(false);
 			if (this.getModificadorDeTeclado() != 17 && drag)
@@ -188,12 +191,14 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			}
 		}
 		panel.repaint();
+		}
 		
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub				
+		if (!arg0.isPopupTrigger()) {
 		if (modoHerramienta==0) { //seleccionar			
 			Point puntoDrag = arg0.getPoint();
 			panel.setPuntoDrag(puntoDrag);
@@ -215,7 +220,8 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			
 			panel.setRecrear(true);
 			panel.repaint();
-		}				
+		}			
+		}
 	}
 	
 	@Override
