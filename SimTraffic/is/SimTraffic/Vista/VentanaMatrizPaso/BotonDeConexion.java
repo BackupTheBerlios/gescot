@@ -9,6 +9,10 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 public class BotonDeConexion extends JButton {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int tramoOrigen;
 	int tramoDestino;
 	

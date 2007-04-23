@@ -1,5 +1,9 @@
 package is.SimTraffic.Vista.VentanaMatrizPaso;
 
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Vista.PanelNodo;
+import is.SimTraffic.Vista.Acciones.VentanaMatrizDePaso.AccionModificarEstadoConexion;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,14 +11,20 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 
-import javax.swing.*;
-
-import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Señales.Semaforo;
-import is.SimTraffic.Vista.PanelNodo;
-import is.SimTraffic.Vista.Acciones.VentanaMatrizDePaso.AccionModificarEstadoConexion;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class VentanaMatrizDePaso extends JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Nodo del cuyo semáforo queremos modificar la matriz de paso.
 	 */

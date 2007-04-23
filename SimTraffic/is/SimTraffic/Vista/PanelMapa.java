@@ -5,14 +5,14 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
-import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
-import is.SimTraffic.Vista.Acciones.AccionEliminarNodo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
-import is.SimTraffic.Vista.Representaciones.*;
+import is.SimTraffic.Vista.Representaciones.Representacion;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
+import is.SimTraffic.Vista.Sugerencias.Flecha;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -25,8 +25,6 @@ import java.awt.RenderingHints;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
@@ -135,6 +133,8 @@ public class PanelMapa extends JPanel
 	 * String que muestra la ayuda al usuario en la parte inferior del interfaz.
 	 */
 	private String ayudaInf;
+
+	private Flecha flecha;
 	
 	/**
 	 * @return Returns the ayudaInf.
@@ -309,6 +309,7 @@ public class PanelMapa extends JPanel
 
 		representacion.pintarSugerencia(g, sugerencia);
 		representacion.pintarSugerencia(g, sugerencia2);
+		representacion.pintar(g, flecha);
 		g.drawString("Redibujando: " + contador, 80, 80);
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
@@ -342,8 +343,6 @@ public class PanelMapa extends JPanel
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getNodosSeleccionados().get(i));
 		}
-		
-		// Aquí se pintan los coches
 		
 	}
 
@@ -513,6 +512,17 @@ public class PanelMapa extends JPanel
 	
 	public int getPosEy(){
 		return posEy;
+	}
+
+	public void crearFlecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino) 
+	{
+		this.flecha = new Flecha(nodo, tramoOrigen, tramoDestino);
+		this.repaint();
+	}
+
+	public void quitarFlecha() 
+	{
+		this.flecha = null;
 	}
 	
 

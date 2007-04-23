@@ -6,8 +6,6 @@ import is.SimTraffic.Vista.PanelNodo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.*;
-
 public class EscuchaBotonInterconexion implements MouseListener {
 
 	VentanaMatrizDePaso ventanaPadre;
@@ -37,21 +35,23 @@ public class EscuchaBotonInterconexion implements MouseListener {
 		int tramoDestino = ((BotonDeConexion)arg0.getSource()).getTramoDestino();
 		Nodo nodo = ((PanelNodo)ventanaPadre.getVentanaPadre()).getNodo();
 		
-		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(nodo.getTramos().get(tramoOrigen));
-		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(nodo.getTramos().get(tramoDestino));
+		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(nodo.getTramos().get(tramoOrigen));
+		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(nodo.getTramos().get(tramoDestino));
 		
 		// Aquí se podría dibujar una flecha para entender mejor la dirección del semáforo.
 		//Habría que crear algún método en el panel mapa y en la representación para crearla.
+		//Ahi va la flecha...
+		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().crearFlecha(nodo, nodo.getTramos().get(tramoOrigen), nodo.getTramos().get(tramoDestino));
 		
 		ventanaPadre.informa("Conexión: de "+tramoOrigen+" a "+tramoDestino);
 		ventanaPadre.validate();
 	}
 
-	public void mouseExited(MouseEvent arg0) {
-		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(null);
-		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(null);
+	public void mouseExited(MouseEvent arg0) 
+	{
+		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(null);
+		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(null);
 		ventanaPadre.informa("Conexión: de - a -");
-
+		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().quitarFlecha();
 	}
-
 }

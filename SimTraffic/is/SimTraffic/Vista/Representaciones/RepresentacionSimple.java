@@ -246,7 +246,7 @@ public class RepresentacionSimple extends Representacion {
 		Shape rect;
 		if (vehiculo.getNombre() == "Turismo")
 			rect = new Rectangle2D.Double(-4, -tamaño_carril, 4,
-				tamaño_carril);
+					tamaño_carril);
 		else if (vehiculo.getNombre() == "Camion") {
 			rect = new Rectangle2D.Double(-6, -tamaño_carril, 6,
 					tamaño_carril);
@@ -264,7 +264,7 @@ public class RepresentacionSimple extends Representacion {
 		else {
 			g.setColor(vehiculo.getColor());
 		}
-		
+
 		int posX1, posY1, posX2, posY2, posX, posY;
 
 		posX1 = x_MapaARep(tramo.getNodoInicial().getPos().getLon());
@@ -304,4 +304,40 @@ public class RepresentacionSimple extends Representacion {
 
 	}
 
+	@Override
+	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) 
+	{
+		Posicion pos; 
+		if (destino.getNodoFinal().equals(nodo))
+			pos = destino.getNodoInicial().getPos();
+		else
+			pos = destino.getNodoFinal().getPos();
+
+		double angulo = Math.PI*2 - destino.getAngulo();
+		int carriles = Math.max(destino.getNumCarrilesDir1(), destino.getNumCarrilesDir2());
+		
+		int desplazamiento = 15;
+		int temp3 = (int) (desplazamiento * Math.cos(Math.PI + angulo) / zoom);
+		int temp4 = (int) (-desplazamiento * Math.sin(Math.PI + angulo) / zoom);
+
+		angulo = Math.PI/2 + angulo;
+		int temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.cos(angulo));
+		
+		int x[] = {x_MapaARep(pos.getLon()) - temp1 + temp3,
+				x_MapaARep(pos.getLon()) + temp1 + temp3,
+				x_MapaARep(pos.getLon()) - temp3};
+
+		temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.sin(angulo));
+		int y[] = {y_MapaARep(pos.getLat()) - temp1 - temp4,
+				y_MapaARep(pos.getLat()) + temp1 - temp4,
+				y_MapaARep(pos.getLat()) + temp4};
+		
+		System.out.println(x[0] + " " + x[1] + " " + x[2]);
+		System.out.println(y[0] + " " + y[1] + " " + y[2]);
+		
+		Polygon p = new Polygon(x, y, 3);
+		return p;
+	}
+
 }
+

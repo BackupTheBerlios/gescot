@@ -2,11 +2,14 @@ package is.SimTraffic.Vista.Representaciones;
 
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Simulacion.Vehiculo;
+import is.SimTraffic.Vista.Sugerencias.Flecha;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.text.DecimalFormat;
@@ -276,6 +279,8 @@ abstract public class Representacion {
 	 */
 	public abstract Polygon generarAreaTramo(Tramo tramo);
 
+	public abstract Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino);
+	
 	/**
 	 * Método para pintar los elementos seleccionados en pantalla.
 	 * <p>
@@ -419,5 +424,28 @@ abstract public class Representacion {
 		lat = lat * 60;
 		resultado += (int)(Math.floor(lat)) +"\"";
 		return resultado;
+	}
+
+	public void pintar(Graphics2D g, Flecha flecha) 
+	{
+		if (flecha != null)
+		{
+			Tramo origen = flecha.getTramoOrigen();
+			Tramo destino = flecha.getTramoDestino();
+			g.setStroke(new BasicStroke(7));
+			try 
+			{
+				Color colorTransparente = new Color(0,0,(float)1.0,(float)0.5);
+				g.setColor(colorTransparente);
+				Polygon p = generarAreaTramo(origen);
+				g.fillPolygon(p);
+				p = generarAreaTramo(destino);
+				g.fillPolygon(p);
+				p = generarTrianguloFlechaSugerencia(flecha.getNodo(), destino);
+				g.fillPolygon(p);
+			} 
+			catch (ArithmeticException e) {}
+			g.setStroke(new BasicStroke(1));
+		}
 	}
 }
