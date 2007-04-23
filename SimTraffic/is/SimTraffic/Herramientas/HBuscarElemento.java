@@ -118,4 +118,16 @@ public class HBuscarElemento implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Búsqueda realizada";
 	}
+
+	public String getElementoACambiar() {
+		return elementoACambiar;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public PanelMapa getPanel() {
+		return panel;
+	}
 }
