@@ -185,17 +185,18 @@ public class Ventana extends JFrame {
 	 */
 	public void añadirMenuEmergente() {
 		JPopupMenu emergente = new JPopupMenu("menuEmergente");
-		JMenuItem eliminarItem = new JMenuItem("Eliminar");
+		JMenuItem eliminarItem = new JMenuItem("Eliminar Nodo");
 		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));
+		JMenuItem eliminarSeleccionItem = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccionItem.addActionListener(new AccionEliminarSeleccion(
+				modelo, controlador, panel_mapa));
 		JMenuItem propiedadesItem = new JMenuItem("Propiedades");
 		propiedadesItem.addActionListener(new AccionPropiedadesNodo(modelo,
-				controlador, panel_mapa));
-		JMenuItem moverItem = new JMenuItem("Mover");
-		moverItem.addActionListener(new AccionMoverNodo(modelo,
-				controlador, panel_mapa));
+				controlador, panel_mapa));		
+		
 		emergente.add(eliminarItem);
-		emergente.add(moverItem);
+		emergente.add(eliminarSeleccionItem);		
 		emergente.add(propiedadesItem);
 
 		panel_mapa.setMenuEmergente(emergente);
