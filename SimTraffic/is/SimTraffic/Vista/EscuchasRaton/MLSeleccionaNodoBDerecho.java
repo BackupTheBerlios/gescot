@@ -46,7 +46,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY())!= null){
 			panel.setPosE(arg0.getX(), arg0.getY());
 			panel.setPuntoInicial(arg0.getPoint());
-			panel.getMenuEmergente().show(panel,arg0.getX(),arg0.getY());
+			panel.getMenuEmergenteNodo().show(panel,arg0.getX(),arg0.getY());
 		}
 	}
 
@@ -61,7 +61,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 					modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
 				}
 			}
-			panel.getMenuEmergente().show(panel,arg0.getX(),arg0.getY());
+			panel.getMenuEmergenteNodo().show(panel,arg0.getX(),arg0.getY());
 			panel.repaint();
 		}
 	}
