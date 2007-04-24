@@ -308,12 +308,18 @@ public class RepresentacionSimple extends Representacion {
 	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) 
 	{
 		Posicion pos; 
+		double angulo;
 		if (destino.getNodoFinal().equals(nodo))
+		{
 			pos = destino.getNodoInicial().getPos();
+			angulo = Math.PI - destino.getAngulo();
+		}
 		else
+		{
 			pos = destino.getNodoFinal().getPos();
+			angulo = Math.PI*2 - destino.getAngulo();
+		}
 
-		double angulo = Math.PI*2 - destino.getAngulo();
 		int carriles = Math.max(destino.getNumCarrilesDir1(), destino.getNumCarrilesDir2());
 		
 		int desplazamiento = 15;
