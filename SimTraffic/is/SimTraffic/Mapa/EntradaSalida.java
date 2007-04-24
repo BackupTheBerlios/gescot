@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import java.io.Serializable;
+
 /**
  * Esta clase define las propiedades de los nodos que estan configurados como
  * nodos de E/S.
@@ -12,7 +14,7 @@ package is.SimTraffic.Mapa;
  * 
  * @author Grupo ISTrafico
  */
-public class EntradaSalida {
+public class EntradaSalida implements Serializable {
 
 	/**
 	 * Peso de este nodo como entrada en cada fraja horaria. Este valor se

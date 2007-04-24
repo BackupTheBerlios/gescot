@@ -1,11 +1,13 @@
 package is.SimTraffic.Mapa;
 
+import java.io.Serializable;
+
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 /**
  * @author Grupo ISTrafico
  */
-public class Tramo implements ElementoMapa {
+public class Tramo implements ElementoMapa, Serializable {
 	/**
 	 * Conoce la vía a la que pertenece, para poder mostrar de alguna forma la información de las vías.
 	 */

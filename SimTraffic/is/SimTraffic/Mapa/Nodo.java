@@ -3,6 +3,7 @@ package is.SimTraffic.Mapa;
 import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author Grupo ISTrafico
  *
  */
-public class Nodo implements ElementoMapa {
+public class Nodo implements ElementoMapa, Serializable{
 	
 	public static int id = 0;
 

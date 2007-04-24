@@ -1,11 +1,12 @@
 package is.SimTraffic.Mapa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
-public class Via implements ElementoMapa {
+public class Via implements ElementoMapa, Serializable {
 
 	/**
 	 * Identificador en OSM de la vía. Cada vía tiene un identificador entero único, que puede

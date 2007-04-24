@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import java.io.Serializable;
+
 /**
  * Clase que almacena la posición en 2 dimensiones.
  * <p>
@@ -10,7 +12,7 @@ package is.SimTraffic.Mapa;
  * @author Grupo ISTrafico
  * 
  */
-public class Posicion {
+public class Posicion implements Serializable{
 	
 	/**
 	 * double latitud
