@@ -250,7 +250,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 @Override
 public String getAyuda() {
 	return "Selecciona mediante clics o recuadro de selección(click+arrastre). " +
-			"Arrastra una selección para moverla. Pulsa 'CTR' para añadir o quitar.";
+			"Arrastra una selección para moverla. Pulsa 'Ctrl' para añadir o quitar.";
 }
 
 }
