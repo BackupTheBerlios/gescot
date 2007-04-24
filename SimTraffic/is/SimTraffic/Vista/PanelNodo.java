@@ -166,7 +166,6 @@ public class PanelNodo extends JFrame {
 		panelSemaforos.removeAll();
 		panelDatos.addTab("Semáforos", null, panelSemaforos,"Semáforos del tramo");
 		
-		
 		//Si no se ha insertado todavía un semáforo.
 		if (nodo.getSeñal() == null){
 			JLabel etiquetaNuevo = new JLabel("No existe un semáforo en el nodo");
@@ -176,7 +175,7 @@ public class PanelNodo extends JFrame {
 			panelSemaforos.add(etiquetaNuevo);
 			panelSemaforos.add(botonCrearSemaforo);
 		//Si ya existe un semáforo en el nodo
-		} else if(nodo.getSeñal().getNombre() == "Semaforo"){
+		} else if(nodo.getSeñal().getNombre().equals("Semaforo")){
 			JPanel panelInterior = new JPanel();
 			String[] valoresTiempoTotal = {"30","60","120","240"};
 			electorTiempoTotal = new JComboBox(valoresTiempoTotal);
