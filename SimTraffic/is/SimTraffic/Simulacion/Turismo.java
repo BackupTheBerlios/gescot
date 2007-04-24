@@ -53,7 +53,7 @@ public class Turismo extends Vehiculo {
 	@Override
 	public void variarAceleracion(int cuanto) {
 		// TODO posiblemente se deberia utilizar una escala logaritmica o exponencial o algo asi
-		this.aceleracion += (double) cuanto / 200;
+		this.aceleracion += (double) cuanto * cuanto / 40000;
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
 	}

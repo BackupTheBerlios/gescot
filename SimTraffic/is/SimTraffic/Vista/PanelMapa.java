@@ -246,18 +246,18 @@ public class PanelMapa extends JPanel
 	public void añadirScrolls() {
 		alto = new JScrollBar();
 		alto.setMinimum(0);
-		alto.setMaximum(30);
-		alto.setValue(10);
-		alto.setUnitIncrement(10);
+		alto.setMaximum(100);
+		alto.setValue(40);
+		alto.setUnitIncrement(100);
 		alto.addAdjustmentListener(new AccionScrollY(this));
 		alto.addMouseListener(new AccionScrollY(this));
 		this.add(alto, BorderLayout.EAST);
 		largo = new JScrollBar();
 		largo.setOrientation(0);
 		largo.setMinimum(0);
-		largo.setMaximum(30);
-		largo.setValue(10);
-		largo.setUnitIncrement(10);
+		largo.setMaximum(100);
+		largo.setValue(45);
+		largo.setUnitIncrement(100);
 		largo.addAdjustmentListener(new AccionScrollX(this));
 		largo.addMouseListener(new AccionScrollX(this));
 		this.add(largo, BorderLayout.SOUTH);

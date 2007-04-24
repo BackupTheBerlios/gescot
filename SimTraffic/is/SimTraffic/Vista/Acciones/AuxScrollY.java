@@ -34,13 +34,12 @@ public class AuxScrollY extends Thread {
 	public void run() {
 		while (true && !termino) {
 			int valor = barra.getValue();
-			if (valor > 20)
-				valor -= 10;
-			if (valor > 9 && valor < 11)
-				valor = 10;
-			panel.cambiaPosY((valor - 10) * 8);
+			valor -= 45;
+			if (valor > -1 && valor <1)
+				valor = 0;
+			panel.cambiaPosY((valor));
 			try {
-				Thread.currentThread().sleep(100);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();

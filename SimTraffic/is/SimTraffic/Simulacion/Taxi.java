@@ -52,7 +52,10 @@ public class Taxi extends Vehiculo {
 
 	@Override
 	public void variarAceleracion(int cuanto) {
-		
+		// TODO posiblemente se deberia utilizar una escala logaritmica o exponencial o algo asi
+		this.aceleracion += (double) cuanto / 200;
+		if (aceleracion > this.aceleracionMax)
+			aceleracion = aceleracionMax;
 	}
 
 }
