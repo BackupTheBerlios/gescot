@@ -29,7 +29,7 @@ public class CargadorMapa implements DocHandler {
 	
 	static ArrayList<Via> vias;
 	
-	static ArrayList<Via> lineasAutobuses;
+	static ArrayList<LineaBus> lineasAutobuses;
 	
 	public CargadorMapa() {
 	//	this.nodos = new ArrayList<Nodo>();
@@ -176,7 +176,7 @@ public class CargadorMapa implements DocHandler {
 							tramoaux.setVia(null);
 						}
 					}*/
-					lineasAutobuses.add(viaAux);					
+					lineasAutobuses.add((LineaBus)viaAux);					
 				}
 				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
 					//no hacer nada
@@ -339,7 +339,7 @@ public class CargadorMapa implements DocHandler {
 		nodos = new ArrayList<Nodo>();
 		tramos = new ArrayList<Tramo>();
 		vias = new ArrayList<Via>();
-		lineasAutobuses = new ArrayList<Via>();
+		lineasAutobuses = new ArrayList<LineaBus>();
 		
 
 		// This is all the code we need to parse
