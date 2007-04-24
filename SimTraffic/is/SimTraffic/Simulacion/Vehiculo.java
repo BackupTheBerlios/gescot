@@ -1,10 +1,13 @@
 package is.SimTraffic.Simulacion;
 
 import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
 /**
  * Clase abstracta que representa un vehiculo.
@@ -92,6 +95,9 @@ public abstract class Vehiculo {
 	 * */
 	protected static int ncochesglobal = 0;
 
+	protected Shape figura = new Rectangle2D.Double(-4, -RepresentacionSimple.tamaño_carril, 4,
+			RepresentacionSimple.tamaño_carril);;
+	
 	/**
 	 * Método para variar la aceleración.
 	 * <p>
@@ -210,6 +216,10 @@ public abstract class Vehiculo {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public Shape getFigura() {
+		return figura;
 	}
 	
 	public void generarColorAleatorio() {

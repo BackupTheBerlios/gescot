@@ -1,5 +1,7 @@
 package is.SimTraffic.Simulacion;
 
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,6 +11,7 @@ import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
 
 
@@ -27,7 +30,11 @@ public class Camion extends Vehiculo {
 	public Camion() {
 		nombre="Camion";
 		//Se genera un color aleatorio
-		generarColorAleatorio();
+		//generarColorAleatorio();
+		this.color = Color.GREEN;
+		this.figura = new Rectangle2D.Double(-6, -RepresentacionSimple.tamaño_carril, 6,
+				RepresentacionSimple.tamaño_carril);
+		
 		// TODO este constructor deberia dar valores a todos
 		//   los atributos de un camión
 		

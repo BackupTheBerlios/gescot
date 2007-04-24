@@ -6,7 +6,10 @@ import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,7 +34,10 @@ public class Turismo extends Vehiculo {
 		nombre = "Turismo";
 		
 		//Se genera un color aleatorio
-		generarColorAleatorio();
+		//generarColorAleatorio();
+		this.color = Color.BLUE;
+		this.figura = new Rectangle2D.Double(-4, -RepresentacionSimple.tamaño_carril, 4,
+				RepresentacionSimple.tamaño_carril);
 		
 		random = new Random();
 		this.aceleracion = 0;
