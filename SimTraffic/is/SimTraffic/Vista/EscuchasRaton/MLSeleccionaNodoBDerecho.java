@@ -19,7 +19,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	}
 
 		public void mouseClicked(MouseEvent arg0) {
-			if(arg0.isPopupTrigger()){
+			/*if(arg0.isPopupTrigger()){
 				seleccionado = buscarNodo(arg0.getX(), arg0.getY());
 				if (seleccionado != null){
 					if (modelo.getMapa().getSeleccion().esVacia()){
@@ -28,7 +28,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 				}				
 				panel.repaint();				
 				panel.setPosE(arg0.getX(), arg0.getY());
-			}
+			}*/
 		}
 
 	@Override
@@ -43,11 +43,11 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY())!= null){
+		/*if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY())!= null){
 			panel.setPosE(arg0.getX(), arg0.getY());
 			panel.setPuntoInicial(arg0.getPoint());
 			panel.getMenuEmergenteNodo().show(panel,arg0.getX(),arg0.getY());
-		}
+		}*/
 	}
 
 	@Override

@@ -142,7 +142,9 @@ public class Ventana extends JFrame {
 		// maximizada.
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
-		añadirMenuEmergente();
+		añadirMenuEmergenteNodo();
+		añadirMenuEmergenteTramo();
+		añadirMenuEmergenteMapa();
 
 		panel_añadido = false;
 
@@ -186,42 +188,48 @@ public class Ventana extends JFrame {
 	/**
 	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
 	 */
-	public void añadirMenuEmergente() {
-		JPopupMenu emergenteNodo = new JPopupMenu("menuEmergente");
-		JMenuItem eliminarItem = new JMenuItem("Eliminar Nodo");
-		eliminarItem.addActionListener(new AccionEliminarNodo(modelo,
+	public void añadirMenuEmergenteNodo(){
+		JPopupMenu emergenteNodo = new JPopupMenu("Menu Emergente Nodo");
+		JMenuItem eliminarNodo = new JMenuItem("Eliminar Nodo");
+		eliminarNodo.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));
-		JMenuItem eliminarSeleccionItem = new JMenuItem("Eliminar Seleccion");
-		eliminarSeleccionItem.addActionListener(new AccionEliminarSeleccion(
-				modelo, controlador, panel_mapa));
-		JMenuItem propiedadesItem = new JMenuItem("Propiedades del nodo");
-		propiedadesItem.addActionListener(new AccionPropiedadesNodo(modelo,
+		JMenuItem seleccion = new JMenuItem("Seleccionar Nodo");
+		/*seleccion.addActionListener(new AcionSeleccionarYMover(
+				modelo, controlador, panel_mapa));*/
+		JMenuItem mover = new JMenuItem("Mover Nodo");
+		/*mover.addActionListener(new AccionMoverNodo(
+				modelo, controlador, panel_mapa));*/
+		JMenuItem propiedades = new JMenuItem("Propiedades del nodo");
+		propiedades.addActionListener(new AccionPropiedadesNodo(modelo,
 				controlador, panel_mapa));		
 		
-		emergenteNodo.add(eliminarItem);
-		emergenteNodo.add(eliminarSeleccionItem);		
-		emergenteNodo.add(propiedadesItem);
+		emergenteNodo.add(eliminarNodo);
+		emergenteNodo.add(seleccion);
+		emergenteNodo.add(mover);		
+		emergenteNodo.add(propiedades);
 
 		panel_mapa.setMenuEmergenteNodo(emergenteNodo);
-		
-		JPopupMenu emergenteTramo = new JPopupMenu("menuEmergente2");
-		JMenuItem eliminarItem2 = new JMenuItem("Eliminar Tramo");
-		eliminarItem2.addActionListener(new AccionEliminarTramo(modelo,
+	}
+	public void añadirMenuEmergenteTramo(){
+		JPopupMenu emergenteTramo = new JPopupMenu("Menu Emergente Tramo");
+		JMenuItem eliminarTramo = new JMenuItem("Eliminar Tramo");
+		eliminarTramo.addActionListener(new AccionEliminarTramo(modelo,
 				controlador, panel_mapa));
-		JMenuItem eliminarSeleccionItem2 = new JMenuItem("Eliminar Seleccion");
-		eliminarSeleccionItem2.addActionListener(new AccionEliminarSeleccion(
+		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
-		JMenuItem propiedadesItem2 = new JMenuItem("Propiedades del tramo");		
-		propiedadesItem2.addActionListener(new AccionPropiedadesTramo(modelo,
+		JMenuItem propiedades = new JMenuItem("Propiedades del tramo");		
+		propiedades.addActionListener(new AccionPropiedadesTramo(modelo,
 				controlador, panel_mapa));		
 		
-		emergenteTramo.add(eliminarItem2);
-		emergenteTramo.add(eliminarSeleccionItem2);		
-		emergenteTramo.add(propiedadesItem2);
-
+		emergenteTramo.add(eliminarTramo);
+		emergenteTramo.add(eliminarSeleccion);		
+		emergenteTramo.add(propiedades);
+	
 		panel_mapa.setMenuEmergenteTramo(emergenteTramo);
-		
-		JPopupMenu emergenteMapa = new JPopupMenu("menuEmergente3");
+	}	
+	public void añadirMenuEmergenteMapa(){
+		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");
 		
 		JMenuItem eliminarSeleccionItem3 = new JMenuItem("Eliminar Seleccion");
 		eliminarSeleccionItem3.addActionListener(new AccionEliminarSeleccion(
@@ -230,8 +238,8 @@ public class Ventana extends JFrame {
 		emergenteMapa.add(eliminarSeleccionItem3);		
 		
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
-
 	}
+	
 
 	/**
 	 * Crea la barra de menús.
