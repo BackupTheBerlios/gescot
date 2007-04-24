@@ -32,11 +32,18 @@ public class Via implements ElementoMapa {
 	 */
 	private ArrayList<Tramo> Tramos;
 	
+	
+	/**
+	 * En nuestra implementacion las lineas de autobuses son tambien vias y pero estas deben 
+	 * de añadir un vector de paradas que no tienen las demas vias
+	 */
+	private ArrayList<Boolean> Paradas;
+	
 	public Via() {
 		Tramos = new ArrayList<Tramo>();
 		//ID=asignarIDunico();
 	}
-
+	
 	public int getID() {
 		return ID;
 	}
@@ -117,6 +124,14 @@ public class Via implements ElementoMapa {
 
 	public void setTipo(ITipoElemento tipo) {
 		this.tipo = tipo;
+	}
+
+	public ArrayList<Boolean> getParadas() {
+		return Paradas;
+	}
+
+	public void setParadas(ArrayList<Boolean> paradas) {
+		Paradas = paradas;
 	}
 
 }
