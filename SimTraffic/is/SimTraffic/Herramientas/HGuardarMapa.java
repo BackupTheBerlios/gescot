@@ -1,25 +1,35 @@
 package is.SimTraffic.Herramientas;
 
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Utils.Tiempo;
 
 public class HGuardarMapa implements IHerramienta {
 
+	private JFileChooser fc;
+	
 	public int hacer(IModelo modelo) {
 		Mapa mapa = modelo.getMapa();
 		generarXMLinfo(mapa);
+		guardarSeñales(mapa);
+		
 		/*
 		 * Faltarían guardar las otras cosas relevantes que no se puedan guardar
 		 * en el formato osm Analizar y decidir cuales
@@ -44,7 +54,7 @@ public class HGuardarMapa implements IHerramienta {
 	 */
 	public void generarXMLinfo(Mapa mapa) {
 
-		JFileChooser fc = new JFileChooser();
+		fc = new JFileChooser();
 		String[] ext = new String[] { "osm" };
 		fc.addChoosableFileFilter(new ExtFilter(ext,"Mapa OSM (*.osm)"));
 		int val = fc.showSaveDialog(null);
@@ -124,6 +134,42 @@ public class HGuardarMapa implements IHerramienta {
 		}
 
 	}
+	
+	public void guardarSeñales(Mapa mapa){
+		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
+		
+		if (rutaSeñales.contains(".osm")){
+			rutaSeñales.replace(".osm",".sem");
+		} else {
+			rutaSeñales += ".sem";
+		}
+		
+		List<Señal> listaSeñales = new ArrayList();
+		
+		//Añadimos todas las señales de los nodos a una lista para almacenarlas.
+		Iterator<Nodo> iteradorNodos = mapa.getNodos().iterator();
+		while(iteradorNodos.hasNext()){
+			Nodo nodoActual = iteradorNodos.next();
+			if (nodoActual.getSeñal() != null) {
+				listaSeñales.add(nodoActual.getSeñal());
+			}
+		}
+		
+		if (listaSeñales.size() > 0){
+			//Guardamos a continuacion las señales en un archivo extensión *.sem.
+			try{
+				FileOutputStream flujoOut = new FileOutputStream(rutaSeñales);
+				ObjectOutputStream objetoFuera = new ObjectOutputStream(flujoOut);
+				
+				objetoFuera.writeObject(listaSeñales);
+				objetoFuera.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			
+		}				
+	}
+	
 	public String toString(){
 		return Tiempo.Hora()+" - "+ "Se guarda mapa";
 	}
