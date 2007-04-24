@@ -34,12 +34,7 @@ public class Via implements ElementoMapa, Serializable {
 	private ArrayList<Tramo> Tramos;
 	
 	
-	/**
-	 * En nuestra implementacion las lineas de autobuses son tambien vias y pero estas deben 
-	 * de añadir un vector de paradas que no tienen las demas vias
-	 */
-	private ArrayList<Boolean> Paradas;
-	
+
 	public Via() {
 		Tramos = new ArrayList<Tramo>();
 		//ID=asignarIDunico();
@@ -67,20 +62,7 @@ public class Via implements ElementoMapa, Serializable {
 		s=s.concat("</way>\n");
 		return s;
 	}
-	public String transformarLineaBusaOSM() {
-		String s=new String();
-		Iterator<Tramo> tram = Tramos.iterator();
-		s=s.concat("<way id='"+ID+"'>\n");
-		while (tram.hasNext()) {
-			Tramo tramoaux = tram.next();
-			s=s.concat("<seg id='"+tramoaux.getID()+"'/>\n");
-		}
-		if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
-		if (nombre!=null) s=s.concat("<tag k='nombre' v='"+nombre+"' />\n");
-		s=s.concat("<tag k ='bus line' v='yes' />\n");
-		s=s.concat("</way>\n");
-		return s;
-	}
+	
 	
 
 	public ITipoElemento getTipo() {
@@ -127,12 +109,6 @@ public class Via implements ElementoMapa, Serializable {
 		this.tipo = tipo;
 	}
 
-	public ArrayList<Boolean> getParadas() {
-		return Paradas;
-	}
 
-	public void setParadas(ArrayList<Boolean> paradas) {
-		Paradas = paradas;
-	}
 
 }
