@@ -129,7 +129,7 @@ public class CargadorMapa implements DocHandler {
 			if (ultimoElemReconocido.compareTo("node") == 0){
 				System.out.println("tag de nodo reconocido");
 				Nodo nodoAux = buscarNodoConId(idUltimoElemReconocido);
-				if (k.compareTo("nombre")==0){
+				if (k.compareTo("nombre")==0 || k.compareTo("name")==0){
 					nodoAux.setNombre(v);
 				} else if (k.compareTo("entradasalida") == 0) {
 					int[] salida = new int[3];
@@ -149,6 +149,9 @@ public class CargadorMapa implements DocHandler {
 			else if (ultimoElemReconocido.compareTo("segment") == 0){
 				System.out.println("tag de segmento reconocido");
 				Tramo tramoAux = buscarTramoConId(idUltimoElemReconocido);
+				if (k.compareTo("nombre")==0 || k.compareTo("name")==0){
+					tramoAux.setNombre(v);
+				}
 				if (k.compareTo("nCarrilesIda") == 0)
 					tramoAux.setNumCarrilesDir1(new Integer(v).intValue());
 				else if (k.compareTo("nCarrilesVuelta") == 0)
@@ -159,7 +162,7 @@ public class CargadorMapa implements DocHandler {
 			else if (ultimoElemReconocido.compareTo("way") == 0){
 				System.out.println("tag de via reconocido");
 				Via viaAux = buscarViaConId(idUltimoElemReconocido);
-				if (k.compareTo("nombre")==0){
+				if (k.compareTo("nombre")==0 || k.compareTo("name")==0){
 					viaAux.setNombre(v);
 				}
 				else if (k.compareTo("bus line") == 0 && v.compareTo("yes") == 0){
