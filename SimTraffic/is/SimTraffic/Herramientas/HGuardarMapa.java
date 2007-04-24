@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
@@ -93,9 +94,9 @@ public class HGuardarMapa implements IHerramienta {
 					salida.println(viaAux.transformaraOSM());
 				}
 				
-				Iterator<Via> buses = mapa.getLineasAutobuses().iterator();
+				Iterator<LineaBus> buses = mapa.getLineasAutobuses().iterator();
 				while (buses.hasNext()) {
-					Via lineaBusAux = buses.next();
+					LineaBus lineaBusAux = buses.next();
 					salida.println(lineaBusAux.transformarLineaBusaOSM());
 				}
 
