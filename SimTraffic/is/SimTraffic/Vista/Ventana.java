@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
 
@@ -442,6 +443,22 @@ public class Ventana extends JFrame {
 		elminarTramo.setText("Eliminar tramo");
 		mapaMenu.add(elminarTramo);
 
+		mapaMenu.addSeparator();
+		
+		JMenuItem buscarElemento = new JMenuItem();
+		buscarElemento.addActionListener(new AccionBuscar(controlador,panel_mapa));
+		buscarElemento.addActionListener(new AccionBarra(this, null));
+		buscarElemento.setText("Buscar elemento");
+		mapaMenu.add(buscarElemento);
+		
+		JMenuItem mejorCamino = new JMenuItem();
+		mejorCamino.addActionListener(new AccionSobreMapa(new MLEscuchaItinerario(
+				modelo, controlador, panel_mapa), this,
+				escuchaTeclado, 8));
+		mejorCamino.addActionListener(new AccionBarra(this, null));
+		mejorCamino.setText("Encontrar mejor camino");
+		mapaMenu.add(mejorCamino);
+		
 	}
 
 	/**
