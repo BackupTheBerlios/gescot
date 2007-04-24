@@ -194,8 +194,10 @@ public class Ventana extends JFrame {
 		eliminarNodo.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));
 		JMenuItem seleccion = new JMenuItem("Seleccionar Nodo");
-		/*seleccion.addActionListener(new AcionSeleccionarYMover(
-				modelo, controlador, panel_mapa));*/
+		/*seleccion.addActionListener(new AccionSobreMapa(
+				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this,
+				escuchaTeclado, -1));
+		seleccion.addActionListener(new AccionBarra(this, barraSeleccionar));*/
 		JMenuItem mover = new JMenuItem("Mover Nodo");
 		/*mover.addActionListener(new AccionMoverNodo(
 				modelo, controlador, panel_mapa));*/
