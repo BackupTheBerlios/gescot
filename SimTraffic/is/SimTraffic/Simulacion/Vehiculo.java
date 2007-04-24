@@ -238,4 +238,8 @@ public abstract class Vehiculo {
 		else
 			color = Color.WHITE;
 	}
+
+	public Nodo getNodoEntrada() {
+		return nodoEntrada;
+	}
 }

@@ -242,9 +242,11 @@ public class RepresentacionSimple extends Representacion {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
-		if (vehiculo.getPosicion() * tramo2.getLargo() < 2) {
+		
+		if (vehiculo.getPosicion() * tramo2.getLargo() < 2 && vehiculo.getNodoOrigen() == vehiculo.getNodoEntrada()) {
 			return;
 		}
+		
 		Shape rect = vehiculo.getFigura();
 
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua

@@ -89,11 +89,10 @@ public class Inteligencia {
 		if (vehiculo.getTramo() == null)
 			inicializarVehiculo(vehiculo);
 		else {
+			controlarCochesDelante(vehiculo);
 
 			if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
 				procesarTramoSiguiente(vehiculo);
-
-			controlarCochesDelante(vehiculo);
 
 			procesarCambioCarril(vehiculo);
 
@@ -170,7 +169,6 @@ public class Inteligencia {
 	 * @return booleano que sera verdadero si ya se llego al fin del tramo
 	 */
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
-		// TODO temporalmente controla que no supere el 98% de la dist del tramo
 		if (vehiculo.getPosicion() > 1)
 			vehiculo.posicion = 1;
 		if (vehiculo.getTramo() == null)
@@ -234,7 +232,7 @@ public class Inteligencia {
 			return;
 		}
 
-		if (puedeEntrar(vehiculo, tramo)) {
+		if (distDelante > 0.2) {
 			tabla.get(vehiculo.getTramo()).remove(vehiculo);
 			vehiculo.setTramo(tramo);
 			tabla.get(tramo).add(vehiculo);
@@ -255,30 +253,6 @@ public class Inteligencia {
 		} 
 	}
 
-	/**
-	 * Método que controla que no haya ningun vehiculo al comienzo del tramo
-	 * en el que quiere entrar un nuevo vehiculo.
-	 * @param vehiculo
-	 * @param tramo
-	 * @return
-	 */
-	private boolean puedeEntrar(Vehiculo vehiculo, Tramo tramo) {
-		iterador = (new ArrayList<Vehiculo>(tabla.get(tramo))).iterator();
-		Vehiculo temp;
-		while (iterador.hasNext()) {
-			temp = iterador.next();
-			if (temp.nodoOrigen == vehiculo.nodoDestino) {
-				if (temp.carril == vehiculo.carril) {
-					if (temp.posicion > 0 && temp.posicion * tramo.getLargo() < 2) {
-						puedeEntrar = false;
-						return false;
-					}
-				}
-			}
-		}
-		puedeEntrar = true;
-		return true;
-	}
 
 	/**
 	 * Método para controlar si hay coches delante.
@@ -290,6 +264,7 @@ public class Inteligencia {
 	 * esta delante y no se habia encontrado uno más cerca<br>
 	 * Si se cumplen las condiciones, guarda la velocidad del coche y la
 	 * distancia hasta este.<br>
+	 * Este método también toma en cuenta los coches que esten en el tramo siguiente.<br>
 	 * Al final devuelve la velocidad encontrada.
 	 * </p>
 	 * 
@@ -317,8 +292,31 @@ public class Inteligencia {
 					}
 			}
 		}
+		
+		if (velocidad == -1.0) {
+			Tramo tramo = vehiculo.siguienteTramo();
+			if (tramo != null) {
+				Double pos = 1 - vehiculo.posicion - (0.1 *  vehiculo.getTramo().getLargo()) / tramo.getLargo();
+				iterador = (new ArrayList<Vehiculo>(tabla.get(tramo)))
+				.iterator();
+				while (iterador.hasNext()) {
+					temp = iterador.next();
+					if (temp != null && temp != vehiculo) {
+						if (temp.getNodoDestino() != null
+								&& temp.getNodoOrigen() == vehiculo.getNodoDestino()
+								&& temp.getCarril() == vehiculo.getCarril())
+							if (temp.getPosicion() + pos < distancia) {
+								velocidad = temp.getVelocidad();
+								distancia = temp.getPosicion() + pos;
+							}
+					}
+				}
+				
+			}
+		}
 		velDelante = velocidad;
 		distDelante = (int) (distancia * vehiculo.getTramo().getLargo());
+
 	}
 
 	/**
@@ -385,11 +383,11 @@ public class Inteligencia {
 			vehiculo.variarAceleracion(2);
 			return;
 		}
-		if (velDelante < vehiculo.getVelocidad()) {
+		if (velDelante <= vehiculo.getVelocidad()) {
 			if (vehiculo.getDistanciaSeguridad() < distDelante) {
-				vehiculo.variarAceleracion(-5);
+				vehiculo.variarAceleracion(-25);
 			} else if (distDelante < 8){
-				vehiculo.variarAceleracion(-5);
+				vehiculo.variarAceleracion(-12);
 			} else if (distDelante < 15) {
 				vehiculo.variarAceleracion(-2);
 			}
@@ -417,7 +415,7 @@ public class Inteligencia {
 			if (temp != vehiculo) {
 				if (temp.nodoDestino == vehiculo.nodoDestino
 						&& temp.carril == vehiculo.carril) {
-					if (temp.posicion > 0 && temp.posicion < 0.1) {
+					if (temp.posicion > 0 && temp.posicion * vehiculo.getTramo().getLargo() < 2) {
 						return true;
 					}
 				}
@@ -440,7 +438,7 @@ public class Inteligencia {
 			vehiculo.velocidad = 0;
 			return;
 		}
-		// vehiculo.velocidad += vehiculo.aceleracion;
+
 		vehiculo.actualizarVelocidad();
 		vehiculo.posicion += vehiculo.velocidad
 				/ vehiculo.getTramo().getLargo();
