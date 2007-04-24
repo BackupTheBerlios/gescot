@@ -584,33 +584,38 @@ public class RepresentacionAvanzada extends Representacion {
 	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) 
 	{
 		Posicion pos; 
+		double angulo;
 		if (destino.getNodoFinal().equals(nodo))
+		{
 			pos = destino.getNodoInicial().getPos();
+			angulo = Math.PI - destino.getAngulo();
+		}
 		else
+		{
 			pos = destino.getNodoFinal().getPos();
+			angulo = Math.PI*2 - destino.getAngulo();
+		}
 
-		double angulo = destino.getAngulo();
 		int carriles = Math.max(destino.getNumCarrilesDir1(), destino.getNumCarrilesDir2());
-		int temp1 = (int) (tamaño_carril / zoom * carriles * Math
-				.sin(angulo));
-		int temp2 = (int) (-tamaño_carril / zoom * carriles * Math
-				.sin(angulo));
-		int desplazamiento = 100;
-		int temp3 = (int) (-desplazamiento * Math.cos(angulo) / zoom);
-		int temp4 = (int) (desplazamiento * Math.sin(angulo) / zoom);
 		
-		Posicion posicion = new Posicion(pos.getLon() - temp3, pos.getLat() - temp4); 
-		int x[] = new int[3];
-		int y[] = new int[3];
-		x[0] = x_MapaARep(posicion.getLon() - temp1);
-		x[1] = x_MapaARep(posicion.getLon() - temp2);
-		x[2] = x_MapaARep(pos.getLon() + temp3);
+		int desplazamiento = 15;
+		int temp3 = (int) (desplazamiento * Math.cos(Math.PI + angulo) / zoom);
+		int temp4 = (int) (-desplazamiento * Math.sin(Math.PI + angulo) / zoom);
+
+		angulo = Math.PI/2 + angulo;
+		int temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.cos(angulo));
 		
-		temp1 = (int) (tamaño_carril / zoom * carriles * Math.cos(angulo));
-		temp2 = (int) (-tamaño_carril / zoom * carriles * Math.cos(angulo));
-		y[0] = y_MapaARep(posicion.getLat() - temp1);
-		y[1] = y_MapaARep(posicion.getLat() - temp2);
-		y[2] = y_MapaARep(pos.getLon() + temp4);
+		int x[] = {x_MapaARep(pos.getLon()) - temp1 + temp3,
+				x_MapaARep(pos.getLon()) + temp1 + temp3,
+				x_MapaARep(pos.getLon()) - temp3};
+
+		temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.sin(angulo));
+		int y[] = {y_MapaARep(pos.getLat()) - temp1 - temp4,
+				y_MapaARep(pos.getLat()) + temp1 - temp4,
+				y_MapaARep(pos.getLat()) + temp4};
+		
+		System.out.println(x[0] + " " + x[1] + " " + x[2]);
+		System.out.println(y[0] + " " + y[1] + " " + y[2]);
 		
 		Polygon p = new Polygon(x, y, 3);
 		return p;

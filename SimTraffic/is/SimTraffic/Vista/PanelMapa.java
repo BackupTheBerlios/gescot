@@ -347,7 +347,7 @@ public class PanelMapa extends JPanel
 
 		representacion.pintarSugerencia(g, sugerencia);
 		representacion.pintarSugerencia(g, sugerencia2);
-		representacion.pintar(g, flecha);
+		//representacion.pintar(g, flecha);
 		g.drawString("Redibujando: " + contador, 80, 80);
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
@@ -381,6 +381,9 @@ public class PanelMapa extends JPanel
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getNodosSeleccionados().get(i));
 		}
+		
+		if (flecha != null)
+			representacion.pintar(g, flecha);
 		
 	}
 
