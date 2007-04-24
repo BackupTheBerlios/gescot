@@ -49,9 +49,8 @@ public class Mapa {
 
 	/**
 	 * Guarda la información sobre los itinerarios de las lineas de autobuses
-	 * (en vías).
 	 */
-	private ArrayList<Via> LineasAutobuses;
+	private ArrayList<LineaBus> LineasAutobuses;
 
 	/**
 	 * Indica la seleccion actual del mapa (nodos, tramos y señales).
@@ -88,7 +87,7 @@ public class Mapa {
 		Señales = new ArrayList<Señal>();
 		Tramos = new ArrayList<Tramo>();
 		Vias = new ArrayList<Via>();
-		LineasAutobuses = new ArrayList<Via>();
+		LineasAutobuses = new ArrayList<LineaBus>();
 
 		seleccion = new Seleccion();
 		portapapeles = new Seleccion();
@@ -106,7 +105,7 @@ public class Mapa {
 		Tramos = tramos;
 		Señales = new ArrayList<Señal>();
 		Vias = new ArrayList<Via>();
-		LineasAutobuses = new ArrayList<Via>();
+		LineasAutobuses = new ArrayList<LineaBus>();
 
 		seleccion = new Seleccion();
 	}
@@ -225,7 +224,8 @@ public class Mapa {
 					idMax = temp.getID();
 			}
 
-			// Debe buscar también en la lista de lineas de autobuses
+			/**
+			 * // Debe buscar también en la lista de lineas de autobuses
 			// para poder asignar un id de vía único.
 			it = LineasAutobuses.iterator();
 			while (it.hasNext()) {
@@ -234,7 +234,7 @@ public class Mapa {
 					return;
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
-			}
+			}**/
 
 			Vias.add(via);
 			via.setID(idMax + 1);
@@ -252,10 +252,13 @@ public class Mapa {
 	 * @param via
 	 *            Itinerario que seguirá un autobus.
 	 */
-	public void insertarLineaAutobus(Via via) {
+	public void insertarLineaAutobus(LineaBus linea) {
 		int idMax = 1;
-		if (via != null) {
-			// busca si la vía no esta ya en el mapa, y el id de via mas grande
+		if (linea != null) {
+			
+			/**
+			 * 
+			 * // busca si la vía no esta ya en el mapa, y el id de via mas grande
 			// para no repetir
 			Iterator<Via> it = Vias.iterator();
 			Via temp;
@@ -266,20 +269,21 @@ public class Mapa {
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-
-			// Debe buscar también en la lista de lineas de autobuses
-			// para poder asignar un id de vía único.
-			it = LineasAutobuses.iterator();
+			 */
+			
+			LineaBus temp=null;
+			// Debe buscar en la lista de lineas de autobuses para poder asignar un id de linea de bus único.
+			Iterator<LineaBus> it = LineasAutobuses.iterator();
 			while (it.hasNext()) {
 				temp = it.next();
-				if (via.equals(temp))
+				if (linea.equals(temp))
 					return;
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
 
-			LineasAutobuses.add(via);
-			via.setID(idMax + 1);
+			LineasAutobuses.add(linea);
+			linea.setID(idMax + 1);
 		}
 	}
 
@@ -575,11 +579,11 @@ public class Mapa {
 		this.seleccion = seleccion;
 	}
 
-	public ArrayList<Via> getLineasAutobuses() {
+	public ArrayList<LineaBus> getLineasAutobuses() {
 		return LineasAutobuses;
 	}
 
-	public void setLineasAutobuses(ArrayList<Via> lineasAutobuses) {
+	public void setLineasAutobuses(ArrayList<LineaBus> lineasAutobuses) {
 		LineasAutobuses = lineasAutobuses;
 	}
 
@@ -691,18 +695,18 @@ public class Mapa {
 	 * @return
 	 */
 	public Via buscarLineaBus(String nombre) {
-		Iterator<Via> v = LineasAutobuses.iterator();
-		Via viaaux = null;
+		Iterator<LineaBus> v = LineasAutobuses.iterator();
+		LineaBus lineaAux = null;
 		String nomaux;
 		boolean encontrado = false;
 		while (v.hasNext() && !encontrado) {
-			viaaux = v.next();
-			nomaux = viaaux.getNombre();
+			lineaAux = v.next();
+			nomaux = lineaAux.getNombre();
 			if (nomaux != null && nomaux.equals(nombre))
 				encontrado = true;
 		}
 		if (encontrado)
-			return viaaux;
+			return lineaAux;
 		else
 			return null;
 	}
