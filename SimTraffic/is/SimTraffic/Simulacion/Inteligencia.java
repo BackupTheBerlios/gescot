@@ -48,6 +48,8 @@ public class Inteligencia {
 	 */
 	private double velDelante;
 
+	boolean puedeEntrar = true;
+	
 	private int distDelante;
 
 	/**
@@ -169,6 +171,8 @@ public class Inteligencia {
 	 */
 	private boolean controlarFinTramo(Vehiculo vehiculo) {
 		// TODO temporalmente controla que no supere el 98% de la dist del tramo
+		if (vehiculo.getPosicion() > 1)
+			vehiculo.posicion = 1;
 		if (vehiculo.getTramo() == null)
 			return false;
 		if ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo() < 2)
@@ -248,7 +252,7 @@ public class Inteligencia {
 				}
 			}
 			vehiculo.resetaerPosicion();
-		}
+		} 
 	}
 
 	/**
@@ -265,11 +269,14 @@ public class Inteligencia {
 			temp = iterador.next();
 			if (temp.nodoOrigen == vehiculo.nodoDestino) {
 				if (temp.carril == vehiculo.carril) {
-					if (temp.posicion < 0.1)
+					if (temp.posicion > 0 && temp.posicion * tramo.getLargo() < 2) {
+						puedeEntrar = false;
 						return false;
+					}
 				}
 			}
 		}
+		puedeEntrar = true;
 		return true;
 	}
 
@@ -363,19 +370,27 @@ public class Inteligencia {
 		// mas adelante, debe ir frenando
 		if (vehiculo.getTramo() == null)
 			return;
-		if ((velDelante == -1 || distDelante > 40)
-				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
-			vehiculo.variarAceleracion(5);
+		if (!puedeEntrar) {
+			puedeEntrar = true;
+			vehiculo.velocidad = 0;
+			vehiculo.aceleracion = 0;
 			return;
 		}
-		if (velDelante > vehiculo.getVelocidad() || distDelante > 25) {
+		if ((velDelante == -1 || distDelante > 30)
+				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
+			vehiculo.variarAceleracion(3);
+			return;
+		}
+		if (velDelante > vehiculo.getVelocidad() || distDelante > 20) {
 			vehiculo.variarAceleracion(2);
 			return;
 		}
 		if (velDelante < vehiculo.getVelocidad()) {
 			if (vehiculo.getDistanciaSeguridad() < distDelante) {
 				vehiculo.variarAceleracion(-5);
-			} else {
+			} else if (distDelante < 8){
+				vehiculo.variarAceleracion(-5);
+			} else if (distDelante < 15) {
 				vehiculo.variarAceleracion(-2);
 			}
 			return;
@@ -422,6 +437,7 @@ public class Inteligencia {
 			return;
 		if (tieneQueEsperar(vehiculo)) {
 			vehiculo.aceleracion = 0;
+			vehiculo.velocidad = 0;
 			return;
 		}
 		// vehiculo.velocidad += vehiculo.aceleracion;

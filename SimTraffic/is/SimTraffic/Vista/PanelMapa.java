@@ -96,6 +96,7 @@ public class PanelMapa extends JPanel
 	 * Segunda sugerencia, necesaria cuando se desean sugerir dos elementos a la vez. 
 	 */
 	private ElementoMapa sugerencia2;
+	
 	/**
 	 * Alamcena la representacion que se utiliza para mostrar el mapa por
 	 * pantalla.
