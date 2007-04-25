@@ -291,6 +291,11 @@ public class Ventana extends JFrame {
 				panel_mapa));
 		cargarMapaMenuItem.setText("Cargar Mapa");
 		archivoMenu.add(cargarMapaMenuItem);
+		
+		JMenuItem descargarMapaMenuItem = new JMenuItem();
+		descargarMapaMenuItem.addActionListener(new AccionDescargar(controlador));
+		descargarMapaMenuItem.setText("Descargar Mapa");
+		archivoMenu.add(descargarMapaMenuItem);
 
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
 		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));

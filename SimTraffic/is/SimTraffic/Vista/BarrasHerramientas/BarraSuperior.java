@@ -7,6 +7,7 @@ import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
 import is.SimTraffic.Vista.Acciones.AccionCopiar;
 import is.SimTraffic.Vista.Acciones.AccionCortar;
+import is.SimTraffic.Vista.Acciones.AccionDescargar;
 import is.SimTraffic.Vista.Acciones.AccionDeshacer;
 import is.SimTraffic.Vista.Acciones.AccionDetenerSimulacion;
 import is.SimTraffic.Vista.Acciones.AccionGuardar;
@@ -53,6 +54,12 @@ public class BarraSuperior extends JPanel {
 		cargarTB.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para cargar un mapa.", ventana));
 
+		JButton downloadTB = (JButton) archivoTB.añadirBoton("document-open.png",
+				"document-open2.png", "Descargar mapa desde WEB", new AccionDescargar(controlador), false);
+		cargarTB.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para descargar un mapa via web.", ventana));
+		
+		
 		JButton guardarTB = (JButton) archivoTB.añadirBoton(
 				"document-save.png", "document-save2.png", "Guardar mapa",
 				new AccionGuardar(controlador), false);
