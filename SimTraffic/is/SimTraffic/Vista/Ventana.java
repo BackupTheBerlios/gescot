@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -97,13 +98,17 @@ public class Ventana extends JFrame {
 	
 	//MLSeleccionarNodos escuchaSeleccion;
 
-	MLSeleccionarElementos escuchaSeleccionNodosYTramos;
+	MLSeleccionarElementos escuchaSeleccionNodosYTramos;//esto sobra?
 
 	//MLSeleccionarTramos escuchaSeleccionTramos;
 
-	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;
+	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;//esto sobra?
 	
-	MLSeleccionaTramoBDerecho escuchaSeleccionTramoBDerecho;
+	MLSeleccionaTramoBDerecho escuchaSeleccionTramoBDerecho;//esto sobra?
+	
+	MLPegar escuchaPegar;
+	
+	MLSeleccionarYMover escuchaSeleccionar;
 	
 	MLMapaBDerecho escuchaMapaBDerecho;
 
@@ -145,9 +150,7 @@ public class Ventana extends JFrame {
 		// maximizada.
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
-		añadirMenuEmergenteNodo();
-		añadirMenuEmergenteTramo();
-		añadirMenuEmergenteMapa();
+		
 
 		panel_añadido = false;
 
@@ -177,6 +180,14 @@ public class Ventana extends JFrame {
 		
 		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaMapaBDerecho);
+		
+		/*
+		escuchaPegar = new MLPegar(modelo,controlador,panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaPegar);
+		*/
+		
+		/*escuchaSeleccionar = new MLSeleccionarYMover (modelo,controlador,panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSeleccionar);*/
 
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccionNodosYTramos);
 
@@ -189,6 +200,10 @@ public class Ventana extends JFrame {
 		añadirPanelMapa();
 
 		panel.setFocusable(true);
+		
+		añadirMenuEmergenteNodo();
+		añadirMenuEmergenteTramo();
+		añadirMenuEmergenteMapa();
 	}
 
 	
@@ -199,22 +214,12 @@ public class Ventana extends JFrame {
 		JPopupMenu emergenteNodo = new JPopupMenu("Menu Emergente Nodo");
 		JMenuItem eliminarNodo = new JMenuItem("Eliminar Nodo");
 		eliminarNodo.addActionListener(new AccionEliminarNodo(modelo,
-				controlador, panel_mapa));
-		JMenuItem seleccion = new JMenuItem("Seleccionar Nodo");
-		/*seleccion.addActionListener(new AccionSobreMapa(
-				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this,
-				escuchaTeclado, -1));
-		seleccion.addActionListener(new AccionBarra(this, barraSeleccionar));*/
-		JMenuItem mover = new JMenuItem("Mover Nodo");
-		/*mover.addActionListener(new AccionMoverNodo(
-				modelo, controlador, panel_mapa));*/
+				controlador, panel_mapa));		
 		JMenuItem propiedades = new JMenuItem("Propiedades del nodo");
 		propiedades.addActionListener(new AccionPropiedadesNodo(modelo,
 				controlador, panel_mapa));		
 		
-		emergenteNodo.add(eliminarNodo);
-		emergenteNodo.add(seleccion);
-		emergenteNodo.add(mover);		
+		emergenteNodo.add(eliminarNodo);	
 		emergenteNodo.add(propiedades);
 
 		panel_mapa.setMenuEmergenteNodo(emergenteNodo);
@@ -224,27 +229,72 @@ public class Ventana extends JFrame {
 		JMenuItem eliminarTramo = new JMenuItem("Eliminar Tramo");
 		eliminarTramo.addActionListener(new AccionEliminarTramo(modelo,
 				controlador, panel_mapa));
-		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
-		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
-				modelo, controlador, panel_mapa));
 		JMenuItem propiedades = new JMenuItem("Propiedades del tramo");		
 		propiedades.addActionListener(new AccionPropiedadesTramo(modelo,
 				controlador, panel_mapa));		
 		
 		emergenteTramo.add(eliminarTramo);
-		emergenteTramo.add(eliminarSeleccion);		
 		emergenteTramo.add(propiedades);
 	
 		panel_mapa.setMenuEmergenteTramo(emergenteTramo);
 	}	
+	/**
+	 * 
+	 */
 	public void añadirMenuEmergenteMapa(){
+		final JPanel prueba = panel_herramientas;
 		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");
 		
-		JMenuItem eliminarSeleccionItem3 = new JMenuItem("Eliminar Seleccion");
-		eliminarSeleccionItem3.addActionListener(new AccionEliminarSeleccion(
+		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
-				
-		emergenteMapa.add(eliminarSeleccionItem3);		
+		JMenuItem copiarSeleccion = new JMenuItem("Copiar");
+		copiarSeleccion.addActionListener(new AccionCopiar(
+				modelo, controlador, panel_mapa));
+		JMenuItem cortarSeleccion = new JMenuItem("Cortar");
+		cortarSeleccion.addActionListener(new AccionCortar(
+				modelo, controlador, panel_mapa));
+		JMenuItem pegarSeleccion = new JMenuItem("Pegar");
+		pegarSeleccion.addActionListener(new AccionSobreMapa(new MLPegar(modelo,
+				controlador, panel_mapa), this, escuchaTeclado, -1));
+		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda(
+				"Pulse aquí para pegar los elementos cortados o copiados.",
+				this));
+		JMenuItem seleccion = new JMenuItem("Modo seleccion");
+		seleccion.addActionListener(new AccionSobreMapa(new MLSeleccionarYMover(modelo,
+				controlador, panel_mapa), this, escuchaTeclado, 7));
+		seleccion.addActionListener(new AccionBarra(this, null));
+		seleccion.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", this));
+		seleccion.addKeyListener(escuchaTeclado);
+		
+		JMenuItem insertarNodo = new JMenuItem ("Modo insertar nodo");
+		insertarNodo.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
+				controlador, panel_mapa,this),this, escuchaTeclado, 0));
+		insertarNodo.addActionListener(new AccionBarra(this	, this.getBarraCrearNodo()));
+		insertarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", this));
+			
+		JMenuItem insertarTramo = new JMenuItem ("Modo insertar tramo");
+		insertarTramo.addActionListener(new AccionSobreMapa(new MLAñadirTramo(modelo,
+				controlador, getPanel_mapa(), this),
+				this, escuchaTeclado, 1));
+		insertarTramo.addActionListener(new AccionBarra(this, getBarraCrearTramo()));
+		insertarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
+		
+		JMenuItem eliminarTramo = new JMenuItem ("Modo eliminar tramo");
+		eliminarTramo.addActionListener(new AccionSobreMapa(new MLEliminarTramo(
+				modelo, controlador, this.getPanel_mapa()), this,
+				escuchaTeclado, 3));		
+		eliminarTramo.addActionListener(new AccionBarra(this, null));
+		eliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", this));
+		
+		emergenteMapa.add(eliminarSeleccion);		
+		emergenteMapa.add(copiarSeleccion);
+		emergenteMapa.add(cortarSeleccion);
+		emergenteMapa.add(pegarSeleccion);
+		emergenteMapa.add(seleccion);
+		emergenteMapa.add(insertarNodo);
+		emergenteMapa.add(insertarTramo);
+		emergenteMapa.add(eliminarTramo);
 		
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 	}
@@ -277,7 +327,9 @@ public class Ventana extends JFrame {
 		JMenu archivoMenu = new JMenu();
 		archivoMenu.setText("Archivo");
 		menuBar.add(archivoMenu);
+		archivoMenu.setMnemonic('A');
 
+		
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem
 				.addActionListener(new AccionNuevo(modelo, panel_mapa));
@@ -346,7 +398,7 @@ public class Ventana extends JFrame {
 		edicionMenu.add(copiarMenuItem);
 
 		JMenuItem pegarMenuItem = new JMenuItem();
-		pegarMenuItem.addActionListener(new AccionPegar());
+		//pegarMenuItem.addActionListener(new AccionPegar());
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
 
@@ -362,7 +414,7 @@ public class Ventana extends JFrame {
 
 		JMenuItem selecMenuItem = new JMenuItem();
 		selecMenuItem.addActionListener(new AccionSobreMapa(
-				new MLSeleccionarNodos(modelo, controlador, panel_mapa), this,
+				new MLSeleccionarYMover(modelo, controlador, panel_mapa), this,
 				escuchaTeclado, -1));
 		selecMenuItem
 				.addActionListener(new AccionBarra(this, barraSeleccionar));
