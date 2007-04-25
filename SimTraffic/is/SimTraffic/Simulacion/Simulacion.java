@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Mapa.Señales.Semaforo;
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -65,12 +66,15 @@ public class Simulacion {
 	private int[] salidas = new int[3];
 
 	private int vehiculosActivos;
+	
+	private Reloj reloj;
 
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		param = new ParametrosSimulacion();
 		random = new Random();
+		reloj = new Reloj();
 	}
 
 	/**
@@ -122,13 +126,20 @@ public class Simulacion {
 			entradas[i] = 0;
 			salidas[i] = 0;
 		}
+		Nodo temp;
+		Semaforo sem = new Semaforo(null);
 		while (it.hasNext()) {
-			es = it.next().getEs();
+			temp = it.next();
+			es = temp.getEs();
 			if (es != null) {
 			for (int i = 0; i < 3; i++) {
 				entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
 				salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
 			}
+			}
+			
+			if (temp.getSeñal() != null && temp.getSeñal().getClass() == sem.getClass()) {
+				((Semaforo)temp.getSeñal()).setReloj(reloj);
 			}
 		}
 		return 0;
@@ -244,6 +255,7 @@ public class Simulacion {
 
 	public void actualizar() {
 		controlador.repintarCoches();
+		reloj.actualizar();
 	}
 
 	/**

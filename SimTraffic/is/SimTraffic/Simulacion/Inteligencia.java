@@ -90,8 +90,10 @@ public class Inteligencia {
 			inicializarVehiculo(vehiculo);
 		else {
 			controlarCochesDelante(vehiculo);
-
-			if (controlarFinTramo(vehiculo) && controlarSeñales(vehiculo))
+			
+			controlarSeñales(vehiculo);
+			
+			if (controlarFinTramo(vehiculo))
 				procesarTramoSiguiente(vehiculo);
 
 			procesarCambioCarril(vehiculo);
@@ -197,10 +199,18 @@ public class Inteligencia {
 
 		if (tramo2 != null) {
 			Señal señal = vehiculo.getNodoDestino().getSeñal();
+			// if (señal != null) System.out.println("bien...");
 			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) > 0) {
 				// TODO frena demasiado... habria que hacerlo distinto
-				vehiculo.velocidad = 0;
-				return false;
+				//vehiculo.velocidad = 0;
+				//return false;
+				if (distDelante > (1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo() - 5) {
+					distDelante = (int) ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo()) - 5;
+					velDelante = 0;
+					System.out.println("semaforo!");
+				}
+				
+				
 			}
 		}
 		return true;
@@ -405,7 +415,7 @@ public class Inteligencia {
 	 * @param vehiculo
 	 * @return
 	 */
-	private boolean tieneQueEsperar(Vehiculo vehiculo) {
+	private synchronized boolean tieneQueEsperar(Vehiculo vehiculo) {
 		if (vehiculo.posicion > 0)
 			return false;
 		iterador = tabla.get(vehiculo.getTramo()).iterator();

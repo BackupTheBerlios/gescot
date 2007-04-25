@@ -170,13 +170,14 @@ public class Ventana extends JFrame {
 		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo,
 				controlador, panel_mapa);
 		 */
-		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
-				controlador, panel_mapa);
-		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
 
 		escuchaSeleccionTramoBDerecho = new MLSeleccionaTramoBDerecho(modelo,
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionTramoBDerecho);
+
+		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
+				controlador, panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
 		
 		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaMapaBDerecho);
