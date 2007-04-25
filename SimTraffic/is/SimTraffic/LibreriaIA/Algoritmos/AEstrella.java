@@ -185,7 +185,7 @@ public class AEstrella implements IAlgoritmoInformado {
 			if (nodoaux == nodoPadre) {
 				nodoaux1.setCoste_camino(nodoaux1.getCoste_camino()-diferenciaCoste);
 				propagarMejorCosteCamino(nodoaux1,diferenciaCoste);
-				System.out.println("Propagado en cerrados\n");
+				//System.out.println("Propagado en cerrados\n");
 			}			
 		}
 		
@@ -261,15 +261,15 @@ public class AEstrella implements IAlgoritmoInformado {
 		if (sol==null || sol.size()==0) 
 			System.out.println("No se ha encontrado solución"); 
 		else {
-			System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
+			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
 			for (int i=(sol.size()); i>0 ; i--) {
-				System.out.println("Operador "+(sol.size()-i)+": "+sol.elementAt(i-1).getOperador().getDescripcion() );
+				//System.out.println("Operador "+(sol.size()-i)+": "+sol.elementAt(i-1).getOperador().getDescripcion() );
 			}
 		}
 		
 		//Datos de la ejecución del algoritmo
-		System.out.println("Tamaño de abiertos"+abiertos.size());
-		System.out.println("Tamaño de cerrados"+cerrados.size());		
+		//System.out.println("Tamaño de abiertos"+abiertos.size());
+		//System.out.println("Tamaño de cerrados"+cerrados.size());		
 	}
 
 	/**

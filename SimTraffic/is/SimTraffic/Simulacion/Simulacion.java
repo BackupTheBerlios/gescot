@@ -29,7 +29,7 @@ public class Simulacion {
 	/**
 	 * Máximo de vehiculos que se pueden simular
 	 */
-	public static int maxVehiculos = 2000;
+	public static int maxVehiculos = 400;
 
 	/**
 	 * Lista de los vehiculos que se estan simulando
@@ -104,7 +104,7 @@ public class Simulacion {
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
 		int max = max(param.getNumVehiculos());
-		max = max + 10 - max % GrupoVehiculos.nroVehiculos;
+		max = max + GrupoVehiculos.nroVehiculos - max % GrupoVehiculos.nroVehiculos;
 		if (max > maxVehiculos)
 			max = maxVehiculos;
 		System.out.println(" " + max);
@@ -124,9 +124,11 @@ public class Simulacion {
 		}
 		while (it.hasNext()) {
 			es = it.next().getEs();
+			if (es != null) {
 			for (int i = 0; i < 3; i++) {
 				entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
 				salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+			}
 			}
 		}
 		return 0;

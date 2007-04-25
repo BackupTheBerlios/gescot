@@ -170,7 +170,7 @@ public class CosteUniforme implements IAlgoritmo {
 			nodoActual = abiertos.poll(); //Toma el primer elemento y lo elimina de la cola con prioridad.
 			generarNodosHijos(nodoActual);
 			cerrados.add(nodoActual);
-			System.out.println("Nuevo nodo expandido pasa a cerrados:");
+			//System.out.println("Nuevo nodo expandido pasa a cerrados:");
 			nodoActual.mostrarInfo();
 			nodoActual = abiertos.peek(); //Toma el primer elemento, pero no lo elimina de la cola con prioridad.
 			//Así permitimos detener la búsqueda al encontrar un fallo.
@@ -179,13 +179,13 @@ public class CosteUniforme implements IAlgoritmo {
 		
 		if (nodoActual!= null && esObjetivo(nodoActual)) {
 			//Éxito
-			System.out.println("Éxito");
+			//System.out.println("Éxito");
 			solucion=crearSolucion(nodoActual);
 			mostrarSolucion(solucion);
 			encontreSolucion = true;
 		}
 		else {
-			System.out.println("No hay solución");
+			//System.out.println("No hay solución");
 		}
 		
 		return encontreSolucion;
@@ -219,15 +219,15 @@ public class CosteUniforme implements IAlgoritmo {
 		if (sol==null || sol.size()==0) 
 			System.out.println("No se ha encontrado solución"); 
 		else {
-			System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
+			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
 			for (int i=(sol.size()); i>0 ; i--) {
 				System.out.println("Operador "+(sol.size()-i)+": "+sol.elementAt(i-1).getOperador().getDescripcion() );
 			}
 		}
 		
 		//Datos de la ejecución del algoritmo
-		System.out.println("Tamaño de abiertos"+abiertos.size());
-		System.out.println("Tamaño de cerrados"+cerrados.size());		
+		//System.out.println("Tamaño de abiertos"+abiertos.size());
+		//System.out.println("Tamaño de cerrados"+cerrados.size());		
 	}
 
 	/**

@@ -21,7 +21,7 @@ public class GrupoVehiculos extends Thread {
 	/**
 	 * Número de vehiculos administrados por un thread
 	 */
-	public static int nroVehiculos = 10;
+	public static int nroVehiculos = 20;
 
 	/**
 	 * Lista de vehiculos administrados por el thread

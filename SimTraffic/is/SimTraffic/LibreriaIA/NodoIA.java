@@ -75,14 +75,14 @@ public class NodoIA {
 	}
 
 	public void mostrarInfo() {
-		System.out.println("Estado: \n"+estado.toString());
+		//System.out.println("Estado: \n"+estado.toString());
 		
-		if (nodoPadre!=null) System.out.println("Tiene Nodo padre.");
-		else System.out.println("No tiene Nodo padre.");
+		//if (nodoPadre!=null) System.out.println("Tiene Nodo padre.");
+		//else System.out.println("No tiene Nodo padre.");
 		
-		if (operador!=null) System.out.println("Operador: "+operador.getDescripcion());
-		System.out.println("Profundidad: "+ profundidad);
-		System.out.println("Coste camino: "+ coste_camino);
+		//if (operador!=null) System.out.println("Operador: "+operador.getDescripcion());
+		//System.out.println("Profundidad: "+ profundidad);
+		//System.out.println("Coste camino: "+ coste_camino);
 	}
 
 	/**
