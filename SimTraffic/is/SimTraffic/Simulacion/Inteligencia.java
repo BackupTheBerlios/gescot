@@ -204,6 +204,7 @@ public class Inteligencia {
 				// TODO frena demasiado... habria que hacerlo distinto
 				//vehiculo.velocidad = 0;
 				//return false;
+				
 				if (distDelante > (1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo() - 5) {
 					distDelante = (int) ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo()) - 5;
 					velDelante = 0;
