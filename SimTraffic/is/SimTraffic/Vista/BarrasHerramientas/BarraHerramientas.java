@@ -31,6 +31,8 @@ public class BarraHerramientas extends Barra {
 	private JToggleButton botonSeleccionar;
 	private JToggleButton botonAñadirNodo;
 	private JToggleButton botonAñadirTramo;
+	private JToggleButton botonEliminarNodo;
+	private JToggleButton botonEliminarTramo;
 	
 	public BarraHerramientas(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
@@ -90,22 +92,22 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonAñadirTramo);
 		
 		//Eliminar nodo.
-		boton = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
+		botonEliminarNodo = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
 				new AccionSobreMapa(new MLEliminarNodo(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 2), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", ventana));
-		grupoherramientas.add(boton);
+		botonEliminarNodo.addActionListener(new AccionBarra(ventana, null));
+		botonEliminarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", ventana));
+		grupoherramientas.add(botonEliminarNodo);
 
 		//Eliminar tramo.
-		boton = (JToggleButton) añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
+		botonEliminarTramo = (JToggleButton) añadirBoton("eliminar_tramo.png", "eliminar_tramo2.png",
 				"Eliminar Tramo", new AccionSobreMapa(new MLEliminarTramo(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 3), true);		
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", ventana));
-		grupoherramientas.add(boton);
+		botonEliminarTramo.addActionListener(new AccionBarra(ventana, null));
+		botonEliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", ventana));
+		grupoherramientas.add(botonEliminarTramo);
 
 		// Aqui se añadirán los nuevos botones.
 		boton = (JToggleButton) añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
@@ -155,5 +157,13 @@ public class BarraHerramientas extends Barra {
 	
 	public JToggleButton getBotonSeleccionar(){
 		return this.botonSeleccionar;
+	}
+	
+	public JToggleButton getBotonEliminarTramo(){
+		return this.botonEliminarTramo;
+	}
+	
+	public JToggleButton getBotonEliminarNodo(){
+		return this.botonEliminarNodo;
 	}
 }

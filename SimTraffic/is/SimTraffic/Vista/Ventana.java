@@ -63,6 +63,10 @@ public class Ventana extends JFrame {
 	private JMenuBar menuBar;
 
 	/**
+	 * Barra de edición del panel de arriba
+	 */
+	private JPanel superior_arriba;
+	/**
 	 * Modelo asociado a la interfaz.
 	 */
 	private IModelo modelo;
@@ -179,6 +183,10 @@ public class Ventana extends JFrame {
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
 		
+		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
+				controlador, panel_mapa);
+		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
+		
 		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaMapaBDerecho);
 		
@@ -248,18 +256,27 @@ public class Ventana extends JFrame {
 		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
 		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
+		
+		
 		JMenuItem copiarSeleccion = new JMenuItem("Copiar");
 		copiarSeleccion.addActionListener(new AccionCopiar(
 				modelo, controlador, panel_mapa));
+		
+		
 		JMenuItem cortarSeleccion = new JMenuItem("Cortar");
 		cortarSeleccion.addActionListener(new AccionCortar(
 				modelo, controlador, panel_mapa));
+		
+		
 		JMenuItem pegarSeleccion = new JMenuItem("Pegar");
-		pegarSeleccion.addActionListener(new AccionSobreMapa(new MLPegar(modelo,
-				controlador, panel_mapa), this, escuchaTeclado, -1));
-		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para pegar los elementos cortados o copiados.",
-				this));
+		pegarSeleccion.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonPegar().doClick();
+					}
+				}
+		);
+		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para pegar los elementos cortados o copiados.",this));
 		
 		JMenuItem seleccion = new JMenuItem("Modo seleccion");
 		seleccion.addActionListener(
@@ -291,11 +308,24 @@ public class Ventana extends JFrame {
 		);
 		insertarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
 		
+		JMenuItem eliminarNodo = new JMenuItem ("Modo eliminar nodo");
+		eliminarNodo.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonEliminarNodo().doClick();
+					}
+				}
+		);
+		eliminarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", this));
+		
 		JMenuItem eliminarTramo = new JMenuItem ("Modo eliminar tramo");
-		eliminarTramo.addActionListener(new AccionSobreMapa(new MLEliminarTramo(
-				modelo, controlador, this.getPanel_mapa()), this,
-				escuchaTeclado, 3));		
-		eliminarTramo.addActionListener(new AccionBarra(this, null));
+		eliminarTramo.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonEliminarTramo().doClick();
+					}
+				}
+		);
 		eliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", this));
 		
 		emergenteMapa.add(eliminarSeleccion);		
@@ -632,7 +662,7 @@ public class Ventana extends JFrame {
 	 * Crea los botones de la parte superior.
 	 */
 	public void crearBotonesSuperiores() {
-		JPanel superior_arriba = new BarraSuperior(controlador, modelo, this);
+		superior_arriba = new BarraSuperior(controlador, modelo, this);
 		superior_abajo = new JPanel();
 		superior = new JPanel(new GridLayout(0, 1));
 		getContentPane().add(superior, BorderLayout.NORTH);

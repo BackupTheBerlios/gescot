@@ -20,11 +20,15 @@ import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
 public class BarraSuperior extends JPanel {
+	
 	private static final long serialVersionUID = 1L;
 
+	private JButton pegarTB;
+	
 	public BarraSuperior(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 
@@ -89,7 +93,7 @@ public class BarraSuperior extends JPanel {
 						"Pulse aquí para copiar los elementos seleccionados.",
 						ventana));
 
-		JButton pegarTB = (JButton) edicionTB.añadirBoton("edit-paste.png",
+		pegarTB = (JButton) edicionTB.añadirBoton("edit-paste.png",
 				"edit-paste2.png", "Pegar", new AccionSobreMapa(new MLPegar(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), false);
@@ -144,6 +148,10 @@ public class BarraSuperior extends JPanel {
 				"Pulse aquí para parar la simulación actual.", ventana));
 
 		return esto;
+	}
+	
+	public JButton getBotonPegar(){
+		return this.pegarTB;
 	}
 
 }
