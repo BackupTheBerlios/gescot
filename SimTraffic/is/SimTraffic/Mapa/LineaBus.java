@@ -38,6 +38,10 @@ public class LineaBus extends Via{
 		this.finServicio=end;
 	}
 	
+	public LineaBus(Via via,ArrayList<Boolean> paradas,int[] intervalos,int start,int end){
+	
+		
+	}
 	
 	public ArrayList<Boolean> getParadas() {
 		return Paradas;
