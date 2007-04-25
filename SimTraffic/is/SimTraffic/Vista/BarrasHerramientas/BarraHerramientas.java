@@ -27,7 +27,11 @@ public class BarraHerramientas extends Barra {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	private JToggleButton botonSeleccionar;
+	private JToggleButton botonAñadirNodo;
+	private JToggleButton botonAñadirTramo;
+	
 	public BarraHerramientas(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 		super(JToolBar.VERTICAL);
@@ -35,14 +39,14 @@ public class BarraHerramientas extends Barra {
 		ButtonGroup grupoherramientas = new ButtonGroup();
 		
 		//Seleccionar y Mover.
-		boton = (JToggleButton) añadirBoton("seleccionarYMover.png", "seleccionarYMover2.png",
+		botonSeleccionar = (JToggleButton) añadirBoton("seleccionarYMover.png", "seleccionarYMover2.png",
 				"Seleccionar y Mover", new AccionSobreMapa(new MLSeleccionarYMover(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 7), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
-		boton.addKeyListener(ventana.getEscuchaTeclado());
-		grupoherramientas.add(boton);
+		botonSeleccionar.addActionListener(new AccionBarra(ventana, null));
+		botonSeleccionar.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
+		botonSeleccionar.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(botonSeleccionar);
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
 		
@@ -63,27 +67,27 @@ public class BarraHerramientas extends Barra {
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse en los elementos seleccionados y arrastre el ratón hasta que los elementos estén en la posición deseada.", ventana));
 		grupoherramientas.add(boton);*/
 		
-		boton = (JToggleButton) añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
+		botonAñadirNodo = (JToggleButton) añadirBoton("añadir_nodo.png", "añadir_nodo2.png",
 				"Añadir Nodo", new AccionSobreMapa(new MLAñadirNodo(modelo,
 						controlador, ventana.getPanel_mapa(), ventana),
 						ventana, ventana.getEscuchaTeclado(), 0), true);
-		boton.addActionListener(new AccionBarra(ventana, ventana
+		botonAñadirNodo.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraCrearNodo()));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", ventana));
-		grupoherramientas.add(boton);
+		botonAñadirNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", ventana));
+		grupoherramientas.add(botonAñadirNodo);
 		
 		// Aquí también habría que añadir el oyente de teclado al
 		// boton (y en el resto de botones),
 		// pero de momento no lo pongo por si encontramos una alternativa mejor.
 
-		boton = (JToggleButton) añadirBoton("añadir_tramo.png", "añadir_tramo2.png",
+		botonAñadirTramo = (JToggleButton) añadirBoton("añadir_tramo.png", "añadir_tramo2.png",
 				"Añadir Tramo", new AccionSobreMapa(new MLAñadirTramo(modelo,
 						controlador, ventana.getPanel_mapa(), ventana),
 						ventana, ventana.getEscuchaTeclado(), 1), true);
-		boton.addActionListener(new AccionBarra(ventana, ventana
+		botonAñadirTramo.addActionListener(new AccionBarra(ventana, ventana
 				.getBarraCrearTramo()));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", ventana));
-		grupoherramientas.add(boton);
+		botonAñadirTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", ventana));
+		grupoherramientas.add(botonAñadirTramo);
 		
 		//Eliminar nodo.
 		boton = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
@@ -140,5 +144,16 @@ public class BarraHerramientas extends Barra {
 		
 		
 	}
-
+	
+	public JToggleButton getBotonAñadirNodo(){
+		return this.botonAñadirNodo;
+	}
+	
+	public JToggleButton getBotonAñadirTramo(){
+		return this.botonAñadirTramo;
+	}
+	
+	public JToggleButton getBotonSeleccionar(){
+		return this.botonSeleccionar;
+	}
 }

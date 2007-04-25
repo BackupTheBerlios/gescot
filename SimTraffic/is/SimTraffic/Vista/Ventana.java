@@ -242,7 +242,6 @@ public class Ventana extends JFrame {
 	 * 
 	 */
 	public void añadirMenuEmergenteMapa(){
-		final JPanel prueba = panel_herramientas;
 		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");
 		
 		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
@@ -260,24 +259,35 @@ public class Ventana extends JFrame {
 		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para pegar los elementos cortados o copiados.",
 				this));
-		JMenuItem seleccion = new JMenuItem("Modo seleccion");
-		seleccion.addActionListener(new AccionSobreMapa(new MLSeleccionarYMover(modelo,
-				controlador, panel_mapa), this, escuchaTeclado, 7));
-		seleccion.addActionListener(new AccionBarra(this, null));
-		seleccion.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", this));
-		seleccion.addKeyListener(escuchaTeclado);
 		
-		JMenuItem insertarNodo = new JMenuItem ("Modo insertar nodo");
-		insertarNodo.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
-				controlador, panel_mapa,this),this, escuchaTeclado, 0));
-		insertarNodo.addActionListener(new AccionBarra(this	, this.getBarraCrearNodo()));
+		JMenuItem seleccion = new JMenuItem("Modo seleccion");
+		seleccion.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonSeleccionar().doClick();
+					}
+				}
+		);
+		seleccion.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", this));
+		
+		JMenuItem insertarNodo = new JMenuItem ("Modo insertar Nodo");
+		insertarNodo.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonAñadirNodo().doClick();
+					}
+				}
+		);
 		insertarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", this));
-			
+		
 		JMenuItem insertarTramo = new JMenuItem ("Modo insertar tramo");
-		insertarTramo.addActionListener(new AccionSobreMapa(new MLAñadirTramo(modelo,
-				controlador, getPanel_mapa(), this),
-				this, escuchaTeclado, 1));
-		insertarTramo.addActionListener(new AccionBarra(this, getBarraCrearTramo()));
+		insertarTramo.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonAñadirTramo().doClick();
+					}
+				}
+		);
 		insertarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
 		
 		JMenuItem eliminarTramo = new JMenuItem ("Modo eliminar tramo");
