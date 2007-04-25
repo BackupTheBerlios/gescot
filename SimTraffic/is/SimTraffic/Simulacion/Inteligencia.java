@@ -199,16 +199,14 @@ public class Inteligencia {
 
 		if (tramo2 != null) {
 			Señal señal = vehiculo.getNodoDestino().getSeñal();
-			// if (señal != null) System.out.println("bien...");
-			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) > 0) {
+			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) == 0) {
 				// TODO frena demasiado... habria que hacerlo distinto
 				//vehiculo.velocidad = 0;
 				//return false;
 				
-				if (distDelante > (1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo() - 5) {
-					distDelante = (int) ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo()) - 5;
+				if (distDelante > (1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo()) {
+					distDelante = (int) ((1 - vehiculo.getPosicion()) * vehiculo.getTramo().getLargo()) - 3;
 					velDelante = 0;
-					System.out.println("semaforo!");
 				}
 				
 				
