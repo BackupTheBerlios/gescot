@@ -173,6 +173,8 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		if (arg0.getButton() != MouseEvent.BUTTON1)
+			return;
 		if (modoHerramienta==0) { //seleccionar
 			panel.setModoSeleccion(false);
 			if (this.getModificadorDeTeclado() != 17 && drag)
@@ -190,15 +192,12 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 				this.panel.setRecrear(true);
 			}
 		}
-		panel.repaint();
-		//}
-		
+		panel.repaint();				
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub				
-
 		if (modoHerramienta==0) { //seleccionar			
 			Point puntoDrag = arg0.getPoint();
 			panel.setPuntoDrag(puntoDrag);
@@ -221,7 +220,6 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.setRecrear(true);
 			panel.repaint();
 		}			
-		//}
 	}
 	
 	@Override
