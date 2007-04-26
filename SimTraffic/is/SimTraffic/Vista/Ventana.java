@@ -142,6 +142,10 @@ public class Ventana extends JFrame {
 	
 	private JPopupMenu emergenteTerminar;
 
+	private JMenuItem copiarSeleccion;
+
+	private JMenuItem cortarSeleccion;
+
 	/**
 	 * Constructor de la ventana.
 	 * 
@@ -193,7 +197,7 @@ public class Ventana extends JFrame {
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
 		
-		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa);
+		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa,this);
 		this.panel_mapa.addMouseListener(escuchaMapaBDerecho);
 		
 		/*
@@ -305,12 +309,12 @@ public class Ventana extends JFrame {
 		);
 		detenerSimulación.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para parar la simulación actual.", this));
 		
-		JMenuItem copiarSeleccion = new JMenuItem("Copiar");
+		copiarSeleccion = new JMenuItem("Copiar");
 		copiarSeleccion.addActionListener(new AccionCopiar(
 				modelo, controlador, panel_mapa));
 		
 		
-		JMenuItem cortarSeleccion = new JMenuItem("Cortar");
+		cortarSeleccion = new JMenuItem("Cortar");
 		cortarSeleccion.addActionListener(new AccionCortar(
 				modelo, controlador, panel_mapa));
 		
@@ -906,5 +910,15 @@ public class Ventana extends JFrame {
 	
 	public JPopupMenu getEmergenteTerminar(){
 		return this.emergenteTerminar;
+	}
+
+
+	public JMenuItem getCopiarSeleccion() {
+		return copiarSeleccion;
+	}
+
+
+	public JMenuItem getCortarSeleccion() {
+		return cortarSeleccion;
 	}
 }
