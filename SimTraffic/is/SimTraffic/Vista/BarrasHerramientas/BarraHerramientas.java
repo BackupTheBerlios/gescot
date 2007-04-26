@@ -16,6 +16,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaItinerario;
 import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarYMover;
 
 import javax.swing.ButtonGroup;
@@ -49,6 +50,18 @@ public class BarraHerramientas extends Barra {
 		botonSeleccionar.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", ventana));
 		botonSeleccionar.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(botonSeleccionar);
+		
+		//Seleccionar Vias
+		boton = (JToggleButton) añadirBoton("seleccionarVia1.png", "seleccionarVia2.png",
+				"Seleccionar Vias", new AccionSobreMapa(new MLSeleccionarVia(
+						modelo, controlador, ventana.getPanel_mapa()), ventana,
+						ventana.getEscuchaTeclado(), 9), true);
+		boton.addActionListener(new AccionBarra(ventana, null));
+		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione los tramos del mapa para identificar a q via pertenecen", ventana));
+		boton.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(boton);
+		
+		
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
 		
