@@ -31,9 +31,9 @@ public class AccionModificarEstadoConexion implements ActionListener {
 		
 		//Por último, pintamos el botón del color correspondiente.
 		if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().sePuedePasar(tramoOrigen,tramoDestino) == 0){
-			botonFuente.setBackground(Color.RED);
-		} else if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().sePuedePasar(tramoOrigen,tramoDestino) == 1){
 			botonFuente.setBackground(Color.GREEN);
+		} else if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().sePuedePasar(tramoOrigen,tramoDestino) == 1){
+			botonFuente.setBackground(Color.RED);
 		}
 	}
 	
