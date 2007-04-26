@@ -213,7 +213,13 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 					Nodo nodoTemp = modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i);
 					nodoTemp.setPos(new Posicion(nodoTemp.getPos().getLat()+diferenciaY,
 							nodoTemp.getPos().getLon()+diferenciaX));
+					for (int j = 0; j<nodoTemp.getTramos().size(); j++) {
+						Tramo tramoTemp = nodoTemp.getTramos().get(j);
+						tramoTemp.calculaAngulo();
+					
+					}
 				}
+				
 			}
 			puntoDragAntiguo = puntoDragNuevo;
 			
