@@ -135,6 +135,12 @@ public class Ventana extends JFrame {
 	private BarraCrearTramo barraCrearTramo;
 
 	private JTextField ayudaDinamica;
+	
+	private JMenuItem pegarSeleccion;
+	
+	private JPopupMenu emergenteMapa;
+	
+	private JPopupMenu emergenteTerminar;
 
 	/**
 	 * Constructor de la ventana.
@@ -213,6 +219,7 @@ public class Ventana extends JFrame {
 		añadirMenuEmergenteNodo();
 		añadirMenuEmergenteTramo();
 		añadirMenuEmergenteMapa();
+		añadirMenuEmergenteTerminar();
 	}
 
 	
@@ -251,7 +258,7 @@ public class Ventana extends JFrame {
 	 * 
 	 */
 	public void añadirMenuEmergenteMapa(){
-		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");	
+		emergenteMapa = new JPopupMenu("Menu Emergente Mapa");	
 		
 		JMenuItem cambiarRepresentacion = new JMenuItem("Cambiar Representación");
 		cambiarRepresentacion.addActionListener(new AccionCambiarRep(panel_mapa,
@@ -308,7 +315,7 @@ public class Ventana extends JFrame {
 				modelo, controlador, panel_mapa));
 		
 		
-		JMenuItem pegarSeleccion = new JMenuItem("Pegar");
+		pegarSeleccion = new JMenuItem("Pegar");
 		pegarSeleccion.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -398,6 +405,26 @@ public class Ventana extends JFrame {
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 	}
 	
+	public void añadirMenuEmergenteTerminar(){
+		
+		emergenteTerminar = new JPopupMenu("Menu Emergente Finalizar");	
+		
+		JMenuItem terminar = new JMenuItem("Terminar");
+		terminar.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						// TODO cancelar accion
+						escucha.notificar(-5);
+					}
+					
+				}
+		);
+		terminar.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para terminar.", this));
+		
+		emergenteTerminar.add(terminar);
+		
+		
+	}
 
 	/**
 	 * Crea la barra de menús.
@@ -497,7 +524,13 @@ public class Ventana extends JFrame {
 		edicionMenu.add(copiarMenuItem);
 
 		JMenuItem pegarMenuItem = new JMenuItem();
-		//pegarMenuItem.addActionListener(new AccionPegar());
+		pegarMenuItem.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonPegar().doClick();
+					}
+				}
+		);
 		pegarMenuItem.setText("Pegar");
 		edicionMenu.add(pegarMenuItem);
 
@@ -862,5 +895,16 @@ public class Ventana extends JFrame {
 		ayudaDinamica.setText(string);
 		// ayudaDinamica.setVisible(true);
 		ayudaDinamica.repaint();
+	}
+	
+	public JMenuItem getBotonPegar(){
+		return this.pegarSeleccion;
+	}
+	public JPopupMenu getEmergenteMapa(){
+		return this.emergenteMapa;
+	}
+	
+	public JPopupMenu getEmergenteTerminar(){
+		return this.emergenteTerminar;
 	}
 }

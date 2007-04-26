@@ -48,8 +48,12 @@ public class MLMapaBDerecho extends EscuchaRaton {
 		public void mouseReleased(MouseEvent arg0) {
 			if(arg0.isPopupTrigger() && buscarTramo(arg0.getX(), arg0.getY()) == null &&
 					buscarNodo(arg0.getX(), arg0.getY())==null){
+				
 				panel.setPosE(arg0.getX(), arg0.getY());
 				panel.setPuntoInicial(arg0.getPoint());
+				if (modelo.getMapa().getPortapapeles().esVacia()){
+					
+				}
 				panel.getMenuEmergenteMapa().show(panel,arg0.getX(),arg0.getY());
 				panel.repaint();
 			}
