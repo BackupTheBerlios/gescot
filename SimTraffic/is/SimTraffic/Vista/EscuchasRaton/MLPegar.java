@@ -40,6 +40,8 @@ public class MLPegar extends EscuchaRaton {
 	 */
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		if (arg0.getButton()!= MouseEvent.BUTTON1)
+				return;
 		double x = panel.lon_RepAMapa(arg0.getX());
 		double y = panel.lat_RepAMapa(arg0.getY());
 		Point2D puntoPegar = new Point2D.Double(x,y);		
