@@ -7,6 +7,11 @@ public class LineaBus extends Via{
 	
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5853555892570813651L;
+
+	/**
 	 * En nuestra implementacion las lineas de autobuses son tambien vias y pero estas deben 
 	 * de añadir un vector de paradas que no tienen las demas vias
 	 */
@@ -30,18 +35,21 @@ public class LineaBus extends Via{
 	 * @return
 	 */
 	
-	public LineaBus(ArrayList<Tramo> tramos,ArrayList<Boolean> Paradas,int[] intervalos,int start,int end){
-		this.setTramos(tramos);
+	public LineaBus(Via via,ArrayList<Boolean> Paradas,int[] intervalos,int start,int end){
+		
+		//Ponemos a la linea las caracteristicas de la via
+		this.setNombre(via.getNombre());
+		this.setID(via.getID());
+		this.setTramos(via.getTramos());
+		this.setTipo(via.getTipo());
+		
+		//Ponemos las caracteristicas propias de la linea de bus
 		this.Paradas=Paradas;
 		this.intervalos=intervalos;
 		this.comienzoServicio=start;
 		this.finServicio=end;
 	}
 	
-	public LineaBus(Via via,ArrayList<Boolean> paradas,int[] intervalos,int start,int end){
-	
-		
-	}
 	
 	public ArrayList<Boolean> getParadas() {
 		return Paradas;
