@@ -57,7 +57,7 @@ public class BarraHerramientas extends Barra {
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 9), true);
 		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione los tramos del mapa para identificar a q via pertenecen", ventana));
+		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione los tramos del mapa para identificar a qué via pertenecen", ventana));
 		boton.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(boton);
 		
