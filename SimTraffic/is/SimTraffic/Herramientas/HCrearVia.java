@@ -7,7 +7,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Utils.Tiempo;
-//import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
+
 
 public class HCrearVia implements IHerramienta {
 
@@ -16,15 +16,6 @@ public class HCrearVia implements IHerramienta {
 	ArrayList<Nodo> nodos,nodosGuardados;
 	ArrayList<Tramo> tramos,tramosGuardados;
 	
-	/**public HCrearVia(String nombre,ArrayList<Tramo> Lista,ITipoElemento tipoVia){
-		
-		via = new Via();
-		via.setNombre(nombre);
-		via.setTramos(Lista);
-		via.setTipo(tipoVia);
-		tramos = Lista;
-		
-	}*/
 	public HCrearVia(ArrayList<Nodo> ListaNodos,Via via){
 		this.nodos=ListaNodos;
 		this.via= via;
@@ -53,15 +44,7 @@ public class HCrearVia implements IHerramienta {
 	}
 
 	public int deshacer(IModelo modelo) {
-		/*while (!tramosGuardados.isEmpty()){
-			modelo.getMapa().eliminar(tramosGuardados.get(0));
-			tramosGuardados.remove(0);
-		}
-		while (!nodosGuardados.isEmpty()){
-			modelo.getMapa().eliminar(nodosGuardados.get(0));
-			nodosGuardados.remove(0);
-		}*/
-		//Cambiado, en depuración.
+		
 		nodosGuardados=null;
 		tramosGuardados=null;
 		modelo.getMapa().eliminar(via);
