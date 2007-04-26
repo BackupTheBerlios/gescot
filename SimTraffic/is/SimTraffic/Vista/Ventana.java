@@ -456,14 +456,15 @@ public class Ventana extends JFrame {
 	public void crearMenuArchivo() {
 		JMenu archivoMenu = new JMenu();
 		archivoMenu.setText("Archivo");
-		menuBar.add(archivoMenu);
 		archivoMenu.setMnemonic('A');
+		menuBar.add(archivoMenu);
 
 		
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem
 				.addActionListener(new AccionNuevo(modelo, panel_mapa));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
+		nuevoMapaMenuItem.setMnemonic('N');
 		archivoMenu.add(nuevoMapaMenuItem);
 
 		archivoMenu.addSeparator();
@@ -472,16 +473,19 @@ public class Ventana extends JFrame {
 		cargarMapaMenuItem.addActionListener(new AccionCargar(controlador,
 				panel_mapa));
 		cargarMapaMenuItem.setText("Cargar Mapa");
+		cargarMapaMenuItem.setMnemonic('C');
 		archivoMenu.add(cargarMapaMenuItem);
 		
 		JMenuItem descargarMapaMenuItem = new JMenuItem();
 		descargarMapaMenuItem.addActionListener(new AccionDescargar(controlador));
 		descargarMapaMenuItem.setText("Descargar Mapa");
+		descargarMapaMenuItem.setMnemonic('D');
 		archivoMenu.add(descargarMapaMenuItem);
 
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
 		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));
 		guardarmapaMenuItem.setText("GuardarMapa");
+		guardarmapaMenuItem.setMnemonic('G');
 		archivoMenu.add(guardarmapaMenuItem);
 
 		archivoMenu.addSeparator();
@@ -493,6 +497,7 @@ public class Ventana extends JFrame {
 			}
 		});
 		salirMenuItem.setText("Salir");
+		salirMenuItem.setMnemonic('S');
 		archivoMenu.add(salirMenuItem);
 
 	}
@@ -503,12 +508,14 @@ public class Ventana extends JFrame {
 	public void crearMenuEdicion() {
 		JMenu edicionMenu = new JMenu();
 		edicionMenu.setText("Edición");
+		edicionMenu.setMnemonic('E');
 		menuBar.add(edicionMenu);
 
 		JMenuItem deshacerMenuItem = new JMenuItem();
 		deshacerMenuItem.addActionListener(new AccionDeshacer(controlador,
 				panel_mapa));
 		deshacerMenuItem.setText("Deshacer");
+		deshacerMenuItem.setMnemonic('D');
 		edicionMenu.add(deshacerMenuItem);
 
 		edicionMenu.addSeparator();
@@ -544,6 +551,7 @@ public class Ventana extends JFrame {
 		imagenMenuItem.addActionListener(new AccionCargarImagen(controlador,
 				panel_mapa));
 		imagenMenuItem.setText("Cargar imagen");
+		imagenMenuItem.setMnemonic('i');
 		edicionMenu.add(imagenMenuItem);
 
 		edicionMenu.addSeparator();
@@ -584,15 +592,18 @@ public class Ventana extends JFrame {
 		JMenu menuVis = new JMenu();
 		menuVis.setText("Visualización");
 		menuBar.add(menuVis);
+		menuVis.setMnemonic('V');
 
 		JMenuItem zoomIn = new JMenuItem();
 		zoomIn.addActionListener(new AccionZoom(panel_mapa, 0.5));
 		zoomIn.setText("Zoom in");
+		zoomIn.setMnemonic('i');
 		menuVis.add(zoomIn);
 
 		JMenuItem zoomOut = new JMenuItem();
 		zoomOut.addActionListener(new AccionZoom(panel_mapa, 2));
 		zoomOut.setText("Zoom out");
+		zoomOut.setMnemonic('o');
 		menuVis.add(zoomOut);
 
 		menuVis.addSeparator();
@@ -601,6 +612,7 @@ public class Ventana extends JFrame {
 		cambiarRep.addActionListener(new AccionCambiarRep(panel_mapa,
 				new RepresentacionAvanzada(), new RepresentacionSimple()));
 		cambiarRep.setText("Cambiar representación");
+		cambiarRep.setMnemonic('C');
 		menuVis.add(cambiarRep);
 	}
 
@@ -611,6 +623,7 @@ public class Ventana extends JFrame {
 	public void crearMenuMapa() {
 		JMenu mapaMenu = new JMenu();
 		mapaMenu.setText("Mapa");
+		mapaMenu.setMnemonic('M');
 		menuBar.add(mapaMenu);
 
 		JMenuItem añadirNodo = new JMenuItem();
@@ -618,6 +631,7 @@ public class Ventana extends JFrame {
 				.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
 						controlador, panel_mapa, this), this, escuchaTeclado, 0));
 		añadirNodo.setText("Añadir nodo");
+		añadirNodo.setMnemonic('n');
 		mapaMenu.add(añadirNodo);
 
 		JMenuItem añadirTramo = new JMenuItem();
@@ -626,6 +640,7 @@ public class Ventana extends JFrame {
 						modelo, controlador, panel_mapa, this), this,
 						escuchaTeclado, 1));
 		añadirTramo.setText("Añadir tramo");
+		añadirTramo.setMnemonic('t');		
 		mapaMenu.add(añadirTramo);
 
 		mapaMenu.addSeparator();
@@ -648,6 +663,7 @@ public class Ventana extends JFrame {
 		buscarElemento.addActionListener(new AccionBuscar(controlador,panel_mapa));
 		buscarElemento.addActionListener(new AccionBarra(this, null));
 		buscarElemento.setText("Buscar elemento");
+		buscarElemento.setMnemonic('B');
 		mapaMenu.add(buscarElemento);
 		
 		JMenuItem mejorCamino = new JMenuItem();
@@ -656,6 +672,7 @@ public class Ventana extends JFrame {
 				escuchaTeclado, 8));
 		mejorCamino.addActionListener(new AccionBarra(this, null));
 		mejorCamino.setText("Encontrar mejor camino");
+		mejorCamino.setMnemonic('c');
 		mapaMenu.add(mejorCamino);
 		
 	}
@@ -667,6 +684,7 @@ public class Ventana extends JFrame {
 	public void crearMenuSimulacion() {
 		JMenu simMenu = new JMenu();
 		simMenu.setText("Simulación");
+		simMenu.setMnemonic('S');
 		menuBar.add(simMenu);
 
 		JMenuItem añadirBus = new JMenuItem();
@@ -674,12 +692,14 @@ public class Ventana extends JFrame {
 				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa),
 				this, escuchaTeclado, 4));
 		añadirBus.setText("Añadir linea autobus");
+		añadirBus.setMnemonic('l');
 		simMenu.add(añadirBus);
 
 		JMenuItem añadirVia = new JMenuItem();
 		añadirVia.addActionListener(new AccionSobreMapa(new MLAñadirVia(modelo,
 				controlador, panel_mapa), this, escuchaTeclado, 6));
 		añadirVia.setText("Añadir vía");
+		añadirVia.setMnemonic('v');
 		simMenu.add(añadirVia);
 
 		simMenu.addSeparator();
@@ -687,16 +707,19 @@ public class Ventana extends JFrame {
 		JMenuItem comenarSim = new JMenuItem();
 		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()));
 		comenarSim.setText("Comenzar");
+		comenarSim.setMnemonic('C');
 		simMenu.add(comenarSim);
 
 		JMenuItem pausarSim = new JMenuItem();
 		pausarSim.addActionListener(new AccionPausarSimulacion(controlador));
 		pausarSim.setText("Pausar");
+		pausarSim.setMnemonic('P');
 		simMenu.add(pausarSim);
 
 		JMenuItem terminarSim = new JMenuItem();
 		terminarSim.addActionListener(new AccionDetenerSimulacion(controlador));
 		terminarSim.setText("Detener");
+		terminarSim.setMnemonic('D');
 		simMenu.add(terminarSim);
 
 	}
@@ -708,6 +731,7 @@ public class Ventana extends JFrame {
 	public void crearMenuAyuda() {
 		JMenu ayudaMenu = new JMenu();
 		ayudaMenu.setText("Ayuda");
+		ayudaMenu.setMnemonic('y');
 		menuBar.add(ayudaMenu);
 
 		JMenuItem abrirAyuda = new JMenuItem();
@@ -723,6 +747,7 @@ public class Ventana extends JFrame {
 			}
 		});
 		log.setText("Mostrar historial de eventos");
+		log.setMnemonic('h');
 		ayudaMenu.add(log);
 
 		ayudaMenu.addSeparator();
