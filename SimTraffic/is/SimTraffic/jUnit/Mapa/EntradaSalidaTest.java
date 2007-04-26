@@ -4,8 +4,7 @@ import is.SimTraffic.Mapa.EntradaSalida;
 import junit.framework.TestCase;
 
 /**
- * Clase de testo de la clase EntradaSalida
- * @author Nacho
+ * Clase de testea de la clase EntradaSalida
  *
  */
 
