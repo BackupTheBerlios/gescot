@@ -8,6 +8,13 @@ import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class Via implements ElementoMapa, Serializable {
 
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8773701330979615756L;
+
 	/**
 	 * Identificador en OSM de la vía. Cada vía tiene un identificador entero único, que puede
 	 * ser positivo o negativo pero siempre distinto de 0.
