@@ -76,6 +76,9 @@ public class AccionSobreMapa implements ActionListener {
 			else if (boton == 8){
 				ImageStr = "itinerario.png";
 			}
+			else if (boton == 9){
+				ImageStr = "select_via.png";
+			}
 
 			//String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
 			ImageIcon imagen = new ImageIcon(cl
