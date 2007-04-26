@@ -686,7 +686,7 @@ public class Ventana extends JFrame {
 		simMenu.add(comenarSim);
 
 		JMenuItem pausarSim = new JMenuItem();
-		pausarSim.addActionListener(null);
+		pausarSim.addActionListener(new AccionPausarSimulacion(controlador));
 		pausarSim.setText("Pausar");
 		simMenu.add(pausarSim);
 

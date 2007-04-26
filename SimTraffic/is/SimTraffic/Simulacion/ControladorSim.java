@@ -40,6 +40,8 @@ public class ControladorSim extends Thread {
 	 */
 	private Simulacion sim;
 
+	private boolean pausar;
+	
 	/**
 	 * Método constructor de la clase, que crea los grupos de vehiculos a partir
 	 * de la lista de Vehiculos dada por la simulación.
@@ -52,6 +54,7 @@ public class ControladorSim extends Thread {
 		this.sim = sim;
 		lista = new ArrayList<GrupoVehiculos>();
 		barrera = new CyclicBarrier(N);
+		pausar = false;
 		for (int i = 0; i < N - 1; i++) {
 			lista.add(new GrupoVehiculos(listaVehiculo,
 					GrupoVehiculos.nroVehiculos * i, sim, barrera));
@@ -64,6 +67,9 @@ public class ControladorSim extends Thread {
 			it.next().start();
 		while (!termino) {
 			try {
+				while(pausar) {
+					ControladorSim.sleep(200);
+				}
 				ControladorSim.sleep(50);
 				barrera.await();
 				sim.actualizar();
@@ -102,6 +108,14 @@ public class ControladorSim extends Thread {
 			it.next().terminar();
 		lista.clear();
 		termino = true;
+	}
+
+	public void despausar() {
+		pausar = false;
+	}
+
+	public void pausar() {
+		pausar = true;
 	}
 	
 

@@ -44,19 +44,18 @@ public class PanelVehiculos extends JFrame {
 	private ParametrosSimulacion param;
 
 	private JComboBox porcentajes[] = new JComboBox[6];
-	
+
 	public PanelVehiculos(IControlador controlador, ParametrosSimulacion param) {
 		this.controlador = controlador;
 		this.param = param;
 		this.setResizable(false);
 		this.setTitle("Tipos de Vehículos");
 
-		String[] cantidades = { "No aparece", "Muy pocos", "Algunos",
-				"Normal", "Bastantes", "Muchos" };
+		String[] cantidades = { "No aparece", "Muy pocos", "Algunos", "Normal",
+				"Bastantes", "Muchos" };
 		for (int i = 0; i < 6; i++)
 			porcentajes[i] = new JComboBox(cantidades);
 
-		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));
 		JLabel etiquetaTitulo = new JLabel("CANTIDAD DE VEHÍCULOS");
@@ -64,7 +63,7 @@ public class PanelVehiculos extends JFrame {
 		panelTitulo.add(etiquetaTitulo);
 
 		JPanel panelCantidades = panelCantidades();
-		
+
 		JPanel panelTurismo = crearOpcionesVehiculo(porcentajes[0],
 				"Turismo.jpg", "Turismo  ", 4);
 
@@ -74,25 +73,31 @@ public class PanelVehiculos extends JFrame {
 		JPanel panelCamion = crearOpcionesVehiculo(porcentajes[2],
 				"camion.jpg", "Camion    ", 0);
 
-		JPanel panelBus = crearOpcionesVehiculo(porcentajes[3],
-				"autobus.jpg", "Bus         ", 0);
+		JPanel panelBus = crearOpcionesVehiculo(porcentajes[3], "autobus.jpg",
+				"Bus         ", 0);
 
-		JPanel panelMoto = crearOpcionesVehiculo(porcentajes[4],
-				"moto.jpg", "Moto     ", 0);
+		JPanel panelMoto = crearOpcionesVehiculo(porcentajes[4], "moto.jpg",
+				"Moto     ", 0);
 
 		JPanel panelAmbulancia = crearOpcionesVehiculo(porcentajes[5],
 				"ambulancia.jpg", "Ambulancia", 0);
-		
+
 		if (!controlador.mapaTieneHospital())
 			porcentajes[5].setEnabled(false);
 		else
 			porcentajes[5].setEnabled(true);
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 5));
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.addActionListener(new accionAceptar());
 		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelVehiculos.this.dispose();
+			}
+		});
+
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
 
@@ -166,7 +171,7 @@ public class PanelVehiculos extends JFrame {
 		panel.add(panelaux2);
 		return panel;
 	}
-	
+
 	private JPanel panelCantidades() {
 		int min = 20;
 		int max = Simulacion.maxVehiculos;
@@ -182,13 +187,13 @@ public class PanelVehiculos extends JFrame {
 		text1.setEditable(false);
 		c.weightx = 0.3;
 		addPanel(panelCantidades, new JLabel("Mañana"), bg, c);
-		addPanel(panelCantidades, text1, bg,c);
+		addPanel(panelCantidades, text1, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[0] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[0].setValue(100);
-		text1.setText(""+ vehiculos[0].getValue());
+		text1.setText("" + vehiculos[0].getValue());
 		vehiculos[0].addAdjustmentListener(new ajuste(text1));
 		addPanel(panelCantidades, vehiculos[0], bg, c);
 
@@ -197,13 +202,13 @@ public class PanelVehiculos extends JFrame {
 		text2.setEditable(false);
 		c.weightx = 0.3;
 		addPanel(panelCantidades, new JLabel("Tarde"), bg, c);
-		addPanel(panelCantidades, text2, bg,c);
+		addPanel(panelCantidades, text2, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[1] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[1].setValue(100);
-		text2.setText(""+ vehiculos[1].getValue());
+		text2.setText("" + vehiculos[1].getValue());
 		vehiculos[1].addAdjustmentListener(new ajuste(text2));
 		addPanel(panelCantidades, vehiculos[1], bg, c);
 
@@ -212,32 +217,32 @@ public class PanelVehiculos extends JFrame {
 		text3.setEditable(false);
 		c.weightx = 0.3;
 		addPanel(panelCantidades, new JLabel("Noche"), bg, c);
-		addPanel(panelCantidades, text3, bg,c);
+		addPanel(panelCantidades, text3, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[2] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[2].setValue(100);
-		text3.setText(""+ vehiculos[2].getValue());
+		text3.setText("" + vehiculos[2].getValue());
 		vehiculos[2].addAdjustmentListener(new ajuste(text3));
 		addPanel(panelCantidades, vehiculos[2], bg, c);
 
 		return panelCantidades;
 	}
 
-	private class ajuste implements AdjustmentListener{
+	private class ajuste implements AdjustmentListener {
 		JTextField text;
-		
+
 		public ajuste(JTextField text) {
 			this.text = text;
 		}
-		
-	    public void adjustmentValueChanged(AdjustmentEvent ae){
-	      int value = ae.getValue();
-	      String st = Integer.toString(value);
-	      text.setText(st);
-	    }
-	  }
+
+		public void adjustmentValueChanged(AdjustmentEvent ae) {
+			int value = ae.getValue();
+			String st = Integer.toString(value);
+			text.setText(st);
+		}
+	}
 
 	private class accionAceptar implements ActionListener {
 
@@ -257,7 +262,8 @@ public class PanelVehiculos extends JFrame {
 				por[i] = porcentajes[i].getSelectedIndex() * 20;
 				total = total + por[i];
 			}
-			// hago esto porque no tiene sentido que haya tantas ambulancias como coches
+			// hago esto porque no tiene sentido que haya tantas ambulancias
+			// como coches
 			por[5] = porcentajes[5].getSelectedIndex() * 3;
 			total = total + por[5];
 			for (int i = 0; i < 6; i++) {

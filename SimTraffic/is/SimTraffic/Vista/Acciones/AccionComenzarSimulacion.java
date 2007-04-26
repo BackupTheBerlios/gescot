@@ -39,6 +39,7 @@ public class AccionComenzarSimulacion implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		
 		JFrame ventanaNodo = new PanelVehiculos(controlador, param);
 
 		// Donde va a aparecer la ventana son las dos primera componentes

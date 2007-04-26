@@ -105,14 +105,18 @@ public class Simulacion {
 	 *         comienzo satisfactorio de la simulación
 	 */
 	public int comenzar(Mapa mapa) {
-		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+		if (controladorSim != null) {
+			controladorSim.despausar();
+			return 0;
+		}
+		//tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
 		int max = max(param.getNumVehiculos());
 		max = max + GrupoVehiculos.nroVehiculos - max % GrupoVehiculos.nroVehiculos;
 		if (max > maxVehiculos)
 			max = maxVehiculos;
 		System.out.println(" " + max);
-		vehiculos = new ArrayList<Vehiculo>(max + 20);
+		//vehiculos = new ArrayList<Vehiculo>(max + 20);
 		vehiculosActivos = 0;
 		rellenarTabla();
 		crearVehiculos(max + 20);
@@ -156,9 +160,10 @@ public class Simulacion {
 	 */
 	public int detener() {
 		controladorSim.terminar();
+		controladorSim = null;
 		activa = false;
-		vehiculos = null;
-		tabla = null;
+		vehiculos.clear();
+		tabla.clear();
 		return 0;
 	}
 
@@ -172,6 +177,7 @@ public class Simulacion {
 	 * @return 0 en caso de funcionar satisfactoriamente.
 	 */
 	public int pausar() {
+		controladorSim.pausar();
 		return 0;
 	}
 
@@ -232,7 +238,7 @@ public class Simulacion {
 							else {
 								aux = aux - por[5];
 								if (aux <= 0)
-									vehiculos.add(new Ambulancia());
+									vehiculos.add(new Ambulancia(hospitales));
 								else {
 									vehiculos.add(new Turismo());
 								}
@@ -244,6 +250,19 @@ public class Simulacion {
 		}
 	}
 
+	
+	private List<Nodo> hospitales() {
+		List<Nodo> res = new ArrayList<Nodo>();
+		Iterator it<Nodo> = mapa.getNodos().iterator();
+		Nodo temp;
+		while(it.hasNext()) {
+			temp = it.next();
+			if (temp.getTipo().getValorTipo().compareTo("hospital") == 0) {
+				res.add(temp);
+			}
+		}
+	}
+	
 	private int max(int[] numeros) {
 		int res = 0;
 		for (int i = 0; i < numeros.length; i++) {

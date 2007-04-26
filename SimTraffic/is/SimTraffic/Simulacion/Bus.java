@@ -34,7 +34,7 @@ public class Bus extends Vehiculo {
 
 	}
 	@Override
-	public Tramo siguienteTramo() {
+	public synchronized Tramo siguienteTramo() {
 		// TODO Auto-generated method stub
 		return null;
 	}

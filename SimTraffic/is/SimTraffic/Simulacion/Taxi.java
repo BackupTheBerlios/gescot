@@ -42,7 +42,7 @@ public class Taxi extends Vehiculo {
 	}
 	
 	@Override
-	public Tramo siguienteTramo() {
+	public synchronized Tramo siguienteTramo() {
 		if (this.nodoDestino!=null) {
 			int i = random.nextInt(this.nodoDestino.getTramos().size());
 			return this.nodoDestino.getTramos().get(i);

@@ -52,14 +52,17 @@ public class Camion extends Vehiculo {
 	@Override
 	public void variarAceleracion(int cuanto) {
 		// TODO posiblemente se deberia utilizar una escala logaritmica o exponencial o algo asi
-		this.aceleracion += (double) cuanto / 300;
+		if (cuanto > 0)
+		this.aceleracion += (double) cuanto*cuanto / 50000;
+		else
+			this.aceleracion -= (double) cuanto*cuanto / 50000;
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
 		
 	}
 
 	@Override
-	public Tramo siguienteTramo() {
+	public synchronized Tramo siguienteTramo() {
 		// TODO da el tramo siguiente
 		if (tramos.size() <= cuentaTramos) {
 			return null;

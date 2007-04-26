@@ -199,7 +199,7 @@ public class Inteligencia {
 
 		if (tramo2 != null) {
 			Señal señal = vehiculo.getNodoDestino().getSeñal();
-			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) == 0) {
+			if (señal != null && señal.puedePasar(vehiculo, tramo1, tramo2) > 0) {
 				// TODO frena demasiado... habria que hacerlo distinto
 				//vehiculo.velocidad = 0;
 				//return false;

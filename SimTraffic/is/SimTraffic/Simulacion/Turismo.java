@@ -13,32 +13,33 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 /**
  * @author Grupo ISTrafico
- *
+ * 
  */
 public class Turismo extends Vehiculo {
 
 	private Random random;
-	
+
 	private ArrayList<Tramo> tramos = new ArrayList<Tramo>();
-	
+
 	private int cuentaTramos = 0;
+
 	/**
 	 * 
 	 */
-	public Turismo () {
+	public Turismo() {
 		// TODO este constructor deberia dar valores a todos
-		//   los atributos de un vehiculo
+		// los atributos de un vehiculo
 		nombre = "Turismo";
-		
-		//Se genera un color aleatorio
-		//generarColorAleatorio();
+
+		// Se genera un color aleatorio
+		// generarColorAleatorio();
 		this.color = Color.BLUE;
-		this.figura = new Rectangle2D.Double(-4, -RepresentacionSimple.tamaño_carril, 4,
+		this.figura = new Rectangle2D.Double(-4,
+				-RepresentacionSimple.tamaño_carril, 4,
 				RepresentacionSimple.tamaño_carril);
-		
+
 		random = new Random();
 		this.aceleracion = 0;
 		this.aceleracionMax = (double) random.nextInt(30) / 100 + 0.2;
@@ -52,7 +53,8 @@ public class Turismo extends Vehiculo {
 
 	@Override
 	public void variarAceleracion(int cuanto) {
-		// TODO posiblemente se deberia utilizar una escala logaritmica o exponencial o algo asi
+		// TODO posiblemente se deberia utilizar una escala logaritmica o
+		// exponencial o algo asi
 		if (cuanto > 0)
 			this.aceleracion += (double) cuanto * cuanto / 40000;
 		else
@@ -62,7 +64,7 @@ public class Turismo extends Vehiculo {
 	}
 
 	@Override
-	public Tramo siguienteTramo() {
+	public synchronized Tramo siguienteTramo() {
 		// TODO da el tramo siguiente
 		if (tramos.size() <= cuentaTramos) {
 			return null;
@@ -77,8 +79,8 @@ public class Turismo extends Vehiculo {
 
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
-				entrada, salida);
+		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
+				salida);
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias
@@ -91,20 +93,14 @@ public class Turismo extends Vehiculo {
 			// Mostrar solución en el mapa
 			tramos.clear();
 			cuentaTramos = 0;
-			
-			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0 ; i--) {
-			//for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
-				 // Solo es null en la raíz (se puede mejorar)
-				/*if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
+
+			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0; i--) {
+				if (algoritmoAEstrella.getSolucion().elementAt(i - 1)
+						.getOperador() != null) {
 					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i).getOperador()))
-							.getTramoElegido();*/
-				  if (algoritmoAEstrella.getSolucion().elementAt(i-1).getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i-1).getOperador()))
+							.getSolucion().elementAt(i - 1).getOperador()))
 							.getTramoElegido();
 					tramos.add(tramoAux);
-					// Ver luego si almacenarlo en algún sitio.
 				}
 			}
 			return true;

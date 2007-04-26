@@ -18,8 +18,8 @@ public class BotonDeConexion extends JButton {
 	
 	/**
 	 * Informará del estado en que se encuentra el botón:
-	 * 0: Rojo
-	 * 1: Verde 
+	 * 1: Rojo
+	 * 0: Verde 
 	 */
 	int estado;
 	
@@ -29,9 +29,9 @@ public class BotonDeConexion extends JButton {
 		estado = 0;
 		
 		if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().getMatrizDePaso()[tramoOrigen][tramoDestino] == 0){
-			setBackground(Color.RED);
-		} else {
 			setBackground(Color.GREEN);
+		} else {
+			setBackground(Color.RED);
 		}
 		
 		this.tramoOrigen = tramoOrigen;
