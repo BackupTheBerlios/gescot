@@ -52,7 +52,7 @@ public class Controlador implements IControlador {
 	public int herramienta(IHerramienta herramienta) {
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
-		historial.add(herramienta.toString());
+		//historial.add(herramienta.toString());
 		if (resultado != 0) { // fallo
 			return resultado;
 		}
@@ -85,6 +85,8 @@ public class Controlador implements IControlador {
 				return resultado;
 			}
 		}
+		
+		// new JLabel("No hay acciones para deshacer");
 		return 0; // no devuelve error, pero se podria indicar que no hay nada
 					// para deshacer
 	}
@@ -114,7 +116,11 @@ public class Controlador implements IControlador {
 	}
 	
 	public List getHistorial(){
-		return this.historial;
+		historial.clear();
+		for (int i=0;i<herramientas.size();i++){
+			historial.add(herramientas.get(i).toString());
+		}
+		return historial;
 	}
 	
 	public void repintarCoches() {
