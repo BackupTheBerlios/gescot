@@ -281,14 +281,17 @@ public class Nodo implements ElementoMapa, Serializable{
 		return clon;
 	}
 
-	public boolean comprobarAlgunVerde(Tramo tramo)
+	public int comprobarAlgunVerde(Tramo tramo)
 	{
 		if (señal == null || !(señal instanceof Semaforo))
-			return false;
+			return 0; //No hay semáforo
 		else
 		{
 			int posicionTramo = tramos.indexOf(tramo);
-			return ((Semaforo) señal).comprobarAlgunVerde(posicionTramo);
+			if (((Semaforo) señal).comprobarAlgunVerde(posicionTramo))
+				return 1; // Verde
+			else
+				return 2; //Rojo
 		}
 	}
 }
