@@ -347,24 +347,23 @@ public class RepresentacionAvanzada extends Representacion {
 				(int) (posy2 + tamaño_carril / zoom * -(carriles_vuelta) * (Math.cos(angulo))),
 				(int) (posx2 + tamaño_carril / zoom * (carriles_ida) * Math.sin(angulo)), 
 				(int) (posy2 + tamaño_carril / zoom * (carriles_ida) * (Math.cos(angulo))));
-		pintarSemaforosTramo(tramo, g);
+		seleccionarColoresSemaforos(tramo, g);
 	}
 
-	private void pintarSemaforosTramo(Tramo tramo, Graphics2D g) 
+	private void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) 
 	{
 		Color color = Color.RED;
 		Nodo ninicial = tramo.getNodoInicial();
 		if (ninicial.comprobarAlgunVerde(tramo))
 			color = Color.GREEN;
-		pintarSemaforo(g, color, tramo);
-		
-		color = Color.RED;
+		Color color2 = Color.RED;
 		Nodo nfinal = tramo.getNodoFinal();
 		if (nfinal.comprobarAlgunVerde(tramo)) 
-			color = Color.GREEN;
+			color2 = Color.GREEN;
+		pintarSemaforosTramo(g, color, color2, tramo);
 	}
 
-	private void pintarSemaforo(Graphics2D g, Color color, Tramo tramo) 
+	private void pintarSemaforosTramo(Graphics2D g, Color color, Color color2, Tramo tramo) 
 	{
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
@@ -392,6 +391,7 @@ public class RepresentacionAvanzada extends Representacion {
 				(int) (posy1 + tamaño_carril / zoom * -(carriles_vuelta) * (Math.cos(angulo))),
 				(int) (posx1),
 				(int) (posy1));
+		g.setColor(color2);
 		g.drawLine((int) (posx2), 
 				(int) (posy2),
 				(int) (posx2 + tamaño_carril / zoom * (carriles_ida) * Math.sin(angulo)), 
