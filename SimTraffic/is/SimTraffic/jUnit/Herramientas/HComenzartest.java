@@ -29,7 +29,6 @@ public class HComenzartest extends TestCase {
 	super.setUp();		
 	Nodo nodoInicial = new Nodo (new Posicion(100,100));
 	Nodo nodoFinal = new Nodo (new Posicion(200,200));
-	Tramo tramo = new Tramo(nodoInicial,nodoFinal);
 	int velMax = 50;
 	int numCarrilesDir1 = 2;
 	int numCarrilesDir2 = 3;		
