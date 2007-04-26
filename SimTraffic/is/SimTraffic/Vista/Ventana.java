@@ -251,12 +251,52 @@ public class Ventana extends JFrame {
 	 * 
 	 */
 	public void añadirMenuEmergenteMapa(){
-		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");
+		JPopupMenu emergenteMapa = new JPopupMenu("Menu Emergente Mapa");	
 		
-		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
-		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
-				modelo, controlador, panel_mapa));
+		JMenuItem cambiarRepresentacion = new JMenuItem("Cambiar Representación");
+		cambiarRepresentacion.addActionListener(new AccionCambiarRep(panel_mapa,
+				new RepresentacionAvanzada(), new RepresentacionSimple()));
+		cambiarRepresentacion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cambiar la representación del mapa.", this));
 		
+		JMenuItem zoomIn = new JMenuItem("Zoom in");
+		zoomIn.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonZoomIn().doClick();
+					}
+				}
+		);
+		zoomIn.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para acercar el zoom.", this));
+		
+		JMenuItem zoomOut = new JMenuItem("Zoom out");
+		zoomOut.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonZoomOut().doClick();
+					}
+				}
+		);
+		zoomOut.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para alejar el zoom.",this));
+		
+		JMenuItem comenzarSimulación = new JMenuItem("Comenzar simulación");
+		comenzarSimulación.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonSimular().doClick();
+					}
+				}
+		);
+		comenzarSimulación.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",this));
+		
+		JMenuItem detenerSimulación = new JMenuItem("Detener simulación");
+		detenerSimulación.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraSuperior)superior_arriba).getBotonDetener().doClick();
+					}
+				}
+		);
+		detenerSimulación.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para parar la simulación actual.", this));
 		
 		JMenuItem copiarSeleccion = new JMenuItem("Copiar");
 		copiarSeleccion.addActionListener(new AccionCopiar(
@@ -277,6 +317,12 @@ public class Ventana extends JFrame {
 				}
 		);
 		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para pegar los elementos cortados o copiados.",this));
+		
+		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
+		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
+				modelo, controlador, panel_mapa));
+		
+		JMenu submenuModos = new JMenu("Modos");
 		
 		JMenuItem seleccion = new JMenuItem("Modo seleccion");
 		seleccion.addActionListener(
@@ -328,14 +374,26 @@ public class Ventana extends JFrame {
 		);
 		eliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", this));
 		
-		emergenteMapa.add(eliminarSeleccion);		
+		submenuModos.add(seleccion);
+		submenuModos.add(insertarNodo);
+		submenuModos.add(insertarTramo);
+		submenuModos.add(eliminarTramo);
+
+		emergenteMapa.add(cambiarRepresentacion);
+		emergenteMapa.add(zoomIn);
+		emergenteMapa.add(zoomOut);
+		emergenteMapa.addSeparator();
+		emergenteMapa.add(comenzarSimulación);
+		emergenteMapa.add(detenerSimulación);
+		emergenteMapa.addSeparator();
 		emergenteMapa.add(copiarSeleccion);
 		emergenteMapa.add(cortarSeleccion);
 		emergenteMapa.add(pegarSeleccion);
-		emergenteMapa.add(seleccion);
-		emergenteMapa.add(insertarNodo);
-		emergenteMapa.add(insertarTramo);
-		emergenteMapa.add(eliminarTramo);
+		emergenteMapa.addSeparator();
+		emergenteMapa.add(eliminarSeleccion);
+		emergenteMapa.addSeparator();
+		emergenteMapa.add(submenuModos);		
+		
 		
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 	}

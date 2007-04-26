@@ -28,6 +28,10 @@ public class BarraSuperior extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JButton pegarTB;
+	private JButton zoomin;
+	private JButton zoomout;
+	private JButton simular;
+	private JButton detener;
 	
 	public BarraSuperior(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
@@ -60,7 +64,7 @@ public class BarraSuperior extends JPanel {
 
 		JButton downloadTB = (JButton) archivoTB.añadirBoton("document-open.png",
 				"document-open2.png", "Descargar mapa desde WEB", new AccionDescargar(controlador), false);
-		cargarTB.addMouseMotionListener(new EscuchaAyuda(
+		downloadTB.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para descargar un mapa via web.", ventana));
 		
 		
@@ -114,13 +118,13 @@ public class BarraSuperior extends JPanel {
 			Ventana ventana) {
 		Barra zoomTB = new Barra();
 
-		JButton zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png",
+		zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png",
 				"zoom_in2.png", "Aumentar tamaño de la representación",
 				new AccionZoom(ventana.getPanel_mapa(), 0.5), false);
 		zoomin.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para acercar el zoom.", ventana));
 
-		JButton zoomout = (JButton) zoomTB.añadirBoton("zoom_out.png",
+		zoomout = (JButton) zoomTB.añadirBoton("zoom_out.png",
 				"zoom_out2.png", "Disminuir tamaño de la representación",
 				new AccionZoom(ventana.getPanel_mapa(), 2), false);
 		zoomout.addMouseMotionListener(new EscuchaAyuda(
@@ -133,18 +137,18 @@ public class BarraSuperior extends JPanel {
 			IModelo modelo, Ventana ventana) {
 		Barra esto = new Barra();
 
-		JButton boton1 = (JButton) esto.añadirBoton("simular.png",
+		simular = (JButton) esto.añadirBoton("simular.png",
 				"simular2.png", "Comenzar simulación",
 				new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()), false);
-		boton1
+		simular
 				.addMouseMotionListener(new EscuchaAyuda(
 						"Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",
 						ventana));
 
-		JButton boton2 = (JButton) esto.añadirBoton("parar.png", "parar2.png",
+		detener = (JButton) esto.añadirBoton("parar.png", "parar2.png",
 				"Detener simulación", new AccionDetenerSimulacion(controlador),
 				false);
-		boton2.addMouseMotionListener(new EscuchaAyuda(
+		detener.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para parar la simulación actual.", ventana));
 
 		return esto;
@@ -152,6 +156,22 @@ public class BarraSuperior extends JPanel {
 	
 	public JButton getBotonPegar(){
 		return this.pegarTB;
+	}
+	
+	public JButton getBotonZoomIn(){
+		return this.zoomin;
+	}
+	
+	public JButton getBotonZoomOut(){
+		return this.zoomout;
+	}
+	
+	public JButton getBotonSimular(){
+		return this.simular;
+	}
+		
+	public JButton getBotonDetener(){
+		return this.detener;
 	}
 
 }
