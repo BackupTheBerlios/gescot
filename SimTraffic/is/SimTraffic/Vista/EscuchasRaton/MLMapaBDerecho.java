@@ -2,13 +2,18 @@ package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.Ventana;
+
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 
 public class MLMapaBDerecho extends EscuchaRaton {
 		
+		private Ventana ventana;
 		
-		public MLMapaBDerecho(IModelo modelo, IControlador controlador, PanelMapa panel){
+		public MLMapaBDerecho(IModelo modelo, IControlador controlador, PanelMapa panel,Ventana ventana){
 			super(modelo, controlador, panel);
+			this.ventana = ventana;
 			panel.setFocusable(true);		
 		}
 
@@ -51,8 +56,18 @@ public class MLMapaBDerecho extends EscuchaRaton {
 				
 				panel.setPosE(arg0.getX(), arg0.getY());
 				panel.setPuntoInicial(arg0.getPoint());
-				if (modelo.getMapa().getPortapapeles().esVacia()){
-					
+				if (modelo.getMapa().getPortapapeles().esVacia()){							
+					ventana.getBotonPegar().setEnabled(false);
+				}
+				else
+					ventana.getBotonPegar().setEnabled(true);
+				if (modelo.getMapa().getSeleccion().esVacia()) {
+					ventana.getCortarSeleccion().setEnabled(false);
+					ventana.getCopiarSeleccion().setEnabled(false);
+				}
+				else {
+					ventana.getCortarSeleccion().setEnabled(true);
+					ventana.getCopiarSeleccion().setEnabled(true);
 				}
 				panel.getMenuEmergenteMapa().show(panel,arg0.getX(),arg0.getY());
 				panel.repaint();
