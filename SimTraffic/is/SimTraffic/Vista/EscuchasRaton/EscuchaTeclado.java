@@ -36,18 +36,28 @@ import java.awt.event.KeyListener;
 	}
 	
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		if (arg0.getKeyCode() == KeyEvent.VK_UP) {
+			panel.cambiaPosY(-40);
+		}
+		if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
+			panel.cambiaPosY(40);
+		}
+		if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+			panel.cambiaPosX(-40);
+		}
+		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
+			panel.cambiaPosX(40);
+		}
+		
 		escuchaANotificar.notificar(arg0.getKeyCode());
 
 	}
 
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		escuchaANotificar.desnotificar();
 	}
 

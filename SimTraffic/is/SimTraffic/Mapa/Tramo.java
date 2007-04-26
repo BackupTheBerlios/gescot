@@ -98,7 +98,7 @@ public class Tramo implements ElementoMapa, Serializable {
 		calculaLargo();
 	}
 
-	private void calculaAngulo() 
+	public void calculaAngulo() 
 	{
 		double largo = nodoFinal.getPos().getLon()
 		- nodoInicial.getPos().getLon();

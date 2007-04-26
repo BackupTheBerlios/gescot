@@ -82,6 +82,7 @@ public class HMover implements IHerramienta{
 			for (int j=0; j<nodoTemp.getTramos().size(); j++) {
 				Tramo tramoTemp = nodoTemp.getTramos().get(j);
 				tramoTemp.calculaLargo();
+				tramoTemp.calculaAngulo();
 			}
 		}
 		return 0;
