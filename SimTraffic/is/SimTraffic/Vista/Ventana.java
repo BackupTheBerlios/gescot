@@ -528,9 +528,9 @@ public class Ventana extends JFrame {
 
 		JMenuItem lineasBusMenuItem = new JMenuItem();
 		lineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
-				modelo, this));
+				modelo, this,panel_mapa));
 		lineasBusMenuItem.setText("Ver Lineas Autobuses");
-		// edicionMenu.add(lineasBusMenuItem);
+		edicionMenu.add(lineasBusMenuItem);
 	}
 
 	/**
@@ -653,7 +653,6 @@ public class Ventana extends JFrame {
 		simMenu.add(comenarSim);
 
 		JMenuItem pausarSim = new JMenuItem();
-		// TODO falta el action listener
 		pausarSim.addActionListener(null);
 		pausarSim.setText("Pausar");
 		simMenu.add(pausarSim);
@@ -675,7 +674,6 @@ public class Ventana extends JFrame {
 		menuBar.add(ayudaMenu);
 
 		JMenuItem abrirAyuda = new JMenuItem();
-		// TODO ventana de ayuda
 		abrirAyuda.addActionListener(null);
 		abrirAyuda.setText("Abrir ayuda");
 		ayudaMenu.add(abrirAyuda);
