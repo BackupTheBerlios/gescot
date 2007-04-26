@@ -2,9 +2,11 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Vista.PanelMapa;
 
 
 import java.awt.*;
@@ -27,20 +29,19 @@ public class AccionVerLineasBus implements ActionListener{
 	IControlador controlador;
 	IModelo modelo;	
 	JPanel ventanaLineasBus;
-	JPanel panel_mapa;
+	PanelMapa panel_mapa;
 	List lineasBus;
 
-	public AccionVerLineasBus(IControlador controlador, IModelo modelo,JFrame ventana,JPanel panel_mapa) {
+	public AccionVerLineasBus(IControlador controlador, IModelo modelo,JFrame ventana,PanelMapa panel_mapa) {
 		super();
 		this.controlador = controlador;
 		this.modelo = modelo;
 		this.panel_mapa=panel_mapa;
-		poneLineasEnLista();
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		
-		 
+		 poneLineasEnLista();
 		 ventanaLineasBus = new JPanel(new BorderLayout());
 		 
 		 
@@ -75,7 +76,7 @@ public class AccionVerLineasBus implements ActionListener{
 	
 	private void poneLineasEnLista(){
 		ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
-		 lineasBus = new List();
+		lineasBus = new List(); 
 		Iterator<LineaBus> it = lista.iterator();
 		while (it.hasNext()){
 		 lineasBus.add(it.next().getNombre());
@@ -87,6 +88,7 @@ public class AccionVerLineasBus implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			panel_mapa.remove(ventanaLineasBus);
 			ventanaLineasBus=null;
+			modelo.getMapa().limpiaSeleccion();
 			panel_mapa.repaint();
 		}
 	}
@@ -95,8 +97,10 @@ public class AccionVerLineasBus implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
 			ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
-			if (!lista.isEmpty()){
+			if (!lista.isEmpty()){			
 			LineaBus seleccionada = lista.get(lineasBus.getSelectedIndex());
+			HBuscarElemento herramientaBuscar = new HBuscarElemento("Línea de bus",seleccionada.getNombre(),panel_mapa);
+			controlador.herramienta(herramientaBuscar);
 			Iterator tramos = seleccionada.getTramos().iterator();
 			Iterator paradas = seleccionada.getParadas().iterator();
 			paradas.next();
