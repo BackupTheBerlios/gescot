@@ -238,7 +238,7 @@ public class Simulacion {
 							else {
 								aux = aux - por[5];
 								if (aux <= 0)
-									vehiculos.add(new Ambulancia(hospitales));
+									vehiculos.add(new Ambulancia(hospitales()));
 								else {
 									vehiculos.add(new Turismo());
 								}
@@ -253,7 +253,7 @@ public class Simulacion {
 	
 	private List<Nodo> hospitales() {
 		List<Nodo> res = new ArrayList<Nodo>();
-		Iterator it<Nodo> = mapa.getNodos().iterator();
+		Iterator<Nodo> it = mapa.getNodos().iterator();
 		Nodo temp;
 		while(it.hasNext()) {
 			temp = it.next();
@@ -261,6 +261,7 @@ public class Simulacion {
 				res.add(temp);
 			}
 		}
+		return res;
 	}
 	
 	private int max(int[] numeros) {
