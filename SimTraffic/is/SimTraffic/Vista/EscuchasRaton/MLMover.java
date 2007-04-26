@@ -153,6 +153,7 @@ public class MLMover extends EscuchaRaton {
 					temp = tram.next();
 					temp.calculaLargo();
 					temp.calculaAngulo();
+					System.out.println("...");
 				}
 			}
 		}

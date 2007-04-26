@@ -345,11 +345,8 @@ public class PanelMapa extends JPanel
 		// selección.
 		if (modoSeleccion)
 			representacion.pintar(g, this.rectanguloSeleccion);
-
-		representacion.pintarSugerencia(g, sugerencia);
-		representacion.pintarSugerencia(g, sugerencia2);
 		//representacion.pintar(g, flecha);
-		g.drawString("Redibujando: " + contador, 80, 80);
+		//g.drawString("Redibujando: " + contador, 80, 80);
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
 		// sugiriendo.
@@ -367,6 +364,9 @@ public class PanelMapa extends JPanel
 			if (this.modelo.getSimulacion().estaActiva())
 				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);		
 		}
+
+		representacion.pintarSugerencia(g, sugerencia);
+		representacion.pintarSugerencia(g, sugerencia2);
 		
 		// Se pintan los tramos que están seleccionados
 		for (int i = 0; i < modelo.getMapa().getSeleccion()
