@@ -66,14 +66,21 @@ public class HBuscarElemento implements IHerramienta {
 		else if (elementoACambiar.equals("Vía")) {
 			Via viaEncontrada;
 			viaEncontrada = modelo.getMapa().buscarVia(nombre);
-			if (viaEncontrada==null)
+			if (viaEncontrada==null) {
+				 JOptionPane.showMessageDialog(null,"No existe ninguna vía con el nombre especificado",
+						 "Via no encontrada", 
+				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
+			} 
 			else {
 				//Faltaría ver si hay que desambiguar (si se repiten los nombres).
 				panel.centrarEnPosicion(viaEncontrada.getTramos().get(0).getNodoInicial().getPos().getLat(),
 										viaEncontrada.getTramos().get(0).getNodoInicial().getPos().getLon() );
 				modelo.getMapa().limpiaSeleccion();
 				//Ver si se quiere seleccionar la via entera o no //Hacer un método sobre esto.
+				for (int i=0;i<viaEncontrada.getTramos().size();i++) {
+					modelo.getMapa().getSeleccion().añadirTramo(viaEncontrada.getTramos().get(i));
+				}
 			}
 			
 		}
@@ -81,14 +88,21 @@ public class HBuscarElemento implements IHerramienta {
 			modelo.getMapa().buscarLineaBus(nombre);
 			Via viaEncontrada;
 			viaEncontrada = modelo.getMapa().buscarLineaBus(nombre);
-			if (viaEncontrada==null) 
+			if (viaEncontrada==null) {
+				 JOptionPane.showMessageDialog(null,"No existe ninguna línea de autobús con el nombre especificado",
+						 "Linea de bus no encontrada", 
+				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
+			}
 			else {
 				//Faltaría ver si hay que desambiguar (si se repiten los nombres).
 				panel.centrarEnPosicion(viaEncontrada.getTramos().get(0).getNodoInicial().getPos().getLat(),
 										viaEncontrada.getTramos().get(0).getNodoInicial().getPos().getLon() );
 				modelo.getMapa().limpiaSeleccion();
-				//Ver si se quiere seleccionar la linea de bus entera o no. //Hacer un método sobre esto.
+				//Ver si se quiere seleccionar la linea de bus entera o no. //Hacer un método sobre esto
+				for (int i=0;i<viaEncontrada.getTramos().size();i++) {
+					modelo.getMapa().getSeleccion().añadirTramo(viaEncontrada.getTramos().get(i));
+				}
 			}		
 		}
 		else {
