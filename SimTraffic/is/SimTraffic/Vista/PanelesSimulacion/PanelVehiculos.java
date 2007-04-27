@@ -65,7 +65,7 @@ public class PanelVehiculos extends JFrame {
 		JPanel panelCantidades = panelCantidades();
 
 		JPanel panelTurismo = crearOpcionesVehiculo(porcentajes[0],
-				"Turismo.jpg", "Turismo  ", 4);
+				"turismo.jpg", "Turismo  ", 4);
 
 		JPanel panelTaxi = crearOpcionesVehiculo(porcentajes[1], "taxi.jpg",
 				"Taxi      ", 0);
@@ -161,8 +161,9 @@ public class PanelVehiculos extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 19, 5));
 		JPanel panelaux1 = new JPanel();
 		panelaux1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
-		JLabel iconoTurismo = new JLabel((new ImageIcon(
-				"is\\SimTraffic\\Vista\\Imagenes\\" + icono)));
+		ClassLoader cl = this.getClass().getClassLoader();
+		JLabel iconoTurismo = new JLabel((new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + icono))));
 		JLabel etiquetaTurismo = new JLabel(nombre);
 		panelaux1.add(iconoTurismo);
 		panelaux1.add(etiquetaTurismo);
