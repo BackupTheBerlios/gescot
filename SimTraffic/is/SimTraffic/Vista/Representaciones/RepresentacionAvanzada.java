@@ -586,7 +586,7 @@ public class RepresentacionAvanzada extends Representacion {
 		BufferedImage imagen;
 		try {
 			ClassLoader cl = this.getClass().getClassLoader();
-			imagen = ImageIO.read(new File((cl.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/" + nombre)).getFile()));
+			imagen = ImageIO.read(cl.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/" + nombre));
 
 		} catch (IOException e) {
 			System.out.println(nombre);

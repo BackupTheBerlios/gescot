@@ -72,8 +72,11 @@ public class AccionAceptarTramo implements ActionListener
 		}
 		
 		nombre = campoNombre.getText();
-		nombreStringVia = nombreVia.getText();
-		tipoStringVia = (String) combo_tipoVia.getSelectedItem();
+		//TODO fijarse que error ahi aqui
+		
+		//nombreStringVia = nombreVia.getText();
+		//tipoStringVia = (String) combo_tipoVia.getSelectedItem();
+		
 		System.out.println(tipoStringVia);
 		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre,nombreStringVia,tipoStringVia);
 		controlador.herramienta(nueva);
