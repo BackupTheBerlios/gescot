@@ -18,6 +18,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -31,6 +33,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.border.BevelBorder;
 
 /**
@@ -465,6 +468,7 @@ public class Ventana extends JFrame {
 				.addActionListener(new AccionNuevo(modelo, panel_mapa));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		nuevoMapaMenuItem.setMnemonic('N');
+		nuevoMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK));
 		archivoMenu.add(nuevoMapaMenuItem);
 
 		archivoMenu.addSeparator();
@@ -474,6 +478,7 @@ public class Ventana extends JFrame {
 				panel_mapa));
 		cargarMapaMenuItem.setText("Cargar Mapa");
 		cargarMapaMenuItem.setMnemonic('C');
+		cargarMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_MASK));
 		archivoMenu.add(cargarMapaMenuItem);
 		
 		JMenuItem descargarMapaMenuItem = new JMenuItem();
@@ -485,6 +490,7 @@ public class Ventana extends JFrame {
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
 		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));
 		guardarmapaMenuItem.setText("GuardarMapa");
+		guardarmapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,InputEvent.CTRL_MASK));
 		guardarmapaMenuItem.setMnemonic('G');
 		archivoMenu.add(guardarmapaMenuItem);
 
@@ -498,6 +504,7 @@ public class Ventana extends JFrame {
 		});
 		salirMenuItem.setText("Salir");
 		salirMenuItem.setMnemonic('S');
+		salirMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));
 		archivoMenu.add(salirMenuItem);
 
 	}
@@ -516,6 +523,7 @@ public class Ventana extends JFrame {
 				panel_mapa));
 		deshacerMenuItem.setText("Deshacer");
 		deshacerMenuItem.setMnemonic('D');
+		deshacerMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_MASK));
 		edicionMenu.add(deshacerMenuItem);
 
 		edicionMenu.addSeparator();
@@ -525,6 +533,7 @@ public class Ventana extends JFrame {
 				panel_mapa));
 		// copiarMenuItem.addActionListener(new AccionCopiar());
 		cortarMenuItem.setText("Cortar");
+		cortarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,InputEvent.CTRL_MASK));
 		edicionMenu.add(cortarMenuItem);
 
 		JMenuItem copiarMenuItem = new JMenuItem();
@@ -532,6 +541,7 @@ public class Ventana extends JFrame {
 				panel_mapa));
 		// copiarMenuItem.addActionListener(new AccionCopiar());
 		copiarMenuItem.setText("Copiar");
+		copiarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_MASK));
 		edicionMenu.add(copiarMenuItem);
 
 		JMenuItem pegarMenuItem = new JMenuItem();
@@ -543,6 +553,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		pegarMenuItem.setText("Pegar");
+		pegarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
 		edicionMenu.add(pegarMenuItem);
 
 		edicionMenu.addSeparator();
@@ -598,12 +609,14 @@ public class Ventana extends JFrame {
 		zoomIn.addActionListener(new AccionZoom(panel_mapa, 0.5));
 		zoomIn.setText("Zoom in");
 		zoomIn.setMnemonic('i');
+		zoomIn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,InputEvent.CTRL_MASK));
 		menuVis.add(zoomIn);
 
 		JMenuItem zoomOut = new JMenuItem();
 		zoomOut.addActionListener(new AccionZoom(panel_mapa, 2));
 		zoomOut.setText("Zoom out");
 		zoomOut.setMnemonic('o');
+		zoomOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,InputEvent.CTRL_MASK));
 		menuVis.add(zoomOut);
 
 		menuVis.addSeparator();
@@ -708,18 +721,21 @@ public class Ventana extends JFrame {
 		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()));
 		comenarSim.setText("Comenzar");
 		comenarSim.setMnemonic('C');
+		comenarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5,InputEvent.CTRL_MASK));
 		simMenu.add(comenarSim);
 
 		JMenuItem pausarSim = new JMenuItem();
 		pausarSim.addActionListener(new AccionPausarSimulacion(controlador));
 		pausarSim.setText("Pausar");
 		pausarSim.setMnemonic('P');
+		pausarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6,InputEvent.CTRL_MASK));
 		simMenu.add(pausarSim);
 
 		JMenuItem terminarSim = new JMenuItem();
 		terminarSim.addActionListener(new AccionDetenerSimulacion(controlador));
 		terminarSim.setText("Detener");
 		terminarSim.setMnemonic('D');
+		terminarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7,InputEvent.CTRL_MASK));
 		simMenu.add(terminarSim);
 
 	}
