@@ -36,7 +36,7 @@ public class AccionNuevo implements ActionListener {
 			// sí,
 			// crear aquí una herramienta de guardar mapa (Faltaría crear
 			// ventana para ello).
-			Object[] options = { "Yes", "No", "Cancelar" };
+			Object[] options = { "Si", "No", "Cancelar" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Desea guardar los cambios?", "Cambios en el mapa",
 					JOptionPane.YES_NO_CANCEL_OPTION,

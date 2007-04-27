@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * Clase que ejecuta la simulación en un mapa.
  * <p>
@@ -105,49 +107,70 @@ public class Simulacion {
 	 *         comienzo satisfactorio de la simulación
 	 */
 	public int comenzar(Mapa mapa) {
-		if (controladorSim != null) {
-			controladorSim.despausar();
-			return 0;
-		}
-		// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
-		this.mapa = mapa;
-		int max = max(param.getNumVehiculos());
-		max = max + GrupoVehiculos.nroVehiculos - max
-				% GrupoVehiculos.nroVehiculos;
-		if (max > maxVehiculos)
-			max = maxVehiculos;
-		System.out.println(" " + max);
-		// vehiculos = new ArrayList<Vehiculo>(max + 20);
-		vehiculosActivos = 0;
-		rellenarTabla();
-		crearVehiculos(max + 20);
-		// this.vista = vista;
-		controladorSim = new ControladorSim(vehiculos, this);
-		controladorSim.start();
-		activa = true;
-		Iterator<Nodo> it = mapa.getNodos().iterator();
-		EntradaSalida es;
-		for (int i = 0; i < 3; i++) {
-			entradas[i] = 0;
-			salidas[i] = 0;
-		}
-		Nodo temp;
-		Semaforo sem = new Semaforo(null);
-		while (it.hasNext()) {
-			temp = it.next();
-			es = temp.getEs();
-			if (es != null) {
-				for (int i = 0; i < 3; i++) {
-					entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
-					salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+		boolean intentar = true;
+
+		while (intentar) {
+			try {
+			if (controladorSim != null) {
+				controladorSim.despausar();
+				return 0;
+			}
+			// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+			this.mapa = mapa;
+			int max = max(param.getNumVehiculos());
+			max = max + GrupoVehiculos.nroVehiculos - max
+					% GrupoVehiculos.nroVehiculos;
+			if (max > maxVehiculos)
+				max = maxVehiculos;
+			System.out.println(" " + max);
+			// vehiculos = new ArrayList<Vehiculo>(max + 20);
+			vehiculosActivos = 0;
+			rellenarTabla();
+			crearVehiculos(max + 20);
+			// this.vista = vista;
+			controladorSim = new ControladorSim(vehiculos, this);
+			controladorSim.start();
+			activa = true;
+			Iterator<Nodo> it = mapa.getNodos().iterator();
+			EntradaSalida es;
+			for (int i = 0; i < 3; i++) {
+				entradas[i] = 0;
+				salidas[i] = 0;
+			}
+			Nodo temp;
+			Semaforo sem = new Semaforo(null);
+			while (it.hasNext()) {
+				temp = it.next();
+				es = temp.getEs();
+				if (es != null) {
+					for (int i = 0; i < 3; i++) {
+						entradas[i] = entradas[i]
+								+ es.getPorcentajesEntrada()[i];
+						salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+					}
+				}
+
+				if (temp.getSeñal() != null
+						&& temp.getSeñal().getClass() == sem.getClass()) {
+					((Semaforo) temp.getSeñal()).setReloj(reloj);
 				}
 			}
-
-			if (temp.getSeñal() != null
-					&& temp.getSeñal().getClass() == sem.getClass()) {
-				((Semaforo) temp.getSeñal()).setReloj(reloj);
+			intentar = false;
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				this.detener();
+				Object[] options = { "Si", "No" };
+				int n = JOptionPane.showOptionDialog(null,
+						"Discuple las molestias. Parece hubo un problema en la simulación." +
+						"Por favor asegurse de que no haya errores en el mapa." +
+						"¿Intetar simular nuevamente?", "Problema en la simulación",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.ERROR_MESSAGE, null, options, options[1]);
+			
 			}
 		}
+
 		return 0;
 	}
 
