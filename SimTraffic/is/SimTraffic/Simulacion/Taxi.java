@@ -36,14 +36,16 @@ public class Taxi extends Vehiculo {
 	}
 	
 	public boolean inicializar(Nodo entrada, Nodo salida) {
+		super.inicializar(entrada, salida);
 		this.setNodoOrigen(entrada);
-		this.setNodoDestino(salida);
+		if (entrada.getTramos().size() == 0) return false;
+		this.setNodoDestino(entrada);
 		return true;
 	}
 	
 	@Override
 	public synchronized Tramo siguienteTramo() {
-		if (this.nodoDestino!=null) {
+		if (this.nodoDestino!=null && nodoDestino.getTramos().size() > 0) {
 			int i = random.nextInt(this.nodoDestino.getTramos().size());
 			return this.nodoDestino.getTramos().get(i);
 		}
