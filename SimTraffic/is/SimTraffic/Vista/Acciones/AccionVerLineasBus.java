@@ -103,18 +103,19 @@ public class AccionVerLineasBus implements ActionListener{
 			controlador.herramienta(herramientaBuscar);
 			Iterator tramos = seleccionada.getTramos().iterator();
 			Iterator paradas = seleccionada.getParadas().iterator();
-			paradas.next();
+			//Tramo aux = (Tramo)tramos.next();
+			//El primer nodo siempre es una parada 
+			//paradas.next();
+			//modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoInicial());
 			  while(tramos.hasNext()){
-			   Tramo aux = (Tramo)tramos.next();
+			   Tramo aux=(Tramo)tramos.next();
 			   Boolean parada = (Boolean)paradas.next();
 			   //Añadimos cada uno de los tramos	
 			   modelo.getMapa().getSeleccion().añadirTramo(aux);
-			   //Añadimos cada uno de los nodos que une cada tramo de la via
-			   modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoInicial());
-			   //Si hay una parada la añadimos a la seleccion
+			   //Si hay una parada la añadimos a la seleccion			   
 			   if (parada)
-			   modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoFinal());
-			 }
+			    modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoInicial());
+			 } 
 			}
 		}
 	}
