@@ -73,6 +73,8 @@ public class HCargarMapa implements IHerramienta {
 							.getPos().getLon());
 				}
 				modelo.setMapa(mapaNuevo);
+						
+					
 
 			} catch (Exception e) {
 				System.out.println("Error al leer archivo");
@@ -84,7 +86,6 @@ public class HCargarMapa implements IHerramienta {
 			//Ahora cargamos las señales.
 			cargarSeñales(modelo.getMapa());
 		}
-		
 		
 		return 0;
 	}

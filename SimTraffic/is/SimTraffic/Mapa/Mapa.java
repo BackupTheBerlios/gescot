@@ -108,6 +108,7 @@ public class Mapa {
 		LineasAutobuses = new ArrayList<LineaBus>();
 
 		seleccion = new Seleccion();
+		portapapeles = new Seleccion();
 	}
 
 	/**
