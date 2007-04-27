@@ -303,7 +303,7 @@ public class PanelMapa extends JPanel
 			tramo = itramos.next();
 			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));		
 		}
-
+		
 		// dibujar nodos
 		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
 		while (inodos.hasNext()) {
@@ -346,6 +346,7 @@ public class PanelMapa extends JPanel
 		if (modoSeleccion)
 			representacion.pintar(g, this.rectanguloSeleccion);
 		//representacion.pintar(g, flecha);
+		
 		//g.drawString("Redibujando: " + contador, 80, 80);
 
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran

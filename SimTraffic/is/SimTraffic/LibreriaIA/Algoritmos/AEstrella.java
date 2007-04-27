@@ -249,7 +249,7 @@ public class AEstrella implements IAlgoritmoInformado {
 		Vector<NodoIA> s=new Vector<NodoIA>();
 		s.add(hoja);
 		NodoIA nodoPadre = hoja.getNodoPadre();
-		while (nodoPadre.getNodoPadre()!=null) {
+		while (nodoPadre != null && nodoPadre.getNodoPadre()!=null) {
 			s.add(nodoPadre);
 			nodoPadre = nodoPadre.getNodoPadre();
 		}

@@ -210,7 +210,7 @@ public class RepresentacionAvanzada extends Representacion {
 			ipunto = ipunto + 2;
 		}
 		Polygon poligon = new Polygon(npuntos_X, npuntos_Y, numtramos*2);
-		g.setColor(Color.DARK_GRAY);
+		g.setColor(Color.LIGHT_GRAY);//DARK_GRAY);
 		g.fill(poligon);
 		g.setColor(Color.RED);
 		g.drawRect(x_MapaARep(nodo.getPos().getLon()) - 2, y_MapaARep(nodo.getPos().getLat()) - 2, 4, 4);
@@ -288,9 +288,11 @@ public class RepresentacionAvanzada extends Representacion {
 										(int) (y_MapaARep(posnodo1.getLat()) + tamaño_carril / zoom
 												* carriles_vuelta * -Math.cos(angulo)) };
 		// establece el color y dibuja el poligono
-		System.out.println("x->" + x[0] + " " + x[1]+ " " + x[2]+ " " + x[3]);
-		System.out.println("y->" + y[0] + " " + y[1]+ " " + y[2]+ " " + y[3]); 
-		g.setColor(Color.DARK_GRAY);
+		
+		//System.out.println("x->" + x[0] + " " + x[1]+ " " + x[2]+ " " + x[3]);
+		//System.out.println("y->" + y[0] + " " + y[1]+ " " + y[2]+ " " + y[3]); 
+		
+		g.setColor(Color.LIGHT_GRAY);//DARK_GRAY);
 		g.fillPolygon(x, y, 4);
 
 		// ahora dibujara las lineas

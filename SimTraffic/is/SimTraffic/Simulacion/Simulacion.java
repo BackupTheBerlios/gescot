@@ -1,6 +1,10 @@
 package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.LibreriaIA.IPrincipal;
+import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
+import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
+import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
@@ -71,9 +75,12 @@ public class Simulacion {
 
 	private Reloj reloj;
 
+	private Hashtable<Nodo, Hashtable<Nodo, ArrayList<Tramo>>> caminosDefecto;
+
 	public Simulacion() {
 		vehiculos = new ArrayList<Vehiculo>();
 		tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+		caminosDefecto = new Hashtable<Nodo, Hashtable<Nodo, ArrayList<Tramo>>>();
 		param = new ParametrosSimulacion();
 		random = new Random();
 		reloj = new Reloj();
@@ -111,67 +118,155 @@ public class Simulacion {
 
 		while (intentar) {
 			try {
-			if (controladorSim != null) {
-				controladorSim.despausar();
-				return 0;
-			}
-			// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
-			this.mapa = mapa;
-			int max = max(param.getNumVehiculos());
-			max = max + GrupoVehiculos.nroVehiculos - max
-					% GrupoVehiculos.nroVehiculos;
-			if (max > maxVehiculos)
-				max = maxVehiculos;
-			System.out.println(" " + max);
-			// vehiculos = new ArrayList<Vehiculo>(max + 20);
-			vehiculosActivos = 0;
-			rellenarTabla();
-			crearVehiculos(max + 20);
-			// this.vista = vista;
-			controladorSim = new ControladorSim(vehiculos, this);
-			controladorSim.start();
-			activa = true;
-			Iterator<Nodo> it = mapa.getNodos().iterator();
-			EntradaSalida es;
-			for (int i = 0; i < 3; i++) {
-				entradas[i] = 0;
-				salidas[i] = 0;
-			}
-			Nodo temp;
-			Semaforo sem = new Semaforo(null);
-			while (it.hasNext()) {
-				temp = it.next();
-				es = temp.getEs();
-				if (es != null) {
-					for (int i = 0; i < 3; i++) {
-						entradas[i] = entradas[i]
-								+ es.getPorcentajesEntrada()[i];
-						salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+				if (controladorSim != null) {
+					controladorSim.despausar();
+					return 0;
+				}
+				// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+				this.mapa = mapa;
+				int max = max(param.getNumVehiculos());
+				max = max + GrupoVehiculos.nroVehiculos - max
+						% GrupoVehiculos.nroVehiculos;
+				if (max > maxVehiculos)
+					max = maxVehiculos;
+				vehiculosActivos = 0;
+				rellenarTabla();
+				crearVehiculos(max + 20);
+				// TODO esta funcion es problematica, yo creo que es mejor no calcular los caminos y listo
+				//crearCaminosDefecto();
+				controladorSim = new ControladorSim(vehiculos, this);
+				controladorSim.start();
+				activa = true;
+				Iterator<Nodo> it = mapa.getNodos().iterator();
+				EntradaSalida es;
+				for (int i = 0; i < 3; i++) {
+					entradas[i] = 0;
+					salidas[i] = 0;
+				}
+				Nodo temp;
+				Semaforo sem = new Semaforo(null);
+				while (it.hasNext()) {
+					temp = it.next();
+					es = temp.getEs();
+					if (es != null) {
+						for (int i = 0; i < 3; i++) {
+							entradas[i] = entradas[i]
+									+ es.getPorcentajesEntrada()[i];
+							salidas[i] = salidas[i]
+									+ es.getPorcentajesSalida()[i];
+						}
+					}
+
+					if (temp.getSeñal() != null
+							&& temp.getSeñal().getClass() == sem.getClass()) {
+						((Semaforo) temp.getSeñal()).setReloj(reloj);
 					}
 				}
-
-				if (temp.getSeñal() != null
-						&& temp.getSeñal().getClass() == sem.getClass()) {
-					((Semaforo) temp.getSeñal()).setReloj(reloj);
-				}
-			}
-			intentar = false;
-			}
-			catch(Exception e) {
+				intentar = false;
+			} catch (Exception e) {
 				e.printStackTrace();
 				this.detener();
 				Object[] options = { "Si", "No" };
-				int n = JOptionPane.showOptionDialog(null,
-						"Discuple las molestias. Parece hubo un problema en la simulación." +
-						"Por favor asegurse de que no haya errores en el mapa." +
-						"¿Intetar simular nuevamente?", "Problema en la simulación",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.ERROR_MESSAGE, null, options, options[1]);
-			
+				int n = JOptionPane
+						.showOptionDialog(
+								null,
+								"Discuple las molestias. Parece hubo un problema en la simulación.\n"
+										+ "Por favor asegurse de que no haya errores en el mapa.\n"
+										+ "¿Intetar simular nuevamente?",
+								"Problema en la simulación",
+								JOptionPane.YES_NO_OPTION,
+								JOptionPane.ERROR_MESSAGE, null, options,
+								options[1]);
+				if (n == 1) {
+					intentar = false;
+				}
+
 			}
 		}
 
 		return 0;
+	}
+
+	private ArrayList<Tramo> buscarCamino(Nodo entrada, Nodo salida) {
+		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
+				salida);
+		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
+				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
+				problemaDistancias.getOperadores(), problemaDistancias
+						.getHeuristica());
+		boolean resul = algoritmoAEstrella.ejecutar();
+		ArrayList<Tramo> tramos = new ArrayList<Tramo>();
+		if (resul == false) {
+			// no ha sido posible encontrar un camino entre los nodos
+			return null;
+		} else {
+			// Mostrar solución en el mapa
+			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0; i--) {
+				if (algoritmoAEstrella.getSolucion().elementAt(i - 1)
+						.getOperador() != null) {
+					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
+							.getSolucion().elementAt(i - 1).getOperador()))
+							.getTramoElegido();
+					tramos.add(tramoAux);
+				}
+			}
+			return tramos;
+		}
+
+	}
+
+	private void crearCaminosDefecto() {
+		Iterator<Nodo> it = mapa.getNodos().iterator();
+		int min;
+		if ((entradas[0] == 0) && (entradas[1] == 0) && (entradas[2] == 0))
+			min = -1;
+		else
+			min = 0;
+		Nodo temp;
+		while (it.hasNext()) {
+			temp = it.next();
+			if (temp.getEs() == null
+					|| temp.getEs().getPorcentajesEntrada()[0] > min
+					|| temp.getEs().getPorcentajesEntrada()[1] > min
+					|| temp.getEs().getPorcentajesEntrada()[2] > min) {
+				Iterator<Nodo> it2 = mapa.getNodos().iterator();
+				Nodo temp2;
+				while (it2.hasNext()) {
+					temp2 = it2.next();
+					ArrayList<Tramo> tramos;
+
+					if (temp != temp2) {
+						if (false && (caminosDefecto.get(temp2) != null)
+								&& (caminosDefecto.get(temp2).get(temp) != null)) {
+							tramos = caminosDefecto.get(temp2).get(temp);
+							// TODO esta parte del método esta anulada porque para servir tendirmos
+							//  que invertir el orden de los tramos en la lista
+							if (caminosDefecto.get(temp) == null) {
+								Hashtable<Nodo, ArrayList<Tramo>> temp3 = new Hashtable<Nodo, ArrayList<Tramo>>();
+								temp3.put(temp2, tramos);
+							}
+						} else {
+
+							try {
+								tramos = buscarCamino(temp, temp2);
+								if (tramos != null) {
+									if (caminosDefecto.get(temp) == null) {
+										Hashtable<Nodo, ArrayList<Tramo>> temp3 = new Hashtable<Nodo, ArrayList<Tramo>>();
+										temp3.put(temp2, tramos);
+									} else
+										caminosDefecto.get(temp).put(temp2,
+												tramos);
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+								// problema al buscar un camino, ignorar
+							}
+						}
+					}
+				}
+
+			}
+		}
 	}
 
 	/**

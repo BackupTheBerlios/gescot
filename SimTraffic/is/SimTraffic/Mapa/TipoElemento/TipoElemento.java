@@ -36,6 +36,7 @@ public abstract class TipoElemento implements ITipoElemento{
 	 */
 	public String traduciraOSM(String vTipo) {
 		String traducido=vTipo;
+		if (vTipo == null) return "";
 		
 		if (vTipo.equals("")) return "";
 		
