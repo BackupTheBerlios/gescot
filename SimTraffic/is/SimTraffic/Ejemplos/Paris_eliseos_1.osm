@@ -1,0 +1,1299 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.3' generator='JOSM'>
+  <node id='24910081' timestamp='2007-01-11 18:22:52' lat='48.86477785' lon='2.32419348' />
+  <node id='27415750' timestamp='2007-04-17 00:36:06' lat='48.8663633698532' lon='2.31302764263129'>
+    <tag k='historic' v='museum' />
+    <tag k='name' v='Grand Palais' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='398795' timestamp='2007-01-17 01:21:27' lat='48.8692583411625' lon='2.32396457126015' />
+  <node id='21299472' timestamp='2007-02-05 22:34:56' lat='48.8645966077648' lon='2.32055510988721' />
+  <node id='25669314' timestamp='2007-02-05 22:35:31' lat='48.8643248516326' lon='2.32035507085675' />
+  <node id='25669514' timestamp='2007-02-05 22:40:50' lat='48.8645061858883' lon='2.31871104240417' />
+  <node id='25667837' timestamp='2007-02-05 22:28:45' lat='48.8648943676908' lon='2.31031036376953' />
+  <node id='27235305' timestamp='2007-04-09 13:39:01' lat='48.8763752662206' lon='2.30797147750854'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25273487' timestamp='2007-01-17 00:45:32' lat='48.8675165137937' lon='2.32588648796082' />
+  <node id='25626413' timestamp='2007-02-05 22:25:08' lat='48.8685908939311' lon='2.30948424339294' />
+  <node id='25667136' timestamp='2007-02-15 22:39:32' lat='48.8687442623092' lon='2.31016552448273' />
+  <node id='25667709' timestamp='2007-02-05 22:26:25' lat='48.8647885002251' lon='2.31420493125916' />
+  <node id='368247' timestamp='2007-02-05 22:26:02' lat='48.864617991792' lon='2.31370901792252' />
+  <node id='25273865' timestamp='2007-01-17 01:23:39' lat='48.8700726163482' lon='2.32911305181915' />
+  <node id='25934280' timestamp='2007-02-15 22:40:51' lat='48.8690195086335' lon='2.31036937236786' />
+  <node id='368254' timestamp='2007-02-15 22:40:44' lat='48.8691022696286' lon='2.31014224325554' />
+  <node id='27235266' timestamp='2007-04-09 13:36:30' lat='48.8752250917028' lon='2.31478428840637'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25273898' timestamp='2007-01-17 01:21:17' lat='48.8693494912282' lon='2.32375456758746' />
+  <node id='25669409' timestamp='2007-02-05 22:39:08' lat='48.8649649458769' lon='2.31926894187927' />
+  <node id='25666984' timestamp='2007-02-05 22:20:47' lat='48.8659918472236' lon='2.30786418914795' />
+  <node id='25934279' timestamp='2007-02-15 22:40:54' lat='48.8688536631767' lon='2.31038546562195' />
+  <node id='27235322' timestamp='2007-04-09 13:40:09' lat='48.8753450497895' lon='2.30884051322937'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='398784' timestamp='2007-01-11 18:34:48' lat='48.87429025' lon='2.32479262' />
+  <node id='25273101' timestamp='2007-01-17 00:26:59' lat='48.8671989273664' lon='2.32865452766418' />
+  <node id='27235304' timestamp='2007-04-09 13:39:09' lat='48.8756484719014' lon='2.30957007408142'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25667067' timestamp='2007-02-05 22:29:05' lat='48.8646896903884' lon='2.30973100662231' />
+  <node id='25626383' timestamp='2007-02-15 22:40:55' lat='48.8690159135708' lon='2.30990966361424' />
+  <node id='16820916' timestamp='2007-02-05 22:34:39' lat='48.8662118013102' lon='2.32123541232431' />
+  <node id='25668922' timestamp='2007-02-05 22:31:25' lat='48.8646685168266' lon='2.31848573684692' />
+  <node id='25669376' timestamp='2007-02-05 22:39:13' lat='48.8648873098667' lon='2.31890416145325' />
+  <node id='25667904' timestamp='2007-02-05 22:27:30' lat='48.8649508302476' lon='2.31372213363647' />
+  <node id='25273100' timestamp='2007-01-17 00:26:59' lat='48.8673400771385' lon='2.32861161231995' />
+  <node id='25668541' timestamp='2007-02-05 22:30:27' lat='48.8677144691102' lon='2.31405267537957' />
+  <node id='25272917' timestamp='2007-01-17 00:15:53' lat='48.868885641094' lon='2.32946991920471' />
+  <node id='25667953' timestamp='2007-02-05 22:27:44' lat='48.8672586827378' lon='2.31320714950562' />
+  <node id='25273099' timestamp='2007-01-17 00:26:59' lat='48.8679823035745' lon='2.32925534248352' />
+  <node id='25934316' timestamp='2007-02-15 22:40:15' lat='48.8693935410502' lon='2.31099700927734' />
+  <node id='25626414' timestamp='2007-02-15 22:40:47' lat='48.8688237843679' lon='2.3099080324173' />
+  <node id='21299470' timestamp='2007-02-05 22:34:41' lat='48.8662297684744' lon='2.32175599235779' />
+  <node id='368250' timestamp='2007-02-05 22:29:53' lat='48.8658225934082' lon='2.31993554678047' />
+  <node id='25667112' timestamp='2007-02-05 22:22:43' lat='48.866743483306' lon='2.31006360054016' />
+  <node id='361107' timestamp='2007-01-11 18:47:48' lat='48.87338886' lon='2.33135962' />
+  <node id='27415761' timestamp='2007-04-17 00:36:12' lat='48.8697845188034' lon='2.32433819471349'>
+    <tag k='religion' v='christian' />
+    <tag k='amenity' v='place_of_worship' />
+    <tag k='denomination' v='catholic' />
+    <tag k='name' v='La Madeleine' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667859' timestamp='2007-02-05 22:28:52' lat='48.8650214083541' lon='2.30995631217957' />
+  <node id='25669367' timestamp='2007-02-05 22:36:55' lat='48.8647814423861' lon='2.31876468658447' />
+  <node id='25273486' timestamp='2007-01-17 00:45:36' lat='48.868885641094' lon='2.32538223266602' />
+  <node id='25667850' timestamp='2007-02-05 22:28:56' lat='48.8651413909065' lon='2.31036400794983' />
+  <node id='25272903' timestamp='2007-01-17 00:15:08' lat='48.8665778636391' lon='2.32860088348389' />
+  <node id='25667115' timestamp='2007-02-05 22:25:12' lat='48.8668070013308' lon='2.31029963493347' />
+  <node id='25666985' timestamp='2007-02-05 22:20:48' lat='48.866104769797' lon='2.3076388835907' />
+  <node id='25666982' timestamp='2007-02-05 22:20:47' lat='48.866207105659' lon='2.30805730819702' />
+  <node id='25667976' timestamp='2007-02-05 22:27:52' lat='48.867272797716' lon='2.31450533866882' />
+  <node id='25625871' timestamp='2007-02-03 23:25:00' lat='48.8647868634321' lon='2.30578279495239' />
+  <node id='25934286' timestamp='2007-02-15 22:39:57' lat='48.868747804087' lon='2.31075024604797' />
+  <node id='25273864' timestamp='2007-01-17 01:23:23' lat='48.8699175679917' lon='2.32820183286094' />
+  <node id='661213' timestamp='2007-01-11 18:25:39' lat='48.87548994' lon='2.32387155'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667701' timestamp='2007-02-05 22:26:23' lat='48.8647673267051' lon='2.31326079368591' />
+  <node id='27415811' timestamp='2007-04-17 00:37:06' lat='48.8751532882756' lon='2.31313187087831'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273128' timestamp='2007-01-17 00:45:27' lat='48.8671989273664' lon='2.32695937156677' />
+  <node id='21292434' timestamp='2007-01-11 18:46:00' lat='48.87101392' lon='2.32462912'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='398783' timestamp='2007-01-11 18:34:47' lat='48.8739617' lon='2.32668555' />
+  <node id='24910083' timestamp='2007-01-11 18:22:57' lat='48.86466493' lon='2.32451534' />
+  <node id='25626382' timestamp='2007-02-03 23:45:56' lat='48.8700104291476' lon='2.30667858695233' />
+  <node id='27415813' timestamp='2007-04-17 00:37:06' lat='48.873882309035' lon='2.31587190487458'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667931' timestamp='2007-02-05 22:27:38' lat='48.8672798552037' lon='2.31222009658813' />
+  <node id='24910066' timestamp='2007-01-11 18:52:55' lat='48.8646861' lon='2.32386625' />
+  <node id='25666983' timestamp='2007-02-05 22:20:47' lat='48.8660553662025' lon='2.30804657936096' />
+  <node id='25668870' timestamp='2007-02-05 22:31:07' lat='48.8649014255139' lon='2.3184642791748' />
+  <node id='25273899' timestamp='2007-01-17 01:21:23' lat='48.8692005531307' lon='2.32418837740624' />
+  <node id='16820918' timestamp='2007-01-11 18:39:50' lat='48.87068641' lon='2.31332291'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='26235702' timestamp='2007-02-28 18:40:14' lat='48.8687266191535' lon='2.32184386253357' />
+  <node id='25666981' timestamp='2007-02-05 22:20:47' lat='48.8663023836873' lon='2.30784273147583' />
+  <node id='25668878' timestamp='2007-02-05 22:31:10' lat='48.8650214083541' lon='2.31811022758484' />
+  <node id='27235267' timestamp='2007-04-09 13:36:36' lat='48.8763752662206' lon='2.31287455558777'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='27415779' timestamp='2007-04-17 00:36:22' lat='48.8660238431129' lon='2.31099749405682'>
+    <tag k='historic' v='museum' />
+    <tag k='name' v='Palais de la Découverte' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='21299471' timestamp='2007-02-05 22:34:52' lat='48.864631609967' lon='2.3211124753434' />
+  <node id='27362250' timestamp='2007-04-14 13:53:37' lat='48.8702139933317' lon='2.3062543015654'>
+    <tag k='railway' v='station' />
+    <tag k='name' v='Francklin D. Roosevelt' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='21292432' timestamp='2007-01-11 18:45:50' lat='48.87053256' lon='2.32564843'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='16820917' timestamp='2007-02-05 22:34:49' lat='48.8659502367263' lon='2.32205629237433' />
+  <node id='21292441' timestamp='2007-01-14 23:20:37' lat='48.87636012' lon='2.31801666'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='16820920' timestamp='2007-01-11 18:39:51' lat='48.87443966' lon='2.3146989'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25272901' timestamp='2007-01-17 00:15:06' lat='48.8657732923498' lon='2.3301887512207' />
+  <node id='25625869' timestamp='2007-02-03 23:24:58' lat='48.8646245328777' lon='2.30654454231262' />
+  <node id='21292431' timestamp='2007-01-17 01:21:32' lat='48.8693336709012' lon='2.32491460956226' />
+  <node id='25626270' timestamp='2007-02-15 22:41:03' lat='48.8691974688112' lon='2.30935887762462' />
+  <node id='368253' timestamp='2007-02-05 22:30:18' lat='48.8674932161777' lon='2.31472167739048' />
+  <node id='398785' timestamp='2007-01-14 23:20:37' lat='48.87474762' lon='2.31985166' />
+  <node id='25669374' timestamp='2007-02-05 22:38:25' lat='48.8649014255139' lon='2.31938695907593' />
+  <node id='16820919' timestamp='2007-01-11 18:39:50' lat='48.87239005' lon='2.31506314'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25934321' timestamp='2007-02-15 22:40:26' lat='48.8681620464095' lon='2.31255269050598' />
+  <node id='27362255' timestamp='2007-04-14 13:53:38' lat='48.8661066498534' lon='2.32215295619618'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273123' timestamp='2007-01-17 00:45:11' lat='48.8663308475141' lon='2.32655167579651' />
+  <node id='27235264' timestamp='2007-04-09 13:36:23' lat='48.8752744862439' lon='2.31579279899597'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25669386' timestamp='2007-02-05 22:37:47' lat='48.8644073754942' lon='2.31926894187927' />
+  <node id='25668913' timestamp='2007-02-05 22:31:21' lat='48.8647390953311' lon='2.31805658340454' />
+  <node id='27362258' timestamp='2007-04-14 13:53:38' lat='48.8645252228114' lon='2.32930456696109'>
+    <tag k='railway' v='station' />
+    <tag k='name' v='Tuileries' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273204' timestamp='2007-01-17 00:42:28' lat='48.8645884034597' lon='2.32932209345563' />
+  <node id='25934313' timestamp='2007-02-15 22:41:59' lat='48.8696475992104' lon='2.31012797355652' />
+  <node id='27362254' timestamp='2007-04-14 13:53:37' lat='48.8658315439897' lon='2.32127173493846'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='368248' timestamp='2007-02-05 22:25:57' lat='48.8645474213014' lon='2.31039380888978' />
+  <node id='25667681' timestamp='2007-02-05 22:26:42' lat='48.8647108639413' lon='2.31070733070374' />
+  <node id='25668861' timestamp='2007-02-05 22:31:05' lat='48.8648873098667' lon='2.31802439689636' />
+  <node id='25273213' timestamp='2007-01-17 00:44:51' lat='48.8662621582143' lon='2.32418815279743' />
+  <node id='27415756' timestamp='2007-04-17 00:36:07' lat='48.8758587767273' lon='2.32717969206447'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25625650' timestamp='2007-02-03 23:20:59' lat='48.8669959182008' lon='2.30634069442749' />
+  <node id='25667937' timestamp='2007-02-05 22:27:39' lat='48.8673222001086' lon='2.31248831748962' />
+  <node id='661211' timestamp='2007-01-11 18:25:38' lat='48.87408581' lon='2.32573957'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='27415774' timestamp='2007-04-17 00:36:19' lat='48.8660917486453' lon='2.31584920505683'>
+    <tag k='historic' v='museum' />
+    <tag k='name' v='Petit Palais' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='15644294' timestamp='2007-01-11 18:33:10' lat='48.87368593' lon='2.31494642'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='27362252' timestamp='2007-04-14 13:53:37' lat='48.8659199710394' lon='2.31985281935401'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='21292433' timestamp='2007-01-11 18:45:57' lat='48.87070448' lon='2.32551775'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='15644295' timestamp='2007-01-11 18:33:11' lat='48.87275578' lon='2.31001669'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667126' timestamp='2007-02-05 22:22:51' lat='48.8682184921906' lon='2.31020307540894' />
+  <node id='25273482' timestamp='2007-01-17 00:46:58' lat='48.8683245469583' lon='2.3232749771887' />
+  <node id='25273088' timestamp='2007-01-17 00:24:16' lat='48.8670224895913' lon='2.32903003692627' />
+  <node id='25273483' timestamp='2007-01-17 00:44:36' lat='48.8679046722455' lon='2.32463121414185' />
+  <node id='398794' timestamp='2007-01-17 01:23:05' lat='48.8695581882607' lon='2.32505148800556' />
+  <node id='21292436' timestamp='2007-01-11 18:46:01' lat='48.87029188' lon='2.32376662'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='368252' timestamp='2007-01-17 00:45:52' lat='48.8666717879441' lon='2.32208824327245' />
+  <node id='25273489' timestamp='2007-01-17 00:44:38' lat='48.86695897184' lon='2.32466340065002' />
+  <node id='27362251' timestamp='2007-04-14 13:53:37' lat='48.8689960487681' lon='2.31022091037821'>
+    <tag k='railway' v='station' />
+    <tag k='name' v='Champs Élysées Clémenceau' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273491' timestamp='2007-01-17 00:45:01' lat='48.8666554970265' lon='2.32560753822327' />
+  <node id='21379135' timestamp='2007-01-11 18:26:09' lat='48.87088574' lon='2.32499723'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273900' timestamp='2007-01-17 01:23:05' lat='48.8693890266248' lon='2.32522509260889' />
+  <node id='25273484' timestamp='2007-01-17 00:47:07' lat='48.8688362402449' lon='2.32527494430542' />
+  <node id='25273118' timestamp='2007-01-17 00:45:16' lat='48.8659003307818' lon='2.32792496681213' />
+  <node id='25934311' timestamp='2007-02-15 22:40:04' lat='48.8693017975087' lon='2.31084144115448' />
+  <node id='25669361' timestamp='2007-02-05 22:36:22' lat='48.8647169072237' lon='2.32034958989072'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667061' timestamp='2007-02-05 22:22:25' lat='48.8648520207314' lon='2.30796074867249' />
+  <node id='25626400' timestamp='2007-02-03 23:47:07' lat='48.8669041702632' lon='2.30646944046021' />
+  <node id='25669360' timestamp='2007-02-05 22:36:22' lat='48.8645579092431' lon='2.32085962223618'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='24909122' timestamp='2007-01-11 18:24:07' lat='48.86392181' lon='2.32171512' />
+  <node id='24910095' timestamp='2007-01-11 18:23:08' lat='48.86448142' lon='2.32372141' />
+  <node id='27362253' timestamp='2007-04-14 13:53:37' lat='48.8657945862604' lon='2.32052550368999'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25666980' timestamp='2007-02-05 22:20:46' lat='48.8662388650219' lon='2.30768179893494' />
+  <node id='398793' timestamp='2007-01-17 01:23:48' lat='48.8698938565057' lon='2.32805418629141' />
+  <node id='25669384' timestamp='2007-02-05 22:37:44' lat='48.8647249796382' lon='2.31858229637146' />
+  <node id='25934315' timestamp='2007-02-15 22:40:13' lat='48.869569970465' lon='2.31065368652344' />
+  <node id='25669362' timestamp='2007-02-05 22:36:22' lat='48.8662554810637' lon='2.32149731921044'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667335' timestamp='2007-02-05 22:25:49' lat='48.8645344173937' lon='2.30982756614685' />
+  <node id='25273211' timestamp='2007-01-17 00:45:07' lat='48.8656791557125' lon='2.32604103322956' />
+  <node id='25626412' timestamp='2007-02-03 23:47:18' lat='48.8684850342808' lon='2.30926966667175' />
+  <node id='25273480' timestamp='2007-01-17 00:46:35' lat='48.8663435968049' lon='2.32363169183373' />
+  <node id='25625643' timestamp='2007-02-03 23:20:47' lat='48.8649774247154' lon='2.30328297615051' />
+  <node id='25669377' timestamp='2007-02-05 22:38:44' lat='48.8650778707675' lon='2.31942987442017' />
+  <node id='25668883' timestamp='2007-02-05 22:31:11' lat='48.8650637551701' lon='2.31783127784729' />
+  <node id='25273131' timestamp='2007-01-17 00:45:24' lat='48.8668954540081' lon='2.32778549194336' />
+  <node id='25273543' timestamp='2007-01-17 00:47:02' lat='48.8665425756959' lon='2.32364416122437' />
+  <node id='25273493' timestamp='2007-01-17 00:44:39' lat='48.8674177093434' lon='2.32624053955078' />
+  <node id='25934312' timestamp='2007-02-15 22:40:08' lat='48.8695029273607' lon='2.31013333797455' />
+  <node id='25668794' timestamp='2007-02-05 22:30:43' lat='48.8677949089247' lon='2.31381160370372'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='24909179' timestamp='2007-01-11 18:25:06' lat='48.86365361' lon='2.33184314' />
+  <node id='25669370' timestamp='2007-02-05 22:37:05' lat='48.8646120539512' lon='2.31941914558411' />
+  <node id='24909120' timestamp='2007-01-11 18:24:07' lat='48.86620854' lon='2.32379651' />
+  <node id='25626403' timestamp='2007-02-03 23:47:07' lat='48.8676240341787' lon='2.30767107009888' />
+  <node id='368249' timestamp='2007-01-14 00:26:43' lat='48.8625334437067' lon='2.31049858763436' />
+  <node id='25934318' timestamp='2007-02-15 22:40:17' lat='48.8696228991681' lon='2.3104122877121' />
+  <node id='24910088' timestamp='2007-01-11 18:23:02' lat='48.86444966' lon='2.324628' />
+  <node id='25669363' timestamp='2007-02-05 22:36:22' lat='48.8661100533116' lon='2.32194567555888'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='24909121' timestamp='2007-01-11 18:24:07' lat='48.86610973' lon='2.32339954' />
+  <node id='25667968' timestamp='2007-02-05 22:27:49' lat='48.8671104752255' lon='2.3139796257019' />
+  <node id='21292437' timestamp='2007-01-17 00:47:27' lat='48.8698012827819' lon='2.32343290648714' />
+  <node id='25273216' timestamp='2007-01-17 01:23:31' lat='48.86963849727' lon='2.32658153403463' />
+  <node id='27235168' timestamp='2007-04-09 13:31:28' lat='48.8771655548558' lon='2.32306694984436'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25273215' timestamp='2007-01-17 01:23:44' lat='48.8698705195304' lon='2.32793675189896' />
+  <node id='27235261' timestamp='2007-04-09 13:36:06' lat='48.876509333922' lon='2.31571769714355'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='16820915' timestamp='2007-02-05 22:41:16' lat='48.8655523912582' lon='2.32072421609337' />
+  <node id='25667131' timestamp='2007-02-05 22:25:03' lat='48.8683737537545' lon='2.31019234657288' />
+  <node id='25626401' timestamp='2007-02-03 23:47:07' lat='48.8675322873928' lon='2.30774617195129' />
+  <node id='21292435' timestamp='2007-01-11 18:46:01' lat='48.87096235' lon='2.32423708'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25667970' timestamp='2007-02-05 22:27:51' lat='48.8671104752255' lon='2.31425857543945' />
+  <node id='27362257' timestamp='2007-04-14 13:53:38' lat='48.8661656009131' lon='2.32425892564258'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='27235323' timestamp='2007-04-09 13:40:12' lat='48.8749640054608' lon='2.3092052936554'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='25273121' timestamp='2007-01-17 00:28:05' lat='48.8652863087062' lon='2.32981324195862' />
+  <node id='25273595' timestamp='2007-01-17 00:48:50' lat='48.8697677909012' lon='2.3282253742218' />
+  <node id='25667942' timestamp='2007-02-05 22:27:41' lat='48.8673222001086' lon='2.31282091140747' />
+  <node id='21292438' timestamp='2007-01-14 23:20:37' lat='48.87220011' lon='2.32193709'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='25273901' timestamp='2007-01-17 01:23:06' lat='48.8695137333513' lon='2.32513546943665' />
+  <node id='368207' timestamp='2007-01-17 00:29:51' lat='48.8652738723173' lon='2.32731318053993' />
+  <node id='21660390' timestamp='2007-01-11 18:26:04' lat='48.87481069' lon='2.30520797' />
+  <node id='27235265' timestamp='2007-04-09 13:36:26' lat='48.8755002892395' lon='2.31483793258667'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </node>
+  <node id='27362256' timestamp='2007-04-14 13:53:38' lat='48.8663129782587' lon='2.32312379317501'>
+    <tag k='railway' v='station' />
+    <tag k='name' v='Concorde' />
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <node id='21299473' timestamp='2007-02-05 22:35:09' lat='48.8648885056993' lon='2.32026877752651' />
+  <node id='4616525' timestamp='2007-01-13 23:58:45' lat='48.8627998581436' lon='2.31348926116334' />
+  <node id='25273212' timestamp='2007-01-17 00:44:56' lat='48.8659870617059' lon='2.32506452677626' />
+  <node id='25625847' timestamp='2007-02-03 23:24:22' lat='48.8644269123617' lon='2.30497813224792' />
+  <node id='25273902' timestamp='2007-01-17 01:26:22' lat='48.869566983641' lon='2.32619269381111'>
+    <tag k='created_by' v='JOSM' />
+  </node>
+  <segment id='23409257' from='25934316' to='16820918'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661745' from='25668861' to='25669367' />
+  <segment id='23227901' from='27235322' to='27235305'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='21256406' from='25273489' to='25273491' />
+  <segment id='21256415' from='25273486' to='25273487' />
+  <segment id='21661307' from='25667837' to='25667850' />
+  <segment id='21661291' from='25625847' to='25667335' />
+  <segment id='13453212' from='16820918' to='16820919'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256496' from='25273493' to='25273595' />
+  <segment id='17391295' from='21299472' to='25669360'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256401' from='25273212' to='25273491' />
+  <segment id='21256915' from='25273899' to='21292431'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661649' from='25667709' to='25668861' />
+  <segment id='21661306' from='368248' to='25667837' />
+  <segment id='21256007' from='25273131' to='25272903' />
+  <segment id='21256393' from='25273213' to='25273480'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661632' from='25667976' to='368253' />
+  <segment id='21661198' from='25666984' to='25666985' />
+  <segment id='23409258' from='16820920' to='27235266'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23355570' from='27362250' to='27362251'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661752' from='25669384' to='25669386' />
+  <segment id='21661284' from='25667126' to='25667131' />
+  <segment id='21661300' from='25667942' to='25667953' />
+  <segment id='21661746' from='25669367' to='25669370' />
+  <segment id='21903809' from='25934316' to='25934315' />
+  <segment id='21661301' from='25667953' to='25667968' />
+  <segment id='23355572' from='27362252' to='27362253'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385017' from='21292436' to='21292437'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21626852' from='25626403' to='25626412' />
+  <segment id='17391297' from='21299473' to='25669361'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661203' from='25625643' to='25666985' />
+  <segment id='21661651' from='25668870' to='25668878' />
+  <segment id='21661740' from='25669363' to='21299470'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385016' from='21292435' to='21292436'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='321342' from='368250' to='368253' />
+  <segment id='23355577' from='27362257' to='27362258'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='349232' from='361107' to='398783' />
+  <segment id='21903813' from='25934312' to='25934313' />
+  <segment id='21661712' from='25669314' to='21299472'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256394' from='25273482' to='398795'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21903808' from='25934321' to='25934286' />
+  <segment id='20892703' from='24909122' to='24909121'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23409255' from='27415811' to='27235266'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661195' from='25666982' to='25666983' />
+  <segment id='21903866' from='25668794' to='25934321'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17455676' from='21379135' to='398783'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661751' from='25668861' to='25669384' />
+  <segment id='21256006' from='25273128' to='25273131' />
+  <segment id='21661739' from='25669362' to='16820916'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661296' from='25667701' to='25667709' />
+  <segment id='21661755' from='25669370' to='25669314' />
+  <segment id='21661302' from='25667968' to='25667970' />
+  <segment id='17385013' from='21292432' to='21292433'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661194' from='25666981' to='25666982' />
+  <segment id='21661200' from='25626400' to='25666980' />
+  <segment id='21626857' from='25626401' to='25626403' />
+  <segment id='21626849' from='25625650' to='25626403' />
+  <segment id='21256403' from='25273491' to='25273493' />
+  <segment id='23227830' from='27235264' to='27235261'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='21256408' from='25273491' to='25273123' />
+  <segment id='21661299' from='25667937' to='25667942' />
+  <segment id='21256098' from='25273211' to='25273212'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='321340' from='368249' to='368248' />
+  <segment id='21256923' from='25273900' to='25273902'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23355575' from='27362255' to='27362256'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='13453213' from='16820919' to='15644294'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='20893624' from='24910066' to='24910081' />
+  <segment id='21903805' from='25667136' to='25934279' />
+  <segment id='13453208' from='16820916' to='16820915'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661293' from='368248' to='368247' />
+  <segment id='21661285' from='25667131' to='25667136' />
+  <segment id='21256101' from='25273216' to='25273215'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23227831' from='27235264' to='27235265'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='17385014' from='21292433' to='21379135'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661193' from='25666980' to='25666981' />
+  <segment id='23227900' from='27235323' to='27235322'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='21255991' from='25273099' to='25273100' />
+  <segment id='17391293' from='21299470' to='25669362'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21626855' from='25626413' to='25626414' />
+  <segment id='21256411' from='25273487' to='25273493' />
+  <segment id='21661647' from='25668883' to='25667904' />
+  <segment id='21256008' from='25273123' to='25273118' />
+  <segment id='21661742' from='25669377' to='25669374' />
+  <segment id='349239' from='398793' to='25273864' />
+  <segment id='23409259' from='27415813' to='15644294'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385015' from='21292434' to='21292435'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661650' from='25668870' to='25668861' />
+  <segment id='23227907' from='27235322' to='27235304'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='17398103' from='4616525' to='368247'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21903804' from='25626414' to='25667136' />
+  <segment id='21256100' from='25273215' to='398793'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21903815' from='25934311' to='25934316' />
+  <segment id='21661312' from='25667837' to='25667061' />
+  <segment id='614554' from='661211' to='398784'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='20893626' from='24910081' to='24910083' />
+  <segment id='21903806' from='25626383' to='25626270' />
+  <segment id='17385021' from='398785' to='21292441'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256390' from='25273211' to='25273123' />
+  <segment id='21661310' from='25667859' to='25667837' />
+  <segment id='23355574' from='27362254' to='27362255'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385018' from='21292437' to='25273898'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661737' from='25669360' to='21299471'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661294' from='25667067' to='25667681' />
+  <segment id='17391298' from='368252' to='21299470'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256922' from='25273595' to='25273864' />
+  <segment id='21661463' from='25668541' to='25668794'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17391294' from='21299471' to='16820917'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256009' from='25273118' to='25273121' />
+  <segment id='21661743' from='25669374' to='25669376' />
+  <segment id='321336' from='25273480' to='368252' />
+  <segment id='21256425' from='25273483' to='25273484' />
+  <segment id='21661297' from='25667115' to='25667931' />
+  <segment id='13453215' from='15644294' to='16820920'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23409251' from='21660390' to='27235323'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21255993' from='25273101' to='25273088' />
+  <segment id='21661281' from='25666982' to='25667112' />
+  <segment id='349234' from='398784' to='398785' />
+  <segment id='21661313' from='25667904' to='25667837' />
+  <segment id='21903807' from='25934286' to='25934279' />
+  <segment id='21903801' from='25934280' to='368254' />
+  <segment id='21903810' from='25934315' to='25934318' />
+  <segment id='21661288' from='25667061' to='25666984' />
+  <segment id='21903803' from='25626383' to='25626414' />
+  <segment id='614555' from='398783' to='661211'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661304' from='368247' to='25667904' />
+  <segment id='21256921' from='25273901' to='398794' />
+  <segment id='349237' from='398795' to='25273899' />
+  <segment id='21661201' from='25666981' to='25626401' />
+  <segment id='21661309' from='25666983' to='25667859' />
+  <segment id='23409261' from='27235264' to='398785'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661814' from='25668922' to='25669514' />
+  <segment id='21256389' from='368207' to='25273118' />
+  <segment id='23227829' from='27235266' to='27235264'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='21256914' from='25273898' to='398795'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661800' from='25669409' to='25669376' />
+  <segment id='21661295' from='25667681' to='25667701' />
+  <segment id='21256920' from='25273900' to='25273901' />
+  <segment id='21661287' from='25625869' to='25667067' />
+  <segment id='21256404' from='25273213' to='25273489' />
+  <segment id='21661298' from='25667931' to='25667937' />
+  <segment id='23355576' from='27362256' to='27362257'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661292' from='25667335' to='368248' />
+  <segment id='21256433' from='25273484' to='25273486' />
+  <segment id='12458476' from='398785' to='27415813'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='20892705' from='24909120' to='24909179'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21255976' from='25272903' to='25273088' />
+  <segment id='13453209' from='16820915' to='368250'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23409254' from='27235323' to='27415811'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='22214013' from='26235702' to='25273482' />
+  <segment id='21256497' from='25273595' to='25272917' />
+  <segment id='21661744' from='25669376' to='25668870' />
+  <segment id='21903802' from='368254' to='25626383' />
+  <segment id='614557' from='27235168' to='661213'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23227828' from='27235265' to='27235266'>
+    <tag k='created_by' v='YahooApplet 1.0' />
+  </segment>
+  <segment id='21661199' from='25666985' to='25666980' />
+  <segment id='21256092' from='25273204' to='368207'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='614556' from='661211' to='661213'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21255992' from='25273100' to='25273101' />
+  <segment id='13453207' from='16820917' to='25669363'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385012' from='398794' to='21292432'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661656' from='25668913' to='25668922' />
+  <segment id='21661747' from='25669374' to='25669370' />
+  <segment id='21256917' from='21292431' to='25273900'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661286' from='25667061' to='25625871' />
+  <segment id='21256413' from='25273493' to='25273128' />
+  <segment id='23355571' from='27362251' to='27362252'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256011' from='25273118' to='25272903' />
+  <segment id='349235' from='368252' to='25273482' />
+  <segment id='21626696' from='25626270' to='25626382'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23365430' from='398785' to='661213'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661283' from='25667115' to='25667126' />
+  <segment id='21626853' from='25626412' to='25626413' />
+  <segment id='21661631' from='25667968' to='25668541' />
+  <segment id='21256491' from='25273543' to='25273483' />
+  <segment id='21256916' from='25273902' to='25273216'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661799' from='25669377' to='25669409' />
+  <segment id='21256099' from='25273212' to='25273213'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='20892704' from='24909121' to='24909120'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661750' from='25668922' to='25669386' />
+  <segment id='20893635' from='24910095' to='24910066' />
+  <segment id='21903800' from='25934279' to='25934280' />
+  <segment id='21661741' from='368250' to='25669377' />
+  <segment id='20893627' from='24910083' to='24910088' />
+  <segment id='17385011' from='21292431' to='398794'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23409260' from='27415813' to='27235264'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='17385020' from='21292438' to='398785'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21903814' from='25934280' to='25934311' />
+  <segment id='21256490' from='25273480' to='25273543' />
+  <segment id='17455675' from='21379135' to='21292434'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21903812' from='368254' to='25934312' />
+  <segment id='21661653' from='25668878' to='25668883' />
+  <segment id='23355573' from='27362253' to='27362254'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661738' from='25669361' to='21299472'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='12458477' from='15644294' to='15644295'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661756' from='21299473' to='25669374' />
+  <segment id='21661196' from='25666983' to='25666984' />
+  <segment id='21256918' from='25273900' to='25273486' />
+  <segment id='23409256' from='27235267' to='27415811'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661303' from='25667970' to='25667976' />
+  <segment id='21661311' from='25667850' to='25667115' />
+  <segment id='321344' from='368253' to='25668541' />
+  <segment id='21661305' from='25667904' to='25667968' />
+  <segment id='21661282' from='25667112' to='25667115' />
+  <segment id='21256097' from='368207' to='25273211'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256410' from='25273483' to='25273487' />
+  <segment id='21255725' from='25272903' to='25272901' />
+  <segment id='17385019' from='21292437' to='21292438'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21661654' from='368247' to='25668913' />
+  <segment id='21903811' from='25934318' to='25934313' />
+  <segment id='17391296' from='16820915' to='21299473'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256847' from='25273864' to='25273865'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='23409225' from='661213' to='27415756'>
+    <tag k='created_by' v='JOSM' />
+  </segment>
+  <segment id='21256489' from='25273482' to='25273483' />
+  <way id='4251023' timestamp='2007-01-26 00:09:14'>
+    <seg id='21256918' />
+    <seg id='21256415' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4018039' timestamp='2006-11-27 19:51:54'>
+    <seg id='21256917' />
+    <seg id='21256923' />
+    <seg id='21256916' />
+    <seg id='21256101' />
+    <seg id='21256100' />
+    <seg id='349239' />
+    <seg id='21256847' />
+    <seg id='21256848' />
+    <seg id='349240' />
+    <seg id='21256718' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294023' timestamp='2007-02-15 22:35:24'>
+    <seg id='21661297' />
+    <seg id='21661298' />
+    <seg id='21661299' />
+    <seg id='21661300' />
+    <seg id='21661301' />
+    <seg id='21661302' />
+    <seg id='21661303' />
+    <seg id='21661632' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251027' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256404' />
+    <seg id='21256406' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039351' timestamp='2006-12-01 01:20:28'>
+    <seg id='13453205' />
+    <seg id='21661712' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039870' timestamp='2006-12-01 01:22:00'>
+    <seg id='313609' />
+    <seg id='313610' />
+    <seg id='21189835' />
+    <seg id='21189838' />
+    <seg id='313611' />
+    <seg id='349232' />
+    <seg id='614555' />
+    <seg id='614554' />
+    <seg id='349234' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294053' timestamp='2007-02-15 22:44:26'>
+    <seg id='21661307' />
+    <seg id='21661311' />
+    <seg id='21661283' />
+    <seg id='21661284' />
+    <seg id='21661285' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294020' timestamp='2007-02-15 22:35:19'>
+    <seg id='21661281' />
+    <seg id='21661282' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4472313' timestamp='2007-04-17 00:37:34'>
+    <seg id='614556' />
+    <tag k='oneway' v='yes' />
+    <tag k='highway' v='unclassified' />
+    <tag k='name' v='Rue de Rome' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251021' timestamp='2007-01-26 00:09:14'>
+    <seg id='21256489' />
+    <seg id='21256410' />
+    <seg id='21256411' />
+    <seg id='21255725' />
+    <seg id='21255727' />
+    <seg id='21256413' />
+    <seg id='21256006' />
+    <seg id='21256007' />
+    <seg id='21256013' />
+    <seg id='21256014' />
+    <seg id='21256293' />
+    <seg id='21256297' />
+    <seg id='21256300' />
+    <seg id='21256306' />
+    <seg id='23409189' />
+    <tag k='highway' v='unclassified' />
+    <tag k='name' v='Rue Saint-Honoré' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4234143' timestamp='2007-01-17 01:30:31'>
+    <seg id='21256389' />
+    <seg id='21256011' />
+    <seg id='21255976' />
+    <tag k='highway' v='secondary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294097' timestamp='2007-02-15 23:06:38'>
+    <seg id='21661745' />
+    <seg id='21661746' />
+    <seg id='21661755' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294101' timestamp='2007-02-15 23:06:39'>
+    <seg id='21661751' />
+    <seg id='21661752' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251029' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256390' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294013' timestamp='2007-02-15 22:35:07'>
+    <seg id='21626323' />
+    <seg id='21626330' />
+    <seg id='21626331' />
+    <seg id='21626117' />
+    <seg id='21626118' />
+    <seg id='21626856' />
+    <seg id='21661200' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294021' timestamp='2007-02-15 22:35:22'>
+    <seg id='21661201' />
+    <seg id='21626857' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294025' timestamp='2007-02-15 22:35:27'>
+    <seg id='21661304' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4018037' timestamp='2006-11-27 19:51:53'>
+    <seg id='349235' />
+    <seg id='21256394' />
+    <seg id='17391298' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294035' timestamp='2007-02-15 22:36:56'>
+    <seg id='13453209' />
+    <seg id='321342' />
+    <seg id='321344' />
+    <seg id='21661463' />
+    <seg id='21903866' />
+    <seg id='21903808' />
+    <seg id='21903807' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Champs Elysées' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294093' timestamp='2007-02-15 23:06:38'>
+    <seg id='21625984' />
+    <seg id='21626224' />
+    <seg id='21626225' />
+    <seg id='21626226' />
+    <seg id='21626227' />
+    <seg id='21661291' />
+    <seg id='21661292' />
+    <seg id='21661293' />
+    <seg id='21661654' />
+    <seg id='21661656' />
+    <seg id='21661750' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294099' timestamp='2007-02-15 23:06:38'>
+    <seg id='21661741' />
+    <seg id='21661742' />
+    <seg id='21661747' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4041055' timestamp='2006-12-01 18:00:30'>
+    <seg id='321340' />
+    <tag k='oneway' v='yes' />
+    <tag k='highway' v='secondary' />
+    <tag k='name' v='Pont des Invalides' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294019' timestamp='2007-02-15 22:35:17'>
+    <seg id='21661288' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294018' timestamp='2007-02-15 22:35:14'>
+    <seg id='21661198' />
+    <seg id='21661199' />
+    <seg id='21661193' />
+    <seg id='21661194' />
+    <seg id='21661195' />
+    <seg id='21661196' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294092' timestamp='2007-02-15 23:06:38'>
+    <seg id='21661651' />
+    <seg id='21661653' />
+    <seg id='21661647' />
+    <seg id='21661313' />
+    <seg id='21661312' />
+    <seg id='21661286' />
+    <seg id='21626247' />
+    <seg id='21626232' />
+    <seg id='21626089' />
+    <seg id='21626092' />
+    <seg id='21626079' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4040024' timestamp='2006-12-01 01:22:26'>
+    <seg id='12458476' />
+    <seg id='23409259' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251024' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256920' />
+    <seg id='21256921' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039498' timestamp='2006-12-01 01:20:55'>
+    <seg id='12458477' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251042' timestamp='2007-01-26 00:09:17'>
+    <seg id='21256009' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4208655' timestamp='2007-01-05 23:08:28'>
+    <seg id='20893635' />
+    <seg id='20893624' />
+    <seg id='20893626' />
+    <seg id='20893627' />
+    <seg id='20893628' />
+    <seg id='20893630' />
+    <seg id='20893631' />
+    <seg id='20893633' />
+    <tag k='natural' v='water' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4450280' timestamp='2007-04-13 02:24:45'>
+    <seg id='23323688' />
+    <seg id='23323700' />
+    <seg id='23355557' />
+    <seg id='23355558' />
+    <seg id='23355559' />
+    <seg id='23355560' />
+    <seg id='23355561' />
+    <seg id='23355562' />
+    <seg id='23355563' />
+    <seg id='23355564' />
+    <seg id='23355565' />
+    <seg id='23355566' />
+    <seg id='23355567' />
+    <seg id='23355568' />
+    <seg id='23355569' />
+    <seg id='23355570' />
+    <seg id='23355571' />
+    <seg id='23355572' />
+    <seg id='23355573' />
+    <seg id='23355574' />
+    <seg id='23355575' />
+    <seg id='23355576' />
+    <seg id='23355577' />
+    <seg id='23355578' />
+    <seg id='23355579' />
+    <seg id='23364295' />
+    <seg id='23364297' />
+    <seg id='23364299' />
+    <seg id='23364300' />
+    <seg id='23364302' />
+    <seg id='23364303' />
+    <seg id='23364304' />
+    <seg id='23364305' />
+    <seg id='23364307' />
+    <seg id='23364308' />
+    <seg id='23364310' />
+    <seg id='23364311' />
+    <seg id='23364315' />
+    <seg id='23364318' />
+    <seg id='23364321' />
+    <seg id='23364324' />
+    <seg id='23364328' />
+    <seg id='23364331' />
+    <seg id='23364333' />
+    <tag k='railway' v='subway' />
+    <tag k='name' v='Metro 1' />
+    <tag k='created_by' v='JOSM' />
+    <tag k='layer' v='-2' />
+  </way>
+  <way id='4294072' timestamp='2007-02-15 22:58:51'>
+    <seg id='21626229' />
+    <seg id='21626230' />
+    <seg id='21626238' />
+    <seg id='21661287' />
+    <seg id='21661294' />
+    <seg id='21661295' />
+    <seg id='21661296' />
+    <seg id='21661649' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4234142' timestamp='2007-01-17 01:30:31'>
+    <seg id='21255987' />
+    <seg id='21255988' />
+    <seg id='21255989' />
+    <seg id='21255990' />
+    <seg id='21255991' />
+    <seg id='21255992' />
+    <seg id='21255993' />
+    <seg id='21255984' />
+    <seg id='21255985' />
+    <seg id='21255986' />
+    <tag k='highway' v='service' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4208515' timestamp='2007-01-05 20:46:30'>
+    <seg id='20892706' />
+    <seg id='20892707' />
+    <seg id='20892708' />
+    <seg id='20892709' />
+    <seg id='20892710' />
+    <seg id='20892711' />
+    <seg id='20892712' />
+    <seg id='20892713' />
+    <seg id='20892714' />
+    <seg id='20892715' />
+    <seg id='20892716' />
+    <seg id='20892717' />
+    <seg id='20892718' />
+    <seg id='20892719' />
+    <seg id='20892720' />
+    <seg id='20892722' />
+    <seg id='20892703' />
+    <seg id='20892704' />
+    <seg id='20892705' />
+    <seg id='20892692' />
+    <tag k='leisure' v='park' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251028' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256408' />
+    <seg id='21256008' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294024' timestamp='2007-02-15 22:35:26'>
+    <seg id='21661306' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294102' timestamp='2007-02-15 23:06:39'>
+    <seg id='21661814' />
+    <seg id='21661815' />
+    <seg id='21661816' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251030' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256497' />
+    <seg id='21255769' />
+    <seg id='21255771' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251022' timestamp='2007-01-26 00:09:14'>
+    <seg id='21256490' />
+    <seg id='21256491' />
+    <seg id='21256425' />
+    <seg id='21256433' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4472321' timestamp='2007-04-17 00:37:36'>
+    <seg id='321336' />
+    <tag k='highway' v='secondary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039569' timestamp='2006-12-01 01:21:08'>
+    <seg id='321267' />
+    <seg id='21547988' />
+    <seg id='21547987' />
+    <seg id='21547986' />
+    <seg id='21547985' />
+    <seg id='12458245' />
+    <seg id='21547642' />
+    <seg id='321286' />
+    <seg id='12458237' />
+    <seg id='21547316' />
+    <seg id='21547315' />
+    <seg id='21547313' />
+    <seg id='21547312' />
+    <seg id='321287' />
+    <seg id='21547300' />
+    <seg id='21547299' />
+    <seg id='21547297' />
+    <seg id='321288' />
+    <seg id='21547211' />
+    <seg id='21547162' />
+    <seg id='321289' />
+    <seg id='21547159' />
+    <seg id='21547158' />
+    <seg id='21547157' />
+    <seg id='21547205' />
+    <seg id='349261' />
+    <seg id='349260' />
+    <seg id='321290' />
+    <seg id='21256090' />
+    <seg id='21256091' />
+    <seg id='21256092' />
+    <seg id='21256097' />
+    <seg id='21256098' />
+    <seg id='21256099' />
+    <seg id='21256393' />
+    <tag k='oneway' v='yes' />
+    <tag k='highway' v='secondary' />
+    <tag k='name' v='Rue de Rivoli' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294098' timestamp='2007-02-15 23:06:38'>
+    <seg id='21661756' />
+    <seg id='21661743' />
+    <seg id='21661744' />
+    <seg id='21661650' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294022' timestamp='2007-02-15 22:35:23'>
+    <seg id='21661309' />
+    <seg id='21661310' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294026' timestamp='2007-02-15 22:35:28'>
+    <seg id='21661305' />
+    <seg id='21661631' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294054' timestamp='2007-02-15 22:44:26'>
+    <seg id='21903801' />
+    <seg id='21903802' />
+    <seg id='21903803' />
+    <seg id='21903804' />
+    <seg id='21903805' />
+    <seg id='21903800' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Rond-point des Champs Elysées' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039435' timestamp='2006-12-01 01:20:44'>
+    <seg id='17455676' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039259' timestamp='2006-12-01 01:20:09'>
+    <seg id='23409225' />
+    <seg id='23409226' />
+    <seg id='320984' />
+    <seg id='320985' />
+    <seg id='21189844' />
+    <tag k='highway' v='unclassified' />
+    <tag k='name' v='Rue Saint-Lazare' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294052' timestamp='2007-02-15 22:44:26'>
+    <seg id='21626849' />
+    <seg id='21626852' />
+    <seg id='21626853' />
+    <seg id='21626855' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4018038' timestamp='2006-11-27 19:51:53'>
+    <seg id='17385017' />
+    <seg id='17385018' />
+    <seg id='21256914' />
+    <seg id='349237' />
+    <seg id='21256915' />
+    <seg id='17385011' />
+    <seg id='17385012' />
+    <seg id='17385013' />
+    <seg id='17385014' />
+    <seg id='17455675' />
+    <seg id='17385015' />
+    <seg id='17385016' />
+    <tag k='highway' v='primary' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294100' timestamp='2007-02-15 23:06:39'>
+    <seg id='21661799' />
+    <seg id='21661800' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4041056' timestamp='2006-12-01 18:00:30'>
+    <seg id='17398103' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Pont Alexandre III' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='3599144' timestamp='2006-10-07 21:15:49'>
+    <seg id='21903806' />
+    <seg id='21626696' />
+    <seg id='21626819' />
+    <seg id='21626695' />
+    <seg id='21626818' />
+    <seg id='321418' />
+    <seg id='21626694' />
+    <seg id='21626693' />
+    <seg id='321419' />
+    <seg id='17726880' />
+    <seg id='321420' />
+    <seg id='17726879' />
+    <seg id='614569' />
+    <seg id='21626787' />
+    <seg id='17726878' />
+    <seg id='614570' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Champs Elysées' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4018029' timestamp='2006-11-27 19:51:52'>
+    <seg id='17385019' />
+    <seg id='17385020' />
+    <seg id='17385021' />
+    <seg id='17385022' />
+    <seg id='23227765' />
+    <seg id='23227766' />
+    <seg id='23298871' />
+    <seg id='17385023' />
+    <seg id='23244819' />
+    <seg id='23227793' />
+    <seg id='17385024' />
+    <seg id='23244530' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Boulevard Malesherbes' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4472317' timestamp='2007-04-17 00:37:35'>
+    <seg id='23365430' />
+    <tag k='highway' v='unclassified' />
+    <tag k='name' v='Rue de la Pépinière' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039426' timestamp='2006-12-01 01:20:42'>
+    <seg id='320961' />
+    <seg id='23227218' />
+    <seg id='320962' />
+    <seg id='23314882' />
+    <seg id='23314883' />
+    <seg id='23227217' />
+    <seg id='320972' />
+    <seg id='23227511' />
+    <seg id='23227407' />
+    <seg id='23227412' />
+    <seg id='23227401' />
+    <seg id='23227733' />
+    <seg id='614558' />
+    <seg id='23227732' />
+    <seg id='614557' />
+    <tag k='highway' v='unclassified' />
+    <tag k='name' v='Rue de Rome' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4294016' timestamp='2007-02-15 22:35:11'>
+    <seg id='21661203' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4039116' timestamp='2006-12-01 01:19:39'>
+    <seg id='13453212' />
+    <seg id='13453213' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4251025' timestamp='2007-01-26 00:09:15'>
+    <seg id='21256401' />
+    <seg id='21256403' />
+    <seg id='21256496' />
+    <seg id='21256922' />
+    <tag k='highway' v='unclassified' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+  <way id='4018036' timestamp='2006-11-27 19:51:53'>
+    <seg id='13453208' />
+    <seg id='17391296' />
+    <seg id='17391297' />
+    <seg id='21661738' />
+    <seg id='17391295' />
+    <seg id='21661737' />
+    <seg id='17391294' />
+    <seg id='13453207' />
+    <seg id='21661740' />
+    <seg id='17391293' />
+    <seg id='21661739' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Place de la Concorde' />
+    <tag k='created_by' v='JOSM' />
+  </way>
+</osm>

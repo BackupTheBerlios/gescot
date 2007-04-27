@@ -57,7 +57,7 @@ public class HCargarMapa implements IHerramienta {
 	 */
 	public int hacer(IModelo modelo) {
 		Mapa mapaNuevo = null;
-		fc = new JFileChooser();
+		fc = new JFileChooser(".//is/SimTraffic/Ejemplos");
 		String[] ext = new String[] { "osm" };
 		fc.addChoosableFileFilter(new ExtFilter(ext, "Mapa OSM (*.osm)"));
 		int val = fc.showOpenDialog(null);
