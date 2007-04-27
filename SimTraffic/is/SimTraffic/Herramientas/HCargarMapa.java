@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,12 +16,14 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Utils.Tiempo;
+import is.SimTraffic.Vista.PanelEsperaCargando;
 import is.SimTraffic.Vista.PanelMapa;
 
 /**
@@ -66,6 +69,13 @@ public class HCargarMapa implements IHerramienta {
 
 		if (val == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
+			
+			//No funciona el Cargando..., pues no se muestra la información de la ventana (debido a la carga del mapa, creo).
+			//Queda pendiente ver como se soluciona (seguro que es fácil, pero habrá que saber el truco para hacerlo).
+			JFrame pEsperaCargando = null;
+			pEsperaCargando = new PanelEsperaCargando();
+			pEsperaCargando.setVisible(true);
+			
 			// Faltaría definir comportamiento ante fallos.
 			try {
 				mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
@@ -82,6 +92,9 @@ public class HCargarMapa implements IHerramienta {
 				System.out.println("Error al leer archivo");
 				e.printStackTrace();
 			}
+			
+			pEsperaCargando.setVisible(false);
+			
 			// if (mapaNuevo==null)
 			// System.out.println("Mapa vacío?");
 		
