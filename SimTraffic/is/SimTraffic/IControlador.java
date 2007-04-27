@@ -74,4 +74,6 @@ public interface IControlador {
 	public List getHistorial();
 
 	public boolean mapaTieneLineasBus();
+
+	public boolean cambiosEnMapa();
 }

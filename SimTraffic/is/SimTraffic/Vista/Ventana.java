@@ -465,7 +465,7 @@ public class Ventana extends JFrame {
 		
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem
-				.addActionListener(new AccionNuevo(modelo, panel_mapa));
+				.addActionListener(new AccionNuevo(controlador, panel_mapa));
 		nuevoMapaMenuItem.setText("Nuevo Mapa");
 		nuevoMapaMenuItem.setMnemonic('N');
 		nuevoMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK));

@@ -51,7 +51,7 @@ public class BarraSuperior extends JPanel {
 		Barra archivoTB = new Barra();
 
 		JButton nuevoTB = (JButton) archivoTB.añadirBoton("document-new.png",
-				"document-new2.png", "Nuevo mapa", new AccionNuevo(modelo,
+				"document-new2.png", "Nuevo mapa", new AccionNuevo(controlador,
 						ventana.getPanel_mapa()), false);
 		nuevoTB.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para crear un nuevo mapa.", ventana));

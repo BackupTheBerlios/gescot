@@ -66,7 +66,7 @@ public class Simulacion {
 	private int[] salidas = new int[3];
 
 	private int vehiculosActivos;
-	
+
 	private Reloj reloj;
 
 	public Simulacion() {
@@ -109,14 +109,15 @@ public class Simulacion {
 			controladorSim.despausar();
 			return 0;
 		}
-		//tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
+		// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 		this.mapa = mapa;
 		int max = max(param.getNumVehiculos());
-		max = max + GrupoVehiculos.nroVehiculos - max % GrupoVehiculos.nroVehiculos;
+		max = max + GrupoVehiculos.nroVehiculos - max
+				% GrupoVehiculos.nroVehiculos;
 		if (max > maxVehiculos)
 			max = maxVehiculos;
 		System.out.println(" " + max);
-		//vehiculos = new ArrayList<Vehiculo>(max + 20);
+		// vehiculos = new ArrayList<Vehiculo>(max + 20);
 		vehiculosActivos = 0;
 		rellenarTabla();
 		crearVehiculos(max + 20);
@@ -136,14 +137,15 @@ public class Simulacion {
 			temp = it.next();
 			es = temp.getEs();
 			if (es != null) {
-			for (int i = 0; i < 3; i++) {
-				entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
-				salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+				for (int i = 0; i < 3; i++) {
+					entradas[i] = entradas[i] + es.getPorcentajesEntrada()[i];
+					salidas[i] = salidas[i] + es.getPorcentajesSalida()[i];
+				}
 			}
-			}
-			
-			if (temp.getSeñal() != null && temp.getSeñal().getClass() == sem.getClass()) {
-				((Semaforo)temp.getSeñal()).setReloj(reloj);
+
+			if (temp.getSeñal() != null
+					&& temp.getSeñal().getClass() == sem.getClass()) {
+				((Semaforo) temp.getSeñal()).setReloj(reloj);
 			}
 		}
 		return 0;
@@ -159,11 +161,13 @@ public class Simulacion {
 	 *         0 - ejecución satisfactoria
 	 */
 	public int detener() {
-		controladorSim.terminar();
-		controladorSim = null;
-		activa = false;
-		vehiculos.clear();
-		tabla.clear();
+		if (controladorSim != null) {
+			controladorSim.terminar();
+			controladorSim = null;
+			activa = false;
+			vehiculos.clear();
+			tabla.clear();
+		}
 		return 0;
 	}
 
@@ -250,12 +254,11 @@ public class Simulacion {
 		}
 	}
 
-	
 	private List<Nodo> hospitales() {
 		List<Nodo> res = new ArrayList<Nodo>();
 		Iterator<Nodo> it = mapa.getNodos().iterator();
 		Nodo temp;
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			temp = it.next();
 			if (temp.getTipo().getValorTipo().compareTo("hospital") == 0) {
 				res.add(temp);
@@ -263,7 +266,7 @@ public class Simulacion {
 		}
 		return res;
 	}
-	
+
 	private int max(int[] numeros) {
 		int res = 0;
 		for (int i = 0; i < numeros.length; i++) {

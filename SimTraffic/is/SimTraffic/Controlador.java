@@ -2,6 +2,9 @@ package is.SimTraffic;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Vista.IVista;
 
@@ -31,6 +34,8 @@ public class Controlador implements IControlador {
 	 * Lista que contiene las distintas acciones realizadas por el usuario.
 	 */
 	public List<String> historial =new ArrayList<String>() ;
+
+	private boolean cambios = false;
 	
 	/**
 	 * Constructor de la clase.
@@ -50,6 +55,22 @@ public class Controlador implements IControlador {
 	 * @roseuid 45C1E08103E7
 	 */
 	public int herramienta(IHerramienta herramienta) {
+		if(modelo.getSimulacion().estaActiva()) {
+			Object[] options = {"De acuerdo",
+                    "Cancelar"};
+			int n = JOptionPane.showOptionDialog(null,
+					"Se detendrá la simulación",
+					"Aviso simulación",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					options,
+					options[0]);
+			if (n==1)
+				return -1;
+			modelo.getSimulacion().detener();
+		}
+		
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
 		//historial.add(herramienta.toString());
@@ -133,5 +154,10 @@ public class Controlador implements IControlador {
 
 	public boolean mapaTieneLineasBus() {
 		return modelo.getMapa().tieneLineasBus();
+	}
+
+	public boolean cambiosEnMapa() {
+		// TODO Hay que dar el valor correcto si hubo cambios en el mapa
+		return false;
 	}
 }

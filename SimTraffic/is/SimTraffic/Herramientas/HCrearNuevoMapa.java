@@ -15,7 +15,6 @@ public class HCrearNuevoMapa implements IHerramienta {
 	
 	
 	public int hacer(IModelo modelo) {
-		// TODO Auto-generated method stub
 		//mapa=modelo.getMapa();
 		modelo.setMapa(new Mapa());
 		return 0;
@@ -25,7 +24,6 @@ public class HCrearNuevoMapa implements IHerramienta {
 		//Consideramos que esta herramienta no debe implementar un método deshacer. 
 		//Si se considera oportuno incluirlo, descomentar lo comentado.
 		//modelo.setMapa(mapa);
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	public String toString(){
