@@ -43,6 +43,10 @@ public class AccionBuscar implements ActionListener {
 		c = new Cursor(0);
 		panel.setCursor(c);
 		JFrame ventanaBuscar = new PanelBuscar(controlador, panel);
-		ventanaBuscar.setVisible(true);
+		//ventanaBuscar.setLocation(200,200);
+		//ventanaBuscar.setSize(400,200);
+		////this.setResizable(false);
+		//ventanaBuscar.setTitle("Buscar...");
+		//ventanaBuscar.setVisible(true);
 	}
 }
