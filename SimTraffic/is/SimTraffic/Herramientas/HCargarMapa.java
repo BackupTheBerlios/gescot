@@ -6,6 +6,7 @@ import is.SimTraffic.IModelo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
@@ -84,13 +86,21 @@ public class HCargarMapa implements IHerramienta {
 			// System.out.println("Mapa vacío?");
 		
 			//Ahora cargamos las señales.
+			try {
 			cargarSeñales(modelo.getMapa());
+			}
+			catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Error al abrir/leer fichero de semaforos");
+				
+			} catch (ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Problema en el fichero de señales, no se cargaran.");
+			}
 		}
 		
 		return 0;
 	}
 	
-	public void cargarSeñales(Mapa mapa){
+	public void cargarSeñales(Mapa mapa) throws IOException, ClassNotFoundException {
 		List<Señal> listaSeñales = null;
 		
 		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
@@ -101,13 +111,13 @@ public class HCargarMapa implements IHerramienta {
 			rutaSeñales += ".sem";
 		}
 		
-		try{
+		//try{
 			FileInputStream flujoIn = new FileInputStream(rutaSeñales);
 			ObjectInputStream objetoDentro = new ObjectInputStream(flujoIn);
 			listaSeñales = (ArrayList)objetoDentro.readObject();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		//} catch (Exception e){
+		//	e.printStackTrace();
+		//}
 		
 		if (listaSeñales != null){
 			Iterator iteradorListaSeñales = listaSeñales.iterator();
