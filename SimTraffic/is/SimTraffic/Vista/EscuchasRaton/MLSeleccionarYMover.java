@@ -216,7 +216,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 					for (int j = 0; j<nodoTemp.getTramos().size(); j++) {
 						Tramo tramoTemp = nodoTemp.getTramos().get(j);
 						tramoTemp.calculaAngulo();
-					
+						tramoTemp.calculaLargo();
 					}
 				}
 				

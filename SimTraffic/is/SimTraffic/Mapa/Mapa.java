@@ -722,5 +722,9 @@ public class Mapa {
 		}
 		return false;
 	}
+	
+	public boolean tieneLineasBus() {
+		return !LineasAutobuses.isEmpty();
+	}
 
 }

@@ -130,4 +130,8 @@ public class Controlador implements IControlador {
 	public boolean mapaTieneHospital() {
 		return modelo.getMapa().tieneHospitales();
 	}
+
+	public boolean mapaTieneLineasBus() {
+		return modelo.getMapa().tieneLineasBus();
+	}
 }

@@ -87,6 +87,11 @@ public class PanelVehiculos extends JFrame {
 		else
 			porcentajes[5].setEnabled(true);
 
+		if (!controlador.mapaTieneLineasBus())
+			porcentajes[3].setEnabled(false);
+		else
+			porcentajes[3].setEnabled(true);
+		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 5));
 		JButton botonAceptar = new JButton("Aceptar");

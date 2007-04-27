@@ -230,7 +230,7 @@ public class Simulacion {
 					else {
 						aux = aux - por[3];
 						if (aux <= 0)
-							vehiculos.add(new Bus());
+							vehiculos.add(new Bus(mapa.getLineasAutobuses()));
 						else {
 							aux = aux - por[4];
 							if (aux <= 0)

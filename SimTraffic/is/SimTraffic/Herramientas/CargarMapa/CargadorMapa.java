@@ -176,7 +176,8 @@ public class CargadorMapa implements DocHandler {
 							tramoaux.setVia(null);
 						}
 					}*/
-					lineasAutobuses.add((LineaBus)viaAux);					
+					//TODO cargar otra información de los carriles de bus
+					lineasAutobuses.add(new LineaBus(viaAux, null, new int[0], 0, 0));					
 				}
 				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
 					//no hacer nada

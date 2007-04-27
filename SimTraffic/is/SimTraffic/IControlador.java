@@ -72,4 +72,6 @@ public interface IControlador {
 	public boolean mapaTieneHospital();
 	
 	public List getHistorial();
+
+	public boolean mapaTieneLineasBus();
 }
