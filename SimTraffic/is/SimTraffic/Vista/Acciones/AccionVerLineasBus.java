@@ -4,6 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.LineaBus;
+import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Vista.PanelMapa;
@@ -103,19 +104,16 @@ public class AccionVerLineasBus implements ActionListener{
 			controlador.herramienta(herramientaBuscar);
 			Iterator tramos = seleccionada.getTramos().iterator();
 			Iterator paradas = seleccionada.getParadas().iterator();
-			//Tramo aux = (Tramo)tramos.next();
-			//El primer nodo siempre es una parada 
-			//paradas.next();
-			//modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoInicial());
-			  while(tramos.hasNext()){
+			
+			//Añadimos cada uno de los tramos  
+			while(tramos.hasNext()){
 			   Tramo aux=(Tramo)tramos.next();
-			   Boolean parada = (Boolean)paradas.next();
-			   //Añadimos cada uno de los tramos	
-			   modelo.getMapa().getSeleccion().añadirTramo(aux);
-			   //Si hay una parada la añadimos a la seleccion			   
-			   if (parada)
-			    modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoInicial());
+			   modelo.getMapa().getSeleccion().añadirTramo(aux);  
 			 } 
+			while(paradas.hasNext()){
+			   Nodo parada = (Nodo)paradas.next();
+			   modelo.getMapa().getSeleccion().añadirNodo(parada);
+			}
 			}
 		}
 	}

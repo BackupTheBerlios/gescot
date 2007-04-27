@@ -15,7 +15,7 @@ public class LineaBus extends Via{
 	 * En nuestra implementacion las lineas de autobuses son tambien vias y pero estas deben 
 	 * de añadir un vector de paradas que no tienen las demas vias
 	 */
-	private ArrayList<Boolean> Paradas;
+	private ArrayList<Nodo> Paradas;
 	
 	/**
 	 * Intervalo de salida entre cada dos autobuses,configurable para varias horas del dia 
@@ -35,7 +35,7 @@ public class LineaBus extends Via{
 	 * @return
 	 */
 	
-	public LineaBus(Via via,ArrayList<Boolean> Paradas,int[] intervalos,int start,int end){
+	public LineaBus(Via via,ArrayList<Nodo> Paradas,int[] intervalos,int start,int end){
 		
 		//Ponemos a la linea las caracteristicas de la via
 		this.setNombre(via.getNombre());
@@ -51,11 +51,11 @@ public class LineaBus extends Via{
 	}
 	
 	
-	public ArrayList<Boolean> getParadas() {
+	public ArrayList<Nodo> getParadas() {
 		return Paradas;
 	}
 
-	public void setParadas(ArrayList<Boolean> paradas) {
+	public void setParadas(ArrayList<Nodo> paradas) {
 		Paradas = paradas;
 	}
 
