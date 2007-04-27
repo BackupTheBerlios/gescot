@@ -477,8 +477,8 @@ public class Ventana extends JFrame {
 		cargarMapaMenuItem.addActionListener(new AccionCargar(controlador,
 				panel_mapa));
 		cargarMapaMenuItem.setText("Cargar Mapa");
-		cargarMapaMenuItem.setMnemonic('C');
-		cargarMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_MASK));
+		cargarMapaMenuItem.setMnemonic('M');
+		cargarMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,InputEvent.CTRL_MASK));
 		archivoMenu.add(cargarMapaMenuItem);
 		
 		JMenuItem descargarMapaMenuItem = new JMenuItem();
