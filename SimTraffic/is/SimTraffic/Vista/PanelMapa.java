@@ -366,9 +366,6 @@ public class PanelMapa extends JPanel
 				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);		
 		}
 
-		representacion.pintarSugerencia(g, sugerencia);
-		representacion.pintarSugerencia(g, sugerencia2);
-		
 		// Se pintan los tramos que están seleccionados
 		for (int i = 0; i < modelo.getMapa().getSeleccion()
 				.getTramosSeleccionados().size(); i++) {
@@ -383,6 +380,9 @@ public class PanelMapa extends JPanel
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getNodosSeleccionados().get(i));
 		}
+		
+		representacion.pintarSugerencia(g, sugerencia);
+		representacion.pintarSugerencia(g, sugerencia2);
 		
 		if (flecha != null)
 			representacion.pintar(g, flecha);
