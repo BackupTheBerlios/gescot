@@ -134,20 +134,12 @@ public class RepresentacionSimple extends Representacion {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
-				g.setColor(Color.yellow);
-				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
-				Color colorTransparente = new Color((float) 1, (float) 0.6,
-						(float) 0, (float) 0.7);
-				g.setColor(colorTransparente);
-				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
+				Color colorNodo = new Color((float) 0, (float) 0,
+						(float) 1, (float) 0.9);
+				g.setColor(colorNodo);
 				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
 						tamaño, tamaño);
-
 			}
 			if (elemento.getClass() == Tramo.class) {
 				// pintar un tramo sugerido
@@ -155,9 +147,9 @@ public class RepresentacionSimple extends Representacion {
 				try {
 					this.pintar(g, tramo, null);
 					Polygon p = generarAreaTramo(tramo);
-					Color colorTransparente = new Color((float) 1, (float) 0.5,
-							(float) 0, (float) 0.7);
-					g.setColor(colorTransparente);
+					Color colorTramo = new Color((float) 1, (float) 0.5,
+							(float) 0, (float) 0.9);
+					g.setColor(colorTramo);
 					g.fillPolygon(p);
 				} catch (ArithmeticException e) {
 
@@ -175,16 +167,9 @@ public class RepresentacionSimple extends Representacion {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
-				g.setColor(Color.red);// yellow
-				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
-				Color colorTransparente = new Color((float) 1, (float) 0,
+				Color colorNodo = new Color((float) 1, (float) 0,
 						(float) 0, (float) 0.6);// 1,0.6,0
-				g.setColor(colorTransparente);
-				g.drawOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
+				g.setColor(colorNodo);
 				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
 						tamaño, tamaño);
@@ -193,9 +178,9 @@ public class RepresentacionSimple extends Representacion {
 				// pintar un tramo sugerido
 				Tramo t = (Tramo) elemento;
 				Polygon p = generarAreaTramo(t);
-				Color colorTransparente = new Color((float) 0.1, (float) 0.8,
+				Color colorTramo = new Color((float) 0.1, (float) 0.8,
 						(float) 0.05, (float) 0.6);
-				g.setColor(colorTransparente);
+				g.setColor(colorTramo);
 				g.fillPolygon(p);
 			}
 		}
