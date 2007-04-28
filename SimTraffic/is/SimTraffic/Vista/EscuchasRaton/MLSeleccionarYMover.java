@@ -228,10 +228,32 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 		}			
 	}
 	
+	/**
+	 * Este método sugiere los elementos cuando se pasa el ratón por encima de ellos.
+	 * Da prioridad a la sugerencia de nodo sobre el tramo. Si no está el ratón encima 
+	 * de un elemento, se elimina la sugerencia.
+	 */
+	
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		Tramo tramoTemp = buscarTramo(arg0.getX(),arg0.getY());
+		Nodo nodoTemp = buscarNodo(arg0.getX(),arg0.getY());
+		boolean sugerido = false;
+		if (nodoTemp!=null) {
+				panel.sugerir(nodoTemp);
+				sugerido = true;
+				panel.repaint();
+		}
+		if (tramoTemp!=null && ! sugerido) {
+			panel.sugerir(tramoTemp);
+			panel.repaint();
+			sugerido = true;
+		}
+		if (!sugerido) {
+			panel.sugerir(null);
+		}
+			
 	}
 	
 	public void notificar(int modificador){
