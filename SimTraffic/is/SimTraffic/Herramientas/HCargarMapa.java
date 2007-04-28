@@ -3,20 +3,15 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
 
 import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
@@ -119,6 +114,8 @@ public class HCargarMapa implements IHerramienta {
 						e.printStackTrace();
 						error = true;
 					}
+					
+					controlador.herramienta(null);
 
 					if (!error) {
 
@@ -162,6 +159,7 @@ public class HCargarMapa implements IHerramienta {
 	 *             Excepción si hay un problema en las clases encontradas en el
 	 *             fichero.
 	 */
+	@SuppressWarnings("unchecked")
 	public void cargarSeñales(Mapa mapa) throws IOException,
 			ClassNotFoundException {
 		List<Señal> listaSeñales = null;

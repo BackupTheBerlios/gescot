@@ -55,6 +55,10 @@ public class Controlador implements IControlador {
 	 * @roseuid 45C1E08103E7
 	 */
 	public int herramienta(IHerramienta herramienta) {
+		if (herramienta == null) { 
+			vista.actualizar();
+			return 0;
+		}
 		if(modelo.getSimulacion().estaActiva()) {
 			Object[] options = {"De acuerdo",
                     "Cancelar"};

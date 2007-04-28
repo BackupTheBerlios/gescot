@@ -9,6 +9,11 @@ import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
  */
 public class Tramo implements ElementoMapa, Serializable {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1490640156825743599L;
+
+	/**
 	 * Conoce la vía a la que pertenece, para poder mostrar de alguna forma la información de las vías.
 	 */
 	private Via via;

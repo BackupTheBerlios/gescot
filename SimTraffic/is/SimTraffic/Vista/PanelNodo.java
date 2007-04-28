@@ -5,13 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAbrirMatrizDePaso;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionAceptar;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCambiarTiempoTotalSem;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionCrearSemaforo;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionInsertarIntervalo;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionModificarIntervalo;
-import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
+import is.SimTraffic.Vista.Acciones.PanelNodo.*;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.VentanaMatrizPaso.OyenteVentanaMatrizDePaso;
 import is.SimTraffic.Vista.VentanaMatrizPaso.VentanaMatrizDePaso;
@@ -25,19 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 
 public class PanelNodo extends JFrame {
 

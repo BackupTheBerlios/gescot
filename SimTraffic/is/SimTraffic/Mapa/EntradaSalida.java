@@ -17,6 +17,11 @@ import java.io.Serializable;
 public class EntradaSalida implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9029063980096954768L;
+
+	/**
 	 * Peso de este nodo como entrada en cada fraja horaria. Este valor se
 	 * normalizara.
 	 */

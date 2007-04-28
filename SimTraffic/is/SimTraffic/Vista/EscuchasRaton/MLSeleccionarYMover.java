@@ -13,15 +13,12 @@ import is.SimTraffic.Vista.PanelMapa;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 /**
  * Esta clase se encarga de controlar la escucha que se encarga de seleccionar y mover elementos 
+ * 
  * @author GrupoISTrafico
- *
  */
-
-
 public class MLSeleccionarYMover extends EscuchaRaton{
 	
 	
@@ -56,6 +53,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 		if (arg0.getButton() != MouseEvent.BUTTON1)
 			return;
 
+		panel.sugerir(null);
 		modoHerramienta=0; //seleccionar
 		nodoInicial=null;
 		tramoInicial=null;
@@ -122,13 +120,15 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 * en el modo selección/mover.
 	 */
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// TODO si el click se hace sobre un nodo no seleccionado tambien se mueve la seleccion
 		
 		if (arg0.getButton() != MouseEvent.BUTTON1)
 			return;
+		panel.sugerir(null);
 		nodoInicial=null;
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());		
+	
 		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
 		if (posibleNodo!=null) { //si se ha pulsado sobre un nodo, se va a mover		
 			nodoInicial=posibleNodo;
@@ -137,7 +137,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			yaSeleccionado = false;
 			Nodo nodoSeleccionado = buscarNodo(arg0.getX(), arg0.getY());
 			//Para permitir el desplazamiento se tienen que cumplir la condicion siguiente:
-			//·Que se haga click y arrastre sobre un nodo seleccionado.
+			//Que se haga click y arrastre sobre un nodo seleccionado.
 			if (nodoSeleccionado != null && modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(nodoSeleccionado)){
 				yaSeleccionado = true;
 				//Si no hay nodos seleccionados, se permite seleccionar un nodo con un click y moverlo.

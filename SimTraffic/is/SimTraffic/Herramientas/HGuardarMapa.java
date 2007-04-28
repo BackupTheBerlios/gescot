@@ -19,7 +19,6 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
-import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Utils.Tiempo;
 
 public class HGuardarMapa implements IHerramienta {
@@ -145,7 +144,7 @@ public class HGuardarMapa implements IHerramienta {
 			rutaSeñales += ".sem";
 		}
 		
-		List<Señal> listaSeñales = new ArrayList();
+		List<Señal> listaSeñales = new ArrayList<Señal>();
 		
 		//Añadimos todas las señales de los nodos a una lista para almacenarlas.
 		Iterator<Nodo> iteradorNodos = mapa.getNodos().iterator();

@@ -14,6 +14,11 @@ import java.util.List;
  */
 public class Nodo implements ElementoMapa, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3123441688240938278L;
+
 	public static int id = 0;
 
 	/**
