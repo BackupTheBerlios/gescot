@@ -1,52 +1,49 @@
 package is.SimTraffic.Vista;
 
 import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageProducer;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-public class PanelEsperaCargando extends JFrame {
+public class PanelEsperaCargando extends JFrame implements Runnable {
 
-	private JLabel etiquetaCargando;
-	private JButton botonCarga;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4426934915163670765L;
+
 	private JLabel imagen;
 	
 	public PanelEsperaCargando() {
+		setLocation(200,200);
+		setResizable(false);
+		setTitle("Cargando...");
 		
-		this.setLocation(200,200);
-		this.setSize(400,200);
-		this.setResizable(false);
-		this.setTitle("Cargando...");
-		//this.validate();
-		
-		JPanel panel = new JPanel();
-		//panel.setSize(400,200);
 		imagen = new JLabel((new ImageIcon(
 			"is\\SimTraffic\\Vista\\Imagenes\\autobus.jpg" )));	
-		etiquetaCargando = new JLabel("Cargando...");
-		this.setLayout(new FlowLayout());
-		panel.add(etiquetaCargando);
-		panel.add(imagen);
-		panel.setVisible(true);
-		this.add(panel);
-		this.setVisible(true);
-		this.validate();
+		setLayout(new FlowLayout());
+		add(new JLabel("Cargando mapa..."));
+		add(imagen);
+		pack();
 	}
 	
 	/**
-	 * @param args
+	 * Método que permite terminar la ejecución del thread
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public synchronized void terminar() {
+		setVisible(false);
+	}
 
+
+	/* (non-Javadoc)
+	 * Este método se ejecuta al llamar al thread.<p>
+	 * Se encarga de mostrar la ventana. Como la ventana esta visible, el thread
+	 * continua en ejecución hasta que esta se destruye (o hace invisible).
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
+		this.setVisible(true);
 	}
 
 }

@@ -43,7 +43,8 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 					modelo.getMapa().getSeleccion().añadirNodo(nodoOrigen);
 					
 					//Repintar
-					panel.recrearMapa();
+					panel.sugerir(null);
+					//panel.recrearMapa();
 					panel.repaint();
 				}
 				else /*if (estado==1)*/ { //Solo hay 2 valores para el estado, luego ya sabemos que estado vale 1.
@@ -58,10 +59,12 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 						nodoOrigen = null;
 						
 						//Repintar
-						panel.recrearMapa();
+						panel.sugerir(null);
+						//panel.recrearMapa();
 						panel.repaint();
 					}
 				}
+				panel.sugerir(null);
 			}
 		}
 
@@ -98,22 +101,15 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseMoved(MouseEvent e) {
+		Nodo nodoSugerir = buscarNodo(e.getX(), e.getY());
+		panel.sugerir(nodoSugerir); //sea null o no
 
 	}
 
 	@Override
 	public String getAyuda() {
 		return "Haga click en 2 nodos: el primero será el nodo del que parte (nodo origen) y el segundo el nodo al que llegará (nodo destino).";
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

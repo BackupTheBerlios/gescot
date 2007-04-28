@@ -3,6 +3,7 @@
  */
 package is.SimTraffic;
 
+import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Vista.IVista;
 import is.SimTraffic.Vista.Vista;
 
@@ -28,6 +29,7 @@ public class Principal {
 	 * main.
 	 */
 	public static void main(String[] args) {
+		HCargarMapa.p.validate();
 		IModelo modelo = new Modelo();
 		IVista vista = new Vista(modelo);
 		IControlador controlador = new Controlador();

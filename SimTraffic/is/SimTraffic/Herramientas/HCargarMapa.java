@@ -43,8 +43,34 @@ public class HCargarMapa implements IHerramienta {
 	 * 
 	 */
 	PanelMapa panel;
-	
+
 	private JFileChooser fc;
+
+	/**
+	 * Variable de archivo, utilizada por el thread que carga el mapa.
+	 */
+	protected File file;
+
+	/**
+	 * Variable del mapa cargado, definida como protected porque es utilizada
+	 * por el thread que carga el mapa.
+	 */
+	protected Mapa mapaNuevo;
+
+	/**
+	 * Variable del modelo, utilizada por el thread que carga el mapa.
+	 */
+	protected IModelo modelo;
+
+	/**
+	 * Panel para mostrar el mensaje de cargando...
+	 * <p>
+	 * Se utiliza una variable estatica para que nos se tengan que cargar sus
+	 * componentes cada vez.
+	 */
+	public static PanelEsperaCargando p = new PanelEsperaCargando();
+
+	protected boolean error;
 
 	/**
 	 * @param controlador
@@ -53,6 +79,7 @@ public class HCargarMapa implements IHerramienta {
 	public HCargarMapa(IControlador controlador, PanelMapa panel) {
 		this.controlador = controlador;
 		this.panel = panel;
+		// p.validate();
 	}
 
 	/**
@@ -61,101 +88,116 @@ public class HCargarMapa implements IHerramienta {
 	 * @roseuid 45C1E5740203
 	 */
 	public int hacer(IModelo modelo) {
-		Mapa mapaNuevo = null;
+		mapaNuevo = null;
+		this.modelo = modelo;
+		error = false;
 		fc = new JFileChooser(".//is/SimTraffic/Ejemplos");
 		String[] ext = new String[] { "osm" };
 		fc.addChoosableFileFilter(new ExtFilter(ext, "Mapa OSM (*.osm)"));
 		int val = fc.showOpenDialog(null);
 
 		if (val == JFileChooser.APPROVE_OPTION) {
-			File file = fc.getSelectedFile();
-			
-			//No funciona el Cargando..., pues no se muestra la información de la ventana (debido a la carga del mapa, creo).
-			//Queda pendiente ver como se soluciona (seguro que es fácil, pero habrá que saber el truco para hacerlo).
-			JFrame pEsperaCargando = null;
-			pEsperaCargando = new PanelEsperaCargando();
-			pEsperaCargando.setVisible(true);
-			
-			// Faltaría definir comportamiento ante fallos.
-			try {
-				mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
-				if (mapaNuevo.getNodos().get(0) != null) {
-					panel.centrarEnPosicion(mapaNuevo.getNodos().get(0)
-							.getPos().getLat(), mapaNuevo.getNodos().get(0)
-							.getPos().getLon());
-				}
-				modelo.setMapa(mapaNuevo);
-						
-					
+			file = fc.getSelectedFile();
 
-			} catch (Exception e) {
-				System.out.println("Error al leer archivo");
-				e.printStackTrace();
-			}
-			
-			pEsperaCargando.setVisible(false);
-			
-			// if (mapaNuevo==null)
-			// System.out.println("Mapa vacío?");
-		
-			//Ahora cargamos las señales.
-			try {
-			cargarSeñales(modelo.getMapa());
-			}
-			catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Error al abrir/leer fichero de semaforos");
-				
-			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Problema en el fichero de señales, no se cargaran.");
-			}
+			new Thread(p).start();
+			p.repaint();
+
+			Thread t = new Thread() {
+				public void run() {
+					try {
+						mapaNuevo = CargadorMapa.cargar(file.getAbsolutePath());
+						if (mapaNuevo.getNodos().get(0) != null) {
+							panel.centrarEnPosicion(mapaNuevo.getNodos().get(0)
+									.getPos().getLat(), mapaNuevo.getNodos()
+									.get(0).getPos().getLon());
+						}
+						HCargarMapa.this.modelo.setMapa(mapaNuevo);
+
+					} catch (Exception e) {
+						p.terminar();
+						System.out.println("Error al leer archivo");
+						e.printStackTrace();
+						error = true;
+					}
+
+					if (!error) {
+
+						// Ahora cargamos las señales.
+						try {
+							cargarSeñales(HCargarMapa.this.modelo.getMapa());
+						} catch (IOException e) {
+							p.terminar();
+							JOptionPane.showMessageDialog(null,
+									"Error al abrir/leer fichero de semaforos");
+
+						} catch (ClassNotFoundException e) {
+							p.terminar();
+							JOptionPane
+									.showMessageDialog(null,
+											"Problema en el fichero de señales, no se cargaran.");
+						}
+
+						p.terminar();
+					}
+				}
+			};
+			t.start();
 		}
-		
+		if (error)
+			return -1;
 		return 0;
 	}
-	
-	public void cargarSeñales(Mapa mapa) throws IOException, ClassNotFoundException {
+
+	/**
+	 * Método para cargar las señales de un fichero.
+	 * <p>
+	 * Este método lee las señales guardadas como objetos serializables en un
+	 * fichero.
+	 * 
+	 * @param mapa
+	 *            Mapa en el que se deben cargar las señales.
+	 * @throws IOException
+	 *             Excepcion si hay un error al leer el fichero.
+	 * @throws ClassNotFoundException
+	 *             Excepción si hay un problema en las clases encontradas en el
+	 *             fichero.
+	 */
+	public void cargarSeñales(Mapa mapa) throws IOException,
+			ClassNotFoundException {
 		List<Señal> listaSeñales = null;
-		
+
 		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
-		
-		if (rutaSeñales.contains(".osm")){
-			rutaSeñales = rutaSeñales.replaceAll(".osm",".sem");
+
+		if (rutaSeñales.contains(".osm")) {
+			rutaSeñales = rutaSeñales.replaceAll(".osm", ".sem");
 		} else {
 			rutaSeñales += ".sem";
 		}
-		
-		//try{
-			FileInputStream flujoIn = new FileInputStream(rutaSeñales);
-			ObjectInputStream objetoDentro = new ObjectInputStream(flujoIn);
-			listaSeñales = (ArrayList)objetoDentro.readObject();
-		//} catch (Exception e){
-		//	e.printStackTrace();
-		//}
-		
-		if (listaSeñales != null){
+
+		FileInputStream flujoIn = new FileInputStream(rutaSeñales);
+		ObjectInputStream objetoDentro = new ObjectInputStream(flujoIn);
+		listaSeñales = (List<Señal>) objetoDentro.readObject();
+
+		if (listaSeñales != null) {
 			Iterator iteradorListaSeñales = listaSeñales.iterator();
 			Iterator iteradorListaNodos = mapa.getNodos().iterator();
-			
-			//Dobre bucle que asigna las señales a los nodos.
-			while(iteradorListaNodos.hasNext()){
-				Nodo nodoActual = (Nodo)iteradorListaNodos.next();
+
+			// Dobre bucle que asigna las señales a los nodos.
+			while (iteradorListaNodos.hasNext()) {
+				Nodo nodoActual = (Nodo) iteradorListaNodos.next();
 				iteradorListaSeñales = listaSeñales.iterator();
-				while (iteradorListaSeñales.hasNext()){
-					Señal señalActual = (Señal)iteradorListaSeñales.next();
-					if(señalActual.getNodoUbicacion().getID() == nodoActual.getID()){
+				while (iteradorListaSeñales.hasNext()) {
+					Señal señalActual = (Señal) iteradorListaSeñales.next();
+					if (señalActual.getNodoUbicacion().getID() == nodoActual
+							.getID()) {
 						nodoActual.setSeñal(señalActual);
 					}
 				}
 			}
 		}
-		
+
 	}
 
-	/**
-	 * @param modelo
-	 * @return int
-	 * @roseuid 45C1E5740270
-	 */
 	public int deshacer(IModelo modelo) {
 		return 0;
 	}
