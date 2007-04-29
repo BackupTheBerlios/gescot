@@ -11,6 +11,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
+import is.SimTraffic.Vista.EscuchasRaton.MLDesplazar;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
 import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaItinerario;
@@ -29,6 +30,7 @@ public class BarraHerramientas extends Barra {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private JToggleButton botonDesplazar;
 	private JToggleButton botonSeleccionar;
 	private JToggleButton botonAñadirNodo;
 	private JToggleButton botonAñadirTramo;
@@ -41,6 +43,16 @@ public class BarraHerramientas extends Barra {
 		JToggleButton boton;
 		ButtonGroup grupoherramientas = new ButtonGroup();
 		
+		//Desplazar el mapa.
+		botonDesplazar = (JToggleButton) añadirBoton("mover.png", "mover2.png",
+				"Desplazar el mapa", new AccionSobreMapa(new MLDesplazar(
+						modelo, controlador, ventana.getPanel_mapa()), ventana,
+						ventana.getEscuchaTeclado(), 7), true);
+		botonDesplazar.addActionListener(new AccionBarra(ventana, null));
+		botonDesplazar.addMouseMotionListener(new EscuchaAyuda("Pulse el raton en el mapa y matengalo para desplazarlo.", ventana));
+		botonDesplazar.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(botonDesplazar);
+
 		//Seleccionar y Mover.
 		botonSeleccionar = (JToggleButton) añadirBoton("seleccionarYMover.png", "seleccionarYMover2.png",
 				"Seleccionar y Mover", new AccionSobreMapa(new MLSeleccionarYMover(

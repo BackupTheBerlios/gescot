@@ -19,8 +19,6 @@ public class Taxi extends Vehiculo {
 		// los atributos de un vehiculo
 		nombre = "Taxi";
 
-		// Se genera un color aleatorio
-		// generarColorAleatorio();
 		this.color = Color.YELLOW;
 		this.figura = new Rectangle2D.Double(-4,
 				-RepresentacionSimple.tamaño_carril, 4,
