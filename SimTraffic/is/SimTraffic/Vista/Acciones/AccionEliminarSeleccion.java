@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
-import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
 /**

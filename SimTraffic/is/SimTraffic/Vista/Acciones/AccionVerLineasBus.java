@@ -6,7 +6,6 @@ import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Vista.PanelMapa;
 
 
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 /**
  * 

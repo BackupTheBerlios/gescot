@@ -4,22 +4,6 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.swing.JFileChooser;
-
-import is.SimTraffic.Herramientas.CargarMapa.*;
-import is.SimTraffic.Mapa.Mapa;
-import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Señal;
-import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelMapa;
 
 /**

@@ -6,7 +6,6 @@ import is.SimTraffic.Herramientas.HComenzar;
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
-import is.SimTraffic.Mapa.Tramo;
 import junit.framework.TestCase;
 
 /**

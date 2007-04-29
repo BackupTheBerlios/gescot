@@ -20,7 +20,6 @@ import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
 public class BarraSuperior extends JPanel {

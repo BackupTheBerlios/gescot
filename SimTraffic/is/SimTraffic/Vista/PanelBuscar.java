@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HBuscarElemento;
-import is.SimTraffic.Vista.PanelesSimulacion.PanelTurismo;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;

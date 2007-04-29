@@ -1,15 +1,9 @@
-
 	package is.SimTraffic.Vista.Acciones;
 
 	import is.SimTraffic.IControlador;
-import is.SimTraffic.Herramientas.HPausar;
-	import is.SimTraffic.Simulacion.ParametrosSimulacion;
-	import is.SimTraffic.Vista.PanelesSimulacion.PanelVehiculos;
-
+	import is.SimTraffic.Herramientas.HPausar;
 	import java.awt.event.ActionEvent;
 	import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
 
 	/**
 	 * 

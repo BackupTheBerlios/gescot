@@ -15,9 +15,7 @@ import is.SimTraffic.Vista.Ventana;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JButton;
 
 /**
  * Clase que extiende MouseListener para recoger todos los eventos que ocurran

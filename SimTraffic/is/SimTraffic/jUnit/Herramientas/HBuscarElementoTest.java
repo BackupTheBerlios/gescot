@@ -1,18 +1,11 @@
 package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.Modelo;
-import is.SimTraffic.Herramientas.HAsignarTramosAVia;
-import is.SimTraffic.Herramientas.HAñadirLineaAutobus;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
-import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
-import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import is.SimTraffic.Vista.PanelMapa;
-
-import java.util.ArrayList;
 
 import junit.framework.TestCase;
 

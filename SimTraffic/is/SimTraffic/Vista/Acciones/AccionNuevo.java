@@ -4,10 +4,8 @@
 package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
-import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HCrearNuevoMapa;
 import is.SimTraffic.Herramientas.HGuardarMapa;
-import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.ActionEvent;

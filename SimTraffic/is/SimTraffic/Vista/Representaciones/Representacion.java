@@ -6,13 +6,10 @@ import is.SimTraffic.Vista.Sugerencias.Flecha;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**

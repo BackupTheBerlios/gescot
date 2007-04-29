@@ -16,7 +16,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 import javax.swing.SpinnerNumberModel;
 
 public class BarraCrearNodo extends Barra 

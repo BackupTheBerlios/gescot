@@ -1,26 +1,19 @@
 package is.SimTraffic.Vista.Representaciones;
 
 import is.SimTraffic.Mapa.ElementoMapa;
-import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * Clase que extiende Representacion.
