@@ -865,6 +865,8 @@ public class Ventana extends JFrame {
 	public void cambiarEscucha(EscuchaRaton escucha) {
 		if (this.escucha != null)
 			this.escucha.desactivar();
+		if (escucha instanceof MLAñadirVia)
+			((MLAñadirVia)escucha).reiniciarEscucha();
 		panel_mapa.sugerir(null);
 		panel_mapa.setAyudaInf(escucha.getAyuda());
 		this.escucha = escucha;
