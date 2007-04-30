@@ -150,7 +150,7 @@ public class RepresentacionAvanzada extends Representacion {
 						aux = nodo.getTipo().getValorTipoCastellano();
 			
 						if (aux.equalsIgnoreCase("Pub"))
-							buffer = cargarImagen("Puff.PNG");
+							buffer = cargarImagen("Bar.PNG");
 						else 
 							if (aux.equalsIgnoreCase("Parking"))
 								buffer = cargarImagen("Parking.PNG");

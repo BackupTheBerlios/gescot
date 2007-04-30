@@ -30,7 +30,7 @@ public class BarraCrearNodo extends Barra
 	public BarraCrearNodo()
 	{
 		JLabel etiquetaTipo = new JLabel("  Tipo  ");
-		String[] tiposNodos = { "                  ", "Carretera", "Tiempo Libre", "Construcción", "Infraestructura", "No definido"};
+		String[] tiposNodos = { "(no definido)", "Carretera", "Tiempo Libre", "Construcción", "Infraestructura"};
 		comboTipo = new JComboBox(tiposNodos);
 		
 		JLabel etiquetaValor = new JLabel("  Valor  ");
