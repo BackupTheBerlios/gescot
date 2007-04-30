@@ -44,7 +44,7 @@ public class AccionComenzarSimulacion implements ActionListener {
 
 		// Donde va a aparecer la ventana son las dos primera componentes
 		// El tamaño de la ventana son las dos ultimas componentes
-		ventanaNodo.setBounds(80, 120, 425, 400);
+		ventanaNodo.setBounds(80, 120, 425, 440);
 		ventanaNodo.setVisible(true);
 	}
 
