@@ -322,9 +322,8 @@ public class PanelNodo extends JFrame {
 		JLabel etiquetaTipo = new JLabel("Tipo");
 
 		// Modificando
-		String[] tiposNodos = { "                  ", "Carretera",
-				"Tiempo Libre", "Construcción", "Infraestructura",
-				"No definido" };
+		String[] tiposNodos = { "(no definido)", "Carretera",
+				"Tiempo Libre", "Construcción", "Infraestructura"};
 
 		comboTipo = new JComboBox(tiposNodos);
 

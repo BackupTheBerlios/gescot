@@ -16,10 +16,12 @@ public class AccionSeleccionarTipo implements ActionListener {
 	public AccionSeleccionarTipo(JComboBox comboTipo,JComboBox comboValor) {
 		this.comboTipo = comboTipo;
 		this.comboValor = comboValor;
+		comboValor.setEnabled(false);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (comboTipo.getSelectedItem().equals("Carretera")) {
+			comboValor.setEnabled(true);
 			String[] s1={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s1.length;i++)
@@ -27,6 +29,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		}
 		
 		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
+			comboValor.setEnabled(true);
 			String[] s2={"Campo de golf","Estadio","Marina","Pista de carreras", "Campo de deporte", "Parque acuático", "Parque", "Jardín"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s2.length;i++)
@@ -34,6 +37,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		}
 		
 		else if (comboTipo.getSelectedItem().equals("Construcción")) {
+			comboValor.setEnabled(true);
 			String[] s3={"Planta eólica","Planta hidroeléctrica","Central eléctrica","Central nuclear","Faro"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
@@ -41,6 +45,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		}
 		
 		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
+			comboValor.setEnabled(true);
 			TipoElemento inf=new TipoNodoAmenity("Pub");
 			String[] s4=inf.devolverListaValores();
 			comboValor.removeAllItems();
@@ -50,7 +55,8 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else {
 			comboValor.removeAllItems();
-			comboValor.addItem("No definido");
+			comboValor.addItem("                     ");
+			comboValor.setEnabled(false);
 		}
 	}
 

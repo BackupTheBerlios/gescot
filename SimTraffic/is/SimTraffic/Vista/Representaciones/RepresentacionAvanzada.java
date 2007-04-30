@@ -68,111 +68,152 @@ public class RepresentacionAvanzada extends Representacion {
 		pintarAreaNodo(g, nodo);
 
 
-		if (nodo.getTipo() != null) {
+		if (nodo.getTipo() != null)
+		{
 			String aux = nodo.getTipo().getTipoCastellano();
 			BufferedImage buffer = null;
-			if (aux.equalsIgnoreCase("Carretera")) {
+			
+			if (aux.equalsIgnoreCase("Carretera")) 
+			{	
 				aux = nodo.getTipo().getValorTipoCastellano();
-				if (aux.equalsIgnoreCase("Mini-rotonda")) {
+				
+				if (aux.equalsIgnoreCase("Mini-rotonda"))
 					buffer = cargarImagen("Rotonda.PNG");
-				} else if (aux.equalsIgnoreCase("Stop")) {
-					buffer = cargarImagen("Stop.PNG");
-				} else if (aux.equalsIgnoreCase("Cruce")) {
-
-				} else if (aux.equalsIgnoreCase("Portón para vehículos")) {
-
-				} else if (aux.equalsIgnoreCase("Cambio De Rasante")) {
-
-				} else if (aux.equalsIgnoreCase("Puente")) {
-
-				} else if (aux.equalsIgnoreCase("Viaducto")) {
-
-				}
-			} else if (aux.equalsIgnoreCase("Tiempo Libre")) {
-				aux = nodo.getTipo().getValorTipoCastellano();
-				if (aux.equalsIgnoreCase("Campo de golf")) {
-					buffer = cargarImagen("Campo_Golf.PNG");
-				}
-
-				else if (aux.equalsIgnoreCase("Estadio")) {
-					buffer = cargarImagen("Estadio.png");
-				} else if (aux.equalsIgnoreCase("Pista de carreras")) {
-
-				} else if (aux.equalsIgnoreCase("Campo de deporte")) {
-
-				} else if (aux.equalsIgnoreCase("Parque acuático")) {
-
-				} else if (aux.equalsIgnoreCase("Parque")) {
-
-				} else if (aux.equalsIgnoreCase("Jardín")) {
-
-				}
-			} else if (aux.equalsIgnoreCase("Construcción")) {
-				aux = nodo.getTipo().getValorTipoCastellano();
-				if (aux.equalsIgnoreCase("Planta eólica")) {
-					buffer = cargarImagen("Torre_de_electricidad.PNG");
-				} else if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {
-
-				} else if (aux.equalsIgnoreCase("Central Hidroeléctrica")) {
-
-				} else if (aux.equalsIgnoreCase("Central nuclear")) {
-
-				} else if (aux.equalsIgnoreCase("Faro")) {
-
-				}
-			} else if (aux.equalsIgnoreCase("Infraestructura")) {
-				aux = nodo.getTipo().getValorTipoCastellano();
-				if (aux.equalsIgnoreCase("Pub")) {
-					buffer = cargarImagen("Puff.PNG");
-				} else if (aux.equalsIgnoreCase("Parking")) {
-					buffer = cargarImagen("Parking.PNG");
-				} else if (aux.equalsIgnoreCase("Gasolinera")) {
-					buffer = cargarImagen("Gasolinera.PNG");
-				} else if (aux.equalsIgnoreCase("Cabina de telefono")) {
-					// buffer = ImageIO.read(new
-					// File("is\\SimTraffic\\Vista\\Imagenes\\Representacion
-					// Avanzada\\Cabinadetelefono.png"));
-				} else if (aux.equalsIgnoreCase("Aseos Publicos")) {
-
-				} else if (aux.equalsIgnoreCase("Edificio Publico")) {
-
-				} else if (aux.equalsIgnoreCase("Iglesia")) {
-					buffer = cargarImagen("Iglesia.PNG");
-				} else if (aux.equalsIgnoreCase("Cementerio")) {
-
-				} else if (aux.equalsIgnoreCase("Oficina de Correos")) {
-					buffer = cargarImagen("Correos.PNG");
-				} else if (aux.equalsIgnoreCase("Buzón de Correos")) {
-					buffer = cargarImagen("Correos2.PNG");
-				} else if (aux.equalsIgnoreCase("Colegio")) {
-					buffer = cargarImagen("Colegio.PNG");
-				} else if (aux.equalsIgnoreCase("Supermercado")) {
-
-				} else if (aux.equalsIgnoreCase("Hospital")) {
-					buffer = cargarImagen("Hospital.PNG");
-				} else if (aux.equalsIgnoreCase("Librería")) {
-					buffer = cargarImagen("Libreria.PNG");
-				} else if (aux.equalsIgnoreCase("Comisaria")) {
-
-				} else if (aux.equalsIgnoreCase("Parque de bomberos")) {
-
-				} else if (aux.equalsIgnoreCase("Terrazas")) {
-
-				} else if (aux.equalsIgnoreCase("Restaurante")) {
-					buffer = cargarImagen("Restaurante.PNG");
-				} else if (aux.equalsIgnoreCase("Cadena de comida rapida")) {
-
-				} else if (aux.equalsIgnoreCase("Estacion de autobus")) {
-
-				} else if (aux.equalsIgnoreCase("Teatro")) {
-					buffer = cargarImagen("Teatro.PNG");
-				}
+				else
+					if (aux.equalsIgnoreCase("Stop"))
+						buffer = cargarImagen("Stop.PNG");
+					else 
+						if (aux.equalsIgnoreCase("Cruce")){}
+							//buffer = cargarImagen("Stop.PNG");
+						else 
+							if (aux.equalsIgnoreCase("Portón para vehículos"))
+								buffer = cargarImagen("Puerta.PNG");
+							else
+								if (aux.equalsIgnoreCase("Cambio De Rasante")){}
+									//buffer = cargarImagen("Stop.PNG");
+								else
+									if (aux.equalsIgnoreCase("Puente")){}
+										//buffer = cargarImagen("Stop.PNG");
+									else 
+										if (aux.equalsIgnoreCase("Viaducto")){}
+											//buffer = cargarImagen("Stop.PNG");
 			}
-			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-10,
-					y_MapaARep(nodo.getPos().getLat())-10, null);
-			//System.out.println(">>>  " + x_MapaARep(nodo.getPos().getLon()));
+			else 
+				if (aux.equalsIgnoreCase("Tiempo Libre"))
+				{
+					aux = nodo.getTipo().getValorTipoCastellano();
+					
+					if (aux.equalsIgnoreCase("Campo de golf"))
+						buffer = cargarImagen("Campo_Golf.PNG");
+					else 
+						if (aux.equalsIgnoreCase("Estadio"))
+							buffer = cargarImagen("Estadio.png");
+						else 
+							if (aux.equalsIgnoreCase("Pista de carreras")) {}
+								//buffer = cargarImagen("Stop.PNG");
+							else 
+								if (aux.equalsIgnoreCase("Campo de deporte")) {}
+									//buffer = cargarImagen("Stop.PNG");
+								else 
+									if (aux.equalsIgnoreCase("Parque acuático")) {}
+										//buffer = cargarImagen("Stop.PNG");
+									else
+										if (aux.equalsIgnoreCase("Parque")) {}
+											//buffer = cargarImagen("Stop.PNG");
+										else 
+											if (aux.equalsIgnoreCase("Jardín")) {}
+												//buffer = cargarImagen("Stop.PNG");
+			}
+			else 
+				if (aux.equalsIgnoreCase("Construcción")) 
+				{
+					aux = nodo.getTipo().getValorTipoCastellano();
+			
+					if (aux.equalsIgnoreCase("Planta eólica"))
+						buffer = cargarImagen("Torre_de_electricidad.PNG");
+					else
+						if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {}
+							//buffer = cargarImagen("Stop.PNG");
+						else
+							if (aux.equalsIgnoreCase("Central Hidroeléctrica")) {}
+								//buffer = cargarImagen("Stop.PNG");
+							else
+								if (aux.equalsIgnoreCase("Central nuclear")) {}
+									//buffer = cargarImagen("Stop.PNG");
+								else
+									if (aux.equalsIgnoreCase("Faro")) {}
+										//buffer = cargarImagen("Stop.PNG");
+				}
+				else
+					if (aux.equalsIgnoreCase("Infraestructura"))
+					{
+						aux = nodo.getTipo().getValorTipoCastellano();
+			
+						if (aux.equalsIgnoreCase("Pub"))
+							buffer = cargarImagen("Puff.PNG");
+						else 
+							if (aux.equalsIgnoreCase("Parking"))
+								buffer = cargarImagen("Parking.PNG");
+							else 
+								if (aux.equalsIgnoreCase("Gasolinera"))
+									buffer = cargarImagen("Gasolinera.PNG");
+								else
+									if (aux.equalsIgnoreCase("Cabina de telefono")) {}
+										//buffer = cargarImagen("Stop.PNG");
+									else
+										if (aux.equalsIgnoreCase("Aseos Publicos")) {}
+											//buffer = cargarImagen("Stop.PNG");
+										else
+											if (aux.equalsIgnoreCase("Edificio Publico")) {}
+												//buffer = cargarImagen("Stop.PNG");
+											else 
+												if (aux.equalsIgnoreCase("Iglesia"))
+													buffer = cargarImagen("Iglesia.PNG");
+												else
+													if (aux.equalsIgnoreCase("Cementerio")) {}
+														//buffer = cargarImagen("Stop.PNG");
+													else 
+														if (aux.equalsIgnoreCase("Oficina de Correos"))
+															buffer = cargarImagen("Correos.PNG");
+														else
+															if (aux.equalsIgnoreCase("Buzón de Correos"))
+																buffer = cargarImagen("Correos2.PNG");
+															else
+																if (aux.equalsIgnoreCase("Colegio"))
+																	buffer = cargarImagen("Colegio.PNG");
+																else 
+																	if (aux.equalsIgnoreCase("Supermercado")) {}
+																		//buffer = cargarImagen("Stop.PNG");
+																	else 
+																		if (aux.equalsIgnoreCase("Hospital"))
+																			buffer = cargarImagen("Hospital.PNG");
+																		else 
+																			if (aux.equalsIgnoreCase("Librería"))
+																				buffer = cargarImagen("Libreria.PNG");
+																			else
+																				if (aux.equalsIgnoreCase("Comisaria")) {}
+																					//buffer = cargarImagen("Stop.PNG");
+																				else 
+																					if (aux.equalsIgnoreCase("Parque de bomberos")) {}
+																						//buffer = cargarImagen("Stop.PNG");
+																					else 
+																						if (aux.equalsIgnoreCase("Terrazas")) {}
+																							//buffer = cargarImagen("Stop.PNG");
+																						else 
+																							if (aux.equalsIgnoreCase("Restaurante"))
+																								buffer = cargarImagen("Restaurante.PNG");
+																							else 
+																								if (aux.equalsIgnoreCase("Cadena de comida rapida")) {}
+																									//buffer = cargarImagen("Stop.PNG");
+																								else 
+																									if (aux.equalsIgnoreCase("Estacion de autobus")) {}
+																										//buffer = cargarImagen("Stop.PNG");
+																									else 
+																										if (aux.equalsIgnoreCase("Teatro"))
+																											buffer = cargarImagen("Teatro.PNG");
+					}
+			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-10, y_MapaARep(nodo.getPos().getLat())-10, null);
 		}
-
 	}
 
 	private void pintarAreaNodo(Graphics2D g, Nodo nodo) 
