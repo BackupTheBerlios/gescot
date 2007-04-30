@@ -16,7 +16,8 @@ public class AccionSeleccionarTipo implements ActionListener {
 	public AccionSeleccionarTipo(JComboBox comboTipo,JComboBox comboValor) {
 		this.comboTipo = comboTipo;
 		this.comboValor = comboValor;
-		comboValor.setEnabled(false);
+		if (comboTipo.getSelectedIndex()==0)
+			comboValor.setEnabled(false);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
