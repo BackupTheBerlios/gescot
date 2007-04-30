@@ -168,8 +168,9 @@ public class RepresentacionAvanzada extends Representacion {
 					buffer = cargarImagen("Teatro.PNG");
 				}
 			}
-			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()),
-					y_MapaARep(nodo.getPos().getLat()), null);
+			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon())-10,
+					y_MapaARep(nodo.getPos().getLat())-10, null);
+			//System.out.println(">>>  " + x_MapaARep(nodo.getPos().getLon()));
 		}
 
 	}
