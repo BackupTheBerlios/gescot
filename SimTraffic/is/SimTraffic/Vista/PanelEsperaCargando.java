@@ -19,6 +19,7 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 		setResizable(false);
 		setTitle("Cargando...");
 		
+		// TODO cargar imagen desde el jar
 		imagen = new JLabel((new ImageIcon(
 			"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
 		setLayout(new FlowLayout());

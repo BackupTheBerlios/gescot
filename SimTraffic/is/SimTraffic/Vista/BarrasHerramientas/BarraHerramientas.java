@@ -64,7 +64,7 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonSeleccionar);
 		
 		//Seleccionar Vias
-		boton = (JToggleButton) añadirBoton("seleccionar_via.png", "seleccionar_via2.png",
+		boton = (JToggleButton) añadirBoton("seleccionarVia1.png", "seleccionarVia2.png",
 				"Seleccionar Vias", new AccionSobreMapa(new MLSeleccionarVia(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 9), true);
