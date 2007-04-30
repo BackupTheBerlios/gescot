@@ -144,7 +144,7 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(boton);
 
 		// Añadir Vias
-		boton = (JToggleButton) añadirBoton("añadir_via2.png", "añadir_via.png", "Añadir una via",
+		boton = (JToggleButton) añadirBoton("añadir_via.png", "añadir_via2.png", "Añadir una via",
 				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
 						ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 6), true);
@@ -153,7 +153,7 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(boton);
 		
 		//Añadir Buscar
-		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar.PNG", "Buscar",
+		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
 				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
 		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
