@@ -20,7 +20,7 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 		setTitle("Cargando...");
 		
 		imagen = new JLabel((new ImageIcon(
-			"is\\SimTraffic\\Vista\\Imagenes\\autobus.jpg" )));	
+			"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
 		setLayout(new FlowLayout());
 		add(new JLabel("Cargando mapa..."));
 		add(imagen);
