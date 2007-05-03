@@ -175,7 +175,7 @@ public class PanelMapa extends JPanel
 		this.tamY = tamY;
 		recrear = true;
 		contador = 0;
-		representacion = new RepresentacionAvanzada();
+		representacion = new RepresentacionSimple();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
 		posLat = 0; // latitud cero

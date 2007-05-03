@@ -18,6 +18,8 @@ import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Insets;
 
 import javax.swing.Box;
@@ -55,6 +57,10 @@ public class BarraSuperior extends JPanel {
 		tiempo.setHorizontalAlignment(JTextField.CENTER);
 		tiempo.setEditable(false);
 		tiempo.setMargin(new Insets(1,1,1,1));
+		tiempo.setFont(new Font("Courier", Font.BOLD, 16));
+		tiempo.setBackground(Color.BLACK);
+		tiempo.setForeground(Color.GREEN);
+		
 		reloj = new JPanel(new BorderLayout());
 		reloj.add(tiempo, BorderLayout.EAST);
 		this.add(reloj);

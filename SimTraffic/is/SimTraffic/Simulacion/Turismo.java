@@ -39,7 +39,7 @@ public class Turismo extends Vehiculo {
 		random = new Random();
 		this.aceleracion = 0;
 		this.aceleracionMax = (double) random.nextInt(30) / 100 + 0.2;
-		this.distanciaSeguridad = 6;
+		this.distanciaSeguridad = 1;
 		this.posicion = 0;
 		this.velocidad = 0;
 		this.velocidadMax = (double) random.nextInt(60) / 100 + 0.6;
