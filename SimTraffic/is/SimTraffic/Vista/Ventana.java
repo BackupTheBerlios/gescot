@@ -136,6 +136,8 @@ public class Ventana extends JFrame {
 	private JMenuItem copiarSeleccion;
 
 	private JMenuItem cortarSeleccion;
+	
+	private Log popUpLog;
 
 	/**
 	 * Constructor de la ventana.
@@ -747,7 +749,7 @@ public class Ventana extends JFrame {
 		log.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				new Log(controlador.getHistorial());
+				popUpLog = new Log(controlador.getHistorial());
 			}
 		});
 		log.setText("Mostrar historial de eventos");
@@ -820,22 +822,24 @@ public class Ventana extends JFrame {
 		barraPosicion.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 		JPanel barraAyudaDinamica = new JPanel();
 		barraAyudaDinamica.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
+		//barraAyudaDinamica.setLayout(new BorderLayout());
 
 		JLabel etiquetaPosicion = new JLabel("Posición: ");
 		JLabel puntitos = new JLabel(" : ");
 		posicionX = new JLabel();
 		posicionY = new JLabel();
-		ayudaDinamica = new JTextField("  Ayuda", 70);
+		ayudaDinamica = new JTextField("  Ayuda",70);
 		ayudaDinamica.setEditable(false);
 
-		barraAyudaDinamica.add(ayudaDinamica);
+		barraAyudaDinamica.add(ayudaDinamica,BorderLayout.CENTER);
+		
 		barraPosicion.add(etiquetaPosicion);
 		barraPosicion.add(posicionX);
 		barraPosicion.add(puntitos);
 		barraPosicion.add(posicionY);
 
 		getContentPane().add(barraEstado, BorderLayout.SOUTH);
-		barraEstado.add(barraAyudaDinamica, BorderLayout.WEST);
+		barraEstado.add(barraAyudaDinamica, BorderLayout.CENTER);
 		barraEstado.add(barraPosicion, BorderLayout.EAST);
 	}
 

@@ -82,4 +82,9 @@ public class Log extends JFrame {
 			
 		}
 	}
+	
+	
+	public void actualizar(){
+		this.escribirTexto();
+	}
 }
