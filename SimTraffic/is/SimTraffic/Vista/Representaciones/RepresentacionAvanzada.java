@@ -390,10 +390,10 @@ public class RepresentacionAvanzada extends Representacion {
 				(int) (posy2 + tamaño_carril / zoom * -(carriles_vuelta) * (Math.cos(angulo))),
 				(int) (posx2 + tamaño_carril / zoom * (carriles_ida) * Math.sin(angulo)), 
 				(int) (posy2 + tamaño_carril / zoom * (carriles_ida) * (Math.cos(angulo))));
-		seleccionarColoresSemaforos(tramo, g);
+		//seleccionarColoresSemaforos(tramo, g);
 	}
 
-	private void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) 
+	public void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) 
 	{
 		Color color;
 		Nodo ninicial = tramo.getNodoInicial();

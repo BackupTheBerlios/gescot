@@ -461,4 +461,6 @@ abstract public class Representacion {
 	public void setPosiciones(ArrayList<Posicion> posiciones) {
 		this.posiciones = posiciones;
 	}
+	
+	public abstract void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g); 
 }

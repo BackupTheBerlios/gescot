@@ -315,5 +315,8 @@ public class RepresentacionSimple extends Representacion {
 		return p;
 	}
 
+	/** Método que no hace nada.*/
+	public void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) {}
+
 }
 

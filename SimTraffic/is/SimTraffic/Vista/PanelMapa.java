@@ -11,6 +11,7 @@ import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
 import is.SimTraffic.Vista.Representaciones.Representacion;
+import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 import is.SimTraffic.Vista.Sugerencias.Flecha;
 
@@ -22,6 +23,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,57 +43,57 @@ import javax.swing.JScrollBar;
  */
 public class PanelMapa extends JPanel 
 {
-
+	
 	private static final long serialVersionUID = -3680412115222562074L;
-
+	
 	/**
 	 * Almacena el modelo que se va a mostrar por pantalla
 	 */
 	private IModelo modelo;
-
+	
 	/**
 	 * Imagen del mapa usada para duplicar el buffer
 	 */
 	private Image mapa;
-
+	
 	/**
 	 * Zoom que se esta utilizando en la representacion del mapa
 	 */
 	private double zoom;
-
+	
 	/**
 	 * Almacena tamaños en x e y del panel, utilizados a la hora de dibujar
 	 */
 	private int tamX, tamY;
-
+	
 	/**
 	 * Almacenan el punto mas arriba a la izquierda del mapa que aparece en
 	 * pantalla
 	 */
 	private double posLat, posLon;
-
+	
 	/**
 	 * Utilizados para detectar cambios en la posicion del mapa
 	 */
 	private double posLattemp, posLontemp;
-
+	
 	/**
 	 * Booleano que indica si se debe recreear o no el mapa la proxima vez que
 	 * se dibjue el panel en pantalla
 	 */
 	private boolean recrear;
-
+	
 	/**
 	 * Contador de las veces que se dibujo el mapa, para efectos de evaluacion
 	 */
 	private int contador;
-
+	
 	/**
 	 * Elemento a mostrar como sugerido, segun donde esta el puntero del
 	 * usuario. Para operaciones de modificacion/borrado/etc
 	 */
 	private ElementoMapa sugerencia;
-
+	
 	/**
 	 * Segunda sugerencia, necesaria cuando se desean sugerir dos elementos a la vez. 
 	 */
@@ -102,39 +104,39 @@ public class PanelMapa extends JPanel
 	 * pantalla.
 	 */
 	private Representacion representacion;
-
+	
 	private JScrollBar largo;
-
+	
 	private JScrollBar alto;
-		
+	
 	private int posEx;
 	
 	private int posEy;
-
+	
 	/**
 	 * Punto que limitan el rectángulo del área de selección.
 	 */
 	Point puntoInicial;
-
+	
 	Point puntoDrag;
-
+	
 	/**
 	 * Rectangulo que se muestra cuando se seleccionan varios nodos.
 	 */
 	private Rectangle rectanguloSeleccion;
-
+	
 	/**
 	 * Permite conocer si se está seleccionando.
 	 */
 	boolean modoSeleccion;
-
+	
 	/**
 	 * String que muestra la ayuda al usuario en la parte inferior del interfaz.
 	 */
 	private String ayudaInf;
-
+	
 	private Flecha flecha;
-
+	
 	private JPopupMenu emergenteNodo;
 	
 	private JPopupMenu emergenteTramo;
@@ -147,14 +149,14 @@ public class PanelMapa extends JPanel
 	public String getAyudaInf() {
 		return ayudaInf;
 	}
-
+	
 	/**
 	 * @param ayudaInf The ayudaInf to set.
 	 */
 	public void setAyudaInf(String ayudaInf) {
 		this.ayudaInf = ayudaInf;
 	}
-
+	
 	/**
 	 * Constructor de la clase PanelMapa.
 	 * <p>
@@ -173,7 +175,7 @@ public class PanelMapa extends JPanel
 		this.tamY = tamY;
 		recrear = true;
 		contador = 0;
-		representacion = new RepresentacionSimple();
+		representacion = new RepresentacionAvanzada();
 		this.setLayout(new BorderLayout());
 		añadirScrolls();
 		posLat = 0; // latitud cero
@@ -183,7 +185,7 @@ public class PanelMapa extends JPanel
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
 	}
-
+	
 	/**
 	 * Para establecer el modelo donde esta la infromación.
 	 * <p>
@@ -197,7 +199,7 @@ public class PanelMapa extends JPanel
 		this.modelo = modelo;
 		recrear = true;
 	}
-
+	
 	public JPopupMenu getMenuEmergenteNodo(){
 		return emergenteNodo;
 	}
@@ -229,7 +231,7 @@ public class PanelMapa extends JPanel
 		getMenuEmergenteTramo().setVisible(false);
 		getMenuEmergenteMapa().setVisible(false);
 	}
-
+	
 	public JPopupMenu getMenuEmergenteActivo () {					  	
 		if (getMenuEmergenteNodo().isVisible())
 			return getMenuEmergenteNodo();
@@ -263,7 +265,7 @@ public class PanelMapa extends JPanel
 		largo.addMouseListener(new AccionScrollX(this));
 		this.add(largo, BorderLayout.SOUTH);
 	}
-
+	
 	/**
 	 * Método que recera la imagen del mapa a partir de la infromación del
 	 * modelo.
@@ -283,9 +285,9 @@ public class PanelMapa extends JPanel
 		representacion.setLon0(posLon);
 		representacion.setLat0(posLat);
 		representacion.setZoom(zoom);
-
+		
 		representacion.recalculaCons();
-
+		
 		if (tamX == 0 || tamY == 0)
 			mapa = this.createImage(200, 200);
 		else
@@ -300,9 +302,8 @@ public class PanelMapa extends JPanel
 		//		RenderingHints.VALUE_ANTIALIAS_OFF);
 		//g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 		//g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-
 		representacion.ponerImagenes(g);
-
+		
 		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
 		Tramo tramo;
@@ -316,12 +317,12 @@ public class PanelMapa extends JPanel
 		while (inodos.hasNext()) {
 			representacion.pintar(g, inodos.next());
 		}
-
+		
 		representacion.pintarCoordenadas(g);
 		representacion.pintarSugerencia(g, sugerencia);
 		representacion.pintarSugerencia(g, sugerencia2);
 	}
-
+	
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {
 		Iterator<Vehiculo> it = vehiculos.iterator();
 		while (it.hasNext()) {
@@ -339,7 +340,7 @@ public class PanelMapa extends JPanel
 		contador++;
 		super.repaint();
 	}
-
+	
 	public void paintComponent(Graphics g_normal) {
 		Graphics2D g = (Graphics2D) g_normal;
 		if (recrear) {
@@ -355,7 +356,7 @@ public class PanelMapa extends JPanel
 		//representacion.pintar(g, flecha);
 		
 		//g.drawString("Redibujando: " + contador, 80, 80);
-
+		
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
 		// sugiriendo.
 		/*
@@ -366,24 +367,32 @@ public class PanelMapa extends JPanel
 		 */
 		
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
+		ArrayList<Tramo> auxiliar = new ArrayList<Tramo>();
 		while (itramos.hasNext()) {
 			Tramo tramo = itramos.next();
+			auxiliar.add(tramo);
 			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));	
 			if (this.modelo.getSimulacion().estaActiva())
-				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);		
+				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);
 		}
-
+		
+		Iterator<Tramo> it = auxiliar.iterator();
+		while (it.hasNext()) {
+			Tramo tramo = it.next();
+			representacion.seleccionarColoresSemaforos(tramo, g);
+		}
+		
 		// Se pintan los tramos que están seleccionados
 		for (int i = 0; i < modelo.getMapa().getSeleccion()
-				.getTramosSeleccionados().size(); i++) {
+		.getTramosSeleccionados().size(); i++) {
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getTramosSeleccionados().get(i));
 		}
-
+		
 		// Aquí se pintan los nodos que están seleccionados como si estuvieran
 		// sugiriendo.
 		for (int i = 0; i < modelo.getMapa().getSeleccion()
-				.getNodosSeleccionados().size(); i++) {
+		.getNodosSeleccionados().size(); i++) {
 			representacion.pintarSugerenciaSeleccion(g, modelo.getMapa()
 					.getSeleccion().getNodosSeleccionados().get(i));
 		}
@@ -395,15 +404,15 @@ public class PanelMapa extends JPanel
 			representacion.pintar(g, flecha);
 		
 	}
-
+	
 	public void setRepresentacion(Representacion representacion) {
 		this.representacion = representacion;
 	}
-
+	
 	public Representacion getRepresentacion() {
 		return representacion;
 	}
-
+	
 	public void cambiaZoom(double cambio) {
 		this.zoom = this.zoom * cambio;
 		if (zoom > 32 || zoom < 0.125) {
@@ -413,7 +422,7 @@ public class PanelMapa extends JPanel
 		recrear = true;
 		super.repaint();
 	}
-
+	
 	public void sugerir(ElementoMapa sugerencia) {
 		boolean refresco = false;
 		if ((this.sugerencia != null && sugerencia == null)
@@ -435,7 +444,7 @@ public class PanelMapa extends JPanel
 		if (refresco)
 			this.repaint();
 	}
-
+	
 	public void cambiaPosX(int cambio) {
 		posLon = posLon + ((double) cambio * zoom) / 60000;
 		if (posLon > 180)
@@ -457,7 +466,7 @@ public class PanelMapa extends JPanel
 		recrear=true;
 		this.repaint();
 	}
-
+	
 	public void cambiaPosY(int cambio) {
 		posLat = posLat - ((double) cambio * zoom) / 60000;
 		if (posLat > 89)
@@ -467,86 +476,86 @@ public class PanelMapa extends JPanel
 		recrear = true;
 		this.repaint();
 	}
-
+	
 	public void configurarRectanguloSeleccion() {
 		rectanguloSeleccion.setFrameFromDiagonal(puntoInicial, puntoDrag);
 	}
-
+	
 	public double lon_RepAMapa(int posX) {
 		return representacion.lon_RepAMapa(posX);
 	}
-
+	
 	public double lat_RepAMapa(int posY) {
 		return representacion.lat_RepAMapa(posY);
 	}
-
+	
 	/**
 	 * Llama al mapa para indicarle qué área (rectángulo) ha seleccionado el
 	 * usuario y que este haga las gestiones oportunas.
 	 */
 	public void notificaSeleccion(int tipoDeSeleccion) {
 		Rectangle rectanguloCoordenadasReales = new Rectangle();
-
+		
 		// Al rectangulo que pasamos al mapa para que conozca que área ha
 		// seleccionado el usuario, le aplicamos
 		// la transformación a coordenadas relativas del mapa.
 		rectanguloCoordenadasReales.setFrameFromDiagonal(puntoInicial.getX(),
 				puntoInicial.getY(), puntoDrag.getX(), puntoDrag.getY());
-
+		
 		// this.modelo.getMapa().seleccionaEnRectangulo(rectanguloCoordenadasReales);
 		this.modelo.getMapa().seleccionaEnRectangulo(
 				rectanguloCoordenadasReales, tipoDeSeleccion, representacion);
 	}
-
+	
 	public boolean isModoSeleccion() {
 		return modoSeleccion;
 	}
-
+	
 	public void setModoSeleccion(boolean modoSeleccion) {
 		this.modoSeleccion = modoSeleccion;
 	}
-
+	
 	public double getLat0() {
 		return posLat;
 	}
-
+	
 	public double getLon0() {
 		return posLon;
 	}
-
+	
 	public Point getPuntoDrag() {
 		return puntoDrag;
 	}
-
+	
 	public void recrear() {
 		this.recrear = true;
 	}
-
+	
 	public void setPuntoDrag(Point puntoDrag) {
 		this.puntoDrag = puntoDrag;
 		configurarRectanguloSeleccion();
 	}
-
+	
 	public Point getPuntoInicial() {
 		return puntoInicial;
 	}
-
+	
 	public void setPuntoInicial(Point puntoInicial) {
 		this.puntoInicial = puntoInicial;
 	}
-
+	
 	public Rectangle getRectanguloSeleccion() {
 		return rectanguloSeleccion;
 	}
-
+	
 	public void setRectanguloSeleccion(Rectangle rectanguloSeleccion) {
 		this.rectanguloSeleccion = rectanguloSeleccion;
 	}
-
+	
 	public boolean isRecrear() {
 		return recrear;
 	}
-
+	
 	public void setRecrear(boolean recrear) {
 		this.recrear = recrear;
 	}
@@ -563,16 +572,16 @@ public class PanelMapa extends JPanel
 	public int getPosEy(){
 		return posEy;
 	}
-
+	
 	public void crearFlecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino) 
 	{
 		this.flecha = new Flecha(nodo, tramoOrigen, tramoDestino);
 		this.repaint();
 	}
-
+	
 	public void quitarFlecha() 
 	{
 		this.flecha = null;
 	}
-
+	
 }
