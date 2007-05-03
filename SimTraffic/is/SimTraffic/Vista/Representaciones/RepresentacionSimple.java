@@ -13,7 +13,6 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 /**
  * Clase que extiende Representacion.
@@ -30,12 +29,6 @@ public class RepresentacionSimple extends Representacion {
 	 * Parámetro que establece el ancho de cada uno de los carriles a dibujar
 	 */
 	public static double tamaño_carril = 2.5;
-
-	/**
-	 * Almacena las imagenes de los coches para dibujarlos de manera más
-	 * eficiente.
-	 */
-	private BufferedImage coches[];
 
 	/**
 	 * Constructor por defecto de la RepresentacionSimple
@@ -88,12 +81,6 @@ public class RepresentacionSimple extends Representacion {
 		// almacena posiciones de los nodos
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
-
-		// almacena numero de carriles en cada sentido
-		int carriles_ida = tramo.getNumCarrilesDir1();
-		int carriles_vuelta = tramo.getNumCarrilesDir2();
-
-		double angulo = tramo.getAngulo();
 
 		if (tipo == null) {
 			g.setColor(Color.black);
@@ -190,17 +177,17 @@ public class RepresentacionSimple extends Representacion {
 		double angulo = tramo.getAngulo();
 
 		// genera los puntos (x,y) de las esquinas del poligono
-		int temp1 = (int) (tamaño_carril / zoom * carriles_ida * Math
+		int temp1 = (int) (tamaño_carril * zoom * carriles_ida * Math
 				.sin(angulo));
-		int temp2 = (int) (-tamaño_carril / zoom * carriles_vuelta * Math
+		int temp2 = (int) (-tamaño_carril * zoom * carriles_vuelta * Math
 				.sin(angulo));
 		int x[] = { x_MapaARep(posnodo1.getLon()) + temp1,
 				x_MapaARep(posnodo2.getLon()) + temp1,
 				x_MapaARep(posnodo2.getLon()) + temp2,
 				x_MapaARep(posnodo1.getLon()) + temp2 };
 
-		temp1 = (int) (tamaño_carril / zoom * carriles_ida * Math.cos(angulo));
-		temp2 = (int) (-tamaño_carril / zoom * carriles_vuelta * Math
+		temp1 = (int) (tamaño_carril * zoom * carriles_ida * Math.cos(angulo));
+		temp2 = (int) (-tamaño_carril * zoom * carriles_vuelta * Math
 				.cos(angulo));
 		int y[] = { y_MapaARep(posnodo1.getLat()) + temp1,
 				y_MapaARep(posnodo2.getLat()) + temp1,
@@ -259,7 +246,7 @@ public class RepresentacionSimple extends Representacion {
 			posX = posX2 - (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY2 - (int) ((posY2 - posY1) * vehiculo.getPosicion());
 		}
-		zoom.scale(1 / this.zoom, 1 / this.zoom);
+		zoom.scale(this.zoom, this.zoom);
 		zoom.translate(0, tamaño_carril * vehiculo.getCarril());
 		rot.concatenate(zoom);
 		trans.translate(posX, posY);
@@ -293,17 +280,17 @@ public class RepresentacionSimple extends Representacion {
 		int carriles = Math.max(destino.getNumCarrilesDir1(), destino.getNumCarrilesDir2());
 		
 		int desplazamiento = 15;
-		int temp3 = (int) (desplazamiento * Math.cos(Math.PI + angulo) / zoom);
-		int temp4 = (int) (-desplazamiento * Math.sin(Math.PI + angulo) / zoom);
+		int temp3 = (int) (desplazamiento * Math.cos(Math.PI + angulo) * zoom);
+		int temp4 = (int) (-desplazamiento * Math.sin(Math.PI + angulo) * zoom);
 
 		angulo = Math.PI/2 + angulo;
-		int temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.cos(angulo));
+		int temp1 = (int) (2 * tamaño_carril * zoom * carriles * Math.cos(angulo));
 		
 		int x[] = {x_MapaARep(pos.getLon()) - temp1 + temp3,
 				x_MapaARep(pos.getLon()) + temp1 + temp3,
 				x_MapaARep(pos.getLon()) - temp3};
 
-		temp1 = (int) (2 * tamaño_carril / zoom * carriles * Math.sin(angulo));
+		temp1 = (int) (2 * tamaño_carril * zoom * carriles * Math.sin(angulo));
 		int y[] = {y_MapaARep(pos.getLat()) - temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp4};

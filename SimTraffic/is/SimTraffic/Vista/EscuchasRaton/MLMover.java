@@ -8,7 +8,6 @@ import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.Iterator;

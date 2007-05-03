@@ -137,6 +137,7 @@ public class Ventana extends JFrame {
 
 	private JMenuItem cortarSeleccion;
 	
+	@SuppressWarnings("unused")
 	private Log popUpLog;
 
 	/**

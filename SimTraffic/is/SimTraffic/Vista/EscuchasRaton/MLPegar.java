@@ -4,11 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Herramientas.HPegar;
-import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Mapa.Posicion;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 

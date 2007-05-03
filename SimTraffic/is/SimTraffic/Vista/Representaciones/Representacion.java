@@ -324,10 +324,10 @@ abstract public class Representacion {
 		g.setStroke(new BasicStroke(1));
 		int dist = 50;
 		
-		if (zoom >= 4) dist = 500;
-		g.drawLine(25, 40, 25 + (int) (dist / zoom), 40);
+		if (zoom <= 0.25) dist = 500;
+		g.drawLine(25, 40, 25 + (int) (dist * zoom), 40);
 		g.drawLine(25, 35, 25, 45);
-		g.drawLine(25 + (int) (dist / zoom), 35, 25 + (int) (dist / zoom), 45);
+		g.drawLine(25 + (int) (dist * zoom), 35, 25 + (int) (dist * zoom), 45);
 		g.drawString("" + dist + " m", 40, 35);
 	}
 
@@ -380,8 +380,8 @@ abstract public class Representacion {
 			g.drawImage(imagenes.get(i),
 					x_MapaARep(posiciones.get(i).getLon()),
 					y_MapaARep(posiciones.get(i).getLat()),
-					(int)(imagenes.get(i).getWidth(null) / zoom),
-					(int)(imagenes.get(i).getHeight(null) / zoom),
+					(int)(imagenes.get(i).getWidth(null) * zoom),
+					(int)(imagenes.get(i).getHeight(null) * zoom),
 					null);
 		}
 	}
@@ -394,8 +394,8 @@ abstract public class Representacion {
 		int zona = ConversorUTM.recalculaZona(Lon0);
 		boolean hem = ConversorUTM.recalculaHem(Lat0);
 		double xy[] = ConversorUTM.LatLonToUTMXY(Lat0, Lon0, zona);
-		xy[0] = xy[0] + zoom * 100;
-		xy[1] = xy[1] + zoom * 100;
+		xy[0] = xy[0] + 100 / zoom;
+		xy[1] = xy[1] + 100 / zoom;
 		double latlon[] = ConversorUTM.UTMXYToLatLon(xy[0], xy[1], zona, hem);
 		consx = Math.abs(latlon[1] - Lon0) / 100;
 		consy = Math.abs(latlon[0] - Lat0) / 100;
@@ -463,4 +463,7 @@ abstract public class Representacion {
 	}
 	
 	public abstract void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g); 
+	
+	public void iniciarRepresentacion() {
+	}
 }

@@ -2,7 +2,6 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Herramientas.HAñadirLineaAutobus;
 import is.SimTraffic.Herramientas.HCreaItinerarioEntreDosNodos;
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Mapa.Nodo;

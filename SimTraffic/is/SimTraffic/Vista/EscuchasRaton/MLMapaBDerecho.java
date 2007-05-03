@@ -4,7 +4,6 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Ventana;
 
-import java.awt.Component;
 import java.awt.event.MouseEvent;
 
 public class MLMapaBDerecho extends EscuchaRaton {

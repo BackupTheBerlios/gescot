@@ -4,10 +4,10 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
+
 /**
  * 
  * @author Grupo ISTrafico

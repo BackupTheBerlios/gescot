@@ -10,9 +10,7 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Vista.Acciones.AccionScrollX;
 import is.SimTraffic.Vista.Acciones.AccionScrollY;
-import is.SimTraffic.Vista.Representaciones.Representacion;
-import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
-import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
+import is.SimTraffic.Vista.Representaciones.*;
 import is.SimTraffic.Vista.Sugerencias.Flecha;
 
 import java.awt.BorderLayout;
@@ -275,6 +273,9 @@ public class PanelMapa extends JPanel
 	public void recrearMapa() {
 		if (modelo == null)
 			return;
+		
+		long tiempo = System.currentTimeMillis();
+		
 		Dimension tamaño = this.getSize();
 		tamX = tamaño.width;
 		tamY = tamaño.height;
@@ -296,13 +297,22 @@ public class PanelMapa extends JPanel
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		// TODO hacer pruebas para verificar cuanto mejor funciona con las
-		//  renderinghints que estan a continuacion
+		// TODO tarda un 30% menos, en mi ordenador, para crear los mapas de esta manera. quedan
+		//      peor, ahi que decidir si merece la pena
 		//g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		//		RenderingHints.VALUE_ANTIALIAS_OFF);
 		//g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 		//g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+		
 		representacion.ponerImagenes(g);
+		
+		representacion.iniciarRepresentacion();
+		
+		// dibujar nodos
+		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
+		while (inodos.hasNext()) {
+			representacion.pintar(g, inodos.next());
+		}
 		
 		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
@@ -312,15 +322,12 @@ public class PanelMapa extends JPanel
 			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));		
 		}
 		
-		// dibujar nodos
-		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
-		while (inodos.hasNext()) {
-			representacion.pintar(g, inodos.next());
-		}
-		
+
 		representacion.pintarCoordenadas(g);
-		representacion.pintarSugerencia(g, sugerencia);
-		representacion.pintarSugerencia(g, sugerencia2);
+		//representacion.pintarSugerencia(g, sugerencia);
+		//representacion.pintarSugerencia(g, sugerencia2);
+		
+		System.out.println("tiempo: " + (System.currentTimeMillis() - tiempo));
 	}
 	
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {
@@ -414,9 +421,9 @@ public class PanelMapa extends JPanel
 	}
 	
 	public void cambiaZoom(double cambio) {
-		this.zoom = this.zoom * cambio;
+		this.zoom = this.zoom / cambio;
 		if (zoom > 32 || zoom < 0.125) {
-			this.zoom = this.zoom / cambio;
+			this.zoom = this.zoom * cambio;
 			return;
 		}
 		recrear = true;

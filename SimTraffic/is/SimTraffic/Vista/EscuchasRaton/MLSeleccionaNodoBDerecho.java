@@ -2,11 +2,9 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 public class MLSeleccionaNodoBDerecho extends EscuchaRaton {

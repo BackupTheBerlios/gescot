@@ -11,10 +11,9 @@ import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.PanelTramo;
 import is.SimTraffic.Vista.Ventana;
+import is.SimTraffic.Vista.Representaciones.Representacion;
 
 import java.awt.event.MouseEvent;
-import java.text.DecimalFormat;
-
 import javax.swing.JLabel;
 
 /**
@@ -30,11 +29,11 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	
 	private JLabel posicionX;
 	private JLabel posicionY;
-	private long millis;
+	//private long millis;
 	private int estado;
 	private double x1;
 	private double y1;
-	private DecimalFormat cincoCifras;
+	//private DecimalFormat cincoCifras;
 	private Ventana ventana;
 	
 	public MLEscuchaSiempre(IModelo modelo, IControlador controlador,PanelMapa panel, JLabel posicionX, JLabel posicionY, Ventana ventana) 
@@ -43,8 +42,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		estado = 0;
-		millis = 0;
-		cincoCifras = new DecimalFormat("0.00000");
+		//millis = 0;
+		//cincoCifras = new DecimalFormat("0.00000");
 		this.ventana = ventana;
 	}
 	
@@ -71,7 +70,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 			if (estado == 0)
 			{
 				estado = 1;
-				millis = System.currentTimeMillis();
+				//millis = System.currentTimeMillis();
 				x1 = panel.lon_RepAMapa(arg0.getX());
 				y1 = panel.lat_RepAMapa(arg0.getY());
 			}
@@ -196,8 +195,8 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 		*/
 		double posX = panel.lon_RepAMapa(e.getX());
 		double posY = panel.lat_RepAMapa(e.getY());
-		posicionX.setText(panel.getRepresentacion().pasarAGrados(posX));//"" + cincoCifras.format(posX)+"º");
-		posicionY.setText(panel.getRepresentacion().pasarAGrados(posY));//"" + cincoCifras.format(posY)+"º");
+		posicionX.setText(Representacion.pasarAGrados(posX));
+		posicionY.setText(Representacion.pasarAGrados(posY));
 		ventana.cambiarAyuda(panel.getAyudaInf());
 	}
 
