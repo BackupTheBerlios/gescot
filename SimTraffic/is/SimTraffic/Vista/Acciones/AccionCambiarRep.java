@@ -51,6 +51,7 @@ public class AccionCambiarRep implements ActionListener {
 		// TODO posiblemente se podría añadir un menú, pero así funciona bien
 		if (!cambio) {
 			if (rep1 != null) {
+				actualizar_representacion(rep1);
 				panel.setRepresentacion(rep1);
 				panel.recrear();
 				panel.recrearMapa();
@@ -59,6 +60,7 @@ public class AccionCambiarRep implements ActionListener {
 			cambio = true;
 		} else {
 			if (rep2 != null) {
+				actualizar_representacion(rep2);
 				panel.setRepresentacion(rep2);
 				panel.recrear();
 				panel.recrearMapa();
@@ -68,5 +70,10 @@ public class AccionCambiarRep implements ActionListener {
 
 		}
 	}
-
+	
+  //Metodo auxiliar que guarda las imagenes en la representacion
+  private void actualizar_representacion(Representacion rep){
+	  rep.setImagenes(panel.getRepresentacion().getImagenes());
+	  rep.setPosiciones(panel.getRepresentacion().getPosiciones());
+  }	
 }
