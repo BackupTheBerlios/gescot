@@ -162,6 +162,6 @@ public class Controlador implements IControlador {
 
 	public boolean cambiosEnMapa() {
 		// TODO Hay que dar el valor correcto si hubo cambios en el mapa
-		return false;
+		return cambios;
 	}
 }
