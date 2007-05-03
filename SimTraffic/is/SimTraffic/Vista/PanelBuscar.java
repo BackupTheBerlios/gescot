@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HBuscarElemento;
+import is.SimTraffic.Utils.ChequeoInputVentanas;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -43,7 +44,7 @@ public class PanelBuscar extends JFrame {
 		this.panelMapa = panelMap;
 		this.setLocation(200,200);
 		this.setSize(400,200);
-		//this.setResizable(false);
+		this.setResizable(false);
 		this.setTitle("Buscar...");
 		
 		String[] tipoElemento = { "Nodo", "Tramo", "Vía", "Línea de bus" }; //Por defecto en Nodo
@@ -91,12 +92,14 @@ public class PanelBuscar extends JFrame {
 					public void actionPerformed(ActionEvent e){
 						//Comprobar que los datos son numéricos (el rango ya se comprueba 
 						//en el método centrarEnPosicion).
-						
-						//Situar el mapa en la posicion dada si es correcta.
-						panelMapa.centrarEnPosicion ( Double.parseDouble(campoLat.getText()),
+						ChequeoInputVentanas chequeos = new ChequeoInputVentanas();
+						if (chequeos.esLatitud(campoLat.getText()) && chequeos.esLongitud(campoLon.getText())){
+						 //Situar el mapa en la posicion dada si es correcta.
+						 panelMapa.centrarEnPosicion ( Double.parseDouble(campoLat.getText()),
 													  Double.parseDouble(campoLon.getText()) );
-						//PanelBuscar.this.setVisible(false);
-						PanelBuscar.this.dispose();
+						 //PanelBuscar.this.setVisible(false);
+						 PanelBuscar.this.dispose();
+						}
 					}
 				}
 		);

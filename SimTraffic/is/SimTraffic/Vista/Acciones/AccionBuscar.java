@@ -47,6 +47,6 @@ public class AccionBuscar implements ActionListener {
 		//ventanaBuscar.setSize(400,200);
 		////this.setResizable(false);
 		//ventanaBuscar.setTitle("Buscar...");
-		//ventanaBuscar.setVisible(true);
+		ventanaBuscar.setVisible(true);
 	}
 }
