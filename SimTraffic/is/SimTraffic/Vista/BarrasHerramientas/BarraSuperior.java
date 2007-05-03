@@ -17,9 +17,14 @@ import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
 
+import java.awt.BorderLayout;
+import java.awt.Insets;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
 public class BarraSuperior extends JPanel {
@@ -31,18 +36,28 @@ public class BarraSuperior extends JPanel {
 	private JButton zoomout;
 	private JButton simular;
 	private JButton detener;
+	private JPanel reloj;
+	private JTextField tiempo;
 	
 	public BarraSuperior(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
+		
+		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
 		this.add(crearBarraArchivo(controlador, modelo, ventana));
 		this.add(crearBarraEdicion(controlador, modelo, ventana));
 		this.add(crearBarraZoom(controlador, modelo, ventana));
-
-		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-
 		this.add(crearBotonesSimulacion(controlador, modelo, ventana));
-
+		
+		this.add(Box.createGlue());
+		
+		tiempo = new JTextField("00:00:00", 8);
+		tiempo.setHorizontalAlignment(JTextField.CENTER);
+		tiempo.setEditable(false);
+		tiempo.setMargin(new Insets(1,1,1,1));
+		reloj = new JPanel(new BorderLayout());
+		reloj.add(tiempo, BorderLayout.EAST);
+		this.add(reloj);
 	}
 
 	private JToolBar crearBarraArchivo(IControlador controlador,
@@ -171,6 +186,10 @@ public class BarraSuperior extends JPanel {
 		
 	public JButton getBotonDetener(){
 		return this.detener;
+	}
+
+	public void setTiempo(long tiempo) {
+		this.tiempo.setText(tiempo/10000 + ":" + (tiempo/100)%10000 + ":" + (tiempo%100));
 	}
 
 }
