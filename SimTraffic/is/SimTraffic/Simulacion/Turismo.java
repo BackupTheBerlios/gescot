@@ -79,12 +79,14 @@ public class Turismo extends Vehiculo {
 
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
+
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
 				salida);
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias
 						.getHeuristica());
+		
 		boolean resul = algoritmoAEstrella.ejecutar();
 		if (resul == false) {
 			// no ha sido posible encontrar un camino entre los nodos

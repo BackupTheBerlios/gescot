@@ -293,6 +293,13 @@ public class PanelMapa extends JPanel
 		Graphics2D g = (Graphics2D) mapa.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		// TODO hacer pruebas para verificar cuanto mejor funciona con las
+		//  renderinghints que estan a continuacion
+		//g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		//		RenderingHints.VALUE_ANTIALIAS_OFF);
+		//g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+		//g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 
 		representacion.ponerImagenes(g);
 
