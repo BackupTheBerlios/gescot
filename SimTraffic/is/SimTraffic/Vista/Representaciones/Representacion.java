@@ -445,4 +445,20 @@ abstract public class Representacion {
 			g.setStroke(new BasicStroke(1));
 		}
 	}
+
+	public ArrayList<Image> getImagenes() {
+		return imagenes;
+	}
+
+	public void setImagenes(ArrayList<Image> imagenes) {
+		this.imagenes = imagenes;
+	}
+
+	public ArrayList<Posicion> getPosiciones() {
+		return posiciones;
+	}
+
+	public void setPosiciones(ArrayList<Posicion> posiciones) {
+		this.posiciones = posiciones;
+	}
 }
