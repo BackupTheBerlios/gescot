@@ -35,7 +35,6 @@ public class Controlador implements IControlador {
 	 */
 	public List<String> historial =new ArrayList<String>() ;
 
-	private boolean cambios = false;
 	
 	/**
 	 * Constructor de la clase.
@@ -162,6 +161,6 @@ public class Controlador implements IControlador {
 
 	public boolean cambiosEnMapa() {
 		// TODO Hay que dar el valor correcto si hubo cambios en el mapa
-		return cambios;
+		return modelo.getMapa().isCambios_en_mapa();
 	}
 }

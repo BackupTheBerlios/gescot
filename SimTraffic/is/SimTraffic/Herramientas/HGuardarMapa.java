@@ -29,6 +29,7 @@ public class HGuardarMapa implements IHerramienta {
 		Mapa mapa = modelo.getMapa();
 		generarXMLinfo(mapa);
 		guardarSeñales(mapa);
+		modelo.getMapa().setCambios_en_mapa(false);
 		
 		/*
 		 * Faltarían guardar las otras cosas relevantes que no se puedan guardar

@@ -76,6 +76,9 @@ public class Mapa {
 	private double minLat;
 
 	private double maxLat;
+	
+	private boolean cambios_en_mapa;
+
 
 	/**
 	 * Crea un nuevo mapa, sin ningun nodo, tramo o señal.
@@ -109,6 +112,7 @@ public class Mapa {
 
 		seleccion = new Seleccion();
 		portapapeles = new Seleccion();
+		cambios_en_mapa=false;
 	}
 
 	/**
@@ -147,7 +151,7 @@ public class Mapa {
 			// añade el nodo
 			Nodos.add(nodo);
 			nodo.setID(idMax + 1);
-
+			cambios_en_mapa=true;
 		}
 
 		if (Nodos.size() == 1) {
@@ -165,6 +169,7 @@ public class Mapa {
 			if (minLon > nodo.getPos().getLon())
 				minLon = nodo.getPos().getLon();
 		}
+		
 	}
 
 	/**
@@ -205,7 +210,7 @@ public class Mapa {
 					// Cambio en el método de asignación de ID
 					// tramo.asignarIDunico();
 				}
-
+        cambios_en_mapa=true;
 		}
 
 	}
@@ -239,7 +244,7 @@ public class Mapa {
 
 			Vias.add(via);
 			via.setID(idMax + 1);
-
+			cambios_en_mapa=true;
 		}
 
 	}
@@ -285,6 +290,7 @@ public class Mapa {
 
 			LineasAutobuses.add(linea);
 			linea.setID(idMax + 1);
+			cambios_en_mapa=true;
 		}
 	}
 
@@ -304,6 +310,7 @@ public class Mapa {
 			if (!Señales.contains(señal))
 				Señales.add(señal);
 			nodo.setSeñal(señal);
+			cambios_en_mapa=true;
 		}
 	}
 
@@ -327,6 +334,7 @@ public class Mapa {
 					return false;
 			}
 			Nodos.remove(nodo);
+			cambios_en_mapa=true;
 			return true;
 		}
 		return true;
@@ -347,6 +355,7 @@ public class Mapa {
 			Tramos.remove(tramo);
 			tramo.getNodoFinal().quitarTramo(tramo);
 			tramo.getNodoInicial().quitarTramo(tramo);
+			cambios_en_mapa=true;
 			return true;
 		}
 		return false;
@@ -378,6 +387,7 @@ public class Mapa {
 				eliminar(aux.getNodoFinal());
 			}
 			Vias.remove(via);
+			cambios_en_mapa=true;
 			return true;
 		}
 		return false;
@@ -396,6 +406,7 @@ public class Mapa {
 	public boolean eliminarLineaAutobus(Via via) {
 		if (via != null && LineasAutobuses.contains(via)) {
 			LineasAutobuses.remove(via);
+			cambios_en_mapa=true;
 			return true;
 		}
 		return false;
@@ -403,6 +414,7 @@ public class Mapa {
 
 	public void eliminar(Señal señal) {
 		Señales.remove(señal);
+		cambios_en_mapa=true;
 	}
 
 	/**
@@ -606,6 +618,14 @@ public class Mapa {
 
 	public void setNodoReferenciaPortapapeles(Nodo nodoReferenciaPortapapeles) {
 		this.nodoReferenciaPortapapeles = nodoReferenciaPortapapeles;
+	}
+	
+	public boolean isCambios_en_mapa() {
+		return cambios_en_mapa;
+	}
+
+	public void setCambios_en_mapa(boolean cambios_en_mapa) {
+		this.cambios_en_mapa = cambios_en_mapa;
 	}
 
 	public Nodo existeNodo(Nodo nodo) {
