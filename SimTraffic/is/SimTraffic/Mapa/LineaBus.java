@@ -64,12 +64,17 @@ public class LineaBus extends Via{
 		Iterator<Tramo> tram = this.getTramos().iterator();
 		s=s.concat("<way id='"+this.getID()+"'>\n");
 		while (tram.hasNext()) {
-			Tramo tramoaux = tram.next();
-			s=s.concat("<seg id='"+tramoaux.getID()+"'/>\n");
+			Tramo tramo_aux = tram.next();
+			s=s.concat("<seg id='"+tramo_aux.getID()+"'/>\n");
 		}
 		if (this.getTipo()!=null) s=s.concat("<tag k='"+this.getTipo().getTipo()+"' v='"+this.getTipo().getValorTipo()+"' />\n");
 		if (this.getNombre()!=null) s=s.concat("<tag k='nombre' v='"+this.getNombre()+"' />\n");
 		s=s.concat("<tag k ='bus line' v='yes' />\n");
+		Iterator<Nodo> nodos = this.getParadas().iterator();
+		while (nodos.hasNext()){
+			Nodo nodo_aux = nodos.next();
+			s=s.concat("<node id='"+nodo_aux.getID()+"'/>\n");
+		}
 		s=s.concat("</way>\n");
 		return s;
 	}
