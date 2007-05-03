@@ -10,6 +10,7 @@ import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Señales.Semaforo;
+import is.SimTraffic.Vista.PanelEsperaCargando;
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -134,7 +135,9 @@ public class Simulacion {
 				crearVehiculos(max + 20);
 				// TODO esta funcion es problematica, yo creo que es mejor no calcular los caminos y listo
 				//crearCaminosDefecto();
-				controladorSim = new ControladorSim(vehiculos, this);
+				PanelEsperaCargando panel = new PanelEsperaCargando("Comenzando...", "Inicializando simulación...");
+				(new Thread(panel)).start();
+				controladorSim = new ControladorSim(vehiculos, this, panel);
 				controladorSim.start();
 				activa = true;
 				Iterator<Nodo> it = mapa.getNodos().iterator();

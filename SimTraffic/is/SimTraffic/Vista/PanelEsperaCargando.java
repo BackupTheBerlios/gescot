@@ -14,16 +14,16 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 
 	private JLabel imagen;
 	
-	public PanelEsperaCargando() {
+	public PanelEsperaCargando(String titulo, String mensaje) {
 		setLocation(200,200);
 		setResizable(false);
-		setTitle("Cargando...");
+		setTitle(titulo); //"Cargando...");
 		
 		// TODO cargar imagen desde el jar
 		imagen = new JLabel((new ImageIcon(
 			"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
 		setLayout(new FlowLayout());
-		add(new JLabel("Cargando mapa..."));
+		add(new JLabel(mensaje));//"Cargando mapa..."));
 		add(imagen);
 		pack();
 	}

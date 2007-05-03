@@ -596,7 +596,7 @@ public class RepresentacionAvanzada extends Representacion {
 			posY = posY2 - (int) ((posY2 - posY1) * vehiculo.getPosicion());
 		}
 		zoom.scale(1 / this.zoom, 1 / this.zoom);
-		zoom.translate(0, tamaño_carril * vehiculo.getCarril());
+		zoom.translate(0, - tamaño_carril * (vehiculo.getCarril() - 1));
 		rot.concatenate(zoom);
 		trans.translate(posX, posY);
 		trans.concatenate(rot);

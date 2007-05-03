@@ -63,7 +63,7 @@ public class HCargarMapa implements IHerramienta {
 	 * Se utiliza una variable estatica para que nos se tengan que cargar sus
 	 * componentes cada vez.
 	 */
-	public static PanelEsperaCargando p = new PanelEsperaCargando();
+	public static PanelEsperaCargando p = new PanelEsperaCargando("Cargando...", "Cargando mapa...");
 
 	protected boolean error;
 

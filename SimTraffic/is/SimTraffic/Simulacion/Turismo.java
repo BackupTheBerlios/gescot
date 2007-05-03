@@ -1,9 +1,5 @@
 package is.SimTraffic.Simulacion;
 
-import is.SimTraffic.LibreriaIA.IPrincipal;
-import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
-import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
-import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -80,33 +76,12 @@ public class Turismo extends Vehiculo {
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
 
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
-				salida);
-		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
-				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
-				problemaDistancias.getOperadores(), problemaDistancias
-						.getHeuristica());
-		
-		boolean resul = algoritmoAEstrella.ejecutar();
-		if (resul == false) {
-			// no ha sido posible encontrar un camino entre los nodos
-			return false;
-		} else {
-			// Mostrar solución en el mapa
-			tramos.clear();
-			cuentaTramos = 0;
+	    ArrayList<Tramo> tramosTemp = BuscaCamino.obtenerInstancia().buscar(entrada, salida);
+	    if (tramosTemp == null) return false;
+	    tramos = tramosTemp;
+	    cuentaTramos = 0;
+	    return true;
 
-			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0; i--) {
-				if (algoritmoAEstrella.getSolucion().elementAt(i - 1)
-						.getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i - 1).getOperador()))
-							.getTramoElegido();
-					tramos.add(tramoAux);
-				}
-			}
-			return true;
-		}
 	}
 
 }

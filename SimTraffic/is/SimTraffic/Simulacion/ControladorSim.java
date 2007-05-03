@@ -1,5 +1,7 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Vista.PanelEsperaCargando;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,6 +44,9 @@ public class ControladorSim extends Thread {
 
 	private boolean pausar;
 	
+	private PanelEsperaCargando panel;
+
+	private boolean primera = true;
 	/**
 	 * Método constructor de la clase, que crea los grupos de vehiculos a partir
 	 * de la lista de Vehiculos dada por la simulación.
@@ -49,8 +54,9 @@ public class ControladorSim extends Thread {
 	 * @param listaVehiculo
 	 *            Lista de los vehiculos a simular
 	 */
-	ControladorSim(List<Vehiculo> listaVehiculo, Simulacion sim) {
+	ControladorSim(List<Vehiculo> listaVehiculo, Simulacion sim, PanelEsperaCargando panel) {
 		int N = calculaNroThread(listaVehiculo.size());
+		this.panel = panel;
 		this.sim = sim;
 		lista = new ArrayList<GrupoVehiculos>();
 		barrera = new CyclicBarrier(N);
@@ -72,6 +78,10 @@ public class ControladorSim extends Thread {
 				}
 				ControladorSim.sleep(50);
 				barrera.await();
+				if (primera) {
+					panel.terminar();
+					primera = false;
+				}
 				sim.actualizar();
 			} catch (InterruptedException e) {
 				// TODO error porque se paro la espera en este thread

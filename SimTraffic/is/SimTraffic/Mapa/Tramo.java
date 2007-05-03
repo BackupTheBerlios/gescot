@@ -98,7 +98,6 @@ public class Tramo implements ElementoMapa, Serializable {
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
-		//ID = asignarIDunico();
 		calculaAngulo();
 		calculaLargo();
 	}
@@ -116,7 +115,6 @@ public class Tramo implements ElementoMapa, Serializable {
 			angulo = angulo - Math.PI;
 		// NOTA: el angulo toma valores entre -PI y PI, teniendo angulo 0 un tramo que va de oeste a este
 		//       tambien cabe destacar que creece hacia arriba y decrece hacia abajo
-		//System.out.println("Angulo: " + angulo*180/Math.PI + " Coseno: " + Math.cos(angulo) + " Seno: " + Math.sin(angulo));
 	}
 
 	/**
@@ -138,22 +136,6 @@ public class Tramo implements ElementoMapa, Serializable {
 		velocidadMax = 40;
 		calculaAngulo();
 		calculaLargo();
-	}
-
-	/**
-	 * Método que genera el ID de un tramo tomando los IDs de sus nodos (y como
-	 * los IDs de los nodos son únicos, este es también único)
-	 * 
-	 * @return el ID generado para identificar el tramo.
-	 */
-	/**
-	 * Método descartado. No utilizar.
-	 */
-	public int asignarIDunico() {
-		//String IDstring = "" + nodoInicial.getID() + nodoFinal.getID();
-		//int IDtramo = Integer.parseInt(IDstring);
-		//return IDtramo;
-		return 0;
 	}
 
 	/**
