@@ -42,7 +42,7 @@ public class Vista implements IVista {
 			ventana.setVisible(true);
 		}
 	}
-
+	
 	public void actualizar() {
 		((BarraSuperior)ventana.getBarraArriba()).setTiempo(modelo.getSimulacion().getTiempo()*1000);
 		ventana.repaint();
