@@ -32,8 +32,10 @@ public class BarraHerramientas extends Barra {
 	
 	private JToggleButton botonDesplazar;
 	private JToggleButton botonSeleccionar;
+	private JToggleButton botonSeleccionarVias;
 	private JToggleButton botonAñadirNodo;
 	private JToggleButton botonAñadirTramo;
+	private JToggleButton botonAñadirVia;
 	private JToggleButton botonEliminarNodo;
 	private JToggleButton botonEliminarTramo;
 	
@@ -49,7 +51,7 @@ public class BarraHerramientas extends Barra {
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 7), true);
 		botonDesplazar.addActionListener(new AccionBarra(ventana, null));
-		botonDesplazar.addMouseMotionListener(new EscuchaAyuda("Pulse el raton en el mapa y matengalo para desplazarlo.", ventana));
+		botonDesplazar.addMouseMotionListener(new EscuchaAyuda("Seleccione esta opción para desplazar el mapa.", ventana));
 		botonDesplazar.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(botonDesplazar);
 
@@ -64,14 +66,14 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonSeleccionar);
 		
 		//Seleccionar Vias
-		boton = (JToggleButton) añadirBoton("seleccionar_via.png", "seleccionar_via2.png",
+		botonSeleccionarVias = (JToggleButton) añadirBoton("seleccionar_via.png", "seleccionar_via2.png",
 				"Seleccionar Vias", new AccionSobreMapa(new MLSeleccionarVia(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), 9), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Seleccione los tramos del mapa para identificar a qué via pertenecen", ventana));
-		boton.addKeyListener(ventana.getEscuchaTeclado());
-		grupoherramientas.add(boton);
+		botonSeleccionarVias.addActionListener(new AccionBarra(ventana, null));
+		botonSeleccionarVias.addMouseMotionListener(new EscuchaAyuda("Seleccione los tramos del mapa para identificar a qué via pertenecen", ventana));
+		botonSeleccionarVias.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(botonSeleccionarVias);
 		
 		
 		
@@ -116,6 +118,15 @@ public class BarraHerramientas extends Barra {
 		botonAñadirTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", ventana));
 		grupoherramientas.add(botonAñadirTramo);
 		
+		// Añadir Vias
+		botonAñadirVia = (JToggleButton) añadirBoton("añadir_via.png", "añadir_via2.png", "Añadir una via",
+				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
+						ventana.getPanel_mapa()), ventana, ventana
+						.getEscuchaTeclado(), 6), true);
+		botonAñadirVia.addActionListener(new AccionBarra(ventana, null));
+		botonAñadirVia.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva vía.", ventana));
+		grupoherramientas.add(botonAñadirVia);
+		
 		//Eliminar nodo.
 		botonEliminarNodo = (JToggleButton) añadirBoton("eliminar_nodo.png", "eliminar_nodo2.png", "Eliminar Nodo",
 				new AccionSobreMapa(new MLEliminarNodo(modelo, controlador,
@@ -142,15 +153,6 @@ public class BarraHerramientas extends Barra {
 		boton.addActionListener(new AccionBarra(ventana, null));
 		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
 		grupoherramientas.add(boton);
-
-		// Añadir Vias
-		boton = (JToggleButton) añadirBoton("añadir_via.png", "añadir_via2.png", "Añadir una via",
-				new AccionSobreMapa(new MLAñadirVia(modelo, controlador,
-						ventana.getPanel_mapa()), ventana, ventana
-						.getEscuchaTeclado(), 6), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva vía.", ventana));
-		grupoherramientas.add(boton);
 		
 		//Añadir Buscar
 		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
@@ -172,6 +174,18 @@ public class BarraHerramientas extends Barra {
 		
 	}
 	
+	public JToggleButton getBotonDesplazar(){
+		return this.botonDesplazar;
+	}
+	
+	public JToggleButton getBotonSeleccionar(){
+		return this.botonSeleccionar;
+	}
+	
+	public JToggleButton getBotonSeleccionarVias(){
+		return this.botonSeleccionarVias;
+	}
+	
 	public JToggleButton getBotonAñadirNodo(){
 		return this.botonAñadirNodo;
 	}
@@ -180,8 +194,8 @@ public class BarraHerramientas extends Barra {
 		return this.botonAñadirTramo;
 	}
 	
-	public JToggleButton getBotonSeleccionar(){
-		return this.botonSeleccionar;
+	public JToggleButton getBotonAñadirVia(){
+		return this.botonAñadirVia;
 	}
 	
 	public JToggleButton getBotonEliminarTramo(){

@@ -328,9 +328,20 @@ public class Ventana extends JFrame {
 				modelo, controlador, panel_mapa));
 		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar los nodos y tramos seleccionados en el mapa.", this));
 		
-		JMenu submenuModos = new JMenu("Modos");
+		JMenuItem desplazarMapa = new JMenuItem("Desplazar el mapa");
+		desplazarMapa.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonDesplazar().doClick();
+					}
+				}
+		);
+		desplazarMapa.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para desplazar el mapa.", this));
 		
-		JMenuItem seleccion = new JMenuItem("Modo seleccion");
+		
+		JMenu submenuSeleccion = new JMenu("Modo Seleccionar");
+		
+		JMenuItem seleccion = new JMenuItem("Seleccionar nodos y tramos");
 		seleccion.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -339,8 +350,22 @@ public class Ventana extends JFrame {
 				}
 		);
 		seleccion.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", this));
+		submenuSeleccion.add(seleccion);
 		
-		JMenuItem insertarNodo = new JMenuItem ("Modo insertar Nodo");
+		JMenuItem seleccionVias = new JMenuItem("Seleccionar Vías");
+		seleccionVias.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonSeleccionarVias().doClick();
+					}
+				}
+		);
+		seleccionVias.addMouseMotionListener(new EscuchaAyuda("Seleccione vias en el mapa.", this));
+		submenuSeleccion.add(seleccionVias);
+		
+		JMenu submenuInsertar = new JMenu("Modo Insertar");
+		
+		JMenuItem insertarNodo = new JMenuItem ("Insertar Nodo");
 		insertarNodo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -349,8 +374,9 @@ public class Ventana extends JFrame {
 				}
 		);
 		insertarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", this));
+		submenuInsertar.add(insertarNodo);
 		
-		JMenuItem insertarTramo = new JMenuItem ("Modo insertar tramo");
+		JMenuItem insertarTramo = new JMenuItem ("Insertar tramo");
 		insertarTramo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -359,8 +385,22 @@ public class Ventana extends JFrame {
 				}
 		);
 		insertarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
+		submenuInsertar.add(insertarTramo);
 		
-		JMenuItem eliminarNodo = new JMenuItem ("Modo eliminar nodo");
+		JMenuItem insertarVia = new JMenuItem ("Insertar vía");
+		insertarVia.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonAñadirVia().doClick();
+					}
+				}
+		);
+		insertarVia.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
+		submenuInsertar.add(insertarVia);
+		
+		JMenu submenuEliminar = new JMenu("Modo Eliminar");
+		
+		JMenuItem eliminarNodo = new JMenuItem ("Eliminar nodo");
 		eliminarNodo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -369,8 +409,9 @@ public class Ventana extends JFrame {
 				}
 		);
 		eliminarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", this));
+		submenuEliminar.add(eliminarNodo);
 		
-		JMenuItem eliminarTramo = new JMenuItem ("Modo eliminar tramo");
+		JMenuItem eliminarTramo = new JMenuItem ("Eliminar tramo");
 		eliminarTramo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -379,11 +420,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		eliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", this));
-		
-		submenuModos.add(seleccion);
-		submenuModos.add(insertarNodo);
-		submenuModos.add(insertarTramo);
-		submenuModos.add(eliminarTramo);
+		submenuEliminar.add(eliminarTramo);
 
 		emergenteMapa.add(cambiarRepresentacion);
 		emergenteMapa.add(zoomIn);
@@ -398,8 +435,10 @@ public class Ventana extends JFrame {
 		emergenteMapa.addSeparator();
 		emergenteMapa.add(eliminarSeleccion);
 		emergenteMapa.addSeparator();
-		emergenteMapa.add(submenuModos);		
-		
+		emergenteMapa.add(desplazarMapa);
+		emergenteMapa.add(submenuSeleccion);
+		emergenteMapa.add(submenuInsertar);
+		emergenteMapa.add(submenuEliminar);
 		
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 	}

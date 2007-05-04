@@ -33,7 +33,7 @@ public class MLDesplazar extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return null;
+		return "Deje pulsado el ratón y muévalo para desplazar el mapa.";
 	}
 
 	@Override
