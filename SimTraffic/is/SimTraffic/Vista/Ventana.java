@@ -398,6 +398,17 @@ public class Ventana extends JFrame {
 		insertarVia.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
 		submenuInsertar.add(insertarVia);
 		
+		JMenuItem insertarLineaBus = new JMenuItem ("Insertar línea de bus");
+		insertarLineaBus.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						((BarraHerramientas)panel).getBotonAñadirBus().doClick();
+					}
+				}
+		);
+		insertarLineaBus.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", this));
+		submenuInsertar.add(insertarLineaBus);
+		
 		JMenu submenuEliminar = new JMenu("Modo Eliminar");
 		
 		JMenuItem eliminarNodo = new JMenuItem ("Eliminar nodo");
@@ -999,10 +1010,4 @@ public class Ventana extends JFrame {
 	public JMenuItem getCortarSeleccion() {
 		return cortarSeleccion;
 	}
-	
-	public JPanel getBarraArriba(){
-		return superior_arriba;
-	}
-	
-	
 }

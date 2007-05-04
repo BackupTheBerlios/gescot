@@ -36,6 +36,7 @@ public class BarraHerramientas extends Barra {
 	private JToggleButton botonAñadirNodo;
 	private JToggleButton botonAñadirTramo;
 	private JToggleButton botonAñadirVia;
+	private JToggleButton botonAñadirBus;
 	private JToggleButton botonEliminarNodo;
 	private JToggleButton botonEliminarTramo;
 	
@@ -146,13 +147,13 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonEliminarTramo);
 
 		// Aqui se añadirán los nuevos botones.
-		boton = (JToggleButton) añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
+		botonAñadirBus = (JToggleButton) añadirBoton("add_bus.PNG", "add_bus2.PNG", "Añadir linea de autobus",
 				new AccionSobreMapa(new MLAñadirLineaAutobus(modelo,
 						controlador, ventana.getPanel_mapa()), ventana, ventana
 						.getEscuchaTeclado(), 4), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
-		grupoherramientas.add(boton);
+		botonAñadirBus.addActionListener(new AccionBarra(ventana, null));
+		botonAñadirBus.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", ventana));
+		grupoherramientas.add(botonAñadirBus);
 		
 		//Añadir Buscar
 		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
@@ -196,6 +197,10 @@ public class BarraHerramientas extends Barra {
 	
 	public JToggleButton getBotonAñadirVia(){
 		return this.botonAñadirVia;
+	}
+	
+	public JToggleButton getBotonAñadirBus(){
+		return this.botonAñadirBus;
 	}
 	
 	public JToggleButton getBotonEliminarTramo(){
