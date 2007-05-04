@@ -2,6 +2,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraSuperior;
 
 /**
  * @author Grupo ISTrafico
@@ -43,7 +44,10 @@ public class Vista implements IVista {
 	}
 
 	public void actualizar() {
+		((BarraSuperior)ventana.getBarraArriba()).setTiempo(modelo.getSimulacion().getTiempo()*1000);
 		ventana.repaint();
+		
+	
 	}
 
 	/**

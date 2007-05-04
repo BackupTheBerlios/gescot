@@ -2,6 +2,8 @@ package is.SimTraffic.Simulacion;
 
 import java.io.Serializable;
 
+import javax.swing.JTextField;
+
 
 /**
  * Controla el tiempo global de la simulación. Sólo existirá un
@@ -15,6 +17,8 @@ public class Reloj implements Serializable {
 	private static final long serialVersionUID = -5342545297592950862L;
 	private long tiempo;
 	private int cont;
+	private JTextField tiempoBarra;
+	
 	public Reloj(long tiempo) {
 		this.tiempo = tiempo;
 		this.cont = 0;
@@ -40,6 +44,7 @@ public class Reloj implements Serializable {
 	}
 
 	public void setTiempo(long tiempo) {
-		this.tiempo = tiempo;
+		this.tiempo = tiempo;	
 	}
+	
 }

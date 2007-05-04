@@ -517,4 +517,8 @@ public class Simulacion {
 		densidad = longitudT * densidad;
 		return densidad;
 	}
+	
+	public long getTiempo(){
+		return reloj.getTiempo();
+	}
 }

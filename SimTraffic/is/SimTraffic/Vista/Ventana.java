@@ -999,4 +999,10 @@ public class Ventana extends JFrame {
 	public JMenuItem getCortarSeleccion() {
 		return cortarSeleccion;
 	}
+	
+	public JPanel getBarraArriba(){
+		return superior_arriba;
+	}
+	
+	
 }

@@ -16,11 +16,15 @@ import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
+import is.SimTraffic.Utils.Tiempo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -28,6 +32,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+
+
 
 public class BarraSuperior extends JPanel {
 	
@@ -40,10 +46,13 @@ public class BarraSuperior extends JPanel {
 	private JButton detener;
 	private JPanel reloj;
 	private JTextField tiempo;
+	private Calendar cal;
+	private IModelo modelo;
 	
 	public BarraSuperior(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 		
+		this.modelo = modelo;
 		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
 		this.add(crearBarraArchivo(controlador, modelo, ventana));
@@ -53,7 +62,13 @@ public class BarraSuperior extends JPanel {
 		
 		this.add(Box.createGlue());
 		
-		tiempo = new JTextField("00:00:00", 8);
+		cal = new GregorianCalendar();
+		this.setTiempo(0);
+		tiempo = new JTextField("", 8);
+		
+
+
+		
 		tiempo.setHorizontalAlignment(JTextField.CENTER);
 		tiempo.setEditable(false);
 		tiempo.setMargin(new Insets(1,1,1,1));
@@ -194,8 +209,32 @@ public class BarraSuperior extends JPanel {
 		return this.detener;
 	}
 
-	public void setTiempo(long tiempo) {
-		this.tiempo.setText(tiempo/10000 + ":" + (tiempo/100)%10000 + ":" + (tiempo%100));
+	public void setTiempo(long t) {
+		cal.setTimeInMillis(t);
+		
+		int hour12 = cal.get(Calendar.HOUR);            // 0..11
+	    int hour24 = cal.get(Calendar.HOUR_OF_DAY);     // 0..23
+	    int min = cal.get(Calendar.MINUTE);             // 0..59
+	    int sec = cal.get(Calendar.SECOND);             // 0..59
+	    int ms = cal.get(Calendar.MILLISECOND);         // 0..999
+	    int ampm = cal.get(Calendar.AM_PM);             // 0=AM, 1=PM
+	    
+	    String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);
+	    if (tiempo!=null){
+	    	tiempo.setText(hora);
+	    	this.repaint();
+	    }
+	    
+	    
+	    
 	}
-
+	
+	
+	
+	private static String convierte(int valor){
+		if (valor <10){
+			return "0"+valor;
+		}
+		else return ""+valor;
+	}
 }
