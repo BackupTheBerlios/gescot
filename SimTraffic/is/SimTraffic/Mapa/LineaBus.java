@@ -49,7 +49,10 @@ public class LineaBus extends Via{
 		this.comienzoServicio=start;
 		this.finServicio=end;
 	}
-	
+
+	public void addParada(Nodo parada){
+		Paradas.add(parada);
+	}
 	
 	public ArrayList<Nodo> getParadas() {
 		return Paradas;
@@ -73,7 +76,7 @@ public class LineaBus extends Via{
 		Iterator<Nodo> nodos = this.getParadas().iterator();
 		while (nodos.hasNext()){
 			Nodo nodo_aux = nodos.next();
-			s=s.concat("<node id='"+nodo_aux.getID()+"'/>\n");
+			s=s.concat("<parada id='"+nodo_aux.getID()+"'/>\n");
 		}
 		s=s.concat("</way>\n");
 		return s;
