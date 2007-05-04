@@ -25,10 +25,15 @@ public class HGuardarMapa implements IHerramienta {
 
 	private JFileChooser fc;
 	
+	/** Informa de si el usuario ha pulsado el boton de aceptar al guardar o no.*/
+	private boolean aceptado;
+	
 	public int hacer(IModelo modelo) {
 		Mapa mapa = modelo.getMapa();
+		aceptado = false;
 		generarXMLinfo(mapa);
-		guardarSeñales(mapa);
+		if (aceptado)
+			guardarSeñales(mapa);
 		modelo.getMapa().setCambios_en_mapa(false);
 		
 		/*
@@ -55,7 +60,7 @@ public class HGuardarMapa implements IHerramienta {
 	 */
 	public void generarXMLinfo(Mapa mapa) {
 
-		fc = new JFileChooser();
+		fc = new JFileChooser(".//is/SimTraffic/Ejemplos");
 		String[] ext = new String[] { "osm" };
 		fc.addChoosableFileFilter(new ExtFilter(ext,"Mapa OSM (*.osm)"));
 		int val = fc.showSaveDialog(null);
@@ -63,6 +68,7 @@ public class HGuardarMapa implements IHerramienta {
 		if (val == JFileChooser.APPROVE_OPTION) {
 			PrintWriter salida;
 			try {
+				aceptado = true;
 				if (fc.getSelectedFile().getAbsolutePath().contains(".osm"))
 					salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
 						.getSelectedFile().getAbsolutePath())))  ;
