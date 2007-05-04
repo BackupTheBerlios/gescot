@@ -11,13 +11,18 @@ import is.SimTraffic.Mapa.Tramo;
 
 public class BuscaCamino {
 	
-	static BuscaCamino instancia;
+	static int maxSimultaneos = 4;
+	
+	static BuscaCamino[] instancia = new BuscaCamino[maxSimultaneos];
+	
+	static int cont = 0;
 	
 	static synchronized BuscaCamino obtenerInstancia() {
-		if (instancia == null) {
-			instancia = new BuscaCamino();
+		cont = (cont + 1) % maxSimultaneos;
+		if (instancia[cont] == null) {
+			instancia[cont] = new BuscaCamino();
 		}
-		return instancia;
+		return instancia[cont];
 	}
 	
 	public BuscaCamino() {

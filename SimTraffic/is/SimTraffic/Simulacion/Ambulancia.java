@@ -20,8 +20,9 @@ public class Ambulancia extends Vehiculo {
 	List<Nodo> hospitales;
 	
 	private ArrayList<Tramo> tramos = new ArrayList<Tramo>();
-	private int cuentaTramos = 0;
 
+	private int cuentaTramos = 0;
+	
 	public Ambulancia(List<Nodo> hospitales) {
 		// TODO este constructor deberia dar valores a todos
 		//   los atributos de un vehiculo
@@ -41,71 +42,50 @@ public class Ambulancia extends Vehiculo {
 		this.velocidad = 0;
 		this.velocidadMax = (double) random.nextInt(60) / 100 + 0.6;
 		this.id = ncochesglobal;
+		this.hospitales = hospitales;
 		ncochesglobal++;
 
 	}
 	
 	public synchronized void setTramo(Tramo tramo) {
 		cuentaTramos++;
+
 		this.tramo = tramo;
 	}
 	
 	public boolean inicializar(Nodo entrada, Nodo salida) {
-		super.inicializar(entrada, salida);
 		Random random = new Random();
+		System.out.println(hospitales.size());
 		entrada = hospitales.get(random.nextInt(hospitales.size()));
 		
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
-				entrada, salida);
-		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
-				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
-				problemaDistancias.getOperadores(), problemaDistancias
-						.getHeuristica());
-		boolean resul = algoritmoAEstrella.ejecutar();
-		if (resul == false) {
-			// no ha sido posible encontrar un camino entre los nodos
-			return false;
-		} else {
-			// Mostrar solución en el mapa
-			tramos.clear();
-			cuentaTramos = 0;
-			
-			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0 ; i--) {
-			//for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
-				 // Solo es null en la raíz (se puede mejorar)
-				/*if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i).getOperador()))
-							.getTramoElegido();*/
-				  if (algoritmoAEstrella.getSolucion().elementAt(i-1).getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i-1).getOperador()))
-							.getTramoElegido();
-					tramos.add(tramoAux);
-					// Ver luego si almacenarlo en algún sitio.
-				}
+		super.inicializar(entrada, salida);
+		super.setNodoOrigen(entrada);
+		cuentaTramos = 0;
+		tramos = BuscaCamino.obtenerInstancia().buscar(entrada, salida);
+		if (tramos == null || tramos.size() < 1) return false;
+
+		for (int i = tramos.size() -1; i >= 0; i--) {
+			tramos.add(tramos.get(i));
 			}
-			
-			for (int i = tramos.size() -1; i >= 0; i++) {
-				tramos.add(tramos.get(i));
-			}
-			return true;
-		}
+		return true;
 
 	}
 	
 	@Override
 	public synchronized Tramo siguienteTramo() {
-		if (tramos != null && tramos.size() >= cuentaTramos) {
-			return tramos.get(cuentaTramos);
-		}
+		if (tramos != null&& cuentaTramos < tramos.size())
+				return tramos.get(cuentaTramos);
 		return null;
 	}
 
 	@Override
 	public void variarAceleracion(int cuanto) {
-		// TODO Auto-generated method stub
-
+		if (cuanto > 0)
+			this.aceleracion += (double) cuanto * cuanto / 40000;
+		else
+			this.aceleracion -= (double) cuanto * cuanto / 40000;
+		if (aceleracion > this.aceleracionMax)
+			aceleracion = aceleracionMax;
 	}
 
 }

@@ -123,6 +123,9 @@ public class Simulacion {
 					controladorSim.despausar();
 					return 0;
 				}
+				if (mapa.getTramos().size() < 1) {
+					throw new Exception("tramos insuficientes");
+				}
 				// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 				this.mapa = mapa;
 				int max = max(param.getNumVehiculos());
@@ -382,7 +385,7 @@ public class Simulacion {
 		Nodo temp;
 		while (it.hasNext()) {
 			temp = it.next();
-			if (temp.getTipo().getValorTipo().compareTo("hospital") == 0) {
+			if (temp.getTipo() != null && temp.getTipo().getValorTipo().compareToIgnoreCase("hospital") == 0) {
 				res.add(temp);
 			}
 		}
