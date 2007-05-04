@@ -306,12 +306,12 @@ public class Ventana extends JFrame {
 		copiarSeleccion = new JMenuItem("Copiar");
 		copiarSeleccion.addActionListener(new AccionCopiar(
 				modelo, controlador, panel_mapa));
-		
+		copiarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para copiar los elementos seleccionados.",this));
 		
 		cortarSeleccion = new JMenuItem("Cortar");
 		cortarSeleccion.addActionListener(new AccionCortar(
 				modelo, controlador, panel_mapa));
-		
+		cortarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cortar los elementos seleccionados.",this));
 		
 		pegarSeleccion = new JMenuItem("Pegar");
 		pegarSeleccion.addActionListener(
@@ -326,6 +326,7 @@ public class Ventana extends JFrame {
 		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
 		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
+		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar los nodos y tramos seleccionados en el mapa.", this));
 		
 		JMenu submenuModos = new JMenu("Modos");
 		
