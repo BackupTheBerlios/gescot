@@ -177,7 +177,7 @@ public class CargadorMapa implements DocHandler {
 						}
 					}*/
 					//TODO cargar otra información de los carriles de bus
-					lineasAutobuses.add(new LineaBus(viaAux, null, new int[0], 0, 0));					
+					lineasAutobuses.add(new LineaBus(viaAux,new ArrayList<Nodo>(), new int[0], 0, 0));					
 				}
 				else if (k.compareTo("bus line") == 0 && v.compareTo("no") == 0){
 					//no hacer nada
@@ -195,7 +195,9 @@ public class CargadorMapa implements DocHandler {
 								viaAux.addTramo(tramoAux);
 							}*/
 						  }
-				}
+				}//else if (k.compareTo("parada") == 0){
+					  
+				//}
 				else {
 					if (identificarTipoElem(k,v) != null)
 						viaAux.setTipo(identificarTipoElem(k,v));
@@ -260,7 +262,17 @@ public class CargadorMapa implements DocHandler {
 					viaAux.addTramo(tramoAux);
 				}
 			  }
-		  }
+		   }
+		   if(elem.compareTo("parada") == 0){
+			   if(idUltimoElemReconocido > 0){
+				 LineaBus lineaAux = buscarLineaBusConId(idUltimoElemReconocido);
+				 Nodo parada = buscarNodoConId(id);
+				 if (parada!=null){
+					lineaAux.addParada(parada); 
+				 }
+			   }
+		   }
+		  
 
 	}
 	
@@ -293,6 +305,17 @@ public class CargadorMapa implements DocHandler {
 			viaAux = itVia.next();
 			if(viaAux.getID() == idvia)
 				return viaAux;
+		}
+		return null;
+	}
+	
+	public LineaBus buscarLineaBusConId(int idlinea){
+		Iterator<LineaBus> itLinea = lineasAutobuses.iterator();
+		LineaBus lineaAux;
+		while (itLinea.hasNext()){
+			lineaAux = itLinea.next();
+			if(lineaAux.getID() == idlinea)
+				return lineaAux;
 		}
 		return null;
 	}

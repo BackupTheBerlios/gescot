@@ -230,17 +230,18 @@ public class Mapa {
 					idMax = temp.getID();
 			}
 
-			/**
-			 * // Debe buscar también en la lista de lineas de autobuses
+			
+			// Debe buscar también en la lista de lineas de autobuses
 			// para poder asignar un id de vía único.
-			it = LineasAutobuses.iterator();
-			while (it.hasNext()) {
-				temp = it.next();
-				if (via.equals(temp))
-					return;
-				if (temp.getID() >= idMax)
-					idMax = temp.getID();
-			}**/
+			Iterator<LineaBus> it2 = LineasAutobuses.iterator();
+			LineaBus temp2;
+			while (it2.hasNext()) {
+				temp2 = it2.next();
+				//if (via.equals(temp2))
+					//return;
+				if (temp2.getID() >= idMax)
+					idMax = temp2.getID();
+			}
 
 			Vias.add(via);
 			via.setID(idMax + 1);
@@ -262,30 +263,30 @@ public class Mapa {
 		int idMax = 1;
 		if (linea != null) {
 			
-			/**
-			 * 
-			 * // busca si la vía no esta ya en el mapa, y el id de via mas grande
+			
+			 
+			 // busca si la vía no esta ya en el mapa, y el id de via mas grande
 			// para no repetir
 			Iterator<Via> it = Vias.iterator();
 			Via temp;
 			while (it.hasNext()) {
 				temp = it.next();
-				if (via.equals(temp))
-					return;
+				//if (linea.equals(temp))
+				//	return;
 				if (temp.getID() >= idMax)
 					idMax = temp.getID();
 			}
-			 */
+			 
 			
-			LineaBus temp=null;
+			LineaBus temp2=null;
 			// Debe buscar en la lista de lineas de autobuses para poder asignar un id de linea de bus único.
-			Iterator<LineaBus> it = LineasAutobuses.iterator();
+			Iterator<LineaBus> it2 = LineasAutobuses.iterator();
 			while (it.hasNext()) {
-				temp = it.next();
-				if (linea.equals(temp))
+				temp2 = it2.next();
+				if (linea.equals(temp2))
 					return;
-				if (temp.getID() >= idMax)
-					idMax = temp.getID();
+				if (temp2.getID() >= idMax)
+					idMax = temp2.getID();
 			}
 
 			LineasAutobuses.add(linea);
