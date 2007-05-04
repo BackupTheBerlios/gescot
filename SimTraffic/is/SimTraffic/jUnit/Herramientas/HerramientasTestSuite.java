@@ -19,6 +19,7 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HAñadirTramoTest.class);
 	    suite.addTestSuite(HAsignarTramosAViaTest.class);
 	    suite.addTestSuite(HModificarSeñalTest.class);
+	    suite.addTestSuite(HConfigurarEntradaSalidaTest.class);
 	    return suite;
 	}
 }

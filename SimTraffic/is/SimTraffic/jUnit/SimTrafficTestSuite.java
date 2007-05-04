@@ -5,6 +5,7 @@ package is.SimTraffic.jUnit;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import is.SimTraffic.jUnit.LibreriaIA.LibreriaIATestSuite;
 import is.SimTraffic.jUnit.Mapa.*;
 import is.SimTraffic.jUnit.Herramientas.*;
 
@@ -23,9 +24,10 @@ public class SimTrafficTestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
+		suite.addTestSuite(HerramientasTestSuite.class);
 		suite.addTestSuite(ControladorTest.class);
-		suite.addTest(MapaTestSuite.suite());
-		suite.addTest(HerramientasTestSuite.suite());
+		suite.addTestSuite(LibreriaIATestSuite.class);
+		suite.addTestSuite(MapaTestSuite.class);
 		return suite;
 	}
 
