@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Taxi;
 import is.SimTraffic.Simulacion.Vehiculo;
 
 import java.awt.BasicStroke;
@@ -60,14 +61,22 @@ public class RepresentacionAvanzada extends Representacion {
 	
 	/** Inicializa las imagenes de los coches. */
 	private void inicializarImagenes() {
-		coches = new BufferedImage[7];
-		coches[0] = cargarImagen("Coche1.png");
+		coches = new BufferedImage[8];
+		/*coches[0] = cargarImagen("Coche1.png");
 		coches[1] = cargarImagen("Coche2.png");
 		coches[2] = cargarImagen("Coche3.png");
 		coches[3] = cargarImagen("Coche4.png");
 		coches[4] = cargarImagen("Coche5.png");
 		coches[5] = cargarImagen("Coche6.png");
-		coches[6] = cargarImagen("Coche7.png");
+		coches[6] = cargarImagen("Coche7.png");*/
+		coches[0] = cargarImagen("Coche1gta.png");
+		coches[1] = cargarImagen("Coche2gta.png");
+		coches[2] = cargarImagen("Coche3gta.png");
+		coches[3] = cargarImagen("Coche4gta.png");
+		coches[4] = cargarImagen("Coche5gta.png");
+		coches[5] = cargarImagen("Coche6gta.png");
+		coches[6] = cargarImagen("Coche7gta.png");
+		coches[7] = cargarImagen("taxigta.png");
 		
 	}
 	
@@ -578,6 +587,11 @@ public class RepresentacionAvanzada extends Representacion {
 		
 		// Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
 		BufferedImage rect = coches[vehiculo.getId() % 7];
+		
+		//Cambiar cuando se cambie la forma de pintar los coches
+		if (vehiculo instanceof Taxi){
+			rect = coches[7];
+		}
 		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
