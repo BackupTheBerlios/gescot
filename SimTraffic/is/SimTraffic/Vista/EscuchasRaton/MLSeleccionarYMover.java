@@ -128,9 +128,10 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 		nodoInicial=null;
 		tramoInicial=null;
 		puntoInicial = new Point(arg0.getX(),arg0.getY());		
-	
+		modoHerramienta=0;
 		Nodo posibleNodo = buscarNodo(arg0.getX(),arg0.getY());
-		if (posibleNodo!=null) { //si se ha pulsado sobre un nodo, se va a mover		
+		if (posibleNodo!=null && modelo.getMapa().getSeleccion().getNodosSeleccionados().contains(posibleNodo)) { 
+			//si se ha pulsado sobre un nodo seleccionado, se va a mover		
 			nodoInicial=posibleNodo;
 			modoHerramienta=1;//mover
 			
