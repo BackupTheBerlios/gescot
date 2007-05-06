@@ -52,8 +52,8 @@ public class HCortar implements IHerramienta {
 	 */
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
-		modelo.getMapa().setPortapapeles(portapapelesAntiguo);
-		modelo.getMapa().setNodoReferenciaPortapapeles(antiguoNodoReferencia);
+		//modelo.getMapa().setPortapapeles(portapapelesAntiguo);
+		//modelo.getMapa().setNodoReferenciaPortapapeles(antiguoNodoReferencia);
 		for (int i=0; i<nodos.size(); i++)
 			modelo.getMapa().insertar(nodos.get(i));	
 
