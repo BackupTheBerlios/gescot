@@ -59,8 +59,8 @@ public class HCopiar implements IHerramienta {
 	 */
 	public int deshacer(IModelo modelo) {
 		// TODO Auto-generated method stub
-		modelo.getMapa().setPortapapeles(portapapelesAntiguo);
-		modelo.getMapa().setNodoReferenciaPortapapeles(antiguoNodoReferencia);
+		//modelo.getMapa().setPortapapeles(portapapelesAntiguo);
+		//modelo.getMapa().setNodoReferenciaPortapapeles(antiguoNodoReferencia);
 		return 0;
 	}
 
