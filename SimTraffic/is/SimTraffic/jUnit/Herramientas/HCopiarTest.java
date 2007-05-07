@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HConfigurarEntradaSalida;
 import is.SimTraffic.Herramientas.HCopiar;
 import is.SimTraffic.Herramientas.IHerramienta;
@@ -19,6 +20,11 @@ public class HCopiarTest extends TestCase {
 	private List<Tramo> tramos;
 	
 	private IHerramienta herramienta;
+	
+	/**
+	 * Atributo de prueba Modelo
+	 */
+	private Modelo modelo;
 
 	
 	protected void setUp() throws Exception {
@@ -33,6 +39,24 @@ public class HCopiarTest extends TestCase {
 		nodos.add(nodo3);
 		tramos.add(tramo1);
 		tramos.add(tramo2);
+		modelo = new Modelo();
+		modelo.getMapa().insertar(nodo1);
+		modelo.getMapa().insertar(nodo2);
+		modelo.getMapa().insertar(nodo3);
+		modelo.getMapa().insertar(tramo1);
+		modelo.getMapa().insertar(tramo2);
 		herramienta=new HCopiar(nodos,tramos);
+	}
+	
+	public void testHCopiar() {
+		assertEquals(nodos,((HCopiar)herramienta).getNodos());
+		assertEquals(tramos,((HCopiar)herramienta).getTramos());
+	}
+	
+	
+	public void testdeshacer()
+	{
+		if (herramienta.deshacer(modelo)!=0)
+			fail("La herramienta de Copiar no ha desecho correctamente");
 	}
 }
