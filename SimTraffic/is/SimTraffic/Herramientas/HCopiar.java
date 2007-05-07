@@ -121,4 +121,12 @@ public class HCopiar implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Selección copiada";
 	}
+
+	public List<Nodo> getNodos() {
+		return nodos;
+	}
+
+	public List<Tramo> getTramos() {
+		return tramos;
+	}
 }
