@@ -28,6 +28,18 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 		return 0;
 	}
 
+	public Nodo getNodo() {
+		return nodo;
+	}
+
+	public int[] getPorcentajesEntrada() {
+		return porcentajesEntrada;
+	}
+
+	public int[] getPorcentajesSalida() {
+		return porcentajesSalida;
+	}
+
 	public int deshacer(IModelo modelo) {
 		nodo.setEs(esGuardado);
 		return 0;
