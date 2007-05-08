@@ -19,6 +19,7 @@ import is.SimTraffic.Vista.EscuchasRaton.MLMover;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarNodos;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarVia;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarYMover;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarImagen;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
@@ -33,12 +34,14 @@ public class BarraHerramientas extends Barra {
 	private JToggleButton botonDesplazar;
 	private JToggleButton botonSeleccionar;
 	private JToggleButton botonSeleccionarVias;
+	private JToggleButton botonSeleccionarImagenes;
 	private JToggleButton botonAñadirNodo;
 	private JToggleButton botonAñadirTramo;
 	private JToggleButton botonAñadirVia;
 	private JToggleButton botonAñadirBus;
 	private JToggleButton botonEliminarNodo;
 	private JToggleButton botonEliminarTramo;
+	private JToggleButton botonBuscarElem;
 	
 	public BarraHerramientas(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
@@ -76,7 +79,11 @@ public class BarraHerramientas extends Barra {
 		botonSeleccionarVias.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(botonSeleccionarVias);
 		
-		
+		//Seleccionar Imagenes y redimensionarlas
+		/**botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",new AccionSobreMapa(new MLSeleccionarImagen(
+			*	modelo, controlador, ventana.getPanel_mapa()), ventana,
+			*	ventana.getEscuchaTeclado(), 9), true);
+		*/
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
 		
@@ -156,11 +163,11 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonAñadirBus);
 		
 		//Añadir Buscar
-		boton = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
+		botonBuscarElem = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
 				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
-		boton.addActionListener(new AccionBarra(ventana, null));
-		boton.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
-		grupoherramientas.add(boton);
+		botonBuscarElem.addActionListener(new AccionBarra(ventana, null));
+		botonBuscarElem.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
+		grupoherramientas.add(botonBuscarElem);
 		
 		//Mostrar itinerario entre 2 nodos
 		boton = (JToggleButton) añadirBoton("como_ir_a_icon1.GIF", "como_ir_a_icon2.GIF", "Mostrar itinerario entre 2 nodos",
