@@ -44,7 +44,7 @@ public class Vista implements IVista {
 	}
 	
 	public void actualizar() {
-		((BarraSuperior)ventana.getBarraArriba()).setTiempo(modelo.getSimulacion().getTiempo()*1000);
+		((BarraSuperior)ventana.getBarraArriba()).setTiempo(modelo.getSimulacion().getTiempo()/* *1000 */);
 		ventana.repaint();
 		
 	

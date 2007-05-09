@@ -5,9 +5,15 @@ import is.SimTraffic.Utils.Tiempo;
 
 public class HComenzar implements IHerramienta {
 
+	int horas;
+	int minutos;
+	int segundos;
 	/**
 	 */
-	public HComenzar() {
+	public HComenzar(int h, int m, int s) {
+		horas = h;
+		minutos = m;
+		segundos = s;
 	}
 
 	/**
@@ -15,6 +21,7 @@ public class HComenzar implements IHerramienta {
 	 * @return int
 	 */
 	public int hacer(IModelo modelo) {
+		modelo.getSimulacion().getReloj().traduceATiempo(horas, minutos, segundos);
 		modelo.getSimulacion().comenzar(modelo.getMapa());
 		return 0;
 	}

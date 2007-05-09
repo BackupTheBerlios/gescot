@@ -212,7 +212,7 @@ public class BarraSuperior extends JPanel {
 	public void setTiempo(long t) {
 		cal.setTimeInMillis(t);
 		
-		int hour12 = cal.get(Calendar.HOUR);            // 0..11
+		/*int hour12 = cal.get(Calendar.HOUR);            // 0..11
 	    int hour24 = cal.get(Calendar.HOUR_OF_DAY);     // 0..23
 	    int min = cal.get(Calendar.MINUTE);             // 0..59
 	    int sec = cal.get(Calendar.SECOND);             // 0..59
@@ -220,7 +220,27 @@ public class BarraSuperior extends JPanel {
 	    int ampm = cal.get(Calendar.AM_PM);             // 0=AM, 1=PM
 	    
 	    String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);
+	    */
+		int tiempoaux = (int) t;
+		int hour24 = ( tiempoaux /(60*60) );
+		tiempoaux = tiempoaux-((hour24)*3600);
+		int min = (tiempoaux / 60);
+		tiempoaux = tiempoaux-(min*60);		
+		int sec = (tiempoaux % 60);
 	    if (tiempo!=null){
+	    	if (hour24 >= 7 && hour24 <15 ) {
+	    		tiempo.setBackground(Color.BLUE);
+	    		tiempo.setToolTipText("MAÑANA");
+	    	} else if (hour24 >= 15 && hour24 <23 ) {
+	    		tiempo.setBackground(Color.RED);
+	    		tiempo.setToolTipText("TARDE");
+	    	}
+	    	else {
+	    		tiempo.setBackground(Color.BLACK);
+	    		tiempo.setToolTipText("NOCHE");
+	    	}
+	    	String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);
+
 	    	tiempo.setText(hora);
 	    	this.repaint();
 	    }

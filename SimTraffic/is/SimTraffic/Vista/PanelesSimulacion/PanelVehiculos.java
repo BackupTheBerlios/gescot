@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -22,7 +23,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 /**
  * 
@@ -43,6 +46,10 @@ public class PanelVehiculos extends JFrame {
 	private ParametrosSimulacion param;
 
 	private JComboBox porcentajes[] = new JComboBox[6];
+	
+	private JSpinner horas;
+	
+	private JSpinner minutos;
 
 	public PanelVehiculos(IControlador controlador, ParametrosSimulacion param) {
 		this.controlador = controlador;
@@ -117,7 +124,32 @@ public class PanelVehiculos extends JFrame {
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		this.add(panelTitulo, gbc);
+		
+		JPanel panelHora = new JPanel(new GridLayout(1,3));
+		JLabel labelInfoHora = new JLabel("Hora de simulación");
+		JPanel panelValorHoras = new JPanel();
+		JPanel panelValorMins = new JPanel();
+		
+		horas = new JSpinner(new SpinnerNumberModel(17,0,23,1));
+		minutos = new JSpinner(new SpinnerNumberModel(30,0,59,1));
+		JLabel horasEtiq = new JLabel("Hora:");
+		JLabel minsEtiq = new JLabel("Minutos:");
 
+		panelValorHoras.add(horasEtiq);
+		panelValorHoras.add(horas);
+		
+		panelValorMins.add(minsEtiq);
+		panelValorMins.add(minutos);
+		
+		panelHora.add(labelInfoHora);
+		panelHora.add(panelValorHoras);		
+		panelHora.add(panelValorMins);
+		
+		gbc.gridy = ++cont;
+		cont += 2;
+		gbc.gridheight = 3;
+		this.add(panelHora, gbc);
+		
 		gbc.gridy = ++cont;
 		cont += 2;
 		gbc.gridheight = 3;
@@ -252,6 +284,10 @@ public class PanelVehiculos extends JFrame {
 	private class accionAceptar implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
+			//Se guardan la hora y los minutos introducidos por el usuario.
+			int hr = ((Integer)horas.getValue()).intValue();
+			int mn = ((Integer)minutos.getValue()).intValue();
+			int segundos = 0; //No se piden al usuario, no tiene demasiada importancia.
 			int[] totales = new int[3];
 			for (int i = 0; i < 3; i++) {
 				try {
@@ -275,7 +311,7 @@ public class PanelVehiculos extends JFrame {
 				por[i] = (100 * por[i]) / total;
 			}
 			param.setPorcentajeTipo(por);
-			controlador.herramienta(new HComenzar());
+			controlador.herramienta(new HComenzar(hr, mn, segundos));
 			PanelVehiculos.this.setVisible(false);
 		}
 

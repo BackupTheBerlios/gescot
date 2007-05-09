@@ -417,9 +417,8 @@ public class Simulacion {
 	 * @return Nodo de entrada o null
 	 */
 	synchronized public Nodo getEntrada() {
-		// TODO da los nodos como corresponde, pero no mira la franja horaria en
-		// la que se esta
-		int franjaHoraria = 0;
+		// TODO Da los nodos como corresponde y mira la franja horaria.
+		int franjaHoraria = comprobarFranjaHoraria();
 		if (vehiculosActivos < param.getNumVehiculos()[franjaHoraria]) {
 			// si no hay nodos de entrada, elegir aleatoriamente
 			if (entradas[franjaHoraria] == 0) {
@@ -444,9 +443,8 @@ public class Simulacion {
 	}
 
 	synchronized public Nodo getSalida() {
-		// TODO da los nodos como corresponde, pero no mira la franja horaria en
-		// la que se esta
-		int franjaHoraria = 0;
+		// TODO Da los nodos como corresponde y mira la franja horaria.
+		int franjaHoraria = comprobarFranjaHoraria();
 		// si no hay nodos de salida, elegir aleatoriamente
 		if (salidas[franjaHoraria] == 0) {
 			int i = random.nextInt(mapa.getNodos().size());
@@ -465,6 +463,18 @@ public class Simulacion {
 		}
 		return nodo;
 
+	}
+	
+	public int comprobarFranjaHoraria() {
+		int fH = 0;
+		int taux = (int) reloj.getTiempo();
+		if (taux >= 25200 && taux < 54000) //Entre las 07:00 y las 15:00
+			fH = 0;
+		else if (taux >= 54000 && taux < 82800) //Entre las 15:00 y las 23:00
+			fH = 1;
+		else // Entre las 23:00 y las 07:00
+			fH = 2;
+		return fH;
 	}
 
 	public synchronized void saleVehiculo() {
@@ -520,5 +530,13 @@ public class Simulacion {
 	
 	public long getTiempo(){
 		return reloj.getTiempo();
+	}
+
+	public Reloj getReloj() {
+		return reloj;
+	}
+
+	public void setReloj(Reloj reloj) {
+		this.reloj = reloj;
 	}
 }

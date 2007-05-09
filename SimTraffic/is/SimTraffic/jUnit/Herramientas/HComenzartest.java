@@ -44,7 +44,7 @@ public class HComenzartest extends TestCase {
 	 */
 	public void testhacer()
 	{
-		IHerramienta Hcomenzar = new HComenzar();
+		IHerramienta Hcomenzar = new HComenzar(0,0,0);
 		assertEquals(0,Hcomenzar.hacer(modelo)); 
 	}
 	/**
@@ -52,7 +52,7 @@ public class HComenzartest extends TestCase {
 	 */
 	public void testdeshacer()
 	{
-		IHerramienta Hcomenzar = new HComenzar();
+		IHerramienta Hcomenzar = new HComenzar(0,0,0);
 		assertEquals(0,Hcomenzar.deshacer(modelo)); 
 	}
 }

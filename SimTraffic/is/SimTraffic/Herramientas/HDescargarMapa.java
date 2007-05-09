@@ -28,7 +28,7 @@ public class HDescargarMapa implements IHerramienta{
 	}
 	
 	public int hacer(IModelo modelo) {
-		
+
 		return 0;
 	}
 

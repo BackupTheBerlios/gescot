@@ -36,6 +36,8 @@ public class Reloj implements Serializable {
 		if (cont > 10) {
 			tiempo = tiempo + 1;
 			cont = 0;
+			if (tiempo>=(24*60*60))
+				tiempo = 0;
 		}
 	}
 	
@@ -45,6 +47,11 @@ public class Reloj implements Serializable {
 
 	public void setTiempo(long tiempo) {
 		this.tiempo = tiempo;	
+	}
+	
+	public void traduceATiempo(int horas, int minutos, int segundos) {
+		this.tiempo = segundos + (minutos*60) + (horas*60*60);
+		this.cont = 0;
 	}
 	
 }
