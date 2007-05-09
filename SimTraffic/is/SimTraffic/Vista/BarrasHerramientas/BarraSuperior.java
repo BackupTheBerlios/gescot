@@ -84,6 +84,7 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraArchivo(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra archivoTB = new Barra();
+		archivoTB.setName("Archivo");
 
 		JButton nuevoTB = (JButton) archivoTB.añadirBoton("document-new.png",
 				"document-new2.png", "Nuevo mapa", new AccionNuevo(controlador,
@@ -115,7 +116,7 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraEdicion(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra edicionTB = new Barra();
-
+		edicionTB.setName("Edición");
 		JButton cortarTB = (JButton) edicionTB.añadirBoton("edit-cut.png",
 				"edit-cut2.png", "Cortar", new AccionCortar(modelo,
 						controlador, ventana.getPanel_mapa()), false);
@@ -152,6 +153,7 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraZoom(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 		Barra zoomTB = new Barra();
+		zoomTB.setName("Zoom");
 
 		zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png",
 				"zoom_in2.png", "Aumentar tamaño de la representación",
@@ -171,6 +173,7 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBotonesSimulacion(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra esto = new Barra();
+		esto.setName("Simulación");
 
 		simular = (JButton) esto.añadirBoton("simular.png",
 				"simular2.png", "Comenzar simulación",
