@@ -29,8 +29,6 @@ public class HCopiarTest extends TestCase {
 	 */
 	private List<Tramo> tramos;
 	
-	private List<Integer> numeros;
-	
 	/**
 	 * La herrameinta que se va a utilizar
 	 */
@@ -78,7 +76,7 @@ public class HCopiarTest extends TestCase {
 	}
 	
 	/**
-	 * Mwtodo que compreuaba que sel metodo deshacer funciona correctamente
+	 * Mwtodo que compreuaba que sel metodo deshacer funciona correctamente -----------------Este metodo falla 
 	 */
 	public void testdeshacer()
 	{
