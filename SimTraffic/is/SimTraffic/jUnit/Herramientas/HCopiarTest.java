@@ -29,6 +29,8 @@ public class HCopiarTest extends TestCase {
 	 */
 	private List<Tramo> tramos;
 	
+	private List<Integer> numeros;
+	
 	/**
 	 * La herrameinta que se va a utilizar
 	 */
@@ -44,24 +46,11 @@ public class HCopiarTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		int [] a1 = {1, 2, 3};
-		int [] a2 = {3, 2, 1};
-		int [] a3 = {1, 0, 1};
-		EntradaSalida  es1 = new EntradaSalida(a1, a2);
-		EntradaSalida  es2 = new EntradaSalida(a1, a3);
-		Nodo n1 = new Nodo(es1, 1, "nodo1", new Posicion(50,100), null);
-		Nodo n2 = new Nodo(es1, 1, "nodo1", new Posicion(150,150), null);
-		Nodo n3 = new Nodo(es2, 1, "nodo1", null, null);
 		Nodo nodo1 = new Nodo(new Posicion(50,100));
 		Nodo nodo2 = new Nodo(new Posicion(150,150));
 		Nodo nodo3 = new Nodo(new Posicion(200,250));
 		Tramo tramo1 = new Tramo(nodo1,nodo2);
 		Tramo tramo2 = new Tramo(nodo1,nodo2);
-		//nodos.add(n1);
-		//nodos.add(n2);
-		//nodos.add(nodo3);
-		tramos.add(tramo1);
-		tramos.add(tramo2);
 		modelo = new Modelo();
 		modelo.getMapa().insertar(nodo1);
 		modelo.getMapa().insertar(nodo2);
