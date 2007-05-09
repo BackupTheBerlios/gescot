@@ -80,10 +80,10 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonSeleccionarVias);
 		
 		//Seleccionar Imagenes y redimensionarlas
-		/**botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",new AccionSobreMapa(new MLSeleccionarImagen(
-			*	modelo, controlador, ventana.getPanel_mapa()), ventana,
-			*	ventana.getEscuchaTeclado(), 9), true);
-		*/
+		botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",new AccionSobreMapa(new MLSeleccionarImagen(
+				modelo, controlador, ventana.getPanel_mapa()), ventana,
+				ventana.getEscuchaTeclado(), 9), true);
+		
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
 		

@@ -16,6 +16,8 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	private Image seleccionado;
 	
+	private Posicion posicion;
+	
 	public MLSeleccionarImagen(IModelo modelo, IControlador controlador, PanelMapa panel) {
 		super(modelo, controlador, panel);
 	
@@ -23,13 +25,13 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	
 	public void mouseClicked(MouseEvent arg0) {
 		seleccionado = buscarImagen(arg0.getX(), arg0.getY());
-		//if (seleccionado != null)
-         //crearPanelDimensionarImagen();
+		if (seleccionado != null)
+         crearPanelDimensionarImagen();
 		 
 	}
 	
 	
-	public Image buscarImagen(int lat,int lon){
+	private Image buscarImagen(int argX,int argY){
 		Iterator<Posicion> itPosiciones = panel.getRepresentacion().getPosiciones().iterator();
 		Iterator<Image> itImagenes = panel.getRepresentacion().getImagenes().iterator();
 		Image sel = null;
@@ -37,9 +39,11 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 		boolean encontrado = false;
 		while (!encontrado && itPosiciones.hasNext()) {
 			Posicion posicion = itPosiciones.next();
+			double  posX = panel.getRepresentacion().x_MapaARep(posicion.getLat());
+			double  posY = panel.getRepresentacion().y_MapaARep(posicion.getLon());
 			Image imagen = itImagenes.next(); 
-			if (posicion.getLat()<=lat&& posicion.getLat()+imagen.getHeight(null)>=lat) 
-				if (posicion.getLon()<=lon&& posicion.getLon()+imagen.getWidth(null)>=lon) 
+			if (posX<=argX&& posX+imagen.getHeight(null)>=argX) 
+				if (posY<=argY&& posY+imagen.getWidth(null)>=argY)
 			{
 				encontrado = true;
 				sel = imagen;
@@ -51,6 +55,10 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 			return sel;
 		else
 			return null;
+		
+	}
+	
+	private void crearPanelDimensionarImagen(){
 		
 	}
 

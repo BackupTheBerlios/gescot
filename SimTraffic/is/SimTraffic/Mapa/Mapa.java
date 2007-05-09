@@ -251,12 +251,9 @@ public class Mapa {
 	}
 
 	/**
-	 * Método que inserta una vía dada como parámetro como un itinerario que
-	 * seguirá un autobus. Estos itinerarios se guardarán como vías, pero en un
-	 * array de vias diferente a Vias, por eso se crea este otro método aparte
-	 * de insertar(Via via).
-	 * 
-	 * @param via
+	 * Metodo que inserta lineas de autobus.Comprueba q su id no pertenece a ninguna via ni otra linea de 
+	 * bus ya presente
+	 * @param LineaBus
 	 *            Itinerario que seguirá un autobus.
 	 */
 	public void insertarLineaAutobus(LineaBus linea) {
