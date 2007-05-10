@@ -129,4 +129,22 @@ public class HPegar implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Acción pegar";
 	}
+	/**
+	 * @return Returns the nodos.
+	 */
+	public List<Nodo> getNodos() {
+		return nodos;
+	}
+	/**
+	 * @return Returns the puntoPegar.
+	 */
+	public Point2D getPuntoPegar() {
+		return puntoPegar;
+	}
+	/**
+	 * @return Returns the tramos.
+	 */
+	public List<Tramo> getTramos() {
+		return tramos;
+	}
 }
