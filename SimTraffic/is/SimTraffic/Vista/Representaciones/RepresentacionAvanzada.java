@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Camion;
 import is.SimTraffic.Simulacion.Taxi;
 import is.SimTraffic.Simulacion.Vehiculo;
 
@@ -61,7 +62,7 @@ public class RepresentacionAvanzada extends Representacion {
 	
 	/** Inicializa las imagenes de los coches. */
 	private void inicializarImagenes() {
-		coches = new BufferedImage[8];
+		coches = new BufferedImage[9];
 		/*coches[0] = cargarImagen("Coche1.png");
 		coches[1] = cargarImagen("Coche2.png");
 		coches[2] = cargarImagen("Coche3.png");
@@ -77,6 +78,7 @@ public class RepresentacionAvanzada extends Representacion {
 		coches[5] = cargarImagen("Coche6gta.png");
 		coches[6] = cargarImagen("Coche7gta.png");
 		coches[7] = cargarImagen("taxigta.png");
+		coches[8] = cargarImagen("Bomberos.png");
 		
 	}
 	
@@ -592,6 +594,9 @@ public class RepresentacionAvanzada extends Representacion {
 		if (vehiculo instanceof Taxi){
 			rect = coches[7];
 		}
+		if (vehiculo instanceof Camion){
+			rect = coches[8];
+		}
 		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
@@ -629,7 +634,12 @@ public class RepresentacionAvanzada extends Representacion {
 		AffineTransform temp = g.getTransform();
 		g.transform(trans);
 		// g.draw(rect);
-		g.drawImage(rect, -5, -2, 4, 2, null);
+		if (vehiculo instanceof Camion)
+			g.drawImage(rect, -5, -2, 6, 2, null);
+		else if (vehiculo instanceof Taxi)
+			g.drawImage(rect, -5, -2, 4, 2, null);
+		else
+			g.drawImage(rect, -5, -2, 4, 2, null);
 		g.setTransform(temp);
 		
 		// g.drawRect(posX - 1, posY - 1, 2, 2);
