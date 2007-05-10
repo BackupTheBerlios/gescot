@@ -54,4 +54,5 @@ public class HCrearVia implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Vía Creada";
 	}
-	}
+
+}
