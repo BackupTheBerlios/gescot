@@ -1,17 +1,14 @@
 package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.Modelo;
-import is.SimTraffic.Herramientas.HCopiar;
 import is.SimTraffic.Herramientas.HPegar;
 import is.SimTraffic.Herramientas.IHerramienta;
-import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
-
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -26,12 +23,14 @@ public class HPegarTest extends TestCase {
 	/**
 	 * Atributo que es ista de nodos necesaria para las pruebas
 	 */
+	@SuppressWarnings("unused")
 	private List<Nodo> nodos;
 	
 	
 	/**
 	 * Atributo que es ista de tramos necesaria para las pruebas
 	 */
+	@SuppressWarnings("unused")
 	private List<Tramo> tramos;
 	
 	/**
