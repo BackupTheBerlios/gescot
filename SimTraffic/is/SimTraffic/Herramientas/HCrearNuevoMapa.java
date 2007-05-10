@@ -14,7 +14,7 @@ public class HCrearNuevoMapa implements IHerramienta {
 	}
 	
 	
-	public int hacer(IModelo modelo) {
+	public int hacer(IModelo modelo) {		
 		//mapa=modelo.getMapa();
 		modelo.setMapa(new Mapa());
 		return 0;
