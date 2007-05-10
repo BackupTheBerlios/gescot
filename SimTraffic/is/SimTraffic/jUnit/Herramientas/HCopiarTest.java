@@ -8,6 +8,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -49,6 +50,12 @@ public class HCopiarTest extends TestCase {
 		Nodo nodo3 = new Nodo(new Posicion(200,250));
 		Tramo tramo1 = new Tramo(nodo1,nodo2);
 		Tramo tramo2 = new Tramo(nodo1,nodo2);
+		nodos = new LinkedList<Nodo> ();
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		tramos = new LinkedList<Tramo> ();
+		tramos.add(tramo1);
 		modelo = new Modelo();
 		modelo.getMapa().insertar(nodo1);
 		modelo.getMapa().insertar(nodo2);
