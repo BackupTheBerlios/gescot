@@ -213,7 +213,7 @@ public class BarraSuperior extends JPanel {
 	}
 
 	public void setTiempo(long t) {
-		cal.setTimeInMillis(t);
+		//cal.setTimeInMillis(t);
 		
 		/*int hour12 = cal.get(Calendar.HOUR);            // 0..11
 	    int hour24 = cal.get(Calendar.HOUR_OF_DAY);     // 0..23
@@ -245,7 +245,7 @@ public class BarraSuperior extends JPanel {
 	    	String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);
 
 	    	tiempo.setText(hora);
-	    	this.repaint();
+	    	//this.repaint();
 	    }
 	    
 	    
