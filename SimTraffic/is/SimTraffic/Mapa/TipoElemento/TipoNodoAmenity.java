@@ -52,7 +52,6 @@ public class TipoNodoAmenity extends TipoElemento implements ITipoElemento {
 								   {"Cementerio","grave_yard"}, 
 								   {"Oficina de correos","post_office"},
 								   {"Buzón de correos","post_box"},
-								   {"Cabina de teléfono","telephone"},
 								   {"Colegio","school"},
 								   {"Supermercado","supermarket"},
 								   {"Hospital","hospital"},
