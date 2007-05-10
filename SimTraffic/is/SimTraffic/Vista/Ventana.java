@@ -981,7 +981,7 @@ public class Ventana extends JFrame {
 	}
 	
 	public void prepararImagen(Image im,Posicion pos){
-		barraRedimensionarImagen.prepararImagen(im,pos);
+		barraRedimensionarImagen.prepararImagen(im,pos,panel_mapa);
 	}
 	
 

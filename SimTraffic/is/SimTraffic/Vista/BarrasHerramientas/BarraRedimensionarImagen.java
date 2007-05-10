@@ -2,13 +2,15 @@ package is.SimTraffic.Vista.BarrasHerramientas;
 
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Utils.ChequeoInputVentanas;
-import is.SimTraffic.Vista.Log;
+import is.SimTraffic.Vista.PanelMapa;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
 
 public class BarraRedimensionarImagen extends Barra {
 
@@ -17,9 +19,15 @@ public class BarraRedimensionarImagen extends Barra {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Image imagen;
+	//Imagen que estamos tratando
+	private Image imagen1;
+	
+	//Copia de la imagen que lleva los cambios realizados
+	private Image imagen2;
 	
 	private Posicion posicion;
+	
+	private PanelMapa panel;
 	
 	private ChequeoInputVentanas chequeo;
 	
@@ -47,8 +55,16 @@ public class BarraRedimensionarImagen extends Barra {
 		redimensionar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText()))
-					imagen=imagen.getScaledInstance(Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),0);
+				if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText())){
+					
+					imagen2=imagen1.getScaledInstance(Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),Image.SCALE_SMOOTH);
+					imagen2.flush();
+					panel.getRepresentacion().removeImage(imagen1);
+					panel.getRepresentacion().addImage(imagen2,posicion);
+					panel.recrear();
+					panel.recrearMapa();
+					panel.repaint();
+			}	
 			}
 		});
 
@@ -64,7 +80,7 @@ public class BarraRedimensionarImagen extends Barra {
 
 			public void actionPerformed(ActionEvent e) {
 				if (chequeo.esDigito(p_width.getText())&& chequeo.esDigito(p_height.getText()))
-					imagen=imagen.getScaledInstance(Integer.parseInt(p_width.getText())*imagen.getWidth(null),Integer.parseInt(height.getText())*imagen.getHeight(null),0);
+					imagen2=imagen1.getScaledInstance(Integer.parseInt(p_width.getText())*imagen1.getWidth(null),Integer.parseInt(height.getText())*imagen1.getHeight(null),0);
 			}
 		});
 		
@@ -83,8 +99,10 @@ public class BarraRedimensionarImagen extends Barra {
 		add(p_redimensionar);
 	}	
 	
-	public void prepararImagen(Image im,Posicion pos){
-		this.imagen=im;
+	public void prepararImagen(Image im,Posicion pos,PanelMapa panel){
+		this.imagen1=im;
 		this.posicion=pos;
+		this.panel =panel;
 	}
+	
 }

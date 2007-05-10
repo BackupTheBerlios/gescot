@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Clase abstracta para representaciones del mapa.
