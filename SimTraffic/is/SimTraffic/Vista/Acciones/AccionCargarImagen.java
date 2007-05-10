@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
@@ -44,6 +45,8 @@ public class AccionCargarImagen implements ActionListener {
 			}
 			if (imagen.getWidth(null) >= 0) {
 				panel.getRepresentacion().addImage(imagen, new Posicion(panel.getLat0(), panel.getLon0()));
+				//panel.getRepresentacion().setImagenes(new ArrayList<Image>());
+				panel.getModelo().getMapa().setCambios_en_mapa(true);
 				panel.recrear();
 				panel.recrearMapa();
 				panel.repaint();
