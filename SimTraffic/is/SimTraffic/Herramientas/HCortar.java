@@ -153,4 +153,20 @@ public class HCortar implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Elemento cortado";
 	}
+
+	public List<Nodo> getNodos() {
+		return nodos;
+	}
+
+	public void setNodos(List<Nodo> nodos) {
+		this.nodos = nodos;
+	}
+
+	public List<Tramo> getTramos() {
+		return tramos;
+	}
+
+	public void setTramos(List<Tramo> tramos) {
+		this.tramos = tramos;
+	}
 }
