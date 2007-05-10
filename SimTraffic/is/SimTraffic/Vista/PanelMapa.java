@@ -591,4 +591,9 @@ public class PanelMapa extends JPanel
 		this.flecha = null;
 	}
 	
+	public IModelo getModelo() {
+		return modelo;
+	
+	}
+	
 }
