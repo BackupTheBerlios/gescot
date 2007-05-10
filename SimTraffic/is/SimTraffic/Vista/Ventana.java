@@ -799,7 +799,12 @@ public class Ventana extends JFrame {
 		menuBar.add(ayudaMenu);
 
 		JMenuItem abrirAyuda = new JMenuItem();
-		abrirAyuda.addActionListener(null);
+		abrirAyuda.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				 new Ayuda();
+			}
+		});
 		abrirAyuda.setText("Abrir ayuda");
 		ayudaMenu.add(abrirAyuda);
 
