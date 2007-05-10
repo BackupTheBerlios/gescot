@@ -5,6 +5,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.Ventana;
 
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -18,16 +19,19 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	
 	private Posicion posicion;
 	
-	public MLSeleccionarImagen(IModelo modelo, IControlador controlador, PanelMapa panel) {
-		super(modelo, controlador, panel);
+	private Ventana ventana;
 	
+	public MLSeleccionarImagen(IModelo modelo, IControlador controlador, PanelMapa panel,Ventana ventana) {
+		super(modelo, controlador, panel);
+		this.ventana=ventana;
 	}
 	
 	public void mouseClicked(MouseEvent arg0) {
 		seleccionado = buscarImagen(arg0.getX(), arg0.getY());
 		if (seleccionado != null)
-         crearPanelDimensionarImagen();
-		 
+		 ventana.prepararImagen(seleccionado,posicion);
+		else
+			return;
 	}
 	
 	
@@ -39,16 +43,17 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 		boolean encontrado = false;
 		while (!encontrado && itPosiciones.hasNext()) {
 			Posicion posicion = itPosiciones.next();
-			double  posX = panel.getRepresentacion().x_MapaARep(posicion.getLat());
-			double  posY = panel.getRepresentacion().y_MapaARep(posicion.getLon());
+			int  posX = panel.getRepresentacion().x_MapaARep(posicion.getLat());
+			int  posY = panel.getRepresentacion().y_MapaARep(posicion.getLon());
 			Image imagen = itImagenes.next(); 
-			if (posX<=argX&& posX+imagen.getHeight(null)>=argX) 
-				if (posY<=argY&& posY+imagen.getWidth(null)>=argY)
+			if (posX<=argX&& posX+imagen.getWidth(null)>=argX) 
+				if (posY<=argY&& posY+imagen.getHeight(null)>=argY)
 			{
 				encontrado = true;
 				sel = imagen;
 				pos=posicion;
 				System.out.println("IMAGEN ENCONTRADA");
+				panel.getGraphics().draw3DRect(posX,posY,imagen.getWidth(null),imagen.getHeight(null),true);
 			}
 		}
 		if (encontrado)

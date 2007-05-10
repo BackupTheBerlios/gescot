@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -124,6 +125,11 @@ public class Ventana extends JFrame {
 	 * Elementos de la barra Crear Tramo
 	 */
 	private BarraCrearTramo barraCrearTramo;
+	
+	/**
+	 * Elementos de la barra Redimensionar Imagen
+	 */
+	private BarraRedimensionarImagen barraRedimensionarImagen;
 
 	private JTextField ayudaDinamica;
 	
@@ -859,6 +865,7 @@ public class Ventana extends JFrame {
 	private void crearBarraPropiedades() {
 		barraCrearNodo = new BarraCrearNodo();
 		barraCrearTramo = new BarraCrearTramo();
+		barraRedimensionarImagen = new BarraRedimensionarImagen();
 		// crearBarraEliminar();
 		//barraSeleccionar = new BarraSeleccionar(this, escuchaSeleccionTramos,
 		//	escuchaSeleccionNodosYTramos, escuchaSeleccion, escuchaTeclado);
@@ -967,6 +974,11 @@ public class Ventana extends JFrame {
 	public Tramo prepararTramo(Nodo i, Nodo f) {
 		return barraCrearTramo.prepararTramo(i, f);
 	}
+	
+	public void prepararImagen(Image im,Posicion pos){
+		barraRedimensionarImagen.prepararImagen(im,pos);
+	}
+	
 
 	public JToolBar getBarraCrearNodo() {
 		return barraCrearNodo;
@@ -1013,5 +1025,16 @@ public class Ventana extends JFrame {
 	
 	public JPanel getBarraArriba() {
 		return superior_arriba;
+	}
+
+
+	public BarraRedimensionarImagen getBarraRedimensionarImagen() {
+		return barraRedimensionarImagen;
+	}
+
+
+	public void setBarraRedimensionarImagen(
+			BarraRedimensionarImagen barraRedimensionarImagen) {
+		this.barraRedimensionarImagen = barraRedimensionarImagen;
 	}
 }

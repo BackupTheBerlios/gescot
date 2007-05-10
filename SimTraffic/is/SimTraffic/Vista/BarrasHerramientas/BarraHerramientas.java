@@ -80,9 +80,14 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonSeleccionarVias);
 		
 		//Seleccionar Imagenes y redimensionarlas
-		botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",new AccionSobreMapa(new MLSeleccionarImagen(
-				modelo, controlador, ventana.getPanel_mapa()), ventana,
+		botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",
+				new AccionSobreMapa(new MLSeleccionarImagen(
+				modelo, controlador, ventana.getPanel_mapa(),ventana), ventana,
 				ventana.getEscuchaTeclado(), 9), true);
+		botonSeleccionarImagenes.addActionListener(new AccionBarra(ventana,ventana.getBarraRedimensionarImagen()));
+		botonSeleccionarImagenes.addMouseMotionListener(new EscuchaAyuda("Seleccione una imagen para moverla o redimensionarla.", ventana));
+		botonSeleccionarImagenes.addKeyListener(ventana.getEscuchaTeclado());
+		grupoherramientas.add(botonSeleccionar);
 		
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
@@ -216,5 +221,13 @@ public class BarraHerramientas extends Barra {
 	
 	public JToggleButton getBotonEliminarNodo(){
 		return this.botonEliminarNodo;
+	}
+
+	public JToggleButton getBotonSeleccionarImagenes() {
+		return botonSeleccionarImagenes;
+	}
+
+	public void setBotonSeleccionarImagenes(JToggleButton botonSeleccionarImagenes) {
+		this.botonSeleccionarImagenes = botonSeleccionarImagenes;
 	}
 }
