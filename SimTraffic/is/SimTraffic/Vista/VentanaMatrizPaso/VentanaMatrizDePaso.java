@@ -115,8 +115,15 @@ public class VentanaMatrizDePaso extends JFrame {
 				botonConexion.addMouseListener(escuchaBotonConexion);
 				botonConexion.addActionListener(accionBotonConexion);
 				panelInterno.add(botonConexion);
+				if(i==j){
+						botonConexion.setBackground(Color.LIGHT_GRAY);
+						botonConexion.setEnabled(false);
+						botonConexion.removeActionListener(accionBotonConexion);
+						botonConexion.removeMouseListener(escuchaBotonConexion);
+						
+					}
+				}
 			}
-		}
 		panelBotones.add(panelInterno,BorderLayout.CENTER);
 	}
 	
