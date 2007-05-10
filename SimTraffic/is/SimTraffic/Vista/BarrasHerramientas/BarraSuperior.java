@@ -29,9 +29,12 @@ import java.util.GregorianCalendar;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.SpinnerNumberModel;
 
 
 
@@ -59,15 +62,17 @@ public class BarraSuperior extends JPanel {
 		this.add(crearBarraEdicion(controlador, modelo, ventana));
 		this.add(crearBarraZoom(controlador, modelo, ventana));
 		this.add(crearBotonesSimulacion(controlador, modelo, ventana));
-		
+		this.add(crearReloj(controlador, modelo,ventana));
 		this.add(Box.createGlue());
 		
+		
+		
+	}
+
+	public JPanel crearReloj(IControlador controlador,IModelo modelo, Ventana ventana){
 		cal = new GregorianCalendar();
 		this.setTiempo(0);
 		tiempo = new JTextField("", 8);
-		
-
-
 		
 		tiempo.setHorizontalAlignment(JTextField.CENTER);
 		tiempo.setEditable(false);
@@ -78,9 +83,10 @@ public class BarraSuperior extends JPanel {
 		
 		reloj = new JPanel(new BorderLayout());
 		reloj.add(tiempo, BorderLayout.EAST);
-		this.add(reloj);
+		return reloj;
+		
 	}
-
+	
 	private JToolBar crearBarraArchivo(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra archivoTB = new Barra();
@@ -233,13 +239,16 @@ public class BarraSuperior extends JPanel {
 	    if (tiempo!=null){
 	    	if (hour24 >= 7 && hour24 <15 ) {
 	    		tiempo.setBackground(Color.BLUE);
+	    		//tiempo.setForeground(Color.WHITE);
 	    		tiempo.setToolTipText("MAÑANA");
 	    	} else if (hour24 >= 15 && hour24 <23 ) {
-	    		tiempo.setBackground(Color.RED);
+	    		//tiempo.setBackground(Color.YELLOW);
+	    		tiempo.setForeground(Color.RED);
 	    		tiempo.setToolTipText("TARDE");
 	    	}
 	    	else {
 	    		tiempo.setBackground(Color.BLACK);
+	    		//tiempo.setForeground(Color.GREEN);
 	    		tiempo.setToolTipText("NOCHE");
 	    	}
 	    	String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);

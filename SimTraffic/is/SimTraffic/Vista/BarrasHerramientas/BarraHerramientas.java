@@ -53,7 +53,7 @@ public class BarraHerramientas extends Barra {
 		botonDesplazar = (JToggleButton) añadirBoton("mover.png", "mover2.png",
 				"Desplazar el mapa", new AccionSobreMapa(new MLDesplazar(
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
-						ventana.getEscuchaTeclado(), 7), true);
+						ventana.getEscuchaTeclado(), 10), true);
 		botonDesplazar.addActionListener(new AccionBarra(ventana, null));
 		botonDesplazar.addMouseMotionListener(new EscuchaAyuda("Seleccione esta opción para desplazar el mapa.", ventana));
 		botonDesplazar.addKeyListener(ventana.getEscuchaTeclado());
@@ -83,7 +83,7 @@ public class BarraHerramientas extends Barra {
 		botonSeleccionarImagenes = (JToggleButton)añadirBoton("seleccionar_via.png", "seleccionar_via2.png","Seleccionar Imagenes",
 				new AccionSobreMapa(new MLSeleccionarImagen(
 				modelo, controlador, ventana.getPanel_mapa(),ventana), ventana,
-				ventana.getEscuchaTeclado(), 9), true);
+				ventana.getEscuchaTeclado(), 11), true);
 		botonSeleccionarImagenes.addActionListener(new AccionBarra(ventana,ventana.getBarraRedimensionarImagen()));
 		botonSeleccionarImagenes.addMouseMotionListener(new EscuchaAyuda("Seleccione una imagen para moverla o redimensionarla.", ventana));
 		botonSeleccionarImagenes.addKeyListener(ventana.getEscuchaTeclado());

@@ -33,7 +33,7 @@ public class Reloj implements Serializable {
 	 */
 	public void actualizar(){
 		cont++;
-		if (cont > 10) {
+		if (cont > 18) {
 			tiempo = tiempo + 1;
 			cont = 0;
 			if (tiempo>=(24*60*60))
