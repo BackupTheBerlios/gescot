@@ -91,9 +91,10 @@ public class Mapa {
 		Tramos = new ArrayList<Tramo>();
 		Vias = new ArrayList<Via>();
 		LineasAutobuses = new ArrayList<LineaBus>();
-
 		seleccion = new Seleccion();
 		portapapeles = new Seleccion();
+		cambios_en_mapa=false;
+		
 	}
 
 	/**
