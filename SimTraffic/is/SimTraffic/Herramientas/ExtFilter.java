@@ -76,4 +76,8 @@ public class ExtFilter extends FileFilter {
 	public String getDescription() {
 		return description;
 	}
+
+	public String[] getExtensions() {
+		return extensions;
+	}
 }
