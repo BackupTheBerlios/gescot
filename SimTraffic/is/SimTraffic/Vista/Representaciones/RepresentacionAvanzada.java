@@ -5,6 +5,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Bus;
 import is.SimTraffic.Simulacion.Camion;
 import is.SimTraffic.Simulacion.Taxi;
 import is.SimTraffic.Simulacion.Vehiculo;
@@ -37,6 +38,14 @@ public class RepresentacionAvanzada extends Representacion {
 	private BufferedImage coches[];
 	
 	/**
+	 * Almacena las imagenes de los camiones para dibujarlos de manera más
+	 * eficiente.
+	 */
+	private BufferedImage camiones[];
+
+	private BufferedImage autobus;
+	
+	/**
 	 * Constructor por defecto de la RepresentacionSimple
 	 */
 	public RepresentacionAvanzada() {
@@ -62,7 +71,7 @@ public class RepresentacionAvanzada extends Representacion {
 	
 	/** Inicializa las imagenes de los coches. */
 	private void inicializarImagenes() {
-		coches = new BufferedImage[9];
+		coches = new BufferedImage[12];
 		/*coches[0] = cargarImagen("Coche1.png");
 		coches[1] = cargarImagen("Coche2.png");
 		coches[2] = cargarImagen("Coche3.png");
@@ -70,7 +79,8 @@ public class RepresentacionAvanzada extends Representacion {
 		coches[4] = cargarImagen("Coche5.png");
 		coches[5] = cargarImagen("Coche6.png");
 		coches[6] = cargarImagen("Coche7.png");*/
-		coches[0] = cargarImagen("Coche1gta.png");
+
+		coches[0] = cargarImagen("taxigta.png");
 		coches[1] = cargarImagen("Coche2gta.png");
 		coches[2] = cargarImagen("Coche3gta.png");
 		coches[3] = cargarImagen("Coche4gta.png");
@@ -78,7 +88,19 @@ public class RepresentacionAvanzada extends Representacion {
 		coches[5] = cargarImagen("Coche6gta.png");
 		coches[6] = cargarImagen("Coche7gta.png");
 		coches[7] = cargarImagen("taxigta.png");
-		coches[8] = cargarImagen("Bomberos.png");
+		coches[8] = cargarImagen("Coche1gta.png");
+		coches[9] = cargarImagen("GT40.png");
+		coches[10] = cargarImagen("Mini.png");
+		coches[11] = cargarImagen("Policia.png");
+		
+		camiones = new BufferedImage[5];
+		camiones[0] = cargarImagen("Bomberos.png");
+		camiones[1] = cargarImagen("Camion.png");
+		camiones[2] = cargarImagen("Limusina.png");
+		camiones[3] = cargarImagen("CamionDuff.png");
+		camiones[4] = cargarImagen("CamionEURO.png");
+		
+		autobus = cargarImagen("Bus.png");
 		
 	}
 	
@@ -588,14 +610,17 @@ public class RepresentacionAvanzada extends Representacion {
 			return;
 		
 		// Shape rect = new Rectangle2D.Double(-5, -2, 5,2);
-		BufferedImage rect = coches[vehiculo.getId() % 7];
+		BufferedImage rect = coches[vehiculo.getId() % 11 + 1];
 		
 		//Cambiar cuando se cambie la forma de pintar los coches
 		if (vehiculo instanceof Taxi){
-			rect = coches[7];
+			rect = coches[0];
 		}
 		if (vehiculo instanceof Camion){
-			rect = coches[8];
+			rect = camiones[vehiculo.getId() % 5];
+		}
+		if (vehiculo instanceof Bus){
+			rect = autobus;
 		}
 		
 		Posicion posnodo1 = tramo.getNodoInicial().getPos();
@@ -634,7 +659,7 @@ public class RepresentacionAvanzada extends Representacion {
 		AffineTransform temp = g.getTransform();
 		g.transform(trans);
 		// g.draw(rect);
-		if (vehiculo instanceof Camion)
+		if (vehiculo instanceof Camion || vehiculo instanceof Bus)
 			g.drawImage(rect, -5, -2, 6, 2, null);
 		else if (vehiculo instanceof Taxi)
 			g.drawImage(rect, -5, -2, 4, 2, null);
