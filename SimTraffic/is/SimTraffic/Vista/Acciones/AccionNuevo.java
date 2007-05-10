@@ -8,8 +8,10 @@ import is.SimTraffic.Herramientas.HCrearNuevoMapa;
 import is.SimTraffic.Herramientas.HGuardarMapa;
 import is.SimTraffic.Vista.PanelMapa;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -43,11 +45,13 @@ public class AccionNuevo implements ActionListener {
 				// TODO guardar mapa
 				controlador.herramienta(new HGuardarMapa());
 				controlador.herramienta(new HCrearNuevoMapa());
+				panel_mapa.getRepresentacion().setImagenes(new ArrayList<Image>());
 				panel_mapa.recrearMapa();
 				panel_mapa.repaint();
 			}
 			else if (n==1) {
 				controlador.herramienta(new HCrearNuevoMapa());
+				panel_mapa.getRepresentacion().setImagenes(new ArrayList<Image>());
 				panel_mapa.recrearMapa();
 				panel_mapa.repaint();
 			}
