@@ -203,4 +203,14 @@ public class HCargarMapa implements IHerramienta {
 	public String toString() {
 		return Tiempo.Hora() + " - " + "Mapa Cargado";
 	}
+
+	public Object getcontrolador() {
+		// TODO Auto-generated method stub
+		return this.controlador;
+	}
+
+	public Object getpanel() {
+		// TODO Auto-generated method stub
+		return this.getpanel();
+	}
 }
