@@ -30,6 +30,7 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 		seleccionado = buscarImagen(arg0.getX(), arg0.getY());
 		if (seleccionado != null)
 		 ventana.prepararImagen(seleccionado,posicion);
+		 //panel.getRepresentacion().removeImage());
 		else
 			return;
 	}
