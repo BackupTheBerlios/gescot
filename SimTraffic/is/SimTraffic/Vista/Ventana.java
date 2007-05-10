@@ -800,9 +800,9 @@ public class Ventana extends JFrame {
 
 		JMenuItem abrirAyuda = new JMenuItem();
 		abrirAyuda.addActionListener(new ActionListener() {
-
+			
 			public void actionPerformed(ActionEvent e) {
-				 new Ayuda();
+				new Ayuda("http://simtraffic.helker.com/Manual2/manual.html");
 			}
 		});
 		abrirAyuda.setText("Abrir ayuda");
