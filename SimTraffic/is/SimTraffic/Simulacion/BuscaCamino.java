@@ -17,23 +17,26 @@ public class BuscaCamino {
 	
 	static int cont = 0;
 	
-	static synchronized BuscaCamino obtenerInstancia() {
+	static Simulacion simulacion;
+	
+	static synchronized BuscaCamino obtenerInstancia() { //Faltaría introducirle la simulación, una buena solución no es inmediata.
 		cont = (cont + 1) % maxSimultaneos;
 		if (instancia[cont] == null) {
-			instancia[cont] = new BuscaCamino();
+			instancia[cont] = new BuscaCamino(simulacion);
 		}
 		return instancia[cont];
 	}
 	
-	public BuscaCamino() {
-		
+	public BuscaCamino(Simulacion simulacion) {
+		this.simulacion = simulacion;
 	}
 	
 	public ArrayList<Tramo> buscar(Nodo entrada, Nodo salida) {
 		ArrayList<Tramo> tramos = new ArrayList<Tramo>();
 		
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
-				salida);
+				salida,simulacion); //Se le permite conocer la simulación, de modo que se pueden evaluar
+									//rutas en función del tráfico.
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias

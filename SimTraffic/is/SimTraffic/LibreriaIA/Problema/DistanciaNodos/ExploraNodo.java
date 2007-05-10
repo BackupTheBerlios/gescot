@@ -5,6 +5,7 @@ import is.SimTraffic.LibreriaIA.IOperador;
 import is.SimTraffic.LibreriaIA.NodoIA;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Simulacion;
 
 import java.util.Vector;
 
@@ -15,6 +16,7 @@ public class ExploraNodo implements IOperador {
 	Nodo nodoOrigen;
 	Tramo tramoElegido;
 	int tipoCoste;
+	Simulacion simulacion;
 	
 	public ExploraNodo(Nodo origen, Tramo elegido) {
 		super();
@@ -25,10 +27,11 @@ public class ExploraNodo implements IOperador {
 		descripcion = "Explora nodo"; //Habría que completarlo.
 	}
 
-	public ExploraNodo(int tipoCoste) {
+	public ExploraNodo(int tipoCoste, Simulacion simulacion) {
 		super();
 		this.tipoCoste = 0;
 		this.descripcion = "Explora Nodo";
+		this.simulacion = simulacion;
 	}
 
 	public Vector<NodoIA> aplicarOperador(NodoIA nodo) {
@@ -68,7 +71,10 @@ public class ExploraNodo implements IOperador {
 
 	public float getCoste() {
 		//El coste de momento es únicamente la longitud del tramo
-		return tramoElegido.getLargo();
+		if (tipoCoste == 1 && simulacion!=null)
+			return (float) (100-simulacion.densidadTramo(tramoElegido));
+		else
+			return tramoElegido.getLargo();
 	}
 
 	public boolean esInversoDe(IOperador operador) {

@@ -1,5 +1,7 @@
 package is.SimTraffic.LibreriaIA.Problema.DistanciaNodos;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import is.SimTraffic.LibreriaIA.IEstado;
@@ -7,6 +9,9 @@ import is.SimTraffic.LibreriaIA.IHeuristica;
 import is.SimTraffic.LibreriaIA.IOperador;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Simulacion.Simulacion;
+import is.SimTraffic.Simulacion.Vehiculo;
 
 public class PrincipalDistanciaNodos implements IPrincipal {
 
@@ -14,6 +19,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 	IEstado estadoInicial;
 	IEstado estadoObjetivo;
 	IHeuristica heuristica;
+	Simulacion simulacion;
 	
 	/**
 	 * 0 - El coste es la distancia.
@@ -21,10 +27,12 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 	 */
 	int tipoCoste;
 	
-	//Constructor que se adapta a la información que recibe del usuario (nodoOrigen y nodoDestino)
+	//Constructor que se adapta a la información que recibe del usuario (nodoOrigen y nodoDestino).
+	//Se utilizará cuando se quieran calcular recorridos sin haber iniciado una simulación.
 	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo) {
 		super();
 		// TODO Auto-generated constructor stub
+		this.simulacion = null;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
 		operadores=generarOperadores();
@@ -32,9 +40,21 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		this.tipoCoste = 0;
 	}
 	
-	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, int tipoCoste) {
+	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, Simulacion simulacion) {
 		super();
 		// TODO Auto-generated constructor stub
+		this.simulacion = simulacion;
+		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
+		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
+		operadores=generarOperadores();
+		heuristica=seleccionarHeuristica();
+		this.tipoCoste = 0;
+	}
+	
+	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo,	Simulacion simulacion, int tipoCoste) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.simulacion = simulacion;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
 		operadores=generarOperadores();
@@ -103,7 +123,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 
 	public Vector<IOperador> generarOperadores() {
 		Vector<IOperador> vOperadores=new Vector<IOperador>();
-		IOperador operador = new ExploraNodo(tipoCoste);
+		IOperador operador = new ExploraNodo(tipoCoste,simulacion);
 		
 		//Se inserta
 		vOperadores.add(operador);
