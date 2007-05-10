@@ -6,6 +6,7 @@ import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Vista.Acciones.PanelNodo.*;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaCambioSpinner;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.VentanaMatrizPaso.OyenteVentanaMatrizDePaso;
 import is.SimTraffic.Vista.VentanaMatrizPaso.VentanaMatrizDePaso;
@@ -94,6 +95,11 @@ public class PanelNodo extends JFrame {
 	 * Ventana Auxiliar que permitirá modificar los valores de interconexión entre los tramos.
 	 */
 	private VentanaMatrizDePaso ventanaMatriz;
+	
+	/**
+	 * Lista que almacenará todos los botones que aparecen 
+	 */
+	private List<JButton> listaBotonesAplicarIntervalo;
 	
 	public PanelNodo(Nodo nodo) {
 
@@ -220,6 +226,8 @@ public class PanelNodo extends JFrame {
 	private void creaPanelesIntervalos(JPanel panelInterno){
 		panelInterno.removeAll();
 		
+		this.listaBotonesAplicarIntervalo = new ArrayList();
+		
 		listaTiempoInicialIntervalo = new ArrayList<JSpinner>();
 		listaTiempoFinalIntervalo = new ArrayList<JSpinner>();
 		
@@ -228,13 +236,18 @@ public class PanelNodo extends JFrame {
 			String valor1 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoInicial());
 			String valor2 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoFinal());
 			JSpinner tiempoDe = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor1), 0, Integer.parseInt(valor2), 5));
+			EscuchaCambioSpinner oyenteCambioSpinner = new EscuchaCambioSpinner(i,this);
+			tiempoDe.addChangeListener(oyenteCambioSpinner);
 			listaTiempoInicialIntervalo.add(tiempoDe);
 			JLabel etiqA = new JLabel("a");
 			JSpinner tiempoA = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor2), 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
+			tiempoA.addChangeListener(oyenteCambioSpinner);
 			listaTiempoFinalIntervalo.add(tiempoA);
 			JButton mostrarM = new JButton("MostrarMatriz");
 			AccionAbrirMatrizDePaso oyenteBotonMatriz = new AccionAbrirMatrizDePaso(this);
 			JButton aplicarC = new JButton("AplicarCambios");
+			aplicarC.setEnabled(false);
+			listaBotonesAplicarIntervalo.add(aplicarC);
 			AccionModificarIntervalo oyenteBotonAplicar = new AccionModificarIntervalo(nodo,this);
 			//Asignamos un nombre al botón para poder diferenciar en el oyente que intervalo estamos modificando.
 			mostrarM.addActionListener(oyenteBotonMatriz);
@@ -591,5 +604,14 @@ public class PanelNodo extends JFrame {
 
 	public void setNodo(Nodo nodo) {
 		this.nodo = nodo;
+	}
+
+	public List<JButton> getListaBotonesAplicarIntervalo() {
+		return listaBotonesAplicarIntervalo;
+	}
+
+	public void setListaBotonesAplicarIntervalo(
+			List<JButton> listaBotonesAplicarIntervalo) {
+		this.listaBotonesAplicarIntervalo = listaBotonesAplicarIntervalo;
 	}
 }
