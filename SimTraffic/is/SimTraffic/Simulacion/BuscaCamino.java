@@ -19,16 +19,19 @@ public class BuscaCamino {
 	
 	static Simulacion simulacion;
 	
+	static void setSimulacion(Simulacion sim) {
+		simulacion = sim;
+	}
+	
 	static synchronized BuscaCamino obtenerInstancia() { //Faltaría introducirle la simulación, una buena solución no es inmediata.
 		cont = (cont + 1) % maxSimultaneos;
 		if (instancia[cont] == null) {
-			instancia[cont] = new BuscaCamino(simulacion);
+			instancia[cont] = new BuscaCamino();
 		}
 		return instancia[cont];
 	}
 	
-	public BuscaCamino(Simulacion simulacion) {
-		this.simulacion = simulacion;
+	public BuscaCamino() {
 	}
 	
 	public ArrayList<Tramo> buscar(Nodo entrada, Nodo salida) {

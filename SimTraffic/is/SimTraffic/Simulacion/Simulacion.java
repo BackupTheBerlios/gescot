@@ -116,7 +116,7 @@ public class Simulacion {
 	 */
 	public int comenzar(Mapa mapa) {
 		boolean intentar = true;
-
+		BuscaCamino.setSimulacion(this);
 		while (intentar) {
 			try {
 				if (controladorSim != null) {

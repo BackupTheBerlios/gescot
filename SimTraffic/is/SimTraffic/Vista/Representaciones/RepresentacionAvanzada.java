@@ -81,14 +81,14 @@ public class RepresentacionAvanzada extends Representacion {
 		coches[6] = cargarImagen("Coche7.png");*/
 
 		coches[0] = cargarImagen("taxigta.png");
-		coches[1] = cargarImagen("Coche2gta.png");
-		coches[2] = cargarImagen("Coche3gta.png");
-		coches[3] = cargarImagen("Coche4gta.png");
-		coches[4] = cargarImagen("Coche5gta.png");
-		coches[5] = cargarImagen("Coche6gta.png");
-		coches[6] = cargarImagen("Coche7gta.png");
+		coches[1] = cargarImagen("coche2gta.png");
+		coches[2] = cargarImagen("coche3gta.png");
+		coches[3] = cargarImagen("coche4gta.png");
+		coches[4] = cargarImagen("coche5gta.png");
+		coches[5] = cargarImagen("coche6gta.png");
+		coches[6] = cargarImagen("coche7gta.png");
 		coches[7] = cargarImagen("taxigta.png");
-		coches[8] = cargarImagen("Coche1gta.png");
+		coches[8] = cargarImagen("coche1gta.png");
 		coches[9] = cargarImagen("GT40.png");
 		coches[10] = cargarImagen("Mini.png");
 		coches[11] = cargarImagen("Policia.png");
