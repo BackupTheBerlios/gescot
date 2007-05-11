@@ -82,12 +82,14 @@ public class AccionAceptar implements ActionListener {
 		
 		// TODO Guardar los atributos del nodo referentes a las señales
 
-		compruebaIntervalosSemaforo();
+		boolean error = compruebaIntervalosSemaforo();
 		
 	
-		mapa.repaint();
-		mapa.recrearMapa();
-		panelNodo.dispose();
+		if (error == false){
+			mapa.repaint();
+			mapa.recrearMapa();
+			panelNodo.dispose();
+		}
 	}
 	
 	private boolean compruebaIntervalosSemaforo(){
@@ -100,13 +102,13 @@ public class AccionAceptar implements ActionListener {
 				IntervaloSemaforo iActual = ((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i);
 				//Comprueba que el primer intervalo empieza en 0
 				if (i==0){
-					if(iActual.getTiempoInicial() == 0){
+					if(iActual.getTiempoInicial() != 0){
 						error = true;
 						intervaloError = i;
 					}
 				//Comprueba que el ultimo intervalo acaba en el tiempoFinal del semaforo
 				}else if (i == ((Semaforo)nodo.getSeñal()).getListaIntervalos().size()-1){
-					if(iActual.getTiempoInicial() == ((Semaforo)nodo.getSeñal()).getTiempoTotal()){
+					if(iActual.getTiempoFinal() != ((Semaforo)nodo.getSeñal()).getTiempoTotal()){
 						error = true;
 						intervaloError = i;
 					}
