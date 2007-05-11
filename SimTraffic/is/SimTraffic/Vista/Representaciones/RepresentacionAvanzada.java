@@ -130,16 +130,16 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Stop"))
 					buffer = cargarImagen("Stop.png");
 				else if (aux.equalsIgnoreCase("Cruce")) {
+					buffer = cargarImagen("crossing.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Portón para vehículos"))
 					buffer = cargarImagen("Puerta.PNG");
 				else if (aux.equalsIgnoreCase("Cambio De Rasante")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Puente")) {
+					 buffer = cargarImagen("bridge.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Viaducto")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
@@ -163,8 +163,8 @@ public class RepresentacionAvanzada extends Representacion {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Jardín")) {
+					buffer = cargarImagen("garden.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 			} else if (aux.equalsIgnoreCase("Construcción")) {
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
@@ -222,19 +222,19 @@ public class RepresentacionAvanzada extends Representacion {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Parque de bomberos")) {
+					buffer = cargarImagen("fire_station.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Terrazas")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Restaurante"))
 					buffer = cargarImagen("Restaurante.PNG");
-				else if (aux.equalsIgnoreCase("Cadena de comida rapida")) {
+				else if (aux.equalsIgnoreCase("Cadena de comida rápida")) {
+					buffer = cargarImagen("fastfood.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
-				else if (aux.equalsIgnoreCase("Estacion de autobus")) {
+				else if (aux.equalsIgnoreCase("Estación de autobus")) {
+					buffer = cargarImagen("bus_station.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Teatro"))
 					buffer = cargarImagen("Teatro.PNG");
 			}
