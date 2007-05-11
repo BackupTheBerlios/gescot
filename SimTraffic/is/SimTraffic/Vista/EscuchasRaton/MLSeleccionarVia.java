@@ -129,6 +129,6 @@ public class MLSeleccionarVia extends EscuchaRaton{
 	}
 	
 	public String getAyuda() {
-		return "Pulse y arrastre para crear el rectángulo de selección de tramos.";
+		return "Pulse en una via para seleccionarla.";
 	}
 }
