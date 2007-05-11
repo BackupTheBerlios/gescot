@@ -443,11 +443,11 @@ public class Inteligencia {
 		}
 		if ((velDelante == -1 || distDelante > 35)
 				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
-			vehiculo.variarAceleracion(3);
+			vehiculo.variarAceleracion(30);
 			return;
 		}
 		if (velDelante > vehiculo.getVelocidad() || distDelante > 25) {
-			vehiculo.variarAceleracion(2);
+			vehiculo.variarAceleracion(15);
 			return;
 		}
 		if (velDelante <= vehiculo.getVelocidad()) {
@@ -458,13 +458,13 @@ public class Inteligencia {
 			} else if (distDelante < 15) {
 				vehiculo.variarAceleracion(-2);
 			}*/
-			if (distDelante < vehiculo.getDistanciaSeguridad() + 1 ) {
+			if (distDelante < vehiculo.getDistanciaSeguridad() + 5 ) {
 				vehiculo.velocidad = velDelante;
 				vehiculo.aceleracion = acelDelante;
 				//vehiculo.variarAceleracion(-80);
 			}
 			else if (distDelante < 20) {
-				vehiculo.variarAceleracion((int)(- 70 / (distDelante - vehiculo.getDistanciaSeguridad())));
+				vehiculo.variarAceleracion((int)(- 60 / (distDelante - 5 - vehiculo.getDistanciaSeguridad())));
 			}
 			return;
 		}
