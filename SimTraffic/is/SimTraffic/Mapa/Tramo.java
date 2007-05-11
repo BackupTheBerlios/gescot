@@ -14,10 +14,11 @@ public class Tramo implements ElementoMapa, Serializable {
 	private static final long serialVersionUID = -1490640156825743599L;
 
 	/**
-	 * Conoce la vía a la que pertenece, para poder mostrar de alguna forma la información de las vías.
+	 * Conoce la vía a la que pertenece, para poder mostrar de alguna forma la
+	 * información de las vías.
 	 */
 	private Via via;
-	
+
 	/**
 	 * Velocidad maxima a la que se puede cirucular por el tramo
 	 */
@@ -102,27 +103,37 @@ public class Tramo implements ElementoMapa, Serializable {
 		calculaLargo();
 	}
 
-	public void calculaAngulo() 
-	{
-		int zona = ConversorUTM.recalculaZona(nodoFinal.getPos().getLon());
-		boolean hem = ConversorUTM.recalculaHem(nodoFinal.getPos().getLat());
-		double xy1[] = ConversorUTM.LatLonToUTMXY(nodoFinal.getPos().getLat(), nodoFinal.getPos().getLon(), zona);
-		double xy2[] = ConversorUTM.LatLonToUTMXY(nodoInicial.getPos().getLat(), nodoInicial.getPos().getLon(), zona);
-		double largo = xy1[0] - xy2[0];
-		double alto = xy1[1] - xy2[1];
+	public void calculaAngulo() {
+		double largo = 0;
+		double alto = 0;
+		if (Math.abs(nodoFinal.getPos().getLat()) < 0.1
+				|| Math.abs(nodoFinal.getPos().getLat()) < 0.1) {
+			largo = nodoFinal.getPos().getLon() - nodoInicial.getPos().getLon();
+			alto = nodoFinal.getPos().getLat() - nodoInicial.getPos().getLat();
+		} else {
+			int zona = ConversorUTM.recalculaZona(nodoFinal.getPos().getLon());
+			boolean hem = ConversorUTM
+					.recalculaHem(nodoFinal.getPos().getLat());
+			double xy1[] = ConversorUTM.LatLonToUTMXY(nodoFinal.getPos()
+					.getLat(), nodoFinal.getPos().getLon(), zona);
+			double xy2[] = ConversorUTM.LatLonToUTMXY(nodoInicial.getPos()
+					.getLat(), nodoInicial.getPos().getLon(), zona);
+			largo = xy1[0] - xy2[0];
+			alto = xy1[1] - xy2[1];
+		}
 		/*
-		double largo = nodoFinal.getPos().getLon()
-		- nodoInicial.getPos().getLon();
-		double alto = nodoFinal.getPos().getLat()
-		- nodoInicial.getPos().getLat();
-		*/
+		 * double largo = nodoFinal.getPos().getLon() -
+		 * nodoInicial.getPos().getLon(); double alto =
+		 * nodoFinal.getPos().getLat() - nodoInicial.getPos().getLat();
+		 */
 		angulo = Math.atan(alto / largo);
 		if (largo < 0 & alto > 0)
 			angulo = Math.PI + angulo;
 		if (largo < 0 & alto < 0)
 			angulo = angulo - Math.PI;
-		// NOTA: el angulo toma valores entre -PI y PI, teniendo angulo 0 un tramo que va de oeste a este
-		//       tambien cabe destacar que creece hacia arriba y decrece hacia abajo
+		// NOTA: el angulo toma valores entre -PI y PI, teniendo angulo 0 un
+		// tramo que va de oeste a este
+		// tambien cabe destacar que creece hacia arriba y decrece hacia abajo
 	}
 
 	/**
@@ -138,7 +149,8 @@ public class Tramo implements ElementoMapa, Serializable {
 	public Tramo(int ID, Nodo nodoInicial, Nodo nodoFinal) {
 		this(nodoInicial, nodoFinal);
 		this.ID = ID;
-		//Seguramente sobre ya esta parte, pero asegurándome de que funciona bien el largo (a 14/4)
+		// Seguramente sobre ya esta parte, pero asegurándome de que funciona
+		// bien el largo (a 14/4)
 		numCarrilesDir1 = 1;
 		numCarrilesDir2 = 1;
 		velocidadMax = 40;
@@ -276,10 +288,10 @@ public class Tramo implements ElementoMapa, Serializable {
 				+ "' to='" + nodoFinal.getID() + "'>\n");
 		if (this.numCarrilesDir1 > 0)
 			s = s
-			+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
+					+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
 		if (this.numCarrilesDir2 > 0)
 			s = s
-			+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
+					+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
 		s = s + ("<tag k='velMax' v='" + this.velocidadMax + "' />\n");
 		s = s + ("</segment>");
 		return s;
@@ -306,8 +318,8 @@ public class Tramo implements ElementoMapa, Serializable {
 	public void setVia(Via via) {
 		this.via = via;
 	}
-	
-	public void setAngulo (double angulo) {
+
+	public void setAngulo(double angulo) {
 		this.angulo = angulo;
 	}
 }
