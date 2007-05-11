@@ -224,9 +224,9 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Parque de bomberos")) {
 					buffer = cargarImagen("fire_station.PNG");
 				}
-				else if (aux.equalsIgnoreCase("Terrazas")) {
+				else if (aux.equalsIgnoreCase("Terrazas (de hostelería)")) {
+					buffer = cargarImagen("Puff.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Restaurante"))
 					buffer = cargarImagen("Restaurante.PNG");
 				else if (aux.equalsIgnoreCase("Cadena de comida rápida")) {
