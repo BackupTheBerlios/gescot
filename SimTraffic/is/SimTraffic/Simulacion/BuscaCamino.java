@@ -36,7 +36,7 @@ public class BuscaCamino {
 	
 	public ArrayList<Tramo> buscar(Nodo entrada, Nodo salida) {
 		ArrayList<Tramo> tramos = new ArrayList<Tramo>();
-		int tipoCoste = 0;
+		int tipoCoste = 1;
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
 				salida,simulacion,tipoCoste); //Se le permite conocer la simulación, de modo que se pueden evaluar
 									//rutas en función del tráfico.

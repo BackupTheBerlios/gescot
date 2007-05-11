@@ -35,9 +35,9 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		this.simulacion = null;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
+		this.tipoCoste = 1;
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
-		this.tipoCoste = 0;
 	}
 	
 	/*public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, Simulacion simulacion) {
@@ -57,12 +57,12 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		this.simulacion = simulacion;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
+		this.tipoCoste = tipoCoste;
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
-		this.tipoCoste = tipoCoste;
 	}
 
-	public PrincipalDistanciaNodos(IEstado inicial, IEstado objetivo, IHeuristica heuristica, Vector<IOperador> operadores) {
+	/*public PrincipalDistanciaNodos(IEstado inicial, IEstado objetivo, IHeuristica heuristica, Vector<IOperador> operadores) {
 		super();
 		// TODO Auto-generated constructor stub
 		estadoInicial = inicial;
@@ -77,7 +77,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		estadoObjetivo=generarEstadoObjetivo();
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
-	}
+	}*/
 
 	public IEstado getEstadoInicial() {
 		return estadoInicial;

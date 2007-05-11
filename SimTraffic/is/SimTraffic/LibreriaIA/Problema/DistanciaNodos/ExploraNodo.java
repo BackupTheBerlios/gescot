@@ -23,13 +23,13 @@ public class ExploraNodo implements IOperador {
 		// TODO Auto-generated constructor stub
 		nodoOrigen = origen;
 		tramoElegido = elegido;
-		this.tipoCoste = 0;
+		this.tipoCoste = 1;
 		descripcion = "Explora nodo"; //Habría que completarlo.
 	}
 
 	public ExploraNodo(int tipoCoste, Simulacion simulacion) {
 		super();
-		this.tipoCoste = 0;
+		this.tipoCoste = tipoCoste;
 		this.descripcion = "Explora Nodo";
 		this.simulacion = simulacion;
 	}
@@ -76,6 +76,17 @@ public class ExploraNodo implements IOperador {
 			System.out.println("!!!!!!!!!!!!!$%&$(%%&/%%/%&/");
 			return 1;
 		}
+		else if (tipoCoste == 1){
+			System.out.println("Tipocoste = "+tipoCoste);
+			double epsilon = 1;
+			float densidad = (float) (simulacion.densidadTramo(tramoElegido)+epsilon);
+			return tramoElegido.getLargo()+densidad;
+		}
+		else if (tipoCoste == 0) {
+			return tramoElegido.getLargo();
+		}
+		else 
+			return 1;
 		else {
 			double epsilon = 0.1;
 			double densidad = (float) (simulacion.densidadTramo(tramoElegido)+epsilon);

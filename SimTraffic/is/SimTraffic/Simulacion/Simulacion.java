@@ -194,7 +194,7 @@ public class Simulacion {
 	}
 
 	private ArrayList<Tramo> buscarCamino(Nodo entrada, Nodo salida) {
-		int tipoCoste = 0;
+		int tipoCoste = 1;
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
 				salida,this,tipoCoste);
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
@@ -526,7 +526,7 @@ public class Simulacion {
 	public double densidadTramo(Tramo tramo) {
 		ArrayList<Vehiculo> listaVehiculos = tabla.get(tramo);
 		int longitudT = tramo.getLargo();
-		int numCoches = listaVehiculos.size()*1000;
+		int numCoches = listaVehiculos.size()*10000;
 		//if (numCoches>0)
 		//	System.out.println("Numcoches > 0!");
 		// Versión simple, realmente debería comprobar el tramo en el sentido en
@@ -535,8 +535,11 @@ public class Simulacion {
 				+ tramo.getNumCarrilesDir2();
 		// Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
 		double densidad = numCoches / (longitudT * numCarriles);
-		//if (densidad>0.001)
-		//	System.out.println("Densidad calculada: "+densidad);
+		if (densidad>0.001) {
+			System.out.println("Largo: "+ tramo.getLargo());
+			if (tramo.getNombre()!=null) System.out.println("Nombre" + tramo.getNombre());
+			System.out.println("Densidad calculada: "+densidad);
+		}
 		//Devuelve un número entre 1 y 100 (parece).
 		//if (densidad>1)
 		//	System.out.println("Densidad INCORRECTA");
