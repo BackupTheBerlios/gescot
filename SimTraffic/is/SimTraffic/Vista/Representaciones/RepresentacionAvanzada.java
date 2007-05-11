@@ -135,8 +135,8 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Portón para vehículos"))
 					buffer = cargarImagen("Puerta.PNG");
 				else if (aux.equalsIgnoreCase("Cambio De Rasante")) {
+					buffer = cargarImagen("incline.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Puente")) {
 					 buffer = cargarImagen("bridge.PNG");
 				}
@@ -160,8 +160,8 @@ public class RepresentacionAvanzada extends Representacion {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Parque")) {
-				}
-				// buffer = cargarImagen("Stop.PNG");
+					buffer = cargarImagen("park.PNG");
+				} 
 				else if (aux.equalsIgnoreCase("Jardín")) {
 					buffer = cargarImagen("garden.PNG");
 				}
@@ -180,8 +180,8 @@ public class RepresentacionAvanzada extends Representacion {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Faro")) {
+					buffer = cargarImagen("lighthouse.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 			} else if (aux.equalsIgnoreCase("Infraestructura")) {
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
@@ -203,8 +203,8 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Iglesia"))
 					buffer = cargarImagen("Iglesia.PNG");
 				else if (aux.equalsIgnoreCase("Cementerio")) {
+					 buffer = cargarImagen("grave_yard.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Oficina de Correos"))
 					buffer = cargarImagen("Correos.PNG");
 				else if (aux.equalsIgnoreCase("Buzón de Correos"))

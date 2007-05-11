@@ -36,12 +36,12 @@ public class TipoNodoHighway extends TipoElemento implements ITipoElemento {
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Mini-rotonda","mini_roundabout"}, 
-								   {"Stop","stadium"},
-								   {"Cruce","crossing"},
+		String[][] tTraduccion = { {"Cambio De Rasante","incline"},
+				   				   {"Cruce","crossing"},
+								   {"Mini-rotonda","mini_roundabout"}, 
 								   {"Portón para vehículos","gate"},
-								   {"Cambio De Rasante","incline"},
 								   {"Puente","bridge"},
+								   {"Stop","stadium"},
 								   {"Viaducto","viaduct"},	
 									};
 		return tTraduccion;
