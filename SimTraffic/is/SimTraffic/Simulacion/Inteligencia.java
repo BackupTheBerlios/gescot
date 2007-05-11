@@ -50,7 +50,9 @@ public class Inteligencia {
 
 	boolean puedeEntrar = true;
 
-	private int distDelante;
+	private double distDelante;
+	
+	private double acelDelante;
 
 	/**
 	 * Constructor de la clase.
@@ -291,6 +293,7 @@ public class Inteligencia {
 		Vehiculo temp = null;
 		double velocidad = -1.0;
 		double distancia = 1.0;
+		acelDelante = 0;
 		while (iterador.hasNext()) {
 			temp = iterador.next();
 			if (temp != null && temp != vehiculo) {
@@ -300,6 +303,7 @@ public class Inteligencia {
 					if (temp.getPosicion() > vehiculo.getPosicion()
 							&& temp.getPosicion() - vehiculo.getPosicion() < distancia) {
 						velocidad = temp.getVelocidad();
+						acelDelante = temp.getAceleracion();
 						distancia = temp.getPosicion() - vehiculo.getPosicion();
 					}
 			}
@@ -322,6 +326,7 @@ public class Inteligencia {
 								&& temp.getCarril() == vehiculo.getCarril())
 							if (temp.getPosicion() + pos < distancia) {
 								velocidad = temp.getVelocidad();
+								acelDelante = temp.getAceleracion();
 								distancia = temp.getPosicion() + pos;
 							}
 					}
@@ -436,22 +441,30 @@ public class Inteligencia {
 			vehiculo.aceleracion = 0;
 			return;
 		}
-		if ((velDelante == -1 || distDelante > 30)
+		if ((velDelante == -1 || distDelante > 35)
 				&& vehiculo.getVelocidad() < vehiculo.getTramo().getVelMax()) {
 			vehiculo.variarAceleracion(3);
 			return;
 		}
-		if (velDelante > vehiculo.getVelocidad() || distDelante > 20) {
+		if (velDelante > vehiculo.getVelocidad() || distDelante > 25) {
 			vehiculo.variarAceleracion(2);
 			return;
 		}
 		if (velDelante <= vehiculo.getVelocidad()) {
-			if (vehiculo.getDistanciaSeguridad() < distDelante) {
+			/*if (vehiculo.getDistanciaSeguridad() < distDelante) {
 				vehiculo.variarAceleracion(-25);
 			} else if (distDelante < 8) {
 				vehiculo.variarAceleracion(-12);
 			} else if (distDelante < 15) {
 				vehiculo.variarAceleracion(-2);
+			}*/
+			if (distDelante < vehiculo.getDistanciaSeguridad() + 1 ) {
+				vehiculo.velocidad = velDelante;
+				vehiculo.aceleracion = acelDelante;
+				//vehiculo.variarAceleracion(-80);
+			}
+			else if (distDelante < 20) {
+				vehiculo.variarAceleracion((int)(- 70 / (distDelante - vehiculo.getDistanciaSeguridad())));
 			}
 			return;
 		}
