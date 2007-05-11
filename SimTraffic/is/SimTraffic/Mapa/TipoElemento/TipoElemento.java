@@ -16,7 +16,7 @@ public abstract class TipoElemento implements ITipoElemento{
 	 * Tabla de 2 columnas utilizada para traducir términos relativos a valores de este tipo de elemento: 
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
-	private static String[][] tablaTraduccion;
+	private String[][] tablaTraduccion;
 	
 	public TipoElemento(String valorTipo) {
 		tablaTraduccion=crearTablaTraduccion();
