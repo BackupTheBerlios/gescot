@@ -95,6 +95,13 @@ public class ExploraNodo implements IOperador {
 		//}
 		if (tipoCoste==0)
 			return tramoElegido.getLargo();
+		else if (tipoCoste==1 && simulacion!=null) {
+			float epsilon = 5;
+			float densidad = (float) (simulacion.densidadTramo(tramoElegido)+tramoElegido.getLargo());
+			if (densidad<epsilon)
+				densidad = epsilon;
+			return densidad;
+		}
 		else
 			return tramoElegido.getLargo();
 	}

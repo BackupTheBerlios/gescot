@@ -112,7 +112,6 @@ public class AEstrella implements IAlgoritmoInformado {
 					
 					//Esta función ya se encarga si es necesario de añadir el nodo a la estructura abiertos.
 					tratarSucesor(nodoNuevo,nodo);
-
 				}
 			}
 		}

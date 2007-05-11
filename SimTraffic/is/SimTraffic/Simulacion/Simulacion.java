@@ -474,17 +474,7 @@ public class Simulacion {
 		else if (taux >= 54000 && taux < 82800) //Entre las 15:00 y las 23:00
 			fH = 1;
 		else // Entre las 23:00 y las 07:00
-			fH = 2;
-		
-		//DEPURACION
-		
-		/*Iterator<Tramo> tram = mapa.getTramos().iterator();
-		Tramo auxT;
-		while (tram.hasNext()) {
-			auxT= tram.next();
-			double auxiliarDensity = densidadTramo(auxT);
-			//System.out.println(auxiliarDensity);
-		}*/		
+			fH = 2;	
 		return fH;
 	}
 
@@ -526,7 +516,8 @@ public class Simulacion {
 	public double densidadTramo(Tramo tramo) {
 		ArrayList<Vehiculo> listaVehiculos = tabla.get(tramo);
 		int longitudT = tramo.getLargo();
-		int numCoches = listaVehiculos.size()*10000;
+		int numCoches = listaVehiculos.size()*50000;
+		//int numCoches = listaVehiculos.size()*50000;
 		//if (numCoches>0)
 		//	System.out.println("Numcoches > 0!");
 		// Versión simple, realmente debería comprobar el tramo en el sentido en
@@ -540,9 +531,7 @@ public class Simulacion {
 			if (tramo.getNombre()!=null) System.out.println("Nombre" + tramo.getNombre());
 			System.out.println("Densidad calculada: "+densidad);
 		}
-		//Devuelve un número entre 1 y 100 (parece).
-		//if (densidad>1)
-		//	System.out.println("Densidad INCORRECTA");
+		//densidad = densidad * longitudT;
 		// Se normaliza con la distancia (devolverá un valor entre 0 y la
 		// distancia del tramo).
 		//densidad = longitudT * densidad;
