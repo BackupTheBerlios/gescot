@@ -32,9 +32,9 @@ public class Turismo extends Vehiculo {
 		// Se genera un color aleatorio
 		// generarColorAleatorio();
 		this.color = Color.BLUE;
-		this.figura = new Rectangle2D.Double(-4,
-				-RepresentacionSimple.tamaño_carril, 4,
-				RepresentacionSimple.tamaño_carril);
+		this.figura = new Rectangle2D.Double(0,
+				-RepresentacionSimple.tamaño_carril/2, 4,
+				RepresentacionSimple.tamaño_carril/2);
 
 		random = new Random();
 		this.aceleracion = 0;

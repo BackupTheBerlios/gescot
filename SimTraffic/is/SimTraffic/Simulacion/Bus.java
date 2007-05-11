@@ -27,9 +27,9 @@ public class Bus extends Vehiculo {
 		this.lineas = lineas;
 		cuentaTramos = 0;
 		this.color = Color.RED;
-		this.figura = new Rectangle2D.Double(-6,
-				-RepresentacionSimple.tamaño_carril, 6,
-				RepresentacionSimple.tamaño_carril);
+		this.figura = new Rectangle2D.Double(0,
+				-RepresentacionSimple.tamaño_carril/2.0, 8,
+				RepresentacionSimple.tamaño_carril/2.0);
 
 		random = new Random();
 		this.aceleracion = 0;
@@ -42,12 +42,12 @@ public class Bus extends Vehiculo {
 		ncochesglobal++;
 
 	}
-	
+
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
 		linea = lineas.get(random.nextInt(lineas.size()));
 		cuentaTramos = random.nextInt(linea.getTramos().size());
-		this.tramo = linea.getTramos().get(cuentaTramos);
+		tramo = linea.getTramos().get(cuentaTramos);
 
 		if (random.nextBoolean()) {
 			this.nodoOrigen = tramo.getNodoInicial();
@@ -56,64 +56,69 @@ public class Bus extends Vehiculo {
 			this.nodoDestino = tramo.getNodoInicial();
 			this.nodoOrigen = tramo.getNodoFinal();
 		}
-
+		this.nodoEntrada = nodoOrigen;
+		
+		
 		Tramo sig = null;
 		int cuentaTemp = cuentaTramos - 1;
 		if (cuentaTemp < 0)
 			cuentaTemp = linea.getTramos().size() - 1;
 		sig = linea.getTramos().get(cuentaTemp);
-		
+
 		if (nodoDestino.getTramos().contains(sig)) {
 			sentido = true;
 			cuentaTramos++;
 			if (cuentaTramos >= linea.getTramos().size())
 				cuentaTramos = 0;
-		}
-		else {
+		} else {
 			sentido = false;
 			cuentaTramos--;
 			if (cuentaTramos < 0)
 				cuentaTramos = linea.getTramos().size() - 1;
 		}
-		this.nodoEntrada = nodoOrigen;
-		
+
+
 		return true;
 	}
 
 	public synchronized void setTramo(Tramo tramo) {
-		if (sentido) cuentaTramos--;
+		if (sentido)
+			cuentaTramos--;
 		else {
 			cuentaTramos++;
 		}
-		if (cuentaTramos < 0) cuentaTramos = linea.getTramos().size() - 1;
-		if (cuentaTramos >= linea.getTramos().size()) cuentaTramos = 0;
+		if (cuentaTramos < 0)
+			cuentaTramos = linea.getTramos().size() - 1;
+		if (cuentaTramos >= linea.getTramos().size())
+			cuentaTramos = 0;
 		this.tramo = tramo;
 	}
-	
+
 	public synchronized void setCarril(int carril) {
 		if (this.tramo != null && this.nodoDestino == this.tramo.getNodoFinal())
 			this.carril = this.tramo.getNumCarrilesDir1();
-		else if (this.tramo != null && this.nodoDestino == this.tramo.getNodoInicial())
+		else if (this.tramo != null
+				&& this.nodoDestino == this.tramo.getNodoInicial())
 			this.carril = this.tramo.getNumCarrilesDir2();
 		else
 			this.carril = carril;
 	}
-	
+
 	@Override
 	public synchronized Tramo siguienteTramo() {
 		int temp;
 		if (linea != null) {
 			if (sentido) {
-				temp = (cuentaTramos + 1) % linea.getTramos().size();
-				return linea.getTramos().get(temp);
-			} else {
 				temp = (cuentaTramos - 1);
 				if (temp < 0)
 					temp = linea.getTramos().size() - 1;
-				return linea.getTramos().get(temp);
+			} else {
+				temp = (cuentaTramos + 1);
+				if (temp >= linea.getTramos().size())
+					temp = 0;
 			}
+			return linea.getTramos().get(temp);
 		}
-
 		return null;
 	}
 

@@ -31,8 +31,8 @@ public class Ambulancia extends Vehiculo {
 		//Se genera un color aleatorio
 		//generarColorAleatorio();
 		this.color = Color.PINK;
-		this.figura = new Rectangle2D.Double(-5, -RepresentacionSimple.tamaño_carril, 5,
-				RepresentacionSimple.tamaño_carril);
+		this.figura = new Rectangle2D.Double(0, -RepresentacionSimple.tamaño_carril/2.0, 6,
+				RepresentacionSimple.tamaño_carril/2.0);
 		
 		random = new Random();
 		this.aceleracion = 0;

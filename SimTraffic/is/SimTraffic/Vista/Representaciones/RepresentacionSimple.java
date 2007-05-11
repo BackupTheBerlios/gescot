@@ -114,8 +114,8 @@ public class RepresentacionSimple extends Representacion {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
-				Color colorNodo = new Color((float) 0, (float) 0,
-						(float) 1, (float) 0.9);
+				Color colorNodo = new Color((float) 0, (float) 0, (float) 1,
+						(float) 0.9);
 				g.setColor(colorNodo);
 				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
@@ -147,8 +147,8 @@ public class RepresentacionSimple extends Representacion {
 			if (elemento.getClass() == Nodo.class) {
 				// pintar un nodo sugerido
 				Nodo nodo = (Nodo) elemento;
-				Color colorNodo = new Color((float) 1, (float) 0,
-						(float) 0, (float) 0.6);// 1,0.6,0
+				Color colorNodo = new Color((float) 1, (float) 0, (float) 0,
+						(float) 0.6);// 1,0.6,0
 				g.setColor(colorNodo);
 				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
 						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
@@ -207,16 +207,17 @@ public class RepresentacionSimple extends Representacion {
 		Tramo tramo = vehiculo.getTramo();
 		if (tramo == null || !tramo2.equals(tramo))
 			return;
-		
-		if (vehiculo.getPosicion() * tramo2.getLargo() < 2 && vehiculo.getNodoOrigen() == vehiculo.getNodoEntrada()) {
+
+		if (vehiculo.getPosicion() * tramo2.getLargo() < 2
+				&& vehiculo.getNodoOrigen() == vehiculo.getNodoEntrada()) {
 			return;
 		}
-		
+
 		Shape rect = vehiculo.getFigura();
 
 		// TODO si el tramo no se dibuja, puede ser bueno que ya no sigua
 
-		if (vehiculo.getColor()==null)
+		if (vehiculo.getColor() == null)
 			g.setColor(Color.RED);
 		else {
 			g.setColor(vehiculo.getColor());
@@ -262,48 +263,46 @@ public class RepresentacionSimple extends Representacion {
 	}
 
 	@Override
-	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) 
-	{
-		Posicion pos; 
+	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) {
+		Posicion pos;
 		double angulo;
-		if (destino.getNodoFinal().equals(nodo))
-		{
+		if (destino.getNodoFinal().equals(nodo)) {
 			pos = destino.getNodoInicial().getPos();
 			angulo = Math.PI - destino.getAngulo();
-		}
-		else
-		{
+		} else {
 			pos = destino.getNodoFinal().getPos();
-			angulo = Math.PI*2 - destino.getAngulo();
+			angulo = Math.PI * 2 - destino.getAngulo();
 		}
 
-		int carriles = Math.max(destino.getNumCarrilesDir1(), destino.getNumCarrilesDir2());
-		
+		int carriles = Math.max(destino.getNumCarrilesDir1(), destino
+				.getNumCarrilesDir2());
+
 		int desplazamiento = 15;
 		int temp3 = (int) (desplazamiento * Math.cos(Math.PI + angulo) * zoom);
 		int temp4 = (int) (-desplazamiento * Math.sin(Math.PI + angulo) * zoom);
 
-		angulo = Math.PI/2 + angulo;
-		int temp1 = (int) (2 * tamaño_carril * zoom * carriles * Math.cos(angulo));
-		
-		int x[] = {x_MapaARep(pos.getLon()) - temp1 + temp3,
+		angulo = Math.PI / 2 + angulo;
+		int temp1 = (int) (2 * tamaño_carril * zoom * carriles * Math
+				.cos(angulo));
+
+		int x[] = { x_MapaARep(pos.getLon()) - temp1 + temp3,
 				x_MapaARep(pos.getLon()) + temp1 + temp3,
-				x_MapaARep(pos.getLon()) - temp3};
+				x_MapaARep(pos.getLon()) - temp3 };
 
 		temp1 = (int) (2 * tamaño_carril * zoom * carriles * Math.sin(angulo));
-		int y[] = {y_MapaARep(pos.getLat()) - temp1 - temp4,
+		int y[] = { y_MapaARep(pos.getLat()) - temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
-				y_MapaARep(pos.getLat()) + temp4};
-		
+				y_MapaARep(pos.getLat()) + temp4 };
+
 		System.out.println(x[0] + " " + x[1] + " " + x[2]);
 		System.out.println(y[0] + " " + y[1] + " " + y[2]);
-		
+
 		Polygon p = new Polygon(x, y, 3);
 		return p;
 	}
 
-	/** Método que no hace nada.*/
-	public void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) {}
+	/** Método que no hace nada. */
+	public void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g) {
+	}
 
 }
-

@@ -104,10 +104,18 @@ public class Tramo implements ElementoMapa, Serializable {
 
 	public void calculaAngulo() 
 	{
+		int zona = ConversorUTM.recalculaZona(nodoFinal.getPos().getLon());
+		boolean hem = ConversorUTM.recalculaHem(nodoFinal.getPos().getLat());
+		double xy1[] = ConversorUTM.LatLonToUTMXY(nodoFinal.getPos().getLat(), nodoFinal.getPos().getLon(), zona);
+		double xy2[] = ConversorUTM.LatLonToUTMXY(nodoInicial.getPos().getLat(), nodoInicial.getPos().getLon(), zona);
+		double largo = xy1[0] - xy2[0];
+		double alto = xy1[1] - xy2[1];
+		/*
 		double largo = nodoFinal.getPos().getLon()
 		- nodoInicial.getPos().getLon();
 		double alto = nodoFinal.getPos().getLat()
 		- nodoInicial.getPos().getLat();
+		*/
 		angulo = Math.atan(alto / largo);
 		if (largo < 0 & alto > 0)
 			angulo = Math.PI + angulo;

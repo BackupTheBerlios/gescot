@@ -95,8 +95,8 @@ public abstract class Vehiculo {
 	 * */
 	protected static int ncochesglobal = 0;
 
-	protected Shape figura = new Rectangle2D.Double(-4, -RepresentacionSimple.tamaño_carril, 4,
-			RepresentacionSimple.tamaño_carril);;
+	protected Shape figura = new Rectangle2D.Double(0, -RepresentacionSimple.tamaño_carril/2, 4,
+			RepresentacionSimple.tamaño_carril/2);
 	
 	/**
 	 * Método para variar la aceleración.

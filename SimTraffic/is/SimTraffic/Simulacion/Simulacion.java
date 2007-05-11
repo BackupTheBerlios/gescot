@@ -221,7 +221,7 @@ public class Simulacion {
 		}
 
 	}
-
+	
 	@SuppressWarnings("unused")
 	private void crearCaminosDefecto() {
 		Iterator<Nodo> it = mapa.getNodos().iterator();

@@ -140,6 +140,7 @@ public class Inteligencia {
 			tabla.get(vehiculo.getTramo()).add(vehiculo);
 			vehiculo.resetaerPosicion();
 			vehiculo.setNodoOrigen(entrada);
+			
 			if (vehiculo.getTramo().getNodoInicial() == entrada) {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
 				if (vehiculo.getTramo().getNumCarrilesDir1() == 0) {

@@ -15,14 +15,12 @@ public class Taxi extends Vehiculo {
 	private Tramo siguiente;
 
 	public Taxi() {
-		// TODO este constructor deberia dar valores a todos
-		// los atributos de un vehiculo
 		nombre = "Taxi";
 
 		this.color = Color.YELLOW;
-		this.figura = new Rectangle2D.Double(-4,
-				-RepresentacionSimple.tamaño_carril, 4,
-				RepresentacionSimple.tamaño_carril);
+		this.figura = new Rectangle2D.Double(0,
+				-RepresentacionSimple.tamaño_carril/2, 4,
+				RepresentacionSimple.tamaño_carril/2);
 
 		random = new Random();
 		this.aceleracion = 0;
@@ -84,6 +82,9 @@ public class Taxi extends Vehiculo {
 		this.aceleracion += (double) cuanto / 200;
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
+		Random random = new Random();
+		if (random.nextDouble()<0.05) 
+			aceleracion = -10;
 	}
 
 }

@@ -61,6 +61,11 @@ public class Camion extends Vehiculo {
 		
 	}
 
+	public synchronized void setTramo(Tramo tramo){
+		super.setTramo(tramo);
+		cuentaTramos ++;
+	}
+	
 	@Override
 	public synchronized Tramo siguienteTramo() {
 		// TODO da el tramo siguiente
