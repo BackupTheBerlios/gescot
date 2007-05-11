@@ -173,7 +173,7 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
-				else if (aux.equalsIgnoreCase("Central Hidroeléctrica")) {
+				else if (aux.equalsIgnoreCase("Central eléctrica")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Central nuclear")) {
