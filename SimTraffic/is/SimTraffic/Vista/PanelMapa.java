@@ -453,7 +453,7 @@ public class PanelMapa extends JPanel
 	}
 	
 	public void cambiaPosX(int cambio) {
-		posLon = posLon + ((double) cambio * zoom) / 60000;
+		posLon = posLon + ((double) cambio / zoom) / 60000.0;
 		if (posLon > 180)
 			posLon = 180;
 		if (posLon < -180)
@@ -475,7 +475,7 @@ public class PanelMapa extends JPanel
 	}
 	
 	public void cambiaPosY(int cambio) {
-		posLat = posLat - ((double) cambio * zoom) / 60000;
+		posLat = posLat - ((double) cambio / zoom) / 60000.0;
 		if (posLat > 89)
 			posLat = 89;
 		if (posLat < -89)
@@ -594,6 +594,10 @@ public class PanelMapa extends JPanel
 	public IModelo getModelo() {
 		return modelo;
 	
+	}
+
+	public double getZoom() {
+		return zoom;
 	}
 	
 }
