@@ -25,7 +25,7 @@ public class Taxi extends Vehiculo {
 		random = new Random();
 		this.aceleracion = 0;
 		this.aceleracionMax = (double) random.nextInt(30) / 100 + 0.2;
-		this.distanciaSeguridad = 4;
+		this.distanciaSeguridad = 3;
 		this.posicion = 0;
 		this.velocidad = 0;
 		this.velocidadMax = (double) random.nextInt(60) / 100 + 0.6;

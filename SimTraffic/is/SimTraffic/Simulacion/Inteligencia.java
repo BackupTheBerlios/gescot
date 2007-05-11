@@ -313,7 +313,7 @@ public class Inteligencia {
 			Tramo tramo = vehiculo.siguienteTramo();
 			if (tramo != null) {
 				Double pos = 1 - vehiculo.posicion
-						- (0.1 * vehiculo.getTramo().getLargo())
+						- (0.0 * vehiculo.getTramo().getLargo())
 						/ tramo.getLargo();
 				iterador = (new ArrayList<Vehiculo>(tabla.get(tramo)))
 						.iterator();
@@ -459,8 +459,8 @@ public class Inteligencia {
 				vehiculo.variarAceleracion(-2);
 			}*/
 			if (distDelante < vehiculo.getDistanciaSeguridad() + 5 ) {
-				vehiculo.velocidad = velDelante;
-				vehiculo.aceleracion = acelDelante;
+				vehiculo.velocidad = velDelante/1.2;
+				vehiculo.aceleracion = acelDelante/1.2;
 				//vehiculo.variarAceleracion(-80);
 			}
 			else if (distDelante < 20) {
@@ -485,6 +485,8 @@ public class Inteligencia {
 	private synchronized boolean tieneQueEsperar(Vehiculo vehiculo) {
 		if (vehiculo.posicion > 0)
 			return false;
+		if (vehiculo.nodoEntrada != vehiculo.nodoOrigen)
+			return false;
 		ArrayList<Vehiculo> lista = tabla.get(vehiculo.getTramo());
 		int cont = 0;
 		Vehiculo temp;
@@ -494,7 +496,7 @@ public class Inteligencia {
 				if (temp.nodoDestino == vehiculo.nodoDestino
 						&& temp.carril == vehiculo.carril) {
 					if (temp.posicion > 0
-							&& temp.posicion * vehiculo.getTramo().getLargo() < 2) {
+							&& temp.posicion * vehiculo.getTramo().getLargo() < vehiculo.distanciaSeguridad + 4) {
 						return true;
 					}
 				}

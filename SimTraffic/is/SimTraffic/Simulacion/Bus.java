@@ -34,7 +34,7 @@ public class Bus extends Vehiculo {
 		random = new Random();
 		this.aceleracion = 0;
 		this.aceleracionMax = (double) random.nextInt(20) / 100 + 0.1;
-		this.distanciaSeguridad = 4;
+		this.distanciaSeguridad = 6;
 		this.posicion = 0;
 		this.velocidad = 0;
 		this.velocidadMax = (double) random.nextInt(40) / 100 + 0.5;
