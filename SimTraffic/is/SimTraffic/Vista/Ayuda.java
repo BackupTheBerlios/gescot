@@ -1,16 +1,32 @@
 package is.SimTraffic.Vista;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
-import java.util.List;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.io.*;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 public class Ayuda extends JFrame implements HyperlinkListener, 
 ActionListener {
+	private static final long serialVersionUID = 1L;
+
+
 	public static void main(String[] args) {
 		if (args.length == 0)
 			new Ayuda("http://www.apl.jhu.edu/~hall/");
@@ -100,6 +116,9 @@ ActionListener {
 	}
 	
 	public class JIconButton extends JButton {
+
+		private static final long serialVersionUID = 1L;
+
 		public JIconButton(String file) {
 			super(new ImageIcon(file));
 			setContentAreaFilled(false);

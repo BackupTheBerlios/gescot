@@ -1,6 +1,11 @@
 package is.SimTraffic.Vista.Representaciones;
 
-import is.SimTraffic.Mapa.*;
+import is.SimTraffic.Mapa.ConversorUTM;
+import is.SimTraffic.Mapa.ElementoMapa;
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Señal;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
 import is.SimTraffic.Vista.Sugerencias.Flecha;
 
@@ -11,7 +16,6 @@ import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Clase abstracta para representaciones del mapa.
