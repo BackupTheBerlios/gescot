@@ -2,6 +2,9 @@ package is.SimTraffic.Vista.Acciones.PanelNodo;
 
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
+import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +26,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (comboTipo.getSelectedItem().equals("Carretera")) {
 			comboValor.setEnabled(true);
-			String[] s1={"Cambio De Rasante", "Cruce", "Mini-rotonda", "Portón para vehículos", "Puente", "Stop", "Viaducto"};
+			TipoElemento inf=new TipoNodoHighway("Cambio De Rasante");
+			String[] s1=inf.devolverListaValores();
+			//String[] s1={"Cambio De Rasante", "Cruce", "Mini-rotonda", "Portón para vehículos", "Puente", "Stop", "Viaducto"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s1.length;i++)
 				comboValor.addItem(s1[i]);
@@ -31,7 +36,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
 			comboValor.setEnabled(true);
-			String[] s2={"Campo de deporte", "Campo de golf", "Estadio", "Jardín", "Marina", "Parque", "Parque acuático", "Pista de carreras"};
+			TipoElemento inf=new TipoNodoLeisure("Campo de deporte");
+			String[] s2=inf.devolverListaValores();
+			//String[] s2={"Campo de deporte", "Campo de golf", "Estadio", "Jardín", "Marina", "Parque", "Parque acuático", "Pista de carreras"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s2.length;i++)
 				comboValor.addItem(s2[i]);
@@ -39,7 +46,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else if (comboTipo.getSelectedItem().equals("Construcción")) {
 			comboValor.setEnabled(true);
-			String[] s3={"Central eléctrica", "Central nuclear", "Faro", "Planta eólica","Planta hidroeléctrica"};
+			TipoElemento inf=new TipoNodoManMade("Central eléctrica");
+			String[] s3=inf.devolverListaValores();
+			//String[] s3={"Central eléctrica", "Central nuclear", "Faro", "Planta eólica","Planta hidroeléctrica"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
 				comboValor.addItem(s3[i]);

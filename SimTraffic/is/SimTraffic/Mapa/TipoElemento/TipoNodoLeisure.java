@@ -44,14 +44,14 @@ public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Campo de golf","golf_course"}, 
+		String[][] tTraduccion = { {"Campo de deporte","pich"},
+								   {"Campo de golf","golf_course"}, 
 								   {"Estadio","stadium"},
-								   {"Marina","marina"},
-								   {"Pista de carreras","track"},
-								   {"Campo de deporte","pich"},
-								   {"Parque acuático","water_park"},
-								   {"Parque","park"},
 								   {"Jardín","garden"},	
+								   {"Marina","marina"},
+								   {"Parque","park"},
+								   {"Parque acuático","water_park"},
+								   {"Pista de carreras","track"},
 									};
 		return tTraduccion;
 	}

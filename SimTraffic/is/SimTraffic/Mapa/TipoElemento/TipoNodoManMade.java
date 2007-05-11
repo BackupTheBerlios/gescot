@@ -31,11 +31,11 @@ public class TipoNodoManMade extends TipoElemento implements ITipoElemento {
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Planta eólica","power_wind"}, 
-								   {"Planta hidroeléctrica","power_hydro"},
+		String[][] tTraduccion = { {"Faro","lighthouse"}, 
 								   {"Central eléctrica","power_fossil"},
 								   {"Central nuclear","power_nuclear"},
-								   {"Faro","lighthouse"}
+								   {"Planta eólica","power_wind"}, 
+								   {"Planta hidroeléctrica","power_hydro"},
 									};
 		return tTraduccion;
 	}
