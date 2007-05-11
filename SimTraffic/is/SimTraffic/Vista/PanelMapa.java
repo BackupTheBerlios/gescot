@@ -308,11 +308,7 @@ public class PanelMapa extends JPanel
 		
 		representacion.iniciarRepresentacion();
 		
-		// dibujar nodos
-		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
-		while (inodos.hasNext()) {
-			representacion.pintar(g, inodos.next());
-		}
+		
 		
 		// dibujar tramos
 		Iterator<Tramo> itramos = modelo.getMapa().getTramos().iterator();
@@ -320,6 +316,12 @@ public class PanelMapa extends JPanel
 		while (itramos.hasNext()) {
 			tramo = itramos.next();
 			representacion.pintar(g, tramo, modelo.getMapa().getTipoVia(tramo));		
+		}
+		
+		//dibujar nodos
+		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
+		while (inodos.hasNext()) {
+			representacion.pintar(g, inodos.next());
 		}
 		
 
@@ -382,6 +384,11 @@ public class PanelMapa extends JPanel
 			if (this.modelo.getSimulacion().estaActiva())
 				dibujarVehiculos(g, this.modelo.getSimulacion().getVehiculos(), tramo);
 		}
+		
+		//dibujar nodos
+		Iterator<Nodo> inodos = modelo.getMapa().getNodos().iterator();
+		while (inodos.hasNext()) {
+			representacion.pintar(g, inodos.next());}
 		
 		Iterator<Tramo> it = auxiliar.iterator();
 		while (it.hasNext()) {
