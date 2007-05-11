@@ -526,11 +526,11 @@ public class Simulacion {
 				+ tramo.getNumCarrilesDir2();
 		// Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
 		double densidad = numCoches / (longitudT * numCarriles);
-		if (densidad>0.001) {
+		/*if (densidad>0.001) {
 			System.out.println("Largo: "+ tramo.getLargo());
 			if (tramo.getNombre()!=null) System.out.println("Nombre" + tramo.getNombre());
 			System.out.println("Densidad calculada: "+densidad);
-		}
+		}*/
 		//densidad = densidad * longitudT;
 		// Se normaliza con la distancia (devolverá un valor entre 0 y la
 		// distancia del tramo).
