@@ -141,8 +141,8 @@ public class RepresentacionAvanzada extends Representacion {
 					 buffer = cargarImagen("bridge.PNG");
 				}
 				else if (aux.equalsIgnoreCase("Viaducto")) {
+					buffer = cargarImagen("viaduct.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 			} else if (aux.equalsIgnoreCase("Tiempo Libre")) {
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
@@ -151,14 +151,14 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Estadio"))
 					buffer = cargarImagen("Estadio.png");
 				else if (aux.equalsIgnoreCase("Pista de carreras")) {
+					buffer = cargarImagen("track.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Campo de deporte")) {
 					buffer = cargarImagen("pitch.PNG");
 				}
 				else if (aux.equalsIgnoreCase("Parque acuático")) {
+					buffer = cargarImagen("water_park.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Parque")) {
 					buffer = cargarImagen("park.PNG");
 				} 
