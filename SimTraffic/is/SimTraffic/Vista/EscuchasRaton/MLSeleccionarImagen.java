@@ -21,14 +21,19 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	
 	private Ventana ventana;
 	
+	private boolean encontrado;
+	
+	private boolean presionado;
+	
 	public MLSeleccionarImagen(IModelo modelo, IControlador controlador, PanelMapa panel,Ventana ventana) {
 		super(modelo, controlador, panel);
 		this.ventana=ventana;
+		this.presionado=false;
 	}
 	
 	public void mouseClicked(MouseEvent arg0) {
-		seleccionado = buscarImagen(arg0.getX(), arg0.getY());
-		if (seleccionado != null){
+		buscarImagen(arg0.getX(), arg0.getY());
+		if (encontrado){
 		 ventana.prepararImagen(seleccionado,posicion);
 		}
 		else
@@ -36,45 +41,47 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	}
 	
 	
-	private Image buscarImagen(int argX,int argY){
+	private void buscarImagen(int argX,int argY){
 		Iterator<Posicion> itPosiciones = panel.getRepresentacion().getPosiciones().iterator();
 		Iterator<Image> itImagenes = panel.getRepresentacion().getImagenes().iterator();
-		Image sel = null;
 		Posicion pos =null;
-		boolean encontrado = false;
+		encontrado = false;
 		while (!encontrado && itPosiciones.hasNext()) {
 			Posicion posicion = itPosiciones.next();
 			int  posX = panel.getRepresentacion().x_MapaARep(posicion.getLat());
 			int  posY = panel.getRepresentacion().y_MapaARep(posicion.getLon());
+			double zoom = panel.getRepresentacion().getZoom();
 			Image imagen = itImagenes.next(); 
-			if (posX<=argX&& posX+imagen.getWidth(null)>=argX) 
-				if (posY<=argY&& posY+imagen.getHeight(null)>=argY)
+			if (posX<=argX&& posX+imagen.getWidth(null)*zoom>=argX) 
+				if (posY<=argY&& posY+imagen.getHeight(null)*zoom>=argY)
 			{
 				encontrado = true;
-				sel = imagen;
+				seleccionado = imagen;
 				pos=posicion;
 				System.out.println("IMAGEN ENCONTRADA");
-				panel.getGraphics().draw3DRect(posX,posY,imagen.getWidth(null),imagen.getHeight(null),true);
+				panel.getGraphics().draw3DRect(posX,posY,(int)(imagen.getWidth(null)*zoom),(int)(imagen.getHeight(null)*zoom),true);
 			}
-		}
-		if (encontrado)
-			return sel;
-		else
-			return null;
-		
+		}	
 	}
 	
-	private void crearPanelDimensionarImagen(){
-		
-	}
 
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if (encontrado)
+		 presionado=true;
 
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if (encontrado&&presionado){
+			 double x = panel.lat_RepAMapa(e.getX());
+			 double y = panel.lon_RepAMapa(e.getY());
+			 posicion = new Posicion(x,y);	
+			 int indice =panel.getRepresentacion().getImagenes().indexOf(seleccionado);
+			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
+			 panel.recrear();
+			 panel.recrearMapa();
+			 panel.repaint();
+			}
 
 	}
 
@@ -90,8 +97,7 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
