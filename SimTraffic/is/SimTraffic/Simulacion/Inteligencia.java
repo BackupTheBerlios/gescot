@@ -345,7 +345,10 @@ public class Inteligencia {
 		// si cambia de carril, recalcular velDelante
 		if (vehiculo.getTramo() == null)
 			return;
-
+		
+		if (vehiculo.getUltimoCambioCarril() < 10)
+			return;
+		
 		int carriles_tramo = 0;
 		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoFinal()) {
 			carriles_tramo = vehiculo.getTramo().getNumCarrilesDir1();
@@ -356,7 +359,7 @@ public class Inteligencia {
 		if (carriles_tramo <= 1)
 			return;
 
-		if (velDelante < vehiculo.getTramo().getVelMax()
+		if (velDelante != -1 && velDelante < vehiculo.getTramo().getVelMax()
 				&& velDelante < vehiculo.getVelocidadMax() && distDelante < 30
 				&& vehiculo.getVelocidad() > 0.4) {
 			// TODO aqui se cumplen las condiciones para que se tenga que hacer

@@ -82,6 +82,8 @@ public abstract class Vehiculo {
 	 */
 	protected Nodo nodoDestino;
 	
+	protected int ultimoCambioCarril = 10;
+	
 	protected Nodo nodoEntrada;
 	protected Nodo nodoSalida;
 	
@@ -112,6 +114,8 @@ public abstract class Vehiculo {
 	public abstract void variarAceleracion(int cuanto);
 
 	public synchronized void actualizarVelocidad() {
+		if (ultimoCambioCarril < 50)
+			ultimoCambioCarril++;
 		velocidad += aceleracion;
 		if (velocidad > velocidadMax) {
 			velocidad = velocidadMax;
@@ -196,6 +200,11 @@ public abstract class Vehiculo {
 
 	public synchronized void setCarril(int carril) {
 		this.carril = carril;
+		ultimoCambioCarril = 0;
+	}
+	
+	public synchronized int getUltimoCambioCarril() {
+		return ultimoCambioCarril;
 	}
 
 	public int getId() {	
