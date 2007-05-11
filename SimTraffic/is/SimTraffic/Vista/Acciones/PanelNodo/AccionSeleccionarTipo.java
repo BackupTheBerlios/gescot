@@ -23,7 +23,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (comboTipo.getSelectedItem().equals("Carretera")) {
 			comboValor.setEnabled(true);
-			String[] s1={"Mini-rotonda","Stop","Cruce","Portón para vehículos", "Cambio De Rasante", "Puente", "Viaducto"};
+			String[] s1={"Cambio De Rasante", "Cruce", "Mini-rotonda", "Portón para vehículos", "Puente", "Stop", "Viaducto"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s1.length;i++)
 				comboValor.addItem(s1[i]);
@@ -31,7 +31,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
 			comboValor.setEnabled(true);
-			String[] s2={"Campo de golf","Estadio","Marina","Pista de carreras", "Campo de deporte", "Parque acuático", "Parque", "Jardín"};
+			String[] s2={"Campo de deporte", "Campo de golf", "Estadio", "Jardín", "Marina", "Parque", "Parque acuático", "Pista de carreras"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s2.length;i++)
 				comboValor.addItem(s2[i]);
@@ -39,7 +39,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else if (comboTipo.getSelectedItem().equals("Construcción")) {
 			comboValor.setEnabled(true);
-			String[] s3={"Planta eólica","Planta hidroeléctrica","Central eléctrica","Central nuclear","Faro"};
+			String[] s3={"Central eléctrica", "Central nuclear", "Faro", "Planta eólica","Planta hidroeléctrica"};
 			comboValor.removeAllItems();
 			for (int i=0;i<s3.length;i++)
 				comboValor.addItem(s3[i]);
