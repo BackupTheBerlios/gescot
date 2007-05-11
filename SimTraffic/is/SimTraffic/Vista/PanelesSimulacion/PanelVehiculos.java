@@ -34,9 +34,6 @@ import javax.swing.SpinnerNumberModel;
  */
 public class PanelVehiculos extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private IControlador controlador;
@@ -81,10 +78,10 @@ public class PanelVehiculos extends JFrame {
 
 		JPanel panelBus = crearOpcionesVehiculo(porcentajes[3], "autobus.jpg",
 				"Bus         ", 0);
-
+/*
 		JPanel panelMoto = crearOpcionesVehiculo(porcentajes[4], "moto.jpg",
 				"Moto     ", 0);
-
+*/
 		JPanel panelAmbulancia = crearOpcionesVehiculo(porcentajes[5],
 				"ambulancia.jpg", "Ambulancia", 0);
 
@@ -167,10 +164,10 @@ public class PanelVehiculos extends JFrame {
 
 		gbc.gridy = ++cont;
 		this.add(panelBus, gbc);
-
+/*
 		gbc.gridy = ++cont;
 		this.add(panelMoto, gbc);
-
+*/
 		gbc.gridy = ++cont;
 		this.add(panelAmbulancia, gbc);
 
@@ -296,20 +293,37 @@ public class PanelVehiculos extends JFrame {
 					totales[i] = 100;
 				}
 			}
+			
+			
+			
 			param.setNumVehiculos(totales);
 			int[] por = new int[6];
 			int total = 0;
-			for (int i = 0; i < 5; i++) {
+			
+			// coches y taxis
+			for (int i = 0; i < 2; i++) {
 				por[i] = porcentajes[i].getSelectedIndex() * 20;
 				total = total + por[i];
 			}
-			// hago esto porque no tiene sentido que haya tantas ambulancias
-			// como coches
-			por[5] = porcentajes[5].getSelectedIndex() * 3;
+			
+			// cambiones
+			por[2] = porcentajes[2].getSelectedIndex() * 12;
+			total = total + por[2];
+	
+			
+			// autobuses
+			por[3] = porcentajes[3].getSelectedIndex() * 8;
+			total = total + por[3];
+			
+			
+			// ambulacias
+			por[5] = porcentajes[5].getSelectedIndex() * 2;
 			total = total + por[5];
+			
 			for (int i = 0; i < 6; i++) {
 				por[i] = (100 * por[i]) / total;
 			}
+			
 			param.setPorcentajeTipo(por);
 			controlador.herramienta(new HComenzar(hr, mn, segundos));
 			PanelVehiculos.this.setVisible(false);

@@ -72,39 +72,12 @@ public class Camion extends Vehiculo {
 	
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
-		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(
-				entrada, salida);
-		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
-				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
-				problemaDistancias.getOperadores(), problemaDistancias
-						.getHeuristica());
-		boolean resul = algoritmoAEstrella.ejecutar();
-		if (resul == false) {
-			// no ha sido posible encontrar un camino entre los nodos
-			return false;
-		} else {
-			// Mostrar solución en el mapa
-			tramos.clear();
-			cuentaTramos = 0;
-			
-			//Puede que influya el orden de inserción de los tramos (por comprobar).
-			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0 ; i--) {
-			//for (int i = 0; i < (algoritmoAEstrella.getSolucion().size()); i++) {
-				 // Solo es null en la raíz (se puede mejorar)
-				/*if (algoritmoAEstrella.getSolucion().elementAt(i).getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i).getOperador()))
-							.getTramoElegido();*/
-				  if (algoritmoAEstrella.getSolucion().elementAt(i-1).getOperador() != null) {
-					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
-							.getSolucion().elementAt(i-1).getOperador()))
-							.getTramoElegido();
-					tramos.add(tramoAux);
-					// Ver luego si almacenarlo en algún sitio.
-				}
-			}
-			return true;
-		}
+		
+	    ArrayList<Tramo> tramosTemp = BuscaCamino.obtenerInstancia().buscar(entrada, salida);
+	    if (tramosTemp == null) return false;
+	    tramos = tramosTemp;
+	    cuentaTramos = 0;
+	    return true;
 	}
 
 }

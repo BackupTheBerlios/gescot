@@ -21,9 +21,8 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 	public PanelEsperaCargando(String titulo, String mensaje) {
 		setLocation(200,200);
 		setResizable(false);
-		setTitle(titulo); //"Cargando...");
+		setTitle(titulo);
 		
-		// TODO cargar imagen desde el jar
 		ClassLoader cl = this.getClass().getClassLoader();
 		BufferedImage imagentemp = null;
 		try {
@@ -32,9 +31,8 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 			e.printStackTrace();
 		}
 		imagen = new JLabel((new ImageIcon(imagentemp)));
-			//"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
 		setLayout(new FlowLayout());
-		add(new JLabel(mensaje));//"Cargando mapa..."));
+		add(new JLabel(mensaje));
 		add(imagen);
 		pack();
 	}

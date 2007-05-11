@@ -23,13 +23,9 @@ public class Bus extends Vehiculo {
 	private LineaBus linea;
 
 	public Bus(ArrayList<LineaBus> lineas) {
-		// TODO este constructor deberia dar valores a todos
-		// los atributos de un vehiculo
 		nombre = "Bus";
 		this.lineas = lineas;
 		cuentaTramos = 0;
-		// Se genera un color aleatorio
-		// generarColorAleatorio();
 		this.color = Color.RED;
 		this.figura = new Rectangle2D.Double(-6,
 				-RepresentacionSimple.tamaño_carril, 6,
@@ -37,27 +33,21 @@ public class Bus extends Vehiculo {
 
 		random = new Random();
 		this.aceleracion = 0;
-		this.aceleracionMax = (double) random.nextInt(30) / 100 + 0.2;
+		this.aceleracionMax = (double) random.nextInt(20) / 100 + 0.1;
 		this.distanciaSeguridad = 4;
 		this.posicion = 0;
 		this.velocidad = 0;
-		this.velocidadMax = (double) random.nextInt(60) / 100 + 0.6;
+		this.velocidadMax = (double) random.nextInt(40) / 100 + 0.5;
 		this.id = ncochesglobal;
 		ncochesglobal++;
 
 	}
-
+	
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		super.inicializar(entrada, salida);
 		linea = lineas.get(random.nextInt(lineas.size()));
 		cuentaTramos = random.nextInt(linea.getTramos().size());
-		this.tramo = linea.getTramos().get(
-				random.nextInt(linea.getTramos().size()));
-		Tramo sig;
-		if (cuentaTramos < linea.getTramos().size() - 1)
-			sig = linea.getTramos().get(cuentaTramos + 1);
-		else
-			sig = linea.getTramos().get(0);
+		this.tramo = linea.getTramos().get(cuentaTramos);
 
 		if (random.nextBoolean()) {
 			this.nodoOrigen = tramo.getNodoInicial();
@@ -66,21 +56,47 @@ public class Bus extends Vehiculo {
 			this.nodoDestino = tramo.getNodoInicial();
 			this.nodoOrigen = tramo.getNodoFinal();
 		}
-		if (nodoDestino.getTramos().contains(sig))
-			sentido = true;
-		else
-			sentido = false;
 
+		Tramo sig = null;
+		int cuentaTemp = cuentaTramos - 1;
+		if (cuentaTemp < 0)
+			cuentaTemp = linea.getTramos().size() - 1;
+		sig = linea.getTramos().get(cuentaTemp);
+		
+		if (nodoDestino.getTramos().contains(sig)) {
+			sentido = true;
+			cuentaTramos++;
+			if (cuentaTramos >= linea.getTramos().size())
+				cuentaTramos = 0;
+		}
+		else {
+			sentido = false;
+			cuentaTramos--;
+			if (cuentaTramos < 0)
+				cuentaTramos = linea.getTramos().size() - 1;
+		}
+		this.nodoEntrada = nodoOrigen;
+		
 		return true;
 	}
 
 	public synchronized void setTramo(Tramo tramo) {
-		if (sentido) cuentaTramos++;
+		if (sentido) cuentaTramos--;
 		else {
-			cuentaTramos--;
-			if (cuentaTramos < 0) cuentaTramos = linea.getTramos().size() -1;
+			cuentaTramos++;
 		}
-		cuentaTramos = cuentaTramos % linea.getTramos().size();
+		if (cuentaTramos < 0) cuentaTramos = linea.getTramos().size() - 1;
+		if (cuentaTramos >= linea.getTramos().size()) cuentaTramos = 0;
+		this.tramo = tramo;
+	}
+	
+	public synchronized void setCarril(int carril) {
+		if (this.tramo != null && this.nodoDestino == this.tramo.getNodoFinal())
+			this.carril = this.tramo.getNumCarrilesDir1();
+		else if (this.tramo != null && this.nodoDestino == this.tramo.getNodoInicial())
+			this.carril = this.tramo.getNumCarrilesDir2();
+		else
+			this.carril = carril;
 	}
 	
 	@Override
@@ -88,7 +104,6 @@ public class Bus extends Vehiculo {
 		int temp;
 		if (linea != null) {
 			if (sentido) {
-
 				temp = (cuentaTramos + 1) % linea.getTramos().size();
 				return linea.getTramos().get(temp);
 			} else {
