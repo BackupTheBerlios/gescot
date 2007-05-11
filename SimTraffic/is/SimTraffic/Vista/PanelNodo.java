@@ -17,9 +17,12 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PanelNodo extends JFrame {
@@ -118,7 +121,9 @@ public class PanelNodo extends JFrame {
 		creaPanelBotones();
 
 		crearAcciones();
+		panelDatos.setPreferredSize(new Dimension(250,400));
 		this.add(panelDatos, BorderLayout.NORTH);
+		//this.add(panelDatos, BorderLayout.CENTER);
 		this.add(panelBotones, BorderLayout.SOUTH);
 	}
 
@@ -171,12 +176,18 @@ public class PanelNodo extends JFrame {
 			
 			JLabel etiqElector = new JLabel("Elija el tiempo total de ciclo del semáforo");
 			JButton botonAplicar = new JButton("Aplicar Cambios");
+			JButton botonBorrarSemaforo = new JButton("Borrar Semaforo");
+			
+			AccionEliminarSemaforo accionEliminarSem = new AccionEliminarSemaforo(nodo,this);
+			botonBorrarSemaforo.addActionListener(accionEliminarSem);
+			
 			botonAplicar.setToolTipText("¡Aviso! Se borrarán todos los intervalos creados");
 			AccionCambiarTiempoTotalSem oyenteBotonAplicar = new AccionCambiarTiempoTotalSem(nodo,this);
 			botonAplicar.addActionListener(oyenteBotonAplicar);
 			panelSemaforos.add(etiqElector);
 			panelSemaforos.add(electorTiempoTotal);
 			panelSemaforos.add(botonAplicar);
+			panelSemaforos.add(botonBorrarSemaforo);
 			
 			JScrollPane panelScroll = new JScrollPane(panelInterior);
 			panelScroll.setPreferredSize(new Dimension(450,250));
@@ -226,11 +237,16 @@ public class PanelNodo extends JFrame {
 	private void creaPanelesIntervalos(JPanel panelInterno){
 		panelInterno.removeAll();
 		
-		this.listaBotonesAplicarIntervalo = new ArrayList();
+		this.listaBotonesAplicarIntervalo = new ArrayList<JButton>();
 		
 		listaTiempoInicialIntervalo = new ArrayList<JSpinner>();
 		listaTiempoFinalIntervalo = new ArrayList<JSpinner>();
 		
+		ClassLoader cl = this.getClass().getClassLoader();
+
+		ImageIcon imagen = new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/borrarIntervalo.png"), "Borrar Intervalo");
+			
 		for (int i=0;i<((Semaforo)nodo.getSeñal()).getListaIntervalos().size();i++) {
 			JLabel etiqDe = new JLabel("De");
 			String valor1 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoInicial());
@@ -247,6 +263,10 @@ public class PanelNodo extends JFrame {
 			AccionAbrirMatrizDePaso oyenteBotonMatriz = new AccionAbrirMatrizDePaso(this);
 			JButton aplicarC = new JButton("AplicarCambios");
 			aplicarC.setEnabled(false);
+			JButton botonBorrarIntervalo = new JButton(imagen);
+			botonBorrarIntervalo.setPreferredSize(new Dimension(30,25));
+			AccionEliminarIntervalo  eliminarIntervalo = new AccionEliminarIntervalo(nodo, this, i);
+			botonBorrarIntervalo.addActionListener(eliminarIntervalo);
 			listaBotonesAplicarIntervalo.add(aplicarC);
 			AccionModificarIntervalo oyenteBotonAplicar = new AccionModificarIntervalo(nodo,this);
 			//Asignamos un nombre al botón para poder diferenciar en el oyente que intervalo estamos modificando.
@@ -261,6 +281,7 @@ public class PanelNodo extends JFrame {
 			intervaloI.add(tiempoA);
 			intervaloI.add(mostrarM);
 			intervaloI.add(aplicarC);
+			intervaloI.add(botonBorrarIntervalo);
 			intervaloI.setBorder(BorderFactory.createTitledBorder("Intervalo " + i));
 			panelInterno.add(intervaloI);
 		}
