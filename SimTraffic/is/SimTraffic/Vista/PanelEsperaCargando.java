@@ -1,6 +1,10 @@
 package is.SimTraffic.Vista;
 
 import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,8 +24,15 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 		setTitle(titulo); //"Cargando...");
 		
 		// TODO cargar imagen desde el jar
-		imagen = new JLabel((new ImageIcon(
-			"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
+		ClassLoader cl = this.getClass().getClassLoader();
+		BufferedImage imagentemp = null;
+		try {
+			imagentemp = ImageIO.read(cl.getResource("is/SimTraffic/Vista/Imagenes/loading.gif"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		imagen = new JLabel((new ImageIcon(imagentemp)));
+			//"is\\SimTraffic\\Vista\\Imagenes\\loading.gif" )));
 		setLayout(new FlowLayout());
 		add(new JLabel(mensaje));//"Cargando mapa..."));
 		add(imagen);

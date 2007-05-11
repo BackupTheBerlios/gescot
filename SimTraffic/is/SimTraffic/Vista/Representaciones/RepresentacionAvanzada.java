@@ -128,7 +128,7 @@ public class RepresentacionAvanzada extends Representacion {
 				if (aux.equalsIgnoreCase("Mini-rotonda"))
 					buffer = cargarImagen("Rotonda.PNG");
 				else if (aux.equalsIgnoreCase("Stop"))
-					buffer = cargarImagen("Stop.PNG");
+					buffer = cargarImagen("Stop.png");
 				else if (aux.equalsIgnoreCase("Cruce")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");

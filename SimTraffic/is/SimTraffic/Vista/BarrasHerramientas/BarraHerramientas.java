@@ -168,7 +168,7 @@ public class BarraHerramientas extends Barra {
 		grupoherramientas.add(botonAñadirBus);
 		
 		//Añadir Buscar
-		botonBuscarElem = (JToggleButton) añadirBoton("buscar.PNG", "buscar2.PNG", "Buscar",
+		botonBuscarElem = (JToggleButton) añadirBoton("buscar.png", "buscar2.png", "Buscar",
 				new AccionBuscar(controlador,ventana.getPanel_mapa()), true);
 		botonBuscarElem.addActionListener(new AccionBarra(ventana, null));
 		botonBuscarElem.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para buscar un elemento.", ventana));
