@@ -40,7 +40,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		this.tipoCoste = 0;
 	}
 	
-	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, Simulacion simulacion) {
+	/*public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, Simulacion simulacion) {
 		super();
 		// TODO Auto-generated constructor stub
 		this.simulacion = simulacion;
@@ -48,8 +48,8 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
-		this.tipoCoste = 0;
-	}
+		this.tipoCoste = 0;*/
+	//}
 	
 	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo,	Simulacion simulacion, int tipoCoste) {
 		super();
@@ -123,6 +123,8 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 
 	public Vector<IOperador> generarOperadores() {
 		Vector<IOperador> vOperadores=new Vector<IOperador>();
+		if (simulacion==null)
+			System.out.println("DDDDD44444");
 		IOperador operador = new ExploraNodo(tipoCoste,simulacion);
 		
 		//Se inserta

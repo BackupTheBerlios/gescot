@@ -194,8 +194,9 @@ public class Simulacion {
 	}
 
 	private ArrayList<Tramo> buscarCamino(Nodo entrada, Nodo salida) {
+		int tipoCoste = 0;
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
-				salida,this);
+				salida,this,tipoCoste);
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias
@@ -526,8 +527,8 @@ public class Simulacion {
 		ArrayList<Vehiculo> listaVehiculos = tabla.get(tramo);
 		int longitudT = tramo.getLargo();
 		int numCoches = listaVehiculos.size()*1000;
-		if (numCoches>0)
-			System.out.println("Numcoches > 0!");
+		//if (numCoches>0)
+		//	System.out.println("Numcoches > 0!");
 		// Versión simple, realmente debería comprobar el tramo en el sentido en
 		// que quiere recorrerlo y no en ambos.
 		int numCarriles = tramo.getNumCarrilesDir1()

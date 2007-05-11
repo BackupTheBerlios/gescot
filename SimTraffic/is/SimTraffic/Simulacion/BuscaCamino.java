@@ -36,9 +36,9 @@ public class BuscaCamino {
 	
 	public ArrayList<Tramo> buscar(Nodo entrada, Nodo salida) {
 		ArrayList<Tramo> tramos = new ArrayList<Tramo>();
-		
+		int tipoCoste = 0;
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
-				salida,simulacion); //Se le permite conocer la simulación, de modo que se pueden evaluar
+				salida,simulacion,tipoCoste); //Se le permite conocer la simulación, de modo que se pueden evaluar
 									//rutas en función del tráfico.
 		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),

@@ -71,10 +71,21 @@ public class ExploraNodo implements IOperador {
 
 	public float getCoste() {
 		//El coste de momento es únicamente la longitud del tramo
-		if (tipoCoste == 1 && simulacion!=null)
-			return (float) (100-simulacion.densidadTramo(tramoElegido));
-		else
+		//if (tipoCoste == 1/* && simulacion!=null*/) {
+		if (simulacion==null) {
+			System.out.println("!!!!!!!!!!!!!$%&$(%%&/%%/%&/");
+			return 1;
+		}
+		else {
+			double epsilon = 0.1;
+			double densidad = (float) (simulacion.densidadTramo(tramoElegido)+epsilon);
+			return (float) densidad;
+		}
+		//}
+		/*else if (tipoCoste==0)
 			return tramoElegido.getLargo();
+		else
+			return tramoElegido.getLargo();*/
 	}
 
 	public boolean esInversoDe(IOperador operador) {
