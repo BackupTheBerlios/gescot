@@ -154,8 +154,8 @@ public class RepresentacionAvanzada extends Representacion {
 				}
 				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Campo de deporte")) {
+					buffer = cargarImagen("pitch.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Parque acuático")) {
 				}
 				// buffer = cargarImagen("Stop.PNG");
@@ -171,14 +171,14 @@ public class RepresentacionAvanzada extends Representacion {
 				if (aux.equalsIgnoreCase("Planta eólica"))
 					buffer = cargarImagen("Torre_de_electricidad.PNG");
 				else if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {
-				}
-				// buffer = cargarImagen("Stop.PNG");
+					buffer = cargarImagen("power_hidro.PNG");
+				} 
 				else if (aux.equalsIgnoreCase("Central eléctrica")) {
+					buffer = cargarImagen("power_fossil.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Central nuclear")) {
-				}
-				// buffer = cargarImagen("Stop.PNG");
+					buffer = cargarImagen("power_nuclear.PNG");
+				} 
 				else if (aux.equalsIgnoreCase("Faro")) {
 					buffer = cargarImagen("lighthouse.PNG");
 				}
@@ -191,15 +191,15 @@ public class RepresentacionAvanzada extends Representacion {
 					buffer = cargarImagen("Parking.PNG");
 				else if (aux.equalsIgnoreCase("Gasolinera"))
 					buffer = cargarImagen("Gasolinera.PNG");
-				else if (aux.equalsIgnoreCase("Cabina de telefono")) {
+				else if (aux.equalsIgnoreCase("Cabina de teléfono")) {
+					buffer = cargarImagen("telephone.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
-				else if (aux.equalsIgnoreCase("Aseos Publicos")) {
+				else if (aux.equalsIgnoreCase("Aseos Públicos")) {
+					buffer = cargarImagen("toilets.PNG");
+				} 
+				else if (aux.equalsIgnoreCase("Edificio Público")) {
+					buffer = cargarImagen("public_building.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
-				else if (aux.equalsIgnoreCase("Edificio Publico")) {
-				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Iglesia"))
 					buffer = cargarImagen("Iglesia.PNG");
 				else if (aux.equalsIgnoreCase("Cementerio")) {
@@ -212,15 +212,15 @@ public class RepresentacionAvanzada extends Representacion {
 				else if (aux.equalsIgnoreCase("Colegio"))
 					buffer = cargarImagen("Colegio.PNG");
 				else if (aux.equalsIgnoreCase("Supermercado")) {
+					buffer = cargarImagen("supermarket.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Hospital"))
 					buffer = cargarImagen("Hospital.PNG");
 				else if (aux.equalsIgnoreCase("Librería"))
 					buffer = cargarImagen("Libreria.PNG");
-				else if (aux.equalsIgnoreCase("Comisaria")) {
+				else if (aux.equalsIgnoreCase("Comisaría")) {
+					buffer = cargarImagen("police.PNG");
 				}
-				// buffer = cargarImagen("Stop.PNG");
 				else if (aux.equalsIgnoreCase("Parque de bomberos")) {
 					buffer = cargarImagen("fire_station.PNG");
 				}
