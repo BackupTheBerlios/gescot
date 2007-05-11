@@ -643,11 +643,11 @@ public class RepresentacionAvanzada extends Representacion {
 		// zoom y desplazamiento por carril
 		AffineTransform zoom = new AffineTransform();
 		if (vehiculo.getTramo().getNodoFinal() == vehiculo.getNodoDestino()) {
-			rot.rotate(Math.PI - vehiculo.getTramo().getAngulo());
+			rot.rotate(Math.PI - vehiculo.getTramo().getAngulo() + 0.02);
 			posX = posX1 + (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY1 + (int) ((posY2 - posY1) * vehiculo.getPosicion());
 		} else {
-			rot.rotate(-vehiculo.getTramo().getAngulo());
+			rot.rotate(-vehiculo.getTramo().getAngulo() + 0.02);
 			posX = posX2 - (int) ((posX2 - posX1) * vehiculo.getPosicion());
 			posY = posY2 - (int) ((posY2 - posY1) * vehiculo.getPosicion());
 		}

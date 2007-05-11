@@ -16,25 +16,20 @@ import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
 import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
-import is.SimTraffic.Utils.Tiempo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.SpinnerNumberModel;
 
 
 
@@ -104,8 +99,8 @@ public class BarraSuperior extends JPanel {
 		cargarTB.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para cargar un mapa.", ventana));
 
-		JButton downloadTB = (JButton) archivoTB.añadirBoton("document-open.png",
-				"document-open2.png", "Descargar mapa desde WEB", new AccionDescargar(controlador), false);
+		JButton downloadTB = (JButton) archivoTB.añadirBoton("www.png",
+				"www2.png", "Descargar mapa desde WEB", new AccionDescargar(controlador), false);
 		downloadTB.addMouseMotionListener(new EscuchaAyuda(
 				"Pulse aquí para descargar un mapa via web.", ventana));
 		
