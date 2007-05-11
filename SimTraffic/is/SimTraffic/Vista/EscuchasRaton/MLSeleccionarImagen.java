@@ -33,11 +33,9 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	
 	public void mouseClicked(MouseEvent arg0) {
 		buscarImagen(arg0.getX(), arg0.getY());
-		if (encontrado){
+		if (encontrado)
 		 ventana.prepararImagen(seleccionado,posicion);
-		}
-		else
-			return;
+		else seleccionado = null;
 	}
 	
 	

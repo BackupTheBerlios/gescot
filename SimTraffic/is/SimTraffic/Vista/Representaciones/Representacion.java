@@ -362,8 +362,10 @@ abstract public class Representacion {
 	 *            Imagen que se desea quitar de la representacion
 	 */
 	public void removeImage(Image imagen) {
-		posiciones.remove(imagenes.indexOf(imagen));
-		imagenes.remove(imagen);
+		if (imagenes.indexOf(imagen)>=0){
+			posiciones.remove(imagenes.indexOf(imagen));
+			imagenes.remove(imagen);
+		}
 	}
 
 	/**
