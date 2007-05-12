@@ -61,12 +61,12 @@ public class BarraRedimensionarImagen extends Barra {
 				if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText())){
 					
 					//imagen2=imagen1.getScaledInstance(Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),Image.SCALE_SMOOTH);
-					Toolkit.getDefaultToolkit().prepareImage(imagen1,Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),null);
-					//imagen2=escalaImatge(imagen1,Integer.parseInt(width.getText()),Integer.parseInt(height.getText()));
+					//Toolkit.getDefaultToolkit().prepareImage(imagen1,Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),null);
+					imagen2=escalaImatge(imagen1,Integer.parseInt(width.getText()),Integer.parseInt(height.getText()));
 					//imagen2.flush();
 					//imagen2=imagen1;
-					//panel.getRepresentacion().removeImage(imagen1);
-					panel.getRepresentacion().addImage(imagen1,posicion);
+					panel.getRepresentacion().removeImage(imagen1);
+					panel.getRepresentacion().addImage(imagen2,posicion);
 					panel.recrear();
 					panel.recrearMapa();
 					panel.repaint();

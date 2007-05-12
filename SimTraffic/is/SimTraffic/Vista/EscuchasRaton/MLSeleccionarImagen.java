@@ -46,8 +46,8 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 		encontrado = false;
 		while (!encontrado && itPosiciones.hasNext()) {
 			Posicion posicion = itPosiciones.next();
-			int  posX = panel.getRepresentacion().x_MapaARep(posicion.getLat());
-			int  posY = panel.getRepresentacion().y_MapaARep(posicion.getLon());
+			int  posX = panel.getRepresentacion().x_MapaARep(posicion.getLon());
+			int  posY = panel.getRepresentacion().y_MapaARep(posicion.getLat());
 			double zoom = panel.getRepresentacion().getZoom();
 			Image imagen = itImagenes.next(); 
 			if (posX<=argX&& posX+imagen.getWidth(null)*zoom>=argX) 
@@ -56,7 +56,6 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 				encontrado = true;
 				seleccionado = imagen;
 				pos=posicion;
-				System.out.println("IMAGEN ENCONTRADA");
 				panel.getGraphics().draw3DRect(posX,posY,(int)(imagen.getWidth(null)*zoom),(int)(imagen.getHeight(null)*zoom),true);
 			}
 		}	
@@ -71,14 +70,16 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	public void mouseReleased(MouseEvent e) {
 		if (encontrado&&presionado){
-			 double x = panel.lat_RepAMapa(e.getX());
-			 double y = panel.lon_RepAMapa(e.getY());
+			 double y = panel.lon_RepAMapa(e.getX());
+			 double x = panel.lat_RepAMapa(e.getY());
 			 posicion = new Posicion(x,y);	
 			 int indice =panel.getRepresentacion().getImagenes().indexOf(seleccionado);
 			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
 			 panel.recrear();
 			 panel.recrearMapa();
 			 panel.repaint();
+			 presionado=false;
+			 encontrado=false;
 			}
 
 	}

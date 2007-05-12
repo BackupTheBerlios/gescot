@@ -295,6 +295,7 @@ abstract public class Representacion {
 	public abstract void pintarSugerenciaSeleccion(Graphics2D g,
 			ElementoMapa elemento);
 
+	
 	/**
 	 * Método para mostrar los ejes de coordenadas en el mapa.
 	 * <p>
