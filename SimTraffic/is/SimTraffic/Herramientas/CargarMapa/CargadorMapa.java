@@ -8,6 +8,7 @@ import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoLeisure;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoManMade;
+import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -199,8 +200,15 @@ public class CargadorMapa implements DocHandler {
 					  
 				//}
 				else {
-					if (identificarTipoElem(k,v) != null)
-						viaAux.setTipo(identificarTipoElem(k,v));
+					if (k.equals("highway")) {
+						  viaAux.setTipo(new TipoViaHighway(v));
+					}
+					else { //Como estaba antes, aquí podría haber/surgir algún error porque utiliza información de nodo.
+						ITipoElemento tipoVia = identificarTipoElem(k,v);
+						if (tipoVia != null) {
+							viaAux.setTipo(identificarTipoElem(k,v));
+						}
+					}
 					
 					//Probando
 					/*Iterator<Tramo> tram = viaAux.getTramos().iterator();
