@@ -112,6 +112,7 @@ public class PanelNodo extends JFrame {
 		this.setLayout(new BorderLayout(2, 2));
 		this.nodo = nodo;
 		this.mapa = mapa;
+		this.setAlwaysOnTop(true);
 
 		panelDatos = new JTabbedPane();
 			
