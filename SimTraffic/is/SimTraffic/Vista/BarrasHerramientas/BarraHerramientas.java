@@ -85,7 +85,7 @@ public class BarraHerramientas extends Barra {
 				modelo, controlador, ventana.getPanel_mapa(),ventana), ventana,
 				ventana.getEscuchaTeclado(), 11), true);
 		botonSeleccionarImagenes.addActionListener(new AccionBarra(ventana,ventana.getBarraRedimensionarImagen()));
-		botonSeleccionarImagenes.addMouseMotionListener(new EscuchaAyuda("Seleccione una imagen para moverla o redimensionarla.", ventana));
+		botonSeleccionarImagenes.addMouseMotionListener(new EscuchaAyuda("Seleccione una imagen para modificarla o eliminarla", ventana));
 		botonSeleccionarImagenes.addKeyListener(ventana.getEscuchaTeclado());
 		grupoherramientas.add(botonSeleccionar);
 		

@@ -351,7 +351,6 @@ abstract public class Representacion {
 			imagenes.add(imagen);
 			posiciones.add(pos);
 		}
-		;
 	}
 
 	/**

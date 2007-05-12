@@ -2,7 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Mapa.Nodo;
+
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Ventana;
@@ -10,8 +10,6 @@ import is.SimTraffic.Vista.Ventana;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.ImageObserver;
 import java.util.Iterator;
 
 public class MLSeleccionarImagen extends EscuchaRaton{
@@ -26,7 +24,6 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	
 	private boolean presionado;
 	
-	private double zoom;
 	
 	public MLSeleccionarImagen(IModelo modelo, IControlador controlador, PanelMapa panel,Ventana ventana) {
 		super(modelo, controlador, panel);
@@ -49,20 +46,19 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 	private void buscarImagen(int argX,int argY){
 		Iterator<Posicion> itPosiciones = panel.getRepresentacion().getPosiciones().iterator();
 		Iterator<Image> itImagenes = panel.getRepresentacion().getImagenes().iterator();
-		Posicion pos =null;
 		encontrado = false;
 		while (!encontrado && itPosiciones.hasNext()) {
-			Posicion posicion = itPosiciones.next();
-			int  posX = panel.getRepresentacion().x_MapaARep(posicion.getLon());
-			int  posY = panel.getRepresentacion().y_MapaARep(posicion.getLat());
-			zoom = panel.getRepresentacion().getZoom();
+			Posicion pos = itPosiciones.next();
+			int  posX = panel.getRepresentacion().x_MapaARep(pos.getLon());
+			int  posY = panel.getRepresentacion().y_MapaARep(pos.getLat());
+			double zoom = panel.getRepresentacion().getZoom();
 			Image imagen = itImagenes.next(); 
 			if (posX<=argX&& posX+imagen.getWidth(null)*zoom>=argX) 
 				if (posY<=argY&& posY+imagen.getHeight(null)*zoom>=argY)
 			{
 				encontrado = true;
 				seleccionado = imagen;
-				pos=posicion;
+				posicion=pos;
 				panel.setModoSeleccion(true);
 				panel.setRectanguloSeleccion(new Rectangle(posX,posY,(int)(imagen.getWidth(null)*zoom),(int)(imagen.getHeight(null)*zoom)));
 				panel.recrear();
@@ -81,19 +77,21 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	public void mouseReleased(MouseEvent e) {
 		if (encontrado&&presionado){
+			if (panel.getRepresentacion().getImagenes().contains(seleccionado)){	
+			 int indice =panel.getRepresentacion().getImagenes().indexOf(seleccionado);
+			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
 			 double y = panel.lon_RepAMapa(e.getX());
 			 double x = panel.lat_RepAMapa(e.getY());
 			 posicion = new Posicion(x,y);	
-			 zoom = panel.getRepresentacion().getZoom();
-			 int indice =panel.getRepresentacion().getImagenes().indexOf(seleccionado);
-			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
 			 panel.setRectanguloSeleccion(null);
 			 panel.setModoSeleccion(false);
+			 ventana.prepararImagen(seleccionado,posicion);
 			 panel.recrear();
 			 panel.recrearMapa();
 			 panel.repaint();
 			 presionado=false;
 			 encontrado=false;
+			}
 			}
 
 	}
@@ -121,8 +119,7 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	@Override
 	public String getAyuda() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Herramienta que permite modificar las imagenes de fondo";
 	}
 
 }
