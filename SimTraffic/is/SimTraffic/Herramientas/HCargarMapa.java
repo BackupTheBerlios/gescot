@@ -125,7 +125,7 @@ public class HCargarMapa implements IHerramienta {
 						} catch (IOException e) {
 							p.terminar();
 							JOptionPane.showMessageDialog(null,
-									"Error al abrir/leer fichero de semaforos");
+									"Advertencia: No se ha leido ningún fichero de semaforos asociado");
 
 						} catch (ClassNotFoundException e) {
 							p.terminar();
