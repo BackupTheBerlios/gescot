@@ -79,4 +79,12 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 
 	}
 
+	public Nodo getNodoInicial() {
+		return nodoInicial;
+	}
+
+	public Nodo getNodoObjetivo() {
+		return nodoObjetivo;
+	}
+
 }
