@@ -96,42 +96,9 @@ public class BarraRedimensionarImagen extends Barra {
 		this.panel =panel;
 	}
 
-	public Image getImagen1() {
-		return imagen1;
-	}
-
-	public Image getImagen2() {
-		return imagen2;
-	}
-
-	public JTextField getP_height() {
-		return p_height;
-	}
-
-	public JTextField getP_width() {
-		return p_width;
-	}
-
-	public PanelMapa getPanel() {
-		return panel;
-	}
-
-	public Posicion getPosicion() {
-		return posicion;
-	}
-
-	public JTextField get_Height() {
-		return height;
-	}
-
-	public JTextField get_Width() {
-		return width;
-	}
 	private class AccionRedimensionarImagen implements ActionListener{
 	
 		private boolean porcentaje;
-		
-		private Image imagen2;
 		
 		public AccionRedimensionarImagen(boolean porcentaje) {
 			super();
@@ -143,7 +110,7 @@ public class BarraRedimensionarImagen extends Barra {
 			if (imagen1!=null){
 			 if (porcentaje){
 			  if (chequeo.esDigito(p_width.getText())&& chequeo.esDigito(p_height.getText()))	 
-				imagen2=getImagen1().getScaledInstance(Integer.parseInt(p_width.getText())*imagen1.getWidth(null)/100,Integer.parseInt(p_height.getText())*imagen1.getHeight(null)/100,Image.SCALE_SMOOTH);
+				imagen2=imagen1.getScaledInstance(Integer.parseInt(p_width.getText())*imagen1.getWidth(null)/100,Integer.parseInt(p_height.getText())*imagen1.getHeight(null)/100,Image.SCALE_SMOOTH);
 			    recargarImagen();
 			 }else{
 			  if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText()))	 
