@@ -93,39 +93,47 @@ public class VentanaMatrizDePaso extends JFrame {
 		panelBotones.add(etiqOrigen,BorderLayout.WEST);
 		panelBotones.add(etiqDestino,BorderLayout.NORTH);
 		JPanel panelInterno = new JPanel();
-		GridLayout layout = new GridLayout(numTramos,numTramos);
-		//Juntamos un poco más los botones si son más de 8 tramos a interconexionar.
-		if (numTramos >= 8) {
-			layout.setVgap(5);
-			layout.setHgap(5);
-		} else {
-			layout.setVgap(10);
-			layout.setHgap(10);
-		}
-		panelInterno.setLayout(layout);
-		EscuchaBotonInterconexion escuchaBotonConexion = new EscuchaBotonInterconexion(this);
-		AccionModificarEstadoConexion accionBotonConexion = new AccionModificarEstadoConexion(this);
-		
-		//i es el origen
-		for (int i = 0; i < numTramos;i++){
-			//j es el destino
-			for (int j = 0; j< numTramos; j++){
-				BotonDeConexion botonConexion = new BotonDeConexion(i,j,numIntervalo,nodo);
-				botonConexion.setFont(new Font("Verdana",0,8));
-				botonConexion.setText(i+"->"+j);
-				botonConexion.addMouseListener(escuchaBotonConexion);
-				botonConexion.addActionListener(accionBotonConexion);
-				panelInterno.add(botonConexion);
-				if(i==j){
+
+		if (numTramos >= 1){
+			GridLayout layout = new GridLayout(numTramos,numTramos);
+			//Juntamos un poco más los botones si son más de 8 tramos a interconexionar.
+			if (numTramos >= 8) {
+				layout.setVgap(5);
+				layout.setHgap(5);
+			} else {
+				layout.setVgap(10);
+				layout.setHgap(10);
+			}
+			panelInterno.setLayout(layout);
+			EscuchaBotonInterconexion escuchaBotonConexion = new EscuchaBotonInterconexion(this);
+			AccionModificarEstadoConexion accionBotonConexion = new AccionModificarEstadoConexion(this);
+
+			//i es el origen
+			for (int i = 0; i < numTramos;i++){
+				//j es el destino
+				for (int j = 0; j< numTramos; j++){
+					BotonDeConexion botonConexion = new BotonDeConexion(i,j,numIntervalo,nodo);
+					botonConexion.setFont(new Font("Verdana",0,8));
+					botonConexion.setText(i+"->"+j);
+					botonConexion.addMouseListener(escuchaBotonConexion);
+					botonConexion.addActionListener(accionBotonConexion);
+					panelInterno.add(botonConexion);
+					if(i==j){
 						botonConexion.setBackground(Color.LIGHT_GRAY);
 						botonConexion.setEnabled(false);
 						botonConexion.removeActionListener(accionBotonConexion);
 						botonConexion.removeMouseListener(escuchaBotonConexion);
-						
+
 					}
 				}
 			}
-		panelBotones.add(panelInterno,BorderLayout.CENTER);
+			panelBotones.add(panelInterno,BorderLayout.CENTER);
+		} else {
+			this.etiqInformacion.setText("¡No hay tramos en este nodo!");
+			/*JLabel etiqSinTramos = new JLabel("¡No hay tramos en este nodo!");
+			etiqSinTramos.setFont(new Font("Verdana",Font.BOLD,12));
+			panelBotones.add(etiqSinTramos, BorderLayout.CENTER);*/
+		}
 	}
 	
 	public void informa(String texto){
