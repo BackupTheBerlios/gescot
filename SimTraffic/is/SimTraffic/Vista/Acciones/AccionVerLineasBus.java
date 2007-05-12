@@ -53,15 +53,15 @@ public class AccionVerLineasBus implements ActionListener{
 		 JScrollPane panel_lista =new JScrollPane(lineasBus);
 		 panel_lista.setBorder(BorderFactory.createEmptyBorder(20, 10, 150, 20));
 		 JPanel titulo =new JPanel();
-		 JLabel label=new JLabel("Lineas de autobus");
+		 JLabel label=new JLabel("Líneas de autobús");
 		 label.setFont(new Font("serif", Font.BOLD, 15));
 		 titulo.add(label);
 		 ventanaLineasBus.add(titulo,BorderLayout.NORTH);
 		 ventanaLineasBus.add(panel_lista,BorderLayout.CENTER);
 		 ventanaLineasBus.setBorder(BorderFactory.createRaisedBevelBorder());
-		 JButton boton_salir= new JButton("Salir");
+		 JButton boton_salir= new JButton("Ocultar");
 		 boton_salir.addActionListener(new accionSalir());
-		 JButton boton_buscar=new JButton("Buscar Linea");
+		 JButton boton_buscar=new JButton("Buscar Línea");
 		 boton_buscar.addActionListener(new accionBuscar());
 		 JPanel botones=new JPanel(new BorderLayout());
 		 botones.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
