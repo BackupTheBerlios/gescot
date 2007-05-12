@@ -146,7 +146,7 @@ public class HGuardarMapa implements IHerramienta {
 		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
 		
 		if (rutaSeñales.contains(".osm")){
-			rutaSeñales.replace(".osm",".sem");
+			rutaSeñales = rutaSeñales.replace(".osm",".sem");
 		} else {
 			rutaSeñales += ".sem";
 		}
