@@ -1,8 +1,8 @@
 package is.SimTraffic.Vista.BarrasHerramientas;
 
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
-import is.SimTraffic.Vista.Acciones.AccionRedimensionarImagen;
 
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -49,7 +49,7 @@ public class BarraRedimensionarImagen extends Barra {
 		height = new JTextField();
 		
 		JButton redimensionar = new JButton("Validar");
-		redimensionar.addActionListener(new AccionRedimensionarImagen(this,false));
+		redimensionar.addActionListener(new AccionRedimensionarImagen(false));
 		
 		JLabel porcentaje_ancho = new JLabel(" %Ancho: ");
 		p_width = new JTextField();
@@ -58,7 +58,7 @@ public class BarraRedimensionarImagen extends Barra {
 		p_height = new JTextField();
 		
 		JButton p_redimensionar = new JButton("Validar");
-		p_redimensionar.addActionListener(new AccionRedimensionarImagen(this,true));
+		p_redimensionar.addActionListener(new AccionRedimensionarImagen(true));
 		
 		JButton eliminar = new JButton("Eliminar");
 		eliminar.addActionListener(new ActionListener(){
@@ -126,6 +126,59 @@ public class BarraRedimensionarImagen extends Barra {
 
 	public JTextField get_Width() {
 		return width;
+	}
+	private class AccionRedimensionarImagen implements ActionListener{
+	
+		private boolean porcentaje;
+		
+		private Image imagen2;
+		
+		public AccionRedimensionarImagen(boolean porcentaje) {
+			super();
+			this.porcentaje = porcentaje;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			ChequeoInputVentanas chequeo=new ChequeoInputVentanas();
+			if (imagen1!=null){
+			 if (porcentaje){
+			  if (chequeo.esDigito(p_width.getText())&& chequeo.esDigito(p_height.getText()))	 
+				imagen2=getImagen1().getScaledInstance(Integer.parseInt(p_width.getText())*imagen1.getWidth(null)/100,Integer.parseInt(p_height.getText())*imagen1.getHeight(null)/100,Image.SCALE_SMOOTH);
+			    recargarImagen();
+			 }else{
+			  if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText()))	 
+				imagen2=imagen1.getScaledInstance(Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),Image.SCALE_SMOOTH);
+			  	recargarImagen();
+			  } 
+			 }  
+		}
+
+		/**
+		 * Metodo que espera a que se carguen correctamente las nuevas instancias de las 
+		 * imagenes para recargarlas correctamente en la representacion
+		 *
+		 */
+		private void recargarImagen(){
+			//Objeto mediaTracker que nos permite hacer el seguimiento del redimensionamiento de la imagen
+			  MediaTracker tracker = new MediaTracker(panel);
+				tracker.addImage(imagen1,1);
+				tracker.addImage(imagen2,1);
+				  try{
+				      // Se bloquea la tarea durante el tiempo necesario para la carga
+				      // de todas las imágenes
+				      tracker.waitForAll();
+				    } catch( InterruptedException exception ) {
+				      System.out.println( exception );
+				      }
+				panel.getRepresentacion().removeImage(imagen1);
+				panel.getRepresentacion().addImage(imagen2,posicion);
+				panel.setModoSeleccion(false);
+				panel.recrear();
+				panel.recrearMapa();
+				panel.repaint(); 
+			
+		}
+			
 	}
 	
 }
