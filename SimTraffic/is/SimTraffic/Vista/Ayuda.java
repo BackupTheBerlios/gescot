@@ -129,8 +129,8 @@ ActionListener {
 	
 	private void panelNavegacion(){
 		Botones = new JPanel();
-		JButton aceptar = new JButton("Aceptar");
-		aceptar.addActionListener(new ActionListener() {
+		JButton salir = new JButton("Salir de la Ayuda");
+		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Log.this.setVisible(false);
 				Ayuda.this.dispose();
@@ -166,7 +166,7 @@ ActionListener {
 		
 		
 		Botones.add(atrás, BorderLayout.WEST);
-		Botones.add(aceptar, BorderLayout.CENTER);
+		Botones.add(salir, BorderLayout.CENTER);
 		Botones.add(inicio, BorderLayout.EAST);
 				
 		add(Botones, BorderLayout.SOUTH);
