@@ -3,6 +3,7 @@ package is.SimTraffic.Vista.BarrasHerramientas;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.Acciones.AccionRedimensionarImagen;
 
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -52,32 +53,7 @@ public class BarraRedimensionarImagen extends Barra {
 		height = new JTextField();
 		
 		JButton redimensionar = new JButton("Validar");
-		redimensionar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				if (chequeo.esDigito(width.getText())&& chequeo.esDigito(height.getText())&&imagen1!=null){
-					imagen2=imagen1.getScaledInstance(Integer.parseInt(width.getText()),Integer.parseInt(height.getText()),Image.SCALE_SMOOTH);
-					//Objeto mediaTracker que nos permite hacer el seguimiento del redimensionamiento de la imagen
-					MediaTracker tracker = new MediaTracker(panel);
-					tracker.addImage(imagen1,1);
-					tracker.addImage(imagen2,1);
-					  try{
-					      // Se bloquea la tarea durante el tiempo necesario para la carga
-					      // de todas las imágenes
-					      tracker.waitForAll();
-					    } catch( InterruptedException exception ) {
-					      System.out.println( exception );
-					      }
-					panel.getRepresentacion().removeImage(imagen1);
-					panel.getRepresentacion().addImage(imagen2,posicion);
-					panel.setModoSeleccion(false);
-					panel.recrear();
-					panel.recrearMapa();
-					panel.repaint();  
-			}	
-			}
-		});
-
+		redimensionar.addActionListener(new AccionRedimensionarImagen(this,false));
 		
 		JLabel porcentaje_ancho = new JLabel(" %Ancho: ");
 		p_width = new JTextField();
@@ -86,31 +62,7 @@ public class BarraRedimensionarImagen extends Barra {
 		p_height = new JTextField();
 		
 		JButton p_redimensionar = new JButton("Validar");
-		redimensionar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				if (chequeo.esDigito(p_width.getText())&& chequeo.esDigito(p_height.getText())&&imagen1!=null){
-					imagen2=imagen1.getScaledInstance(Integer.parseInt(p_width.getText())*imagen1.getWidth(null),Integer.parseInt(height.getText())*imagen1.getHeight(null),Image.SCALE_SMOOTH);
-					//Objeto mediaTracker que nos permite hacer el seguimiento del redimensionamiento de la imagen
-					MediaTracker tracker = new MediaTracker(panel);
-					tracker.addImage(imagen1,1);
-					tracker.addImage(imagen2,1);
-					  try{
-					      // Se bloquea la tarea durante el tiempo necesario para la carga
-					      // de todas las imágenes
-					      tracker.waitForAll();
-					    } catch( InterruptedException exception ) {
-					      System.out.println( exception );
-					      }
-					panel.getRepresentacion().removeImage(imagen1);
-					panel.getRepresentacion().addImage(imagen2,posicion);
-					panel.setModoSeleccion(false);
-					panel.recrear();
-					panel.recrearMapa();
-					panel.repaint();  
-					}
-			}
-		});
+		p_redimensionar.addActionListener(new AccionRedimensionarImagen(this,true));
 		
 		JButton eliminar = new JButton("Eliminar");
 		eliminar.addActionListener(new ActionListener(){
@@ -146,6 +98,38 @@ public class BarraRedimensionarImagen extends Barra {
 		this.imagen1=im;
 		this.posicion=pos;
 		this.panel =panel;
+	}
+
+	public Image getImagen1() {
+		return imagen1;
+	}
+
+	public Image getImagen2() {
+		return imagen2;
+	}
+
+	public JTextField getP_height() {
+		return p_height;
+	}
+
+	public JTextField getP_width() {
+		return p_width;
+	}
+
+	public PanelMapa getPanel() {
+		return panel;
+	}
+
+	public Posicion getPosicion() {
+		return posicion;
+	}
+
+	public JTextField get_Height() {
+		return height;
+	}
+
+	public JTextField get_Width() {
+		return width;
 	}
 	
 }

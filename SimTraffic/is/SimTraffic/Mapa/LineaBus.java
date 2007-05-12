@@ -1,5 +1,6 @@
 package is.SimTraffic.Mapa;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,6 +30,12 @@ public class LineaBus extends Via{
 	private int comienzoServicio;
 	
 	private int finServicio;
+	
+	
+	/**
+	 * Color de la linea
+	 */
+	private Color color;
 	
 	/**
 	 * Se puede añadir aqui si circula festivos etc....
@@ -104,5 +111,13 @@ public class LineaBus extends Via{
 
 	public void setFinServicio(int finServicio) {
 		this.finServicio = finServicio;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }
