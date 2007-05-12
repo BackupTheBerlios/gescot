@@ -124,7 +124,7 @@ public class Simulacion {
 					return 0;
 				}
 				if (mapa.getTramos().size() < 1) {
-					throw new Exception("tramos insuficientes");
+					throw new Exception("Tramos insuficientes");
 				}
 				// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 				this.mapa = mapa;
@@ -176,9 +176,9 @@ public class Simulacion {
 				int n = JOptionPane
 						.showOptionDialog(
 								null,
-								"Discuple las molestias. Parece hubo un problema en la simulación.\n"
-										+ "Por favor asegurse de que no haya errores en el mapa.\n"
-										+ "¿Intetar simular nuevamente?",
+								"Disculpe las molestias. Parece que hubo un problema en la simulación.\n"
+										+ "Por favor asegurese de que no haya errores en el mapa.\n"
+										+ "¿Intentar simular nuevamente?",
 								"Problema en la simulación",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.ERROR_MESSAGE, null, options,
