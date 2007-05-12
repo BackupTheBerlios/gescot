@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -802,7 +803,27 @@ public class Ventana extends JFrame {
 		abrirAyuda.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				new Ayuda("http://simtraffic.helker.com/Manual2/manual.html");
+				//new Ayuda("http://simtraffic.helker.com/Manual2/manual.html");
+				String url= "http://simtraffic.helker.com/Manual2/manual.html";
+				/**
+				 * Válido en principio para cualquier navegador. Solo en windows?
+				 */
+				try {
+					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+				} catch (IOException e1) {
+					System.out.println("Error al lanzar el navegador de ayuda");
+				}
+				
+				/**
+				 * Solo válido para internet Explorer 
+				 */
+				/* try {
+					Runtime.getRuntime().exec("cmd /c start iexplore "+url);
+				} catch (IOException e1) {
+					System.out.println("Error al lanzar el navegador de ayuda"); 
+
+				}*/ 
+				
 			}
 		});
 		abrirAyuda.setText("Abrir ayuda");
