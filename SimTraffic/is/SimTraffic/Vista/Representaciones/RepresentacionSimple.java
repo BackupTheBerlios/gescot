@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista.Representaciones;
 
-import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
@@ -10,7 +9,6 @@ import is.SimTraffic.Simulacion.Vehiculo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
@@ -69,13 +67,7 @@ public class RepresentacionSimple extends Representacion {
 				.getPos().getLat()) - 2, 4, 4);
 	}
 
-	public void pintar(Graphics2D g, Rectangle rectanguloSeleccion) {
-		g.draw(rectanguloSeleccion);
-		Color colorTransparente = new Color((float) 0.8, (float) 0.1,
-				(float) 0.05, (float) 0.2);
-		g.setColor(colorTransparente);
-		g.fill(rectanguloSeleccion);
-	}
+	
 
 	public void pintar(Graphics2D g, Tramo tramo, String tipo) {
 		// almacena posiciones de los nodos
@@ -105,65 +97,6 @@ public class RepresentacionSimple extends Representacion {
 	public void pintar(Graphics2D g, Señal señal) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void pintarSugerencia(Graphics2D g, ElementoMapa elemento) {
-		int tamaño = 14;
-		if (elemento != null) {
-			if (elemento.getClass() == Nodo.class) {
-				// pintar un nodo sugerido
-				Nodo nodo = (Nodo) elemento;
-				Color colorNodo = new Color((float) 0, (float) 0, (float) 1,
-						(float) 0.9);
-				g.setColor(colorNodo);
-				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
-			}
-			if (elemento.getClass() == Tramo.class) {
-				// pintar un tramo sugerido
-				Tramo tramo = (Tramo) elemento;
-				try {
-					this.pintar(g, tramo, null);
-					Polygon p = generarAreaTramo(tramo);
-					Color colorTramo = new Color((float) 1, (float) 0.5,
-							(float) 0, (float) 0.9);
-					g.setColor(colorTramo);
-					g.fillPolygon(p);
-				} catch (ArithmeticException e) {
-
-				}
-			}
-		}
-	}
-
-	/**
-	 * Pinta una sugerencia de nodos y tramos para los elementos seleccionados
-	 */
-	public void pintarSugerenciaSeleccion(Graphics2D g, ElementoMapa elemento) {
-		int tamaño = 14;
-		if (elemento != null) {
-			if (elemento.getClass() == Nodo.class) {
-				// pintar un nodo sugerido
-				Nodo nodo = (Nodo) elemento;
-				Color colorNodo = new Color((float) 1, (float) 0, (float) 0,
-						(float) 0.6);// 1,0.6,0
-				g.setColor(colorNodo);
-				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
-						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
-						tamaño, tamaño);
-			}
-			if (elemento.getClass() == Tramo.class) {
-				// pintar un tramo sugerido
-				Tramo t = (Tramo) elemento;
-				Polygon p = generarAreaTramo(t);
-				Color colorTramo = new Color((float) 0.1, (float) 0.8,
-						(float) 0.05, (float) 0.6);
-				g.setColor(colorTramo);
-				g.fillPolygon(p);
-			}
-		}
 	}
 
 	public Polygon generarAreaTramo(Tramo tramo) {

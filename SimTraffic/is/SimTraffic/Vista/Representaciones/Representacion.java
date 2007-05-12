@@ -196,7 +196,13 @@ abstract public class Representacion {
 	 * @param g
 	 * @param rectanguloSeleccion
 	 */
-	abstract public void pintar(Graphics2D g, Rectangle rectanguloSeleccion);
+	public void pintar(Graphics2D g, Rectangle rectanguloSeleccion) {
+		g.draw(rectanguloSeleccion);
+		Color colorTransparente = new Color((float) 0.8, (float) 0.1,
+				(float) 0.05, (float) 0.2);
+		g.setColor(colorTransparente);
+		g.fill(rectanguloSeleccion);
+	}
 
 	/**
 	 * Método abstracto que se debe implementar para pintar un tramo.
@@ -239,7 +245,36 @@ abstract public class Representacion {
 	 * @param elemento
 	 *            ElementoMapa que se desea resaltar
 	 */
-	abstract public void pintarSugerencia(Graphics2D g, ElementoMapa elemento);
+	
+	public void pintarSugerencia(Graphics2D g, ElementoMapa elemento) {
+		int tamaño = 14;
+		if (elemento != null) {
+			if (elemento.getClass() == Nodo.class) {
+				// pintar un nodo sugerido
+				Nodo nodo = (Nodo) elemento;
+				Color colorNodo = new Color((float) 0, (float) 0, (float) 1,
+						(float) 0.9);
+				g.setColor(colorNodo);
+				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
+						tamaño, tamaño);
+			}
+			if (elemento.getClass() == Tramo.class) {
+				// pintar un tramo sugerido
+				Tramo tramo = (Tramo) elemento;
+				try {
+					this.pintar(g, tramo, null);
+					Polygon p = generarAreaTramo(tramo);
+					Color colorTramo = new Color((float) 1, (float) 0.5,
+							(float) 0, (float) 0.9);
+					g.setColor(colorTramo);
+					g.fillPolygon(p);
+				} catch (ArithmeticException e) {
+					
+				}
+			}
+		}
+	}
 
 	abstract public void pintarVehiculo(Graphics2D g, Vehiculo vehiculo, Tramo tramo);
 	
@@ -292,10 +327,31 @@ abstract public class Representacion {
 	 * @param elemento
 	 *            Elemento a representar seleccionado
 	 */
-	public abstract void pintarSugerenciaSeleccion(Graphics2D g,
-			ElementoMapa elemento);
-
 	
+	public void pintarSugerenciaSeleccion(Graphics2D g, ElementoMapa elemento) {
+		int tamaño = 14;
+		if (elemento != null) {
+			if (elemento.getClass() == Nodo.class) {
+				// pintar un nodo sugerido
+				Nodo nodo = (Nodo) elemento;
+				Color colorNodo = new Color((float) 1, (float) 0, (float) 0,
+						(float) 0.6);// 1,0.6,0
+				g.setColor(colorNodo);
+				g.fillOval(x_MapaARep(nodo.getPos().getLon()) - tamaño / 2,
+						y_MapaARep(nodo.getPos().getLat()) - tamaño / 2,
+						tamaño, tamaño);
+			}
+			if (elemento.getClass() == Tramo.class) {
+				// pintar un tramo sugerido
+				Tramo t = (Tramo) elemento;
+				Polygon p = generarAreaTramo(t);
+				Color colorTramo = new Color((float) 0.1, (float) 0.8,
+						(float) 0.05, (float) 0.6);
+				g.setColor(colorTramo);
+				g.fillPolygon(p);
+			}
+		}
+	}
 	/**
 	 * Método para mostrar los ejes de coordenadas en el mapa.
 	 * <p>
@@ -451,7 +507,7 @@ abstract public class Representacion {
 			catch (ArithmeticException e) {}
 			g.setStroke(new BasicStroke(1));
 		}
-	}
+	}	
 
 	public ArrayList<Image> getImagenes() {
 		return imagenes;
