@@ -55,6 +55,7 @@ public class VentanaMatrizDePaso extends JFrame {
 		this.setVisible(true);
 		this.setSize(new Dimension(450,300));
 		this.setLocation(0,400);
+		this.setAlwaysOnTop(true);
 		
 		//Creamos el panel general para introducir el resto de componentes.
 		JPanel panelGeneral = new JPanel();
