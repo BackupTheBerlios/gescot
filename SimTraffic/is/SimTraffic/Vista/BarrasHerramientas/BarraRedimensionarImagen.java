@@ -1,7 +1,6 @@
 package is.SimTraffic.Vista.BarrasHerramientas;
 
 import is.SimTraffic.Mapa.Posicion;
-import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Acciones.AccionRedimensionarImagen;
 
@@ -30,8 +29,6 @@ public class BarraRedimensionarImagen extends Barra {
 	
 	private PanelMapa panel;
 	
-	private ChequeoInputVentanas chequeo;
-	
 	private JTextField height;
 
 	private JTextField width;
@@ -42,7 +39,6 @@ public class BarraRedimensionarImagen extends Barra {
 
 	public BarraRedimensionarImagen(){
 		
-		chequeo = new ChequeoInputVentanas();
 		JLabel label1 = new JLabel("Imagen:");
 		JLabel nombre_fichero = new JLabel("       ");
 		
