@@ -3,6 +3,13 @@
  */
 package is.SimTraffic.jUnit.Vista;
 
+import is.SimTraffic.jUnit.Vista.Acciones.AccionesTestSuite;
+import is.SimTraffic.jUnit.Vista.BarrasHerramientas.BarrasHerramientasTestSuite;
+import is.SimTraffic.jUnit.Vista.EscuchasRaton.EscuchasRatonTestSuite;
+import is.SimTraffic.jUnit.Vista.PanelesSimulacion.PanelesSimulacionTestSuite;
+import is.SimTraffic.jUnit.Vista.Representaciones.RepresentacionesTestSuite;
+import is.SimTraffic.jUnit.Vista.Sugerencias.SugerenciasTestSuite;
+import is.SimTraffic.jUnit.Vista.VentanaMatrizPaso.VentanaMatrizPasoTestSuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -20,13 +27,13 @@ public class VistaTestSuite {
 	    TestSuite suite = new TestSuite();
 	    
 	    //Añadimos las suites de los subpaquetes
-	    //suite.addTest(AccionesTestSuite.suite());
-	    //suite.addTest(BarrasHerramientasTestSuite.suite());
-	    //suite.addTest(EscuchasRatonTestSuite.suite());
-	    //suite.addTest(PanelesSimulacionTestSuite.suite());
-	    //suite.addTest(RepresentacionesTestSuite.suite());
-	    //suite.addTest(SugerenciasTestSuite.suite());
-	    //suite.addTest(VentanaMatrizPasoTestSuite.suite());
+	    suite.addTest(AccionesTestSuite.suite());
+	    suite.addTest(BarrasHerramientasTestSuite.suite());
+	    suite.addTest(EscuchasRatonTestSuite.suite());
+	    suite.addTest(PanelesSimulacionTestSuite.suite());
+	    suite.addTest(RepresentacionesTestSuite.suite());
+	    suite.addTest(SugerenciasTestSuite.suite());
+	    suite.addTest(VentanaMatrizPasoTestSuite.suite());
 	    
 	    //Añadimos las clases del paquete
 	    //suite.addTestSuite(AcercaDeTest.class);
