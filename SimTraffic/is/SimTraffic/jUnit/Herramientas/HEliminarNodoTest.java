@@ -1,9 +1,7 @@
 package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.Modelo;
-import is.SimTraffic.Herramientas.HAñadirNodo;
 import is.SimTraffic.Herramientas.HEliminarNodo;
-import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import junit.framework.TestCase;

@@ -53,6 +53,7 @@ public class HComenzarTest extends TestCase {
 	public void testdeshacer()
 	{
 		IHerramienta Hcomenzar = new HComenzar(0,0,0);
+		Hcomenzar.hacer(modelo);
 		assertEquals(0,Hcomenzar.deshacer(modelo)); 
 	}
 }

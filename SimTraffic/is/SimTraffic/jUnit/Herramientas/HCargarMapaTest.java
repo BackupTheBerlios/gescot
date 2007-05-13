@@ -77,6 +77,7 @@ public class HCargarMapaTest extends TestCase {
 	 */
 	public void testdeshacer()
 	{
+		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
 			fail("La herramienta de Copiar no ha desecho correctamente");
 	}

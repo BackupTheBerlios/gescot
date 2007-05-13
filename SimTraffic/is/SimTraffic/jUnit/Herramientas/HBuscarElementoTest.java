@@ -92,6 +92,7 @@ public class HBuscarElementoTest extends TestCase {
 	 * Metodo que comprueba el metodo deshacer de la clase HBuscarElemento
 	 */
 	public void testdeshacer() {
+		herramienta.hacer(modelo);
 		assertEquals(0,herramienta.deshacer(this.modelo));
 	}
 

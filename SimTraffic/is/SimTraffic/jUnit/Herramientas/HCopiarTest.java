@@ -31,7 +31,7 @@ public class HCopiarTest extends TestCase {
 	private List<Tramo> tramos;
 	
 	/**
-	 * La herrameinta que se va a utilizar
+	 * La herramienta que se va a utilizar
 	 */
 	private IHerramienta herramienta;
 	
@@ -74,7 +74,7 @@ public class HCopiarTest extends TestCase {
 	}
 	
 	/**
-	 * Mwtodo que compreuaba que sel metodo hacer funciona correctamente
+	 * Metodo que compreuaba que sel metodo hacer funciona correctamente
 	 */
 	public void testhacer()
 	{
@@ -83,10 +83,11 @@ public class HCopiarTest extends TestCase {
 	}
 	
 	/**
-	 * Mwtodo que compreuaba que sel metodo deshacer funciona correctamente -----------------Este metodo falla 
+	 * Metodo que compreuaba que sel metodo deshacer funciona correctamente -----------------Este metodo falla 
 	 */
 	public void testdeshacer()
 	{
+		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
 			fail("La herramienta de Copiar no ha desecho correctamente");
 	}

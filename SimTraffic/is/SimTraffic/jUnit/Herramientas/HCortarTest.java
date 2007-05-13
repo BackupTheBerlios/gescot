@@ -65,7 +65,7 @@ public class HCortarTest extends TestCase {
 	}
 	
 	/**
-	 * Mwtodo que compreuaba que se crea correctamente
+	 * Metodo que compreuaba que se crea correctamente
 	 */
 	public void testHCopiar() {
 		assertEquals(nodos,((HCortar)herramienta).getNodos());
@@ -86,6 +86,7 @@ public class HCortarTest extends TestCase {
 	 */
 	public void testdeshacer()
 	{
+		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
 			fail("La herramienta de Copiar no ha desecho correctamente");
 	}
