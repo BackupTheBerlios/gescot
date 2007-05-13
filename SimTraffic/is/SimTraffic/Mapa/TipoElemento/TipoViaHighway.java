@@ -1,6 +1,8 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public class TipoViaHighway extends TipoElemento implements ITipoElemento {
+import java.io.Serializable;
+
+public class TipoViaHighway extends TipoElemento implements ITipoElemento, Serializable {
 
 	/**
 	 * Características de Tipo de Vías asociadas a Carreteras (Highway)

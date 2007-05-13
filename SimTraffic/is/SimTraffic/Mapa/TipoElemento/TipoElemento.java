@@ -1,6 +1,8 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
-public abstract class TipoElemento implements ITipoElemento{
+import java.io.Serializable;
+
+public abstract class TipoElemento implements ITipoElemento, Serializable{
 
 	/**
 	 * Categoría del tipo de elemento (nodo, tramo, vía)

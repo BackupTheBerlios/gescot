@@ -17,6 +17,7 @@ import is.SimTraffic.Herramientas.CargarMapa.*;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
+import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelEsperaCargando;
 import is.SimTraffic.Vista.PanelMapa;
