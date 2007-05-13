@@ -60,4 +60,10 @@ public class HEliminarSeleccion implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Selección eliminada";
 		}
+	public List<Nodo> getNodos() {
+		return nodos;
+	}
+	public List<Tramo> getTramos() {
+		return tramos;
+	}
 	}
