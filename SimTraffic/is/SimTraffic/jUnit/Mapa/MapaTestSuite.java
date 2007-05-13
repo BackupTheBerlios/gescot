@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package is.SimTraffic.jUnit.Mapa;
 
 import is.SimTraffic.jUnit.Herramientas.CargarMapa.CargarMapaTestSuite;
@@ -17,17 +20,29 @@ public class MapaTestSuite {
 	 */
 	public static Test suite() {
 	    TestSuite suite = new TestSuite();
+	    
+	    //Añadimos las suites de los subpaquetes
 	    suite.addTestSuite(SeñalesTestSuite.class);
 	    suite.addTestSuite(CargarMapaTestSuite.class);
+	    
+	    //Añadimos las clases del paquete
+	    suite.addTestSuite(ConversorUTMTest.class);
+	    //suite.addTestSuite(ElementoMapaTest.class);
+	    suite.addTestSuite(EntradaSalidaTest.class);
+	    //suite.addTestSuite(LineaBusTest.class);
 	    suite.addTestSuite(MapaTest.class);
 	    suite.addTestSuite(NodoTest.class);
-	    suite.addTestSuite(TramoTest.class);
-	    suite.addTestSuite(SeñalTest.class);	    
-	    suite.addTestSuite(ConversorUTMTest.class);
 	    suite.addTestSuite(PosicionTest.class);
 	    suite.addTestSuite(SeleccionTest.class);
+	    suite.addTestSuite(SeñalTest.class);	    
+	    suite.addTestSuite(TramoTest.class);
 	    suite.addTestSuite(ViaTest.class);
+	    
 	    return suite;
+	}
+
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(suite());
 	}
 
 }

@@ -1,14 +1,8 @@
+/**
+ * 
+ */
 package is.SimTraffic.jUnit.Herramientas;
 
-import is.SimTraffic.Herramientas.HCargarMapa;
-import is.SimTraffic.Herramientas.HDescargarMapa;
-import is.SimTraffic.Herramientas.HDetener;
-import is.SimTraffic.Herramientas.HEliminarNodo;
-import is.SimTraffic.Herramientas.HEliminarSeleccion;
-import is.SimTraffic.Herramientas.HEliminarTramo;
-import is.SimTraffic.Herramientas.HGuardarMapa;
-import is.SimTraffic.Herramientas.HPausar;
-import is.SimTraffic.Herramientas.HPegar;
 import is.SimTraffic.jUnit.Herramientas.CargarMapa.CargarMapaTestSuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -19,20 +13,25 @@ import junit.framework.TestSuite;
  * 
  */
 public class HerramientasTestSuite {
+	
 	/**
 	 * Método suite que añade los tests de todas las clases de prueba
 	 * 
 	 */
 	public static Test suite() {
 	    TestSuite suite = new TestSuite();
-	    suite.addTestSuite(CargarMapaTestSuite.class);
+	    
+	    //Añadimos las suites de los subpaquetes
+	    suite.addTest(CargarMapaTestSuite.suite());
+	    
+	    //Añadimos las clases del paquete
 	    suite.addTestSuite(HAñadirLineaAutobusTest.class);
 	    suite.addTestSuite(HAñadirNodoTest.class);
 	    suite.addTestSuite(HAñadirTramoTest.class);
 	    suite.addTestSuite(HAsignarTramosAViaTest.class);
 	    suite.addTestSuite(HBuscarElementoTest.class);
 	    //suite.addTestSuite(HCargarMapaTest.class);
-	    suite.addTestSuite(HComenzartest.class);
+	    suite.addTestSuite(HComenzarTest.class);
 	    suite.addTestSuite(HConfigurarEntradaSalidaTest.class);
 	    suite.addTestSuite(HCopiarTest.class);
 	    suite.addTestSuite(HCortarTest.class);
@@ -54,6 +53,7 @@ public class HerramientasTestSuite {
 	    //suite.addTestSuite(HPartirTramoTest.class);
 	    //suite.addTestSuite(HPausarTest.class);
 	    //suite.addTestSuite(HPegarTest.class);
+	    
 	    return suite;
 	}
 }

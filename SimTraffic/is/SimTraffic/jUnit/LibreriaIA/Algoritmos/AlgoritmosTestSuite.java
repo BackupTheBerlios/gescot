@@ -15,8 +15,13 @@ public class AlgoritmosTestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
+	    
+	    //Añadimos las suites de los subpaquetes
+		
+	    //Añadimos las clases del paquete
 		//suite.addTestSuite(AEstrellaTest.class);
 		//suite.addTestSuite(CosteUniformeTest.class);
+		
 		return suite;
 	}
 }

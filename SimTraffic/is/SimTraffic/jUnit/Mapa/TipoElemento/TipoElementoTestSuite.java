@@ -15,12 +15,22 @@ public class TipoElementoTestSuite {
 	 */
 	public static Test suite() {
 	    TestSuite suite = new TestSuite();
+	    
+	    //Añadimos las suites de los subpaquetes
+	    
+	    //Añadimos las clases del paquete
+	    //suite.addTestSuite(TipoElementoTest.class);
 	    suite.addTestSuite(TipoNodoAmenityTest.class);
 	    suite.addTestSuite(TipoNodoHigwayTest.class);
 	    suite.addTestSuite(TipoNodoLeisureTest.class);
 	    suite.addTestSuite(TipoNodoManMadeTest.class);
-	    suite.addTestSuite(TipoviaHighwayTest.class);
+	    suite.addTestSuite(TipoViaHighwayTest.class);
+	    
 	    return suite;
+	}
+
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(suite());
 	}
 
 }

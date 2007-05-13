@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 /**
 * Clase JUnit para probar la clase TipoviaHighway
 */
-	public class TipoviaHighwayTest extends TestCase {
+	public class TipoViaHighwayTest extends TestCase {
 
 			/**
 			 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoviaHighway.equals(Object)'

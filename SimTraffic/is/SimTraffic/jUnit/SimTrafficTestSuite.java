@@ -7,6 +7,9 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import is.SimTraffic.jUnit.LibreriaIA.LibreriaIATestSuite;
 import is.SimTraffic.jUnit.Mapa.*;
+import is.SimTraffic.jUnit.Simulacion.SimulacionTestSuite;
+import is.SimTraffic.jUnit.Utils.UtilsTestSuite;
+import is.SimTraffic.jUnit.Vista.VistaTestSuite;
 import is.SimTraffic.jUnit.Herramientas.*;
 
 /**
@@ -24,10 +27,20 @@ public class SimTrafficTestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
-		suite.addTestSuite(HerramientasTestSuite.class);
+		
+		//Añadimos las suites de los subpaquetes
+		suite.addTest(HerramientasTestSuite.suite());
+		suite.addTest(LibreriaIATestSuite.suite());
+		suite.addTest(MapaTestSuite.suite());
+		suite.addTest(SimulacionTestSuite.suite());
+		suite.addTest(UtilsTestSuite.suite());
+		suite.addTest(VistaTestSuite.suite());
+		
+		//Añadimos las clases del paquete
 		suite.addTestSuite(ControladorTest.class);
-		suite.addTestSuite(LibreriaIATestSuite.class);
-		suite.addTestSuite(MapaTestSuite.class);
+		//suite.addTestSuite(ModeloTest.class);
+		//suite.addTestSuite(PrincipalTest.class);
+		
 		return suite;
 	}
 

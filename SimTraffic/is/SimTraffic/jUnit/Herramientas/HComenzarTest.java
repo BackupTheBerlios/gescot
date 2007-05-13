@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 /**
  * Matodo que testea la clase HComenzar
  */
-public class HComenzartest extends TestCase {
+public class HComenzarTest extends TestCase {
 
 	/**
 	 * Atributo que es un modelo
