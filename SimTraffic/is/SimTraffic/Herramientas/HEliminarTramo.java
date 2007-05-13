@@ -51,4 +51,8 @@ public class HEliminarTramo implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+"Tramo Eliminado";
 	}
+
+	public Tramo getTramo() {
+		return tramo;
+	}
 }
