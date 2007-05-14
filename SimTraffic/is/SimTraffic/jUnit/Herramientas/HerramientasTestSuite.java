@@ -30,7 +30,7 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HAñadirTramoTest.class);
 	    suite.addTestSuite(HAsignarTramosAViaTest.class);
 	    suite.addTestSuite(HBuscarElementoTest.class);
-	    //suite.addTestSuite(HCargarMapaTest.class);
+	    suite.addTestSuite(HCargarMapaTest.class);
 	    suite.addTestSuite(HComenzarTest.class);
 	    suite.addTestSuite(HConfigurarEntradaSalidaTest.class);
 	    suite.addTestSuite(HCopiarTest.class);
@@ -39,11 +39,11 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HCrearNuevoMapaTest.class);
 	    suite.addTestSuite(HCrearSemaforoTest.class);
 	    suite.addTestSuite(HCrearViaTest.class);
-	    //suite.addTestSuite(HDescargarMapaTest.class);
-	    //suite.addTestSuite(HDetenerTest.class);
-	    //suite.addTestSuite(HEliminarNodoTest.class);
-	    //suite.addTestSuite(HEliminarSeleccionTest.class);
-	    //suite.addTestSuite(HEliminarTramoTest.class);
+	    suite.addTestSuite(HDescargarMapaTest.class);
+	    suite.addTestSuite(HDetenerTest.class);
+	    suite.addTestSuite(HEliminarNodoTest.class);
+	    suite.addTestSuite(HEliminarSeleccionTest.class);
+	    suite.addTestSuite(HEliminarTramoTest.class);
 	    //suite.addTestSuite(HGuardarMapaTest.class);
 	    //suite.addTestSuite(HModificarNodoTest.class);
 	    //suite.addTestSuite(HModificarParamSimulacionTest.class);
@@ -52,7 +52,7 @@ public class HerramientasTestSuite {
 	    //suite.addTestSuite(HMoverTest.class);
 	    //suite.addTestSuite(HPartirTramoTest.class);
 	    //suite.addTestSuite(HPausarTest.class);
-	    //suite.addTestSuite(HPegarTest.class);
+	    suite.addTestSuite(HPegarTest.class);
 	    
 	    return suite;
 	}
