@@ -79,10 +79,10 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 		if (encontrado&&presionado){
 			if (panel.getRepresentacion().getImagenes().contains(seleccionado)){	
 			 int indice =panel.getRepresentacion().getImagenes().indexOf(seleccionado);
-			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
 			 double y = panel.lon_RepAMapa(e.getX());
 			 double x = panel.lat_RepAMapa(e.getY());
-			 posicion = new Posicion(x,y);	
+			 posicion = new Posicion(x,y);
+			 panel.getRepresentacion().getPosiciones().set(indice,posicion);
 			 panel.setRectanguloSeleccion(null);
 			 panel.setModoSeleccion(false);
 			 ventana.prepararImagen(seleccionado,posicion);

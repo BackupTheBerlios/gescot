@@ -139,6 +139,7 @@ public class BarraRedimensionarImagen extends Barra {
 				      }
 				panel.getRepresentacion().removeImage(imagen1);
 				panel.getRepresentacion().addImage(imagen2,posicion);
+				imagen1=imagen2;
 				panel.setModoSeleccion(false);
 				panel.recrear();
 				panel.recrearMapa();
