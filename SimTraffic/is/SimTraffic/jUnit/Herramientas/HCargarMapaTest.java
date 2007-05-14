@@ -59,7 +59,10 @@ public class HCargarMapaTest extends TestCase {
 		herramienta=new HCargarMapa(controlador,panel);
 	}
 	
-	public void testHCopiar() {
+	/**
+	 * Metodo que comprueba el constructor
+	 */
+	public void testHCargarMapa() {
 		assertEquals(controlador,((HCargarMapa)herramienta).getcontrolador());
 		assertEquals(panel,((HCargarMapa)herramienta).getpanel());
 	}
