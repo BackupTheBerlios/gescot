@@ -31,4 +31,10 @@ public interface ElementoMapa {
 	 * @return
 	 */
 	public ITipoElemento getTipo();
+	
+	/**
+	 * Se obliga a todos los elementos de un mapa a tener un nombre (aunque éste puede ser vacío).
+	 * @return
+	 */
+	public String getNombre();
 }

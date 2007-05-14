@@ -631,11 +631,35 @@ public class Ventana extends JFrame {
 		moverMenuItem.setText("Mover...");
 		edicionMenu.add(moverMenuItem);
 
-		JMenuItem lineasBusMenuItem = new JMenuItem();
-		lineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
+		JMenu subMenuVer = new JMenu("Ver elementos...");
+		edicionMenu.add(subMenuVer);
+		
+		JMenuItem verNodosMenuItem = new JMenuItem();
+		verNodosMenuItem.addActionListener(new AccionVerNodos(controlador,
+				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png", "Nodos existentes",
+				"Nodo"));
+		verNodosMenuItem.setText("Ver Nodos");
+		subMenuVer.add(verNodosMenuItem);
+		
+		JMenuItem verTramosMenuItem = new JMenuItem();
+		verTramosMenuItem.addActionListener(new AccionVerTramos(controlador,
+				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png", "Tramos existentes",
+				"Tramo"));
+		verTramosMenuItem.setText("Ver Tramos");
+		subMenuVer.add(verTramosMenuItem);
+		
+		JMenuItem verViasMenuItem = new JMenuItem();
+		verViasMenuItem.addActionListener(new AccionVerVias(controlador,
+				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_via2.png", "Vías existentes",
+				"Via"));
+		verViasMenuItem.setText("Ver Vías");
+		subMenuVer.add(verViasMenuItem);
+		
+		JMenuItem verlineasBusMenuItem = new JMenuItem();
+		verlineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
 				modelo, this,panel_mapa));
-		lineasBusMenuItem.setText("Ver Lineas Autobuses");
-		edicionMenu.add(lineasBusMenuItem);
+		verlineasBusMenuItem.setText("Ver Líneas de Autobuses");
+		subMenuVer.add(verlineasBusMenuItem);
 	}
 
 	/**
