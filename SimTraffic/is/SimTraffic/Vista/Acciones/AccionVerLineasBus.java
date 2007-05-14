@@ -68,6 +68,9 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 			   Nodo parada = (Nodo)paradas.next();
 			   modelo.getMapa().getSeleccion().añadirNodo(parada);
 			}
+			panel_mapa.centrarEnPosicion(seleccionada.getTramos().get(0).getNodoInicial().getPos().getLat(),
+					seleccionada.getTramos().get(0).getNodoInicial().getPos().getLon() );
+			panel_mapa.repaint();
 			}
 		}
 	}

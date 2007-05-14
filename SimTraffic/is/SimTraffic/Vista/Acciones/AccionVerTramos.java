@@ -53,7 +53,8 @@ public class AccionVerTramos extends AccionVer {
 				//Ver si esta ultima instrucción necesaria.
 				modelo.getMapa().limpiaSeleccion();
 				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
-				panel_mapa.repaint();
+				panel_mapa.centrarEnPosicion(seleccionado.getNodoInicial().getPos().getLat(),seleccionado.getNodoInicial().getPos().getLon());
+				//panel_mapa.repaint();
 			}
 		}
 	}

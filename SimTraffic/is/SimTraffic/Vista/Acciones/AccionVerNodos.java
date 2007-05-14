@@ -53,7 +53,8 @@ public class AccionVerNodos extends AccionVer {
 				//Ver si esta ultima instrucción necesaria.
 				modelo.getMapa().limpiaSeleccion();
 				modelo.getMapa().getSeleccion().añadirNodo(seleccionado);
-				panel_mapa.repaint();
+				panel_mapa.centrarEnPosicion(seleccionado.getPos().getLat(),seleccionado.getPos().getLon());
+				//panel_mapa.repaint();
 			}
 		}
 	}

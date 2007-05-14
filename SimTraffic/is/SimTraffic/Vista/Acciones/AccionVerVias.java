@@ -59,6 +59,8 @@ public class AccionVerVias extends AccionVer {
 				   Tramo aux=tramos.next();
 				   modelo.getMapa().getSeleccion().añadirTramo(aux);  
 				 } 
+				panel_mapa.centrarEnPosicion(seleccionada.getTramos().get(0).getNodoInicial().getPos().getLat(),
+						seleccionada.getTramos().get(0).getNodoInicial().getPos().getLon() );
 				panel_mapa.repaint();
 			}
 		}
