@@ -286,10 +286,10 @@ public class Tramo implements ElementoMapa, Serializable {
 	public String transformaraOSM() {
 		String s = ("<segment id='" + ID + "' from='" + nodoInicial.getID()
 				+ "' to='" + nodoFinal.getID() + "'>\n");
-		if (this.numCarrilesDir1 > 0)
+		if (this.numCarrilesDir1 >= 0)
 			s = s
 					+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
-		if (this.numCarrilesDir2 > 0)
+		if (this.numCarrilesDir2 >= 0)
 			s = s
 					+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
 		s = s + ("<tag k='velMax' v='" + this.velocidadMax + "' />\n");
