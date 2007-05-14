@@ -22,7 +22,7 @@ public class HEliminarSeleccionTest extends TestCase {
 	private List<Tramo> tramos;
 	
 	/**
-	 * Atributo HAñadirNodo para hacer pruebas
+	 * Atributo HEliminarSeleccion para hacer pruebas
 	 */
 	private HEliminarSeleccion herramienta;
 	
