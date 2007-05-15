@@ -37,7 +37,7 @@ public class HModificarTramo implements IHerramienta {
 		this.numCarrilesGuardados1=tramo.getNumCarrilesDir1();
 		this.numCarrilesGuardados2=tramo.getNumCarrilesDir2();
 		this.velocidadMaxGuardada=tramo.getVelMax();
-		this.nombreGuardado=nombre;
+		this.nombreGuardado=tramo.getNombre();
 		this.nombreStringVia = nombreStringVia;
 		if (via!=null) {
 			if (via.getNombre()!=null)
