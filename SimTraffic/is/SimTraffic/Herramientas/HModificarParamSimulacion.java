@@ -39,4 +39,8 @@ public class HModificarParamSimulacion implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+ "Parámetros de Simulación modificados";
 	}
+
+	public ParametrosSimulacion getParametros() {
+		return parametros;
+	}
 }
