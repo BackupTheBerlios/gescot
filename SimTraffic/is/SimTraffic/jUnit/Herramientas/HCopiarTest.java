@@ -40,7 +40,10 @@ public class HCopiarTest extends TestCase {
 	 */
 	private Modelo modelo;
 
-	
+	/**
+	 * Constructor
+	 * @param arg0
+	 */
 	public HCopiarTest(String arg0) {
 		super(arg0);
 	}
