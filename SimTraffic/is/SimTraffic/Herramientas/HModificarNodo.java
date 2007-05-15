@@ -76,4 +76,24 @@ public class HModificarNodo implements IHerramienta {
 	public String toString(){
 		return Tiempo.Hora()+" - "+ "Nodo modificado";
 	}
+
+	public boolean isEs() {
+		return es;
+	}
+
+	public Nodo getNodo() {
+		return nodo;
+	}
+
+	public Posicion getPos() {
+		return pos;
+	}
+
+	public boolean isSeñal() {
+		return señal;
+	}
+
+	public ITipoElemento getTipoNodo() {
+		return tipoNodo;
+	}
 }
