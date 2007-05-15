@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
+
 /**
  * Clase que, de acuerdo con el patrón Flyweight, agrupa las funciones de
  * procesamiento comunes a todos los vehiculos para un grupo de estos.
@@ -520,6 +521,10 @@ public class Inteligencia {
 			vehiculo.aceleracion = 0;
 			vehiculo.velocidad = 0;
 			return;
+		}
+		//Si es un autobus y llega a una parada tendra q esperar un tiempo
+		if (vehiculo.getNombre()=="Bus"){
+			 ((Bus)vehiculo).parada();		  
 		}
 
 		vehiculo.actualizarVelocidad();

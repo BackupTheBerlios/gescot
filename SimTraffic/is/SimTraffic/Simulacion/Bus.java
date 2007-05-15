@@ -21,6 +21,9 @@ public class Bus extends Vehiculo {
 	private boolean sentido = false;
 
 	private LineaBus linea;
+	
+	//Tiempo de espera del bus
+	private int contador;
 
 	public Bus(ArrayList<LineaBus> lineas) {
 		nombre = "Bus";
@@ -40,6 +43,7 @@ public class Bus extends Vehiculo {
 		this.velocidadMax = (double) random.nextInt(40) / 100 + 0.5;
 		this.id = ncochesglobal;
 		ncochesglobal++;
+		contador=0;
 
 	}
 
@@ -132,6 +136,19 @@ public class Bus extends Vehiculo {
 			this.aceleracion -= (double) cuanto * cuanto / 40000;
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
+	}
+	public  void parada(){
+		if (linea.getParadas().contains(this.getNodoOrigen())&&contador<60&&posicion<0.05){
+			if (contador <20)
+			  this.variarAceleracion(-5000);
+			  else if (contador<40)
+				 this.velocidad=0; 
+			  else if (contador>40)
+				 this.variarAceleracion(+5000); 
+		    contador++;	
+			}
+			else
+		contador=0;	
 	}
 
 }
