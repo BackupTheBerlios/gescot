@@ -33,6 +33,7 @@ public class MapaTestSuite {
 	    suite.addTestSuite(MapaTest.class);
 	    suite.addTestSuite(NodoTest.class);
 	    suite.addTestSuite(PosicionTest.class);
+	    suite.addTestSuite(RepresentacionTest.class);
 	    suite.addTestSuite(SeleccionTest.class);
 	    suite.addTestSuite(SeñalTest.class);	    
 	    suite.addTestSuite(TramoTest.class);

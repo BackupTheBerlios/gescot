@@ -44,9 +44,9 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HEliminarNodoTest.class);
 	    suite.addTestSuite(HEliminarSeleccionTest.class);
 	    suite.addTestSuite(HEliminarTramoTest.class);
-	    //suite.addTestSuite(HGuardarMapaTest.class);
+	    suite.addTestSuite(HGuardarMapaTest.class);
 	    suite.addTestSuite(HModificarNodoTest.class);
-	    //suite.addTestSuite(HModificarParamSimulacionTest.class);
+	    suite.addTestSuite(HModificarParamSimulacionTest.class);
 	    suite.addTestSuite(HModificarSeñalTest.class);
 	    //suite.addTestSuite(HModificarTramoTest.class);
 	    //suite.addTestSuite(HMoverTest.class);
