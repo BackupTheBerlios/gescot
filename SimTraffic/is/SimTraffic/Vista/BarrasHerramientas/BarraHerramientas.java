@@ -87,7 +87,7 @@ public class BarraHerramientas extends Barra {
 		botonSeleccionarImagenes.addActionListener(new AccionBarra(ventana,ventana.getBarraRedimensionarImagen()));
 		botonSeleccionarImagenes.addMouseMotionListener(new EscuchaAyuda("Seleccione una imagen para modificarla o eliminarla", ventana));
 		botonSeleccionarImagenes.addKeyListener(ventana.getEscuchaTeclado());
-		grupoherramientas.add(botonSeleccionar);
+		grupoherramientas.add(botonSeleccionarImagenes);
 		
 		
 		//A partir de ahora no se utilizarán los botones de seleccionar y mover (los dejo comentados de momento).
