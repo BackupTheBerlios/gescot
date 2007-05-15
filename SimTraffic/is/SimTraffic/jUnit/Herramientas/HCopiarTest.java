@@ -40,6 +40,11 @@ public class HCopiarTest extends TestCase {
 	 */
 	private Modelo modelo;
 
+	
+	public HCopiarTest(String arg0) {
+		super(arg0);
+	}
+	
 	/**
 	 * Metodo para inicializar las pruebas
 	 */

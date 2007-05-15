@@ -49,6 +49,14 @@ public class HPegarTest extends TestCase {
 	Point2D punto;
 
 	/**
+	 * 
+	 * @param arg0
+	 */
+	public HPegarTest(String arg0) {
+		super(arg0);
+	}
+	
+	/**
 	 * Metodo para inicializar las pruebas
 	 */
 	protected void setUp() throws Exception {

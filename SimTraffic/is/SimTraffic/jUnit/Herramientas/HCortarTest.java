@@ -65,9 +65,17 @@ public class HCortarTest extends TestCase {
 	}
 	
 	/**
-	 * Mwtodo que compreuaba que se crea correctamente
+	 * 
+	 * @param arg0
 	 */
-	public void testHCopiar() {
+	public  HCortarTest(String arg0) {
+		super(arg0);
+	}
+	
+	/**
+	 * Metodo que compreuaba que se crea correctamente
+	 */
+	public void testHCortar() {
 		assertEquals(nodos,((HCortar)herramienta).getNodos());
 		assertEquals(tramos,((HCortar)herramienta).getTramos());
 	}
