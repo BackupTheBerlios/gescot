@@ -46,7 +46,7 @@ public class AccionVerNodos extends AccionVer {
 
 		public void actionPerformed(ActionEvent arg0) {
 			ArrayList<Nodo> lista=modelo.getMapa().getNodos();
-			if (!lista.isEmpty()){			
+			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
 				Nodo seleccionado = lista.get(elementos.getSelectedIndex());
 				//HBuscarElemento herramientaBuscar = new HBuscarElemento(nombreElemento,seleccionado.getNombre(),panel_mapa);
 				//controlador.herramienta(herramientaBuscar);

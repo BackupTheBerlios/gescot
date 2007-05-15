@@ -46,7 +46,7 @@ public class AccionVerTramos extends AccionVer {
 
 		public void actionPerformed(ActionEvent arg0) {
 			ArrayList<Tramo> lista=modelo.getMapa().getTramos();
-			if (!lista.isEmpty()){			
+			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
 				Tramo seleccionado = lista.get(elementos.getSelectedIndex());
 				//HBuscarElemento herramientaBuscar = new HBuscarElemento(nombreElemento,seleccionado.getNombre(),panel_mapa);
 				//controlador.herramienta(herramientaBuscar);

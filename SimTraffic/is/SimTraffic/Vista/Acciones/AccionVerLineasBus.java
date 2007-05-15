@@ -52,7 +52,7 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
 			ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
-			if (!lista.isEmpty()){			
+			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
 			LineaBus seleccionada = lista.get(elementos.getSelectedIndex());
 			HBuscarElemento herramientaBuscar = new HBuscarElemento("Línea de bus",seleccionada.getNombre(),panel_mapa);
 			controlador.herramienta(herramientaBuscar);
