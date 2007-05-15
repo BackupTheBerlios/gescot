@@ -5,8 +5,6 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.LineaBus;
-import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 
 
@@ -56,20 +54,10 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 			LineaBus seleccionada = lista.get(elementos.getSelectedIndex());
 			HBuscarElemento herramientaBuscar = new HBuscarElemento("Línea de bus",seleccionada.getNombre(),panel_mapa);
 			controlador.herramienta(herramientaBuscar);
-			Iterator tramos = seleccionada.getTramos().iterator();
-			Iterator paradas = seleccionada.getParadas().iterator();
-			
-			//Añadimos cada uno de los tramos  
-			while(tramos.hasNext()){
-			   Tramo aux=(Tramo)tramos.next();
-			   modelo.getMapa().getSeleccion().añadirTramo(aux);  
-			 } 
-			while(paradas.hasNext()){
-			   Nodo parada = (Nodo)paradas.next();
-			   modelo.getMapa().getSeleccion().añadirNodo(parada);
-			}
+			modelo.getMapa().limpiaSeleccion();
 			panel_mapa.centrarEnPosicion(seleccionada.getTramos().get(0).getNodoInicial().getPos().getLat(),
 					seleccionada.getTramos().get(0).getNodoInicial().getPos().getLon() );
+			panel_mapa.setLinea(seleccionada);
 			panel_mapa.repaint();
 			}
 		}

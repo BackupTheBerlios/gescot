@@ -95,6 +95,7 @@ public abstract class AccionVer implements ActionListener {
 			panel_mapa.remove(ventanaVer);
 			ventanaVer=null;
 			modelo.getMapa().limpiaSeleccion();
+			panel_mapa.setLinea(null);
 			panel_mapa.repaint();
 		}
 	}
