@@ -2,7 +2,6 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HCargarMapa;
-import is.SimTraffic.Herramientas.HCrearNuevoMapa;
 import is.SimTraffic.Herramientas.HGuardarMapa;
 import is.SimTraffic.Vista.PanelMapa;
 
