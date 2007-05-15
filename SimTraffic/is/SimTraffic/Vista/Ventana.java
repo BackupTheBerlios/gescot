@@ -544,6 +544,15 @@ public class Ventana extends JFrame {
 		archivoMenu.add(guardarmapaMenuItem);
 
 		archivoMenu.addSeparator();
+		
+		JMenuItem imprimirMapaMenuItem = new JMenuItem();
+		imprimirMapaMenuItem.addActionListener(new AccionImprimir(panel_mapa));
+		imprimirMapaMenuItem.setText("ImprimirMapa");
+		imprimirMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,InputEvent.CTRL_MASK));
+		imprimirMapaMenuItem.setMnemonic('P');
+		archivoMenu.add(imprimirMapaMenuItem);
+
+		archivoMenu.addSeparator();
 
 		JMenuItem salirMenuItem = new JMenuItem();
 		salirMenuItem.addActionListener(new ActionListener() {
