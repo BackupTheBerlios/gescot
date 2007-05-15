@@ -5,6 +5,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Mapa.ElementoMapa;
+import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Vehiculo;
@@ -134,6 +135,8 @@ public class PanelMapa extends JPanel
 	private String ayudaInf;
 	
 	private Flecha flecha;
+	
+	private LineaBus linea;
 	
 	private JPopupMenu emergenteNodo;
 	
@@ -417,6 +420,10 @@ public class PanelMapa extends JPanel
 		if (flecha != null)
 			representacion.pintar(g, flecha);
 		
+		//Pintar Lineas De bus seleccionadas
+		if (linea != null)
+			representacion.pintar(g, linea);
+		
 	}
 	
 	public void setRepresentacion(Representacion representacion) {
@@ -605,6 +612,10 @@ public class PanelMapa extends JPanel
 
 	public double getZoom() {
 		return zoom;
+	}
+
+	public void setLinea(LineaBus linea) {
+		this.linea = linea;
 	}
 	
 }
