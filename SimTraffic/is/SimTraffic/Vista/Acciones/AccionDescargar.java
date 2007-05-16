@@ -7,8 +7,14 @@ import is.SimTraffic.Vista.PanelDescargar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+
 
 /**
  * Clase que extiende ActionListener para permitir a los botones o elementos del
@@ -24,6 +30,8 @@ import javax.swing.JFrame;
  * 
  */
 public class AccionDescargar implements ActionListener{
+	
+
 	
 
 	/**

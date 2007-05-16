@@ -1,6 +1,8 @@
 package is.SimTraffic.Herramientas;
 
 
+import is.SimTraffic.Herramientas.DescargarMapa.BoundingBoxDownloader;
+
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 
@@ -20,11 +22,12 @@ public class HDescargarMapa implements IHerramienta{
 	/**
 	 * 
 	 */
-	PanelMapa panel;
+
 	
-	public HDescargarMapa(IControlador controlador, PanelMapa panel) {
+	public HDescargarMapa(IControlador controlador,double minlat, double minlon, double maxlat, double maxlon) {
 		this.controlador = controlador;
-		this.panel = panel;
+		//BoudingBoxDownloader bbdAux = new BoundingBoxDownloader(minlat, minlon, maxlat, maxlon)
+
 	}
 	
 	public int hacer(IModelo modelo) {

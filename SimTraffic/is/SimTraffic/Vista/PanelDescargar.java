@@ -8,6 +8,8 @@ import java.util.Vector;
 import javax.swing.*;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Herramientas.HDescargarMapa;
+
 
 public class PanelDescargar extends JFrame {
 
@@ -94,7 +96,6 @@ public class PanelDescargar extends JFrame {
 		jbAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				aceptarDatos();
-				llamarHerramienta();
 			}
 		});
 
@@ -139,13 +140,16 @@ public class PanelDescargar extends JFrame {
 			}
 			jtfUrl.setText("http://www.openstreetmap.org/index.html?lat=" + lat
 					+ "&lon=" + lon + "&zoom=" + zoom);
+			llamarHerramienta(latMin,lonMin,latMax,lonMax);
 		} catch (NumberFormatException x) {
 			jtfUrl.setText("");
 		}
 		jtfUrl.setCaretPosition(0);
+
 	}
 
-	private void llamarHerramienta() {
+	private void llamarHerramienta(double minlat, double minlon, double maxlat, double maxlon) {
+		HDescargarMapa hDescargar = new HDescargarMapa(controlador,minlat, minlon, maxlat, maxlon);
 
 	}
 
