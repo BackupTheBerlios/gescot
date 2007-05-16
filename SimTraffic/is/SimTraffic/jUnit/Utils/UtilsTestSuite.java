@@ -23,6 +23,7 @@ public class UtilsTestSuite {
 	    
 	    //Añadimos las clases del paquete
 		//suite.addTestSuite(CheqeuoInputVentanasTest.class);
+		//suite.addTestSuite(PrintUtilitiesTest.class);
 		//suite.addTestSuite(TiempoTest.class);
 		
 		return suite;

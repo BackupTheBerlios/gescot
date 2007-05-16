@@ -38,7 +38,7 @@ public class SimTrafficTestSuite {
 		
 		//Añadimos las clases del paquete
 		suite.addTestSuite(ControladorTest.class);
-		//suite.addTestSuite(ModeloTest.class);
+		suite.addTestSuite(ModeloTest.class);
 		//suite.addTestSuite(PrincipalTest.class);
 		
 		return suite;

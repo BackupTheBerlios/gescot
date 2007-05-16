@@ -19,6 +19,8 @@ public class CargarMapaTestSuite {
 	    
 	    //Añadimos las clases del paquete
 	    //suite.addTestSuite(CargadorMapaTest.class);
+	    //suite.addTestSuite(DocHandlerTest.class);
+	    //suite.addTestSuite(QDParserTest.class);
 	    
 	    return suite;
 	}

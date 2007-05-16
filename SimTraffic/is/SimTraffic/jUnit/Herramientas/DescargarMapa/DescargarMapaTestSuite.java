@@ -22,7 +22,17 @@ public class DescargarMapaTestSuite {
 	    //Añadimos las suites de los subpaquetes
 	    
 	    //Añadimos las clases del paquete
-	    //suite.addTestSuite(XXXTest.class);
+	    //suite.addTestSuite(Base64Test.class);
+	    //suite.addTestSuite(BoundingBoxDownloaderTest.class);
+	    //suite.addTestSuite(GBCTest.class);
+	    //suite.addTestSuite(IncompleteDownloaderTest.class);
+	    //suite.addTestSuite(OsmConnectionTest.class);
+	    //suite.addTestSuite(OsmIdReaderTest.class);
+	    //suite.addTestSuite(OsmReaderTest.class);
+	    //suite.addTestSuite(OsmServerReaderTest.class);
+	    //suite.addTestSuite(PleaseWaitDialogTest.class);
+	    //suite.addTestSuite(ProgressInputStreamTest.class);
+	    //suite.addTestSuite(XmlWriterTest.class);
 	    
 	    return suite;
 	}
