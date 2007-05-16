@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Representaciones;
 
 import is.SimTraffic.Mapa.ConversorUTM;
 import is.SimTraffic.Mapa.ElementoMapa;
+import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
@@ -15,7 +16,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Stroke;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
 
 /**
  * Clase abstracta para representaciones del mapa.
@@ -507,7 +514,35 @@ abstract public class Representacion {
 			catch (ArithmeticException e) {}
 			g.setStroke(new BasicStroke(1));
 		}
-	}	
+	}
+	public void pintar(Graphics2D g,LineaBus linea){
+		Iterator<Nodo> paradas=linea.getParadas().iterator();
+		BufferedImage estacion;
+		estacion=cargarImagen("bus_Station.png");
+		while(paradas.hasNext()){
+			   Nodo parada = (Nodo)paradas.next();
+			   g.drawImage(estacion, x_MapaARep(parada.getPos().getLon()) - 10,
+						y_MapaARep(parada.getPos().getLat()) - 10, null);
+			}
+		Stroke stroke=g.getStroke();
+		Iterator<Tramo> tramos=linea.getTramos().iterator();
+		while (tramos.hasNext()){
+			Tramo tramoAux =tramos.next();
+			Posicion posnodo1 = tramoAux.getNodoInicial().getPos();
+			Posicion posnodo2 = tramoAux.getNodoFinal().getPos();
+			//g.setColor(linea.getColor());
+			g.setColor(Color.RED);
+			final float dash1[] = {5.0f};
+			g.setStroke( new BasicStroke(1.0f,
+                    BasicStroke.CAP_BUTT,
+                    BasicStroke.JOIN_MITER,
+                    5.0f,dash1, 0.0f));
+			g.drawLine(x_MapaARep(posnodo1.getLon())+3,
+					y_MapaARep(posnodo1.getLat())+3, x_MapaARep(posnodo2.getLon())+3,
+					y_MapaARep(posnodo2.getLat())+3);
+		}
+		g.setStroke(stroke);
+	}
 
 	public ArrayList<Image> getImagenes() {
 		return imagenes;
@@ -528,5 +563,24 @@ abstract public class Representacion {
 	public abstract void seleccionarColoresSemaforos(Tramo tramo, Graphics2D g); 
 	
 	public void iniciarRepresentacion() {
+	}
+	
+	public BufferedImage cargarImagen(String nombre) {
+		BufferedImage imagen;
+		try {
+			ClassLoader cl = this.getClass().getClassLoader();
+			imagen = ImageIO
+			.read(cl
+					.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/"
+							+ nombre));
+			
+		} catch (IOException e) {
+			System.out.println(nombre);
+			return null;
+		} catch (NullPointerException e) {
+			System.out.println(nombre);
+			return null;
+		}
+		return imagen;
 	}
 }

@@ -603,24 +603,6 @@ public class RepresentacionAvanzada extends Representacion {
 		
 	}
 	
-	private BufferedImage cargarImagen(String nombre) {
-		BufferedImage imagen;
-		try {
-			ClassLoader cl = this.getClass().getClassLoader();
-			imagen = ImageIO
-			.read(cl
-					.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/"
-							+ nombre));
-			
-		} catch (IOException e) {
-			System.out.println(nombre);
-			return null;
-		} catch (NullPointerException e) {
-			System.out.println(nombre);
-			return null;
-		}
-		return imagen;
-	}
 	
 	@Override
 	public Polygon generarTrianguloFlechaSugerencia(Nodo nodo, Tramo destino) {
