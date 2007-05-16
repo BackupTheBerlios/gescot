@@ -4,6 +4,7 @@
 package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.jUnit.Herramientas.CargarMapa.CargarMapaTestSuite;
+import is.SimTraffic.jUnit.Herramientas.DescargarMapa.DescargarMapaTestSuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -23,8 +24,10 @@ public class HerramientasTestSuite {
 	    
 	    //Añadimos las suites de los subpaquetes
 	    suite.addTest(CargarMapaTestSuite.suite());
+	    suite.addTest(DescargarMapaTestSuite.suite());
 	    
 	    //Añadimos las clases del paquete
+	    suite.addTestSuite(ExtFilterTest.class);
 	    suite.addTestSuite(HAñadirLineaAutobusTest.class);
 	    suite.addTestSuite(HAñadirNodoTest.class);
 	    suite.addTestSuite(HAñadirTramoTest.class);
@@ -48,7 +51,7 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HModificarNodoTest.class);
 	    suite.addTestSuite(HModificarParamSimulacionTest.class);
 	    suite.addTestSuite(HModificarSeñalTest.class);
-	    //suite.addTestSuite(HModificarTramoTest.class);
+	    suite.addTestSuite(HModificarTramoTest.class);
 	    //suite.addTestSuite(HMoverTest.class);
 	    //suite.addTestSuite(HPartirTramoTest.class);
 	    //suite.addTestSuite(HPausarTest.class);

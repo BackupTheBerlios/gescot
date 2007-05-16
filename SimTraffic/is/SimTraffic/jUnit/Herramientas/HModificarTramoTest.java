@@ -10,7 +10,7 @@ import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import junit.framework.TestCase;
 
-public class HModificarTramotest extends TestCase{
+public class HModificarTramoTest extends TestCase{
 	
 	Nodo nodo1;
 	
@@ -38,7 +38,7 @@ public class HModificarTramotest extends TestCase{
 	 * Constructor
 	 * @param arg0
 	 */
-	public HModificarTramotest(String arg0) {
+	public HModificarTramoTest(String arg0) {
 		super(arg0);
 	}
 	

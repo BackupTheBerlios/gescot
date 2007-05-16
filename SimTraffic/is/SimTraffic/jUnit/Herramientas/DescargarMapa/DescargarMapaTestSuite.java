@@ -1,4 +1,7 @@
-package is.SimTraffic.jUnit.Herramientas.CargarMapa;
+/**
+ * 
+ */
+package is.SimTraffic.jUnit.Herramientas.DescargarMapa;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -7,7 +10,8 @@ import junit.framework.TestSuite;
  * Clase de prueba que llama a todos los tests del paquete CargarMapa
  * 
  */
-public class CargarMapaTestSuite {
+public class DescargarMapaTestSuite {
+
 	/**
 	 * Método suite que añade los tests de todas las clases de prueba
 	 * 
@@ -18,7 +22,7 @@ public class CargarMapaTestSuite {
 	    //Añadimos las suites de los subpaquetes
 	    
 	    //Añadimos las clases del paquete
-	    //suite.addTestSuite(CargadorMapaTest.class);
+	    //suite.addTestSuite(XXXTest.class);
 	    
 	    return suite;
 	}
