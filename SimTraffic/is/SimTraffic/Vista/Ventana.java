@@ -840,22 +840,23 @@ public class Ventana extends JFrame {
 				String url= "http://simtraffic.helker.com/Manual2/manual.html";
 				/**
 				 * Válido en principio para cualquier navegador. Solo en windows?
+				 * No funciona en el puesto Pto 1108 
 				 */
-				try {
+				/*try {
 					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 				} catch (IOException e1) {
 					System.out.println("Error al lanzar el navegador de ayuda");
 				}
-				
+				*/
 				/**
 				 * Solo válido para internet Explorer 
 				 */
-				/* try {
+				 try {
 					Runtime.getRuntime().exec("cmd /c start iexplore "+url);
 				} catch (IOException e1) {
 					System.out.println("Error al lanzar el navegador de ayuda"); 
 
-				}*/ 
+				} 
 				
 			}
 		});
