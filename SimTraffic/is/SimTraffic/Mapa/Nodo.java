@@ -283,6 +283,8 @@ public class Nodo implements ElementoMapa, Serializable{
 	
 	public Nodo pseudoClone() {
 		Nodo clon = new Nodo(this.pos.clone());
+		clon.tipo = this.tipo;
+		clon.ID = this.ID;
 		return clon;
 	}
 
