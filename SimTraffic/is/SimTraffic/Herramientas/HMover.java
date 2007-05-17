@@ -110,4 +110,20 @@ public class HMover implements IHerramienta{
 	public String toString(){
 		return Tiempo.Hora()+Messages.getString("HMover.0")+ Messages.getString("HMover.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
+
+	public List<Nodo> getNodos() {
+		return nodos;
+	}
+
+	public List<Nodo> getNodosAnteriores() {
+		return nodosAnteriores;
+	}
+
+	public double getDiferenciaX() {
+		return diferenciaX;
+	}
+
+	public double getDiferenciaY() {
+		return diferenciaY;
+	}
 }
