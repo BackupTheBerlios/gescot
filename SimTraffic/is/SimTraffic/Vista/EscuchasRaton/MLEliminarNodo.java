@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -88,7 +89,7 @@ public class MLEliminarNodo extends EscuchaRaton
 
 	@Override
 	public String getAyuda() {
-		return "Haga click sobre el nodo que desea eliminar.";
+		return Messages.getString("MLEliminarNodo.0"); //$NON-NLS-1$
 	}
 
 }

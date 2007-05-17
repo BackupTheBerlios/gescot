@@ -1,3 +1,6 @@
-#Tue Apr 10 19:36:32 GMT+02:00 2007
+#Thu May 17 13:45:46 CEST 2007
 eclipse.preferences.version=1
 encoding//is/SimTraffic=ISO-8859-1
+encoding//is/SimTraffic/Herramientas/messages.properties=8859_1
+encoding//is/SimTraffic/Mapa/messages.properties=8859_1
+encoding//is/SimTraffic/messages.properties=8859_1

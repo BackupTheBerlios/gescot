@@ -4,6 +4,7 @@ import java.util.List;
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 
 /**
  * Herramienta que permite realizar la operación de hacer/deshacer
@@ -58,7 +59,7 @@ public class HEliminarSeleccion implements IHerramienta {
 	}
 
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Selección eliminada";
+		return Tiempo.Hora()+Messages.getString("HEliminarSeleccion.0")+Messages.getString("HEliminarSeleccion.1"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	public List<Nodo> getNodos() {
 		return nodos;

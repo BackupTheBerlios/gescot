@@ -1,9 +1,10 @@
 package is.SimTraffic.Utils;
 
+import is.SimTraffic.Messages;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-@SuppressWarnings("unused")
 public class Tiempo {
 	public static String Hora(){
 	    Calendar cal = new GregorianCalendar();
@@ -15,13 +16,13 @@ public class Tiempo {
 	    int ms = cal.get(Calendar.MILLISECOND);         // 0..999
 	    int ampm = cal.get(Calendar.AM_PM);             // 0=AM, 1=PM
 	    
-	    return "["+convierte(hour24)+":"+convierte(min)+":"+convierte(sec)+"]";
+	    return Messages.getString("Tiempo.1")+convierte(hour24)+Messages.getString("Tiempo.2")+convierte(min)+Messages.getString("Tiempo.3")+convierte(sec)+Messages.getString("Tiempo.4"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 	
 	private static String convierte(int valor){
 		if (valor <10){
-			return "0"+valor;
+			return Messages.getString("Tiempo.5")+valor; //$NON-NLS-1$
 		}
-		else return ""+valor;
+		else return Messages.getString("Tiempo.6")+valor; //$NON-NLS-1$
 	}
 }

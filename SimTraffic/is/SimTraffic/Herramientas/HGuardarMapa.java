@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
@@ -60,27 +61,27 @@ public class HGuardarMapa implements IHerramienta {
 	 */
 	public void generarXMLinfo(Mapa mapa) {
 
-		fc = new JFileChooser(".//is/SimTraffic/Ejemplos");
-		String[] ext = new String[] { "osm" };
-		fc.addChoosableFileFilter(new ExtFilter(ext,"Mapa OSM (*.osm)"));
+		fc = new JFileChooser(Messages.getString("HGuardarMapa.0")); //$NON-NLS-1$
+		String[] ext = new String[] { Messages.getString("HGuardarMapa.1") }; //$NON-NLS-1$
+		fc.addChoosableFileFilter(new ExtFilter(ext,Messages.getString("HGuardarMapa.2"))); //$NON-NLS-1$
 		int val = fc.showSaveDialog(null);
 		
 		if (val == JFileChooser.APPROVE_OPTION) {
 			PrintWriter salida;
 			try {
 				aceptado = true;
-				if (fc.getSelectedFile().getAbsolutePath().contains(".osm"))
+				if (fc.getSelectedFile().getAbsolutePath().contains(Messages.getString("HGuardarMapa.3"))) //$NON-NLS-1$
 					salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
 						.getSelectedFile().getAbsolutePath())))  ;
 				else {
 					salida = new PrintWriter(new BufferedWriter(new FileWriter(fc
-							.getSelectedFile().getAbsolutePath().concat(".osm"))))  ;	
+							.getSelectedFile().getAbsolutePath().concat(Messages.getString("HGuardarMapa.4")))))  ;	 //$NON-NLS-1$
 				}
 					
-				System.out.println("w/n");
+				System.out.println(Messages.getString("HGuardarMapa.5")); //$NON-NLS-1$
 				// Escribir
-				salida.println("<?xml version='1.0' encoding='UTF-8'?>");
-				salida.println("<osm version='0.3' generator='SimTrafficTM'>");
+				salida.println(Messages.getString("HGuardarMapa.6")); //$NON-NLS-1$
+				salida.println(Messages.getString("HGuardarMapa.7")); //$NON-NLS-1$
 
 				Iterator<Nodo> nod = mapa.getNodos().iterator();
 				while (nod.hasNext()) {
@@ -132,7 +133,7 @@ public class HGuardarMapa implements IHerramienta {
 					s = s.concat("</way>\n");
 				}
 				salida.println(s);*/
-				salida.println("</osm>");
+				salida.println(Messages.getString("HGuardarMapa.8")); //$NON-NLS-1$
 				salida.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -145,10 +146,10 @@ public class HGuardarMapa implements IHerramienta {
 	public void guardarSeñales(Mapa mapa){
 		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
 		
-		if (rutaSeñales.contains(".osm")){
-			rutaSeñales = rutaSeñales.replace(".osm",".sem");
+		if (rutaSeñales.contains(Messages.getString("HGuardarMapa.9"))){ //$NON-NLS-1$
+			rutaSeñales = rutaSeñales.replace(Messages.getString("HGuardarMapa.10"),Messages.getString("HGuardarMapa.11")); //$NON-NLS-1$ //$NON-NLS-2$
 		} else {
-			rutaSeñales += ".sem";
+			rutaSeñales += Messages.getString("HGuardarMapa.12"); //$NON-NLS-1$
 		}
 		
 		List<Señal> listaSeñales = new ArrayList<Señal>();
@@ -178,6 +179,6 @@ public class HGuardarMapa implements IHerramienta {
 	}
 	
 	public String toString(){
-		return Tiempo.Hora()+" - "+ "Se guarda mapa";
+		return Tiempo.Hora()+Messages.getString("HGuardarMapa.13")+ Messages.getString("HGuardarMapa.14"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

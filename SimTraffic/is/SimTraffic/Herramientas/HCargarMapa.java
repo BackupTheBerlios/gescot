@@ -2,6 +2,7 @@ package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -64,7 +65,7 @@ public class HCargarMapa implements IHerramienta {
 	 * Se utiliza una variable estatica para que nos se tengan que cargar sus
 	 * componentes cada vez.
 	 */
-	public static PanelEsperaCargando p = new PanelEsperaCargando("Cargando...", "Cargando mapa...");
+	public static PanelEsperaCargando p = new PanelEsperaCargando(Messages.getString("HCargarMapa.0"), Messages.getString("HCargarMapa.1")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	protected boolean error;
 
@@ -87,9 +88,9 @@ public class HCargarMapa implements IHerramienta {
 		mapaNuevo = null;
 		this.modelo = modelo;
 		error = false;
-		fc = new JFileChooser(".//is/SimTraffic/Ejemplos");
-		String[] ext = new String[] { "osm" };
-		fc.addChoosableFileFilter(new ExtFilter(ext, "Mapa OSM (*.osm)"));
+		fc = new JFileChooser(Messages.getString("HCargarMapa.2")); //$NON-NLS-1$
+		String[] ext = new String[] { Messages.getString("HCargarMapa.3") }; //$NON-NLS-1$
+		fc.addChoosableFileFilter(new ExtFilter(ext, Messages.getString("HCargarMapa.4"))); //$NON-NLS-1$
 		int val = fc.showOpenDialog(null);
 
 		if (val == JFileChooser.APPROVE_OPTION) {
@@ -111,7 +112,7 @@ public class HCargarMapa implements IHerramienta {
 
 					} catch (Exception e) {
 						p.terminar();
-						System.out.println("Error al leer archivo");
+						System.out.println(Messages.getString("HCargarMapa.5")); //$NON-NLS-1$
 						e.printStackTrace();
 						error = true;
 					}
@@ -126,13 +127,13 @@ public class HCargarMapa implements IHerramienta {
 						} catch (IOException e) {
 							p.terminar();
 							JOptionPane.showMessageDialog(null,
-									"Advertencia: No se ha leido ningún fichero de semaforos asociado");
+									Messages.getString("HCargarMapa.6")); //$NON-NLS-1$
 
 						} catch (ClassNotFoundException e) {
 							p.terminar();
 							JOptionPane
 									.showMessageDialog(null,
-											"Problema en el fichero de señales, no se cargaran.");
+											Messages.getString("HCargarMapa.7")); //$NON-NLS-1$
 						}
 
 						p.terminar();
@@ -160,17 +161,16 @@ public class HCargarMapa implements IHerramienta {
 	 *             Excepción si hay un problema en las clases encontradas en el
 	 *             fichero.
 	 */
-	@SuppressWarnings("unchecked")
 	public void cargarSeñales(Mapa mapa) throws IOException,
 			ClassNotFoundException {
 		List<Señal> listaSeñales = null;
 
 		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
 
-		if (rutaSeñales.contains(".osm")) {
-			rutaSeñales = rutaSeñales.replaceAll(".osm", ".sem");
+		if (rutaSeñales.contains(Messages.getString("HCargarMapa.9"))) { //$NON-NLS-1$
+			rutaSeñales = rutaSeñales.replaceAll(Messages.getString("HCargarMapa.10"), Messages.getString("HCargarMapa.11")); //$NON-NLS-1$ //$NON-NLS-2$
 		} else {
-			rutaSeñales += ".sem";
+			rutaSeñales += Messages.getString("HCargarMapa.12"); //$NON-NLS-1$
 		}
 
 		FileInputStream flujoIn = new FileInputStream(rutaSeñales);
@@ -202,7 +202,7 @@ public class HCargarMapa implements IHerramienta {
 	}
 
 	public String toString() {
-		return Tiempo.Hora() + " - " + "Mapa Cargado";
+		return Tiempo.Hora() + Messages.getString("HCargarMapa.13") + Messages.getString("HCargarMapa.14"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public Object getcontrolador() {

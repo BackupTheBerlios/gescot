@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Messages;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -39,7 +41,7 @@ public class Log extends JFrame {
 	private JScrollPane scrollPane;
 	
 	Log(List h) {
-		setTitle("Historial de Eventos");
+		setTitle(Messages.getString("Log.0")); //$NON-NLS-1$
 		setVisible(true);
 		this.historial= h;
 		texto = new JTextArea ();
@@ -51,7 +53,7 @@ public class Log extends JFrame {
 		scrollPane = new JScrollPane (texto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
 		add(scrollPane, BorderLayout.CENTER);
 		
-		JButton aceptar = new JButton("Aceptar");
+		JButton aceptar = new JButton(Messages.getString("Log.1")); //$NON-NLS-1$
 		aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Log.this.setVisible(false);
@@ -65,7 +67,7 @@ public class Log extends JFrame {
 		this.pack();
 		this.setResizable(true);
 		this.setLocation(50, 50);
-		if (historial.isEmpty()) texto.setText("Sin eventos");
+		if (historial.isEmpty()) texto.setText(Messages.getString("Log.2")); //$NON-NLS-1$
 		else escribirTexto();
 	}
 	
@@ -75,10 +77,10 @@ public class Log extends JFrame {
 	 */
 	private void escribirTexto(){
 		Iterator it = this.historial.iterator();
-		this.texto.setText("");
+		this.texto.setText(Messages.getString("Log.3")); //$NON-NLS-1$
 		while (it.hasNext()){
 			this.texto.append((String)it.next());
-			this.texto.append("\n");
+			this.texto.append(Messages.getString("Log.4")); //$NON-NLS-1$
 			
 		}
 	}

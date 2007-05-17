@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Vista.PanelMapa;
@@ -118,7 +119,7 @@ public class MLSeleccionarImagen extends EscuchaRaton{
 
 	@Override
 	public String getAyuda() {
-		return "Herramienta que permite modificar las imagenes de fondo";
+		return Messages.getString("MLSeleccionarImagen.0"); //$NON-NLS-1$
 	}
 
 }

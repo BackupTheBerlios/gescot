@@ -5,6 +5,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -111,7 +112,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 				if (nodoAux != null) {
 					//JFrame ventanaNodo = new JFrame();
 					PanelNodo panelNod = new PanelNodo(nodoAux, panel);
-					panelNod.setTitle("Propiedades del Nodo");
+					panelNod.setTitle(Messages.getString("MLEscuchaSiempre.0")); //$NON-NLS-1$
 					panelNod.setBounds(80, 120, 500, 600);
 					panelNod.setVisible(true);
 				}
@@ -121,7 +122,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 				{
 					//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
 					PanelTramo panelTram = new PanelTramo(tramoAux, panel,controlador);
-					panelTram.setTitle("Propiedades del Tramo");
+					panelTram.setTitle(Messages.getString("MLEscuchaSiempre.1")); //$NON-NLS-1$
 					panelTram.setBounds(80, 120, 480, 500);
 					panelTram.setVisible(true);
 				}
@@ -203,7 +204,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 	@Override
 	public String getAyuda() {
 		// TODO Auto-generated method stub
-		return "";
+		return Messages.getString("MLEscuchaSiempre.2"); //$NON-NLS-1$
 	}
 
 }

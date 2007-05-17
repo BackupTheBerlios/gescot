@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Nodo;
@@ -120,7 +121,7 @@ public class MLCopiar extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return "";
+		return Messages.getString("MLCopiar.0"); //$NON-NLS-1$
 	}
 
 }

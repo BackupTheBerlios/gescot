@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import java.util.List;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
@@ -20,13 +21,11 @@ public class HCopiar implements IHerramienta {
 	/**
 	 * Lista de nodos seleccionados
 	 */
-	@SuppressWarnings("unused")
 	private List<Nodo> nodos;
 	
 	/**
 	 * Lista de tramos seleccionados
 	 */
-	@SuppressWarnings("unused")
 	private List<Tramo> tramos;
 	
 	/**
@@ -119,7 +118,7 @@ public class HCopiar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Selección copiada";
+		return Tiempo.Hora()+Messages.getString("HCopiar.2")+Messages.getString("HCopiar.3"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public List<Nodo> getNodos() {

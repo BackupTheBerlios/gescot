@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HCreaItinerarioEntreDosNodos;
 import is.SimTraffic.Herramientas.IHerramienta;
 import is.SimTraffic.Mapa.Nodo;
@@ -108,7 +109,7 @@ public class MLEscuchaItinerario extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return "Haga click en 2 nodos: el primero será el nodo del que parte (nodo origen) y el segundo el nodo al que llegará (nodo destino).";
+		return Messages.getString("MLEscuchaItinerario.0"); //$NON-NLS-1$
 	}
 
 }

@@ -1,5 +1,6 @@
 package is.SimTraffic.LibreriaIA.Algoritmos;
 
+import is.SimTraffic.Herramientas.Messages;
 import is.SimTraffic.LibreriaIA.ComparadorNodosValorHyCoste;
 import is.SimTraffic.LibreriaIA.IAlgoritmoInformado;
 import is.SimTraffic.LibreriaIA.IEstado;
@@ -36,7 +37,6 @@ public class AEstrella implements IAlgoritmoInformado {
 	/**
 	 * Constructor por defecto.
 	 */
-	@SuppressWarnings("unchecked")
 	public AEstrella(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores, IHeuristica heuristica/*,InfoHabitaciones infoBase*/) {
 		this.inicial = inicial;
 		this.objetivo = objetivo;
@@ -53,7 +53,7 @@ public class AEstrella implements IAlgoritmoInformado {
 	}
 	
 	public String toString() {
-		String s="A estrella (A*)";
+		String s=Messages.getString("AEstrella.1"); //$NON-NLS-1$
 		return s;
 	}
 
@@ -220,13 +220,13 @@ public class AEstrella implements IAlgoritmoInformado {
 		
 		if (nodoActual!= null && esObjetivo(nodoActual)) {
 			//Éxito
-			System.out.println("Éxito");
+			System.out.println(Messages.getString("AEstrella.2")); //$NON-NLS-1$
 			solucion=crearSolucion(nodoActual);
 			mostrarSolucion(solucion);
 			encontreSolucion = true;
 		}
 		else {
-			System.out.println("No hay solución");
+			System.out.println(Messages.getString("AEstrella.3")); //$NON-NLS-1$
 		}
 		
 		return encontreSolucion;
@@ -258,7 +258,7 @@ public class AEstrella implements IAlgoritmoInformado {
 
 	public void mostrarSolucion(Vector<NodoIA> sol) {
 		if (sol==null || sol.size()==0) 
-			System.out.println("No se ha encontrado solución"); 
+			System.out.println(Messages.getString("AEstrella.4"));  //$NON-NLS-1$
 		else {
 			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
 			for (int i=(sol.size()); i>0 ; i--) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -22,7 +23,7 @@ public class Ambulancia extends Vehiculo {
 	public Ambulancia(List<Nodo> hospitales) {
 		// TODO este constructor deberia dar valores a todos
 		//   los atributos de un vehiculo
-		nombre = "Ambulancia";
+		nombre = Messages.getString("Ambulancia.0"); //$NON-NLS-1$
 		
 		//Se genera un color aleatorio
 		//generarColorAleatorio();

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
@@ -14,7 +15,7 @@ public class Moto extends Vehiculo {
 	public Moto() {
 		// TODO este constructor deberia dar valores a todos
 		//   los atributos de un vehiculo
-		nombre = "Moto";
+		nombre = Messages.getString("Moto.0"); //$NON-NLS-1$
 		
 		//Se genera un color aleatorio
 		//generarColorAleatorio();

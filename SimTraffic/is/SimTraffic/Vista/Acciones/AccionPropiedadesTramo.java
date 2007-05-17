@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelTramo;
@@ -22,7 +23,7 @@ public class AccionPropiedadesTramo extends AccionesPopUpMenu{
 		if (tramoAux != null) {
 			//JFrame ventanaNodo = new JFrame();
 			PanelTramo panelTramo = new PanelTramo(tramoAux, panel_mapa,controlador);
-			panelTramo.setTitle("Propiedades del tramo");
+			panelTramo.setTitle(Messages.getString("AccionPropiedadesTramo.0")); //$NON-NLS-1$
 			panelTramo.setBounds(80, 120, 500, 600);
 			panelTramo.setVisible(true);
 		}

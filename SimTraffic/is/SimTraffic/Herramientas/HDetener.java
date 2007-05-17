@@ -28,6 +28,6 @@ public class HDetener implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Simulación detenida";
+		return Tiempo.Hora()+Messages.getString("HDetener.0")+Messages.getString("HDetener.1"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 }

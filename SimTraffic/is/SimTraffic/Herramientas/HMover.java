@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
@@ -107,6 +108,6 @@ public class HMover implements IHerramienta{
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+ "Acción Mover";
+		return Tiempo.Hora()+Messages.getString("HMover.0")+ Messages.getString("HMover.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señales.Semaforo;
@@ -142,8 +143,8 @@ public class PanelNodo extends JFrame {
 	 * @deprecated  De momento no se usa y se ha deshabilitado.
 	 */
 	public void creaPanelTramos() {
-		panelDatos.addTab("Tramos", null, panelTramos,
-				"Tramos asociados al Nodo");
+		panelDatos.addTab(Messages.getString("PanelNodo.0"), null, panelTramos, //$NON-NLS-1$
+				Messages.getString("PanelNodo.1")); //$NON-NLS-1$
 	}
 
 	
@@ -156,31 +157,31 @@ public class PanelNodo extends JFrame {
 	
 	public void creaPanelSemaforos(){
 		panelSemaforos.removeAll();
-		panelDatos.addTab("Semáforos", null, panelSemaforos,"Semáforos del tramo");
+		panelDatos.addTab(Messages.getString("PanelNodo.2"), null, panelSemaforos,Messages.getString("PanelNodo.3")); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		//Si no se ha insertado todavía un semáforo.
 		if (nodo.getSeñal() == null){
-			JLabel etiquetaNuevo = new JLabel("No existe un semáforo en el nodo");
-			JButton botonCrearSemaforo = new JButton("Crear Semáforo");
+			JLabel etiquetaNuevo = new JLabel(Messages.getString("PanelNodo.4")); //$NON-NLS-1$
+			JButton botonCrearSemaforo = new JButton(Messages.getString("PanelNodo.5")); //$NON-NLS-1$
 			AccionCrearSemaforo oyenteBotonSemaforo = new AccionCrearSemaforo(nodo,this);
 			botonCrearSemaforo.addActionListener(oyenteBotonSemaforo);
 			panelSemaforos.add(etiquetaNuevo);
 			panelSemaforos.add(botonCrearSemaforo);
 		//Si ya existe un semáforo en el nodo
-		} else if(nodo.getSeñal().getNombre().equals("Semaforo")){
+		} else if(nodo.getSeñal().getNombre().equals(Messages.getString("PanelNodo.6"))){ //$NON-NLS-1$
 			JPanel panelInterior = new JPanel();
-			String[] valoresTiempoTotal = {"30","60","120","240"};
+			String[] valoresTiempoTotal = {Messages.getString("PanelNodo.7"),Messages.getString("PanelNodo.8"),Messages.getString("PanelNodo.9"),Messages.getString("PanelNodo.10")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			electorTiempoTotal = new JComboBox(valoresTiempoTotal);
 			electorTiempoTotal.setSelectedItem((String.valueOf(((Semaforo)nodo.getSeñal()).getTiempoTotal())));
 			
-			JLabel etiqElector = new JLabel("Elija el tiempo total de ciclo del semáforo");
-			JButton botonAplicar = new JButton("Aplicar Cambios");
-			JButton botonBorrarSemaforo = new JButton("Borrar Semaforo");
+			JLabel etiqElector = new JLabel(Messages.getString("PanelNodo.11")); //$NON-NLS-1$
+			JButton botonAplicar = new JButton(Messages.getString("PanelNodo.12")); //$NON-NLS-1$
+			JButton botonBorrarSemaforo = new JButton(Messages.getString("PanelNodo.13")); //$NON-NLS-1$
 			
 			AccionEliminarSemaforo accionEliminarSem = new AccionEliminarSemaforo(nodo,this);
 			botonBorrarSemaforo.addActionListener(accionEliminarSem);
 			
-			botonAplicar.setToolTipText("¡Aviso! Se borrarán todos los intervalos creados");
+			botonAplicar.setToolTipText(Messages.getString("PanelNodo.14")); //$NON-NLS-1$
 			AccionCambiarTiempoTotalSem oyenteBotonAplicar = new AccionCambiarTiempoTotalSem(nodo,this);
 			botonAplicar.addActionListener(oyenteBotonAplicar);
 			panelSemaforos.add(etiqElector);
@@ -195,13 +196,13 @@ public class PanelNodo extends JFrame {
 			panelInterior.setPreferredSize(new Dimension(430,valorScrollVertical));
 			creaPanelesIntervalos(panelInterior);
 			
-			JButton añadirIntervalo = new JButton("Haga Click para añadir intervalo");
+			JButton añadirIntervalo = new JButton(Messages.getString("PanelNodo.15")); //$NON-NLS-1$
 			panelSemaforos.add(añadirIntervalo);
-			JLabel etiqDe = new JLabel("De");
+			JLabel etiqDe = new JLabel(Messages.getString("PanelNodo.16")); //$NON-NLS-1$
 			panelSemaforos.add(etiqDe);
 			tiempoInicialSemaforo = new JSpinner(new SpinnerNumberModel(0, 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
 			panelSemaforos.add(tiempoInicialSemaforo);
-			JLabel etiqA = new JLabel("a");
+			JLabel etiqA = new JLabel(Messages.getString("PanelNodo.17")); //$NON-NLS-1$
 			panelSemaforos.add(etiqA);
 			tiempoFinalSemaforo = new JSpinner(new SpinnerNumberModel(((Semaforo)nodo.getSeñal()).getTiempoTotal(), 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
 			panelSemaforos.add(tiempoFinalSemaforo);
@@ -244,23 +245,23 @@ public class PanelNodo extends JFrame {
 		ClassLoader cl = this.getClass().getClassLoader();
 
 		ImageIcon imagen = new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/borrarIntervalo.png"), "Borrar Intervalo");
+				.getResource(Messages.getString("PanelNodo.18")), Messages.getString("PanelNodo.19")); //$NON-NLS-1$ //$NON-NLS-2$
 			
 		for (int i=0;i<((Semaforo)nodo.getSeñal()).getListaIntervalos().size();i++) {
-			JLabel etiqDe = new JLabel("De");
+			JLabel etiqDe = new JLabel(Messages.getString("PanelNodo.20")); //$NON-NLS-1$
 			String valor1 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoInicial());
 			String valor2 = String.valueOf(((Semaforo)nodo.getSeñal()).getListaIntervalos().get(i).getTiempoFinal());
 			JSpinner tiempoDe = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor1), 0, Integer.parseInt(valor2), 5));
 			EscuchaCambioSpinner oyenteCambioSpinner = new EscuchaCambioSpinner(i,this);
 			tiempoDe.addChangeListener(oyenteCambioSpinner);
 			listaTiempoInicialIntervalo.add(tiempoDe);
-			JLabel etiqA = new JLabel("a");
+			JLabel etiqA = new JLabel(Messages.getString("PanelNodo.21")); //$NON-NLS-1$
 			JSpinner tiempoA = new JSpinner(new SpinnerNumberModel(Integer.parseInt(valor2), 0,((Semaforo)nodo.getSeñal()).getTiempoTotal(), 5));
 			tiempoA.addChangeListener(oyenteCambioSpinner);
 			listaTiempoFinalIntervalo.add(tiempoA);
-			JButton mostrarM = new JButton("MostrarMatriz");
+			JButton mostrarM = new JButton(Messages.getString("PanelNodo.22")); //$NON-NLS-1$
 			AccionAbrirMatrizDePaso oyenteBotonMatriz = new AccionAbrirMatrizDePaso(this);
-			JButton aplicarC = new JButton("AplicarCambios");
+			JButton aplicarC = new JButton(Messages.getString("PanelNodo.23")); //$NON-NLS-1$
 			aplicarC.setEnabled(false);
 			JButton botonBorrarIntervalo = new JButton(imagen);
 			botonBorrarIntervalo.setPreferredSize(new Dimension(30,25));
@@ -281,7 +282,7 @@ public class PanelNodo extends JFrame {
 			intervaloI.add(mostrarM);
 			intervaloI.add(aplicarC);
 			intervaloI.add(botonBorrarIntervalo);
-			intervaloI.setBorder(BorderFactory.createTitledBorder("Intervalo " + i));
+			intervaloI.setBorder(BorderFactory.createTitledBorder(Messages.getString("PanelNodo.24") + i)); //$NON-NLS-1$
 			panelInterno.add(intervaloI);
 		}
 		
@@ -311,25 +312,25 @@ public class PanelNodo extends JFrame {
 		panelDetallesSeñal.setLayout(new FlowLayout());
 
 		panelTipoSeñal.setBorder(BorderFactory
-				.createTitledBorder("Tipo de Señal"));
+				.createTitledBorder(Messages.getString("PanelNodo.25"))); //$NON-NLS-1$
 		panelDetallesSeñal.setBorder(BorderFactory
-				.createTitledBorder("Detalles"));
+				.createTitledBorder(Messages.getString("PanelNodo.26"))); //$NON-NLS-1$
 
-		JLabel etiquetaTipoSeñal = new JLabel("Tipo");
-		String[] tiposSeñales = { "                  ", "STOP", "Ceda el Paso",
-				"Semáforos" };
+		JLabel etiquetaTipoSeñal = new JLabel(Messages.getString("PanelNodo.27")); //$NON-NLS-1$
+		String[] tiposSeñales = { Messages.getString("PanelNodo.28"), Messages.getString("PanelNodo.29"), Messages.getString("PanelNodo.30"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				Messages.getString("PanelNodo.31") }; //$NON-NLS-1$
 		comboTipoSeñales = new JComboBox(tiposSeñales);
 
 		panelTipoSeñal.add(etiquetaTipoSeñal);
 		panelTipoSeñal.add(comboTipoSeñales);
 
-		JLabel etiquetaDetallesSeñal1 = new JLabel("Tipo de Semaforo");
-		String[] tiposSemaforos = { "                  ", "Circular",
-				"Perpendicular" };
+		JLabel etiquetaDetallesSeñal1 = new JLabel(Messages.getString("PanelNodo.32")); //$NON-NLS-1$
+		String[] tiposSemaforos = { Messages.getString("PanelNodo.33"), Messages.getString("PanelNodo.34"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("PanelNodo.35") }; //$NON-NLS-1$
 		comboTipoSemaforos = new JComboBox();
 		comboTipoSemaforos = new JComboBox(tiposSemaforos);
-		JLabel etiquetaDetallesSeñal2 = new JLabel("Tiempo de ciclo (segundos)");
-		campoTiempoCicloSemaforo = new JTextField("");
+		JLabel etiquetaDetallesSeñal2 = new JLabel(Messages.getString("PanelNodo.36")); //$NON-NLS-1$
+		campoTiempoCicloSemaforo = new JTextField(Messages.getString("PanelNodo.37")); //$NON-NLS-1$
 		campoTiempoCicloSemaforo.setPreferredSize(new Dimension(30, 20));
 
 		panelDetallesSeñal.add(etiquetaDetallesSeñal1);
@@ -337,8 +338,8 @@ public class PanelNodo extends JFrame {
 		panelDetallesSeñal.add(etiquetaDetallesSeñal2);
 		panelDetallesSeñal.add(campoTiempoCicloSemaforo);
 
-		panelDatos.addTab("Señales", null, panelSeñales,
-				"Señales asociadas al Nodo");
+		panelDatos.addTab(Messages.getString("PanelNodo.38"), null, panelSeñales, //$NON-NLS-1$
+				Messages.getString("PanelNodo.39")); //$NON-NLS-1$
 
 		// TODO Cargar los datos del nodo al formulario
 
@@ -352,17 +353,17 @@ public class PanelNodo extends JFrame {
 
 		JPanel panelTipo = new JPanel();
 		panelTipo.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
-		JLabel etiquetaTipo = new JLabel("Tipo");
+		JLabel etiquetaTipo = new JLabel(Messages.getString("PanelNodo.40")); //$NON-NLS-1$
 
 		// Modificando
-		String[] tiposNodos = { "(no definido)", "Carretera",
-				"Tiempo Libre", "Construcción", "Infraestructura"};
+		String[] tiposNodos = { Messages.getString("PanelNodo.41"), Messages.getString("PanelNodo.42"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("PanelNodo.43"), Messages.getString("PanelNodo.44"), Messages.getString("PanelNodo.45")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		comboTipo = new JComboBox(tiposNodos);
 
-		JLabel etiquetaValor = new JLabel("Valor");
+		JLabel etiquetaValor = new JLabel(Messages.getString("PanelNodo.46")); //$NON-NLS-1$
 
-		String[] valorNodos = { "                  " };
+		String[] valorNodos = { Messages.getString("PanelNodo.47") }; //$NON-NLS-1$
 
 		comboValor = new JComboBox(valorNodos);
 
@@ -391,7 +392,7 @@ public class PanelNodo extends JFrame {
 		panelTipo.add(comboTipo);
 		panelTipo.add(etiquetaValor);
 		panelTipo.add(comboValor);
-		panelTipo.setBorder(BorderFactory.createTitledBorder("Tipo de Nodo"));
+		panelTipo.setBorder(BorderFactory.createTitledBorder(Messages.getString("PanelNodo.48"))); //$NON-NLS-1$
 
 		JPanel panelEntrada = crearSeccionEntradaSalida();
 
@@ -399,7 +400,7 @@ public class PanelNodo extends JFrame {
 		panelAuxiliar.setLayout(new BorderLayout());
 		JPanel panelNombre = new JPanel();
 		panelNombre.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 10));
-		JLabel etiquetaNombre = new JLabel("Nombre");
+		JLabel etiquetaNombre = new JLabel(Messages.getString("PanelNodo.49")); //$NON-NLS-1$
 		campoNombre = new JTextField(14);
 		if (nodo.getNombre() != null)
 			campoNombre.setText(nodo.getNombre());
@@ -407,12 +408,12 @@ public class PanelNodo extends JFrame {
 		panelNombre.add(campoNombre);
 		JPanel panelPosicion = new JPanel();
 		panelPosicion.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-		JLabel etiquetaPosicion = new JLabel("Posición=  ");
-		JLabel etiquetaposicionX = new JLabel("Lat:");
-		JLabel etiquetaposicionY = new JLabel("Lon:");
-		JLabel posicionX = new JLabel(("" + Representacion.pasarAGrados(nodo
+		JLabel etiquetaPosicion = new JLabel(Messages.getString("PanelNodo.50")); //$NON-NLS-1$
+		JLabel etiquetaposicionX = new JLabel(Messages.getString("PanelNodo.51")); //$NON-NLS-1$
+		JLabel etiquetaposicionY = new JLabel(Messages.getString("PanelNodo.52")); //$NON-NLS-1$
+		JLabel posicionX = new JLabel((Messages.getString("PanelNodo.53") + Representacion.pasarAGrados(nodo //$NON-NLS-1$
 				.getPos().getLat())));
-		JLabel posicionY = new JLabel(("" + Representacion.pasarAGrados(nodo
+		JLabel posicionY = new JLabel((Messages.getString("PanelNodo.54") + Representacion.pasarAGrados(nodo //$NON-NLS-1$
 				.getPos().getLon())));
 		panelPosicion.add(etiquetaPosicion);
 		panelPosicion.add(etiquetaposicionX);
@@ -423,15 +424,15 @@ public class PanelNodo extends JFrame {
 		panelAuxiliar.add(panelNombre, BorderLayout.NORTH);
 		panelAuxiliar.add(panelPosicion, BorderLayout.SOUTH);
 		panelAuxiliar.setBorder(BorderFactory
-				.createTitledBorder("Información del Nodo"));
+				.createTitledBorder(Messages.getString("PanelNodo.55"))); //$NON-NLS-1$
 
 		panelPropiedades.setLayout(new BorderLayout(10, 20));
 		panelPropiedades.add(panelTipo, BorderLayout.NORTH);
 		panelPropiedades.add(panelEntrada, BorderLayout.CENTER);
 		panelPropiedades.add(panelAuxiliar, BorderLayout.SOUTH);
 
-		panelDatos.addTab("Propiedades", null, panelPropiedades,
-				"Propiedades del Nodo");
+		panelDatos.addTab(Messages.getString("PanelNodo.56"), null, panelPropiedades, //$NON-NLS-1$
+				Messages.getString("PanelNodo.57")); //$NON-NLS-1$
 		panelDatos.setSelectedIndex(0);
 
 	}
@@ -464,8 +465,8 @@ public class PanelNodo extends JFrame {
 	 */
 	public void creaPanelBotones() {
 
-		botonAceptar = new JButton("Aceptar");
-		botonCancelar = new JButton("Cancelar");
+		botonAceptar = new JButton(Messages.getString("PanelNodo.58")); //$NON-NLS-1$
+		botonCancelar = new JButton(Messages.getString("PanelNodo.59")); //$NON-NLS-1$
 
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 80, 28));
 
@@ -480,14 +481,14 @@ public class PanelNodo extends JFrame {
 	 * rediseñar más adelante).
 	 */
 	public void configurarValoresSeñal() {
-		if (comboTipoSeñales.getSelectedItem().equals("Semaforo")) {
-			String[] tiposSemaforos = { "                  ", "Circular",
-					"Perpendicular (¿?)" };
+		if (comboTipoSeñales.getSelectedItem().equals(Messages.getString("PanelNodo.60"))) { //$NON-NLS-1$
+			String[] tiposSemaforos = { Messages.getString("PanelNodo.61"), Messages.getString("PanelNodo.62"), //$NON-NLS-1$ //$NON-NLS-2$
+					Messages.getString("PanelNodo.63") }; //$NON-NLS-1$
 			JComboBox comboTipoSemaforos = new JComboBox(tiposSemaforos);
 			panelSeñales.add(comboTipoSemaforos);
 		} else {
 			comboValor.removeAllItems();
-			comboValor.addItem("No definido");
+			comboValor.addItem(Messages.getString("PanelNodo.64")); //$NON-NLS-1$
 		}
 	}
 
@@ -496,34 +497,34 @@ public class PanelNodo extends JFrame {
 	 * 
 	 */
 	public void configurarValoresNodo() {
-		if (comboTipo.getSelectedItem().equals("Carretera")) {
-			String[] s1 = { "Mini-rotonda", "Stop", "Cruce",
-					"Portón para vehículos", "Cambio De Rasante", "Puente",
-					"Viaducto" };
+		if (comboTipo.getSelectedItem().equals(Messages.getString("PanelNodo.65"))) { //$NON-NLS-1$
+			String[] s1 = { Messages.getString("PanelNodo.66"), Messages.getString("PanelNodo.67"), Messages.getString("PanelNodo.68"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					Messages.getString("PanelNodo.69"), Messages.getString("PanelNodo.70"), Messages.getString("PanelNodo.71"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					Messages.getString("PanelNodo.72") }; //$NON-NLS-1$
 			comboValor.removeAllItems();
 			for (int i = 0; i < s1.length; i++)
 				comboValor.addItem(s1[i]);
 		}
 
-		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
-			String[] s2 = { "Campo de golf", "Estadio", "Marina",
-					"Pista de carreras", "Campo de deporte", "Parque acuático",
-					"Parque", "Jardín" };
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("PanelNodo.73"))) { //$NON-NLS-1$
+			String[] s2 = { Messages.getString("PanelNodo.74"), Messages.getString("PanelNodo.75"), Messages.getString("PanelNodo.76"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					Messages.getString("PanelNodo.77"), Messages.getString("PanelNodo.78"), Messages.getString("PanelNodo.79"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					Messages.getString("PanelNodo.80"), Messages.getString("PanelNodo.81") }; //$NON-NLS-1$ //$NON-NLS-2$
 			comboValor.removeAllItems();
 			for (int i = 0; i < s2.length; i++)
 				comboValor.addItem(s2[i]);
 		}
 
-		else if (comboTipo.getSelectedItem().equals("Construcción")) {
-			String[] s3 = { "Planta eólica", "Planta Hidroeléctrica",
-					"Central Hidroeléctrica", "Central nuclear", "Faro" };
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("PanelNodo.82"))) { //$NON-NLS-1$
+			String[] s3 = { Messages.getString("PanelNodo.83"), Messages.getString("PanelNodo.84"), //$NON-NLS-1$ //$NON-NLS-2$
+					Messages.getString("PanelNodo.85"), Messages.getString("PanelNodo.86"), Messages.getString("PanelNodo.87") }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			comboValor.removeAllItems();
 			for (int i = 0; i < s3.length; i++)
 				comboValor.addItem(s3[i]);
 		}
 
-		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
-			TipoElemento inf = new TipoNodoAmenity("Pub");
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("PanelNodo.88"))) { //$NON-NLS-1$
+			TipoElemento inf = new TipoNodoAmenity(Messages.getString("PanelNodo.89")); //$NON-NLS-1$
 			String[] s4 = inf.devolverListaValores();
 			comboValor.removeAllItems();
 			for (int i = 0; i < s4.length; i++)
@@ -532,7 +533,7 @@ public class PanelNodo extends JFrame {
 
 		else {
 			comboValor.removeAllItems();
-			comboValor.addItem("No definido");
+			comboValor.addItem(Messages.getString("PanelNodo.90")); //$NON-NLS-1$
 		}
 	}
 
@@ -542,26 +543,26 @@ public class PanelNodo extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 13));
 
-		panel.add(new JLabel("Int\\Hr"));
-		panel.add(new JLabel("Mañana"));
-		panel.add(new JLabel("Tarde"));
-		panel.add(new JLabel("Noche"));
+		panel.add(new JLabel(Messages.getString("PanelNodo.91"))); //$NON-NLS-1$
+		panel.add(new JLabel(Messages.getString("PanelNodo.92"))); //$NON-NLS-1$
+		panel.add(new JLabel(Messages.getString("PanelNodo.93"))); //$NON-NLS-1$
+		panel.add(new JLabel(Messages.getString("PanelNodo.94"))); //$NON-NLS-1$
 
 		es = nodo.getEs();
 
-		panel.add(new JLabel("Entran"));
+		panel.add(new JLabel(Messages.getString("PanelNodo.95"))); //$NON-NLS-1$
 		for (int i = 0; i < 3; i++) {
 			entrada[i] = new JTextField(3);
 			if (es != null)
-				entrada[i].setText("" + es.getPorcentajesEntrada()[i]);
+				entrada[i].setText(Messages.getString("PanelNodo.96") + es.getPorcentajesEntrada()[i]); //$NON-NLS-1$
 			panel.add(entrada[i]);
 		}
 
-		panel.add(new JLabel("Salen"));
+		panel.add(new JLabel(Messages.getString("PanelNodo.97"))); //$NON-NLS-1$
 		for (int i = 0; i < 3; i++) {
 			salida[i] = new JTextField(3);
 			if (es != null)
-				salida[i].setText("" + es.getPorcentajesSalida()[i]);
+				salida[i].setText(Messages.getString("PanelNodo.98") + es.getPorcentajesSalida()[i]); //$NON-NLS-1$
 			panel.add(salida[i]);
 		}
 
@@ -573,7 +574,7 @@ public class PanelNodo extends JFrame {
 		// panelEntrada.add(panel2);
 		panelEntrada.add(panel, BorderLayout.CENTER);
 		panelEntrada.setBorder(BorderFactory
-				.createTitledBorder("Entradas y salidas por el nodo"));
+				.createTitledBorder(Messages.getString("PanelNodo.99"))); //$NON-NLS-1$
 
 		return panelEntrada;
 	}

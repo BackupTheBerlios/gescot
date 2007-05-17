@@ -4,6 +4,7 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Nodo;
@@ -332,7 +333,7 @@ public class PanelMapa extends JPanel
 		//representacion.pintarSugerencia(g, sugerencia);
 		//representacion.pintarSugerencia(g, sugerencia2);
 		
-		System.out.println("tiempo: " + (System.currentTimeMillis() - tiempo));
+		System.out.println(Messages.getString("PanelMapa.0") + (System.currentTimeMillis() - tiempo)); //$NON-NLS-1$
 	}
 	
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {

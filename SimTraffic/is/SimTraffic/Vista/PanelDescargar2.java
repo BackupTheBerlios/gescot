@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HDescargarMapa;
 
 import java.awt.BorderLayout;
@@ -47,7 +48,7 @@ public class PanelDescargar2 extends JFrame {
 		this.controlador = controlador;
 		this.panel=panel;
 		
-		this.setTitle("Eligir ejemplo a cargar");
+		this.setTitle(Messages.getString("PanelDescargar2.13")); //$NON-NLS-1$
 
 		Vector<JButton> vBotonesAux = new Vector<JButton>(8);
 		for (int i = 0; i < 15; i++) {
@@ -86,7 +87,7 @@ public class PanelDescargar2 extends JFrame {
 
 		jbMadrid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File("is/SimTraffic/Ejemplos_ciudades/madrid_centro.osm");
+				File f = new File(Messages.getString("PanelDescargar2.14")); //$NON-NLS-1$
 				llamarHerramienta(f);
 				
 			}
@@ -94,37 +95,37 @@ public class PanelDescargar2 extends JFrame {
 
 		jbLondres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.15")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbParis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.16")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbHamburgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.17")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbBarcelona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.18")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbBerlin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.19")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbLisboa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				File f = new File(Messages.getString("PanelDescargar2.20")); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});

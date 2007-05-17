@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Messages;
+
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -26,7 +28,7 @@ public class PanelEsperaCargando extends JFrame implements Runnable {
 		ClassLoader cl = this.getClass().getClassLoader();
 		BufferedImage imagentemp = null;
 		try {
-			imagentemp = ImageIO.read(cl.getResource("is/SimTraffic/Vista/Imagenes/loading.gif"));
+			imagentemp = ImageIO.read(cl.getResource(Messages.getString("PanelEsperaCargando.0"))); //$NON-NLS-1$
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

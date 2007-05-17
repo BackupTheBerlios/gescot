@@ -3,6 +3,8 @@ package is.SimTraffic.Herramientas.CargarMapa;
 
 
 
+import is.SimTraffic.Messages;
+
 import java.io.*;
 import java.util.*;
 
@@ -108,7 +110,7 @@ public class QDParser {
       // we are processing CDATA
       } else if(mode == CDATA) {
         if(c == '>'
-	&& sb.toString().endsWith("]]")) {
+	&& sb.toString().endsWith(Messages.getString("QDParser.0"))) { //$NON-NLS-1$
 	  sb.setLength(sb.length()-2);
 	  doc.text(sb.toString());
 	  sb.setLength(0);
@@ -120,7 +122,7 @@ public class QDParser {
       // the <!-- .... --> looking for the -->.
       } else if(mode == COMMENT) {
         if(c == '>'
-	&& sb.toString().endsWith("--")) {
+	&& sb.toString().endsWith(Messages.getString("QDParser.1"))) { //$NON-NLS-1$
 	  sb.setLength(0);
 	  mode = popMode(st);
 	} else
@@ -166,24 +168,24 @@ public class QDParser {
 	  mode = popMode(st);
 	  String cent = etag.toString();
 	  etag.setLength(0);
-	  if(cent.equals("lt"))
+	  if(cent.equals(Messages.getString("QDParser.2"))) //$NON-NLS-1$
 	    sb.append('<');
-	  else if(cent.equals("gt"))
+	  else if(cent.equals(Messages.getString("QDParser.3"))) //$NON-NLS-1$
 	    sb.append('>');
-	  else if(cent.equals("amp"))
+	  else if(cent.equals(Messages.getString("QDParser.4"))) //$NON-NLS-1$
 	    sb.append('&');
-	  else if(cent.equals("quot"))
+	  else if(cent.equals(Messages.getString("QDParser.5"))) //$NON-NLS-1$
 	    sb.append('"');
-	  else if(cent.equals("apos"))
+	  else if(cent.equals(Messages.getString("QDParser.6"))) //$NON-NLS-1$
 	    sb.append('\'');
 	  // Could parse hex entities if we wanted to
 	  //else if(cent.startsWith("#x"))
 	    //sb.append((char)Integer.parseInt(cent.substring(2),16));
-	  else if(cent.startsWith("#"))
+	  else if(cent.startsWith(Messages.getString("QDParser.7"))) //$NON-NLS-1$
 	    sb.append((char)Integer.parseInt(cent.substring(1)));
 	  // Insert custom entity definitions here
 	  else
-	    exc("Unknown entity: &"+cent+";",line,col);
+	    exc(Messages.getString("QDParser.8")+cent+Messages.getString("QDParser.9"),line,col); //$NON-NLS-1$ //$NON-NLS-2$
 	} else {
 	  etag.append((char)c);
 	}
@@ -195,7 +197,7 @@ public class QDParser {
 	if(tagName == null)
 	  tagName = sb.toString();
         if(c != '>')
-	  exc("Expected > for tag: <"+tagName+"/>",line,col);
+	  exc(Messages.getString("QDParser.10")+tagName+Messages.getString("QDParser.11"),line,col); //$NON-NLS-1$ //$NON-NLS-2$
 	doc.startElement(tagName,attrs);
 	doc.endElement(tagName);
 	if(depth==0) {
@@ -222,12 +224,12 @@ public class QDParser {
 	  mode = popMode(st);
 	} else if(c == '/') {
 	  mode = SINGLE_TAG;
-	} else if(c == '-' && sb.toString().equals("!-")) {
+	} else if(c == '-' && sb.toString().equals(Messages.getString("QDParser.12"))) { //$NON-NLS-1$
 	  mode = COMMENT;
-	} else if(c == '[' && sb.toString().equals("![CDATA")) {
+	} else if(c == '[' && sb.toString().equals(Messages.getString("QDParser.13"))) { //$NON-NLS-1$
 	  mode = CDATA;
 	  sb.setLength(0);
-	} else if(c == 'E' && sb.toString().equals("!DOCTYP")) {
+	} else if(c == 'E' && sb.toString().equals(Messages.getString("QDParser.14"))) { //$NON-NLS-1$
 	  sb.setLength(0);
 	  mode = DOCTYPE;
 	} else if(Character.isWhitespace((char)c)) {
@@ -248,7 +250,7 @@ public class QDParser {
 	  mode = IN_TAG;
 	// See section the XML spec, section 3.3.3
 	// on normalization processing.
-	} else if(" \r\n\u0009".indexOf(c)>=0) {
+	} else if(Messages.getString("QDParser.15").indexOf(c)>=0) { //$NON-NLS-1$
 	  sb.append(' ');
 	} else if(c == '&') {
 	  st.push(new Integer(mode));
@@ -265,7 +267,7 @@ public class QDParser {
 	} else if(Character.isWhitespace((char)c)) {
 	  ;
 	} else {
-	  exc("Error in attribute processing",line,col);
+	  exc(Messages.getString("QDParser.16"),line,col); //$NON-NLS-1$
 	}
 
       } else if(mode == ATTRIBUTE_LVALUE) {
@@ -287,7 +289,7 @@ public class QDParser {
 	} else if(Character.isWhitespace((char)c)) {
 	  ;
 	} else {
-	  exc("Error in attribute processing.",line,col);
+	  exc(Messages.getString("QDParser.17"),line,col); //$NON-NLS-1$
 	}
 
       } else if(mode == IN_TAG) {
@@ -310,11 +312,11 @@ public class QDParser {
     if(mode == DONE)
       doc.endDocument();
     else
-      exc("missing end tag",line,col);
+      exc(Messages.getString("QDParser.18"),line,col); //$NON-NLS-1$
   }
   private static void exc(String s,int line,int col)
     throws Exception
   {
-    throw new Exception(s+" near line "+line+", column "+col);
+    throw new Exception(s+Messages.getString("QDParser.19")+line+Messages.getString("QDParser.20")+col); //$NON-NLS-1$ //$NON-NLS-2$
   }
 }

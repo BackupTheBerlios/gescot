@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Herramientas.HMover;
 import is.SimTraffic.Mapa.Nodo;
@@ -276,8 +277,8 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	}
 @Override
 public String getAyuda() {
-	return "Selecciona mediante clics o recuadro de selección(click+arrastre). " +
-			"Arrastra una selección para moverla. Pulsa 'Ctrl' para añadir o quitar.";
+	return Messages.getString("MLSeleccionarYMover.0") + //$NON-NLS-1$
+			Messages.getString("MLSeleccionarYMover.1"); //$NON-NLS-1$
 }
 
 }

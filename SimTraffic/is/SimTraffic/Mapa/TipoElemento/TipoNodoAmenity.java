@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 public class TipoNodoAmenity extends TipoElemento implements ITipoElemento {
 
 	/**
@@ -40,39 +42,39 @@ public class TipoNodoAmenity extends TipoElemento implements ITipoElemento {
 	
 	public TipoNodoAmenity(String vTipo) {
 		super(vTipo);
-		tipo="amenity";
+		tipo=Messages.getString("TipoNodoAmenity.0"); //$NON-NLS-1$
 	}
 	
 	/**
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Aseos públicos","toilets"}, 
-				   				   {"Buzón de correos","post_box"},
-								   {"Cabina de teléfono","telephone"},
-								   {"Cadena de comida rápida","fast_food"},
-								   {"Cementerio","grave_yard"},
-								   {"Colegio","school"},
-								   {"Comisaría","police"},
-								   {"Edificio público","public_building"},
-								   {"Estación de autobus","bus_station"},
-								   {"Gasolinera","fuel"},{"Parking","parking"},
-								   {"Hospital","hospital"},
-								   {"Iglesia","place_of_worship"},
-								   {"Librería","library"}, 
-								   {"Oficina de correos","post_office"},
-								   {"Parque de bomberos","fire_station"},
-								   {"Pub","pub"},  
-								   {"Restaurante","restaurant"},
-								   {"Supermercado","supermarket"},
-								   {"Teatro","theatre"},
-								   {"Terrazas (de hostelería)","biergarten"},
+		String[][] tTraduccion = { {Messages.getString("TipoNodoAmenity.1"),Messages.getString("TipoNodoAmenity.2")},  //$NON-NLS-1$ //$NON-NLS-2$
+				   				   {Messages.getString("TipoNodoAmenity.3"),Messages.getString("TipoNodoAmenity.4")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.5"),Messages.getString("TipoNodoAmenity.6")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.7"),Messages.getString("TipoNodoAmenity.8")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.9"),Messages.getString("TipoNodoAmenity.10")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.11"),Messages.getString("TipoNodoAmenity.12")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.13"),Messages.getString("TipoNodoAmenity.14")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.15"),Messages.getString("TipoNodoAmenity.16")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.17"),Messages.getString("TipoNodoAmenity.18")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.19"),Messages.getString("TipoNodoAmenity.20")},{Messages.getString("TipoNodoAmenity.21"),Messages.getString("TipoNodoAmenity.22")}, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+								   {Messages.getString("TipoNodoAmenity.23"),Messages.getString("TipoNodoAmenity.24")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.25"),Messages.getString("TipoNodoAmenity.26")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.27"),Messages.getString("TipoNodoAmenity.28")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.29"),Messages.getString("TipoNodoAmenity.30")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.31"),Messages.getString("TipoNodoAmenity.32")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.33"),Messages.getString("TipoNodoAmenity.34")},   //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.35"),Messages.getString("TipoNodoAmenity.36")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.37"),Messages.getString("TipoNodoAmenity.38")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.39"),Messages.getString("TipoNodoAmenity.40")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoAmenity.41"),Messages.getString("TipoNodoAmenity.42")}, //$NON-NLS-1$ //$NON-NLS-2$
 									};
 		return tTraduccion;
 	}
 
 	public String getTipoCastellano() {
-		return "Infraestructura";
+		return Messages.getString("TipoNodoAmenity.43"); //$NON-NLS-1$
 	}
 
 }

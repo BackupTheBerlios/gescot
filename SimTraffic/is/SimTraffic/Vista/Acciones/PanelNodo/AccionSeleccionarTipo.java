@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Acciones.PanelNodo;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.TipoElemento.TipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoHighway;
@@ -24,9 +25,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		if (comboTipo.getSelectedItem().equals("Carretera")) {
+		if (comboTipo.getSelectedItem().equals(Messages.getString("AccionSeleccionarTipo.0"))) { //$NON-NLS-1$
 			comboValor.setEnabled(true);
-			TipoElemento inf=new TipoNodoHighway("Cambio De Rasante");
+			TipoElemento inf=new TipoNodoHighway(Messages.getString("AccionSeleccionarTipo.1")); //$NON-NLS-1$
 			String[] s1=inf.devolverListaValores();
 			//String[] s1={"Cambio De Rasante", "Cruce", "Mini-rotonda", "Portón para vehículos", "Puente", "Stop", "Viaducto"};
 			comboValor.removeAllItems();
@@ -34,9 +35,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 				comboValor.addItem(s1[i]);
 		}
 		
-		else if (comboTipo.getSelectedItem().equals("Tiempo Libre")) {
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("AccionSeleccionarTipo.2"))) { //$NON-NLS-1$
 			comboValor.setEnabled(true);
-			TipoElemento inf=new TipoNodoLeisure("Campo de deporte");
+			TipoElemento inf=new TipoNodoLeisure(Messages.getString("AccionSeleccionarTipo.3")); //$NON-NLS-1$
 			String[] s2=inf.devolverListaValores();
 			//String[] s2={"Campo de deporte", "Campo de golf", "Estadio", "Jardín", "Marina", "Parque", "Parque acuático", "Pista de carreras"};
 			comboValor.removeAllItems();
@@ -44,9 +45,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 				comboValor.addItem(s2[i]);
 		}
 		
-		else if (comboTipo.getSelectedItem().equals("Construcción")) {
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("AccionSeleccionarTipo.4"))) { //$NON-NLS-1$
 			comboValor.setEnabled(true);
-			TipoElemento inf=new TipoNodoManMade("Central eléctrica");
+			TipoElemento inf=new TipoNodoManMade(Messages.getString("AccionSeleccionarTipo.5")); //$NON-NLS-1$
 			String[] s3=inf.devolverListaValores();
 			//String[] s3={"Central eléctrica", "Central nuclear", "Faro", "Planta eólica","Planta hidroeléctrica"};
 			comboValor.removeAllItems();
@@ -54,9 +55,9 @@ public class AccionSeleccionarTipo implements ActionListener {
 				comboValor.addItem(s3[i]);
 		}
 		
-		else if (comboTipo.getSelectedItem().equals("Infraestructura")) {
+		else if (comboTipo.getSelectedItem().equals(Messages.getString("AccionSeleccionarTipo.6"))) { //$NON-NLS-1$
 			comboValor.setEnabled(true);
-			TipoElemento inf=new TipoNodoAmenity("Pub");
+			TipoElemento inf=new TipoNodoAmenity(Messages.getString("AccionSeleccionarTipo.7")); //$NON-NLS-1$
 			String[] s4=inf.devolverListaValores();
 			comboValor.removeAllItems();
 			for (int i=0;i<s4.length;i++)
@@ -65,7 +66,7 @@ public class AccionSeleccionarTipo implements ActionListener {
 		
 		else {
 			comboValor.removeAllItems();
-			comboValor.addItem("                     ");
+			comboValor.addItem(Messages.getString("AccionSeleccionarTipo.8")); //$NON-NLS-1$
 			comboValor.setEnabled(false);
 		}
 	}

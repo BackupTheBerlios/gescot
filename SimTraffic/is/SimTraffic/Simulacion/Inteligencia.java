@@ -1,5 +1,6 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
@@ -31,7 +32,6 @@ public class Inteligencia {
 	/**
 	 * Almacena los parametros de la simulación actual
 	 */
-	@SuppressWarnings("unused")
 	private ParametrosSimulacion param;
 
 	/**
@@ -519,7 +519,7 @@ public class Inteligencia {
 			return;
 		
 		//	Si es un autobus y llega a una parada tendra q esperar un tiempo
-		if (vehiculo.getNombre()=="Bus"){
+		if (vehiculo.getNombre()==Messages.getString("Inteligencia.1")){ //$NON-NLS-1$
 			 ((Bus)vehiculo).parada();		  
 		}
 		

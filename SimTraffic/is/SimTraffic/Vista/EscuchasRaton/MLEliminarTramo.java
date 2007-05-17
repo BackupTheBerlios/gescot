@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HEliminarTramo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -85,7 +86,7 @@ public class MLEliminarTramo extends EscuchaRaton
 
 	@Override
 	public String getAyuda() {
-		return "Haga click sobre el tramo que desea eliminar.";
+		return Messages.getString("MLEliminarTramo.0"); //$NON-NLS-1$
 	}
 	
 }

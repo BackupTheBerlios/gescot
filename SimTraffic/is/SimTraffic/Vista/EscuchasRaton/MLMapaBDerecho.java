@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Ventana;
 
@@ -85,7 +86,7 @@ public class MLMapaBDerecho extends EscuchaRaton {
 		@Override
 		public String getAyuda() 
 		{
-			return "";
+			return Messages.getString("MLMapaBDerecho.0"); //$NON-NLS-1$
 		}
 		
 

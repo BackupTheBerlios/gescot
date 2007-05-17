@@ -1,5 +1,6 @@
 package is.SimTraffic.Simulacion;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -27,7 +28,7 @@ public class Turismo extends Vehiculo {
 	public Turismo() {
 		// TODO este constructor deberia dar valores a todos
 		// los atributos de un vehiculo
-		nombre = "Turismo";
+		nombre = Messages.getString("Turismo.0"); //$NON-NLS-1$
 
 		// Se genera un color aleatorio
 		// generarColorAleatorio();

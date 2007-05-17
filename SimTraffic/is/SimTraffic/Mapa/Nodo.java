@@ -1,5 +1,6 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Señales.Semaforo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
@@ -220,11 +221,11 @@ public class Nodo implements ElementoMapa, Serializable{
 		//if (tipo==null && nombre==null && es==null)
 		//	s=s.concat(("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' />"));
 		//else {
-			s=s.concat("<node id='"+ID+"' lat='" + pos.getLat() + "' lon='" + pos.getLon() + "' >\n");
-			if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
-			if (nombre!=null) s=s.concat("<tag k='nombre' v='"+getNombre()+"' />\n");
+			s=s.concat(Messages.getString("Nodo.0")+ID+Messages.getString("Nodo.1") + pos.getLat() + Messages.getString("Nodo.2") + pos.getLon() + Messages.getString("Nodo.3")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+			if (tipo!=null) s=s.concat(Messages.getString("Nodo.4")+tipo.getTipo()+Messages.getString("Nodo.5")+tipo.getValorTipo()+Messages.getString("Nodo.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			if (nombre!=null) s=s.concat(Messages.getString("Nodo.7")+getNombre()+Messages.getString("Nodo.8")); //$NON-NLS-1$ //$NON-NLS-2$
 			if (es!=null) s=s.concat(es.transformaOSM());
-			s=s.concat("</node>");
+			s=s.concat(Messages.getString("Nodo.9")); //$NON-NLS-1$
 		//}
 		return s;
 	}

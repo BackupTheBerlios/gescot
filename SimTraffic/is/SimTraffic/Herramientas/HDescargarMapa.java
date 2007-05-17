@@ -18,6 +18,7 @@ import is.SimTraffic.Mapa.Señal;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.PanelEsperaCargando;
@@ -64,7 +65,7 @@ public class HDescargarMapa implements IHerramienta{
 	 * Se utiliza una variable estatica para que nos se tengan que cargar sus
 	 * componentes cada vez.
 	 */
-	public static PanelEsperaCargando p = new PanelEsperaCargando("Cargando...", "Cargando mapa...");
+	public static PanelEsperaCargando p = new PanelEsperaCargando(Messages.getString("HDescargarMapa.0"), Messages.getString("HDescargarMapa.1")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	protected boolean error;
 	
@@ -105,7 +106,7 @@ public class HDescargarMapa implements IHerramienta{
 
 					} catch (Exception e) {
 						p.terminar();
-						System.out.println("Error al leer archivo");
+						System.out.println(Messages.getString("HDescargarMapa.2")); //$NON-NLS-1$
 						e.printStackTrace();
 						error = true;
 					}
@@ -120,13 +121,13 @@ public class HDescargarMapa implements IHerramienta{
 						} catch (IOException e) {
 							p.terminar();
 							JOptionPane.showMessageDialog(null,
-									"Advertencia: No se ha leido ningún fichero de semaforos asociado");
+									Messages.getString("HDescargarMapa.3")); //$NON-NLS-1$
 
 						} catch (ClassNotFoundException e) {
 							p.terminar();
 							JOptionPane
 									.showMessageDialog(null,
-											"Problema en el fichero de señales, no se cargaran.");
+											Messages.getString("HDescargarMapa.4")); //$NON-NLS-1$
 						}
 
 						p.terminar();
@@ -154,17 +155,16 @@ public class HDescargarMapa implements IHerramienta{
 	 *             Excepción si hay un problema en las clases encontradas en el
 	 *             fichero.
 	 */
-	@SuppressWarnings("unchecked")
 	public void cargarSeñales(Mapa mapa) throws IOException,
 			ClassNotFoundException {
 		List<Señal> listaSeñales = null;
 
 		String rutaSeñales = this.file.getAbsolutePath();
 
-		if (rutaSeñales.contains(".osm")) {
-			rutaSeñales = rutaSeñales.replaceAll(".osm", ".sem");
+		if (rutaSeñales.contains(Messages.getString("HDescargarMapa.6"))) { //$NON-NLS-1$
+			rutaSeñales = rutaSeñales.replaceAll(Messages.getString("HDescargarMapa.7"), Messages.getString("HDescargarMapa.8")); //$NON-NLS-1$ //$NON-NLS-2$
 		} else {
-			rutaSeñales += ".sem";
+			rutaSeñales += Messages.getString("HDescargarMapa.9"); //$NON-NLS-1$
 		}
 
 		FileInputStream flujoIn = new FileInputStream(rutaSeñales);
@@ -196,7 +196,7 @@ public class HDescargarMapa implements IHerramienta{
 	}
 
 	public String toString() {
-		return Tiempo.Hora() + " - " + "Mapa Cargado";
+		return Tiempo.Hora() + Messages.getString("HDescargarMapa.10") + Messages.getString("HDescargarMapa.11"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public Object getcontrolador() {

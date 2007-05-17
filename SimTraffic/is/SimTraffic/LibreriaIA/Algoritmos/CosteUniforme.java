@@ -1,5 +1,6 @@
 package is.SimTraffic.LibreriaIA.Algoritmos;
 
+import is.SimTraffic.Herramientas.Messages;
 import is.SimTraffic.LibreriaIA.ComparadorNodosCoste;
 import is.SimTraffic.LibreriaIA.IAlgoritmo;
 import is.SimTraffic.LibreriaIA.IEstado;
@@ -42,7 +43,6 @@ public class CosteUniforme implements IAlgoritmo {
 	/**
 	 * Constructor por defecto.
 	 */
-	@SuppressWarnings("unchecked")
 	public CosteUniforme(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores,int tipoControlCiclos/*, InfoHabitaciones infoBase*/) {
 		this.inicial = inicial;
 		this.objetivo = objetivo;
@@ -55,7 +55,7 @@ public class CosteUniforme implements IAlgoritmo {
 	}
 	
 	public String toString() {
-		String s="Coste Uniforme";
+		String s=Messages.getString("CosteUniforme.1"); //$NON-NLS-1$
 		return s;
 	}
 
@@ -217,11 +217,11 @@ public class CosteUniforme implements IAlgoritmo {
 
 	public void mostrarSolucion(Vector<NodoIA> sol) {
 		if (sol==null || sol.size()==0) 
-			System.out.println("No se ha encontrado solución"); 
+			System.out.println(Messages.getString("CosteUniforme.2"));  //$NON-NLS-1$
 		else {
 			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
 			for (int i=(sol.size()); i>0 ; i--) {
-				System.out.println("Operador "+(sol.size()-i)+": "+sol.elementAt(i-1).getOperador().getDescripcion() );
+				System.out.println(Messages.getString("CosteUniforme.3")+(sol.size()-i)+Messages.getString("CosteUniforme.4")+sol.elementAt(i-1).getOperador().getDescripcion() ); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		

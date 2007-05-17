@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
@@ -74,7 +75,7 @@ public class HModificarNodo implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+ "Nodo modificado";
+		return Tiempo.Hora()+Messages.getString("HModificarNodo.0")+ Messages.getString("HModificarNodo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public boolean isEs() {

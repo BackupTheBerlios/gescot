@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.LineaBus;
@@ -25,8 +26,8 @@ import javax.swing.*;
 public class AccionVerLineasBus extends AccionVer implements ActionListener{
 
 	public AccionVerLineasBus(IControlador controlador, IModelo modelo,JFrame ventana,PanelMapa panel_mapa) {
-		super(controlador, modelo, ventana, panel_mapa, "is\\SimTraffic\\Vista\\Imagenes\\autobus.jpg", "Líneas de Autobús",
-		"Linea de autobús");
+		super(controlador, modelo, ventana, panel_mapa, Messages.getString("AccionVerLineasBus.0"), Messages.getString("AccionVerLineasBus.1"), //$NON-NLS-1$ //$NON-NLS-2$
+		Messages.getString("AccionVerLineasBus.2")); //$NON-NLS-1$
 	}
 	
 	protected void estableceOyenteBuscar(JButton buscar) {
@@ -39,10 +40,10 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 		while (it.hasNext()){
 			ElementoMapa elem = (ElementoMapa)it.next();
 			String nombreAux = elem.getNombre();
-			if ((nombreAux!=null) && !nombreAux.equals(""))
+			if ((nombreAux!=null) && !nombreAux.equals(Messages.getString("AccionVerLineasBus.3"))) //$NON-NLS-1$
 				elementos.add(nombreAux);
 			else
-				elementos.add("<Sin nombre> ID"+elem.getID());
+				elementos.add(Messages.getString("AccionVerLineasBus.4")+elem.getID()); //$NON-NLS-1$
 		}
 	}
 	
@@ -52,7 +53,7 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 			ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
 			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
 			LineaBus seleccionada = lista.get(elementos.getSelectedIndex());
-			HBuscarElemento herramientaBuscar = new HBuscarElemento("Línea de bus",seleccionada.getNombre(),panel_mapa);
+			HBuscarElemento herramientaBuscar = new HBuscarElemento(Messages.getString("AccionVerLineasBus.5"),seleccionada.getNombre(),panel_mapa); //$NON-NLS-1$
 			controlador.herramienta(herramientaBuscar);
 			modelo.getMapa().limpiaSeleccion();
 			panel_mapa.centrarEnPosicion(seleccionada.getTramos().get(0).getNodoInicial().getPos().getLat(),

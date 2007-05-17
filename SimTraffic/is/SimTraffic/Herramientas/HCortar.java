@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import java.util.List;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
@@ -151,7 +152,7 @@ public class HCortar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Elemento cortado";
+		return Tiempo.Hora()+Messages.getString("HCortar.0")+Messages.getString("HCortar.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public List<Nodo> getNodos() {

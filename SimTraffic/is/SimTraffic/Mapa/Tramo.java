@@ -2,6 +2,7 @@ package is.SimTraffic.Mapa;
 
 import java.io.Serializable;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 /**
@@ -284,16 +285,16 @@ public class Tramo implements ElementoMapa, Serializable {
 	 * necesario para el proceso de guardar el mapa.
 	 */
 	public String transformaraOSM() {
-		String s = ("<segment id='" + ID + "' from='" + nodoInicial.getID()
-				+ "' to='" + nodoFinal.getID() + "'>\n");
+		String s = (Messages.getString("Tramo.0") + ID + Messages.getString("Tramo.1") + nodoInicial.getID() //$NON-NLS-1$ //$NON-NLS-2$
+				+ Messages.getString("Tramo.2") + nodoFinal.getID() + Messages.getString("Tramo.3")); //$NON-NLS-1$ //$NON-NLS-2$
 		if (this.numCarrilesDir1 >= 0)
 			s = s
-					+ ("<tag k='nCarrilesIda' v='" + this.numCarrilesDir1 + "' />\n");
+					+ (Messages.getString("Tramo.4") + this.numCarrilesDir1 + Messages.getString("Tramo.5")); //$NON-NLS-1$ //$NON-NLS-2$
 		if (this.numCarrilesDir2 >= 0)
 			s = s
-					+ ("<tag k='nCarrilesVuelta' v='" + this.numCarrilesDir2 + "' />\n");
-		s = s + ("<tag k='velMax' v='" + this.velocidadMax + "' />\n");
-		s = s + ("</segment>");
+					+ (Messages.getString("Tramo.6") + this.numCarrilesDir2 + Messages.getString("Tramo.7")); //$NON-NLS-1$ //$NON-NLS-2$
+		s = s + (Messages.getString("Tramo.8") + this.velocidadMax + Messages.getString("Tramo.9")); //$NON-NLS-1$ //$NON-NLS-2$
+		s = s + (Messages.getString("Tramo.10")); //$NON-NLS-1$
 		return s;
 	}
 

@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista.EscuchasRaton;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
 import java.awt.event.MouseEvent;
@@ -75,7 +76,7 @@ public class MLSeleccionaTramoBDerecho extends EscuchaRaton {
 	@Override
 	public String getAyuda() 
 	{
-		return "";
+		return Messages.getString("MLSeleccionaTramoBDerecho.0"); //$NON-NLS-1$
 	}
 	
 

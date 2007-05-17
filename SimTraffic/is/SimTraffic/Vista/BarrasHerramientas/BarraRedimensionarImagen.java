@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.BarrasHerramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
@@ -39,28 +40,28 @@ public class BarraRedimensionarImagen extends Barra {
 
 	public BarraRedimensionarImagen(){
 		
-		JLabel label1 = new JLabel("Imagen:");
-		JLabel nombre_fichero = new JLabel("       ");
+		JLabel label1 = new JLabel(Messages.getString("BarraRedimensionarImagen.0")); //$NON-NLS-1$
+		JLabel nombre_fichero = new JLabel(Messages.getString("BarraRedimensionarImagen.1")); //$NON-NLS-1$
 		
-		JLabel ancho = new JLabel(" Ancho: ");
+		JLabel ancho = new JLabel(Messages.getString("BarraRedimensionarImagen.2")); //$NON-NLS-1$
 		width = new JTextField();
 		
-		JLabel alto = new JLabel(" Alto: ");
+		JLabel alto = new JLabel(Messages.getString("BarraRedimensionarImagen.3")); //$NON-NLS-1$
 		height = new JTextField();
 		
-		JButton redimensionar = new JButton("Validar");
+		JButton redimensionar = new JButton(Messages.getString("BarraRedimensionarImagen.4")); //$NON-NLS-1$
 		redimensionar.addActionListener(new AccionRedimensionarImagen(false));
 		
-		JLabel porcentaje_ancho = new JLabel(" %Ancho: ");
+		JLabel porcentaje_ancho = new JLabel(Messages.getString("BarraRedimensionarImagen.5")); //$NON-NLS-1$
 		p_width = new JTextField();
 		
-		JLabel porcentaje_alto = new JLabel(" %Alto: ");
+		JLabel porcentaje_alto = new JLabel(Messages.getString("BarraRedimensionarImagen.6")); //$NON-NLS-1$
 		p_height = new JTextField();
 		
-		JButton p_redimensionar = new JButton("Validar");
+		JButton p_redimensionar = new JButton(Messages.getString("BarraRedimensionarImagen.7")); //$NON-NLS-1$
 		p_redimensionar.addActionListener(new AccionRedimensionarImagen(true));
 		
-		JButton eliminar = new JButton("Eliminar");
+		JButton eliminar = new JButton(Messages.getString("BarraRedimensionarImagen.8")); //$NON-NLS-1$
 		eliminar.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){

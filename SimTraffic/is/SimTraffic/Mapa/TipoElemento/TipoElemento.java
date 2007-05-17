@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 import java.io.Serializable;
 
 public abstract class TipoElemento implements ITipoElemento, Serializable{
@@ -38,9 +40,9 @@ public abstract class TipoElemento implements ITipoElemento, Serializable{
 	 */
 	public String traduciraOSM(String vTipo) {
 		String traducido=vTipo;
-		if (vTipo == null) return "";
+		if (vTipo == null) return Messages.getString("TipoElemento.0"); //$NON-NLS-1$
 		
-		if (vTipo.equals("")) return "";
+		if (vTipo.equals(Messages.getString("TipoElemento.1"))) return Messages.getString("TipoElemento.2"); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		boolean encontrado=false;
 		for (int i=0; (i<tablaTraduccion.length) && (!encontrado); i++) {
@@ -61,7 +63,7 @@ public abstract class TipoElemento implements ITipoElemento, Serializable{
 		
 		String traducido=vTipo;
 		
-		if (vTipo.equals("")) return "";
+		if (vTipo.equals(Messages.getString("TipoElemento.3"))) return Messages.getString("TipoElemento.4"); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		boolean encontrado=false;
 		for (int i=0; (i<tablaTraduccion.length) && (!encontrado); i++) {

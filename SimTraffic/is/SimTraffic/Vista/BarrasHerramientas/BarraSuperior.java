@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.BarrasHerramientas;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.Acciones.AccionCargar;
 import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
@@ -67,12 +68,12 @@ public class BarraSuperior extends JPanel {
 	public JPanel crearReloj(IControlador controlador,IModelo modelo, Ventana ventana){
 		cal = new GregorianCalendar();
 		this.setTiempo(0);
-		tiempo = new JTextField("", 8);
+		tiempo = new JTextField(Messages.getString("BarraSuperior.0"), 8); //$NON-NLS-1$
 		
 		tiempo.setHorizontalAlignment(JTextField.CENTER);
 		tiempo.setEditable(false);
 		tiempo.setMargin(new Insets(1,1,1,1));
-		tiempo.setFont(new Font("Courier", Font.BOLD, 16));
+		tiempo.setFont(new Font(Messages.getString("BarraSuperior.1"), Font.BOLD, 16)); //$NON-NLS-1$
 		tiempo.setBackground(Color.BLACK);
 		tiempo.setForeground(Color.GREEN);
 		
@@ -85,31 +86,31 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraArchivo(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra archivoTB = new Barra();
-		archivoTB.setName("Archivo");
+		archivoTB.setName(Messages.getString("BarraSuperior.2")); //$NON-NLS-1$
 
-		JButton nuevoTB = (JButton) archivoTB.añadirBoton("document-new.png",
-				"document-new2.png", "Nuevo mapa", new AccionNuevo(controlador,
+		JButton nuevoTB = (JButton) archivoTB.añadirBoton(Messages.getString("BarraSuperior.3"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.4"), Messages.getString("BarraSuperior.5"), new AccionNuevo(controlador, //$NON-NLS-1$ //$NON-NLS-2$
 						ventana.getPanel_mapa()), false);
 		nuevoTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para crear un nuevo mapa.", ventana));
+				Messages.getString("BarraSuperior.6"), ventana)); //$NON-NLS-1$
 
-		JButton cargarTB = (JButton) archivoTB.añadirBoton("document-open.png",
-				"document-open2.png", "Cargar mapa", new AccionCargar(
+		JButton cargarTB = (JButton) archivoTB.añadirBoton(Messages.getString("BarraSuperior.7"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.8"), Messages.getString("BarraSuperior.9"), new AccionCargar( //$NON-NLS-1$ //$NON-NLS-2$
 						controlador, ventana.getPanel_mapa()), false);
 		cargarTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para cargar un mapa.", ventana));
+				Messages.getString("BarraSuperior.10"), ventana)); //$NON-NLS-1$
 
-		JButton downloadTB = (JButton) archivoTB.añadirBoton("www.png",
-				"www2.png", "Cargar mapa de una ciudad real", new AccionDescargar(controlador,ventana.getPanel_mapa()), false);
+		JButton downloadTB = (JButton) archivoTB.añadirBoton(Messages.getString("BarraSuperior.11"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.12"), Messages.getString("BarraSuperior.13"), new AccionDescargar(controlador,ventana.getPanel_mapa()), false); //$NON-NLS-1$ //$NON-NLS-2$
 		downloadTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para cargar un mapa de una ciudad real.", ventana));
+				Messages.getString("BarraSuperior.14"), ventana)); //$NON-NLS-1$
 		
 		
 		JButton guardarTB = (JButton) archivoTB.añadirBoton(
-				"document-save.png", "document-save2.png", "Guardar mapa",
+				Messages.getString("BarraSuperior.15"), Messages.getString("BarraSuperior.16"), Messages.getString("BarraSuperior.17"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				new AccionGuardar(controlador), false);
 		guardarTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para guardar el mapa actual.", ventana));
+				Messages.getString("BarraSuperior.18"), ventana)); //$NON-NLS-1$
 
 		return archivoTB;
 	}
@@ -117,36 +118,36 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraEdicion(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra edicionTB = new Barra();
-		edicionTB.setName("Edición");
-		JButton cortarTB = (JButton) edicionTB.añadirBoton("edit-cut.png",
-				"edit-cut2.png", "Cortar", new AccionCortar(modelo,
+		edicionTB.setName(Messages.getString("BarraSuperior.19")); //$NON-NLS-1$
+		JButton cortarTB = (JButton) edicionTB.añadirBoton(Messages.getString("BarraSuperior.20"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.21"), Messages.getString("BarraSuperior.22"), new AccionCortar(modelo, //$NON-NLS-1$ //$NON-NLS-2$
 						controlador, ventana.getPanel_mapa()), false);
 		cortarTB
 				.addMouseMotionListener(new EscuchaAyuda(
-						"Pulse aquí para cortar los elementos seleccionados.",
+						Messages.getString("BarraSuperior.23"), //$NON-NLS-1$
 						ventana));
 
-		JButton copiarTB = (JButton) edicionTB.añadirBoton("edit-copy.png",
-				"edit-copy2.png", "Copiar", new AccionCopiar(modelo,
+		JButton copiarTB = (JButton) edicionTB.añadirBoton(Messages.getString("BarraSuperior.24"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.25"), Messages.getString("BarraSuperior.26"), new AccionCopiar(modelo, //$NON-NLS-1$ //$NON-NLS-2$
 						controlador, ventana.getPanel_mapa()), false);
 		copiarTB
 				.addMouseMotionListener(new EscuchaAyuda(
-						"Pulse aquí para copiar los elementos seleccionados.",
+						Messages.getString("BarraSuperior.27"), //$NON-NLS-1$
 						ventana));
 
-		pegarTB = (JButton) edicionTB.añadirBoton("edit-paste.png",
-				"edit-paste2.png", "Pegar", new AccionSobreMapa(new MLPegar(
+		pegarTB = (JButton) edicionTB.añadirBoton(Messages.getString("BarraSuperior.28"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.29"), Messages.getString("BarraSuperior.30"), new AccionSobreMapa(new MLPegar( //$NON-NLS-1$ //$NON-NLS-2$
 						modelo, controlador, ventana.getPanel_mapa()), ventana,
 						ventana.getEscuchaTeclado(), -1), false);
 		pegarTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para pegar los elementos cortados o copiados.",
+				Messages.getString("BarraSuperior.31"), //$NON-NLS-1$
 				ventana));
 
-		JButton deshacerTB = (JButton) edicionTB.añadirBoton("edit-undo.png",
-				"edit-undo2.png", "Deshacer", new AccionDeshacer(controlador,
+		JButton deshacerTB = (JButton) edicionTB.añadirBoton(Messages.getString("BarraSuperior.32"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.33"), Messages.getString("BarraSuperior.34"), new AccionDeshacer(controlador, //$NON-NLS-1$ //$NON-NLS-2$
 						ventana.getPanel_mapa()), false);
 		deshacerTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para deshacer la última acción.", ventana));
+				Messages.getString("BarraSuperior.35"), ventana)); //$NON-NLS-1$
 
 		return edicionTB;
 	}
@@ -154,19 +155,19 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBarraZoom(IControlador controlador, IModelo modelo,
 			Ventana ventana) {
 		Barra zoomTB = new Barra();
-		zoomTB.setName("Zoom");
+		zoomTB.setName(Messages.getString("BarraSuperior.36")); //$NON-NLS-1$
 
-		zoomin = (JButton) zoomTB.añadirBoton("zoom_in.png",
-				"zoom_in2.png", "Aumentar tamaño de la representación",
+		zoomin = (JButton) zoomTB.añadirBoton(Messages.getString("BarraSuperior.37"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.38"), Messages.getString("BarraSuperior.39"), //$NON-NLS-1$ //$NON-NLS-2$
 				new AccionZoom(ventana.getPanel_mapa(), 0.5), false);
 		zoomin.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para acercar el zoom.", ventana));
+				Messages.getString("BarraSuperior.40"), ventana)); //$NON-NLS-1$
 
-		zoomout = (JButton) zoomTB.añadirBoton("zoom_out.png",
-				"zoom_out2.png", "Disminuir tamaño de la representación",
+		zoomout = (JButton) zoomTB.añadirBoton(Messages.getString("BarraSuperior.41"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.42"), Messages.getString("BarraSuperior.43"), //$NON-NLS-1$ //$NON-NLS-2$
 				new AccionZoom(ventana.getPanel_mapa(), 2), false);
 		zoomout.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para alejar el zoom.", ventana));
+				Messages.getString("BarraSuperior.44"), ventana)); //$NON-NLS-1$
 
 		return zoomTB;
 	}
@@ -174,21 +175,21 @@ public class BarraSuperior extends JPanel {
 	private JToolBar crearBotonesSimulacion(IControlador controlador,
 			IModelo modelo, Ventana ventana) {
 		Barra esto = new Barra();
-		esto.setName("Simulación");
+		esto.setName(Messages.getString("BarraSuperior.45")); //$NON-NLS-1$
 
-		simular = (JButton) esto.añadirBoton("simular.png",
-				"simular2.png", "Comenzar simulación",
+		simular = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.46"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.47"), Messages.getString("BarraSuperior.48"), //$NON-NLS-1$ //$NON-NLS-2$
 				new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()), false);
 		simular
 				.addMouseMotionListener(new EscuchaAyuda(
-						"Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",
+						Messages.getString("BarraSuperior.49"), //$NON-NLS-1$
 						ventana));
 
-		detener = (JButton) esto.añadirBoton("parar.png", "parar2.png",
-				"Detener simulación", new AccionDetenerSimulacion(controlador),
+		detener = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.50"), Messages.getString("BarraSuperior.51"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("BarraSuperior.52"), new AccionDetenerSimulacion(controlador), //$NON-NLS-1$
 				false);
 		detener.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para parar la simulación actual.", ventana));
+				Messages.getString("BarraSuperior.53"), ventana)); //$NON-NLS-1$
 
 		return esto;
 	}
@@ -235,18 +236,18 @@ public class BarraSuperior extends JPanel {
 	    	if (hour24 >= 7 && hour24 <15 ) {
 	    		tiempo.setBackground(Color.BLUE);
 	    		//tiempo.setForeground(Color.WHITE);
-	    		tiempo.setToolTipText("MAÑANA");
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.54")); //$NON-NLS-1$
 	    	} else if (hour24 >= 15 && hour24 <23 ) {
 	    		//tiempo.setBackground(Color.YELLOW);
 	    		tiempo.setForeground(Color.RED);
-	    		tiempo.setToolTipText("TARDE");
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.55")); //$NON-NLS-1$
 	    	}
 	    	else {
 	    		tiempo.setBackground(Color.BLACK);
 	    		//tiempo.setForeground(Color.GREEN);
-	    		tiempo.setToolTipText("NOCHE");
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.56")); //$NON-NLS-1$
 	    	}
-	    	String hora = convierte(hour24)+":"+convierte(min)+":"+convierte(sec);
+	    	String hora = convierte(hour24)+Messages.getString("BarraSuperior.57")+convierte(min)+Messages.getString("BarraSuperior.58")+convierte(sec); //$NON-NLS-1$ //$NON-NLS-2$
 
 	    	tiempo.setText(hora);
 	    	//this.repaint();
@@ -260,8 +261,8 @@ public class BarraSuperior extends JPanel {
 	
 	private static String convierte(int valor){
 		if (valor <10){
-			return "0"+valor;
+			return Messages.getString("BarraSuperior.59")+valor; //$NON-NLS-1$
 		}
-		else return ""+valor;
+		else return Messages.getString("BarraSuperior.60")+valor; //$NON-NLS-1$
 	}
 }

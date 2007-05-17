@@ -1,4 +1,6 @@
 package is.SimTraffic.Herramientas;
+import is.SimTraffic.Messages;
+
 import java.io.File;
 import javax.swing.filechooser.*;
 
@@ -47,7 +49,7 @@ public class ExtFilter extends FileFilter {
 		for (int i = exts.length - 1; i >= 0; i--) {
 			extensions[i] = exts[i].toLowerCase();
 		}
-		description = (descr == null ? exts[0] + " files" : descr);
+		description = (descr == null ? exts[0] + Messages.getString("ExtFilter.0") : descr); //$NON-NLS-1$
 	}
 
 	/**

@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -18,8 +19,8 @@ import javax.swing.JFrame;
 public class AccionVerTramos extends AccionVer {
 
 	public AccionVerTramos(IControlador controlador, IModelo modelo, JFrame ventana, PanelMapa panel_mapa, String direccionIcono, String tituloVer, String nombreElemento) {
-		super(controlador, modelo, ventana, panel_mapa, "is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png", "Tramos existentes",
-				"Tramo");
+		super(controlador, modelo, ventana, panel_mapa, Messages.getString("AccionVerTramos.0"), Messages.getString("AccionVerTramos.1"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("AccionVerTramos.2")); //$NON-NLS-1$
 	}
 	
 	protected void estableceOyenteBuscar(JButton buscar) {
@@ -35,10 +36,10 @@ public class AccionVerTramos extends AccionVer {
 		while (it.hasNext()){
 			ElementoMapa elem = (ElementoMapa)it.next();
 			String nombreAux = elem.getNombre();
-			if ((nombreAux!=null) && !nombreAux.equals(""))
+			if ((nombreAux!=null) && !nombreAux.equals(Messages.getString("AccionVerTramos.3"))) //$NON-NLS-1$
 				elementos.add(nombreAux);
 			else
-				elementos.add("<Sin nombre> ID"+elem.getID());
+				elementos.add(Messages.getString("AccionVerTramos.4")+elem.getID()); //$NON-NLS-1$
 		}
 	}
 	

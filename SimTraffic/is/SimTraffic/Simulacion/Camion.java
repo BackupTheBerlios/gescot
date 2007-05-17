@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -24,7 +25,7 @@ public class Camion extends Vehiculo {
 	private int cuentaTramos = 0;
 	
 	public Camion() {
-		nombre="Camion";
+		nombre=Messages.getString("Camion.0"); //$NON-NLS-1$
 		//Se genera un color aleatorio
 		//generarColorAleatorio();
 		this.color = Color.GREEN;

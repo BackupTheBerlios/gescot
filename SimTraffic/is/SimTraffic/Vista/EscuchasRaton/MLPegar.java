@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Herramientas.HPegar;
 
@@ -86,7 +87,7 @@ public class MLPegar extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return "Haga click en el punto del mapa donde desea pegar la selección.";
+		return Messages.getString("MLPegar.0"); //$NON-NLS-1$
 	}
 	
 

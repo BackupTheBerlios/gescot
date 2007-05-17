@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 
 	/**
@@ -39,7 +41,7 @@ public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 	
 	public TipoNodoLeisure(String vTipo) {
 		super(vTipo);
-		tipo="leisure";
+		tipo=Messages.getString("TipoNodoLeisure.0"); //$NON-NLS-1$
 		//tablaTraduccion=crearTablaTraduccion();
 		//String valorOSM =traduciraOSM(vTipo);
 		//this.valorTipo = valorOSM;
@@ -49,14 +51,14 @@ public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Campo de deporte","pich"},
-								   {"Campo de golf","golf_course"}, 
-								   {"Estadio","stadium"},
-								   {"Jardín","garden"},	
-								   {"Marina","marina"},
-								   {"Parque","park"},
-								   {"Parque acuático","water_park"},
-								   {"Pista de carreras","track"},
+		String[][] tTraduccion = { {Messages.getString("TipoNodoLeisure.1"),Messages.getString("TipoNodoLeisure.2")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.3"),Messages.getString("TipoNodoLeisure.4")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.5"),Messages.getString("TipoNodoLeisure.6")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.7"),Messages.getString("TipoNodoLeisure.8")},	 //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.9"),Messages.getString("TipoNodoLeisure.10")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.11"),Messages.getString("TipoNodoLeisure.12")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.13"),Messages.getString("TipoNodoLeisure.14")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoLeisure.15"),Messages.getString("TipoNodoLeisure.16")}, //$NON-NLS-1$ //$NON-NLS-2$
 									};
 		return tTraduccion;
 	}
@@ -139,7 +141,7 @@ public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 	}*/
 
 	public String getTipoCastellano() {
-		return "Tiempo Libre";
+		return Messages.getString("TipoNodoLeisure.17"); //$NON-NLS-1$
 	}
 
 }

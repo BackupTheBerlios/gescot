@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 
 import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Herramientas.HGuardarMapa;
@@ -71,7 +72,7 @@ public class AccionDescargar implements ActionListener{
 	 * Se utiliza una variable estatica para que nos se tengan que cargar sus
 	 * componentes cada vez.
 	 */
-	public static PanelEsperaCargando p = new PanelEsperaCargando("Descargando...", "Descargando mapa...");
+	public static PanelEsperaCargando p = new PanelEsperaCargando(Messages.getString("AccionDescargar.0"), Messages.getString("AccionDescargar.1")); //$NON-NLS-1$ //$NON-NLS-2$
 
 
 
@@ -86,9 +87,9 @@ public class AccionDescargar implements ActionListener{
 			// sí,
 			// crear aquí una herramienta de guardar mapa (Faltaría crear
 			// ventana para ello).
-			Object[] options = { "Si", "No", "Cancelar" };
+			Object[] options = { Messages.getString("AccionDescargar.2"), Messages.getString("AccionDescargar.3"), Messages.getString("AccionDescargar.4") }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			int n = JOptionPane.showOptionDialog(null,
-					"Desea guardar los cambios?", "Cambios en el mapa",
+					Messages.getString("AccionDescargar.5"), Messages.getString("AccionDescargar.6"), //$NON-NLS-1$ //$NON-NLS-2$
 					JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
 			if (n==0) {

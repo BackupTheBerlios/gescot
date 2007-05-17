@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Acciones;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
@@ -46,52 +47,52 @@ public class AccionSobreMapa implements ActionListener {
 		
 		// Lo he tenido que comentar para las pruebas del 23/03/07 porque no iba bien.
 		// Falta meter la imagen de la cruz, que no está subida al CVS
-		String ImageStr="";
+		String ImageStr=Messages.getString("AccionSobreMapa.0"); //$NON-NLS-1$
 		if (boton != -1){
 			//podemos cambiar los cursores si existen
 			if (boton == 0){
-				ImageStr = "añadir_nodo.png";
+				ImageStr = Messages.getString("AccionSobreMapa.1"); //$NON-NLS-1$
 			}
 			else if (boton == 1){
-				ImageStr = "añadir_tramo.png";
+				ImageStr = Messages.getString("AccionSobreMapa.2"); //$NON-NLS-1$
 			}			
 			else if (boton == 2){
-				ImageStr = "eliminar_nodo.png";
+				ImageStr = Messages.getString("AccionSobreMapa.3"); //$NON-NLS-1$
 			}
 			else if (boton == 3){
-				ImageStr = "eliminar_tramo.png";
+				ImageStr = Messages.getString("AccionSobreMapa.4"); //$NON-NLS-1$
 			}
 			else if (boton == 4){
-				ImageStr = "autobus.png";
+				ImageStr = Messages.getString("AccionSobreMapa.5"); //$NON-NLS-1$
 			}
 			else if (boton == 5){
-				ImageStr = "cruz.gif";
+				ImageStr = Messages.getString("AccionSobreMapa.6"); //$NON-NLS-1$
 			}
 			else if (boton == 6){
-				ImageStr = "via.png";
+				ImageStr = Messages.getString("AccionSobreMapa.7"); //$NON-NLS-1$
 			}
 			else if (boton == 7){
-				ImageStr = "select.png";
+				ImageStr = Messages.getString("AccionSobreMapa.8"); //$NON-NLS-1$
 			}
 			else if (boton == 8){
-				ImageStr = "itinerario.png";
+				ImageStr = Messages.getString("AccionSobreMapa.9"); //$NON-NLS-1$
 			}
 			else if (boton == 9){
-				ImageStr = "select_via.png";
+				ImageStr = Messages.getString("AccionSobreMapa.10"); //$NON-NLS-1$
 			}
 			else if (boton == 10){
-				ImageStr = "mover.png";
+				ImageStr = Messages.getString("AccionSobreMapa.11"); //$NON-NLS-1$
 			}
 			else if (boton == 11){
-				ImageStr = "select_imagen.png";
+				ImageStr = Messages.getString("AccionSobreMapa.12"); //$NON-NLS-1$
 			}
 
 			//String direccion="is\\SimTraffic\\Vista\\Imagenes\\Cursores\\"+ImageStr;
 			ImageIcon imagen = new ImageIcon(cl
-					.getResource("is/SimTraffic/Vista/Imagenes/Cursores/" + ImageStr));
+					.getResource(Messages.getString("AccionSobreMapa.13") + ImageStr)); //$NON-NLS-1$
 			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor( 
 					  imagen.getImage(), 
-					  new Point(15,12), "Cursor" );
+					  new Point(15,12), Messages.getString("AccionSobreMapa.14") ); //$NON-NLS-1$
 			ventana.getPanel_mapa().setCursor(c);					
 		}
 		else {			 

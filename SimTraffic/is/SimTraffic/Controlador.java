@@ -59,11 +59,11 @@ public class Controlador implements IControlador {
 			return 0;
 		}
 		if(modelo.getSimulacion().estaActiva()) {
-			Object[] options = {"De acuerdo",
-                    "Cancelar"};
+			Object[] options = {Messages.getString("Controlador.0"), //$NON-NLS-1$
+                    Messages.getString("Controlador.1")}; //$NON-NLS-1$
 			int n = JOptionPane.showOptionDialog(null,
-					"Se detendrá la simulación",
-					"Aviso simulación",
+					Messages.getString("Controlador.2"), //$NON-NLS-1$
+					Messages.getString("Controlador.3"), //$NON-NLS-1$
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,

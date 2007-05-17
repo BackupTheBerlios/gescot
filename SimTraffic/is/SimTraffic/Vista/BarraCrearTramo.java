@@ -3,6 +3,7 @@ package is.SimTraffic.Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 
@@ -38,21 +39,21 @@ public class BarraCrearTramo extends JToolBar
 	
 	public BarraCrearTramo()
 	{
-		JLabel tipoTramo = new JLabel(" Tipo de Tramo ");
-		String[] opcionesTipo = {"Bidireccional", "Unidireccional"};
+		JLabel tipoTramo = new JLabel(Messages.getString("BarraCrearTramo.0")); //$NON-NLS-1$
+		String[] opcionesTipo = {Messages.getString("BarraCrearTramo.1"), Messages.getString("BarraCrearTramo.2")}; //$NON-NLS-1$ //$NON-NLS-2$
 		opcionesTipoTramo = new JComboBox(opcionesTipo);
 		
-		final JLabel sentidoLabel = new JLabel(" Sentido ");
-		String[] opcionesSentido = {"Sentido 1", "Sentido 2"};
+		final JLabel sentidoLabel = new JLabel(Messages.getString("BarraCrearTramo.3")); //$NON-NLS-1$
+		String[] opcionesSentido = {Messages.getString("BarraCrearTramo.4"), Messages.getString("BarraCrearTramo.5")}; //$NON-NLS-1$ //$NON-NLS-2$
 		opcionesSentidoTramo = new JComboBox(opcionesSentido);
 		
-		final JLabel numCarrDir1Label = new JLabel(" Nº Carriles Dir1 ");
+		final JLabel numCarrDir1Label = new JLabel(Messages.getString("BarraCrearTramo.6")); //$NON-NLS-1$
 		numCarrDir1 = new JSpinner(new SpinnerNumberModel(2,1,4,1));
 		
-		final JLabel numCarrDir2Label = new JLabel(" Nº Carriles Dir2 ");
+		final JLabel numCarrDir2Label = new JLabel(Messages.getString("BarraCrearTramo.7")); //$NON-NLS-1$
 		numCarrDir2 = new JSpinner(new SpinnerNumberModel(2,1,4,1));
 		
-		JLabel velMaxLabel = new JLabel(" Velocidad Máxima ");
+		JLabel velMaxLabel = new JLabel(Messages.getString("BarraCrearTramo.8")); //$NON-NLS-1$
 		velMax = new JSpinner(new SpinnerNumberModel(60,20,120,10));
 		
 		add(tipoTramo);

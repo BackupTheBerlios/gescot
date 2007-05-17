@@ -5,6 +5,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -80,7 +81,7 @@ abstract public class EscuchaRaton implements MouseListener,
 	public void activar() {
 		if (cursor != null)
 			panel.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-					cursor, new Point(0, 0), "AñadirNodo"));
+					cursor, new Point(0, 0), Messages.getString("EscuchaRaton.0"))); //$NON-NLS-1$
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 	}

@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Utils.Tiempo;
 
@@ -27,6 +28,6 @@ public class HCrearNuevoMapa implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Nuevo Mapa creado";
+		return Tiempo.Hora()+Messages.getString("HCrearNuevoMapa.0")+Messages.getString("HCrearNuevoMapa.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

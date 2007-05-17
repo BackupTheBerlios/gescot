@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.LibreriaIA.IEstado;
 import is.SimTraffic.LibreriaIA.IHeuristica;
 import is.SimTraffic.LibreriaIA.IOperador;
@@ -124,7 +125,7 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 	public Vector<IOperador> generarOperadores() {
 		Vector<IOperador> vOperadores=new Vector<IOperador>();
 		if (simulacion==null)
-			System.out.println("DDDDD44444");
+			System.out.println(Messages.getString("PrincipalDistanciaNodos.0")); //$NON-NLS-1$
 		IOperador operador = new ExploraNodo(tipoCoste,simulacion);
 		
 		//Se inserta

@@ -1,6 +1,7 @@
 package is.SimTraffic.Simulacion;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
@@ -124,7 +125,7 @@ public class Simulacion {
 					return 0;
 				}
 				if (mapa.getTramos().size() < 1) {
-					throw new Exception("Tramos insuficientes");
+					throw new Exception(Messages.getString("Simulacion.0")); //$NON-NLS-1$
 				}
 				// tabla = new Hashtable<Tramo, ArrayList<Vehiculo>>();
 				this.mapa = mapa;
@@ -138,7 +139,7 @@ public class Simulacion {
 				crearVehiculos(max + 20);
 				// TODO esta funcion es problematica, yo creo que es mejor no calcular los caminos y listo
 				//crearCaminosDefecto();
-				PanelEsperaCargando panel = new PanelEsperaCargando("Comenzando...", "Inicializando simulación...");
+				PanelEsperaCargando panel = new PanelEsperaCargando(Messages.getString("Simulacion.1"), Messages.getString("Simulacion.2")); //$NON-NLS-1$ //$NON-NLS-2$
 				(new Thread(panel)).start();
 				controladorSim = new ControladorSim(vehiculos, this, panel);
 				controladorSim.start();
@@ -172,14 +173,14 @@ public class Simulacion {
 			} catch (Exception e) {
 				e.printStackTrace();
 				this.detener();
-				Object[] options = { "Si", "No" };
+				Object[] options = { Messages.getString("Simulacion.3"), Messages.getString("Simulacion.4") }; //$NON-NLS-1$ //$NON-NLS-2$
 				int n = JOptionPane
 						.showOptionDialog(
 								null,
-								"Disculpe las molestias. Parece que hubo un problema en la simulación.\n"
-										+ "Por favor asegurese de que no haya errores en el mapa.\n"
-										+ "¿Intentar simular nuevamente?",
-								"Problema en la simulación",
+								Messages.getString("Simulacion.5") //$NON-NLS-1$
+										+ Messages.getString("Simulacion.6") //$NON-NLS-1$
+										+ Messages.getString("Simulacion.7"), //$NON-NLS-1$
+								Messages.getString("Simulacion.8"), //$NON-NLS-1$
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.ERROR_MESSAGE, null, options,
 								options[1]);
@@ -222,7 +223,6 @@ public class Simulacion {
 
 	}
 	
-	@SuppressWarnings("unused")
 	private void crearCaminosDefecto() {
 		Iterator<Nodo> it = mapa.getNodos().iterator();
 		int min;
@@ -386,7 +386,7 @@ public class Simulacion {
 		Nodo temp;
 		while (it.hasNext()) {
 			temp = it.next();
-			if (temp.getTipo() != null && temp.getTipo().getValorTipo().compareToIgnoreCase("hospital") == 0) {
+			if (temp.getTipo() != null && temp.getTipo().getValorTipo().compareToIgnoreCase(Messages.getString("Simulacion.10")) == 0) { //$NON-NLS-1$
 				res.add(temp);
 			}
 		}

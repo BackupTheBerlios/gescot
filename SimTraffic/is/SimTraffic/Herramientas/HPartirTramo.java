@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Utils.Tiempo;
@@ -75,7 +76,7 @@ public class HPartirTramo implements IHerramienta {
 
 		public String toString(){
 			
-			return Tiempo.Hora()+" - "+"Tramo partido en dos";
+			return Tiempo.Hora()+Messages.getString("HPartirTramo.0")+Messages.getString("HPartirTramo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 			
 		}
 		

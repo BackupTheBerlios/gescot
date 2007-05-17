@@ -1,5 +1,6 @@
 package is.SimTraffic.LibreriaIA.Problema.DistanciaNodos;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.LibreriaIA.IEstado;
 import is.SimTraffic.LibreriaIA.IOperador;
 import is.SimTraffic.LibreriaIA.NodoIA;
@@ -24,13 +25,13 @@ public class ExploraNodo implements IOperador {
 		nodoOrigen = origen;
 		tramoElegido = elegido;
 		this.tipoCoste = 1;
-		descripcion = "Explora nodo"; //Habría que completarlo.
+		descripcion = Messages.getString("ExploraNodo.0"); //Habría que completarlo. //$NON-NLS-1$
 	}
 
 	public ExploraNodo(int tipoCoste, Simulacion simulacion) {
 		super();
 		this.tipoCoste = tipoCoste;
-		this.descripcion = "Explora Nodo";
+		this.descripcion = Messages.getString("ExploraNodo.1"); //$NON-NLS-1$
 		this.simulacion = simulacion;
 	}
 

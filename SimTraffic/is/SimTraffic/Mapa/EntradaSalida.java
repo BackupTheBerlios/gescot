@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Messages;
+
 import java.io.Serializable;
 
 /**
@@ -63,13 +65,13 @@ public class EntradaSalida implements Serializable {
 	
 
 	public String transformaOSM() {
-		String valor = "<tag k='entradasalida' v='";
+		String valor = Messages.getString("EntradaSalida.0"); //$NON-NLS-1$
 		for (int i = 0; i < 2; i++)
-			valor += porcentajesEntrada[i] + ",";
-		valor += porcentajesEntrada[2] + ",";
+			valor += porcentajesEntrada[i] + Messages.getString("EntradaSalida.1"); //$NON-NLS-1$
+		valor += porcentajesEntrada[2] + Messages.getString("EntradaSalida.2"); //$NON-NLS-1$
 		for (int i = 0; i < 3; i++)
-			valor += "," + porcentajesSalida[i];
-		valor += "' />\n";
+			valor += Messages.getString("EntradaSalida.3") + porcentajesSalida[i]; //$NON-NLS-1$
+		valor += Messages.getString("EntradaSalida.4"); //$NON-NLS-1$
 		return valor;
 	}
 

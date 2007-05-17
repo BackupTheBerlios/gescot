@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import javax.swing.JOptionPane;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
@@ -27,12 +28,12 @@ public class HBuscarElemento implements IHerramienta {
 		//a la posición anterior)
 		
 		
-		if (elementoACambiar.equals("Nodo")) {
+		if (elementoACambiar.equals(Messages.getString("HBuscarElemento.0"))) { //$NON-NLS-1$
 			Nodo nodoEncontrado;
 			nodoEncontrado = modelo.getMapa().buscarNodo(nombre);
 			if (nodoEncontrado==null) { 
-				 JOptionPane.showMessageDialog(null,"No existe ningún nodo con el nombre especificado",
-						 "Nodo no encontrado", 
+				 JOptionPane.showMessageDialog(null,Messages.getString("HBuscarElemento.1"), //$NON-NLS-1$
+						 Messages.getString("HBuscarElemento.2"),  //$NON-NLS-1$
 				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
 			}
@@ -43,12 +44,12 @@ public class HBuscarElemento implements IHerramienta {
 				modelo.getMapa().getSeleccion().añadirNodo(nodoEncontrado);
 			}
 		}
-		else if (elementoACambiar.equals("Tramo")) {
+		else if (elementoACambiar.equals(Messages.getString("HBuscarElemento.3"))) { //$NON-NLS-1$
 			Tramo tramoEncontrado;
 			tramoEncontrado = modelo.getMapa().buscarTramo(nombre);
 			if (tramoEncontrado==null) {
-				 JOptionPane.showMessageDialog(null,"No existe ningún tramo con el nombre especificado",
-						 "Tramo no encontrado", 
+				 JOptionPane.showMessageDialog(null,Messages.getString("HBuscarElemento.4"), //$NON-NLS-1$
+						 Messages.getString("HBuscarElemento.5"),  //$NON-NLS-1$
 				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
 			}
@@ -63,12 +64,12 @@ public class HBuscarElemento implements IHerramienta {
 		
 		//Falta completar parte de vías y tramos.
 		
-		else if (elementoACambiar.equals("Vía")) {
+		else if (elementoACambiar.equals(Messages.getString("HBuscarElemento.6"))) { //$NON-NLS-1$
 			Via viaEncontrada;
 			viaEncontrada = modelo.getMapa().buscarVia(nombre);
 			if (viaEncontrada==null) {
-				 JOptionPane.showMessageDialog(null,"No existe ninguna vía con el nombre especificado",
-						 "Via no encontrada", 
+				 JOptionPane.showMessageDialog(null,Messages.getString("HBuscarElemento.7"), //$NON-NLS-1$
+						 Messages.getString("HBuscarElemento.8"),  //$NON-NLS-1$
 				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
 			} 
@@ -84,13 +85,13 @@ public class HBuscarElemento implements IHerramienta {
 			}
 			
 		}
-		else if (elementoACambiar.equals("Línea de bus")) {
+		else if (elementoACambiar.equals(Messages.getString("HBuscarElemento.9"))) { //$NON-NLS-1$
 			modelo.getMapa().buscarLineaBus(nombre);
 			Via viaEncontrada;
 			viaEncontrada = modelo.getMapa().buscarLineaBus(nombre);
 			if (viaEncontrada==null) {
-				 JOptionPane.showMessageDialog(null,"No existe ninguna línea de autobús con el nombre especificado",
-						 "Linea de bus no encontrada", 
+				 JOptionPane.showMessageDialog(null,Messages.getString("HBuscarElemento.10"), //$NON-NLS-1$
+						 Messages.getString("HBuscarElemento.11"),  //$NON-NLS-1$
 				            JOptionPane.INFORMATION_MESSAGE);
 				return 1; //La acción no se realizó con éxito, y por tanto no se podrá deshacer
 			}
@@ -117,8 +118,8 @@ public class HBuscarElemento implements IHerramienta {
 	}
 	
 	public void mostrarError(String s) {
-		 JOptionPane.showMessageDialog(null,"No existe ningún " + s + " con el nombre especificado",
-				 s+ " no encontrado", 
+		 JOptionPane.showMessageDialog(null,Messages.getString("HBuscarElemento.12") + s + Messages.getString("HBuscarElemento.13"), //$NON-NLS-1$ //$NON-NLS-2$
+				 s+ Messages.getString("HBuscarElemento.14"),  //$NON-NLS-1$
 		            JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -130,7 +131,7 @@ public class HBuscarElemento implements IHerramienta {
 
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Búsqueda realizada";
+		return Tiempo.Hora()+Messages.getString("HBuscarElemento.15")+Messages.getString("HBuscarElemento.16"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public String getElementoACambiar() {

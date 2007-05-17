@@ -64,7 +64,7 @@ public class HEliminarNodo implements IHerramienta {
 	}
 
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Nodo eliminado";
+		return Tiempo.Hora()+Messages.getString("HEliminarNodo.0")+Messages.getString("HEliminarNodo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 	public Nodo getNodo() {

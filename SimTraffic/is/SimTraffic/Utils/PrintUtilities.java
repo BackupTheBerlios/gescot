@@ -1,5 +1,7 @@
 package is.SimTraffic.Utils;
 
+import is.SimTraffic.Messages;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.print.*;
@@ -22,7 +24,7 @@ public class PrintUtilities implements Printable {
       try {
         printJob.print();
       } catch(PrinterException pe) {
-        System.out.println("Error printing: " + pe);
+        System.out.println(Messages.getString("PrintUtilities.0") + pe); //$NON-NLS-1$
       }
   }
 

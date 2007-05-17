@@ -28,6 +28,6 @@ public class HPausar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Simulación detenida";
+		return Tiempo.Hora()+Messages.getString("HPausar.0")+Messages.getString("HPausar.1"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 }

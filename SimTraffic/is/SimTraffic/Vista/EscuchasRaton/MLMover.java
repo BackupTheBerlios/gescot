@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HMover;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
@@ -152,7 +153,7 @@ public class MLMover extends EscuchaRaton {
 					temp = tram.next();
 					temp.calculaLargo();
 					temp.calculaAngulo();
-					System.out.println("...");
+					System.out.println(Messages.getString("MLMover.0")); //$NON-NLS-1$
 				}
 			}
 		}
@@ -170,7 +171,7 @@ public class MLMover extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return "Arrastre la selección hasta el lugar deseado.";
+		return Messages.getString("MLMover.1"); //$NON-NLS-1$
 	}
 
 }

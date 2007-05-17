@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -108,6 +109,6 @@ public class MLSeleccionarTramos extends EscuchaRaton{
 	}
 	
 	public String getAyuda() {
-		return "Pulse y arrastre para crear el rectángulo de selección de tramos.";
+		return Messages.getString("MLSeleccionarTramos.0"); //$NON-NLS-1$
 	}
 }

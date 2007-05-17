@@ -4,6 +4,7 @@
 package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.PanelTramo.AccionAceptarTramo;
 
@@ -91,24 +92,24 @@ public class PanelTramo extends JFrame
 		//Antes comentado
 		JPanel panelVias = new JPanel();
 		if (tramo.getVia() != null) {
-			JLabel asociadoVia = new JLabel("Este tramo pertenece a una vía.");
-			JLabel observacionVia = new JLabel("Si cambia los datos aquí afectará a las propiedades de la via, no del tramo.");
+			JLabel asociadoVia = new JLabel(Messages.getString("PanelTramo.0")); //$NON-NLS-1$
+			JLabel observacionVia = new JLabel(Messages.getString("PanelTramo.1")); //$NON-NLS-1$
 			panelVias.add(asociadoVia);
 			panelVias.add(observacionVia);
 			if (tramo.getVia().getNombre() != null) {
-				JLabel nombreEtiqVia=new JLabel("Nombre");				
+				JLabel nombreEtiqVia=new JLabel(Messages.getString("PanelTramo.2"));				 //$NON-NLS-1$
 				nombreVia=new JTextField(20);
 				nombreVia.setText(tramo.getVia().getNombre());
 				panelVias.add(nombreEtiqVia);
 				panelVias.add(nombreVia);
 			}
 			if (tramo.getVia().getTipo()!=null /*&& tramo.getVia().getTipo().equals("highway")*/) {
-				JLabel tipoEtiqVia = new JLabel("Tipo de la Vía");
+				JLabel tipoEtiqVia = new JLabel(Messages.getString("PanelTramo.3")); //$NON-NLS-1$
 				//JLabel tipoVia = new JLabel(tramo.getVia().getTipo().getValorTipoCastellano());
-				String[] tiposVias = { "Autovia", "Acceso/salida Autovia","Carretera Nacional", "Acceso/salida Carretera Nacional",
-					"Carreteras principales","Conexiones  principales y secundarias","Carreteras secundarias","Carreteras terciarias"
-					,"Carreteras sin clasificar","Caminos forestales","Calles residenciales","Via de servicio","Carril-bici",
-					"Via peatonal","Calle peatonal","Escaleras"};
+				String[] tiposVias = { Messages.getString("PanelTramo.4"), Messages.getString("PanelTramo.5"),Messages.getString("PanelTramo.6"), Messages.getString("PanelTramo.7"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					Messages.getString("PanelTramo.8"),Messages.getString("PanelTramo.9"),Messages.getString("PanelTramo.10"),Messages.getString("PanelTramo.11") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					,Messages.getString("PanelTramo.12"),Messages.getString("PanelTramo.13"),Messages.getString("PanelTramo.14"),Messages.getString("PanelTramo.15"),Messages.getString("PanelTramo.16"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+					Messages.getString("PanelTramo.17"),Messages.getString("PanelTramo.18"),Messages.getString("PanelTramo.19")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			    combo_tipoVia = new JComboBox(tiposVias);
 				panelVias.add(combo_tipoVia);
 				panelVias.add(tipoEtiqVia);
@@ -121,7 +122,7 @@ public class PanelTramo extends JFrame
 			}
 		}
 		else {
-			JLabel noAsociadoVia = new JLabel("Este tramo no pertenece a ninguna vía");
+			JLabel noAsociadoVia = new JLabel(Messages.getString("PanelTramo.20")); //$NON-NLS-1$
 			panelVias.add(noAsociadoVia);
 		}
 		
@@ -133,8 +134,8 @@ public class PanelTramo extends JFrame
 	    
 	    JPanel panelRadio1 = new JPanel();
 	    panelRadio1.setLayout(new FlowLayout(FlowLayout.CENTER,30,5));
-	    radioUnidireccional = new JRadioButton("Unidireccional");
-	    radioBidireccional = new JRadioButton("Bidireccional");
+	    radioUnidireccional = new JRadioButton(Messages.getString("PanelTramo.21")); //$NON-NLS-1$
+	    radioBidireccional = new JRadioButton(Messages.getString("PanelTramo.22")); //$NON-NLS-1$
 	    ButtonGroup radioGrupo1 = new ButtonGroup();
 	    radioGrupo1.add(radioUnidireccional);
 	    radioGrupo1.add(radioBidireccional);
@@ -143,8 +144,8 @@ public class PanelTramo extends JFrame
 	    
 	    JPanel panelRadio2 = new JPanel();
 	    panelRadio2.setLayout(new GridLayout(2,1));
-	    radioSentido1 = new JRadioButton("Sentido 1");
-	    radioSentido2 = new JRadioButton("Sentido 2");
+	    radioSentido1 = new JRadioButton(Messages.getString("PanelTramo.23")); //$NON-NLS-1$
+	    radioSentido2 = new JRadioButton(Messages.getString("PanelTramo.24")); //$NON-NLS-1$
 	    //radioSentido1.setSelected(true);
 	    ButtonGroup radioGrupo2 = new ButtonGroup();
 	    radioGrupo2.add(radioSentido1);
@@ -158,7 +159,7 @@ public class PanelTramo extends JFrame
 	    aux.add(vacio);
 	    aux.add(panelRadio2);
 	    
-	    panelSentido.setBorder(BorderFactory.createTitledBorder("Sentido del Tramo"));
+	    panelSentido.setBorder(BorderFactory.createTitledBorder(Messages.getString("PanelTramo.25"))); //$NON-NLS-1$
 	    panelSentido.add(panelRadio1, BorderLayout.NORTH);
 	    panelSentido.add(aux, BorderLayout.SOUTH);
 	    
@@ -167,8 +168,8 @@ public class PanelTramo extends JFrame
 	  
 	    JPanel panelEtiquetasNumero = new JPanel();
 	    panelEtiquetasNumero.setLayout(new FlowLayout(FlowLayout.CENTER,30,5));
-	    JLabel etiquetaCarril1Numero = new JLabel("Carril sentido 1");
-	    JLabel etiquetaCarril2Numero = new JLabel("Carril sentido 2");
+	    JLabel etiquetaCarril1Numero = new JLabel(Messages.getString("PanelTramo.26")); //$NON-NLS-1$
+	    JLabel etiquetaCarril2Numero = new JLabel(Messages.getString("PanelTramo.27")); //$NON-NLS-1$
 	    panelEtiquetasNumero.add(etiquetaCarril1Numero);
 	    panelEtiquetasNumero.add(etiquetaCarril2Numero);
 	    
@@ -180,14 +181,14 @@ public class PanelTramo extends JFrame
 	    panelCamposNumero.add(campoCarril1Numero);
 	    panelCamposNumero.add(campoCarril2Numero);
 	    
-	    panelNumCarriles.setBorder(BorderFactory.createTitledBorder("Número de carriles"));
+	    panelNumCarriles.setBorder(BorderFactory.createTitledBorder(Messages.getString("PanelTramo.28"))); //$NON-NLS-1$
 	    panelNumCarriles.add(panelEtiquetasNumero,BorderLayout.NORTH);
 	    panelNumCarriles.add(panelCamposNumero,BorderLayout.SOUTH);
 	    
 	    //Añadido para el nombre
 	    JPanel panelNombre = new JPanel();
 	    panelNombre.setLayout(new FlowLayout(FlowLayout.CENTER,30,10));
-	    JLabel etiquetaNombre = new JLabel("Nombre");
+	    JLabel etiquetaNombre = new JLabel(Messages.getString("PanelTramo.29")); //$NON-NLS-1$
 	    campoNombre = new JTextField(14);
 	    if (tramo.getNombre()!=null)
 	    	campoNombre.setText(tramo.getNombre());
@@ -202,8 +203,8 @@ public class PanelTramo extends JFrame
 	    
 	    JPanel panelCamposVelocidad = new JPanel();
 	    panelCamposVelocidad.setLayout(new FlowLayout(FlowLayout.CENTER,50,5));
-	    JLabel etiqVelocidad = new JLabel("Velocidad");
-	    JLabel etiqLongitud = new JLabel("Longitud (en metros)");
+	    JLabel etiqVelocidad = new JLabel(Messages.getString("PanelTramo.30")); //$NON-NLS-1$
+	    JLabel etiqLongitud = new JLabel(Messages.getString("PanelTramo.31")); //$NON-NLS-1$
 
 	    int longitud = tramo.getLargo();
 	    String auxLongitud = String.valueOf(longitud);
@@ -216,7 +217,7 @@ public class PanelTramo extends JFrame
 	    panelCamposVelocidad.add(campoVelocidad);
 	    
 	    
-	    panelVelocidad.setBorder(BorderFactory.createTitledBorder("Otras propiedades"));
+	    panelVelocidad.setBorder(BorderFactory.createTitledBorder(Messages.getString("PanelTramo.32"))); //$NON-NLS-1$
 	    panelVelocidad.add(panelCamposVelocidad,BorderLayout.NORTH);
 	    //Añadido
 	    panelVelocidad.add(panelNombre,BorderLayout.SOUTH);    
@@ -324,8 +325,8 @@ public class PanelTramo extends JFrame
 	    panelPropiedades.add(panelVelocidad,BorderLayout.SOUTH);  
 	    this.add(panelPropiedades);
 	    
-	    panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
-	    panelDatos.addTab("Via asociada",null, panelVias, "Propiedades de Vía");
+	    panelDatos.addTab(Messages.getString("PanelTramo.33"),null, panelPropiedades, Messages.getString("PanelTramo.34")); //$NON-NLS-1$ //$NON-NLS-2$
+	    panelDatos.addTab(Messages.getString("PanelTramo.35"),null, panelVias, Messages.getString("PanelTramo.36")); //$NON-NLS-1$ //$NON-NLS-2$
 	    panelDatos.setSelectedIndex(0);
 	    
 	  /*panelDatos.addTab("Propiedades",null, panelPropiedades, "Propiedades del Tramo");
@@ -344,8 +345,8 @@ public class PanelTramo extends JFrame
 		JButton botonAceptar;
 		JButton botonCancelar;
 	
-		botonAceptar = new JButton("Aceptar");
-		botonCancelar = new JButton("Cancelar");
+		botonAceptar = new JButton(Messages.getString("PanelTramo.37")); //$NON-NLS-1$
+		botonCancelar = new JButton(Messages.getString("PanelTramo.38")); //$NON-NLS-1$
 		
 		final PanelTramo panelPpal = this;
 		AccionAceptarTramo accion = new AccionAceptarTramo(panel,this,controlador, tramo, radioUnidireccional, 

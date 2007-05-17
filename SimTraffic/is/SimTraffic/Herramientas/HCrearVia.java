@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import java.util.ArrayList;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
@@ -52,7 +53,7 @@ public class HCrearVia implements IHerramienta {
 	}
 
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Vía Creada";
+		return Tiempo.Hora()+Messages.getString("HCrearVia.0")+Messages.getString("HCrearVia.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }

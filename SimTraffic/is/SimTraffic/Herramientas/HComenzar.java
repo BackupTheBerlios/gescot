@@ -35,6 +35,6 @@ public class HComenzar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Inicio de Simulación";
+		return Tiempo.Hora()+Messages.getString("HComenzar.0")+Messages.getString("HComenzar.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

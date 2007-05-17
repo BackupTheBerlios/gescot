@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Messages;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -72,20 +74,20 @@ public class LineaBus extends Via{
 	public String transformarLineaBusaOSM() {
 		String s=new String();
 		Iterator<Tramo> tram = this.getTramos().iterator();
-		s=s.concat("<way id='"+this.getID()+"'>\n");
+		s=s.concat(Messages.getString("LineaBus.0")+this.getID()+Messages.getString("LineaBus.1")); //$NON-NLS-1$ //$NON-NLS-2$
 		while (tram.hasNext()) {
 			Tramo tramo_aux = tram.next();
-			s=s.concat("<seg id='"+tramo_aux.getID()+"'/>\n");
+			s=s.concat(Messages.getString("LineaBus.2")+tramo_aux.getID()+Messages.getString("LineaBus.3")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (this.getTipo()!=null) s=s.concat("<tag k='"+this.getTipo().getTipo()+"' v='"+this.getTipo().getValorTipo()+"' />\n");
-		if (this.getNombre()!=null) s=s.concat("<tag k='nombre' v='"+this.getNombre()+"' />\n");
-		s=s.concat("<tag k ='bus line' v='yes' />\n");
+		if (this.getTipo()!=null) s=s.concat(Messages.getString("LineaBus.4")+this.getTipo().getTipo()+Messages.getString("LineaBus.5")+this.getTipo().getValorTipo()+Messages.getString("LineaBus.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (this.getNombre()!=null) s=s.concat(Messages.getString("LineaBus.7")+this.getNombre()+Messages.getString("LineaBus.8")); //$NON-NLS-1$ //$NON-NLS-2$
+		s=s.concat(Messages.getString("LineaBus.9")); //$NON-NLS-1$
 		Iterator<Nodo> nodos = this.getParadas().iterator();
 		while (nodos.hasNext()){
 			Nodo nodo_aux = nodos.next();
-			s=s.concat("<parada id='"+nodo_aux.getID()+"'/>\n");
+			s=s.concat(Messages.getString("LineaBus.10")+nodo_aux.getID()+Messages.getString("LineaBus.11")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		s=s.concat("</way>\n");
+		s=s.concat(Messages.getString("LineaBus.12")); //$NON-NLS-1$
 		return s;
 	}
 

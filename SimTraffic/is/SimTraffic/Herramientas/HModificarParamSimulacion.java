@@ -4,6 +4,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
 import is.SimTraffic.Utils.Tiempo;
 
@@ -37,7 +38,7 @@ public class HModificarParamSimulacion implements IHerramienta {
 		return modelo.getSimulacion().modificaParametros(this.parametros);		
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+ "Parámetros de Simulación modificados";
+		return Tiempo.Hora()+Messages.getString("HModificarParamSimulacion.0")+ Messages.getString("HModificarParamSimulacion.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public ParametrosSimulacion getParametros() {

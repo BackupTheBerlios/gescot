@@ -6,6 +6,7 @@ package is.SimTraffic.Herramientas;
 import java.util.ArrayList;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
@@ -105,6 +106,6 @@ public class HAsignarTramosAVia implements IHerramienta {
 		this.viaAInsertar=viaAInsertar;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Tramos asignados a vía";
+		return Tiempo.Hora()+Messages.getString("HAsignarTramosAVia.0")+Messages.getString("HAsignarTramosAVia.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

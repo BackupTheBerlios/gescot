@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 public class TipoNodoHighway extends TipoElemento implements ITipoElemento {
 
 	/**
@@ -34,26 +36,26 @@ public class TipoNodoHighway extends TipoElemento implements ITipoElemento {
 	
 	public TipoNodoHighway(String vTipo) {
 		super(vTipo);
-		tipo="highway";
+		tipo=Messages.getString("TipoNodoHighway.0"); //$NON-NLS-1$
 	}
 	
 	/**
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Cambio De Rasante","incline"},
-				   				   {"Cruce","crossing"},
-								   {"Mini-rotonda","mini_roundabout"}, 
-								   {"Portón para vehículos","gate"},
-								   {"Puente","bridge"},
-								   {"Stop","stadium"},
-								   {"Viaducto","viaduct"},	
+		String[][] tTraduccion = { {Messages.getString("TipoNodoHighway.1"),Messages.getString("TipoNodoHighway.2")}, //$NON-NLS-1$ //$NON-NLS-2$
+				   				   {Messages.getString("TipoNodoHighway.3"),Messages.getString("TipoNodoHighway.4")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoHighway.5"),Messages.getString("TipoNodoHighway.6")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoHighway.7"),Messages.getString("TipoNodoHighway.8")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoHighway.9"),Messages.getString("TipoNodoHighway.10")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoHighway.11"),Messages.getString("TipoNodoHighway.12")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoHighway.13"),Messages.getString("TipoNodoHighway.14")},	 //$NON-NLS-1$ //$NON-NLS-2$
 									};
 		return tTraduccion;
 	}
 
 	public String getTipoCastellano() {
-		return "Carretera";
+		return Messages.getString("TipoNodoHighway.15"); //$NON-NLS-1$
 	}
 
 }

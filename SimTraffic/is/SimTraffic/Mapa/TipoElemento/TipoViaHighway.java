@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 import java.io.Serializable;
 
 public class TipoViaHighway extends TipoElemento implements ITipoElemento, Serializable {
@@ -39,7 +41,7 @@ public class TipoViaHighway extends TipoElemento implements ITipoElemento, Seria
 	
 	public TipoViaHighway(String valorTipo) {
 		super(valorTipo);
-		tipo="highway";
+		tipo=Messages.getString("TipoViaHighway.0"); //$NON-NLS-1$
 		// TODO Auto-generated constructor stub
 		//this.valorTipo = valorTipo;
 	}
@@ -67,23 +69,23 @@ public class TipoViaHighway extends TipoElemento implements ITipoElemento, Seria
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Autovia"," motorway"}, 
-								   {"Acceso/salida Autovia","motorway_link"},
-								   {"Carretera Nacional","trunk"},
-								   {"Acceso/salida Carretera Nacional","trunk_link"},
-								   {"Carreteras principales","primary"},
-								   {"Conexiones  principales y secundarias","primary_link"},
-								   {"Carreteras secundarias","secondary"},
-								   {"Carreteras terciarias","tertiary"},
-								   {"Carreteras sin clasificar","unclassified"},
-								   {"Caminos forestales","track"},
-								   {"Calles residenciales","residential"},
-								   {"Vias de servicio","service"},	
+		String[][] tTraduccion = { {Messages.getString("TipoViaHighway.1"),Messages.getString("TipoViaHighway.2")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.3"),Messages.getString("TipoViaHighway.4")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.5"),Messages.getString("TipoViaHighway.6")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.7"),Messages.getString("TipoViaHighway.8")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.9"),Messages.getString("TipoViaHighway.10")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.11"),Messages.getString("TipoViaHighway.12")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.13"),Messages.getString("TipoViaHighway.14")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.15"),Messages.getString("TipoViaHighway.16")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.17"),Messages.getString("TipoViaHighway.18")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.19"),Messages.getString("TipoViaHighway.20")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.21"),Messages.getString("TipoViaHighway.22")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.23"),Messages.getString("TipoViaHighway.24")},	 //$NON-NLS-1$ //$NON-NLS-2$
 								   //{"","bridleway"}, (No tiene equivalente en España)
-								   {"Carril-bici","cycleway"},
-								   {"Via peatonal","footway"},
-								   {"Calle peatonal","pedestrian"},
-								   {"Escaleras","steps"},
+								   {Messages.getString("TipoViaHighway.25"),Messages.getString("TipoViaHighway.26")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.27"),Messages.getString("TipoViaHighway.28")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.29"),Messages.getString("TipoViaHighway.30")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoViaHighway.31"),Messages.getString("TipoViaHighway.32")}, //$NON-NLS-1$ //$NON-NLS-2$
 								   //{"Definido por el usuario","User Defined"},
 									};
 		return tTraduccion;
@@ -120,7 +122,7 @@ public class TipoViaHighway extends TipoElemento implements ITipoElemento, Seria
 	}*/
 
 	public String getTipoCastellano() {
-		return "Carretera";
+		return Messages.getString("TipoViaHighway.33"); //$NON-NLS-1$
 	}
 
 

@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -76,7 +77,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 	@Override
 	public String getAyuda() 
 	{
-		return "";
+		return Messages.getString("MLSeleccionaNodoBDerecho.0"); //$NON-NLS-1$
 	}
 	
 

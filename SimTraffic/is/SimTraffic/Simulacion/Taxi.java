@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -15,7 +16,7 @@ public class Taxi extends Vehiculo {
 	private Tramo siguiente;
 
 	public Taxi() {
-		nombre = "Taxi";
+		nombre = Messages.getString("Taxi.0"); //$NON-NLS-1$
 
 		this.color = Color.YELLOW;
 		this.figura = new Rectangle2D.Double(0,

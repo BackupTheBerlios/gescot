@@ -2,6 +2,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
@@ -144,7 +145,6 @@ public class Ventana extends JFrame {
 
 	private JMenuItem cortarSeleccion;
 	
-	@SuppressWarnings("unused")
 	private Log popUpLog;
 
 	/**
@@ -159,7 +159,7 @@ public class Ventana extends JFrame {
 		this.modelo = modelo;
 		this.controlador = controlador;
 		setSize(800, 600);
-		setTitle("SimTraffic v 2.0");
+		setTitle(Messages.getString("Ventana.1")); //$NON-NLS-1$
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); // La ventana aparece
 		// maximizada.
@@ -232,11 +232,11 @@ public class Ventana extends JFrame {
 	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
 	 */
 	public void añadirMenuEmergenteNodo(){
-		JPopupMenu emergenteNodo = new JPopupMenu("Menu Emergente Nodo");
-		JMenuItem eliminarNodo = new JMenuItem("Eliminar Nodo");
+		JPopupMenu emergenteNodo = new JPopupMenu(Messages.getString("Ventana.2")); //$NON-NLS-1$
+		JMenuItem eliminarNodo = new JMenuItem(Messages.getString("Ventana.3")); //$NON-NLS-1$
 		eliminarNodo.addActionListener(new AccionEliminarNodo(modelo,
 				controlador, panel_mapa));		
-		JMenuItem propiedades = new JMenuItem("Propiedades del nodo");
+		JMenuItem propiedades = new JMenuItem(Messages.getString("Ventana.4")); //$NON-NLS-1$
 		propiedades.addActionListener(new AccionPropiedadesNodo(modelo,
 				controlador, panel_mapa));		
 		
@@ -246,11 +246,11 @@ public class Ventana extends JFrame {
 		panel_mapa.setMenuEmergenteNodo(emergenteNodo);
 	}
 	public void añadirMenuEmergenteTramo(){
-		JPopupMenu emergenteTramo = new JPopupMenu("Menu Emergente Tramo");
-		JMenuItem eliminarTramo = new JMenuItem("Eliminar Tramo");
+		JPopupMenu emergenteTramo = new JPopupMenu(Messages.getString("Ventana.5")); //$NON-NLS-1$
+		JMenuItem eliminarTramo = new JMenuItem(Messages.getString("Ventana.6")); //$NON-NLS-1$
 		eliminarTramo.addActionListener(new AccionEliminarTramo(modelo,
 				controlador, panel_mapa));
-		JMenuItem propiedades = new JMenuItem("Propiedades del tramo");		
+		JMenuItem propiedades = new JMenuItem(Messages.getString("Ventana.7"));		 //$NON-NLS-1$
 		propiedades.addActionListener(new AccionPropiedadesTramo(modelo,
 				controlador, panel_mapa));		
 		
@@ -263,14 +263,14 @@ public class Ventana extends JFrame {
 	 * 
 	 */
 	public void añadirMenuEmergenteMapa(){
-		emergenteMapa = new JPopupMenu("Menu Emergente Mapa");	
+		emergenteMapa = new JPopupMenu(Messages.getString("Ventana.8"));	 //$NON-NLS-1$
 		
-		JMenuItem cambiarRepresentacion = new JMenuItem("Cambiar Representación");
+		JMenuItem cambiarRepresentacion = new JMenuItem(Messages.getString("Ventana.9")); //$NON-NLS-1$
 		cambiarRepresentacion.addActionListener(new AccionCambiarRep(panel_mapa,
 				new RepresentacionAvanzada(), new RepresentacionSimple()));
-		cambiarRepresentacion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cambiar la representación del mapa.", this));
+		cambiarRepresentacion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.10"), this)); //$NON-NLS-1$
 		
-		JMenuItem zoomIn = new JMenuItem("Zoom in");
+		JMenuItem zoomIn = new JMenuItem(Messages.getString("Ventana.11")); //$NON-NLS-1$
 		zoomIn.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -278,9 +278,9 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		zoomIn.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para acercar el zoom.", this));
+		zoomIn.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.12"), this)); //$NON-NLS-1$
 		
-		JMenuItem zoomOut = new JMenuItem("Zoom out");
+		JMenuItem zoomOut = new JMenuItem(Messages.getString("Ventana.13")); //$NON-NLS-1$
 		zoomOut.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -288,9 +288,9 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		zoomOut.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para alejar el zoom.",this));
+		zoomOut.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.14"),this)); //$NON-NLS-1$
 		
-		JMenuItem comenzarSimulación = new JMenuItem("Comenzar simulación");
+		JMenuItem comenzarSimulación = new JMenuItem(Messages.getString("Ventana.15")); //$NON-NLS-1$
 		comenzarSimulación.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -298,9 +298,9 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		comenzarSimulación.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para comenzar una nueva simulación sobre el mapa actual.",this));
+		comenzarSimulación.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.16"),this)); //$NON-NLS-1$
 		
-		JMenuItem detenerSimulación = new JMenuItem("Detener simulación");
+		JMenuItem detenerSimulación = new JMenuItem(Messages.getString("Ventana.17")); //$NON-NLS-1$
 		detenerSimulación.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -308,19 +308,19 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		detenerSimulación.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para parar la simulación actual.", this));
+		detenerSimulación.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.18"), this)); //$NON-NLS-1$
 		
-		copiarSeleccion = new JMenuItem("Copiar");
+		copiarSeleccion = new JMenuItem(Messages.getString("Ventana.19")); //$NON-NLS-1$
 		copiarSeleccion.addActionListener(new AccionCopiar(
 				modelo, controlador, panel_mapa));
-		copiarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para copiar los elementos seleccionados.",this));
+		copiarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.20"),this)); //$NON-NLS-1$
 		
-		cortarSeleccion = new JMenuItem("Cortar");
+		cortarSeleccion = new JMenuItem(Messages.getString("Ventana.21")); //$NON-NLS-1$
 		cortarSeleccion.addActionListener(new AccionCortar(
 				modelo, controlador, panel_mapa));
-		cortarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para cortar los elementos seleccionados.",this));
+		cortarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.22"),this)); //$NON-NLS-1$
 		
-		pegarSeleccion = new JMenuItem("Pegar");
+		pegarSeleccion = new JMenuItem(Messages.getString("Ventana.23")); //$NON-NLS-1$
 		pegarSeleccion.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -328,14 +328,14 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para pegar los elementos cortados o copiados.",this));
+		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.24"),this)); //$NON-NLS-1$
 		
-		JMenuItem eliminarSeleccion = new JMenuItem("Eliminar Seleccion");
+		JMenuItem eliminarSeleccion = new JMenuItem(Messages.getString("Ventana.25")); //$NON-NLS-1$
 		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
-		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar los nodos y tramos seleccionados en el mapa.", this));
+		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.26"), this)); //$NON-NLS-1$
 		
-		JMenuItem desplazarMapa = new JMenuItem("Desplazar el mapa");
+		JMenuItem desplazarMapa = new JMenuItem(Messages.getString("Ventana.27")); //$NON-NLS-1$
 		desplazarMapa.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -343,12 +343,12 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		desplazarMapa.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para desplazar el mapa.", this));
+		desplazarMapa.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.28"), this)); //$NON-NLS-1$
 		
 		
-		JMenu submenuSeleccion = new JMenu("Modo Seleccionar");
+		JMenu submenuSeleccion = new JMenu(Messages.getString("Ventana.29")); //$NON-NLS-1$
 		
-		JMenuItem seleccion = new JMenuItem("Seleccionar nodos y tramos");
+		JMenuItem seleccion = new JMenuItem(Messages.getString("Ventana.30")); //$NON-NLS-1$
 		seleccion.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -356,10 +356,10 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		seleccion.addMouseMotionListener(new EscuchaAyuda("Seleccione nodos y tramos y arrástrelos para moverlos por el mapa.", this));
+		seleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.31"), this)); //$NON-NLS-1$
 		submenuSeleccion.add(seleccion);
 		
-		JMenuItem seleccionVias = new JMenuItem("Seleccionar Vías");
+		JMenuItem seleccionVias = new JMenuItem(Messages.getString("Ventana.32")); //$NON-NLS-1$
 		seleccionVias.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -367,12 +367,12 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		seleccionVias.addMouseMotionListener(new EscuchaAyuda("Seleccione vias en el mapa.", this));
+		seleccionVias.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.33"), this)); //$NON-NLS-1$
 		submenuSeleccion.add(seleccionVias);
 		
-		JMenu submenuInsertar = new JMenu("Modo Insertar");
+		JMenu submenuInsertar = new JMenu(Messages.getString("Ventana.34")); //$NON-NLS-1$
 		
-		JMenuItem insertarNodo = new JMenuItem ("Insertar Nodo");
+		JMenuItem insertarNodo = new JMenuItem (Messages.getString("Ventana.35")); //$NON-NLS-1$
 		insertarNodo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -380,10 +380,10 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		insertarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo nodo.", this));
+		insertarNodo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.36"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarNodo);
 		
-		JMenuItem insertarTramo = new JMenuItem ("Insertar tramo");
+		JMenuItem insertarTramo = new JMenuItem (Messages.getString("Ventana.37")); //$NON-NLS-1$
 		insertarTramo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -391,10 +391,10 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		insertarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
+		insertarTramo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.38"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarTramo);
 		
-		JMenuItem insertarVia = new JMenuItem ("Insertar vía");
+		JMenuItem insertarVia = new JMenuItem (Messages.getString("Ventana.39")); //$NON-NLS-1$
 		insertarVia.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -402,10 +402,10 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		insertarVia.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir un nuevo tramo.", this));
+		insertarVia.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.40"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarVia);
 		
-		JMenuItem insertarLineaBus = new JMenuItem ("Insertar línea de bus");
+		JMenuItem insertarLineaBus = new JMenuItem (Messages.getString("Ventana.41")); //$NON-NLS-1$
 		insertarLineaBus.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -413,12 +413,12 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		insertarLineaBus.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para añadir una nueva línea de autobús.", this));
+		insertarLineaBus.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.42"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarLineaBus);
 		
-		JMenu submenuEliminar = new JMenu("Modo Eliminar");
+		JMenu submenuEliminar = new JMenu(Messages.getString("Ventana.43")); //$NON-NLS-1$
 		
-		JMenuItem eliminarNodo = new JMenuItem ("Eliminar nodo");
+		JMenuItem eliminarNodo = new JMenuItem (Messages.getString("Ventana.44")); //$NON-NLS-1$
 		eliminarNodo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -426,10 +426,10 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		eliminarNodo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un nodo.", this));
+		eliminarNodo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.45"), this)); //$NON-NLS-1$
 		submenuEliminar.add(eliminarNodo);
 		
-		JMenuItem eliminarTramo = new JMenuItem ("Eliminar tramo");
+		JMenuItem eliminarTramo = new JMenuItem (Messages.getString("Ventana.46")); //$NON-NLS-1$
 		eliminarTramo.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -437,7 +437,7 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		eliminarTramo.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para eliminar un tramo.", this));
+		eliminarTramo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.47"), this)); //$NON-NLS-1$
 		submenuEliminar.add(eliminarTramo);
 
 		emergenteMapa.add(cambiarRepresentacion);
@@ -463,9 +463,9 @@ public class Ventana extends JFrame {
 	
 	public void añadirMenuEmergenteTerminar(){
 		
-		emergenteTerminar = new JPopupMenu("Menu Emergente Finalizar");	
+		emergenteTerminar = new JPopupMenu(Messages.getString("Ventana.48"));	 //$NON-NLS-1$
 		
-		JMenuItem terminar = new JMenuItem("Terminar");
+		JMenuItem terminar = new JMenuItem(Messages.getString("Ventana.49")); //$NON-NLS-1$
 		terminar.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -475,7 +475,7 @@ public class Ventana extends JFrame {
 					
 				}
 		);
-		terminar.addMouseMotionListener(new EscuchaAyuda("Pulse aquí para terminar.", this));
+		terminar.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.50"), this)); //$NON-NLS-1$
 		
 		emergenteTerminar.add(terminar);
 		
@@ -507,7 +507,7 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuArchivo() {
 		JMenu archivoMenu = new JMenu();
-		archivoMenu.setText("Archivo");
+		archivoMenu.setText(Messages.getString("Ventana.51")); //$NON-NLS-1$
 		archivoMenu.setMnemonic('A');
 		menuBar.add(archivoMenu);
 
@@ -515,7 +515,7 @@ public class Ventana extends JFrame {
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem
 				.addActionListener(new AccionNuevo(controlador, panel_mapa));
-		nuevoMapaMenuItem.setText("Nuevo Mapa");
+		nuevoMapaMenuItem.setText(Messages.getString("Ventana.52")); //$NON-NLS-1$
 		nuevoMapaMenuItem.setMnemonic('N');
 		nuevoMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK));
 		archivoMenu.add(nuevoMapaMenuItem);
@@ -525,20 +525,20 @@ public class Ventana extends JFrame {
 		JMenuItem cargarMapaMenuItem = new JMenuItem();
 		cargarMapaMenuItem.addActionListener(new AccionCargar(controlador,
 				panel_mapa));
-		cargarMapaMenuItem.setText("Cargar Mapa");
+		cargarMapaMenuItem.setText(Messages.getString("Ventana.53")); //$NON-NLS-1$
 		cargarMapaMenuItem.setMnemonic('M');
 		cargarMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,InputEvent.CTRL_MASK));
 		archivoMenu.add(cargarMapaMenuItem);
 		
 		JMenuItem descargarMapaMenuItem = new JMenuItem();
 		descargarMapaMenuItem.addActionListener(new AccionDescargar(controlador,panel_mapa));
-		descargarMapaMenuItem.setText("Descargar Mapa");
+		descargarMapaMenuItem.setText(Messages.getString("Ventana.54")); //$NON-NLS-1$
 		descargarMapaMenuItem.setMnemonic('D');
 		archivoMenu.add(descargarMapaMenuItem);
 
 		JMenuItem guardarmapaMenuItem = new JMenuItem();
 		guardarmapaMenuItem.addActionListener(new AccionGuardar(controlador));
-		guardarmapaMenuItem.setText("GuardarMapa");
+		guardarmapaMenuItem.setText(Messages.getString("Ventana.55")); //$NON-NLS-1$
 		guardarmapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,InputEvent.CTRL_MASK));
 		guardarmapaMenuItem.setMnemonic('G');
 		archivoMenu.add(guardarmapaMenuItem);
@@ -547,7 +547,7 @@ public class Ventana extends JFrame {
 		
 		JMenuItem imprimirMapaMenuItem = new JMenuItem();
 		imprimirMapaMenuItem.addActionListener(new AccionImprimir(panel_mapa));
-		imprimirMapaMenuItem.setText("ImprimirMapa");
+		imprimirMapaMenuItem.setText(Messages.getString("Ventana.56")); //$NON-NLS-1$
 		imprimirMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,InputEvent.CTRL_MASK));
 		imprimirMapaMenuItem.setMnemonic('P');
 		archivoMenu.add(imprimirMapaMenuItem);
@@ -560,7 +560,7 @@ public class Ventana extends JFrame {
 				System.exit(0);
 			}
 		});
-		salirMenuItem.setText("Salir");
+		salirMenuItem.setText(Messages.getString("Ventana.57")); //$NON-NLS-1$
 		salirMenuItem.setMnemonic('S');
 		salirMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));
 		archivoMenu.add(salirMenuItem);
@@ -572,14 +572,14 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuEdicion() {
 		JMenu edicionMenu = new JMenu();
-		edicionMenu.setText("Edición");
+		edicionMenu.setText(Messages.getString("Ventana.58")); //$NON-NLS-1$
 		edicionMenu.setMnemonic('E');
 		menuBar.add(edicionMenu);
 
 		JMenuItem deshacerMenuItem = new JMenuItem();
 		deshacerMenuItem.addActionListener(new AccionDeshacer(controlador,
 				panel_mapa));
-		deshacerMenuItem.setText("Deshacer");
+		deshacerMenuItem.setText(Messages.getString("Ventana.59")); //$NON-NLS-1$
 		deshacerMenuItem.setMnemonic('D');
 		deshacerMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_MASK));
 		edicionMenu.add(deshacerMenuItem);
@@ -590,7 +590,7 @@ public class Ventana extends JFrame {
 		cortarMenuItem.addActionListener(new AccionCortar(modelo, controlador,
 				panel_mapa));
 		// copiarMenuItem.addActionListener(new AccionCopiar());
-		cortarMenuItem.setText("Cortar");
+		cortarMenuItem.setText(Messages.getString("Ventana.60")); //$NON-NLS-1$
 		cortarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,InputEvent.CTRL_MASK));
 		edicionMenu.add(cortarMenuItem);
 
@@ -598,7 +598,7 @@ public class Ventana extends JFrame {
 		copiarMenuItem.addActionListener(new AccionCopiar(modelo, controlador,
 				panel_mapa));
 		// copiarMenuItem.addActionListener(new AccionCopiar());
-		copiarMenuItem.setText("Copiar");
+		copiarMenuItem.setText(Messages.getString("Ventana.61")); //$NON-NLS-1$
 		copiarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_MASK));
 		edicionMenu.add(copiarMenuItem);
 
@@ -610,7 +610,7 @@ public class Ventana extends JFrame {
 					}
 				}
 		);
-		pegarMenuItem.setText("Pegar");
+		pegarMenuItem.setText(Messages.getString("Ventana.62")); //$NON-NLS-1$
 		pegarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
 		edicionMenu.add(pegarMenuItem);
 
@@ -619,7 +619,7 @@ public class Ventana extends JFrame {
 		JMenuItem imagenMenuItem = new JMenuItem();
 		imagenMenuItem.addActionListener(new AccionCargarImagen(controlador,
 				panel_mapa));
-		imagenMenuItem.setText("Cargar imagen");
+		imagenMenuItem.setText(Messages.getString("Ventana.63")); //$NON-NLS-1$
 		imagenMenuItem.setMnemonic('i');
 		edicionMenu.add(imagenMenuItem);
 
@@ -631,43 +631,43 @@ public class Ventana extends JFrame {
 				escuchaTeclado, -1));
 		selecMenuItem
 				.addActionListener(new AccionBarra(this, barraSeleccionar));
-		selecMenuItem.setText("Seleccionar...");
+		selecMenuItem.setText(Messages.getString("Ventana.64")); //$NON-NLS-1$
 		edicionMenu.add(selecMenuItem);
 
 		JMenuItem moverMenuItem = new JMenuItem();
 		moverMenuItem.addActionListener(new AccionSobreMapa(new MLMover(modelo,
 				controlador, panel_mapa), this, escuchaTeclado, -1));
-		moverMenuItem.setText("Mover...");
+		moverMenuItem.setText(Messages.getString("Ventana.65")); //$NON-NLS-1$
 		edicionMenu.add(moverMenuItem);
 
-		JMenu subMenuVer = new JMenu("Ver elementos...");
+		JMenu subMenuVer = new JMenu(Messages.getString("Ventana.66")); //$NON-NLS-1$
 		edicionMenu.add(subMenuVer);
 		
 		JMenuItem verNodosMenuItem = new JMenuItem();
 		verNodosMenuItem.addActionListener(new AccionVerNodos(controlador,
-				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_nodo2.png", "Nodos existentes",
-				"Nodo"));
-		verNodosMenuItem.setText("Ver Nodos");
+				modelo, this,panel_mapa,Messages.getString("Ventana.67"), Messages.getString("Ventana.68"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("Ventana.69"))); //$NON-NLS-1$
+		verNodosMenuItem.setText(Messages.getString("Ventana.70")); //$NON-NLS-1$
 		subMenuVer.add(verNodosMenuItem);
 		
 		JMenuItem verTramosMenuItem = new JMenuItem();
 		verTramosMenuItem.addActionListener(new AccionVerTramos(controlador,
-				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_tramo2.png", "Tramos existentes",
-				"Tramo"));
-		verTramosMenuItem.setText("Ver Tramos");
+				modelo, this,panel_mapa,Messages.getString("Ventana.71"), Messages.getString("Ventana.72"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("Ventana.73"))); //$NON-NLS-1$
+		verTramosMenuItem.setText(Messages.getString("Ventana.74")); //$NON-NLS-1$
 		subMenuVer.add(verTramosMenuItem);
 		
 		JMenuItem verViasMenuItem = new JMenuItem();
 		verViasMenuItem.addActionListener(new AccionVerVias(controlador,
-				modelo, this,panel_mapa,"is\\SimTraffic\\Vista\\Imagenes\\añadir_via2.png", "Vías existentes",
-				"Via"));
-		verViasMenuItem.setText("Ver Vías");
+				modelo, this,panel_mapa,Messages.getString("Ventana.75"), Messages.getString("Ventana.76"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("Ventana.77"))); //$NON-NLS-1$
+		verViasMenuItem.setText(Messages.getString("Ventana.78")); //$NON-NLS-1$
 		subMenuVer.add(verViasMenuItem);
 		
 		JMenuItem verlineasBusMenuItem = new JMenuItem();
 		verlineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
 				modelo, this,panel_mapa));
-		verlineasBusMenuItem.setText("Ver Líneas de Autobuses");
+		verlineasBusMenuItem.setText(Messages.getString("Ventana.79")); //$NON-NLS-1$
 		subMenuVer.add(verlineasBusMenuItem);
 	}
 
@@ -683,20 +683,20 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuVis() {
 		JMenu menuVis = new JMenu();
-		menuVis.setText("Visualización");
+		menuVis.setText(Messages.getString("Ventana.80")); //$NON-NLS-1$
 		menuBar.add(menuVis);
 		menuVis.setMnemonic('V');
 
 		JMenuItem zoomIn = new JMenuItem();
 		zoomIn.addActionListener(new AccionZoom(panel_mapa, 0.5));
-		zoomIn.setText("Zoom in");
+		zoomIn.setText(Messages.getString("Ventana.81")); //$NON-NLS-1$
 		zoomIn.setMnemonic('i');
 		zoomIn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,InputEvent.CTRL_MASK));
 		menuVis.add(zoomIn);
 
 		JMenuItem zoomOut = new JMenuItem();
 		zoomOut.addActionListener(new AccionZoom(panel_mapa, 2));
-		zoomOut.setText("Zoom out");
+		zoomOut.setText(Messages.getString("Ventana.82")); //$NON-NLS-1$
 		zoomOut.setMnemonic('o');
 		zoomOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,InputEvent.CTRL_MASK));
 		menuVis.add(zoomOut);
@@ -706,7 +706,7 @@ public class Ventana extends JFrame {
 		JMenuItem cambiarRep = new JMenuItem();
 		cambiarRep.addActionListener(new AccionCambiarRep(panel_mapa,
 				new RepresentacionAvanzada(), new RepresentacionSimple()));
-		cambiarRep.setText("Cambiar representación");
+		cambiarRep.setText(Messages.getString("Ventana.83")); //$NON-NLS-1$
 		cambiarRep.setMnemonic('C');
 		menuVis.add(cambiarRep);
 	}
@@ -717,7 +717,7 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuMapa() {
 		JMenu mapaMenu = new JMenu();
-		mapaMenu.setText("Mapa");
+		mapaMenu.setText(Messages.getString("Ventana.84")); //$NON-NLS-1$
 		mapaMenu.setMnemonic('M');
 		menuBar.add(mapaMenu);
 
@@ -725,7 +725,7 @@ public class Ventana extends JFrame {
 		añadirNodo
 				.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
 						controlador, panel_mapa, this), this, escuchaTeclado, 0));
-		añadirNodo.setText("Añadir nodo");
+		añadirNodo.setText(Messages.getString("Ventana.85")); //$NON-NLS-1$
 		añadirNodo.setMnemonic('n');
 		mapaMenu.add(añadirNodo);
 
@@ -734,7 +734,7 @@ public class Ventana extends JFrame {
 				.addActionListener(new AccionSobreMapa(new MLAñadirTramo(
 						modelo, controlador, panel_mapa, this), this,
 						escuchaTeclado, 1));
-		añadirTramo.setText("Añadir tramo");
+		añadirTramo.setText(Messages.getString("Ventana.86")); //$NON-NLS-1$
 		añadirTramo.setMnemonic('t');		
 		mapaMenu.add(añadirTramo);
 
@@ -743,13 +743,13 @@ public class Ventana extends JFrame {
 		JMenuItem eliminarNodo = new JMenuItem();
 		eliminarNodo.addActionListener(new AccionSobreMapa(new MLEliminarNodo(
 				modelo, controlador, panel_mapa), this, escuchaTeclado, 2));
-		eliminarNodo.setText("Eliminar nodo");
+		eliminarNodo.setText(Messages.getString("Ventana.87")); //$NON-NLS-1$
 		mapaMenu.add(eliminarNodo);
 
 		JMenuItem elminarTramo = new JMenuItem();
 		elminarTramo.addActionListener(new AccionSobreMapa(new MLEliminarTramo(
 				modelo, controlador, panel_mapa), this, escuchaTeclado, 3));
-		elminarTramo.setText("Eliminar tramo");
+		elminarTramo.setText(Messages.getString("Ventana.88")); //$NON-NLS-1$
 		mapaMenu.add(elminarTramo);
 
 		mapaMenu.addSeparator();
@@ -757,7 +757,7 @@ public class Ventana extends JFrame {
 		JMenuItem buscarElemento = new JMenuItem();
 		buscarElemento.addActionListener(new AccionBuscar(controlador,panel_mapa));
 		buscarElemento.addActionListener(new AccionBarra(this, null));
-		buscarElemento.setText("Buscar elemento");
+		buscarElemento.setText(Messages.getString("Ventana.89")); //$NON-NLS-1$
 		buscarElemento.setMnemonic('B');
 		mapaMenu.add(buscarElemento);
 		
@@ -766,7 +766,7 @@ public class Ventana extends JFrame {
 				modelo, controlador, panel_mapa), this,
 				escuchaTeclado, 8));
 		mejorCamino.addActionListener(new AccionBarra(this, null));
-		mejorCamino.setText("Encontrar mejor camino");
+		mejorCamino.setText(Messages.getString("Ventana.90")); //$NON-NLS-1$
 		mejorCamino.setMnemonic('c');
 		mapaMenu.add(mejorCamino);
 		
@@ -778,7 +778,7 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuSimulacion() {
 		JMenu simMenu = new JMenu();
-		simMenu.setText("Simulación");
+		simMenu.setText(Messages.getString("Ventana.91")); //$NON-NLS-1$
 		simMenu.setMnemonic('S');
 		menuBar.add(simMenu);
 
@@ -786,14 +786,14 @@ public class Ventana extends JFrame {
 		añadirBus.addActionListener(new AccionSobreMapa(
 				new MLAñadirLineaAutobus(modelo, controlador, panel_mapa),
 				this, escuchaTeclado, 4));
-		añadirBus.setText("Añadir linea autobus");
+		añadirBus.setText(Messages.getString("Ventana.92")); //$NON-NLS-1$
 		añadirBus.setMnemonic('l');
 		simMenu.add(añadirBus);
 
 		JMenuItem añadirVia = new JMenuItem();
 		añadirVia.addActionListener(new AccionSobreMapa(new MLAñadirVia(modelo,
 				controlador, panel_mapa), this, escuchaTeclado, 6));
-		añadirVia.setText("Añadir vía");
+		añadirVia.setText(Messages.getString("Ventana.93")); //$NON-NLS-1$
 		añadirVia.setMnemonic('v');
 		simMenu.add(añadirVia);
 
@@ -801,21 +801,21 @@ public class Ventana extends JFrame {
 
 		JMenuItem comenarSim = new JMenuItem();
 		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()));
-		comenarSim.setText("Comenzar");
+		comenarSim.setText(Messages.getString("Ventana.94")); //$NON-NLS-1$
 		comenarSim.setMnemonic('C');
 		comenarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5,InputEvent.CTRL_MASK));
 		simMenu.add(comenarSim);
 
 		JMenuItem pausarSim = new JMenuItem();
 		pausarSim.addActionListener(new AccionPausarSimulacion(controlador));
-		pausarSim.setText("Pausar");
+		pausarSim.setText(Messages.getString("Ventana.95")); //$NON-NLS-1$
 		pausarSim.setMnemonic('P');
 		pausarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6,InputEvent.CTRL_MASK));
 		simMenu.add(pausarSim);
 
 		JMenuItem terminarSim = new JMenuItem();
 		terminarSim.addActionListener(new AccionDetenerSimulacion(controlador));
-		terminarSim.setText("Detener");
+		terminarSim.setText(Messages.getString("Ventana.96")); //$NON-NLS-1$
 		terminarSim.setMnemonic('D');
 		terminarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7,InputEvent.CTRL_MASK));
 		simMenu.add(terminarSim);
@@ -828,7 +828,7 @@ public class Ventana extends JFrame {
 	 */
 	public void crearMenuAyuda() {
 		JMenu ayudaMenu = new JMenu();
-		ayudaMenu.setText("Ayuda");
+		ayudaMenu.setText(Messages.getString("Ventana.97")); //$NON-NLS-1$
 		ayudaMenu.setMnemonic('y');
 		menuBar.add(ayudaMenu);
 
@@ -837,30 +837,30 @@ public class Ventana extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				//new Ayuda("http://simtraffic.helker.com/Manual2/manual.html");
-				String url= "http://simtraffic.helker.com/Manual2/manual.html";
+				String url= Messages.getString("Ventana.98"); //$NON-NLS-1$
 				/**
 				 * Válido en principio para cualquier navegador. Solo en windows?
 				 * No funciona en el puesto Pto 1108 
 				 */
+				try {
+					Runtime.getRuntime().exec(Messages.getString("Ventana.99") + url); //$NON-NLS-1$
 				/*try {
 					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 				} catch (IOException e1) {
-					System.out.println("Error al lanzar el navegador de ayuda");
+					System.out.println(Messages.getString("Ventana.100")); //$NON-NLS-1$
 				}
 				*/
 				/**
 				 * Solo válido para internet Explorer 
 				 */
-				 try {
-					Runtime.getRuntime().exec("cmd /c start iexplore "+url);
+				 /*try {
+					Runtime.getRuntime().exec("cmd /c start iexplore "+url);*/
 				} catch (IOException e1) {
-					System.out.println("Error al lanzar el navegador de ayuda"); 
-
+					System.out.println(Messages.getString("Ventana.0"));  //$NON-NLS-1$
 				} 
-				
 			}
 		});
-		abrirAyuda.setText("Abrir ayuda");
+		abrirAyuda.setText(Messages.getString("Ventana.101")); //$NON-NLS-1$
 		ayudaMenu.add(abrirAyuda);
 
 		JMenuItem log = new JMenuItem();
@@ -870,7 +870,7 @@ public class Ventana extends JFrame {
 				popUpLog = new Log(controlador.getHistorial());
 			}
 		});
-		log.setText("Mostrar historial de eventos");
+		log.setText(Messages.getString("Ventana.102")); //$NON-NLS-1$
 		log.setMnemonic('h');
 		ayudaMenu.add(log);
 
@@ -882,7 +882,7 @@ public class Ventana extends JFrame {
 				new AcercaDe();
 			}
 		});
-		acercaDE.setText("Acerca de SimTraffic");
+		acercaDE.setText(Messages.getString("Ventana.103")); //$NON-NLS-1$
 		ayudaMenu.add(acercaDE);
 	}
 
@@ -943,11 +943,11 @@ public class Ventana extends JFrame {
 		barraAyudaDinamica.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 		//barraAyudaDinamica.setLayout(new BorderLayout());
 
-		JLabel etiquetaPosicion = new JLabel("Posición: ");
-		JLabel puntitos = new JLabel(" : ");
+		JLabel etiquetaPosicion = new JLabel(Messages.getString("Ventana.104")); //$NON-NLS-1$
+		JLabel puntitos = new JLabel(Messages.getString("Ventana.105")); //$NON-NLS-1$
 		posicionX = new JLabel();
 		posicionY = new JLabel();
-		ayudaDinamica = new JTextField("  Ayuda",70);
+		ayudaDinamica = new JTextField(Messages.getString("Ventana.106"),70); //$NON-NLS-1$
 		ayudaDinamica.setEditable(false);
 
 		barraAyudaDinamica.add(ayudaDinamica,BorderLayout.CENTER);

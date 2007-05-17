@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
@@ -79,6 +80,6 @@ public class HModificarTramo implements IHerramienta {
 	}
 	
 	public String toString(){
-		return Tiempo.Hora()+" - "+ "Tramo modificado";
+		return Tiempo.Hora()+Messages.getString("HModificarTramo.0")+ Messages.getString("HModificarTramo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

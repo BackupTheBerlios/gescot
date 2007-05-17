@@ -1,5 +1,7 @@
 package is.SimTraffic.Utils;
 
+import is.SimTraffic.Messages;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,15 +43,15 @@ public class ChequeoInputVentanas {
 	
 	//Comprueba si un string es un digito
 	public boolean esDigito(String a){
-		Pattern p= Pattern.compile("[0-9]+");
+		Pattern p= Pattern.compile(Messages.getString("ChequeoInputVentanas.0")); //$NON-NLS-1$
 		Matcher m=p.matcher(a);
 		return m.matches();
 	}
 	
 	//En caso de error al introducir un dato mostramos un mensaje de error
 	private void muestraMensajeErrorEnInput(){
-		 JOptionPane.showMessageDialog(null, "Error al introducir los datos",
-		            "Intentelo de nuevo", 
+		 JOptionPane.showMessageDialog(null, Messages.getString("ChequeoInputVentanas.1"), //$NON-NLS-1$
+		            Messages.getString("ChequeoInputVentanas.2"),  //$NON-NLS-1$
 		            JOptionPane.INFORMATION_MESSAGE);
 	}
 

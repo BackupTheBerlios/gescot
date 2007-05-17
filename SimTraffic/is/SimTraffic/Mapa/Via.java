@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 
 public class Via implements ElementoMapa, Serializable {
@@ -58,15 +59,15 @@ public class Via implements ElementoMapa, Serializable {
 	public String transformaraOSM() {
 		String s=new String();
 		Iterator<Tramo> tram = Tramos.iterator();
-		s=s.concat("<way id='"+ID+"'>\n");
+		s=s.concat(Messages.getString("Via.0")+ID+Messages.getString("Via.1")); //$NON-NLS-1$ //$NON-NLS-2$
 		while (tram.hasNext()) {
 			Tramo tramoaux = tram.next();
-			s=s.concat("<seg id='"+tramoaux.getID()+"'/>\n");
+			s=s.concat(Messages.getString("Via.2")+tramoaux.getID()+Messages.getString("Via.3")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (tipo!=null) s=s.concat("<tag k='"+tipo.getTipo()+"' v='"+tipo.getValorTipo()+"' />\n");
-		if (nombre!=null) s=s.concat("<tag k='nombre' v='"+nombre+"' />\n");
-		s=s.concat("<tag k ='bus line' v='no' />\n");
-		s=s.concat("</way>\n");
+		if (tipo!=null) s=s.concat(Messages.getString("Via.4")+tipo.getTipo()+Messages.getString("Via.5")+tipo.getValorTipo()+Messages.getString("Via.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (nombre!=null) s=s.concat(Messages.getString("Via.7")+nombre+Messages.getString("Via.8")); //$NON-NLS-1$ //$NON-NLS-2$
+		s=s.concat(Messages.getString("Via.9")); //$NON-NLS-1$
+		s=s.concat(Messages.getString("Via.10")); //$NON-NLS-1$
 		return s;
 	}
 	

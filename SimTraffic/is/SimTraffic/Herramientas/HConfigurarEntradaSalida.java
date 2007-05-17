@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Utils.Tiempo;
@@ -45,6 +46,6 @@ public class HConfigurarEntradaSalida implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Entrada/Salida Configurada";
+		return Tiempo.Hora()+Messages.getString("HConfigurarEntradaSalida.0")+Messages.getString("HConfigurarEntradaSalida.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

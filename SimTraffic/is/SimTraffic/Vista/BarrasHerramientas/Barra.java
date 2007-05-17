@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista.BarrasHerramientas;
 
+import is.SimTraffic.Messages;
+
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -60,7 +62,7 @@ public class Barra extends JToolBar {
 
 		ClassLoader cl = this.getClass().getClassLoader();
 		ImageIcon imagen = new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + icono), tooltip);
+				.getResource(Messages.getString("Barra.0") + icono), tooltip); //$NON-NLS-1$
 		AbstractButton boton = null;
 		if (toggle)
 			boton = new JToggleButton(imagen);
@@ -72,10 +74,10 @@ public class Barra extends JToolBar {
 		boton.setMargin(new Insets(1, 1, 1, 1));
 		// String imageName = "file:is\\SimTraffic\\Vista\\Imagenes\\"
 		// + iconoGrande;
-		URL imageName = cl.getResource("is/SimTraffic/Vista/Imagenes/"
+		URL imageName = cl.getResource(Messages.getString("Barra.1") //$NON-NLS-1$
 				+ iconoGrande);
-		boton.setToolTipText("<html>" + tooltip + " <img src=" + imageName
-				+ "></html>");
+		boton.setToolTipText(Messages.getString("Barra.2") + tooltip + Messages.getString("Barra.3") + imageName //$NON-NLS-1$ //$NON-NLS-2$
+				+ Messages.getString("Barra.4")); //$NON-NLS-1$
 		boton.addActionListener(accion);
 		add(boton);
 		return boton;

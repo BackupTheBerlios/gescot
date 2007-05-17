@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista;
 
+import is.SimTraffic.Messages;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,7 +31,7 @@ ActionListener {
 
 	public static void main(String[] args) {
 		if (args.length == 0)
-			new Ayuda("http://www.apl.jhu.edu/~hall/");
+			new Ayuda(Messages.getString("Ayuda.0")); //$NON-NLS-1$
 		else
 			new Ayuda(args[0]);
 	}
@@ -43,14 +45,14 @@ ActionListener {
 	
 	
 	public Ayuda(String initialURL) {
-		super("Ayuda de SimTraffic");
+		super(Messages.getString("Ayuda.1")); //$NON-NLS-1$
 		this.initialURL = initialURL;
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setBackground(Color.lightGray);
-		homeButton = new JIconButton("home.gif");
+		homeButton = new JIconButton(Messages.getString("Ayuda.2")); //$NON-NLS-1$
 		homeButton.addActionListener(this);
-		JLabel urlLabel = new JLabel("URL:");
+		JLabel urlLabel = new JLabel(Messages.getString("Ayuda.3")); //$NON-NLS-1$
 		urlField = new JTextField(30);
 		urlField.setText(initialURL);
 		urlField.addActionListener(this);
@@ -66,8 +68,8 @@ ActionListener {
 			JScrollPane scrollPane = new JScrollPane(htmlPane);
 			getContentPane().add(scrollPane, BorderLayout.CENTER);
 		} catch(IOException ioe) {
-			warnUser("Can't build HTML pane for " + initialURL 
-					+ ": " + ioe);
+			warnUser(Messages.getString("Ayuda.4") + initialURL  //$NON-NLS-1$
+					+ Messages.getString("Ayuda.5") + ioe); //$NON-NLS-1$
 		}
 		
 		Historial = new ArrayList<String>();
@@ -93,7 +95,7 @@ ActionListener {
 			htmlPane.setPage(new URL(url));
 			urlField.setText(url);
 		} catch(IOException ioe) {
-			warnUser("Can't follow link to " + url + ": " + ioe);
+			warnUser(Messages.getString("Ayuda.6") + url + Messages.getString("Ayuda.7") + ioe); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 	
@@ -104,14 +106,14 @@ ActionListener {
 				urlField.setText(event.getURL().toExternalForm());
 				Historial.add(event.getURL().toExternalForm());
 			} catch(IOException ioe) {
-				warnUser("Can't follow link to " 
-						+ event.getURL().toExternalForm() + ": " + ioe);
+				warnUser(Messages.getString("Ayuda.8")  //$NON-NLS-1$
+						+ event.getURL().toExternalForm() + Messages.getString("Ayuda.9") + ioe); //$NON-NLS-1$
 			}
 		}
 	}
 	
 	private void warnUser(String message) {
-		JOptionPane.showMessageDialog(this, message, "Error", 
+		JOptionPane.showMessageDialog(this, message, Messages.getString("Ayuda.10"),  //$NON-NLS-1$
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
@@ -129,7 +131,7 @@ ActionListener {
 	
 	private void panelNavegacion(){
 		Botones = new JPanel();
-		JButton salir = new JButton("Salir de la Ayuda");
+		JButton salir = new JButton(Messages.getString("Ayuda.11")); //$NON-NLS-1$
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Log.this.setVisible(false);
@@ -139,7 +141,7 @@ ActionListener {
 		);
 		
 		
-		JButton atrás = new JButton("Atrás");
+		JButton atrás = new JButton(Messages.getString("Ayuda.12")); //$NON-NLS-1$
 		atrás.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Log.this.setVisible(false);
@@ -152,7 +154,7 @@ ActionListener {
 		}
 		);
 		
-		JButton inicio = new JButton("Inicio");
+		JButton inicio = new JButton(Messages.getString("Ayuda.13")); //$NON-NLS-1$
 		inicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Log.this.setVisible(false);
@@ -178,8 +180,8 @@ ActionListener {
 			urlField.setText(url);
 			return true;
 		} catch(IOException ioe) {
-			warnUser("Can't follow link to " 
-					+ url + ": " + ioe);
+			warnUser(Messages.getString("Ayuda.14")  //$NON-NLS-1$
+					+ url + Messages.getString("Ayuda.15") + ioe); //$NON-NLS-1$
 			return false;
 		}
 		

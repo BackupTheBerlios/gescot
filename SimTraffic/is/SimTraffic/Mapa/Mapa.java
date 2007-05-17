@@ -736,7 +736,7 @@ public class Mapa {
 		while(nodos.hasNext()) {
 			Nodo nodo = nodos.next();
 			if (nodo.getTipo() != null) {
-				if (nodo.getTipo().getValorTipo().compareToIgnoreCase("hospital") == 0)
+				if (nodo.getTipo().getValorTipo().compareToIgnoreCase(Messages.getString("Mapa.0")) == 0) //$NON-NLS-1$
 					return true;
 			}
 		}

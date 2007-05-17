@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
@@ -33,7 +34,7 @@ public class MLDesplazar extends EscuchaRaton {
 
 	@Override
 	public String getAyuda() {
-		return "Deje pulsado el ratón y muévalo para desplazar el mapa.";
+		return Messages.getString("MLDesplazar.0"); //$NON-NLS-1$
 	}
 
 	@Override

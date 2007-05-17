@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Seleccion;
@@ -127,7 +128,7 @@ public class HPegar implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Acción pegar";
+		return Tiempo.Hora()+Messages.getString("HPegar.0")+Messages.getString("HPegar.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	/**
 	 * @return Returns the nodos.

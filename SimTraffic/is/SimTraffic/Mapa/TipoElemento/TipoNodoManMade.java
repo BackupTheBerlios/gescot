@@ -1,5 +1,7 @@
 package is.SimTraffic.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
+
 public class TipoNodoManMade extends TipoElemento implements ITipoElemento {
 
 	/**
@@ -28,7 +30,7 @@ public class TipoNodoManMade extends TipoElemento implements ITipoElemento {
 	
 	public TipoNodoManMade(String vTipo) {
 		super(vTipo);
-		tipo="man_made";
+		tipo=Messages.getString("TipoNodoManMade.0"); //$NON-NLS-1$
 	}
 	
 	/**
@@ -36,17 +38,17 @@ public class TipoNodoManMade extends TipoElemento implements ITipoElemento {
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */
 	public String[][] crearTablaTraduccion() {
-		String[][] tTraduccion = { {"Faro","lighthouse"}, 
-								   {"Central eléctrica","power_fossil"},
-								   {"Central nuclear","power_nuclear"},
-								   {"Planta eólica","power_wind"}, 
-								   {"Planta hidroeléctrica","power_hydro"},
+		String[][] tTraduccion = { {Messages.getString("TipoNodoManMade.1"),Messages.getString("TipoNodoManMade.2")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoManMade.3"),Messages.getString("TipoNodoManMade.4")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoManMade.5"),Messages.getString("TipoNodoManMade.6")}, //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoManMade.7"),Messages.getString("TipoNodoManMade.8")},  //$NON-NLS-1$ //$NON-NLS-2$
+								   {Messages.getString("TipoNodoManMade.9"),Messages.getString("TipoNodoManMade.10")}, //$NON-NLS-1$ //$NON-NLS-2$
 									};
 		return tTraduccion;
 	}
 
 	public String getTipoCastellano() {
-		return "Construcción";
+		return Messages.getString("TipoNodoManMade.11"); //$NON-NLS-1$
 	}
 
 }

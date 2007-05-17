@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Acciones.PanelNodo;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señales.IntervaloSemaforo;
@@ -56,16 +57,16 @@ public class AccionAceptar implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		ITipoElemento tipo=null;
-		if (comboTipoNodo.getSelectedItem().equals("Carretera")) {
+		if (comboTipoNodo.getSelectedItem().equals(Messages.getString("AccionAceptar.0"))) { //$NON-NLS-1$
 			tipo = new TipoNodoHighway((String)(comboValorNodo.getSelectedItem()));
 		}
-		else if (comboTipoNodo.getSelectedItem().equals("Tiempo Libre")) {
+		else if (comboTipoNodo.getSelectedItem().equals(Messages.getString("AccionAceptar.1"))) { //$NON-NLS-1$
 			tipo = new TipoNodoLeisure((String)(comboValorNodo.getSelectedItem()));
 		}
-		else if (comboTipoNodo.getSelectedItem().equals("Construcción")) {
+		else if (comboTipoNodo.getSelectedItem().equals(Messages.getString("AccionAceptar.2"))) { //$NON-NLS-1$
 			tipo = new TipoNodoManMade((String)(comboValorNodo.getSelectedItem()));
 		}
-		else if (comboTipoNodo.getSelectedItem().equals("Infraestructura")) {
+		else if (comboTipoNodo.getSelectedItem().equals(Messages.getString("AccionAceptar.3"))) { //$NON-NLS-1$
 			tipo = new TipoNodoAmenity((String)(comboValorNodo.getSelectedItem()));
 		}
 		else { //No se ha seleccionado ninguno concreto
@@ -78,7 +79,7 @@ public class AccionAceptar implements ActionListener {
 		String nuevoNombre=campoNombreNodo.getText();
 		//System.out.println(nuevoNombre);
 		
-		if (nuevoNombre.equals("")) 
+		if (nuevoNombre.equals(Messages.getString("AccionAceptar.4")))  //$NON-NLS-1$
 			nodo.setNombre(null);
 		else {
 			nodo.setNombre(nuevoNombre);
@@ -144,8 +145,8 @@ public class AccionAceptar implements ActionListener {
 		
 		if(error){
 			JOptionPane.showMessageDialog(panelNodo,
-			    "Problema de solapamiento/continuidad en el intervalo "+intervaloError,
-			    "Error en intervalo",
+			    Messages.getString("AccionAceptar.5")+intervaloError, //$NON-NLS-1$
+			    Messages.getString("AccionAceptar.6"), //$NON-NLS-1$
 			    JOptionPane.ERROR_MESSAGE);
 		}
 

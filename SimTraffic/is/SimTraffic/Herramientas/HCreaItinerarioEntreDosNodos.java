@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import javax.swing.JOptionPane;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
@@ -36,8 +37,8 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 			JOptionPane
 					.showMessageDialog(
 							null,
-							"Puntos no comunicados por carretera",
-							"No ha sido posible establecer un itinerario entre los 2 nodos especificados",
+							Messages.getString("HCreaItinerarioEntreDosNodos.0"), //$NON-NLS-1$
+							Messages.getString("HCreaItinerarioEntreDosNodos.1"), //$NON-NLS-1$
 							JOptionPane.INFORMATION_MESSAGE);
 			modelo.getMapa().limpiaSeleccion();
 			return -1;
@@ -67,8 +68,8 @@ public class HCreaItinerarioEntreDosNodos implements IHerramienta {
 	}
 
 	public String toString() {
-		return Tiempo.Hora() + " - "
-				+ "Creado itinerario por carretera entre 2 nodos";
+		return Tiempo.Hora() + Messages.getString("HCreaItinerarioEntreDosNodos.2") //$NON-NLS-1$
+				+ Messages.getString("HCreaItinerarioEntreDosNodos.3"); //$NON-NLS-1$
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package is.SimTraffic.Herramientas;
 
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Utils.Tiempo;
 
@@ -49,7 +50,7 @@ public class HEliminarTramo implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+" - "+"Tramo Eliminado";
+		return Tiempo.Hora()+Messages.getString("HEliminarTramo.0")+Messages.getString("HEliminarTramo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public Tramo getTramo() {

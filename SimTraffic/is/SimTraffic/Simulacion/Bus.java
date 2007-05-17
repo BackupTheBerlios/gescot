@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
@@ -27,7 +28,7 @@ public class Bus extends Vehiculo {
 	
 
 	public Bus(ArrayList<LineaBus> lineas) {
-		nombre = "Bus";
+		nombre = Messages.getString("Bus.0"); //$NON-NLS-1$
 		this.lineas = lineas;
 		cuentaTramos = 0;
 		this.color = Color.RED;

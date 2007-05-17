@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Utils.ChequeoInputVentanas;
 
@@ -45,21 +46,21 @@ public class PanelBuscar extends JFrame {
 		this.setLocation(200,200);
 		this.setSize(400,200);
 		this.setResizable(false);
-		this.setTitle("Buscar...");
+		this.setTitle(Messages.getString("PanelBuscar.0")); //$NON-NLS-1$
 		
-		String[] tipoElemento = { "Nodo", "Tramo", "Vía", "Línea de bus" }; //Por defecto en Nodo
-		etiqPosicion = new JLabel("Posición");
-		etiqLat = new JLabel(" Lat    ");
-		etiqLon = new JLabel(" Lon    ");	
+		String[] tipoElemento = { Messages.getString("PanelBuscar.1"), Messages.getString("PanelBuscar.2"), Messages.getString("PanelBuscar.3"), Messages.getString("PanelBuscar.4") }; //Por defecto en Nodo //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		etiqPosicion = new JLabel(Messages.getString("PanelBuscar.5")); //$NON-NLS-1$
+		etiqLat = new JLabel(Messages.getString("PanelBuscar.6")); //$NON-NLS-1$
+		etiqLon = new JLabel(Messages.getString("PanelBuscar.7"));	 //$NON-NLS-1$
 		comboElemento=new JComboBox(tipoElemento);
-		etiqNombre = new JLabel(" Nombre ");
+		etiqNombre = new JLabel(Messages.getString("PanelBuscar.8")); //$NON-NLS-1$
 		
 		campoNombre = new JTextField(12);
 		campoLat = new JTextField(6);	
 		campoLon = new JTextField(6);
 		
-		buscarPos = new JButton("Buscar");
-		buscarElem = new JButton("Buscar");	
+		buscarPos = new JButton(Messages.getString("PanelBuscar.9")); //$NON-NLS-1$
+		buscarElem = new JButton(Messages.getString("PanelBuscar.10"));	 //$NON-NLS-1$
 		
 		this.setLayout(new GridLayout(2,1));
 		
