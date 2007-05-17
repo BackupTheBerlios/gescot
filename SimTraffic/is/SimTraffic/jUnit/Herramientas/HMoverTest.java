@@ -89,15 +89,21 @@ public class HMoverTest extends TestCase{
 	 */
 	public void testhacer()
 	{
+		Point2D puntoOrigen= new Point(500,500);
+		Point2D puntoDestino= new Point(600,650);
+		herramienta.estableceInicioYFin(puntoOrigen, puntoDestino);
 		if (herramienta.hacer(modelo)!=0)
 			fail("La herramienta de Copiar no ha hecho correctamente");
 	}
 	
 	/**
-	 * Metodo que compreuaba que sel metodo deshacer funciona correctamente -----------------Este metodo falla 
+	 * Metodo que comprueba que sel metodo deshacer funciona correctamente -----------------Este metodo falla 
 	 */
 	public void testdeshacer()
 	{
+		Point2D puntoOrigen= new Point(500,500);
+		Point2D puntoDestino= new Point(600,650);
+		herramienta.estableceInicioYFin(puntoOrigen, puntoDestino);
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
 			fail("La herramienta de Copiar no ha desecho correctamente");
