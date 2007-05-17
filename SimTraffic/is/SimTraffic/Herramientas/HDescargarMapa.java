@@ -41,7 +41,6 @@ public class HDescargarMapa implements IHerramienta{
 	 */
 	PanelMapa panel;
 
-	private JFileChooser fc;
 
 	/**
 	 * Variable de archivo, utilizada por el thread que carga el mapa.
@@ -160,7 +159,7 @@ public class HDescargarMapa implements IHerramienta{
 			ClassNotFoundException {
 		List<Señal> listaSeñales = null;
 
-		String rutaSeñales = this.fc.getSelectedFile().getAbsolutePath();
+		String rutaSeñales = this.file.getAbsolutePath();
 
 		if (rutaSeñales.contains(".osm")) {
 			rutaSeñales = rutaSeñales.replaceAll(".osm", ".sem");
