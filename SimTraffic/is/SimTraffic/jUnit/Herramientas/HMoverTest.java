@@ -68,7 +68,7 @@ public class HMoverTest extends TestCase{
 	}
 	
 	/**
-	 * Metodo que comprueaba que se crea correctamente
+	 * Metodo que comprueba que se crea correctamente
 	 */
 	public void testHMover() {
 		assertEquals(nodos,herramienta.getNodos());
