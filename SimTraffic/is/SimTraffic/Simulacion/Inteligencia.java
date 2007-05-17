@@ -517,16 +517,18 @@ public class Inteligencia {
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
 		if (vehiculo.getTramo() == null)
 			return;
+		
+		//	Si es un autobus y llega a una parada tendra q esperar un tiempo
+		if (vehiculo.getNombre()=="Bus"){
+			 ((Bus)vehiculo).parada();		  
+		}
+		
 		if (tieneQueEsperar(vehiculo)) {
 			vehiculo.aceleracion = 0;
 			vehiculo.velocidad = 0;
 			return;
 		}
-		//Si es un autobus y llega a una parada tendra q esperar un tiempo
-		if (vehiculo.getNombre()=="Bus"){
-			 ((Bus)vehiculo).parada();		  
-		}
-
+		
 		vehiculo.actualizarVelocidad();
 		vehiculo.posicion += vehiculo.velocidad
 				/ vehiculo.getTramo().getLargo();
