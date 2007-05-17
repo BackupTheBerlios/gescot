@@ -123,7 +123,8 @@ public class Inteligencia {
 		if (entrada == null)
 			return;
 		Nodo salida = sim.getSalida();
-
+		if (salida == null)
+			return;
 		// Añadida comprobación (para evitar que el nodo de entrada y de salida
 		// sea el mismo, lo cual no es lógico y además genera problemas). Sin en
 		// un numero finito de intento no consigue se sean distintos los nodos,

@@ -432,7 +432,8 @@ public class Simulacion {
 			Iterator<Nodo> it = mapa.getNodos().iterator();
 			while (it.hasNext()) {
 				Nodo nodo = it.next();
-				i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
+				if (nodo.getEs() != null)
+					i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
 				if (i <= 0) {
 					vehiculosActivos++;
 					return nodo;
@@ -457,7 +458,8 @@ public class Simulacion {
 		Nodo nodo = mapa.getNodos().get(0);
 		while (it.hasNext()) {
 			nodo = it.next();
-			i -= nodo.getEs().getPorcentajesSalida()[franjaHoraria];
+			if (nodo.getEs() != null)
+				i -= nodo.getEs().getPorcentajesSalida()[franjaHoraria];
 			if (i <= 0) {
 				return nodo;
 			}
