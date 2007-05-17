@@ -21,7 +21,7 @@ public class AccionCrearSemaforo implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		Señal semaforo = new Semaforo(nodo);
+		Señal semaforo = new Semaforo(nodo, nodo.getTramos());
 		nodo.setSeñal(semaforo);
 		//Actualizamos la vista de los semáforos.
 		((PanelNodo)ventanaPadre).creaPanelSemaforos();

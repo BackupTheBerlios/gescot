@@ -189,6 +189,7 @@ public class HCargarMapa implements IHerramienta {
 					Señal señalActual = (Señal) iteradorListaSeñales.next();
 					if (señalActual.getNodoUbicacion().getID() == nodoActual
 							.getID()) {
+						señalActual.setNodoUbicacion(nodoActual);
 						nodoActual.setSeñal(señalActual);
 					}
 				}

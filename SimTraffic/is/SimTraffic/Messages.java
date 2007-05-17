@@ -22,7 +22,6 @@ public class Messages {
 			FileReader fr = new FileReader(fichero);
 			BufferedReader br = new BufferedReader(fr);
 			String valorIdioma = br.readLine();
-			System.out.println(valorIdioma);
 			if (valorIdioma.compareTo("Inglés") == 0) {
 				BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 

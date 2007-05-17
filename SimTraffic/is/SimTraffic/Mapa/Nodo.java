@@ -223,7 +223,14 @@ public class Nodo implements ElementoMapa, Serializable{
 		//else {
 			s=s.concat(Messages.getString("Nodo.0")+ID+Messages.getString("Nodo.1") + pos.getLat() + Messages.getString("Nodo.2") + pos.getLon() + Messages.getString("Nodo.3")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			if (tipo!=null) s=s.concat(Messages.getString("Nodo.4")+tipo.getTipo()+Messages.getString("Nodo.5")+tipo.getValorTipo()+Messages.getString("Nodo.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			if (nombre!=null) s=s.concat(Messages.getString("Nodo.7")+getNombre()+Messages.getString("Nodo.8")); //$NON-NLS-1$ //$NON-NLS-2$
+			if (nombre!=null) {
+				String nombreTemp = new String(nombre);
+				// TODO controlar los otros caracteres no validos
+				nombreTemp.replaceAll("'", "&apos;");
+				nombreTemp.replaceAll("&", "&amp;");
+				
+				s=s.concat(Messages.getString("Nodo.7")+getNombre()+Messages.getString("Nodo.8")); //$NON-NLS-1$ //$NON-NLS-2$
+			}
 			if (es!=null) s=s.concat(es.transformaOSM());
 			s=s.concat(Messages.getString("Nodo.9")); //$NON-NLS-1$
 		//}

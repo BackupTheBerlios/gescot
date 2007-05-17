@@ -14,7 +14,7 @@ public class HCrearSemaforo implements IHerramienta {
 	}
 	
 	public int hacer(IModelo modelo) {
-		nuevoSemaforo = new Semaforo(nodo);
+		nuevoSemaforo = new Semaforo(nodo, nodo.getTramos());
 		nodo.setSeñal(nuevoSemaforo);
 		return 0;
 	}

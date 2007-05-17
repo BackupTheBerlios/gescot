@@ -151,7 +151,7 @@ public class Simulacion {
 					salidas[i] = 0;
 				}
 				Nodo temp;
-				Semaforo sem = new Semaforo(null);
+				Semaforo sem = new Semaforo(null,null);
 				while (it.hasNext()) {
 					temp = it.next();
 					es = temp.getEs();
