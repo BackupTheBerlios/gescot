@@ -26,8 +26,8 @@ import javax.swing.*;
 public class AccionVerLineasBus extends AccionVer implements ActionListener{
 
 	public AccionVerLineasBus(IControlador controlador, IModelo modelo,JFrame ventana,PanelMapa panel_mapa) {
-		super(controlador, modelo, ventana, panel_mapa, Messages.getString("AccionVerLineasBus.0"), Messages.getString("AccionVerLineasBus.1"), //$NON-NLS-1$ //$NON-NLS-2$
-		Messages.getString("AccionVerLineasBus.2")); //$NON-NLS-1$
+		super(controlador, modelo, ventana, panel_mapa, "autobus.jpg", "Líneas de Autobús",  //$NON-NLS-2$
+		"Linea de autobús"); //$NON-NLS-1$
 	}
 	
 	protected void estableceOyenteBuscar(JButton buscar) {
@@ -40,10 +40,10 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 		while (it.hasNext()){
 			ElementoMapa elem = (ElementoMapa)it.next();
 			String nombreAux = elem.getNombre();
-			if ((nombreAux!=null) && !nombreAux.equals(Messages.getString("AccionVerLineasBus.3"))) //$NON-NLS-1$
+			if ((nombreAux!=null) && !nombreAux.equals("")) //$NON-NLS-1$
 				elementos.add(nombreAux);
 			else
-				elementos.add(Messages.getString("AccionVerLineasBus.4")+elem.getID()); //$NON-NLS-1$
+				elementos.add("<Sin nombre> ID"+elem.getID()); //$NON-NLS-1$
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 			ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
 			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
 			LineaBus seleccionada = lista.get(elementos.getSelectedIndex());
-			HBuscarElemento herramientaBuscar = new HBuscarElemento(Messages.getString("AccionVerLineasBus.5"),seleccionada.getNombre(),panel_mapa); //$NON-NLS-1$
+			HBuscarElemento herramientaBuscar = new HBuscarElemento("Línea de bus",seleccionada.getNombre(),panel_mapa); //$NON-NLS-1$
 			controlador.herramienta(herramientaBuscar);
 			modelo.getMapa().limpiaSeleccion();
 			panel_mapa.centrarEnPosicion(seleccionada.getTramos().get(0).getNodoInicial().getPos().getLat(),

@@ -20,8 +20,8 @@ import javax.swing.JFrame;
 public class AccionVerVias extends AccionVer {
 
 	public AccionVerVias(IControlador controlador, IModelo modelo, JFrame ventana, PanelMapa panel_mapa, String direccionIcono, String tituloVer, String nombreElemento) {
-		super(controlador, modelo, ventana, panel_mapa, Messages.getString("AccionVerVias.0"), Messages.getString("AccionVerVias.1"), //$NON-NLS-1$ //$NON-NLS-2$
-				Messages.getString("AccionVerVias.2")); //$NON-NLS-1$
+		super(controlador, modelo, ventana, panel_mapa, "añadir_via2.png", "Vías existentes",  //$NON-NLS-2$
+				"Vía"); //$NON-NLS-1$
 	}
 	
 	protected void estableceOyenteBuscar(JButton buscar) {
@@ -37,10 +37,10 @@ public class AccionVerVias extends AccionVer {
 		while (it.hasNext()){
 			ElementoMapa elem = (ElementoMapa)it.next();
 			String nombreAux = elem.getNombre();
-			if ((nombreAux!=null) && !nombreAux.equals(Messages.getString("AccionVerVias.3"))) //$NON-NLS-1$
+			if ((nombreAux!=null) && !nombreAux.equals("")) //$NON-NLS-1$
 				elementos.add(nombreAux);
 			else
-				elementos.add(Messages.getString("AccionVerVias.4")+elem.getID()); //$NON-NLS-1$
+				elementos.add("<Sin nombre> ID"+elem.getID()); //$NON-NLS-1$
 		}
 	}
 	
