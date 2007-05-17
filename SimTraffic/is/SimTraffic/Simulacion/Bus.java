@@ -22,8 +22,9 @@ public class Bus extends Vehiculo {
 
 	private LineaBus linea;
 	
-	//Tiempo de espera del bus
-	private int contador;
+	//Contador de tiempo de espera del bus en una parada y random del tiempo de espera
+	private int contador,r;
+	
 
 	public Bus(ArrayList<LineaBus> lineas) {
 		nombre = "Bus";
@@ -44,6 +45,7 @@ public class Bus extends Vehiculo {
 		this.id = ncochesglobal;
 		ncochesglobal++;
 		contador=0;
+		r=0;
 
 	}
 
@@ -137,18 +139,37 @@ public class Bus extends Vehiculo {
 		if (aceleracion > this.aceleracionMax)
 			aceleracion = aceleracionMax;
 	}
-	public  void parada(){
-		if (linea.getParadas().contains(this.getNodoOrigen())&&contador<60&&posicion<0.05){
-			if (contador <20)
-			  this.variarAceleracion(-5000);
-			  else if (contador<40)
-				 this.velocidad=0; 
-			  else if (contador>40)
-				 this.variarAceleracion(+5000); 
-		    contador++;	
-			}
-			else
-		contador=0;	
-	}
+	public void parada(){
+		
+		//Si tiene una parada delante deceleramos(Hay q mejorarlo)
+		if (linea.getParadas().contains(this.getNodoDestino())&&posicion>0.95){
+			if ((velocidad-0.25*aceleracion)>0.1)  
+			 aceleracion-=0.25*aceleracion;
+		
+		}else 
+			//Si ha llegao a la parada debe de esperar un tiempo aleatorio r
+			if (linea.getParadas().contains(this.getNodoOrigen())&&posicion>0.0&&posicion<0.015){
+				if (r==0){
+				  r=(int)Math.abs(Math.random()*100);
+				  velocidad=0;
+				  aceleracion=0;
+				  contador++;
+				}
+			if (contador>0)
+				if (contador<=r){ 
+					contador++;
+					velocidad=0;
+					aceleracion=0;}
+				//Cuando hemos finalizado el tiempo de espera hacemos q el bus arranque moviendolo
+				else{ 
+					contador=0;
+					r=0;
+					posicion=0.015;}
+			}else 
+				//Una vez arrancado le damos una salida maxima para que tome velocidad
+				if (posicion<0.2) {
+				variarAceleracion(+250);
+				contador=0;}	
+		}	
 
 }
