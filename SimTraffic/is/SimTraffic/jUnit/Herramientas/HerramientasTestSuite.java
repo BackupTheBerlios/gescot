@@ -4,7 +4,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.jUnit.Herramientas.CargarMapa.CargarMapaTestSuite;
-import is.SimTraffic.jUnit.Herramientas.DescargarMapa.DescargarMapaTestSuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -24,7 +23,7 @@ public class HerramientasTestSuite {
 	    
 	    //Añadimos las suites de los subpaquetes
 	    suite.addTest(CargarMapaTestSuite.suite());
-	    suite.addTest(DescargarMapaTestSuite.suite());
+
 	    
 	    //Añadimos las clases del paquete
 	    suite.addTestSuite(ExtFilterTest.class);

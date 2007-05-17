@@ -12,7 +12,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import is.SimTraffic.Herramientas.CargarMapa.CargadorMapa;
-import is.SimTraffic.Herramientas.DescargarMapa.BoundingBoxDownloader;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señal;

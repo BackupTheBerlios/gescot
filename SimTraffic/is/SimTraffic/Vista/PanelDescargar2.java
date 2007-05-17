@@ -2,8 +2,6 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HDescargarMapa;
-import is.SimTraffic.Herramientas.DescargarMapa.GBC;
-import is.SimTraffic.Herramientas.DescargarMapa.WorldChooser;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
@@ -33,13 +31,13 @@ public class PanelDescargar2 extends JFrame {
 
 	private GridLayout glDistribucion = new GridLayout(2, 6);
 	
-	private JButton jbMadrid = new JButton("Madrid",new ImageIcon("is/SimTraffic/Vista/Imagenes/Madrid.png"));
-	private JButton jbLondres = new JButton("Londres",new ImageIcon("is/SimTraffic/Vista/Imagenes/London.png"));
-	private JButton jbParis = new JButton("Paris",new ImageIcon("is/SimTraffic/Vista/Imagenes/Paris.png"));
-	private JButton jbHamburgo = new JButton("Hamburgo",new ImageIcon("is/SimTraffic/Vista/Imagenes/Hamburgo.png"));
-	private JButton jbBarcelona = new JButton("Barcelona",new ImageIcon("is/SimTraffic/Vista/Imagenes/Barcelona.png"));
-	private JButton jbNueva_York = new JButton("Nueva York");
-	private JButton jbLisboa = new JButton("Lisboa",new ImageIcon("is/SimTraffic/Vista/Imagenes/Lisboa.png"));
+	private JButton jbMadrid = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Madrid.png"));
+	private JButton jbLondres = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/London.png"));
+	private JButton jbParis = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Paris.png"));
+	private JButton jbHamburgo = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Hamburgo.png"));
+	private JButton jbBarcelona = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Barcelona.png"));
+	private JButton jbBerlin = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Berlin.png"));
+	private JButton jbLisboa = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Lisboa.png"));
 
 
 	IControlador controlador;
@@ -73,9 +71,17 @@ public class PanelDescargar2 extends JFrame {
 		jpPrincipal.add((JButton) vBotonesAux.get(5));
 		jpPrincipal.add(jbBarcelona);
 		jpPrincipal.add((JButton) vBotonesAux.get(6));
-		jpPrincipal.add(jbNueva_York);
+		jpPrincipal.add(jbBerlin);
 		jpPrincipal.add((JButton) vBotonesAux.get(7));
 		jpPrincipal.add(jbLisboa);
+		
+		jbMadrid.setToolTipText("Madrid");
+		jbLondres.setToolTipText("Londres");
+		jbParis.setToolTipText("Paris");
+		jbHamburgo.setToolTipText("Barcelona");
+		jbHamburgo.setToolTipText("Hamburgo");
+		jbBerlin.setToolTipText("Berlin");
+		jbLisboa.setToolTipText("Lisboa");
 
 
 		jbMadrid.addActionListener(new ActionListener() {
@@ -110,7 +116,7 @@ public class PanelDescargar2 extends JFrame {
 				llamarHerramienta(f);
 			}
 		});
-		jbNueva_York.addActionListener(new ActionListener() {
+		jbBerlin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
 				llamarHerramienta(f);
