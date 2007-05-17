@@ -8,6 +8,11 @@ public class TipoNodoAmenity extends TipoElemento implements ITipoElemento {
 	//private String tipo="amenity";
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a una carretera)
 	 *  pub	A place selling beer and other alcholic drinks; may also provide food or accommodation (UK)
 		parking	Aparcamiento

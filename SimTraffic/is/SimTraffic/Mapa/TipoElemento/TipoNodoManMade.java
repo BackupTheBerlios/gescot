@@ -8,6 +8,11 @@ public class TipoNodoManMade extends TipoElemento implements ITipoElemento {
 	//private String tipo="man_made";
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a una construccion)
 	 *  works	
 	 beacon	Baliza

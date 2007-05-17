@@ -27,6 +27,11 @@ public class TipoNodoLeisure extends TipoElemento implements ITipoElemento {
 	//private String valorTipo;
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Tabla de 2 columnas utilizada para traducir términos relativos a valores de este tipo de elemento: 
 	 * Columna 0: Palabras en castellano, Columna 1: Palabras in inglés (en formato osm).
 	 */

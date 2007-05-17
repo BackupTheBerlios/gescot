@@ -8,6 +8,11 @@ public class TipoNodoHighway extends TipoElemento implements ITipoElemento {
 	//private String tipo="highway";
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 *  Palabras reservadas para los valores concretos de osm (un nodo asociado a una carretera)
 	 *  mini_roundabout:	 Mini-rotonda: Una rotonda que sólo consta de una marca vial en el suelo. 	
 		stop:	Señal de stop.	

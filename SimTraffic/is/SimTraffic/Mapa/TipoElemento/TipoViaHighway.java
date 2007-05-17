@@ -10,6 +10,11 @@ public class TipoViaHighway extends TipoElemento implements ITipoElemento, Seria
 	//private String tipo="highway";
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 *  Palabras reservadas para los valores concretos de osm (un tipo de carretera para una vía)
 	 *  motorway	 Autopistas[1] y Autovías[2], desde la señal de inicio de autopista/autovía (S-1/S-1a) hasta la señal de fin de autopista/autovía (S-2/S-2a). Constan de hitos kilométricos S-570, y su identificación se encuadra en señales S-410/S-410a de fondo azul.
 	 	motorway_link	Enlaces a autopistas y autovías: Rampas de acceso/salida, nudos de autopista, o cualquier carretera que enlaza una autopista/autovía con otro tipo de vía.	
