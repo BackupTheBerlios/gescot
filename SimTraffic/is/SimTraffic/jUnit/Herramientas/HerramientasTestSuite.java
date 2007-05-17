@@ -51,8 +51,8 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HModificarParamSimulacionTest.class);
 	    suite.addTestSuite(HModificarSeñalTest.class);
 	    suite.addTestSuite(HModificarTramoTest.class);
-	    //suite.addTestSuite(HMoverTest.class);
-	    //suite.addTestSuite(HPartirTramoTest.class);
+	    suite.addTestSuite(HMoverTest.class);
+	    suite.addTestSuite(HPartirTramoTest.class);
 	    //suite.addTestSuite(HPausarTest.class);
 	    suite.addTestSuite(HPegarTest.class);
 	    

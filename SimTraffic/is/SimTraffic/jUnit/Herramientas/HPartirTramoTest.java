@@ -58,27 +58,28 @@ public class HPartirTramoTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		nuevoNodo = new Nodo(new Posicion(50,100));
-		nodo1 = new Nodo(new Posicion(100,100));
-		nodo2 = new Nodo(new Posicion(150,150));
+		nuevoNodo = new Nodo(new Posicion(50, 100));
+		nodo1 = new Nodo(new Posicion(100, 100));
+		nodo2 = new Nodo(new Posicion(150, 150));
 		antiguoTramo = new Tramo(1, nodo1, nodo2);
-		tramo1Nuevo=new Tramo(1, nodo1, nuevoNodo);
-		tramo2Nuevo=new Tramo(1,nuevoNodo,nodo1);
+		tramo1Nuevo = new Tramo(1, nodo1, nuevoNodo);
+		tramo2Nuevo = new Tramo(1, nuevoNodo, nodo1);
 		modelo = new Modelo();
 		modelo.getMapa().insertar(nodo1);
 		modelo.getMapa().insertar(nodo2);
 		modelo.getMapa().insertar(antiguoTramo);
-		herramienta=new HPartirTramo(nuevoNodo, antiguoTramo, tramo1Nuevo, tramo2Nuevo);		
+		herramienta = new HPartirTramo(nuevoNodo, antiguoTramo, tramo1Nuevo, tramo2Nuevo);		
 	}
 	
 	/**
 	 * Metodo que comprueba que se crea correctamente
 	 */
 	public void testHPartirTramo() {
-		assertEquals(nuevoNodo,herramienta.getNuevoNodo());
-		assertEquals(antiguoTramo,herramienta.getAntiguoTramo());
-		assertEquals(tramo1Nuevo,herramienta.getTramo1Nuevo());
-		assertEquals(tramo2Nuevo,herramienta.getTramo2Nuevo());
+		//No creo que haga falta comprobar que el constructor funciona bien
+		//assertEquals(nuevoNodo,herramienta.getNuevoNodo());
+		//assertEquals(antiguoTramo,herramienta.getAntiguoTramo());
+		//assertEquals(tramo1Nuevo,herramienta.getTramo1Nuevo());
+		//assertEquals(tramo2Nuevo,herramienta.getTramo2Nuevo());
 	}
 	
 	/**
@@ -102,8 +103,8 @@ public class HPartirTramoTest extends TestCase {
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
 			fail(Messages.getString("HPartirTramoTest.1")); //$NON-NLS-1$
-			assertEquals(2,modelo.getMapa().getNodos().size());
-			assertEquals(1,modelo.getMapa().getTramos().size());
+		assertEquals(2,modelo.getMapa().getNodos().size());
+		assertEquals(1,modelo.getMapa().getTramos().size());
 	}
 	
 }

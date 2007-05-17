@@ -27,7 +27,6 @@ public class MapaTestSuite {
 	    
 	    //Añadimos las clases del paquete
 	    suite.addTestSuite(ConversorUTMTest.class);
-	    //suite.addTestSuite(ElementoMapaTest.class);
 	    suite.addTestSuite(EntradaSalidaTest.class);
 	    //suite.addTestSuite(LineaBusTest.class);
 	    suite.addTestSuite(MapaTest.class);
