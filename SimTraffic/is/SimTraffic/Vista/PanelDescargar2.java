@@ -81,14 +81,44 @@ public class PanelDescargar2 extends JFrame {
 
 		jbMadrid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos/madrid_centro.osm");
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/madrid_centro.osm");
 				llamarHerramienta(f);
 			}
 		});
 
 		jbLondres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos/London_centro_1.osm");
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				llamarHerramienta(f);
+			}
+		});
+		jbParis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				llamarHerramienta(f);
+			}
+		});
+		jbHamburgo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				llamarHerramienta(f);
+			}
+		});
+		jbBarcelona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				llamarHerramienta(f);
+			}
+		});
+		jbNueva_York.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
+				llamarHerramienta(f);
+			}
+		});
+		jbLisboa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/London_centro_1.osm");
 				llamarHerramienta(f);
 			}
 		});
