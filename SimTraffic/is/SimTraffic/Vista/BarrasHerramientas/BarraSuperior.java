@@ -100,9 +100,9 @@ public class BarraSuperior extends JPanel {
 				"Pulse aquí para cargar un mapa.", ventana));
 
 		JButton downloadTB = (JButton) archivoTB.añadirBoton("www.png",
-				"www2.png", "Descargar mapa desde WEB", new AccionDescargar(controlador,ventana.getPanel_mapa()), false);
+				"www2.png", "Cargar mapa de una ciudad real", new AccionDescargar(controlador,ventana.getPanel_mapa()), false);
 		downloadTB.addMouseMotionListener(new EscuchaAyuda(
-				"Pulse aquí para descargar un mapa via web.", ventana));
+				"Pulse aquí para cargar un mapa de una ciudad real.", ventana));
 		
 		
 		JButton guardarTB = (JButton) archivoTB.añadirBoton(

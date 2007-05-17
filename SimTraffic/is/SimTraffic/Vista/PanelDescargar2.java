@@ -33,14 +33,13 @@ public class PanelDescargar2 extends JFrame {
 
 	private GridLayout glDistribucion = new GridLayout(2, 6);
 	
-	private JButton jbMadrid = new JButton("Madrid",new ImageIcon(".//is/SimTraffic/Vista/Imagenes/Madrid.jpg"));
-	private JButton jbLondres = new JButton("Londres");
-	private JButton jbParis = new JButton("Paris");
-	private JButton jbHamburgo = new JButton("Hamburgo");
-	private JButton jbBarcelona = new JButton("Barcelona");
+	private JButton jbMadrid = new JButton("Madrid",new ImageIcon("is/SimTraffic/Vista/Imagenes/Madrid.png"));
+	private JButton jbLondres = new JButton("Londres",new ImageIcon("is/SimTraffic/Vista/Imagenes/London.png"));
+	private JButton jbParis = new JButton("Paris",new ImageIcon("is/SimTraffic/Vista/Imagenes/Paris.png"));
+	private JButton jbHamburgo = new JButton("Hamburgo",new ImageIcon("is/SimTraffic/Vista/Imagenes/Hamburgo.png"));
+	private JButton jbBarcelona = new JButton("Barcelona",new ImageIcon("is/SimTraffic/Vista/Imagenes/Barcelona.png"));
 	private JButton jbNueva_York = new JButton("Nueva York");
-	private JButton jbLisboa = new JButton("Lisboa");
-
+	private JButton jbLisboa = new JButton("Lisboa",new ImageIcon("is/SimTraffic/Vista/Imagenes/Lisboa.png"));
 
 
 	IControlador controlador;
@@ -81,8 +80,9 @@ public class PanelDescargar2 extends JFrame {
 
 		jbMadrid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(".//is/SimTraffic/Ejemplos_ciudades/madrid_centro.osm");
+				File f = new File("is/SimTraffic/Ejemplos_ciudades/madrid_centro.osm");
 				llamarHerramienta(f);
+				
 			}
 		});
 
