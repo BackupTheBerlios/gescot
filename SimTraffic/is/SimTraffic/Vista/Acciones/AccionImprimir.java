@@ -14,8 +14,10 @@ public class AccionImprimir implements ActionListener {
 		this.panel=panel;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void actionPerformed(ActionEvent arg0) {
-		PrintUtilities.printComponent(panel);
+		PrintUtilities impresion=new PrintUtilities(panel);
+		impresion.printComponent(panel);
 	}
 
 }
