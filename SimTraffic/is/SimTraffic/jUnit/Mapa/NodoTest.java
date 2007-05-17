@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Mapa;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.*;
 import junit.framework.TestCase;
 
@@ -19,12 +20,12 @@ public class NodoTest extends TestCase {
 		Nodo nodoprueba = new Nodo(pos);
 		Nodo nodoprueba2 = new Nodo(pos);
 		if (nodoprueba.hashCode() != nodoprueba.hashCode())
-			fail("Hash no debe cambiar");
+			fail(Messages.getString("NodoTest.0")); //$NON-NLS-1$
 		if (nodoprueba.hashCode() != nodoprueba2.hashCode())
-			fail("Nodos iguales deben tener igual hashCode");
+			fail(Messages.getString("NodoTest.1")); //$NON-NLS-1$
 		Nodo nodoprueba3 = new Nodo(new Posicion(0.5f,0.5f));
 		if (nodoprueba.hashCode() == nodoprueba3.hashCode())
-			fail("Nodos tendrian que tener hashcodes diferentes");
+			fail(Messages.getString("NodoTest.2")); //$NON-NLS-1$
 	}
 
 	/**
@@ -36,12 +37,12 @@ public class NodoTest extends TestCase {
 		Nodo nodoprueba = new Nodo(pos);
 		Nodo nodoprueba2 = new Nodo(pos);
 		if (nodoprueba != nodoprueba)
-			fail("Nodo deberia ser igual a si mismo");
+			fail(Messages.getString("NodoTest.3")); //$NON-NLS-1$
 		if (!nodoprueba.equals(nodoprueba2))
-			fail("Nodos en la misma posicion deberian ser iguales");		
+			fail(Messages.getString("NodoTest.4"));		 //$NON-NLS-1$
 		Nodo nodoprueba3 = new Nodo(new Posicion(0.5f,0.5f));
 		if (nodoprueba.equals(nodoprueba3))
-			fail("Nodos tendrian que ser diferentes");	
+			fail(Messages.getString("NodoTest.5"));	 //$NON-NLS-1$
 	}
 	
 	/**

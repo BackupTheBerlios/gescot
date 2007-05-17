@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Mapa;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Posicion;
 import junit.framework.TestCase;
 
@@ -17,11 +18,11 @@ public class PosicionTest extends TestCase {
 		Posicion pos2 = new Posicion(1.0f,1.0f);
 		Posicion pos3 = new Posicion(0.5f,0.5f);
 		if (pos != pos)
-			fail("Posición deberia ser igual a si misma");
+			fail(Messages.getString("PosicionTest.0")); //$NON-NLS-1$
 		if (!pos.equals(pos2))
-			fail("Posciones con las mismas coordenadas deberian ser iguales");			
+			fail(Messages.getString("PosicionTest.1"));			 //$NON-NLS-1$
 		if (pos.equals(pos3))
-			fail("Posiciones con coordenadas diferentes deberían ser diferentes");	
+			fail(Messages.getString("PosicionTest.2"));	 //$NON-NLS-1$
 	}
 	
 	/**

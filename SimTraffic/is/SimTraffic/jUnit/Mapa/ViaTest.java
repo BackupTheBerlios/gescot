@@ -2,6 +2,7 @@ package is.SimTraffic.jUnit.Mapa;
 
 import java.util.ArrayList;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Mapa.TipoElemento.*;
 import junit.framework.TestCase;
@@ -55,7 +56,7 @@ public class ViaTest extends TestCase {
 	 * Test method for 'is.SimTraffic.Mapa.Via.getTipo()'
 	 */
 	public void testGetTipo() {
-		ITipoElemento te = new TipoViaHighway("Carretera");
+		ITipoElemento te = new TipoViaHighway(Messages.getString("ViaTest.0")); //$NON-NLS-1$
 		via1.setTipo(te);
 		assertEquals(via1.getTipo(), te);
 	}
@@ -64,8 +65,8 @@ public class ViaTest extends TestCase {
 	 * Test method for 'is.SimTraffic.Mapa.Via.getNombre()'
 	 */
 	public void testGetNombre() {
-		via1.setNombre("Alcala");
-		assertEquals(via1.getNombre(), "Alcala");
+		via1.setNombre(Messages.getString("ViaTest.1")); //$NON-NLS-1$
+		assertEquals(via1.getNombre(), Messages.getString("ViaTest.2")); //$NON-NLS-1$
 	}
 
 	/*

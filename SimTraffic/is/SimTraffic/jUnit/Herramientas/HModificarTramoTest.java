@@ -2,6 +2,7 @@ package is.SimTraffic.jUnit.Herramientas;
 
 import java.util.LinkedList;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HCopiar;
 import is.SimTraffic.Herramientas.HModificarTramo;
@@ -52,15 +53,15 @@ public class HModificarTramoTest extends TestCase{
 		this.numCarrilesDir1=1;
 		this.numCarrilesDir2=2;
 		this.velocidadMax=50;
-		nombre="NUEVO";
-		this.nombreStringVia="NUEVOVIA";
-		this.tipoStringVia="TIPO NUEVO";
+		nombre=Messages.getString("HModificarTramoTest.0"); //$NON-NLS-1$
+		this.nombreStringVia=Messages.getString("HModificarTramoTest.1"); //$NON-NLS-1$
+		this.tipoStringVia=Messages.getString("HModificarTramoTest.2"); //$NON-NLS-1$
 		tramo = new Tramo(nodo1,nodo2);
 		modelo = new Modelo();
 		modelo.getMapa().insertar(nodo1);
 		modelo.getMapa().insertar(nodo2);
 		modelo.getMapa().insertar(tramo);
-		tramo.setNombre("ANTIGUO");
+		tramo.setNombre(Messages.getString("HModificarTramoTest.3")); //$NON-NLS-1$
 		tramo.setNumCarrilesDir1(2);
 		tramo.setNumCarrilesDir2(1);
 		tramo.setVelMax(100);
@@ -77,7 +78,7 @@ public class HModificarTramoTest extends TestCase{
 		assertEquals(modelo.getMapa().getTramos().get(0).getNumCarrilesDir1(),1);
 		assertEquals(modelo.getMapa().getTramos().get(0).getNumCarrilesDir2(),2);
 		assertEquals(modelo.getMapa().getTramos().get(0).getVelMax(),50,0);
-		assertTrue(modelo.getMapa().getTramos().get(0).getNombre().equalsIgnoreCase("NUEVO"));
+		assertTrue(modelo.getMapa().getTramos().get(0).getNombre().equalsIgnoreCase(Messages.getString("HModificarTramoTest.4"))); //$NON-NLS-1$
 	}
 	
 	/**
@@ -92,7 +93,7 @@ public class HModificarTramoTest extends TestCase{
 		assertEquals(modelo.getMapa().getTramos().get(0).getNumCarrilesDir1(),2);
 		assertEquals(modelo.getMapa().getTramos().get(0).getNumCarrilesDir2(),1);
 		assertEquals(modelo.getMapa().getTramos().get(0).getVelMax(),100,0);
-		assertTrue(modelo.getMapa().getTramos().get(0).getNombre().equalsIgnoreCase("ANTIGUO"));
+		assertTrue(modelo.getMapa().getTramos().get(0).getNombre().equalsIgnoreCase(Messages.getString("HModificarTramoTest.5"))); //$NON-NLS-1$
 	}
 	
 	

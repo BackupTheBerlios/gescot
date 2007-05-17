@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Representaciones;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
@@ -51,13 +52,13 @@ public class RepresentacionSimple extends Representacion {
 			tipo = nodo.getTipo().getTipo();
 		if (tipo == null) {
 			g.setColor(Color.black);
-		} else if (tipo.compareTo("leisure") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.0")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.green);
-		} else if (tipo.compareTo("amenity") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.1")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.gray);
-		} else if (tipo.compareTo("highway") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.2")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.blue);
-		} else if (tipo.compareTo("manmade") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.3")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.pink);
 		} else {
 			g.setColor(Color.red);
@@ -76,13 +77,13 @@ public class RepresentacionSimple extends Representacion {
 
 		if (tipo == null) {
 			g.setColor(Color.black);
-		} else if (tipo.compareTo("leisure") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.4")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.green);
-		} else if (tipo.compareTo("amenity") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.5")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.gray);
-		} else if (tipo.compareTo("highway") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.6")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.blue);
-		} else if (tipo.compareTo("manmade") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionSimple.7")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.pink);
 		} else {
 			g.setColor(Color.red);
@@ -227,8 +228,8 @@ public class RepresentacionSimple extends Representacion {
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp4 };
 
-		System.out.println(x[0] + " " + x[1] + " " + x[2]);
-		System.out.println(y[0] + " " + y[1] + " " + y[2]);
+		System.out.println(x[0] + Messages.getString("RepresentacionSimple.8") + x[1] + Messages.getString("RepresentacionSimple.9") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println(y[0] + Messages.getString("RepresentacionSimple.10") + y[1] + Messages.getString("RepresentacionSimple.11") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
 
 		Polygon p = new Polygon(x, y, 3);
 		return p;

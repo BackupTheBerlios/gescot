@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HCreaItinerarioEntreDosNodos;
 import is.SimTraffic.Mapa.Nodo;
@@ -22,10 +23,10 @@ public class HCreaItinerarioEntreDosNodosTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		//Añadimos 4 nodos al modelo
-		n1 = new Nodo(1, "n1", new Posicion(10, 10), null);
-		n2 = new Nodo(2, "n2", new Posicion(100, 100), null);
-		n3 = new Nodo(3, "n3", new Posicion(50, 20), null);
-		n4 = new Nodo(4, "n4", new Posicion(70, 40), null);
+		n1 = new Nodo(1, Messages.getString("HCreaItinerarioEntreDosNodosTest.0"), new Posicion(10, 10), null); //$NON-NLS-1$
+		n2 = new Nodo(2, Messages.getString("HCreaItinerarioEntreDosNodosTest.1"), new Posicion(100, 100), null); //$NON-NLS-1$
+		n3 = new Nodo(3, Messages.getString("HCreaItinerarioEntreDosNodosTest.2"), new Posicion(50, 20), null); //$NON-NLS-1$
+		n4 = new Nodo(4, Messages.getString("HCreaItinerarioEntreDosNodosTest.3"), new Posicion(70, 40), null); //$NON-NLS-1$
 		t12 = new Tramo(n1, n2);
 		t13 = new Tramo(n1, n3);
 		t34 = new Tramo(n3, n4);

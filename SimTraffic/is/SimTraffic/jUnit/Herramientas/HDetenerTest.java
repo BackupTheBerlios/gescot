@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HDetener;
 import is.SimTraffic.Herramientas.IHerramienta;
@@ -35,7 +36,7 @@ public class HDetenerTest extends TestCase {
 	public void testhacer()
 	{
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de Copiar no ha hecho correctamente");
+			fail(Messages.getString("HDetenerTest.0")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -45,6 +46,6 @@ public class HDetenerTest extends TestCase {
 	{
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
-			fail("La herramienta de Copiar no ha desecho correctamente");
+			fail(Messages.getString("HDetenerTest.1")); //$NON-NLS-1$
 	}
 }

@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Representaciones;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.ConversorUTM;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.LineaBus;
@@ -383,11 +384,11 @@ abstract public class Representacion {
 			lon = x_MapaARep(((int) (Lon0 / (100 * consx)) + i) * (100 * consx)) - tamX/2;
 
 			g.drawLine(lon, 13, lon, 3000);
-			g.drawString("" + pasarAGrados(lon_RepAMapa(lon)), lon - 5,
+			g.drawString(Messages.getString("Representacion.0") + pasarAGrados(lon_RepAMapa(lon)), lon - 5, //$NON-NLS-1$
 					13);
 			g.drawLine(0, lat, 3000, lat);
 			g
-					.drawString("" + pasarAGrados(lat_RepAMapa(lat)), 5,
+					.drawString(Messages.getString("Representacion.1") + pasarAGrados(lat_RepAMapa(lat)), 5, //$NON-NLS-1$
 							lat - 2);
 		}
 		g.setStroke(new BasicStroke(1));
@@ -397,7 +398,7 @@ abstract public class Representacion {
 		g.drawLine(25, 40, 25 + (int) (dist * zoom), 40);
 		g.drawLine(25, 35, 25, 45);
 		g.drawLine(25 + (int) (dist * zoom), 35, 25 + (int) (dist * zoom), 45);
-		g.drawString("" + dist + " m", 40, 35);
+		g.drawString(Messages.getString("Representacion.2") + dist + Messages.getString("Representacion.3"), 40, 35); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -480,16 +481,16 @@ abstract public class Representacion {
 	 * String con los grados, minutos y segundos
 	 */
 	static public String pasarAGrados(double lat) {
-		String resultado = "";
-		if (lat < 0) resultado += "-";
+		String resultado = Messages.getString("Representacion.4"); //$NON-NLS-1$
+		if (lat < 0) resultado += Messages.getString("Representacion.5"); //$NON-NLS-1$
 		lat = Math.abs(lat);
-		resultado += (int)(Math.floor(lat)) + "º ";
+		resultado += (int)(Math.floor(lat)) + Messages.getString("Representacion.6"); //$NON-NLS-1$
 		lat = lat - Math.floor(lat);
 		lat = lat * 60;
-		resultado += (int)(Math.floor(lat)) + "' ";
+		resultado += (int)(Math.floor(lat)) + Messages.getString("Representacion.7"); //$NON-NLS-1$
 		lat = lat - Math.floor(lat);
 		lat = lat * 60;
-		resultado += (int)(Math.floor(lat)) +"\"";
+		resultado += (int)(Math.floor(lat)) +Messages.getString("Representacion.8"); //$NON-NLS-1$
 		return resultado;
 	}
 
@@ -518,7 +519,7 @@ abstract public class Representacion {
 	public void pintar(Graphics2D g,LineaBus linea){
 		Iterator<Nodo> paradas=linea.getParadas().iterator();
 		BufferedImage estacion;
-		estacion=cargarImagen("bus_Station.png");
+		estacion=cargarImagen(Messages.getString("Representacion.9")); //$NON-NLS-1$
 		while(paradas.hasNext()){
 			   Nodo parada = (Nodo)paradas.next();
 			   g.drawImage(estacion, x_MapaARep(parada.getPos().getLon()) - 10,
@@ -571,7 +572,7 @@ abstract public class Representacion {
 			ClassLoader cl = this.getClass().getClassLoader();
 			imagen = ImageIO
 			.read(cl
-					.getResource("is/SimTraffic/Vista/Imagenes/RepresentacionAvanzada/"
+					.getResource(Messages.getString("Representacion.10") //$NON-NLS-1$
 							+ nombre));
 			
 		} catch (IOException e) {

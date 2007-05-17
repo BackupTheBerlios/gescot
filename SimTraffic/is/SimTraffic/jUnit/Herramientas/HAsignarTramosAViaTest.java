@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
 import is.SimTraffic.Mapa.TipoElemento.*;
@@ -19,8 +20,8 @@ public class HAsignarTramosAViaTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		ArrayList<Tramo> tramos = new ArrayList<Tramo>();
-		String nombre = "via 1";
-		String valorTipo = "valor tipo";
+		String nombre = Messages.getString("HAsignarTramosAViaTest.0"); //$NON-NLS-1$
+		String valorTipo = Messages.getString("HAsignarTramosAViaTest.1"); //$NON-NLS-1$
 		TipoViaHighway tipoVia = new TipoViaHighway(valorTipo);
 		int ID=1;
 		t = new HAsignarTramosAVia(ID, tipoVia, nombre, tramos); 
@@ -31,10 +32,10 @@ public class HAsignarTramosAViaTest extends TestCase {
 	 * Test method for 'is.SimTraffic.Herramientas.HAsignarTramosAVia.HAsignarTramosAVia(int, ITipoElemento, String, ArrayList<Tramo>)'
 	 */
 	public void testHAsignarTramosAVia() {
-		assertEquals(t.getNombre(), "via 1");
+		assertEquals(t.getNombre(), Messages.getString("HAsignarTramosAViaTest.2")); //$NON-NLS-1$
 		assertEquals(t.getID(),1);
 		assertEquals(t.getTramos().size(),0);
-		assertEquals(t.getTipoVia().getValorTipo(), "valor tipo");
+		assertEquals(t.getTipoVia().getValorTipo(), Messages.getString("HAsignarTramosAViaTest.3")); //$NON-NLS-1$
 	}
 
 	/*
@@ -56,9 +57,9 @@ public class HAsignarTramosAViaTest extends TestCase {
 	 */
 	public void testConfigurarVia() {
 		v = t.configurarVia();
-		assertEquals(v.getNombre(), "via 1");
+		assertEquals(v.getNombre(), Messages.getString("HAsignarTramosAViaTest.4")); //$NON-NLS-1$
 		assertEquals(v.getID(),1);
 		assertEquals(v.getTramos().size(),0);
-		assertEquals(v.getTipo().getValorTipo(), "valor tipo");
+		assertEquals(v.getTipo().getValorTipo(), Messages.getString("HAsignarTramosAViaTest.5")); //$NON-NLS-1$
 	}
 }

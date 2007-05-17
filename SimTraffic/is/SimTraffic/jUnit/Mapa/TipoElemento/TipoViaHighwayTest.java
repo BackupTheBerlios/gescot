@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Mapa.TipoElemento;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import junit.framework.TestCase;
 
@@ -13,15 +14,15 @@ import junit.framework.TestCase;
 			 * Se comprueba que dos nodos son iguales
 			 */
 			public void testEqualsObject() {
-				TipoViaHighway tipo1 = new TipoViaHighway("Autovia");
-				TipoViaHighway tipo2= new TipoViaHighway("Autovia");
-				TipoViaHighway tipo3= new TipoViaHighway("Escaleras");
+				TipoViaHighway tipo1 = new TipoViaHighway(Messages.getString("TipoViaHighwayTest.0")); //$NON-NLS-1$
+				TipoViaHighway tipo2= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.1")); //$NON-NLS-1$
+				TipoViaHighway tipo3= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.2")); //$NON-NLS-1$
 				if (tipo1 != tipo1)
-					fail("Tipo deberia ser igual a si misma");
+					fail(Messages.getString("TipoViaHighwayTest.3")); //$NON-NLS-1$
 				if (!tipo1.equals(tipo2))
-					fail("Tipos con el mismo tipo deberian ser iguales");			
+					fail(Messages.getString("TipoViaHighwayTest.4"));			 //$NON-NLS-1$
 				if (tipo1.equals(tipo3))
-					fail("Tipos con distintos tipos deberían ser diferentes");	
+					fail(Messages.getString("TipoViaHighwayTest.5"));	 //$NON-NLS-1$
 			}
 			/**
 			 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoviaHighway.testtraduciraOSM'
@@ -29,15 +30,15 @@ import junit.framework.TestCase;
 			 */
 			public void testtraduciraOSM()
 			{
-				TipoViaHighway tipo1 = new TipoViaHighway("Autovia");
-				TipoViaHighway tipo2= new TipoViaHighway("Autovia");
-				TipoViaHighway tipo3= new TipoViaHighway("Escaleras");
+				TipoViaHighway tipo1 = new TipoViaHighway(Messages.getString("TipoViaHighwayTest.6")); //$NON-NLS-1$
+				TipoViaHighway tipo2= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.7")); //$NON-NLS-1$
+				TipoViaHighway tipo3= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.8")); //$NON-NLS-1$
 				if (tipo1.traduciraOSM(tipo1.getValorTipo())!=tipo1.traduciraOSM(tipo1.getValorTipo()))
-					fail("Tipo deberia tener la misma traduccion");
+					fail(Messages.getString("TipoViaHighwayTest.9")); //$NON-NLS-1$
 				if (tipo1.traduciraOSM(tipo1.getValorTipo())!=tipo2.traduciraOSM(tipo2.getValorTipo()))
-					fail("Tipo deberia tener la misma traduccion que un tipo igual a este");
+					fail(Messages.getString("TipoViaHighwayTest.10")); //$NON-NLS-1$
 				if (tipo1.traduciraOSM(tipo1.getValorTipo())==tipo3.traduciraOSM(tipo3.getValorTipo()))
-					fail("Los tipos deberian tener una traduccion distinta");
+					fail(Messages.getString("TipoViaHighwayTest.11")); //$NON-NLS-1$
 			}
 			/**
 			 * Test method for 'is.SimTraffic.Mapa.TipoElemento.TipoviaHighway.testtraduciraCastellano'
@@ -45,14 +46,14 @@ import junit.framework.TestCase;
 			 */
 			public void testtraduciraCastellano()
 			{
-				TipoViaHighway tipo1 = new TipoViaHighway("Autovia");
-				TipoViaHighway tipo2= new TipoViaHighway("Autovia");
-				TipoViaHighway tipo3= new TipoViaHighway("Escaleras");
+				TipoViaHighway tipo1 = new TipoViaHighway(Messages.getString("TipoViaHighwayTest.12")); //$NON-NLS-1$
+				TipoViaHighway tipo2= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.13")); //$NON-NLS-1$
+				TipoViaHighway tipo3= new TipoViaHighway(Messages.getString("TipoViaHighwayTest.14")); //$NON-NLS-1$
 				if (tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo()))!=tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo())))
-					fail("Tipo deberia tener la misma traduccion");
+					fail(Messages.getString("TipoViaHighwayTest.15")); //$NON-NLS-1$
 				if (tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo()))!=tipo2.traduciraCastellano(tipo2.traduciraOSM(tipo2.getValorTipo())))
-					fail("Tipo deberia tener la misma traduccion que un tipo igual a este");
+					fail(Messages.getString("TipoViaHighwayTest.16")); //$NON-NLS-1$
 				if (tipo1.traduciraCastellano(tipo1.traduciraOSM(tipo1.getValorTipo()))==tipo3.traduciraCastellano(tipo3.traduciraOSM(tipo3.getValorTipo())))
-					fail("Los tipos deberian tener una traduccion distinta");
+					fail(Messages.getString("TipoViaHighwayTest.17")); //$NON-NLS-1$
 			}
 	}

@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HBuscarElemento;
 import is.SimTraffic.Mapa.Nodo;
@@ -60,12 +61,12 @@ public class HBuscarElementoTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		nodo = new Nodo(0, "nodo1",new Posicion(100,100),new TipoNodoLeisure("Marina"));
+		nodo = new Nodo(0, Messages.getString("HBuscarElementoTest.0"),new Posicion(100,100),new TipoNodoLeisure(Messages.getString("HBuscarElementoTest.1"))); //$NON-NLS-1$ //$NON-NLS-2$
 		modelo = new Modelo();
 		panel = new PanelMapa(100,100);
 		modelo.getMapa().insertar(nodo);
-		nombre="nodo1";
-		eliminar="Nodo";
+		nombre=Messages.getString("HBuscarElementoTest.2"); //$NON-NLS-1$
+		eliminar=Messages.getString("HBuscarElementoTest.3"); //$NON-NLS-1$
 		herramienta=new HBuscarElemento(eliminar,nombre,panel);
 	}
 	
@@ -83,10 +84,10 @@ public class HBuscarElementoTest extends TestCase {
 	 */
 	public void testhacer() {
 		if (herramienta.hacer(modelo)==1)
-			fail("Deberia encontrar el nodo");
-		herramienta=new HBuscarElemento(eliminar,"nodo2",panel);
+			fail(Messages.getString("HBuscarElementoTest.4")); //$NON-NLS-1$
+		herramienta=new HBuscarElemento(eliminar,Messages.getString("HBuscarElementoTest.5"),panel); //$NON-NLS-1$
 		if (herramienta.hacer(modelo)!=1)
-			fail("No deberia encontrar el nodo");
+			fail(Messages.getString("HBuscarElementoTest.6")); //$NON-NLS-1$
 	}
 	/**
 	 * Metodo que comprueba el metodo deshacer de la clase HBuscarElemento

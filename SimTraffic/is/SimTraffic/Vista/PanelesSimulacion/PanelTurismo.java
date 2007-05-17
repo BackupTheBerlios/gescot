@@ -1,4 +1,6 @@
 package is.SimTraffic.Vista.PanelesSimulacion;
+import is.SimTraffic.Messages;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -26,8 +28,8 @@ public class PanelTurismo extends JPanel {
 		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new FlowLayout(FlowLayout.CENTER,10,5));
-		JLabel iconoTurismo = new JLabel(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\turismo2.jpg"));
-		JLabel etiquetaTitulo = new JLabel("TURISMO");
+		JLabel iconoTurismo = new JLabel(new ImageIcon(Messages.getString("PanelTurismo.0"))); //$NON-NLS-1$
+		JLabel etiquetaTitulo = new JLabel(Messages.getString("PanelTurismo.1")); //$NON-NLS-1$
 		etiquetaTitulo.setFont(new Font(null,Font.BOLD,15));
 		panelTitulo.add(iconoTurismo);
 		panelTitulo.add(etiquetaTitulo);

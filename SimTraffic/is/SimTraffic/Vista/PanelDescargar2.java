@@ -32,13 +32,13 @@ public class PanelDescargar2 extends JFrame {
 
 	private GridLayout glDistribucion = new GridLayout(2, 6);
 	
-	private JButton jbMadrid = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Madrid.png"));
-	private JButton jbLondres = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/London.png"));
-	private JButton jbParis = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Paris.png"));
-	private JButton jbHamburgo = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Hamburgo.png"));
-	private JButton jbBarcelona = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Barcelona.png"));
-	private JButton jbBerlin = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Berlin.png"));
-	private JButton jbLisboa = new JButton(new ImageIcon("is/SimTraffic/Vista/Imagenes/Lisboa.png"));
+	private JButton jbMadrid = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.12"))); //$NON-NLS-1$
+	private JButton jbLondres = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.11"))); //$NON-NLS-1$
+	private JButton jbParis = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.10"))); //$NON-NLS-1$
+	private JButton jbHamburgo = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.9"))); //$NON-NLS-1$
+	private JButton jbBarcelona = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.8"))); //$NON-NLS-1$
+	private JButton jbBerlin = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.7"))); //$NON-NLS-1$
+	private JButton jbLisboa = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.6"))); //$NON-NLS-1$
 
 
 	IControlador controlador;
@@ -76,13 +76,13 @@ public class PanelDescargar2 extends JFrame {
 		jpPrincipal.add((JButton) vBotonesAux.get(7));
 		jpPrincipal.add(jbLisboa);
 		
-		jbMadrid.setToolTipText("Madrid");
-		jbLondres.setToolTipText("Londres");
-		jbParis.setToolTipText("Paris");
-		jbHamburgo.setToolTipText("Barcelona");
-		jbHamburgo.setToolTipText("Hamburgo");
-		jbBerlin.setToolTipText("Berlin");
-		jbLisboa.setToolTipText("Lisboa");
+		jbMadrid.setToolTipText(Messages.getString("PanelDescargar2.5")); //$NON-NLS-1$
+		jbLondres.setToolTipText(Messages.getString("PanelDescargar2.4")); //$NON-NLS-1$
+		jbParis.setToolTipText(Messages.getString("PanelDescargar2.3")); //$NON-NLS-1$
+		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.2")); //$NON-NLS-1$
+		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.1")); //$NON-NLS-1$
+		jbBerlin.setToolTipText(Messages.getString("PanelDescargar2.0")); //$NON-NLS-1$
+		jbLisboa.setToolTipText(Messages.getString("PanelDescargar2.21")); //$NON-NLS-1$
 
 
 		jbMadrid.addActionListener(new ActionListener() {

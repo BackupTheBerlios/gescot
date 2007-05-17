@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.VentanaMatrizPaso;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.Acciones.VentanaMatrizDePaso.AccionModificarEstadoConexion;
@@ -51,7 +52,7 @@ public class VentanaMatrizDePaso extends JFrame {
 		this.ventanaPadre = ventanaPadre;
 		this.numIntervalo = numIntervalo;
 		
-		this.setTitle("Configurar matriz de paso");
+		this.setTitle(Messages.getString("VentanaMatrizDePaso.0")); //$NON-NLS-1$
 		this.setVisible(true);
 		this.setSize(new Dimension(450,300));
 		this.setLocation(0,400);
@@ -64,17 +65,17 @@ public class VentanaMatrizDePaso extends JFrame {
 		this.getContentPane().add(panelGeneral);
 		
 		//Creamos el panel que contiene los botones de interconexión.
-		JLabel titulo = new JLabel("Por favor, establezca las interconexiones entre los tramos");
+		JLabel titulo = new JLabel(Messages.getString("VentanaMatrizDePaso.1")); //$NON-NLS-1$
 		panelGeneral.add(titulo,BorderLayout.NORTH);
 		JPanel panelBotones = new JPanel();
-		panelBotones.setBorder(BorderFactory.createTitledBorder("Conexiones en intervalo " + numIntervalo));
+		panelBotones.setBorder(BorderFactory.createTitledBorder(Messages.getString("VentanaMatrizDePaso.2") + numIntervalo)); //$NON-NLS-1$
 		panelGeneral.add(panelBotones,BorderLayout.CENTER);
 		
 		//Creamos el panel inferior de información
 		JPanel panelInformacion = new JPanel();
 		panelGeneral.add(panelInformacion,BorderLayout.SOUTH);
 		panelInformacion.setBorder(BorderFactory.createLineBorder(Color.CYAN));
-		etiqInformacion = new JLabel("Establezca las interconexiones");
+		etiqInformacion = new JLabel(Messages.getString("VentanaMatrizDePaso.3")); //$NON-NLS-1$
 		panelInformacion.add(etiqInformacion);
 		
 		crearBotonesDeConexion(panelBotones);
@@ -86,9 +87,9 @@ public class VentanaMatrizDePaso extends JFrame {
 		
 		panelBotones.setLayout(new BorderLayout());
 		JLabel etiqOrigen = new JLabel();
-		etiqOrigen.setIcon(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\origen.png"));
+		etiqOrigen.setIcon(new ImageIcon(Messages.getString("VentanaMatrizDePaso.4"))); //$NON-NLS-1$
 		JLabel etiqDestino = new JLabel();
-		etiqDestino.setIcon(new ImageIcon("is\\SimTraffic\\Vista\\Imagenes\\destino.png"));
+		etiqDestino.setIcon(new ImageIcon(Messages.getString("VentanaMatrizDePaso.5"))); //$NON-NLS-1$
 		etiqDestino.setHorizontalAlignment(SwingConstants.CENTER);
 		panelBotones.add(etiqOrigen,BorderLayout.WEST);
 		panelBotones.add(etiqDestino,BorderLayout.NORTH);
@@ -113,8 +114,8 @@ public class VentanaMatrizDePaso extends JFrame {
 				//j es el destino
 				for (int j = 0; j< numTramos; j++){
 					BotonDeConexion botonConexion = new BotonDeConexion(i,j,numIntervalo,nodo);
-					botonConexion.setFont(new Font("Verdana",0,8));
-					botonConexion.setText(i+"->"+j);
+					botonConexion.setFont(new Font(Messages.getString("VentanaMatrizDePaso.6"),0,8)); //$NON-NLS-1$
+					botonConexion.setText(i+Messages.getString("VentanaMatrizDePaso.7")+j); //$NON-NLS-1$
 					botonConexion.addMouseListener(escuchaBotonConexion);
 					botonConexion.addActionListener(accionBotonConexion);
 					panelInterno.add(botonConexion);
@@ -129,7 +130,7 @@ public class VentanaMatrizDePaso extends JFrame {
 			}
 			panelBotones.add(panelInterno,BorderLayout.CENTER);
 		} else {
-			this.etiqInformacion.setText("¡No hay tramos en este nodo!");
+			this.etiqInformacion.setText(Messages.getString("VentanaMatrizDePaso.8")); //$NON-NLS-1$
 			/*JLabel etiqSinTramos = new JLabel("¡No hay tramos en este nodo!");
 			etiqSinTramos.setFont(new Font("Verdana",Font.BOLD,12));
 			panelBotones.add(etiqSinTramos, BorderLayout.CENTER);*/

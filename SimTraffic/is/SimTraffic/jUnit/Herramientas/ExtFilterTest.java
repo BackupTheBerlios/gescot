@@ -3,6 +3,7 @@ package is.SimTraffic.jUnit.Herramientas;
 
 import java.io.File;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.ExtFilter;
 import is.SimTraffic.Herramientas.HAñadirNodo;
@@ -24,7 +25,7 @@ public class ExtFilterTest extends TestCase {
 	 * Metodo de creacion de ExtFilter para las pruebas
 	 */
 	protected void setUp() throws Exception {
-		filtro = new ExtFilter("osm");
+		filtro = new ExtFilter(Messages.getString("ExtFilterTest.0")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -32,8 +33,8 @@ public class ExtFilterTest extends TestCase {
 	 */
 	public void testExtFilter() {
 		String aux=filtro.getExtensions()[0];
-		if (!(aux.equalsIgnoreCase("osm")))
-		fail("No se ha creado correctamente la calse ExtFilter");
+		if (!(aux.equalsIgnoreCase(Messages.getString("ExtFilterTest.1")))) //$NON-NLS-1$
+		fail(Messages.getString("ExtFilterTest.2")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -41,8 +42,8 @@ public class ExtFilterTest extends TestCase {
 	 */
 	public void testaccept()
 	{
-		File f = new File("madrid_centro.osm");
+		File f = new File(Messages.getString("ExtFilterTest.3")); //$NON-NLS-1$
 		if (!(filtro.accept(f)))
-			fail("ExtFilter no lee el archivo correctamente");
+			fail(Messages.getString("ExtFilterTest.4")); //$NON-NLS-1$
 	}
 }

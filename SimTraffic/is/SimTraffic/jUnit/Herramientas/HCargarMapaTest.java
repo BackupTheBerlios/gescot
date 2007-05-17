@@ -2,6 +2,7 @@ package is.SimTraffic.jUnit.Herramientas;
 
 import is.SimTraffic.Controlador;
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Herramientas.HCortar;
@@ -73,7 +74,7 @@ public class HCargarMapaTest extends TestCase {
 	public void testhacer()
 	{
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de HCargarMapa no ha hecho correctamente");
+			fail(Messages.getString("HCargarMapaTest.0")); //$NON-NLS-1$
 	}
 	/**
 	 * Mwtodo que compreuaba que sel metodo deshacer funciona correctamente 
@@ -82,7 +83,7 @@ public class HCargarMapaTest extends TestCase {
 	{
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
-			fail("La herramienta de Copiar no ha desecho correctamente");
+			fail(Messages.getString("HCargarMapaTest.1")); //$NON-NLS-1$
 	}
 	
 	/**

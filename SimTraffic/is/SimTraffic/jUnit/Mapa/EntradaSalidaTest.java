@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Mapa;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.EntradaSalida;
 import junit.framework.TestCase;
 
@@ -20,12 +21,12 @@ public class EntradaSalidaTest extends TestCase {
 		EntradaSalida es1= new EntradaSalida(entrada1,entrada2);
 		EntradaSalida es2= new EntradaSalida(entrada1,entrada2);
 		if (es1 != es1)
-			fail("EntradaSalida deberia ser igual a si mismo");
+			fail(Messages.getString("EntradaSalidaTest.0")); //$NON-NLS-1$
 		if (!es1.equals(es2))
-			fail("EntradaSalida con los mismos valores deberian ser iguales");
+			fail(Messages.getString("EntradaSalidaTest.1")); //$NON-NLS-1$
 		EntradaSalida es3= new EntradaSalida(entrada2,entrada2);
 		if (es1.equals(es3))
-			fail("EntradaSalida tendrian que ser diferentes");	
+			fail(Messages.getString("EntradaSalidaTest.2"));	 //$NON-NLS-1$
 	
 	}
 	/**
@@ -40,14 +41,14 @@ public class EntradaSalidaTest extends TestCase {
 		EntradaSalida es2= new EntradaSalida(entrada1,entrada2);
 		String aux =es1.transformaOSM();
 		String aux2 =es1.transformaOSM();
-		if (!aux.equals(aux2)) System.out.println("HOLA");
+		if (!aux.equals(aux2)) System.out.println(Messages.getString("EntradaSalidaTest.3")); //$NON-NLS-1$
 		if (!(es1.transformaOSM()).equals(es1.transformaOSM()))
-			fail("La traducion OSM  de si mi mismo deberia ser igual");
+			fail(Messages.getString("EntradaSalidaTest.4")); //$NON-NLS-1$
 		if (!(es1.transformaOSM()).equals(es2.transformaOSM()))
-			fail("La traducion OSM de los mismos datos deberia ser igual");
+			fail(Messages.getString("EntradaSalidaTest.5")); //$NON-NLS-1$
 		EntradaSalida es3= new EntradaSalida(entrada2,entrada2);
 		if ((es1.transformaOSM()).equals(es3.transformaOSM()))
-			fail("La traducion OSM de distintos datos deberia ser distinta");
+			fail(Messages.getString("EntradaSalidaTest.6")); //$NON-NLS-1$
 		}
 }
 

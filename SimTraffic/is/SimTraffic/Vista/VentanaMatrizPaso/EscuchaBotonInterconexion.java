@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.VentanaMatrizPaso;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Vista.PanelNodo;
 
@@ -43,7 +44,7 @@ public class EscuchaBotonInterconexion implements MouseListener {
 		//Ahi va la flecha...
 		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().crearFlecha(nodo, nodo.getTramos().get(tramoOrigen), nodo.getTramos().get(tramoDestino));
 		
-		ventanaPadre.informa("Conexión: de "+tramoOrigen+" a "+tramoDestino);
+		ventanaPadre.informa(Messages.getString("EscuchaBotonInterconexion.0")+tramoOrigen+Messages.getString("EscuchaBotonInterconexion.1")+tramoDestino); //$NON-NLS-1$ //$NON-NLS-2$
 		ventanaPadre.validate();
 	}
 
@@ -51,7 +52,7 @@ public class EscuchaBotonInterconexion implements MouseListener {
 	{
 		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(null);
 		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(null);
-		ventanaPadre.informa("Conexión: de - a -");
+		ventanaPadre.informa(Messages.getString("EscuchaBotonInterconexion.2")); //$NON-NLS-1$
 		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().quitarFlecha();
 	}
 }

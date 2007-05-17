@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HPegar;
 import is.SimTraffic.Herramientas.IHerramienta;
@@ -23,14 +24,12 @@ public class HPegarTest extends TestCase {
 	/**
 	 * Atributo que es ista de nodos necesaria para las pruebas
 	 */
-	@SuppressWarnings("unused")
 	private List<Nodo> nodos;
 	
 	
 	/**
 	 * Atributo que es ista de tramos necesaria para las pruebas
 	 */
-	@SuppressWarnings("unused")
 	private List<Tramo> tramos;
 	
 	/**
@@ -93,7 +92,7 @@ public class HPegarTest extends TestCase {
 	public void testhacer()
 	{
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de Pegar no ha hecho correctamente");
+			fail(Messages.getString("HPegarTest.2")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -102,6 +101,6 @@ public class HPegarTest extends TestCase {
 	public void testdeshacer()
 	{
 		if (herramienta.deshacer(modelo)!=0)
-			fail("La herramienta de Pegar no ha desecho correctamente");
+			fail(Messages.getString("HPegarTest.3")); //$NON-NLS-1$
 	}
 }

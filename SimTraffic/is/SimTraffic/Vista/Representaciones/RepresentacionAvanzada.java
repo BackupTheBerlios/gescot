@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Representaciones;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Señal;
@@ -78,27 +79,27 @@ public class RepresentacionAvanzada extends Representacion {
 		coches[5] = cargarImagen("Coche6.png");
 		coches[6] = cargarImagen("Coche7.png");*/
 
-		coches[0] = cargarImagen("taxigta.png");
-		coches[1] = cargarImagen("coche2gta.png");
-		coches[2] = cargarImagen("coche3gta.png");
-		coches[3] = cargarImagen("coche4gta.png");
-		coches[4] = cargarImagen("coche5gta.png");
-		coches[5] = cargarImagen("coche6gta.png");
-		coches[6] = cargarImagen("coche7gta.png");
-		coches[7] = cargarImagen("taxigta.png");
-		coches[8] = cargarImagen("coche1gta.png");
-		coches[9] = cargarImagen("GT40.png");
-		coches[10] = cargarImagen("Mini.png");
-		coches[11] = cargarImagen("Policia.png");
+		coches[0] = cargarImagen(Messages.getString("RepresentacionAvanzada.0")); //$NON-NLS-1$
+		coches[1] = cargarImagen(Messages.getString("RepresentacionAvanzada.1")); //$NON-NLS-1$
+		coches[2] = cargarImagen(Messages.getString("RepresentacionAvanzada.2")); //$NON-NLS-1$
+		coches[3] = cargarImagen(Messages.getString("RepresentacionAvanzada.3")); //$NON-NLS-1$
+		coches[4] = cargarImagen(Messages.getString("RepresentacionAvanzada.4")); //$NON-NLS-1$
+		coches[5] = cargarImagen(Messages.getString("RepresentacionAvanzada.5")); //$NON-NLS-1$
+		coches[6] = cargarImagen(Messages.getString("RepresentacionAvanzada.6")); //$NON-NLS-1$
+		coches[7] = cargarImagen(Messages.getString("RepresentacionAvanzada.7")); //$NON-NLS-1$
+		coches[8] = cargarImagen(Messages.getString("RepresentacionAvanzada.8")); //$NON-NLS-1$
+		coches[9] = cargarImagen(Messages.getString("RepresentacionAvanzada.9")); //$NON-NLS-1$
+		coches[10] = cargarImagen(Messages.getString("RepresentacionAvanzada.10")); //$NON-NLS-1$
+		coches[11] = cargarImagen(Messages.getString("RepresentacionAvanzada.11")); //$NON-NLS-1$
 		
 		camiones = new BufferedImage[5];
-		camiones[0] = cargarImagen("Bomberos.png");
-		camiones[1] = cargarImagen("Camion.png");
-		camiones[2] = cargarImagen("Limusina.png");
-		camiones[3] = cargarImagen("CamionDuff.png");
-		camiones[4] = cargarImagen("CamionEURO.png");
+		camiones[0] = cargarImagen(Messages.getString("RepresentacionAvanzada.12")); //$NON-NLS-1$
+		camiones[1] = cargarImagen(Messages.getString("RepresentacionAvanzada.13")); //$NON-NLS-1$
+		camiones[2] = cargarImagen(Messages.getString("RepresentacionAvanzada.14")); //$NON-NLS-1$
+		camiones[3] = cargarImagen(Messages.getString("RepresentacionAvanzada.15")); //$NON-NLS-1$
+		camiones[4] = cargarImagen(Messages.getString("RepresentacionAvanzada.16")); //$NON-NLS-1$
 		
-		autobus = cargarImagen("Bus.png");
+		autobus = cargarImagen(Messages.getString("RepresentacionAvanzada.17")); //$NON-NLS-1$
 		
 	}
 	
@@ -120,121 +121,121 @@ public class RepresentacionAvanzada extends Representacion {
 			String aux = nodo.getTipo().getTipoCastellano();
 			BufferedImage buffer = null;
 			
-			if (aux.equalsIgnoreCase("Carretera")) {
+			if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.18"))) { //$NON-NLS-1$
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
-				if (aux.equalsIgnoreCase("Mini-rotonda"))
-					buffer = cargarImagen("Rotonda.PNG");
-				else if (aux.equalsIgnoreCase("Stop"))
-					buffer = cargarImagen("Stop.png");
-				else if (aux.equalsIgnoreCase("Cruce")) {
-					buffer = cargarImagen("crossing.PNG");
+				if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.19"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.20")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.21"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.22")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.23"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.24")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Portón para vehículos"))
-					buffer = cargarImagen("Puerta.PNG");
-				else if (aux.equalsIgnoreCase("Cambio De Rasante")) {
-					buffer = cargarImagen("incline.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.25"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.26")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.27"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.28")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Puente")) {
-					 buffer = cargarImagen("bridge.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.29"))) { //$NON-NLS-1$
+					 buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.30")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Viaducto")) {
-					buffer = cargarImagen("viaduct.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.31"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.32")); //$NON-NLS-1$
 				}
-			} else if (aux.equalsIgnoreCase("Tiempo Libre")) {
+			} else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.33"))) { //$NON-NLS-1$
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
-				if (aux.equalsIgnoreCase("Campo de golf"))
-					buffer = cargarImagen("Campo_Golf.PNG");
-				else if (aux.equalsIgnoreCase("Estadio"))
-					buffer = cargarImagen("Estadio.png");
-				else if (aux.equalsIgnoreCase("Pista de carreras")) {
-					buffer = cargarImagen("track.PNG");
+				if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.34"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.35")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.36"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.37")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.38"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.39")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Campo de deporte")) {
-					buffer = cargarImagen("pitch.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.40"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.41")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Parque acuático")) {
-					buffer = cargarImagen("water_park.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.42"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.43")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Parque")) {
-					buffer = cargarImagen("park.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.44"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.45")); //$NON-NLS-1$
 				} 
-				else if (aux.equalsIgnoreCase("Jardín")) {
-					buffer = cargarImagen("garden.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.46"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.47")); //$NON-NLS-1$
 				}
-			} else if (aux.equalsIgnoreCase("Construcción")) {
+			} else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.48"))) { //$NON-NLS-1$
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
-				if (aux.equalsIgnoreCase("Planta eólica"))
-					buffer = cargarImagen("Torre_de_electricidad.PNG");
-				else if (aux.equalsIgnoreCase("Planta Hidroeléctrica")) {
-					buffer = cargarImagen("power_hidro.PNG");
+				if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.49"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.50")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.51"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.52")); //$NON-NLS-1$
 				} 
-				else if (aux.equalsIgnoreCase("Central eléctrica")) {
-					buffer = cargarImagen("power_fossil.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.53"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.54")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Central nuclear")) {
-					buffer = cargarImagen("power_nuclear.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.55"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.56")); //$NON-NLS-1$
 				} 
-				else if (aux.equalsIgnoreCase("Faro")) {
-					buffer = cargarImagen("lighthouse.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.57"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.58")); //$NON-NLS-1$
 				}
-			} else if (aux.equalsIgnoreCase("Infraestructura")) {
+			} else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.59"))) { //$NON-NLS-1$
 				aux = nodo.getTipo().getValorTipoCastellano();
 				
-				if (aux.equalsIgnoreCase("Pub"))
-					buffer = cargarImagen("Bar.PNG");
-				else if (aux.equalsIgnoreCase("Parking"))
-					buffer = cargarImagen("Parking.PNG");
-				else if (aux.equalsIgnoreCase("Gasolinera"))
-					buffer = cargarImagen("Gasolinera.PNG");
-				else if (aux.equalsIgnoreCase("Cabina de teléfono")) {
-					buffer = cargarImagen("telephone.PNG");
+				if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.60"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.61")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.62"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.63")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.64"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.65")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.66"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.67")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Aseos Públicos")) {
-					buffer = cargarImagen("toilets.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.68"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.69")); //$NON-NLS-1$
 				} 
-				else if (aux.equalsIgnoreCase("Edificio Público")) {
-					buffer = cargarImagen("public_building.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.70"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.71")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Iglesia"))
-					buffer = cargarImagen("Iglesia.PNG");
-				else if (aux.equalsIgnoreCase("Cementerio")) {
-					 buffer = cargarImagen("grave_yard.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.72"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.73")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.74"))) { //$NON-NLS-1$
+					 buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.75")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Oficina de Correos"))
-					buffer = cargarImagen("Correos.PNG");
-				else if (aux.equalsIgnoreCase("Buzón de Correos"))
-					buffer = cargarImagen("Correos2.PNG");
-				else if (aux.equalsIgnoreCase("Colegio"))
-					buffer = cargarImagen("Colegio.PNG");
-				else if (aux.equalsIgnoreCase("Supermercado")) {
-					buffer = cargarImagen("supermarket.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.76"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.77")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.78"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.79")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.80"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.81")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.82"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.83")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Hospital"))
-					buffer = cargarImagen("Hospital.PNG");
-				else if (aux.equalsIgnoreCase("Librería"))
-					buffer = cargarImagen("Libreria.PNG");
-				else if (aux.equalsIgnoreCase("Comisaría")) {
-					buffer = cargarImagen("police.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.84"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.85")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.86"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.87")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.88"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.89")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Parque de bomberos")) {
-					buffer = cargarImagen("fire_station.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.90"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.91")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Terrazas (de hostelería)")) {
-					buffer = cargarImagen("Puff.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.92"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.93")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Restaurante"))
-					buffer = cargarImagen("Restaurante.PNG");
-				else if (aux.equalsIgnoreCase("Cadena de comida rápida")) {
-					buffer = cargarImagen("fastfood.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.94"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.95")); //$NON-NLS-1$
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.96"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.97")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Estación de autobus")) {
-					buffer = cargarImagen("bus_station.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.98"))) { //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.99")); //$NON-NLS-1$
 				}
-				else if (aux.equalsIgnoreCase("Teatro"))
-					buffer = cargarImagen("Teatro.PNG");
+				else if (aux.equalsIgnoreCase(Messages.getString("RepresentacionAvanzada.100"))) //$NON-NLS-1$
+					buffer = cargarImagen(Messages.getString("RepresentacionAvanzada.101")); //$NON-NLS-1$
 			}
 			g.drawImage(buffer, x_MapaARep(nodo.getPos().getLon()) - 10,
 					y_MapaARep(nodo.getPos().getLat()) - 10, null);
@@ -304,22 +305,22 @@ public class RepresentacionAvanzada extends Representacion {
 		Posicion posnodo2 = tramo.getNodoFinal().getPos();
 		if (tipo == null) {
 			dibujarCarretera(g, tramo);
-		} else if (tipo.compareTo("leisure") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionAvanzada.102")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.green);
 			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
 					.getLat()), x_MapaARep(posnodo2.getLon()),
 					y_MapaARep(posnodo2.getLat()));
-		} else if (tipo.compareTo("amenity") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionAvanzada.103")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.gray);
 			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
 					.getLat()), x_MapaARep(posnodo2.getLon()),
 					y_MapaARep(posnodo2.getLat()));
-		} else if (tipo.compareTo("highway") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionAvanzada.104")) == 0) { //$NON-NLS-1$
 			dibujarCarretera(g, tramo);
 			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
 					.getLat()), x_MapaARep(posnodo2.getLon()),
 					y_MapaARep(posnodo2.getLat()));
-		} else if (tipo.compareTo("manmade") == 0) {
+		} else if (tipo.compareTo(Messages.getString("RepresentacionAvanzada.105")) == 0) { //$NON-NLS-1$
 			g.setColor(Color.pink);
 			g.drawLine(x_MapaARep(posnodo1.getLon()), y_MapaARep(posnodo1
 					.getLat()), x_MapaARep(posnodo2.getLon()),
@@ -636,8 +637,8 @@ public class RepresentacionAvanzada extends Representacion {
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp4 };
 		
-		System.out.println(x[0] + " " + x[1] + " " + x[2]);
-		System.out.println(y[0] + " " + y[1] + " " + y[2]);
+		System.out.println(x[0] + Messages.getString("RepresentacionAvanzada.106") + x[1] + Messages.getString("RepresentacionAvanzada.107") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println(y[0] + Messages.getString("RepresentacionAvanzada.108") + y[1] + Messages.getString("RepresentacionAvanzada.109") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		Polygon p = new Polygon(x, y, 3);
 		return p;

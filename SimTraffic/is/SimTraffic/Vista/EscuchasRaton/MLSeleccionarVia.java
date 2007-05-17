@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.EscuchasRaton;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.Via;
@@ -129,6 +130,6 @@ public class MLSeleccionarVia extends EscuchaRaton{
 	}
 	
 	public String getAyuda() {
-		return "Pulse en una via para seleccionarla.";
+		return Messages.getString("MLSeleccionarVia.0"); //$NON-NLS-1$
 	}
 }

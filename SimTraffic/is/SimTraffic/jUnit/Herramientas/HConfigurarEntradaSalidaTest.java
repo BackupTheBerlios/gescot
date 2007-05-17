@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HConfigurarEntradaSalida;
 import is.SimTraffic.Mapa.EntradaSalida;
 import is.SimTraffic.Mapa.Nodo;
@@ -21,9 +22,9 @@ public class HConfigurarEntradaSalidaTest extends TestCase {
 		//creamos dos nodos n1 y n2 iguales. Despues cambiamos 
 		//los porcentajes y los hacemos iguales a los de n3. Si 
 		//despues deshacemos, n1 y n2 tienen que volver a ser iguales.
-		n1 = new Nodo(es1, 1, "nodo1", null, null);
-		n2 = new Nodo(es1, 1, "nodo1", null, null);
-		n3 = new Nodo(es2, 1, "nodo1", null, null);
+		n1 = new Nodo(es1, 1, Messages.getString("HConfigurarEntradaSalidaTest.0"), null, null); //$NON-NLS-1$
+		n2 = new Nodo(es1, 1, Messages.getString("HConfigurarEntradaSalidaTest.1"), null, null); //$NON-NLS-1$
+		n3 = new Nodo(es2, 1, Messages.getString("HConfigurarEntradaSalidaTest.2"), null, null); //$NON-NLS-1$
 		h = new HConfigurarEntradaSalida(n1, a1, a3);
 	}
 

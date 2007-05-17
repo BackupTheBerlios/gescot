@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HCopiar;
 import is.SimTraffic.Herramientas.HCortar;
@@ -86,7 +87,7 @@ public class HCortarTest extends TestCase {
 	public void testhacer()
 	{
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de Copiar no ha hecho correctamente");
+			fail(Messages.getString("HCortarTest.0")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -96,6 +97,6 @@ public class HCortarTest extends TestCase {
 	{
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
-			fail("La herramienta de Copiar no ha desecho correctamente");
+			fail(Messages.getString("HCortarTest.1")); //$NON-NLS-1$
 	}
 }

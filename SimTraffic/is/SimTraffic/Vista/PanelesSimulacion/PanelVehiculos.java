@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista.PanelesSimulacion;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HComenzar;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
 import is.SimTraffic.Simulacion.Simulacion;
@@ -52,38 +53,38 @@ public class PanelVehiculos extends JFrame {
 		this.controlador = controlador;
 		this.param = param;
 		this.setResizable(false);
-		this.setTitle("Tipos de Vehículos");
+		this.setTitle(Messages.getString("PanelVehiculos.0")); //$NON-NLS-1$
 
-		String[] cantidades = { "No aparece", "Muy pocos", "Algunos", "Normal",
-				"Bastantes", "Muchos" };
+		String[] cantidades = { Messages.getString("PanelVehiculos.1"), Messages.getString("PanelVehiculos.2"), Messages.getString("PanelVehiculos.3"), Messages.getString("PanelVehiculos.4"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				Messages.getString("PanelVehiculos.5"), Messages.getString("PanelVehiculos.6") }; //$NON-NLS-1$ //$NON-NLS-2$
 		for (int i = 0; i < 6; i++)
 			porcentajes[i] = new JComboBox(cantidades);
 
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));
-		JLabel etiquetaTitulo = new JLabel("CANTIDAD DE VEHÍCULOS");
+		JLabel etiquetaTitulo = new JLabel(Messages.getString("PanelVehiculos.7")); //$NON-NLS-1$
 		etiquetaTitulo.setFont(new Font(null, Font.BOLD, 15));
 		panelTitulo.add(etiquetaTitulo);
 
 		JPanel panelCantidades = panelCantidades();
 
 		JPanel panelTurismo = crearOpcionesVehiculo(porcentajes[0],
-				"turismo.jpg", "Turismo  ", 4);
+				Messages.getString("PanelVehiculos.8"), Messages.getString("PanelVehiculos.9"), 4); //$NON-NLS-1$ //$NON-NLS-2$
 
-		JPanel panelTaxi = crearOpcionesVehiculo(porcentajes[1], "taxi.jpg",
-				"Taxi      ", 0);
+		JPanel panelTaxi = crearOpcionesVehiculo(porcentajes[1], Messages.getString("PanelVehiculos.10"), //$NON-NLS-1$
+				Messages.getString("PanelVehiculos.11"), 0); //$NON-NLS-1$
 
 		JPanel panelCamion = crearOpcionesVehiculo(porcentajes[2],
-				"camion.jpg", "Camion    ", 0);
+				Messages.getString("PanelVehiculos.12"), Messages.getString("PanelVehiculos.13"), 0); //$NON-NLS-1$ //$NON-NLS-2$
 
-		JPanel panelBus = crearOpcionesVehiculo(porcentajes[3], "autobus.jpg",
-				"Bus         ", 0);
+		JPanel panelBus = crearOpcionesVehiculo(porcentajes[3], Messages.getString("PanelVehiculos.14"), //$NON-NLS-1$
+				Messages.getString("PanelVehiculos.15"), 0); //$NON-NLS-1$
 /*
 		JPanel panelMoto = crearOpcionesVehiculo(porcentajes[4], "moto.jpg",
 				"Moto     ", 0);
 */
 		JPanel panelAmbulancia = crearOpcionesVehiculo(porcentajes[5],
-				"ambulancia.jpg", "Ambulancia", 0);
+				Messages.getString("PanelVehiculos.16"), Messages.getString("PanelVehiculos.17"), 0); //$NON-NLS-1$ //$NON-NLS-2$
 
 		if (!controlador.mapaTieneHospital())
 			porcentajes[5].setEnabled(false);
@@ -97,9 +98,9 @@ public class PanelVehiculos extends JFrame {
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 5));
-		JButton botonAceptar = new JButton("Aceptar");
+		JButton botonAceptar = new JButton(Messages.getString("PanelVehiculos.18")); //$NON-NLS-1$
 		botonAceptar.addActionListener(new accionAceptar());
-		JButton botonCancelar = new JButton("Cancelar");
+		JButton botonCancelar = new JButton(Messages.getString("PanelVehiculos.19")); //$NON-NLS-1$
 		botonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelVehiculos.this.dispose();
@@ -123,14 +124,14 @@ public class PanelVehiculos extends JFrame {
 		this.add(panelTitulo, gbc);
 		
 		JPanel panelHora = new JPanel(new GridLayout(1,3));
-		JLabel labelInfoHora = new JLabel("Hora de simulación");
+		JLabel labelInfoHora = new JLabel(Messages.getString("PanelVehiculos.20")); //$NON-NLS-1$
 		JPanel panelValorHoras = new JPanel();
 		JPanel panelValorMins = new JPanel();
 		
 		horas = new JSpinner(new SpinnerNumberModel(17,0,23,1));
 		minutos = new JSpinner(new SpinnerNumberModel(30,0,59,1));
-		JLabel horasEtiq = new JLabel("Hora:");
-		JLabel minsEtiq = new JLabel("Minutos:");
+		JLabel horasEtiq = new JLabel(Messages.getString("PanelVehiculos.21")); //$NON-NLS-1$
+		JLabel minsEtiq = new JLabel(Messages.getString("PanelVehiculos.22")); //$NON-NLS-1$
 
 		panelValorHoras.add(horasEtiq);
 		panelValorHoras.add(horas);
@@ -191,14 +192,14 @@ public class PanelVehiculos extends JFrame {
 		panelaux1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		ClassLoader cl = this.getClass().getClassLoader();
 		JLabel iconoTurismo = new JLabel((new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + icono))));
+				.getResource(Messages.getString("PanelVehiculos.23") + icono)))); //$NON-NLS-1$
 		JLabel etiquetaTurismo = new JLabel(nombre);
 		panelaux1.add(iconoTurismo);
 		panelaux1.add(etiquetaTurismo);
 		JPanel panelaux2 = new JPanel();
 		panelaux2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		combo.setSelectedIndex(inicial);
-		JButton botonPropiedadesTurismo = new JButton("Propiedades");
+		JButton botonPropiedadesTurismo = new JButton(Messages.getString("PanelVehiculos.24")); //$NON-NLS-1$
 		panelaux2.add(combo);
 		panelaux2.add(botonPropiedadesTurismo);
 		panel.add(panelaux1);
@@ -220,14 +221,14 @@ public class PanelVehiculos extends JFrame {
 		JTextField text1 = new JTextField(2);
 		text1.setEditable(false);
 		c.weightx = 0.3;
-		addPanel(panelCantidades, new JLabel("Mañana"), bg, c);
+		addPanel(panelCantidades, new JLabel(Messages.getString("PanelVehiculos.25")), bg, c); //$NON-NLS-1$
 		addPanel(panelCantidades, text1, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[0] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[0].setValue(100);
-		text1.setText("" + vehiculos[0].getValue());
+		text1.setText(Messages.getString("PanelVehiculos.26") + vehiculos[0].getValue()); //$NON-NLS-1$
 		vehiculos[0].addAdjustmentListener(new ajuste(text1));
 		addPanel(panelCantidades, vehiculos[0], bg, c);
 
@@ -235,14 +236,14 @@ public class PanelVehiculos extends JFrame {
 		JTextField text2 = new JTextField(2);
 		text2.setEditable(false);
 		c.weightx = 0.3;
-		addPanel(panelCantidades, new JLabel("Tarde"), bg, c);
+		addPanel(panelCantidades, new JLabel(Messages.getString("PanelVehiculos.27")), bg, c); //$NON-NLS-1$
 		addPanel(panelCantidades, text2, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[1] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[1].setValue(100);
-		text2.setText("" + vehiculos[1].getValue());
+		text2.setText(Messages.getString("PanelVehiculos.28") + vehiculos[1].getValue()); //$NON-NLS-1$
 		vehiculos[1].addAdjustmentListener(new ajuste(text2));
 		addPanel(panelCantidades, vehiculos[1], bg, c);
 
@@ -250,14 +251,14 @@ public class PanelVehiculos extends JFrame {
 		JTextField text3 = new JTextField(2);
 		text3.setEditable(false);
 		c.weightx = 0.3;
-		addPanel(panelCantidades, new JLabel("Noche"), bg, c);
+		addPanel(panelCantidades, new JLabel(Messages.getString("PanelVehiculos.29")), bg, c); //$NON-NLS-1$
 		addPanel(panelCantidades, text3, bg, c);
 		c.weightx = 4.0;
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		vehiculos[2] = new JScrollBar(JScrollBar.HORIZONTAL, min + (max - min)
 				/ 10, 100, min, max);
 		vehiculos[2].setValue(100);
-		text3.setText("" + vehiculos[2].getValue());
+		text3.setText(Messages.getString("PanelVehiculos.30") + vehiculos[2].getValue()); //$NON-NLS-1$
 		vehiculos[2].addAdjustmentListener(new ajuste(text3));
 		addPanel(panelCantidades, vehiculos[2], bg, c);
 
