@@ -24,12 +24,14 @@ public class HPegarTest extends TestCase {
 	/**
 	 * Atributo que es ista de nodos necesaria para las pruebas
 	 */
+	@SuppressWarnings(Messages.getString("HPegarTest.0")) //$NON-NLS-1$
 	private List<Nodo> nodos;
 	
 	
 	/**
 	 * Atributo que es ista de tramos necesaria para las pruebas
 	 */
+	@SuppressWarnings(Messages.getString("HPegarTest.1")) //$NON-NLS-1$
 	private List<Tramo> tramos;
 	
 	/**
