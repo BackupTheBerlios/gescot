@@ -80,4 +80,20 @@ public class HPartirTramo implements IHerramienta {
 			
 		}
 		
+		public Nodo getNuevoNodo(){
+			return this.nuevoNodo;
+		}
+		
+		public Tramo getAntiguoTramo(){
+			return this.antiguoTramo;
+		}
+		
+		public Tramo getTramo1Nuevo(){
+			return this.tramo1Nuevo;
+		}
+		
+		public Tramo getTramo2Nuevo(){
+			return this.tramo2Nuevo;
+		}
+		
 }
