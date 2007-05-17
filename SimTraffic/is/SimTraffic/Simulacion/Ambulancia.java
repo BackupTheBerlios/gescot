@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import is.SimTraffic.LibreriaIA.IPrincipal;
-import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
-import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
-import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
