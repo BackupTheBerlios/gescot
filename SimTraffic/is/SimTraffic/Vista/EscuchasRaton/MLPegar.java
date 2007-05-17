@@ -5,6 +5,8 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Herramientas.HPegar;
+import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
 
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -69,8 +71,14 @@ public class MLPegar extends EscuchaRaton {
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		//Creamos un nodo "fantasma" que ayuda a saber en qué 
+		//posición se insertará el contenido del portapapeles.
+		double y = panel.lon_RepAMapa(arg0.getX());
+		double x = panel.lat_RepAMapa(arg0.getY());
+		Posicion puntoAyuda = new Posicion(x,y);
+		Nodo nodoAyuda = new Nodo(puntoAyuda);
 		
+		panel.sugerir(nodoAyuda);
 	}
 
 	@Override
