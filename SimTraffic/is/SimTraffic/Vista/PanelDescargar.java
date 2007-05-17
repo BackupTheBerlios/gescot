@@ -1,11 +1,16 @@
 package is.SimTraffic.Vista;
 
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.*;
+
+import is.SimTraffic.Herramientas.DescargarMapa.WorldChooser;
+import is.SimTraffic.Herramientas.DescargarMapa.GBC;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HDescargarMapa;
@@ -55,10 +60,12 @@ public class PanelDescargar extends JFrame {
 	private JButton jbCancelar = new JButton("Cancelar");
 
 	IControlador controlador;
+	PanelMapa panel;
 
-	public PanelDescargar(IControlador controlador) {
+	public PanelDescargar(IControlador controlador, PanelMapa panel) {
 		this.controlador = controlador;
-
+		this.panel=panel;
+		
 		this.setTitle("Eligir area para descargar");
 
 		Vector<JButton> vBotonesAux = new Vector<JButton>(8);
@@ -79,8 +86,15 @@ public class PanelDescargar extends JFrame {
 		jpSur.add(jbCancelar);
 		jpSur.add((JButton) vBotonesAux.get(11));
 
-		jpCentral = new JPanel(glCentral);
+		JPanel jpNorte = new JPanel(new GridBagLayout());
 
+		// World image
+		WorldChooser wc = new WorldChooser();
+		jpNorte.add(wc, GBC.eop());
+		wc.setToolTipText("Move and zoom the image like the main map. Select an area to download by dragging.");
+
+		
+		jpCentral = new JPanel(glCentral);
 		jpCentral.add(jlMinLat);
 		jpCentral.add(jtfMinLat);
 		jpCentral.add(jlMinLon);
@@ -140,18 +154,14 @@ public class PanelDescargar extends JFrame {
 			}
 			jtfUrl.setText("http://www.openstreetmap.org/index.html?lat=" + lat
 					+ "&lon=" + lon + "&zoom=" + zoom);
-			llamarHerramienta(latMin,lonMin,latMax,lonMax);
+			controlador.herramienta(new HDescargarMapa(controlador,panel));
+			//llamarHerramienta(latMin,lonMin,latMax,lonMax);
 		} catch (NumberFormatException x) {
 			jtfUrl.setText("");
 		}
 		jtfUrl.setCaretPosition(0);
-
 	}
 
-	private void llamarHerramienta(double minlat, double minlon, double maxlat, double maxlon) {
-		HDescargarMapa hDescargar = new HDescargarMapa(controlador,minlat, minlon, maxlat, maxlon);
-
-	}
 
 	private void cerrarFrame() {
 		this.setVisible(false);

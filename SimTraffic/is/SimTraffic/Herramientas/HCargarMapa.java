@@ -181,7 +181,7 @@ public class HCargarMapa implements IHerramienta {
 			Iterator iteradorListaSeñales = listaSeñales.iterator();
 			Iterator iteradorListaNodos = mapa.getNodos().iterator();
 
-			// Dobre bucle que asigna las señales a los nodos.
+			// Doble bucle que asigna las señales a los nodos.
 			while (iteradorListaNodos.hasNext()) {
 				Nodo nodoActual = (Nodo) iteradorListaNodos.next();
 				iteradorListaSeñales = listaSeñales.iterator();

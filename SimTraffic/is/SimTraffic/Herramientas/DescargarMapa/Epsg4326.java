@@ -1,0 +1,33 @@
+package is.SimTraffic.Herramientas.DescargarMapa;
+
+import is.SimTraffic.Herramientas.DescargarMapa.EastNorth;
+import is.SimTraffic.Herramientas.DescargarMapa.LatLon;
+
+
+/**
+ * Directly use latitude / longitude values as x/y.
+ *
+ * @author imi
+ */
+public class Epsg4326 implements Projection {
+
+	public EastNorth latlon2eastNorth(LatLon p) {
+		return new EastNorth(p.lon(), p.lat());
+	}
+
+	public LatLon eastNorth2latlon(EastNorth p) {
+		return new LatLon(p.north(), p.east());
+	}
+
+	@Override public String toString() {
+		return "EPSG:4326";
+	}
+
+    public String getCacheDirectoryName() {
+        return "epsg4326";
+    }
+
+	public double scaleFactor() {
+	    return 1.0/360;
+    }
+}
