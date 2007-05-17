@@ -876,6 +876,15 @@ public class Ventana extends JFrame {
 
 		ayudaMenu.addSeparator();
 
+		JMenuItem elegirIdioma = new JMenuItem();
+		elegirIdioma.addActionListener(new AccionIdioma());
+		elegirIdioma.setText(Messages.getString("Ventana.107")); //$NON-NLS-1$
+		ayudaMenu.add(elegirIdioma);
+
+		
+		ayudaMenu.addSeparator();
+
+		
 		JMenuItem acercaDE = new JMenuItem();
 		acercaDE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

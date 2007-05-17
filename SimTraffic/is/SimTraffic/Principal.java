@@ -29,6 +29,7 @@ public class Principal {
 	 * main.
 	 */
 	public static void main(String[] args) {
+		new Messages();
 		HCargarMapa.p.validate();
 		IModelo modelo = new Modelo();
 		IVista vista = new Vista(modelo);
