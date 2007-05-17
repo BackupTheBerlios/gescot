@@ -19,6 +19,11 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+/**
+ * Acción que se controla la pulsación sobre el botón "Aceptar" del panel nodo, que contiene las propiedades del
+ * nodo y además permite la creación de semáforos.
+ * @author Grupo IS SimTraffic
+ */
 public class AccionAceptar implements ActionListener {
 
 	private Nodo nodo;
@@ -92,6 +97,11 @@ public class AccionAceptar implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Comprueba que los intervalos que ha creado el usuario en el semáforo no se solapen entre sí y que recorran
+	 * el tiempo total del semáforo de principio a fin.
+	 * @return Si los intervalos son correctos o no.
+	 */
 	private boolean compruebaIntervalosSemaforo(){
 		boolean error = false;
 		int intervaloError = 0;
@@ -106,8 +116,10 @@ public class AccionAceptar implements ActionListener {
 						error = true;
 						intervaloError = i;
 					}
+				}
+				
 				//Comprueba que el ultimo intervalo acaba en el tiempoFinal del semaforo
-				}else if (i == ((Semaforo)nodo.getSeñal()).getListaIntervalos().size()-1){
+				if (i == ((Semaforo)nodo.getSeñal()).getListaIntervalos().size()-1){
 					if(iActual.getTiempoFinal() != ((Semaforo)nodo.getSeñal()).getTiempoTotal()){
 						error = true;
 						intervaloError = i;
@@ -116,8 +128,10 @@ public class AccionAceptar implements ActionListener {
 						error = true;
 						intervaloError = i;
 					}
+				}
+				
 				//Comprueba el solapamiento de intervalos
-				}else{
+				if (i > 0 && i < ((Semaforo)nodo.getSeñal()).getListaIntervalos().size()-1){
 					if(iActual.getTiempoInicial() != tiempoAnterior){
 						error = true;
 						intervaloError = i;
