@@ -842,9 +842,9 @@ public class Ventana extends JFrame {
 				 * Válido en principio para cualquier navegador. Solo en windows?
 				 * No funciona en el puesto Pto 1108 
 				 */
-				try {
-					Runtime.getRuntime().exec(Messages.getString("Ventana.99") + url); //$NON-NLS-1$
 				/*try {
+					Runtime.getRuntime().exec(Messages.getString("Ventana.99") + url); //$NON-NLS-1$
+				try {
 					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 				} catch (IOException e1) {
 					System.out.println(Messages.getString("Ventana.100")); //$NON-NLS-1$
@@ -853,8 +853,8 @@ public class Ventana extends JFrame {
 				/**
 				 * Solo válido para internet Explorer 
 				 */
-				 /*try {
-					Runtime.getRuntime().exec("cmd /c start iexplore "+url);*/
+				try {
+					Runtime.getRuntime().exec("cmd /c start iexplore "+url);
 				} catch (IOException e1) {
 					System.out.println(Messages.getString("Ventana.0"));  //$NON-NLS-1$
 				} 
