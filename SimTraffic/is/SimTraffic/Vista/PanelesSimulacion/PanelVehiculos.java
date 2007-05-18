@@ -5,6 +5,7 @@ import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HComenzar;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
 import is.SimTraffic.Simulacion.Simulacion;
+import is.SimTraffic.Vista.Ventana;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -48,10 +49,13 @@ public class PanelVehiculos extends JFrame {
 	private JSpinner horas;
 	
 	private JSpinner minutos;
+	
+	private Ventana ventana;
 
-	public PanelVehiculos(IControlador controlador, ParametrosSimulacion param) {
+	public PanelVehiculos(Ventana ventana, IControlador controlador, ParametrosSimulacion param) {
 		this.controlador = controlador;
 		this.param = param;
+		this.ventana = ventana;
 		this.setResizable(false);
 		this.setTitle(Messages.getString("PanelVehiculos.0")); //$NON-NLS-1$
 
@@ -326,7 +330,7 @@ public class PanelVehiculos extends JFrame {
 			}
 			
 			param.setPorcentajeTipo(por);
-			controlador.herramienta(new HComenzar(hr, mn, segundos));
+			controlador.herramienta(new HComenzar(ventana, hr, mn, segundos));
 			PanelVehiculos.this.setVisible(false);
 		}
 

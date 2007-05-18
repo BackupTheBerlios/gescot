@@ -179,7 +179,7 @@ public class BarraSuperior extends JPanel {
 
 		simular = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.46"), //$NON-NLS-1$
 				Messages.getString("BarraSuperior.47"), Messages.getString("BarraSuperior.48"), //$NON-NLS-1$ //$NON-NLS-2$
-				new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()), false);
+				new AccionComenzarSimulacion(ventana,controlador, modelo.getSimulacion().getParam()), false);
 		simular
 				.addMouseMotionListener(new EscuchaAyuda(
 						Messages.getString("BarraSuperior.49"), //$NON-NLS-1$

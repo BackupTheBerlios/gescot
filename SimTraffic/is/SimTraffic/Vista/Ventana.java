@@ -800,7 +800,7 @@ public class Ventana extends JFrame {
 		simMenu.addSeparator();
 
 		JMenuItem comenarSim = new JMenuItem();
-		comenarSim.addActionListener(new AccionComenzarSimulacion(controlador, modelo.getSimulacion().getParam()));
+		comenarSim.addActionListener(new AccionComenzarSimulacion(this,controlador, modelo.getSimulacion().getParam()));
 		comenarSim.setText(Messages.getString("Ventana.94")); //$NON-NLS-1$
 		comenarSim.setMnemonic('C');
 		comenarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5,InputEvent.CTRL_MASK));
@@ -1105,5 +1105,12 @@ public class Ventana extends JFrame {
 	public void setBarraRedimensionarImagen(
 			BarraRedimensionarImagen barraRedimensionarImagen) {
 		this.barraRedimensionarImagen = barraRedimensionarImagen;
+	}
+	
+	public MLSeleccionarYMover getEscuchaSeleccionar() {
+		return escuchaSeleccionar;
+	}
+	public void setEscuchaSeleccionar(MLSeleccionarYMover m) {
+		escuchaSeleccionar=m;
 	}
 }

@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Simulacion.ParametrosSimulacion;
+import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.PanelesSimulacion.PanelVehiculos;
 
 import java.awt.event.ActionEvent;
@@ -32,15 +33,18 @@ public class AccionComenzarSimulacion implements ActionListener {
 
 	private ParametrosSimulacion param;
 	
-	public AccionComenzarSimulacion(IControlador controlador, ParametrosSimulacion param) {
+	private Ventana ventana;	
+
+	public AccionComenzarSimulacion(Ventana ventana, IControlador controlador, ParametrosSimulacion param) {
 		super();
 		this.controlador = controlador;
 		this.param = param;
+		this.ventana = ventana;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		
-		JFrame ventanaNodo = new PanelVehiculos(controlador, param);
+		JFrame ventanaNodo = new PanelVehiculos(ventana,controlador, param);
 
 		// Donde va a aparecer la ventana son las dos primera componentes
 		// El tamaño de la ventana son las dos ultimas componentes
