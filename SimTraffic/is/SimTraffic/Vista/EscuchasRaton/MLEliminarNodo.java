@@ -9,6 +9,8 @@ import is.SimTraffic.Vista.PanelMapa;
 
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author Grupo ISTrafico
@@ -33,17 +35,33 @@ public class MLEliminarNodo extends EscuchaRaton
 		{
 			if (seleccionado.getTramos().isEmpty())   //Solo se eliminan los nodos que no tienen ningun tramo. ¿Eliminar también los tramos?
 			{
-				controlador.herramienta(new HEliminarNodo(seleccionado));
-				Nodo nodoSeleccion = modelo.getMapa().getSeleccion().existeNodo(seleccionado);
-				if (nodoSeleccion!=null) {
-					for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
-						if (modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i).equals(nodoSeleccion)) 
-							modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(i);
+				 if(modelo.getMapa().esDeLineasBus(seleccionado)){
+					 // Preguntar si desea eliminar las lineas de Bus que contienen el nodo
+					 	 int n=JOptionPane.showConfirmDialog(null, 
+				                Messages.getString("MLEliminarNodo.1"), //$NON-NLS-1$
+				                Messages.getString("MLEliminarNodo.2"), //$NON-NLS-1$
+					 	 		JOptionPane.OK_CANCEL_OPTION);
+						panel.sugerir(null);
+						if (n==0) {
+							//Eliminar las lineas de bus que lo contienen		
+						}
+						else {
+							//El usuario aborta la operacion
+							return;
+						}
+				 }
+					
+					controlador.herramienta(new HEliminarNodo(seleccionado));
+				 	Nodo nodoSeleccion = modelo.getMapa().getSeleccion().existeNodo(seleccionado);
+					if (nodoSeleccion!=null) {
+						for (int i=0; i<modelo.getMapa().getSeleccion().getNodosSeleccionados().size(); i++) {
+							if (modelo.getMapa().getSeleccion().getNodosSeleccionados().get(i).equals(nodoSeleccion)) 
+								modelo.getMapa().getSeleccion().getNodosSeleccionados().remove(i);
+						}
 					}
-				}
-				panel.sugerir(null);
-				panel.recrearMapa();
-				panel.repaint();
+					panel.sugerir(null);
+					panel.recrearMapa();
+					panel.repaint();
 			}
 		}	
 	}
