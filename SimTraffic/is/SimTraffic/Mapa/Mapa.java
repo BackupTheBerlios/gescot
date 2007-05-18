@@ -743,6 +743,23 @@ public class Mapa {
 		return false;
 	}
 	
+	public boolean esDeLineasBus(Nodo nodo){
+		Iterator<LineaBus> LineasBus = LineasAutobuses.iterator();
+		while (LineasBus.hasNext()){
+			if (esDeTramos(nodo,LineasBus.next().getTramos()))return true;
+		}
+		return false;
+		
+	}
+	
+	public boolean esDeTramos(Nodo nodo,ArrayList<Tramo> tramos){
+		Iterator<Tramo> it=tramos.iterator();
+		while(it.hasNext()){
+			if (it.next().tieneNodo(nodo))return true; 
+		}
+		return false;
+	}
+	
 	public boolean tieneLineasBus() {
 		return !LineasAutobuses.isEmpty();
 	}
