@@ -49,7 +49,7 @@ public abstract class AccionVer implements ActionListener {
 		 if (ventanaVer==null) {
 		 ventanaVer = new JPanel(new BorderLayout());
 		 
-			ClassLoader cl = this.getClass().getClassLoader();
+		ClassLoader cl = this.getClass().getClassLoader();
 
 		 JLabel iconoBus = new JLabel((new ImageIcon(cl
 					.getResource("is/SimTraffic/Vista/Imagenes/" + direccionIcono))));
