@@ -743,19 +743,10 @@ public class Mapa {
 		return false;
 	}
 	
-	public boolean esDeLineasBus(Nodo nodo){
+	public boolean esDeLineasBus(Tramo tramo){
 		Iterator<LineaBus> LineasBus = LineasAutobuses.iterator();
 		while (LineasBus.hasNext()){
-			if (esDeTramos(nodo,LineasBus.next().getTramos()))return true;
-		}
-		return false;
-		
-	}
-	
-	public boolean esDeTramos(Nodo nodo,ArrayList<Tramo> tramos){
-		Iterator<Tramo> it=tramos.iterator();
-		while(it.hasNext()){
-			if (it.next().tieneNodo(nodo))return true; 
+			if (LineasBus.next().getTramos().contains(tramo))return true;
 		}
 		return false;
 	}
