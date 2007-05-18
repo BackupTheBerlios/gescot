@@ -313,7 +313,16 @@ public class Inteligencia {
 
 		if (velocidad == -1.0) {
 			Tramo tramo = vehiculo.siguienteTramo();
+			int carril = vehiculo.getCarril();
 			if (tramo != null) {
+				if (tramo.getNodoInicial() == vehiculo.getNodoDestino()) {
+					while (carril > tramo.getNumCarrilesDir1() && carril > 0)
+						carril--;
+				}
+				else {
+					while (carril > tramo.getNumCarrilesDir2() && carril > 0)
+						carril--;
+				}
 				Double pos = 1 - vehiculo.posicion
 						- (0.0 * vehiculo.getTramo().getLargo())
 						/ tramo.getLargo();
@@ -325,7 +334,7 @@ public class Inteligencia {
 						if (temp.getNodoDestino() != null
 								&& temp.getNodoOrigen() == vehiculo
 										.getNodoDestino()
-								&& temp.getCarril() == vehiculo.getCarril())
+								&& temp.getCarril() == carril)
 							if (temp.getPosicion() + pos < distancia) {
 								velocidad = temp.getVelocidad();
 								acelDelante = temp.getAceleracion();
