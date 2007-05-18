@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URL;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -32,13 +33,15 @@ public class PanelDescargar2 extends JFrame {
 
 	private GridLayout glDistribucion = new GridLayout(2, 6);
 	
-	private JButton jbMadrid = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.12"))); //$NON-NLS-1$
-	private JButton jbLondres = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.11"))); //$NON-NLS-1$
-	private JButton jbParis = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.10"))); //$NON-NLS-1$
-	private JButton jbHamburgo = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.9"))); //$NON-NLS-1$
-	private JButton jbBarcelona = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.8"))); //$NON-NLS-1$
-	private JButton jbBerlin = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.7"))); //$NON-NLS-1$
-	private JButton jbLisboa = new JButton(new ImageIcon(Messages.getString("PanelDescargar2.6"))); //$NON-NLS-1$
+	private ClassLoader cl;
+
+	private JButton jbMadrid; 
+	private JButton jbLondres; 
+	private JButton jbParis; 
+	private JButton jbHamburgo;
+	private JButton jbBarcelona; 
+	private JButton jbBerlin; 
+	private JButton jbLisboa; //$NON-NLS-1$
 
 
 	IControlador controlador;
@@ -48,8 +51,32 @@ public class PanelDescargar2 extends JFrame {
 		this.controlador = controlador;
 		this.panel=panel;
 		
-		this.setTitle(Messages.getString("PanelDescargar2.13")); //$NON-NLS-1$
+		this.setTitle(Messages.getString("PanelDescargar2.0")); //$NON-NLS-1$
+		
+		this.cl = this.getClass().getClassLoader();
 
+		jbLisboa = new JButton(new ImageIcon(cl
+					.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1"))));
+		jbHamburgo = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.2"))));
+		jbMadrid = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.3")))); //$NON-NLS-1$
+		jbLondres = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.4")))); //$NON-NLS-1$
+		jbParis = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.5")))); //$NON-NLS-1$
+		jbBarcelona = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.6")))); //$NON-NLS-1$
+		jbBerlin = new JButton(new ImageIcon(cl
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.7")))); //$NON-NLS-1$
+		
+		jbLisboa.setEnabled(false);
+		jbHamburgo.setEnabled(false);
+		jbBarcelona.setEnabled(false);
+		jbBerlin.setEnabled(false);
+		
+		
+		
 		Vector<JButton> vBotonesAux = new Vector<JButton>(8);
 		for (int i = 0; i < 15; i++) {
 			JButton jbAux = new JButton();
@@ -76,18 +103,21 @@ public class PanelDescargar2 extends JFrame {
 		jpPrincipal.add((JButton) vBotonesAux.get(7));
 		jpPrincipal.add(jbLisboa);
 		
-		jbMadrid.setToolTipText(Messages.getString("PanelDescargar2.5")); //$NON-NLS-1$
-		jbLondres.setToolTipText(Messages.getString("PanelDescargar2.4")); //$NON-NLS-1$
-		jbParis.setToolTipText(Messages.getString("PanelDescargar2.3")); //$NON-NLS-1$
-		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.2")); //$NON-NLS-1$
-		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.1")); //$NON-NLS-1$
-		jbBerlin.setToolTipText(Messages.getString("PanelDescargar2.0")); //$NON-NLS-1$
-		jbLisboa.setToolTipText(Messages.getString("PanelDescargar2.21")); //$NON-NLS-1$
+		jbMadrid.setToolTipText(Messages.getString("PanelDescargar2.8")); //$NON-NLS-1$
+		jbLondres.setToolTipText(Messages.getString("PanelDescargar2.9")); //$NON-NLS-1$
+		jbParis.setToolTipText(Messages.getString("PanelDescargar2.10")); //$NON-NLS-1$
+		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.11")); //$NON-NLS-1$
+		jbBarcelona.setToolTipText(Messages.getString("PanelDescargar2.12")); //$NON-NLS-1$
+		jbBerlin.setToolTipText(Messages.getString("PanelDescargar2.13")); //$NON-NLS-1$
+		jbLisboa.setToolTipText(Messages.getString("PanelDescargar2.14")); //$NON-NLS-1$
 
 
 		jbMadrid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.14")); //$NON-NLS-1$
+				
+				//ClassLoader cl = this.getClass().getClassLoader();
+				//File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.15")).getPath()); //$NON-NLS-1$
+				File f = crearFichero("PanelDescargar2.15");
 				llamarHerramienta(f);
 				
 			}
@@ -95,41 +125,43 @@ public class PanelDescargar2 extends JFrame {
 
 		jbLondres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.15")); //$NON-NLS-1$
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.16")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbParis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-
-
-				File f = new File(Messages.getString("PanelDescargar2.16")); //$NON-NLS-1$
-
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.17")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbHamburgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.17")); //$NON-NLS-1$
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.18")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbBarcelona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.18")); //$NON-NLS-1$
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.19")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbBerlin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.19")); //$NON-NLS-1$
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.20")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
 		jbLisboa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = new File(Messages.getString("PanelDescargar2.20")); //$NON-NLS-1$
+				ClassLoader cl = this.getClass().getClassLoader();				
+				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.21")).getPath()); //$NON-NLS-1$
 				llamarHerramienta(f);
 			}
 		});
@@ -147,6 +179,13 @@ public class PanelDescargar2 extends JFrame {
 	private void llamarHerramienta(File f) {
 		controlador.herramienta(new HDescargarMapa(controlador,panel,f));
 		this.setVisible(false);
+	}
+	private File crearFichero(String s){
+		//this.cl = this.getClass().getClassLoader();
+		ClassLoader cll = this.getClass().getClassLoader();
+		URL ur = cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s));
+		File f = new File(cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s)).getPath()); //$NON-NLS-1$
+		return f;
 	}
 
 }
