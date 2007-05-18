@@ -63,7 +63,7 @@ public class HPartirTramoTest extends TestCase {
 		nodo2 = new Nodo(new Posicion(150, 150));
 		antiguoTramo = new Tramo(1, nodo1, nodo2);
 		tramo1Nuevo = new Tramo(1, nodo1, nuevoNodo);
-		tramo2Nuevo = new Tramo(1, nuevoNodo, nodo1);
+		tramo2Nuevo = new Tramo(1, nuevoNodo, nodo2);
 		modelo = new Modelo();
 		modelo.getMapa().insertar(nodo1);
 		modelo.getMapa().insertar(nodo2);
@@ -87,10 +87,8 @@ public class HPartirTramoTest extends TestCase {
 	 */
 	public void testhacer()
 	{
-		System.out.println(modelo.getMapa().getTramos().size());
 		if (herramienta.hacer(modelo)!=0)
 			fail("La herramienta de hacer no se ha hecho correctamente");
-		System.out.println(modelo.getMapa().getTramos().size());
 		assertEquals(3,modelo.getMapa().getNodos().size());
 		assertEquals(2,modelo.getMapa().getTramos().size());
 	}
