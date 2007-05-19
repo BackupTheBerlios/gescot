@@ -81,12 +81,12 @@ public class AccionAceptarTramo implements ActionListener
 		
 		//System.out.println(tipoStringVia);
 		Via via = tramo.getVia(); 
-		if (via != null)
+		/*if (via != null)
 		{
 			via.setNombre(nombreStringVia);
 			TipoViaHighway nuevotipo = new TipoViaHighway(tipoStringVia);
 			via.setTipo(nuevotipo);
-		}
+		}*/
 		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre,nombreStringVia,tipoStringVia);
 		controlador.herramienta(nueva);
 		mapa.repaint();

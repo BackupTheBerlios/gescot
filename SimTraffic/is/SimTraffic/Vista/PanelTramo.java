@@ -7,6 +7,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.PanelTramo.AccionAceptarTramo;
+import is.SimTraffic.Vista.Acciones.PanelTramo.AccionPropComunes;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -119,18 +120,7 @@ public class PanelTramo extends JFrame
 				panelVias.add(combo_tipoVia);
 			}
 			JButton propComunes = new JButton("Establecer propiedades comunes a todos los tramos");
-			propComunes.addActionListener(new ActionListener() 
-			{
-			
-				public void actionPerformed(ActionEvent e) 
-				{
-					PanelPropComunes panelPC = new PanelPropComunes(tramo, panel, controlador);
-					panelPC.setTitle("Establecer propiedades comunes"); //$NON-NLS-1$
-					panelPC.setBounds(80, 120, 500, 500);
-					panelPC.setVisible(true);
-				}
-			
-			});
+			propComunes.addActionListener(new AccionPropComunes(tramo, this, panel, controlador, nombreVia, combo_tipoVia));
 			panelVias.add(propComunes);
 		}
 		else {

@@ -14,16 +14,22 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 public class PanelPropComunes extends JFrame
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PanelMapa panel;
 	private JPanel panelBotones;
 	private PanelTramo panelTramo;
@@ -37,14 +43,18 @@ public class PanelPropComunes extends JFrame
 	private JSpinner campoCarril2Numero;
 	private JSpinner campoVelocidad;
 	private JPanel panelDatos;
+	private JTextField nombreVia;
+	private JComboBox tipoVia;
 	
-	public PanelPropComunes(Tramo tramoAux, PanelMapa panel, IControlador controlador) 
+	public PanelPropComunes(Tramo tramoAux, PanelTramo ptramo, PanelMapa panel, IControlador controlador, JTextField nombreVia, JComboBox tipoVia) 
 	{
 		this.panel = panel;
 		tramo = tramoAux;
 		this.controlador = controlador;
 		panelDatos = new JPanel();
-		this.panelTramo = panelTramo;
+		this.panelTramo = ptramo;
+		this.nombreVia = nombreVia;
+		this.tipoVia = tipoVia;
 		
 		creaPanelDatos();
 		
@@ -64,8 +74,9 @@ public class PanelPropComunes extends JFrame
 		botonCancelar = new JButton(Messages.getString("PanelTramo.38")); //$NON-NLS-1$
 		
 		final PanelPropComunes panelPpal = this;
-		AccionAceptarPropComunes accion = new AccionAceptarPropComunes(panel, this, controlador, tramo, radioUnidireccional, 
-				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad);
+		
+		AccionAceptarPropComunes accion = new AccionAceptarPropComunes(panel, this, panelTramo, controlador, tramo, radioUnidireccional, 
+				radioSentido1,campoCarril1Numero, campoCarril2Numero, campoVelocidad, nombreVia, tipoVia);
 		botonAceptar.addActionListener(accion);
 		botonCancelar.addActionListener(new ActionListener()
 		{
