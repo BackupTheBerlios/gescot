@@ -14,13 +14,15 @@ public class HCrearVia implements IHerramienta {
 
 
 	Via via;
-	ArrayList<Nodo> nodos,nodosGuardados;
-	ArrayList<Tramo> tramos,tramosGuardados;
+	ArrayList<Nodo> nodos,nodosUsados, nodosGuardados;
+	ArrayList<Tramo> tramos,tramosModificados, tramosGuardados;
 	
-	public HCrearVia(ArrayList<Nodo> ListaNodos,Via via){
+	public HCrearVia(ArrayList<Nodo> ListaNodos,ArrayList<Nodo> nodosUsados, ArrayList<Tramo> tramosModificados, Via via){
 		this.nodos=ListaNodos;
 		this.via= via;
 		this.tramos=via.getTramos();
+		this.nodosUsados = nodosUsados;
+		this.tramosModificados = tramosModificados;
 	}
 	
 	public int hacer(IModelo modelo) {
@@ -48,7 +50,19 @@ public class HCrearVia implements IHerramienta {
 		
 		nodosGuardados=null;
 		tramosGuardados=null;
+
 		modelo.getMapa().eliminar(via);
+		
+		while (!nodosUsados.isEmpty()){
+			modelo.getMapa().insertar(nodosUsados.get(0));
+			nodosUsados.remove(0);
+		}
+		
+		while (!tramosModificados.isEmpty()){
+			modelo.getMapa().insertar(tramosModificados.get(0));
+			tramosModificados.remove(0);
+		}
+		
 		return 0;
 	}
 
