@@ -9,6 +9,7 @@ import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Acciones.*;
 import is.SimTraffic.Vista.BarrasHerramientas.*;
 import is.SimTraffic.Vista.EscuchasRaton.*;
+import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
 
@@ -621,9 +622,12 @@ public class Ventana extends JFrame {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent evento){
 						try{
-						int lat = Integer.parseInt(JOptionPane.showInputDialog("Introduzca latitud"));
-						int lon = Integer.parseInt(JOptionPane.showInputDialog("Introduzca longitud"));
+						int lat = Integer.parseInt(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
+						int lon = Integer.parseInt(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
 						panel_mapa.centrarEnPosicion(lat, lon);
+						JOptionPane.showMessageDialog(null,"Posición central:\n"+
+								"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
+								"Lon: " + Representacion.pasarAGrados(lon));
 						}
 						catch( java.lang.NumberFormatException excepcion){
 							JOptionPane.showMessageDialog(null,"Valor incorrecto");
@@ -632,7 +636,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		posicionar.setText("Posicionar"); //$NON-NLS-1$
-		posicionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
+	//	posicionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
 		edicionMenu.add(posicionar);
 
 		JMenuItem imagenMenuItem = new JMenuItem();
