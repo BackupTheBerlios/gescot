@@ -616,6 +616,25 @@ public class Ventana extends JFrame {
 
 		edicionMenu.addSeparator();
 
+		JMenuItem posicionar = new JMenuItem();
+		posicionar.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent evento){
+						try{
+						int lat = Integer.parseInt(JOptionPane.showInputDialog("Introduzca latitud"));
+						int lon = Integer.parseInt(JOptionPane.showInputDialog("Introduzca longitud"));
+						panel_mapa.centrarEnPosicion(lat, lon);
+						}
+						catch( java.lang.NumberFormatException excepcion){
+							JOptionPane.showMessageDialog(null,"Valor incorrecto");
+						}
+					}
+				}
+		);
+		posicionar.setText("Posicionar"); //$NON-NLS-1$
+		posicionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
+		edicionMenu.add(posicionar);
+
 		JMenuItem imagenMenuItem = new JMenuItem();
 		imagenMenuItem.addActionListener(new AccionCargarImagen(controlador,
 				panel_mapa));
@@ -1105,6 +1124,7 @@ public class Ventana extends JFrame {
 	public void setBarraRedimensionarImagen(
 			BarraRedimensionarImagen barraRedimensionarImagen) {
 		this.barraRedimensionarImagen = barraRedimensionarImagen;
+		//add(this.barraRedimensionarImagen);
 	}
 	
 	public MLSeleccionarYMover getEscuchaSeleccionar() {
