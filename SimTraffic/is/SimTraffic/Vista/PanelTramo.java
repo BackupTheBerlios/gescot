@@ -96,13 +96,11 @@ public class PanelTramo extends JFrame
 			JLabel observacionVia = new JLabel(Messages.getString("PanelTramo.1")); //$NON-NLS-1$
 			panelVias.add(asociadoVia);
 			panelVias.add(observacionVia);
-			if (tramo.getVia().getNombre() != null) {
-				JLabel nombreEtiqVia=new JLabel(Messages.getString("PanelTramo.2"));				 //$NON-NLS-1$
-				nombreVia=new JTextField(20);
-				nombreVia.setText(tramo.getVia().getNombre());
-				panelVias.add(nombreEtiqVia);
-				panelVias.add(nombreVia);
-			}
+			JLabel nombreEtiqVia=new JLabel(Messages.getString("PanelTramo.2"));				 //$NON-NLS-1$
+			nombreVia=new JTextField(30);
+			nombreVia.setText(tramo.getVia().getNombre());
+			panelVias.add(nombreEtiqVia);
+			panelVias.add(nombreVia);
 			if (tramo.getVia().getTipo()!=null /*&& tramo.getVia().getTipo().equals("highway")*/) {
 				JLabel tipoEtiqVia = new JLabel(Messages.getString("PanelTramo.3")); //$NON-NLS-1$
 				//JLabel tipoVia = new JLabel(tramo.getVia().getTipo().getValorTipoCastellano());
@@ -120,6 +118,20 @@ public class PanelTramo extends JFrame
 				}
 				panelVias.add(combo_tipoVia);
 			}
+			JButton propComunes = new JButton("Establecer propiedades comunes a todos los tramos");
+			propComunes.addActionListener(new ActionListener() 
+			{
+			
+				public void actionPerformed(ActionEvent e) 
+				{
+					PanelPropComunes panelPC = new PanelPropComunes(panel);
+					panelPC.setTitle("Establecer propiedades comunes"); //$NON-NLS-1$
+					panelPC.setBounds(80, 120, 500, 300);
+					panelPC.setVisible(true);
+				}
+			
+			});
+			panelVias.add(propComunes);
 		}
 		else {
 			JLabel noAsociadoVia = new JLabel(Messages.getString("PanelTramo.20")); //$NON-NLS-1$
