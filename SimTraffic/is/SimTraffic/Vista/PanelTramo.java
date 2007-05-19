@@ -124,9 +124,9 @@ public class PanelTramo extends JFrame
 			
 				public void actionPerformed(ActionEvent e) 
 				{
-					PanelPropComunes panelPC = new PanelPropComunes(panel);
+					PanelPropComunes panelPC = new PanelPropComunes(tramo, panel, controlador);
 					panelPC.setTitle("Establecer propiedades comunes"); //$NON-NLS-1$
-					panelPC.setBounds(80, 120, 500, 300);
+					panelPC.setBounds(80, 120, 500, 500);
 					panelPC.setVisible(true);
 				}
 			
