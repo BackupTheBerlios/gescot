@@ -3,6 +3,8 @@ package is.SimTraffic.Vista.Acciones.PanelTramo;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HModificarTramo;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Mapa.Via;
+import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelTramo;
 
@@ -74,10 +76,17 @@ public class AccionAceptarTramo implements ActionListener
 		nombre = campoNombre.getText();
 		//TODO fijarse que error ahi aqui
 		
-		//nombreStringVia = nombreVia.getText();
-		//tipoStringVia = (String) combo_tipoVia.getSelectedItem();
+		nombreStringVia = nombreVia.getText();
+		tipoStringVia = (String) combo_tipoVia.getSelectedItem();
 		
-		System.out.println(tipoStringVia);
+		//System.out.println(tipoStringVia);
+		Via via = tramo.getVia(); 
+		if (via != null)
+		{
+			via.setNombre(nombreStringVia);
+			TipoViaHighway nuevotipo = new TipoViaHighway(tipoStringVia);
+			via.setTipo(nuevotipo);
+		}
 		HModificarTramo nueva = new HModificarTramo(tramo,auxCarriles1,auxCarriles2,((Integer)(vel.getValue())).floatValue(),nombre,nombreStringVia,tipoStringVia);
 		controlador.herramienta(nueva);
 		mapa.repaint();
