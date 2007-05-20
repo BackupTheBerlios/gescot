@@ -1,6 +1,6 @@
 package is.SimTraffic.Herramientas;
 
-import sun.security.krb5.internal.crypto.m;
+//import sun.security.krb5.internal.crypto.m;
 import is.SimTraffic.*;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.Ventana;
