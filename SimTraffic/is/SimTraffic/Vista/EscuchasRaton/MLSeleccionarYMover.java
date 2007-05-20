@@ -50,7 +50,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		if (!modelo.getSimulacion().estaActiva()) {
 		if (arg0.getButton() != MouseEvent.BUTTON1)
 			return;
 
@@ -101,6 +101,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			}
 
 		}
+		}
 	}
 	
 	@Override
@@ -123,6 +124,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	public void mousePressed(MouseEvent arg0) {
 		// TODO si el click se hace sobre un nodo no seleccionado tambien se mueve la seleccion
 		
+		if (!modelo.getSimulacion().estaActiva()) {
 		if (arg0.getButton() != MouseEvent.BUTTON1)
 			return;
 		panel.sugerir(null);
@@ -167,6 +169,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.setModoSeleccion(true);
 		}		
 	}
+	}
 	
 	@Override
 	/**
@@ -175,6 +178,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	 */
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		if (!modelo.getSimulacion().estaActiva()) { 
 		if (arg0.getButton() != MouseEvent.BUTTON1)
 			return;
 		if (modoHerramienta==0) { //seleccionar
@@ -196,10 +200,12 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 		}
 		panel.repaint();				
 	}
+	}
 	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub				
+		// TODO Auto-generated method stub
+		if (!modelo.getSimulacion().estaActiva()) {
 		if (modoHerramienta==0) { //seleccionar			
 			Point puntoDrag = arg0.getPoint();
 			panel.setPuntoDrag(puntoDrag);
@@ -229,7 +235,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.repaint();
 		}			
 	}
-	
+	}
 	/**
 	 * Este método sugiere los elementos cuando se pasa el ratón por encima de ellos.
 	 * Da prioridad a la sugerencia de nodo sobre el tramo. Si no está el ratón encima 
@@ -239,6 +245,8 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+		if (!modelo.getSimulacion().estaActiva()) {
 		Tramo tramoTemp = buscarTramo(arg0.getX(),arg0.getY());
 		Nodo nodoTemp = buscarNodo(arg0.getX(),arg0.getY());
 		boolean sugerido = false;
@@ -256,6 +264,7 @@ public class MLSeleccionarYMover extends EscuchaRaton{
 			panel.sugerir(null);
 		}
 			
+	}
 	}
 	
 	public void notificar(int modificador){

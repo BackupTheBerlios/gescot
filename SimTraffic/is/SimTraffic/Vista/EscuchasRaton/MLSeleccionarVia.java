@@ -32,6 +32,7 @@ public class MLSeleccionarVia extends EscuchaRaton{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		if (this.getModificadorDeTeclado() != 17){
 			this.modelo.getMapa().limpiaSeleccion();
 		}
@@ -57,7 +58,8 @@ public class MLSeleccionarVia extends EscuchaRaton{
 				   modelo.getMapa().getSeleccion().añadirNodo(aux.getNodoFinal());
 				 }
 				 }
-			}		
+			}
+		}
 	}
 
 	@Override
@@ -74,8 +76,10 @@ public class MLSeleccionarVia extends EscuchaRaton{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		panel.setPuntoInicial(arg0.getPoint());
 		panel.setModoSeleccion(true);
+		}
 	}
 
 	@Override
@@ -83,7 +87,7 @@ public class MLSeleccionarVia extends EscuchaRaton{
 		//panel.setModoSeleccion(false);		
 		//panel.repaint();
 		//panel.notificaSeleccion(2);		
-		
+		if (!modelo.getSimulacion().estaActiva()) {
 		panel.setModoSeleccion(false);
 		panel.repaint();
 		
@@ -94,15 +98,18 @@ public class MLSeleccionarVia extends EscuchaRaton{
 			panel.notificaSeleccion(2);
 
 		drag = false;
+		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		if (!modelo.getSimulacion().estaActiva()) {
 		Point puntoDrag = arg0.getPoint();
 		panel.setPuntoDrag(puntoDrag);
 		panel.repaint();
 		drag = true;
+		}
 
 	}
 

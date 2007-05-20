@@ -50,6 +50,7 @@ public class MLSeleccionaTramoBDerecho extends EscuchaRaton {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		if(arg0.isPopupTrigger() && buscarTramo(arg0.getX(), arg0.getY()) != null){
 			panel.setPosE(arg0.getX(), arg0.getY());
 			panel.setPuntoInicial(arg0.getPoint());
@@ -61,6 +62,7 @@ public class MLSeleccionaTramoBDerecho extends EscuchaRaton {
 			}
 			panel.getMenuEmergenteTramo().show(panel,arg0.getX(),arg0.getY());
 			panel.repaint();
+		}
 		}
 	}
 

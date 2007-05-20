@@ -28,6 +28,7 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		boolean yaSeleccionado = false;
 		
 		if (this.getModificadorDeTeclado() != 17){
@@ -50,6 +51,7 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 			} else {
 				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
 		}
+		}
 	
 	}
 
@@ -65,8 +67,10 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		panel.setPuntoInicial(arg0.getPoint());
 		panel.setModoSeleccion(true);
+		}
 	}
 
 	@Override
@@ -75,7 +79,7 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 		//panel.recrearMapa();
 		//panel.repaint();
 		//panel.notificaSeleccion(1);
-		
+		if (!modelo.getSimulacion().estaActiva()) {
 		panel.setModoSeleccion(false);
 		panel.repaint();
 		
@@ -86,14 +90,18 @@ public class MLSeleccionarElementos extends EscuchaRaton{
 			panel.notificaSeleccion(1);
 
 		drag = false;
+	
+		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		Point puntoDrag = arg0.getPoint();
 		panel.setPuntoDrag(puntoDrag);
 		panel.repaint();
 		drag = true;
+		}
 
 	}
 

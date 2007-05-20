@@ -51,6 +51,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		if (!modelo.getSimulacion().estaActiva()) {
 		if(arg0.isPopupTrigger() && buscarNodo(arg0.getX(), arg0.getY()) != null){
 			panel.setPosE(arg0.getX(), arg0.getY());
 			panel.setPuntoInicial(arg0.getPoint());
@@ -62,6 +63,7 @@ public class MLSeleccionaNodoBDerecho extends EscuchaRaton {
 			}
 			panel.getMenuEmergenteNodo().show(panel,arg0.getX(),arg0.getY());
 			panel.repaint();
+		}
 		}
 	}
 
