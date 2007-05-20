@@ -45,7 +45,7 @@ public class Messages {
 
 				RESOURCE_BUNDLE = ResourceBundle
 						.getBundle(BUNDLE_NAME);				
-			} catch (IOException e) {
+			} catch (IOException ex) {
 				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
