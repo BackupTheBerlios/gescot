@@ -29,10 +29,28 @@ public class Messages {
 						.getBundle(BUNDLE_NAME);
 			}
 		} catch (FileNotFoundException e) {
-			BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
+			try {
+				fichero = new File("c:\\hlocal\\SimTraffic.conf");
+				FileReader fr = new FileReader(fichero);
+				BufferedReader br = new BufferedReader(fr);
+				String valorIdioma = br.readLine();
+				if (valorIdioma.compareTo("Inglés") == 0) {
+					BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 
-			RESOURCE_BUNDLE = ResourceBundle
-					.getBundle(BUNDLE_NAME);
+					RESOURCE_BUNDLE = ResourceBundle
+							.getBundle(BUNDLE_NAME);
+				}	
+			} catch (FileNotFoundException f) {
+				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
+
+				RESOURCE_BUNDLE = ResourceBundle
+						.getBundle(BUNDLE_NAME);				
+			} catch (IOException e) {
+				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
+
+				RESOURCE_BUNDLE = ResourceBundle
+						.getBundle(BUNDLE_NAME);
+			}
 		} catch (IOException e) {
 			BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 
