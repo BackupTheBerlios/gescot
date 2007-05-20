@@ -53,7 +53,7 @@ public class HerramientasTestSuite {
 	    suite.addTestSuite(HModificarTramoTest.class);
 	    suite.addTestSuite(HMoverTest.class);
 	    suite.addTestSuite(HPartirTramoTest.class);
-	    //suite.addTestSuite(HPausarTest.class);
+	    suite.addTestSuite(HPausarTest.class);
 	    suite.addTestSuite(HPegarTest.class);
 	    
 	    return suite;
