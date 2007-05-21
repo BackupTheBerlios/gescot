@@ -2,6 +2,7 @@ package is.SimTraffic.Vista;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Messages;
+import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Herramientas.HDescargarMapa;
 
 import java.awt.BorderLayout;
@@ -46,12 +47,17 @@ public class PanelDescargar2 extends JFrame {
 
 	IControlador controlador;
 	PanelMapa panel;
+	
+
 
 	public PanelDescargar2(IControlador controlador, PanelMapa panel) {
 		this.controlador = controlador;
 		this.panel=panel;
 		
+//		HDescargarMapa hdc = new HDescargarMapa(controlador,panel,new File("hola"));
+		
 		this.setTitle(Messages.getString("PanelDescargar2.0")); //$NON-NLS-1$
+		this.setResizable(false);
 		
 		this.cl = this.getClass().getClassLoader();
 
@@ -116,56 +122,40 @@ public class PanelDescargar2 extends JFrame {
 
 
 		jbMadrid.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//ClassLoader cl = this.getClass().getClassLoader();
-				//File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.15")).getPath()); //$NON-NLS-1$
-				File f = crearFichero("PanelDescargar2.15");
-				llamarHerramienta(f);
+			public void actionPerformed(ActionEvent e) {				
+				llamarHerramienta("PanelDescargar2.15");
 				
 			}
 		});
 
 		jbLondres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.16")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.16");
 			}
 		});
 		jbParis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.17")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.17");
 			}
 		});
 		jbHamburgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.18")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.18");
 			}
 		});
 		jbBarcelona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.19")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.19");
 			}
 		});
 		jbBerlin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.20")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.20");
 			}
 		});
 		jbLisboa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClassLoader cl = this.getClass().getClassLoader();				
-				File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString("PanelDescargar2.21")).getPath()); //$NON-NLS-1$
-				llamarHerramienta(f);
+				llamarHerramienta("PanelDescargar2.21");
 			}
 		});
 
@@ -176,19 +166,10 @@ public class PanelDescargar2 extends JFrame {
 
 	}
 
-
-
-	
-	private void llamarHerramienta(File f) {
+	private void llamarHerramienta(String s) {
+		File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/").getFile().replaceAll("%20", " ")+Messages.getString(s));
 		controlador.herramienta(new HDescargarMapa(controlador,panel,f));
 		this.setVisible(false);
-	}
-	private File crearFichero(String s){
-		//this.cl = this.getClass().getClassLoader();
-		ClassLoader cll = this.cl;
-		URL ur = cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s));
-		File f = new File(cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s)).getPath()); //$NON-NLS-1$
-		return f;
 	}
 
 }
