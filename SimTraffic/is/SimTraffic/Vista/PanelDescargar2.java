@@ -55,6 +55,8 @@ public class PanelDescargar2 extends JFrame {
 		
 		this.cl = this.getClass().getClassLoader();
 
+		URL ur = cl.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1"));
+		
 		jbLisboa = new JButton(new ImageIcon(cl
 					.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1"))));
 		jbHamburgo = new JButton(new ImageIcon(cl
@@ -74,6 +76,7 @@ public class PanelDescargar2 extends JFrame {
 		jbHamburgo.setEnabled(false);
 		jbBarcelona.setEnabled(false);
 		jbBerlin.setEnabled(false);
+
 		
 		
 		
@@ -182,7 +185,7 @@ public class PanelDescargar2 extends JFrame {
 	}
 	private File crearFichero(String s){
 		//this.cl = this.getClass().getClassLoader();
-		ClassLoader cll = this.getClass().getClassLoader();
+		ClassLoader cll = this.cl;
 		URL ur = cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s));
 		File f = new File(cll.getResource("is/SimTraffic/Ejemplos_Ciudades/" +Messages.getString(s)).getPath()); //$NON-NLS-1$
 		return f;
