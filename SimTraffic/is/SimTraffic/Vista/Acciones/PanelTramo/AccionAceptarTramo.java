@@ -3,8 +3,6 @@ package is.SimTraffic.Vista.Acciones.PanelTramo;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Herramientas.HModificarTramo;
 import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Mapa.Via;
-import is.SimTraffic.Mapa.TipoElemento.TipoViaHighway;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.PanelTramo;
 
