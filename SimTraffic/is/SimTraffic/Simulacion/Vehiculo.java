@@ -199,7 +199,8 @@ public abstract class Vehiculo {
 	}
 
 	public synchronized void setCarril(int carril) {
-		this.carril = carril;
+		if (carril > 0)
+			this.carril = carril;
 		ultimoCambioCarril = 0;
 	}
 	
