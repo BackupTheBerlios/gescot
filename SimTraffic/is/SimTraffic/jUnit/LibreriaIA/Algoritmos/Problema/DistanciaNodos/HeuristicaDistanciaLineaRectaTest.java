@@ -28,9 +28,11 @@ public class HeuristicaDistanciaLineaRectaTest extends TestCase{
 	public void testdarValorHeuristico()
 	{
 
-		EstadoDistanciaNodos estado = new EstadoDistanciaNodos(new Nodo(new Posicion(100,100)));
+		EstadoDistanciaNodos estado = new EstadoDistanciaNodos(new Nodo(new Posicion(100,102)));
+		EstadoDistanciaNodos estado2 = new EstadoDistanciaNodos(new Nodo(new Posicion(100,100)));
 		heuristica.darValorHeuristico(estado);
-		//assertEquals(estado,estado);
+		if (heuristica.darValorHeuristico(estado)!=0.0) fail("El resultado deberia ser 0.0");
+		if (heuristica.darValorHeuristico(estado2)==0.0) fail("El resultado deberia ser distinto de cero");
 		
 	}
 }
