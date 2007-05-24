@@ -532,7 +532,7 @@
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
 </node>
 <node id='198' lat='39.99487013584276' lon='1.0146486783074564' >
-<tag k='entradasalida' v='0,0,0,,0,0,0' />
+<tag k='entradasalida' v='0,0,0,,30,30,30' />
 </node>
 <node id='199' lat='39.99132605282004' lon='1.0106770863911965' >
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
@@ -577,13 +577,13 @@
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
 </node>
 <node id='213' lat='39.99063564703639' lon='1.0086283401289184' >
-<tag k='entradasalida' v='0,0,0,,0,0,0' />
+<tag k='entradasalida' v='0,0,0,,30,30,30' />
 </node>
 <node id='214' lat='39.9905988253946' lon='1.0075524622034762' >
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
 </node>
 <node id='215' lat='39.99639674764411' lon='1.0026060629557418' >
-<tag k='entradasalida' v='0,0,0,,0,0,0' />
+<tag k='entradasalida' v='30,30,30,,0,0,0' />
 </node>
 <node id='216' lat='39.99641515934814' lon='1.0028578664531986' >
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
@@ -694,7 +694,7 @@
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
 </node>
 <node id='254' lat='39.99983973629615' lon='1.0054789119494536' >
-<tag k='entradasalida' v='0,0,0,,0,0,0' />
+<tag k='entradasalida' v='30,30,30,,0,0,0' />
 </node>
 <node id='255' lat='39.99925976761947' lon='1.0061542031471786' >
 <tag k='entradasalida' v='0,0,0,,0,0,0' />
@@ -844,48 +844,48 @@
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='33' from='32' to='33'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='2' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='34' from='33' to='34'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='2' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='35' from='34' to='31'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='2' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='36' from='31' to='15'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='2' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='37' from='15' to='35'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='38' from='35' to='36'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='39' from='36' to='37'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='40' from='37' to='38'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='41' from='38' to='39'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='42' from='39' to='24'>
@@ -1644,43 +1644,43 @@
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='233' from='160' to='161'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='234' from='161' to='162'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='235' from='162' to='163'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='236' from='163' to='164'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='237' from='164' to='165'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='238' from='165' to='166'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='239' from='166' to='167'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='240' from='167' to='36'>
-<tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesIda' v='1' />
+<tag k='nCarrilesVuelta' v='0' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='241' from='36' to='168'>
@@ -1940,27 +1940,27 @@
 </segment>
 <segment id='292' from='215' to='216'>
 <tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesVuelta' v='1' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='293' from='216' to='32'>
 <tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesVuelta' v='1' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='294' from='32' to='160'>
 <tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesVuelta' v='1' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='295' from='160' to='217'>
 <tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesVuelta' v='1' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='296' from='217' to='215'>
 <tag k='nCarrilesIda' v='0' />
-<tag k='nCarrilesVuelta' v='2' />
+<tag k='nCarrilesVuelta' v='1' />
 <tag k='velMax' v='60.0' />
 </segment>
 <segment id='297' from='216' to='218'>
@@ -2313,9 +2313,6 @@
 </way>
 
 <way id='8'>
-<seg id='25'/>
-<seg id='26'/>
-<seg id='27'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de San Andrés' />
 <tag k ='bus line' v='no' />
@@ -2355,10 +2352,6 @@
 
 <way id='12'>
 <seg id='42'/>
-<seg id='43'/>
-<seg id='44'/>
-<seg id='45'/>
-<seg id='46'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de Tomas Nogales' />
 <tag k ='bus line' v='no' />
@@ -2411,21 +2404,12 @@
 </way>
 
 <way id='17'>
-<seg id='69'/>
-<seg id='70'/>
-<seg id='71'/>
-<seg id='72'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de Francisco Piquer' />
 <tag k ='bus line' v='no' />
 </way>
 
 <way id='18'>
-<seg id='73'/>
-<seg id='74'/>
-<seg id='75'/>
-<seg id='76'/>
-<seg id='77'/>
 <tag k='highway' v=' motorway' />
 <tag k ='bus line' v='no' />
 </way>
@@ -2595,9 +2579,6 @@
 </way>
 
 <way id='36'>
-<seg id='153'/>
-<seg id='154'/>
-<seg id='155'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de Hartzenbusch' />
 <tag k ='bus line' v='no' />
@@ -2628,10 +2609,6 @@
 </way>
 
 <way id='40'>
-<seg id='164'/>
-<seg id='165'/>
-<seg id='166'/>
-<seg id='167'/>
 <tag k='highway' v=' motorway' />
 <tag k ='bus line' v='no' />
 </way>
@@ -2652,17 +2629,6 @@
 </way>
 
 <way id='43'>
-<seg id='171'/>
-<seg id='172'/>
-<seg id='173'/>
-<seg id='174'/>
-<seg id='175'/>
-<seg id='176'/>
-<seg id='177'/>
-<seg id='178'/>
-<seg id='179'/>
-<seg id='180'/>
-<seg id='181'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de San Martin' />
 <tag k ='bus line' v='no' />
@@ -2676,10 +2642,6 @@
 </way>
 
 <way id='45'>
-<seg id='184'/>
-<seg id='185'/>
-<seg id='186'/>
-<seg id='187'/>
 <tag k='highway' v=' motorway' />
 <tag k ='bus line' v='no' />
 </way>
@@ -2726,10 +2688,6 @@
 </way>
 
 <way id='50'>
-<seg id='201'/>
-<seg id='202'/>
-<seg id='203'/>
-<seg id='204'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de San Miguel' />
 <tag k ='bus line' v='no' />
@@ -2939,6 +2897,7 @@
 <seg id='295'/>
 <seg id='296'/>
 <tag k='highway' v=' motorway' />
+<tag k='nombre' v='' />
 <tag k ='bus line' v='no' />
 </way>
 
@@ -2975,10 +2934,6 @@
 </way>
 
 <way id='75'>
-<seg id='312'/>
-<seg id='313'/>
-<seg id='314'/>
-<seg id='315'/>
 <tag k='highway' v=' motorway' />
 <tag k='nombre' v='Calle de Miguel Ibáñez' />
 <tag k ='bus line' v='no' />
