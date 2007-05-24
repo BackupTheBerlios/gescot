@@ -24,7 +24,7 @@ public class AccionPropiedadesTramo extends AccionesPopUpMenu{
 			//JFrame ventanaNodo = new JFrame();
 			PanelTramo panelTramo = new PanelTramo(tramoAux, panel_mapa,controlador);
 			panelTramo.setTitle(Messages.getString("AccionPropiedadesTramo.0")); //$NON-NLS-1$
-			panelTramo.setBounds(80, 120, 500, 600);
+			panelTramo.setBounds(80, 120, 326, 405);
 			panelTramo.setVisible(true);
 		}
 	}

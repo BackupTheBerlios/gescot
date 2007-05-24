@@ -123,7 +123,7 @@ public class MLEscuchaSiempre extends EscuchaRaton {
 					//JFrame ventanaTramo = new JFrame("Propiedades del Tramo");
 					PanelTramo panelTram = new PanelTramo(tramoAux, panel,controlador);
 					panelTram.setTitle(Messages.getString("MLEscuchaSiempre.1")); //$NON-NLS-1$
-					panelTram.setBounds(80, 120, 480, 500);
+					panelTram.setBounds(80, 120, 326, 405);
 					panelTram.setVisible(true);
 				}
 			}
