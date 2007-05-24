@@ -1,4 +1,4 @@
-package is.SimTraffic.jUnit.LibreriaIA.Algoritmos.Problema.DistanciaNodos;
+package is.SimTraffic.jUnit.LibreriaIA.Problema.DistanciaNodos;
 
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.EstadoDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
