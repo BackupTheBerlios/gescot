@@ -1,59 +1,46 @@
 package is.SimTraffic.jUnit.Herramientas;
 
+import is.SimTraffic.Controlador;
 import is.SimTraffic.Modelo;
-import is.SimTraffic.Herramientas.HAñadirTramo;
 import is.SimTraffic.Herramientas.HComenzar;
-import is.SimTraffic.Herramientas.IHerramienta;
+import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Vista.Ventana;
 import junit.framework.TestCase;
 
-/**
- * Matodo que testea la clase HComenzar
- */
-public class HComenzarTest extends TestCase {
+public class HComenzarTest extends TestCase{
 
-	/**
-	 * Atributo que es un modelo
-	 */
 	Modelo modelo;
 	
+	HComenzar herramienta;
+	
 	/**
-	 * Metodo que inicializa los valores del modelo
-	 * A este se le añade un tramo y sobre este modelo se probara
-	 * la simulacion
+	 * Constructor 
+	 * @param arg0
 	 */
-	protected void setUp () throws Exception
-	{
-	super.setUp();		
-	Nodo nodoInicial = new Nodo (new Posicion(100,100));
-	Nodo nodoFinal = new Nodo (new Posicion(200,200));
-	int velMax = 50;
-	int numCarrilesDir1 = 2;
-	int numCarrilesDir2 = 3;		
-	IHerramienta herramienta = new HAñadirTramo(nodoInicial,nodoFinal,velMax,
-			numCarrilesDir1,numCarrilesDir2);
-	modelo = new Modelo();
-	modelo.getMapa().insertar(nodoInicial);
-	modelo.getMapa().insertar(nodoFinal);
-	herramienta.hacer(modelo);
+	public HComenzarTest(String arg0) {
+		super(arg0);
 	}
-
+	
 	/**
-	 * Metodo que comprueba el funcionamiento del metodo hacer
+	 * metodo que inicializa los valores
 	 */
-	public void testhacer()
-	{
-		IHerramienta Hcomenzar = new HComenzar(0,0,0);
-		assertEquals(0,Hcomenzar.hacer(modelo)); 
+	protected void setUp() throws Exception {
+		super.setUp();
+		modelo = new Modelo();
+		Controlador controlador = new Controlador();
+		Ventana ventana = new Ventana(modelo,controlador);
+		herramienta= new HComenzar(ventana, 0, 1, 3);
+		Nodo nodo = new Nodo(new Posicion(100,100));
+		Nodo nodo2 = new Nodo(new Posicion(125,150));
+		modelo.getMapa().insertar(nodo);
+		modelo.getMapa().insertar(nodo2);
 	}
-	/**
-	 * Metodo que comprueba el funcionamiento del metodo hacer
-	 */
-	public void testdeshacer()
-	{
-		IHerramienta Hcomenzar = new HComenzar(0,0,0);
-		Hcomenzar.hacer(modelo);
-		assertEquals(0,Hcomenzar.deshacer(modelo)); 
+	
+	
+	public void testHacer() {
+		int resultado = herramienta.hacer(modelo);
+		assertEquals(0,resultado);
 	}
 }

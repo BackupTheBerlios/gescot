@@ -2,6 +2,7 @@ package is.SimTraffic.jUnit.Herramientas;
 
 import java.util.LinkedList;
 
+import is.SimTraffic.Controlador;
 import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.Herramientas.HComenzar;
@@ -10,6 +11,7 @@ import is.SimTraffic.Herramientas.HPausar;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
+import is.SimTraffic.Vista.Ventana;
 import junit.framework.TestCase;
 
 /**
@@ -55,7 +57,9 @@ public class HPausarTest extends TestCase{
 	 */
 	public void testhacer()
 	{
-		HComenzar aux = new HComenzar(0,10,5);
+		Controlador controlador = new Controlador();
+		Ventana ventana = new Ventana(modelo,controlador);
+		HComenzar aux = new HComenzar(ventana,0,10,5);
 		aux.hacer(modelo);
 		if (herramienta.hacer(modelo)!=0)
 			fail("La herramienta de hacer no se ha hecho correctamente");
@@ -66,7 +70,9 @@ public class HPausarTest extends TestCase{
 	 */
 	public void testdeshacer()
 	{
-		HComenzar aux = new HComenzar(0,10,5);
+		Controlador controlador = new Controlador();
+		Ventana ventana = new Ventana(modelo,controlador);
+		HComenzar aux = new HComenzar(ventana,0,10,5);
 		aux.hacer(modelo);
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
