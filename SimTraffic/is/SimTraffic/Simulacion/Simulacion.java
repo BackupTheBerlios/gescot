@@ -38,7 +38,7 @@ public class Simulacion {
 	/**
 	 * Máximo de vehiculos que se pueden simular
 	 */
-	public static int maxVehiculos = 400;
+	public static int maxVehiculos = 500;
 
 	/**
 	 * Lista de los vehiculos que se estan simulando

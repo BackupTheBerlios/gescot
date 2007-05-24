@@ -393,8 +393,8 @@ abstract public class Representacion {
 		}
 		g.setStroke(new BasicStroke(1));
 		int dist = 50;
-		
 		if (zoom <= 0.25) dist = 500;
+		if (zoom > 4) dist = 5;
 		g.drawLine(25, 40, 25 + (int) (dist * zoom), 40);
 		g.drawLine(25, 35, 25, 45);
 		g.drawLine(25 + (int) (dist * zoom), 35, 25 + (int) (dist * zoom), 45);

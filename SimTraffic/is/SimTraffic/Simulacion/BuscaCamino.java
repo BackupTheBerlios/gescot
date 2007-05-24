@@ -11,7 +11,7 @@ import is.SimTraffic.Mapa.Tramo;
 
 public class BuscaCamino {
 	
-	static int maxSimultaneos = 6;
+	static int maxSimultaneos = Simulacion.maxVehiculos / 50;
 	
 	static BuscaCamino[] instancia = new BuscaCamino[maxSimultaneos];
 	
