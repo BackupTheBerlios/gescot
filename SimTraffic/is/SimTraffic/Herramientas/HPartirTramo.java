@@ -79,21 +79,22 @@ public class HPartirTramo implements IHerramienta {
 			return Tiempo.Hora()+Messages.getString("HPartirTramo.0")+Messages.getString("HPartirTramo.1"); //$NON-NLS-1$ //$NON-NLS-2$
 			
 		}
-		
-		public Nodo getNuevoNodo(){
-			return this.nuevoNodo;
+
+		public Tramo getAntiguoTramo() {
+			return antiguoTramo;
+		}
+
+		public Nodo getNuevoNodo() {
+			return nuevoNodo;
+		}
+
+		public Tramo getTramo1Nuevo() {
+			return tramo1Nuevo;
+		}
+
+		public Tramo getTramo2Nuevo() {
+			return tramo2Nuevo;
 		}
 		
-		public Tramo getAntiguoTramo(){
-			return this.antiguoTramo;
-		}
-		
-		public Tramo getTramo1Nuevo(){
-			return this.tramo1Nuevo;
-		}
-		
-		public Tramo getTramo2Nuevo(){
-			return this.tramo2Nuevo;
-		}
 		
 }
