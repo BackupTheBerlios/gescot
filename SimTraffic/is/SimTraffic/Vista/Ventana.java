@@ -622,8 +622,8 @@ public class Ventana extends JFrame {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent evento){
 						try{
-						int lat = Integer.parseInt(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
-						int lon = Integer.parseInt(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
+						double lat = Double.parseDouble(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
+						double lon = Double.parseDouble(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
 						panel_mapa.centrarEnPosicion(lat, lon);
 						JOptionPane.showMessageDialog(null,"Posición central:\n"+
 								"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
