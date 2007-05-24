@@ -3,6 +3,13 @@
  */
 package is.SimTraffic;
 
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.theme.SubstanceCharcoalTheme;
+
 import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Vista.IVista;
 import is.SimTraffic.Vista.Vista;
@@ -29,6 +36,17 @@ public class Principal {
 	 * main.
 	 */
 	public static void main(String[] args) {
+		try {
+			//com.incors.plaf.alloy.AlloyLookAndFeel.setProperty("alloy.licenseCode", "2007/06/24#darthguado@gmail.com#n7i79d#15zvo4");
+			//UIManager.setLookAndFeel(new com.incors.plaf.alloy.AlloyLookAndFeel());
+			new SubstanceLookAndFeel();
+			SubstanceLookAndFeel.setSkin(new org.jvnet.substance.skin.RavenGraphiteGlassSkin());
+			//SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceSepiaTheme()); //Quedan Bien Oliva, Sepia y Crema
+			UIManager.setLookAndFeel(new org.jvnet.substance.SubstanceLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) 
+		{
+			JOptionPane.showMessageDialog(null, "<html>Error al cargar la ventana.<br> El tema seleccionado noes soportado por esta plataforma.</html>", "Problemas al comenzar la aplicación", JOptionPane.WARNING_MESSAGE);
+		}
 		new Messages();
 		HCargarMapa.p.validate();
 		IModelo modelo = new Modelo();
