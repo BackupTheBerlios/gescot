@@ -1,5 +1,9 @@
 package is.SimTraffic.jUnit.LibreriaIA.Problema.DistanciaNodos;
 
+import java.util.Vector;
+
+import is.SimTraffic.LibreriaIA.NodoIA;
+import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.EstadoDistanciaNodos;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
@@ -17,12 +21,15 @@ public class ExplorarNodoTest extends TestCase{
 	
 	Nodo intermedio2;
 	
+	NodoIA nodoia;
+	
 	Tramo tramo1;
 	
 	Tramo tramo2;
 	
 	ExploraNodo explorar;
 	
+	EstadoDistanciaNodos estado;
 	
 	/**
 	 * 
@@ -40,5 +47,16 @@ public class ExplorarNodoTest extends TestCase{
 		intermedio2= new Nodo(new Posicion(75,75));
 		tramo1 = new Tramo(3, origen, intermedio1);
 		tramo2 = new Tramo(3, origen, intermedio2);
+		estado = new EstadoDistanciaNodos(intermedio1);
+		nodoia= new NodoIA(estado);
+		explorar = new ExploraNodo(origen,tramo1);
 	}
+	
+	
+	public void testaplicarOperador()
+	{
+		Vector<NodoIA> aux = explorar.aplicarOperador(nodoia);
+		System.out.println(aux.size());
+	}
+
 }
