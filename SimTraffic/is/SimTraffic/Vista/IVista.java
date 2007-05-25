@@ -35,4 +35,6 @@ public interface IVista {
 	 * Instancia actual del controlador.
 	 */
 	public void setControlador(IControlador controlador);
+	
+	public boolean limpiarDatosSimulacion();
 }

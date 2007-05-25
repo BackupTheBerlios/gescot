@@ -247,7 +247,7 @@ public class BarraSuperior extends JPanel {
 	    		//tiempo.setForeground(Color.GREEN);
 	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.56")); //$NON-NLS-1$
 	    	}
-	    	String hora = convierte(hour24)+Messages.getString("BarraSuperior.57")+convierte(min)+Messages.getString("BarraSuperior.58")+convierte(sec); //$NON-NLS-1$ //$NON-NLS-2$
+	    		String hora = convierte(hour24)+Messages.getString("BarraSuperior.57")+convierte(min)+Messages.getString("BarraSuperior.58")+convierte(sec); //$NON-NLS-1$ //$NON-NLS-2$
 
 	    	tiempo.setText(hora);
 	    	//this.repaint();
@@ -265,4 +265,9 @@ public class BarraSuperior extends JPanel {
 		}
 		else return Messages.getString("BarraSuperior.60")+valor; //$NON-NLS-1$
 	}
+	
+	public void setTiempoVacio() {
+		tiempo.setText("");
+	}
+	
 }

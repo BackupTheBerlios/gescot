@@ -163,4 +163,9 @@ public class Controlador implements IControlador {
 		// TODO Hay que dar el valor correcto si hubo cambios en el mapa
 		return modelo.getMapa().isCambios_en_mapa();
 	}
+	
+	public boolean limpiarDatosSimulacion() {
+		vista.limpiarDatosSimulacion();
+		return true;
+	}
 }

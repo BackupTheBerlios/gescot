@@ -76,4 +76,6 @@ public interface IControlador {
 	public boolean mapaTieneLineasBus();
 
 	public boolean cambiosEnMapa();
+	
+	public boolean limpiarDatosSimulacion();
 }

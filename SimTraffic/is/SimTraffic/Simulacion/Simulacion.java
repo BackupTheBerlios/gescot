@@ -293,6 +293,7 @@ public class Simulacion {
 			activa = false;
 			vehiculos.clear();
 			tabla.clear();
+			(controlador).limpiarDatosSimulacion();
 		}
 		return 0;
 	}
