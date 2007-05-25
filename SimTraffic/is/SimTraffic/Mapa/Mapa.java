@@ -1,11 +1,14 @@
 package is.SimTraffic.Mapa;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.swing.JOptionPane;
 
 /**
  * Clase que matiene una instancia de un mapa.
@@ -350,12 +353,38 @@ public class Mapa {
 	 * @return Booelano que inidca si se pudo elimnar el tramo
 	 */
 	public boolean eliminar(Tramo tramo) {
+		cambios_en_mapa=false;
 		if (tramo != null && Tramos.contains(tramo)) {
+			if(esDeLineasBus(tramo)){
+			 // Preguntar si desea eliminar las lineas de Bus que contienen el nodo
+				int n=JOptionPane.showConfirmDialog(null, 
+			                Messages.getString("MLEliminarTramo.1"), //$NON-NLS-1$
+			                Messages.getString("MLEliminarTramo.2"), //$NON-NLS-1$
+				 	 		JOptionPane.OK_CANCEL_OPTION);
+				if (n==0) {
+					//Eliminar las lineas de bus que lo contienen
+					Iterator<LineaBus> it =this.LineasAutobuses.iterator();
+					ArrayList<LineaBus> lineasAeliminar = new ArrayList<LineaBus>();
+					while(it.hasNext()){
+						LineaBus linea =it.next();
+						if(linea.getTramos().contains(tramo))
+							lineasAeliminar.add(linea);
+					}
+					it=lineasAeliminar.iterator();
+					while(it.hasNext()){
+						eliminarLineaAutobus(it.next());
+					}
+				}
+				else {
+					//El usuario aborta la operacion
+					return false;
+				}
+			}
 			Tramos.remove(tramo);
 			tramo.getNodoFinal().quitarTramo(tramo);
 			tramo.getNodoInicial().quitarTramo(tramo);
 			cambios_en_mapa=true;
-			return true;
+			return true;		
 		}
 		return false;
 	}
