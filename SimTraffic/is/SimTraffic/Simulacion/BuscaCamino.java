@@ -15,7 +15,7 @@ import is.SimTraffic.Mapa.Tramo;
 
 public class BuscaCamino {
 	
-	static int maxSimultaneos = Simulacion.maxVehiculos / 50;
+	static int maxSimultaneos = Simulacion.maxVehiculos / 50 + 4;
 	
 	static BuscaCamino[] instancia = new BuscaCamino[maxSimultaneos];
 	
@@ -44,12 +44,15 @@ public class BuscaCamino {
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
 				salida,simulacion,tipoCoste); //Se le permite conocer la simulación, de modo que se pueden evaluar
 									//rutas en función del tráfico.
-		/*AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
+		/*
+		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias
-						.getHeuristica());*/
+						.getHeuristica());
+		*/
 
 		//public CosteUniforme(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores,int tipoControlCiclos/*, InfoHabitaciones infoBase*/) {
+		
 		CosteUniforme algoritmoAEstrella = new CosteUniforme(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), 3);

@@ -78,7 +78,7 @@ public class Turismo extends Vehiculo {
 		super.inicializar(entrada, salida);
 
 	    ArrayList<Tramo> tramosTemp = BuscaCamino.obtenerInstancia().buscar(entrada, salida);
-	    if (tramosTemp == null) return false;
+	    if (tramosTemp == null || tramosTemp.size() < 1) return false;
 	    tramos = tramosTemp;
 	    cuentaTramos = 0;
 	    return true;

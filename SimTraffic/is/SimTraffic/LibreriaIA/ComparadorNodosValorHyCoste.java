@@ -9,13 +9,13 @@ import java.util.Comparator;
  * la estructura abiertos en el algoritmo de A estrella (A*), lo que resultará 
  * en un algoritmo mucho más eficiente que con una estructura de tipo Vector.
  */
-public class ComparadorNodosValorHyCoste implements Comparator {
+public class ComparadorNodosValorHyCoste implements Comparator<NodoIA> {
 
 	/**Info API: Compares its two arguments for order. Returns a negative integer, zero, 
 	 * or a positive integer as the first argument is less than, equal to, or greater than the second.
 	 * Método necesario para establecer el orden de la cola con prioridad.
 	 */
-	public int compare(Object arg0, Object arg1) {
+/*	public int compare(Object arg0, Object arg1) {
 		float valorc1 = ((NodoIA)arg0).getCoste_camino();
 		float valorc2 = ((NodoIA)arg1).getCoste_camino();
 		float valorh1 = ((NodoIA)arg0).getEstado().getValorHeuristico();
@@ -31,13 +31,17 @@ public class ComparadorNodosValorHyCoste implements Comparator {
 		else //Iguales
 			return 0;
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+*/
+	public int compare(NodoIA arg0, NodoIA arg1) {
+		float valorf1 = arg0.getCoste_camino() + arg0.getEstado().getValorHeuristico();;
+		float valorf2 = arg1.getCoste_camino() + arg1.getEstado().getValorHeuristico();;
+		
+		if ( valorf1 < valorf2 )
+			return -1;
+		else if ( valorf1 > valorf2 )
+			return +1;
+		else //Iguales
+			return 0;
 	}
 
 }

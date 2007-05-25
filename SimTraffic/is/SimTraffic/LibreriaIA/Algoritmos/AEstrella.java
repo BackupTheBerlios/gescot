@@ -32,7 +32,7 @@ public class AEstrella implements IAlgoritmoInformado {
 	PriorityQueue<NodoIA> abiertos;
 	Vector<NodoIA> cerrados;
 	Vector<NodoIA> solucion;
-	Comparator comparador;
+	Comparator<NodoIA> comparador;
 
 	/**
 	 * Constructor por defecto.
@@ -94,7 +94,6 @@ public class AEstrella implements IAlgoritmoInformado {
 
 
 	public void generarNodosHijos(NodoIA nodo){
-
 		Iterator<IOperador> it = operadores.iterator();
 		while(it.hasNext()) {
 			Vector<NodoIA> vectorNuevo = it.next().aplicarOperador(nodo);
@@ -115,7 +114,6 @@ public class AEstrella implements IAlgoritmoInformado {
 				}
 			}
 		}
-
 	}
 	
 	public void tratarSucesor(NodoIA nodoNuevo,NodoIA nodoPadre) {
@@ -126,11 +124,11 @@ public class AEstrella implements IAlgoritmoInformado {
 			estaCerrados = cerrados.get(i).getEstado().equals(nodoNuevo.getEstado());
 			posicion=i;
 		}
-		NodoIA nodo = cerrados.get(posicion);
 		
 		//Si el nodo nuevo ya estaba en cerrados, se comprueba si el coste de su camino era menor. En ese caso
 		//se actualiza y se propaga a los hijos (en abiertos y en cerrados)
 		if (estaCerrados) {			
+			NodoIA nodo = cerrados.get(posicion);
 			if (nodo.getCoste_camino() > nodoNuevo.getCoste_camino() ) {
 				nodo.setNodoPadre(nodoPadre); //Con lo cual, es como insertar el nuevo.
 				//Actualizar valor del coste del camino y calcular su diferencia (para propagarla)
@@ -241,7 +239,7 @@ public class AEstrella implements IAlgoritmoInformado {
 	 * Devuelve la solución en orden inverso, del nodo hoja al nodo raíz.
 	 */
 	public Vector<NodoIA> crearSolucion(NodoIA hoja) {
-		Vector<NodoIA> s=new Vector<NodoIA>();
+		Vector<NodoIA> s = new Vector<NodoIA>(100);
 		s.add(hoja);
 		NodoIA nodoPadre = hoja.getNodoPadre();
 		while (nodoPadre != null && nodoPadre.getNodoPadre()!=null) {

@@ -1,7 +1,5 @@
 package is.SimTraffic.LibreriaIA.Problema.DistanciaNodos;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Vector;
 
 import is.SimTraffic.Messages;
@@ -10,9 +8,7 @@ import is.SimTraffic.LibreriaIA.IHeuristica;
 import is.SimTraffic.LibreriaIA.IOperador;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.Mapa.Nodo;
-import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Simulacion;
-import is.SimTraffic.Simulacion.Vehiculo;
 
 public class PrincipalDistanciaNodos implements IPrincipal {
 
@@ -32,7 +28,6 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 	//Se utilizará cuando se quieran calcular recorridos sin haber iniciado una simulación.
 	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo) {
 		super();
-		// TODO Auto-generated constructor stub
 		this.simulacion = null;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
@@ -41,20 +36,8 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		heuristica=seleccionarHeuristica();
 	}
 	
-	/*public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo, Simulacion simulacion) {
-		super();
-		// TODO Auto-generated constructor stub
-		this.simulacion = simulacion;
-		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
-		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
-		operadores=generarOperadores();
-		heuristica=seleccionarHeuristica();
-		this.tipoCoste = 0;*/
-	//}
-	
 	public PrincipalDistanciaNodos(Nodo nodoInicial, Nodo nodoObjetivo,	Simulacion simulacion, int tipoCoste) {
 		super();
-		// TODO Auto-generated constructor stub
 		this.simulacion = simulacion;
 		estadoInicial = new EstadoDistanciaNodos(nodoInicial);
 		estadoObjetivo = new EstadoDistanciaNodos(nodoObjetivo);
@@ -62,23 +45,6 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		operadores=generarOperadores();
 		heuristica=seleccionarHeuristica();
 	}
-
-	/*public PrincipalDistanciaNodos(IEstado inicial, IEstado objetivo, IHeuristica heuristica, Vector<IOperador> operadores) {
-		super();
-		// TODO Auto-generated constructor stub
-		estadoInicial = inicial;
-		estadoObjetivo = objetivo;
-		this.heuristica = heuristica;
-		this.operadores = operadores;
-	}
-
-	public PrincipalDistanciaNodos() {
-		super();
-		estadoInicial=generarEstadoInicial();
-		estadoObjetivo=generarEstadoObjetivo();
-		operadores=generarOperadores();
-		heuristica=seleccionarHeuristica();
-	}*/
 
 	public IEstado getEstadoInicial() {
 		return estadoInicial;
@@ -138,12 +104,4 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 		IHeuristica h=new HeuristicaDistanciaLineaRecta((EstadoDistanciaNodos)estadoObjetivo);
 		return h;
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
-
 }

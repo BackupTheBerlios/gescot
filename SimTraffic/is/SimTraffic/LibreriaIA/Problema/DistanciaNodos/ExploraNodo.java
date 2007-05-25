@@ -8,6 +8,7 @@ import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Simulacion.Simulacion;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -21,7 +22,6 @@ public class ExploraNodo implements IOperador {
 	
 	public ExploraNodo(Nodo origen, Tramo elegido) {
 		super();
-		// TODO Auto-generated constructor stub
 		nodoOrigen = origen;
 		tramoElegido = elegido;
 		this.tipoCoste = 1;
@@ -39,29 +39,28 @@ public class ExploraNodo implements IOperador {
 		Vector<NodoIA> vector= new Vector<NodoIA>();
 		Nodo nodoDestino;
 		nodoOrigen = ((EstadoDistanciaNodos)nodo.getEstado()).getNodoPosicion();
-		for (int i=0;i<nodoOrigen.getTramos().size();i++) {
-			tramoElegido = nodoOrigen.getTramos().get(i);
-			
-			if ( tramoElegido.getNodoInicial() != nodoOrigen )
+		Iterator<Tramo> itTramo = nodoOrigen.getTramos().iterator(); 
+		while(itTramo.hasNext()) {
+			tramoElegido = itTramo.next();
+			int carriles;
+			if (tramoElegido.getNodoInicial() != nodoOrigen) {
 				nodoDestino = tramoElegido.getNodoInicial();
-			else
-				nodoDestino = tramoElegido.getNodoFinal();
-			
-			if ( (tramoElegido.getNodoInicial() == nodoOrigen && tramoElegido.getNumCarrilesDir1()==0)
-				|| (tramoElegido.getNodoFinal() == nodoOrigen && tramoElegido.getNumCarrilesDir2()==0) ) {
-				//Hay tramo, pero no puede recorrerse en ese sentido.
+				carriles = tramoElegido.getNumCarrilesDir2();
 			}
 			else {
+				nodoDestino = tramoElegido.getNodoFinal();
+				carriles = tramoElegido.getNumCarrilesDir1();
+			}
+			
+			if (carriles > 0) {
 				IEstado estadoNuevo = new EstadoDistanciaNodos(nodoDestino);
 				NodoIA nodoNuevo=new NodoIA(estadoNuevo);
 				nodoNuevo.setNodoPadre(nodo);
 				nodoNuevo.setCoste_camino(nodo.getCoste_camino()+this.getCoste());
 				nodoNuevo.setOperador(new ExploraNodo(nodoOrigen,tramoElegido));
 				nodoNuevo.setProfundidad(nodo.getProfundidad()+1);
-				
 				vector.add(nodoNuevo);
-			}
-				
+			}		
 		}
 		return vector;
 	}
@@ -71,29 +70,6 @@ public class ExploraNodo implements IOperador {
 	}
 
 	public float getCoste() {
-		//El coste de momento es únicamente la longitud del tramo
-		//if (tipoCoste == 1/* && simulacion!=null*/) {
-		/*if (simulacion==null) {
-			System.out.println("!!!!!!!!!!!!!$%&$(%%&/%%/%&/");
-			return 1;
-		}
-		else if (tipoCoste == 1){
-			System.out.println("Tipocoste = "+tipoCoste);
-			double epsilon = 1;
-			float densidad = (float) (simulacion.densidadTramo(tramoElegido)+epsilon);
-			return tramoElegido.getLargo()+densidad;
-		}
-		else if (tipoCoste == 0) {
-			return tramoElegido.getLargo();
-		}
-		else 
-			return 1;
-		else {
-			double epsilon = 0.1;
-			double densidad = (float) (simulacion.densidadTramo(tramoElegido)+epsilon);
-			return (float) densidad;
-		}*/
-		//}
 		float largo = tramoElegido.getLargo();
 		if (tipoCoste==0)
 			return largo;
@@ -101,7 +77,7 @@ public class ExploraNodo implements IOperador {
 			float epsilon = 20;
 			float constanteDensidadMaxima = (float) (1.2 * largo);
 			float densidad = (float) (simulacion.densidadTramo(tramoElegido));
-			if (densidad<epsilon)
+			if (densidad < epsilon)
 				densidad = epsilon;
 			else if (densidad > constanteDensidadMaxima)
 				densidad = constanteDensidadMaxima;
@@ -113,7 +89,6 @@ public class ExploraNodo implements IOperador {
 	}
 
 	public boolean esInversoDe(IOperador operador) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

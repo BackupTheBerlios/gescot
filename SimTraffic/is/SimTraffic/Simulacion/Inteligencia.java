@@ -141,7 +141,8 @@ public class Inteligencia {
 		if (vehiculo.inicializar(entrada, salida)) {
 			entrada = vehiculo.getNodoEntrada();
 			vehiculo.setTramo(vehiculo.siguienteTramo());
-			tabla.get(vehiculo.getTramo()).add(vehiculo);
+			ArrayList<Vehiculo> vehic= tabla.get(vehiculo.getTramo());
+			vehic.add(vehiculo);
 			vehiculo.resetaerPosicion();
 			vehiculo.setNodoOrigen(entrada);
 			
@@ -286,8 +287,7 @@ public class Inteligencia {
 	 * 
 	 */
 	private synchronized void controlarCochesDelante(Vehiculo vehiculo) {
-		// TODO
-		if (vehiculo.tramo == null)
+		if (vehiculo.tramo == null ||  tabla.get(vehiculo.tramo) == null)
 			return;
 		iterador = (new ArrayList<Vehiculo>(tabla.get(vehiculo.tramo)))
 				.iterator();
@@ -536,6 +536,15 @@ public class Inteligencia {
 		if (tieneQueEsperar(vehiculo)) {
 			vehiculo.aceleracion = 0;
 			vehiculo.velocidad = 0;
+			Random rand = new Random();
+			if (rand.nextDouble() > 0.4) {
+				sim.saleVehiculo();
+				vehiculo.setNodoDestino(null);
+				vehiculo.setNodoOrigen(null);
+				tabla.get(vehiculo.getTramo()).remove(vehiculo);
+				vehiculo.setTramo(null);
+				return;
+			}
 			return;
 		}
 		

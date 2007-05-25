@@ -38,7 +38,7 @@ public class Simulacion {
 	/**
 	 * Máximo de vehiculos que se pueden simular
 	 */
-	public static int maxVehiculos = 500;
+	public static int maxVehiculos = 1100;
 
 	/**
 	 * Lista de los vehiculos que se estan simulando
@@ -518,10 +518,16 @@ public class Simulacion {
 	 */
 	public double densidadTramo(Tramo tramo) {
 		int longitudT = tramo.getLargo();
-		int numCoches = tabla.get(tramo).size()*50000;
 		int numCarriles = tramo.getNumCarrilesDir1()
-				+ tramo.getNumCarrilesDir2();
-		double densidad = numCoches / (longitudT * numCarriles);
+		+ tramo.getNumCarrilesDir2();
+		double densidad;
+		try {
+			int numCoches = tabla.get(tramo).size()*50000;
+			densidad = numCoches / (longitudT * numCarriles);
+		}
+		catch (NullPointerException e) {
+			densidad = longitudT / numCarriles;
+		}
 		return densidad;
 	}
 	
