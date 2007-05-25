@@ -3,6 +3,7 @@ package is.SimTraffic.Herramientas;
 import is.SimTraffic.*;
 import is.SimTraffic.Mapa.*;
 import is.SimTraffic.Utils.Tiempo;
+import is.SimTraffic.Messages;
 
 /**
  * Herramienta que permite realizar/deshacer la operacion de eliminar un nodo

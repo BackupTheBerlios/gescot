@@ -5,6 +5,7 @@ import is.SimTraffic.*;
 import is.SimTraffic.Utils.Tiempo;
 import is.SimTraffic.Vista.Ventana;
 import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarYMover;
+import is.SimTraffic.Messages;
 
 public class HComenzar implements IHerramienta {
 
