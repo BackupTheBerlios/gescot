@@ -16,7 +16,7 @@ public class Messages {
 	private static ResourceBundle RESOURCE_BUNDLE = ResourceBundle
 			.getBundle(BUNDLE_NAME);
 
-	Messages() {
+	public Messages() {
 		File fichero = new File(".\\SimTraffic.conf");
 		try {
 			FileReader fr = new FileReader(fichero);
@@ -24,6 +24,12 @@ public class Messages {
 			String valorIdioma = br.readLine();
 			if (valorIdioma.compareTo("Inglés") == 0) {
 				BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
+
+				RESOURCE_BUNDLE = ResourceBundle
+						.getBundle(BUNDLE_NAME);
+			}
+			else { //default
+				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
 						.getBundle(BUNDLE_NAME);
@@ -40,6 +46,12 @@ public class Messages {
 					RESOURCE_BUNDLE = ResourceBundle
 							.getBundle(BUNDLE_NAME);
 				}	
+				else  { //default
+					BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
+
+					RESOURCE_BUNDLE = ResourceBundle
+							.getBundle(BUNDLE_NAME);
+				}
 			} catch (FileNotFoundException f) {
 				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 

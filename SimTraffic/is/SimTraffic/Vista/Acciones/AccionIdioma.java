@@ -1,5 +1,7 @@
 package is.SimTraffic.Vista.Acciones;
 
+import is.SimTraffic.Vista.Ventana;
+import is.SimTraffic.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -13,7 +15,10 @@ import java.io.OutputStream;
 import javax.swing.JOptionPane;
 
 public class AccionIdioma implements ActionListener {
-
+	private Ventana ventana;
+	public AccionIdioma(Ventana V){
+		ventana=V;
+	}
 	public void actionPerformed(ActionEvent arg0) {
 		Object[] possibleValues = { "Español", "Inglés" };
 		Object selectedValue = JOptionPane.showInputDialog(null, 
@@ -38,7 +43,9 @@ public class AccionIdioma implements ActionListener {
 			
 			bw.close();
 			fw.close();
-			JOptionPane.showMessageDialog(null, "Para que los cambios hagan efecto, debe salir del programa", "Debe reinciar el programa", JOptionPane.INFORMATION_MESSAGE); 
+//			JOptionPane.showMessageDialog(null, "Para que los cambios hagan efecto, debe salir del programa", "Debe reinciar el programa", JOptionPane.INFORMATION_MESSAGE); 
+			new Messages();
+			ventana.actualizar();
 		} catch (IOException e) {
 			
 		}

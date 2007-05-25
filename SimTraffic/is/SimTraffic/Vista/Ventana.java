@@ -187,7 +187,7 @@ public class Ventana extends JFrame {
 	/**
 	 * Oyentes para teclado y ratón.
 	 */
-	
+
 	//MLSeleccionarNodos escuchaSeleccion;
 
 	MLSeleccionarElementos escuchaSeleccionNodosYTramos;//esto sobra?
@@ -195,13 +195,13 @@ public class Ventana extends JFrame {
 	//MLSeleccionarTramos escuchaSeleccionTramos;
 
 	MLSeleccionaNodoBDerecho escuchaSeleccionNodoBDerecho;//esto sobra?
-	
+
 	MLSeleccionaTramoBDerecho escuchaSeleccionTramoBDerecho;//esto sobra?
-	
+
 	MLPegar escuchaPegar;
-	
+
 	MLSeleccionarYMover escuchaSeleccionar;
-	
+
 	MLMapaBDerecho escuchaMapaBDerecho;
 
 	EscuchaTeclado escuchaTeclado;
@@ -221,24 +221,24 @@ public class Ventana extends JFrame {
 	 * Elementos de la barra Crear Tramo
 	 */
 	private BarraCrearTramo barraCrearTramo;
-	
+
 	/**
 	 * Elementos de la barra Redimensionar Imagen
 	 */
 	private BarraRedimensionarImagen barraRedimensionarImagen;
 
 	private JTextField ayudaDinamica;
-	
+
 	private JMenuItem pegarSeleccion;
-	
+
 	private JPopupMenu emergenteMapa;
-	
+
 	private JPopupMenu emergenteTerminar;
 
 	private JMenuItem copiarSeleccion;
 
 	private JMenuItem cortarSeleccion;
-	
+
 	private Log popUpLog;
 
 	/**
@@ -252,14 +252,18 @@ public class Ventana extends JFrame {
 	public Ventana(IModelo modelo, IControlador controlador) {
 		this.modelo = modelo;
 		this.controlador = controlador;
+		inicializar();
+		actualizar();
+	}
+
+	private  void inicializar(){
 		setSize(800, 600);
 		setTitle(Messages.getString("Ventana.1")); //$NON-NLS-1$
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); // La ventana aparece
-		// maximizada.
+		setExtendedState(JFrame.MAXIMIZED_BOTH); // La ventana aparece maximizada.
 		this.escucha = null;
 		panel_mapa = new PanelMapa(200, 200);
-		
+
 
 		panel_añadido = false;
 
@@ -269,16 +273,12 @@ public class Ventana extends JFrame {
 				panel_mapa, posicionX, posicionY, this);
 		this.panel_mapa.addMouseListener(escuchaSiempre);
 		this.panel_mapa.addMouseMotionListener(escuchaSiempre);
-		/*
-		escuchaSeleccion = new MLSeleccionarNodos(modelo, controlador,
-				panel_mapa);
-		escuchaSeleccionTramos = new MLSeleccionarTramos(modelo, controlador,
-				panel_mapa);
-		*/
-		/*
-		escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo,
-				controlador, panel_mapa);
-		 */
+
+		// escuchaSeleccion = new MLSeleccionarNodos(modelo, controlador,	panel_mapa);
+		// escuchaSeleccionTramos = new MLSeleccionarTramos(modelo, controlador, panel_mapa);
+
+		// escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo, controlador, panel_mapa);
+		 
 
 		escuchaSeleccionTramoBDerecho = new MLSeleccionaTramoBDerecho(modelo,
 				controlador, panel_mapa);
@@ -287,23 +287,27 @@ public class Ventana extends JFrame {
 		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
-		
+
 		escuchaSeleccionNodoBDerecho = new MLSeleccionaNodoBDerecho(modelo,
 				controlador, panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionNodoBDerecho);
-		
+
 		escuchaMapaBDerecho = new MLMapaBDerecho(modelo,controlador,panel_mapa,this);
 		this.panel_mapa.addMouseListener(escuchaMapaBDerecho);
-		
+
 		/*
 		escuchaPegar = new MLPegar(modelo,controlador,panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaPegar);
-		*/
-		
+		 */
+
 		/*escuchaSeleccionar = new MLSeleccionarYMover (modelo,controlador,panel_mapa);
 		this.panel_mapa.addMouseListener(escuchaSeleccionar);*/
 
 		escuchaTeclado = new EscuchaTeclado(panel_mapa, escuchaSeleccionNodosYTramos);
+
+	}	
+
+	public void actualizar(){
 
 		crearBotonesSuperiores();
 
@@ -314,13 +318,12 @@ public class Ventana extends JFrame {
 		añadirPanelMapa();
 
 		panel.setFocusable(true);
-		
+
 		añadirMenuEmergenteNodo();
 		añadirMenuEmergenteTramo();
 		añadirMenuEmergenteMapa();
-		añadirMenuEmergenteTerminar();
+		añadirMenuEmergenteTerminar();		
 	}
-
 	
 	/**
 	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
@@ -333,7 +336,7 @@ public class Ventana extends JFrame {
 		JMenuItem propiedades = new JMenuItem(Messages.getString("Ventana.4")); //$NON-NLS-1$
 		propiedades.addActionListener(new AccionPropiedadesNodo(modelo,
 				controlador, panel_mapa));		
-		
+
 		emergenteNodo.add(eliminarNodo);	
 		emergenteNodo.add(propiedades);
 
@@ -347,10 +350,10 @@ public class Ventana extends JFrame {
 		JMenuItem propiedades = new JMenuItem(Messages.getString("Ventana.7"));		 //$NON-NLS-1$
 		propiedades.addActionListener(new AccionPropiedadesTramo(modelo,
 				controlador, panel_mapa));		
-		
+
 		emergenteTramo.add(eliminarTramo);
 		emergenteTramo.add(propiedades);
-	
+
 		panel_mapa.setMenuEmergenteTramo(emergenteTramo);
 	}	
 	/**
@@ -358,12 +361,12 @@ public class Ventana extends JFrame {
 	 */
 	public void añadirMenuEmergenteMapa(){
 		emergenteMapa = new JPopupMenu(Messages.getString("Ventana.8"));	 //$NON-NLS-1$
-		
+
 		JMenuItem cambiarRepresentacion = new JMenuItem(Messages.getString("Ventana.9")); //$NON-NLS-1$
 		cambiarRepresentacion.addActionListener(new AccionCambiarRep(panel_mapa,
 				new RepresentacionAvanzada(), new RepresentacionSimple()));
 		cambiarRepresentacion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.10"), this)); //$NON-NLS-1$
-		
+
 		JMenuItem zoomIn = new JMenuItem(Messages.getString("Ventana.11")); //$NON-NLS-1$
 		zoomIn.addActionListener(
 				new ActionListener(){
@@ -373,7 +376,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		zoomIn.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.12"), this)); //$NON-NLS-1$
-		
+
 		JMenuItem zoomOut = new JMenuItem(Messages.getString("Ventana.13")); //$NON-NLS-1$
 		zoomOut.addActionListener(
 				new ActionListener(){
@@ -383,7 +386,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		zoomOut.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.14"),this)); //$NON-NLS-1$
-		
+
 		JMenuItem comenzarSimulación = new JMenuItem(Messages.getString("Ventana.15")); //$NON-NLS-1$
 		comenzarSimulación.addActionListener(
 				new ActionListener(){
@@ -393,7 +396,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		comenzarSimulación.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.16"),this)); //$NON-NLS-1$
-		
+
 		JMenuItem detenerSimulación = new JMenuItem(Messages.getString("Ventana.17")); //$NON-NLS-1$
 		detenerSimulación.addActionListener(
 				new ActionListener(){
@@ -403,17 +406,17 @@ public class Ventana extends JFrame {
 				}
 		);
 		detenerSimulación.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.18"), this)); //$NON-NLS-1$
-		
+
 		copiarSeleccion = new JMenuItem(Messages.getString("Ventana.19")); //$NON-NLS-1$
 		copiarSeleccion.addActionListener(new AccionCopiar(
 				modelo, controlador, panel_mapa));
 		copiarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.20"),this)); //$NON-NLS-1$
-		
+
 		cortarSeleccion = new JMenuItem(Messages.getString("Ventana.21")); //$NON-NLS-1$
 		cortarSeleccion.addActionListener(new AccionCortar(
 				modelo, controlador, panel_mapa));
 		cortarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.22"),this)); //$NON-NLS-1$
-		
+
 		pegarSeleccion = new JMenuItem(Messages.getString("Ventana.23")); //$NON-NLS-1$
 		pegarSeleccion.addActionListener(
 				new ActionListener(){
@@ -423,12 +426,12 @@ public class Ventana extends JFrame {
 				}
 		);
 		pegarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.24"),this)); //$NON-NLS-1$
-		
+
 		JMenuItem eliminarSeleccion = new JMenuItem(Messages.getString("Ventana.25")); //$NON-NLS-1$
 		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
 				modelo, controlador, panel_mapa));
 		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.26"), this)); //$NON-NLS-1$
-		
+
 		JMenuItem desplazarMapa = new JMenuItem(Messages.getString("Ventana.27")); //$NON-NLS-1$
 		desplazarMapa.addActionListener(
 				new ActionListener(){
@@ -438,10 +441,10 @@ public class Ventana extends JFrame {
 				}
 		);
 		desplazarMapa.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.28"), this)); //$NON-NLS-1$
-		
-		
+
+
 		JMenu submenuSeleccion = new JMenu(Messages.getString("Ventana.29")); //$NON-NLS-1$
-		
+
 		JMenuItem seleccion = new JMenuItem(Messages.getString("Ventana.30")); //$NON-NLS-1$
 		seleccion.addActionListener(
 				new ActionListener(){
@@ -452,7 +455,7 @@ public class Ventana extends JFrame {
 		);
 		seleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.31"), this)); //$NON-NLS-1$
 		submenuSeleccion.add(seleccion);
-		
+
 		JMenuItem seleccionVias = new JMenuItem(Messages.getString("Ventana.32")); //$NON-NLS-1$
 		seleccionVias.addActionListener(
 				new ActionListener(){
@@ -463,9 +466,9 @@ public class Ventana extends JFrame {
 		);
 		seleccionVias.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.33"), this)); //$NON-NLS-1$
 		submenuSeleccion.add(seleccionVias);
-		
+
 		JMenu submenuInsertar = new JMenu(Messages.getString("Ventana.34")); //$NON-NLS-1$
-		
+
 		JMenuItem insertarNodo = new JMenuItem (Messages.getString("Ventana.35")); //$NON-NLS-1$
 		insertarNodo.addActionListener(
 				new ActionListener(){
@@ -476,7 +479,7 @@ public class Ventana extends JFrame {
 		);
 		insertarNodo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.36"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarNodo);
-		
+
 		JMenuItem insertarTramo = new JMenuItem (Messages.getString("Ventana.37")); //$NON-NLS-1$
 		insertarTramo.addActionListener(
 				new ActionListener(){
@@ -487,7 +490,7 @@ public class Ventana extends JFrame {
 		);
 		insertarTramo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.38"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarTramo);
-		
+
 		JMenuItem insertarVia = new JMenuItem (Messages.getString("Ventana.39")); //$NON-NLS-1$
 		insertarVia.addActionListener(
 				new ActionListener(){
@@ -498,7 +501,7 @@ public class Ventana extends JFrame {
 		);
 		insertarVia.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.40"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarVia);
-		
+
 		JMenuItem insertarLineaBus = new JMenuItem (Messages.getString("Ventana.41")); //$NON-NLS-1$
 		insertarLineaBus.addActionListener(
 				new ActionListener(){
@@ -509,9 +512,9 @@ public class Ventana extends JFrame {
 		);
 		insertarLineaBus.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.42"), this)); //$NON-NLS-1$
 		submenuInsertar.add(insertarLineaBus);
-		
+
 		JMenu submenuEliminar = new JMenu(Messages.getString("Ventana.43")); //$NON-NLS-1$
-		
+
 		JMenuItem eliminarNodo = new JMenuItem (Messages.getString("Ventana.44")); //$NON-NLS-1$
 		eliminarNodo.addActionListener(
 				new ActionListener(){
@@ -522,7 +525,7 @@ public class Ventana extends JFrame {
 		);
 		eliminarNodo.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.45"), this)); //$NON-NLS-1$
 		submenuEliminar.add(eliminarNodo);
-		
+
 		JMenuItem eliminarTramo = new JMenuItem (Messages.getString("Ventana.46")); //$NON-NLS-1$
 		eliminarTramo.addActionListener(
 				new ActionListener(){
@@ -551,28 +554,28 @@ public class Ventana extends JFrame {
 		emergenteMapa.add(submenuSeleccion);
 		emergenteMapa.add(submenuInsertar);
 		emergenteMapa.add(submenuEliminar);
-		
+
 		panel_mapa.setMenuEmergenteMapa(emergenteMapa);
 	}
-	
+
 	public void añadirMenuEmergenteTerminar(){
-		
+
 		emergenteTerminar = new JPopupMenu(Messages.getString("Ventana.48"));	 //$NON-NLS-1$
-		
+
 		JMenuItem terminar = new JMenuItem(Messages.getString("Ventana.49")); //$NON-NLS-1$
 		terminar.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						escucha.notificar(-5);
 					}
-					
+
 				}
 		);
 		terminar.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.50"), this)); //$NON-NLS-1$
-		
+
 		emergenteTerminar.add(terminar);
-		
-		
+
+
 	}
 
 	/**
@@ -593,9 +596,9 @@ public class Ventana extends JFrame {
 		crearMenuSimulacion();
 
 		crearMenuApariencia();
-		
+
 		crearMenuAyuda();
-		
+
 	}
 
 	private void crearMenuApariencia() 
@@ -604,7 +607,7 @@ public class Ventana extends JFrame {
 		aparienciaMenu.setText("Apariencia");
 		aparienciaMenu.setMnemonic('P');
 		menuBar.add(aparienciaMenu);
-		
+
 		JMenuItem cambio = new JMenuItem("Cambiar Look and Feel");
 		aparienciaMenu.add(cambio);
 		cambio.addActionListener(new ActionListener(){
@@ -626,11 +629,11 @@ public class Ventana extends JFrame {
 				}
 			}
 		});
-		
+
 		JMenu watermark = new JMenu();
 		watermark.setText("Marca de agua");
 		aparienciaMenu.add(watermark);
-		
+
 		crearMenuItemWatermark("Binario", watermark, new SubstanceBinaryWatermark());
 		crearMenuItemWatermark("Burbujas", watermark, new SubstanceBubblesWatermark());
 		crearMenuItemWatermark("Placa de cobre", watermark, new SubstanceCopperplateEngravingWatermark());
@@ -643,11 +646,11 @@ public class Ventana extends JFrame {
 		crearMenuItemWatermark("Muro de metal ", watermark, new SubstanceMetalWallWatermark());
 		crearMenuItemWatermark("Barras", watermark, new SubstanceStripeWatermark());
 		crearMenuItemWatermark("Laberinto", watermark, new SubstanceMazeWatermark());
-		
+
 		JMenu theme = new JMenu();
 		theme.setText("Tema");
 		aparienciaMenu.add(theme);
-		
+
 		crearMenuItemTheme("Otoñal", theme, new AutumnSkin());
 		crearMenuItemTheme("Acero azul", theme, new BusinessBlueSteelSkin());
 		crearMenuItemTheme("Crema", theme, new CremeSkin());
@@ -661,7 +664,7 @@ public class Ventana extends JFrame {
 		crearMenuItemTheme("Sahara", theme, new SaharaSkin());
 		crearMenuItemTheme("Nemo", theme, new FindingNemoSkin());
 		crearMenuItemTheme("Office Silver 2007", theme, new OfficeSilver2007Skin());
-		
+
 		JMenu button = new JMenu();
 		button.setText("Tipo de botones");
 		aparienciaMenu.add(button);
@@ -675,43 +678,43 @@ public class Ventana extends JFrame {
 		JMenuItem menu = new JMenuItem(string);
 		menupadre.add(menu);
 		menu.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						SubstanceLookAndFeel.setCurrentWatermark(watermark);
-						repaint();
-					}
-				});
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				SubstanceLookAndFeel.setCurrentWatermark(watermark);
+				repaint();
+			}
+		});
 	}
-	
+
 	private void crearMenuItemButtonShape(String string, JMenu menupadre, final SubstanceButtonShaper button) 
 	{
 		JMenuItem menu = new JMenuItem(string);
 		menupadre.add(menu);
 		menu.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						SubstanceLookAndFeel.setCurrentButtonShaper(button);
-						repaint();
-					}
-				});
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				SubstanceLookAndFeel.setCurrentButtonShaper(button);
+				repaint();
+			}
+		});
 	}
-	
+
 	private void crearMenuItemTheme(String string, JMenu menupadre, final SubstanceSkin theme) 
 	{
 		JMenuItem menu = new JMenuItem(string);
 		menupadre.add(menu);
 		menu.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						SubstanceWatermark water = SubstanceLookAndFeel.getCurrentWatermark();
-						SubstanceLookAndFeel.setSkin(theme);
-						SubstanceLookAndFeel.setCurrentWatermark(water);
-						repaint();
-					}
-				});
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				SubstanceWatermark water = SubstanceLookAndFeel.getCurrentWatermark();
+				SubstanceLookAndFeel.setSkin(theme);
+				SubstanceLookAndFeel.setCurrentWatermark(water);
+				repaint();
+			}
+		});
 	}
 
 
@@ -724,10 +727,10 @@ public class Ventana extends JFrame {
 		archivoMenu.setMnemonic('A');
 		menuBar.add(archivoMenu);
 
-		
+
 		JMenuItem nuevoMapaMenuItem = new JMenuItem();
 		nuevoMapaMenuItem
-				.addActionListener(new AccionNuevo(controlador, panel_mapa));
+		.addActionListener(new AccionNuevo(controlador, panel_mapa));
 		nuevoMapaMenuItem.setText(Messages.getString("Ventana.52")); //$NON-NLS-1$
 		nuevoMapaMenuItem.setMnemonic('N');
 		nuevoMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK));
@@ -742,7 +745,7 @@ public class Ventana extends JFrame {
 		cargarMapaMenuItem.setMnemonic('M');
 		cargarMapaMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,InputEvent.CTRL_MASK));
 		archivoMenu.add(cargarMapaMenuItem);
-		
+
 		JMenuItem descargarMapaMenuItem = new JMenuItem();
 		descargarMapaMenuItem.addActionListener(new AccionDescargar(controlador,panel_mapa));
 		descargarMapaMenuItem.setText(Messages.getString("Ventana.54")); //$NON-NLS-1$
@@ -757,7 +760,7 @@ public class Ventana extends JFrame {
 		archivoMenu.add(guardarmapaMenuItem);
 
 		archivoMenu.addSeparator();
-		
+
 		JMenuItem imprimirMapaMenuItem = new JMenuItem();
 		imprimirMapaMenuItem.addActionListener(new AccionImprimir(panel_mapa));
 		imprimirMapaMenuItem.setText(Messages.getString("Ventana.56")); //$NON-NLS-1$
@@ -834,12 +837,12 @@ public class Ventana extends JFrame {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent evento){
 						try{
-						double lat = Double.parseDouble(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
-						double lon = Double.parseDouble(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
-						panel_mapa.centrarEnPosicion(lat, lon);
-						JOptionPane.showMessageDialog(null,"Posición central:\n"+
-								"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
-								"Lon: " + Representacion.pasarAGrados(lon));
+							double lat = Double.parseDouble(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
+							double lon = Double.parseDouble(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
+							panel_mapa.centrarEnPosicion(lat, lon);
+							JOptionPane.showMessageDialog(null,"Posición central:\n"+
+									"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
+									"Lon: " + Representacion.pasarAGrados(lon));
 						}
 						catch( java.lang.NumberFormatException excepcion){
 							JOptionPane.showMessageDialog(null,"Valor incorrecto");
@@ -848,7 +851,7 @@ public class Ventana extends JFrame {
 				}
 		);
 		posicionar.setText("Posicionar"); //$NON-NLS-1$
-	//	posicionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
+		//	posicionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
 		edicionMenu.add(posicionar);
 
 		JMenuItem imagenMenuItem = new JMenuItem();
@@ -865,7 +868,7 @@ public class Ventana extends JFrame {
 				new MLSeleccionarYMover(modelo, controlador, panel_mapa), this,
 				escuchaTeclado, -1));
 		selecMenuItem
-				.addActionListener(new AccionBarra(this, barraSeleccionar));
+		.addActionListener(new AccionBarra(this, barraSeleccionar));
 		selecMenuItem.setText(Messages.getString("Ventana.64")); //$NON-NLS-1$
 		edicionMenu.add(selecMenuItem);
 
@@ -877,28 +880,28 @@ public class Ventana extends JFrame {
 
 		JMenu subMenuVer = new JMenu(Messages.getString("Ventana.66")); //$NON-NLS-1$
 		edicionMenu.add(subMenuVer);
-		
+
 		JMenuItem verNodosMenuItem = new JMenuItem();
 		verNodosMenuItem.addActionListener(new AccionVerNodos(controlador,
 				modelo, this,panel_mapa,Messages.getString("Ventana.67"), Messages.getString("Ventana.68"), //$NON-NLS-1$ //$NON-NLS-2$
 				Messages.getString("Ventana.69"))); //$NON-NLS-1$
 		verNodosMenuItem.setText(Messages.getString("Ventana.70")); //$NON-NLS-1$
 		subMenuVer.add(verNodosMenuItem);
-		
+
 		JMenuItem verTramosMenuItem = new JMenuItem();
 		verTramosMenuItem.addActionListener(new AccionVerTramos(controlador,
 				modelo, this,panel_mapa,Messages.getString("Ventana.71"), Messages.getString("Ventana.72"), //$NON-NLS-1$ //$NON-NLS-2$
 				Messages.getString("Ventana.73"))); //$NON-NLS-1$
 		verTramosMenuItem.setText(Messages.getString("Ventana.74")); //$NON-NLS-1$
 		subMenuVer.add(verTramosMenuItem);
-		
+
 		JMenuItem verViasMenuItem = new JMenuItem();
 		verViasMenuItem.addActionListener(new AccionVerVias(controlador,
 				modelo, this,panel_mapa,Messages.getString("Ventana.75"), Messages.getString("Ventana.76"), //$NON-NLS-1$ //$NON-NLS-2$
 				Messages.getString("Ventana.77"))); //$NON-NLS-1$
 		verViasMenuItem.setText(Messages.getString("Ventana.78")); //$NON-NLS-1$
 		subMenuVer.add(verViasMenuItem);
-		
+
 		JMenuItem verlineasBusMenuItem = new JMenuItem();
 		verlineasBusMenuItem.addActionListener(new AccionVerLineasBus(controlador,
 				modelo, this,panel_mapa));
@@ -958,17 +961,17 @@ public class Ventana extends JFrame {
 
 		JMenuItem añadirNodo = new JMenuItem();
 		añadirNodo
-				.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
-						controlador, panel_mapa, this), this, escuchaTeclado, 0));
+		.addActionListener(new AccionSobreMapa(new MLAñadirNodo(modelo,
+				controlador, panel_mapa, this), this, escuchaTeclado, 0));
 		añadirNodo.setText(Messages.getString("Ventana.85")); //$NON-NLS-1$
 		añadirNodo.setMnemonic('n');
 		mapaMenu.add(añadirNodo);
 
 		JMenuItem añadirTramo = new JMenuItem();
 		añadirTramo
-				.addActionListener(new AccionSobreMapa(new MLAñadirTramo(
-						modelo, controlador, panel_mapa, this), this,
-						escuchaTeclado, 1));
+		.addActionListener(new AccionSobreMapa(new MLAñadirTramo(
+				modelo, controlador, panel_mapa, this), this,
+				escuchaTeclado, 1));
 		añadirTramo.setText(Messages.getString("Ventana.86")); //$NON-NLS-1$
 		añadirTramo.setMnemonic('t');		
 		mapaMenu.add(añadirTramo);
@@ -988,14 +991,14 @@ public class Ventana extends JFrame {
 		mapaMenu.add(elminarTramo);
 
 		mapaMenu.addSeparator();
-		
+
 		JMenuItem buscarElemento = new JMenuItem();
 		buscarElemento.addActionListener(new AccionBuscar(controlador,panel_mapa));
 		buscarElemento.addActionListener(new AccionBarra(this, null));
 		buscarElemento.setText(Messages.getString("Ventana.89")); //$NON-NLS-1$
 		buscarElemento.setMnemonic('B');
 		mapaMenu.add(buscarElemento);
-		
+
 		JMenuItem mejorCamino = new JMenuItem();
 		mejorCamino.addActionListener(new AccionSobreMapa(new MLEscuchaItinerario(
 				modelo, controlador, panel_mapa), this,
@@ -1004,7 +1007,7 @@ public class Ventana extends JFrame {
 		mejorCamino.setText(Messages.getString("Ventana.90")); //$NON-NLS-1$
 		mejorCamino.setMnemonic('c');
 		mapaMenu.add(mejorCamino);
-		
+
 	}
 
 	/**
@@ -1069,7 +1072,7 @@ public class Ventana extends JFrame {
 
 		JMenuItem abrirAyuda = new JMenuItem();
 		abrirAyuda.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				//new Ayuda("http://simtraffic.helker.com/Manual2/manual.html");
 				String url= Messages.getString("Ventana.98"); //$NON-NLS-1$
@@ -1084,7 +1087,7 @@ public class Ventana extends JFrame {
 				} catch (IOException e1) {
 					System.out.println(Messages.getString("Ventana.100")); //$NON-NLS-1$
 				}
-				*/
+				 */
 				/**
 				 * Solo válido para internet Explorer 
 				 */
@@ -1112,14 +1115,14 @@ public class Ventana extends JFrame {
 		ayudaMenu.addSeparator();
 
 		JMenuItem elegirIdioma = new JMenuItem();
-		elegirIdioma.addActionListener(new AccionIdioma());
+		elegirIdioma.addActionListener(new AccionIdioma(this));
 		elegirIdioma.setText(Messages.getString("Ventana.107")); //$NON-NLS-1$
 		ayudaMenu.add(elegirIdioma);
 
-		
+
 		ayudaMenu.addSeparator();
 
-		
+
 		JMenuItem acercaDE = new JMenuItem();
 		acercaDE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1195,7 +1198,7 @@ public class Ventana extends JFrame {
 		ayudaDinamica.setEditable(false);
 
 		barraAyudaDinamica.add(ayudaDinamica,BorderLayout.CENTER);
-		
+
 		barraPosicion.add(etiquetaPosicion);
 		barraPosicion.add(posicionX);
 		barraPosicion.add(puntitos);
@@ -1245,7 +1248,7 @@ public class Ventana extends JFrame {
 	{
 		paint(g);
 	}
-	
+
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
 		paintComponents(g);
@@ -1283,11 +1286,11 @@ public class Ventana extends JFrame {
 	public Tramo prepararTramo(Nodo i, Nodo f) {
 		return barraCrearTramo.prepararTramo(i, f);
 	}
-	
+
 	public void prepararImagen(Image im,Posicion pos){
 		barraRedimensionarImagen.prepararImagen(im,pos,panel_mapa);
 	}
-	
+
 
 	public JToolBar getBarraCrearNodo() {
 		return barraCrearNodo;
@@ -1310,14 +1313,14 @@ public class Ventana extends JFrame {
 		// ayudaDinamica.setVisible(true);
 		ayudaDinamica.repaint();
 	}
-	
+
 	public JMenuItem getBotonPegar(){
 		return this.pegarSeleccion;
 	}
 	public JPopupMenu getEmergenteMapa(){
 		return this.emergenteMapa;
 	}
-	
+
 	public JPopupMenu getEmergenteTerminar(){
 		return this.emergenteTerminar;
 	}
@@ -1331,7 +1334,7 @@ public class Ventana extends JFrame {
 	public JMenuItem getCortarSeleccion() {
 		return cortarSeleccion;
 	}
-	
+
 	public JPanel getBarraArriba() {
 		return superior_arriba;
 	}
@@ -1347,7 +1350,7 @@ public class Ventana extends JFrame {
 		this.barraRedimensionarImagen = barraRedimensionarImagen;
 		//add(this.barraRedimensionarImagen);
 	}
-	
+
 	public MLSeleccionarYMover getEscuchaSeleccionar() {
 		return escuchaSeleccionar;
 	}
