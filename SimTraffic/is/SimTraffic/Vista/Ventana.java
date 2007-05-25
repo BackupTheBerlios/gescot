@@ -614,7 +614,7 @@ public class Ventana extends JFrame {
 
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (JOptionPane.showConfirmDialog(null, "Para que se apliquen los cambios, se cerrará el programa y deberá volver a iniciarlo. ¿Está seguro?", "Cambio de apariencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				if (JOptionPane.showConfirmDialog(Ventana.this, "Para que se apliquen los cambios, se cerrará el programa y deberá volver a iniciarlo. ¿Está seguro?", "Cambio de apariencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				{
 					try 
 					{
@@ -837,15 +837,15 @@ public class Ventana extends JFrame {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent evento){
 						try{
-							double lat = Double.parseDouble(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
-							double lon = Double.parseDouble(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
+							double lat = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,"Introduzca latitud (número entero)"));
+							double lon = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,"Introduzca longitud (número entero)"));
 							panel_mapa.centrarEnPosicion(lat, lon);
-							JOptionPane.showMessageDialog(null,"Posición central:\n"+
+							JOptionPane.showMessageDialog(Ventana.this,"Posición central:\n"+
 									"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
 									"Lon: " + Representacion.pasarAGrados(lon));
 						}
 						catch( java.lang.NumberFormatException excepcion){
-							JOptionPane.showMessageDialog(null,"Valor incorrecto");
+							JOptionPane.showMessageDialog(Ventana.this,"Valor incorrecto");
 						}
 					}
 				}
