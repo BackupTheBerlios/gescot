@@ -501,7 +501,7 @@ public class Inteligencia {
 		ArrayList<Vehiculo> lista = tabla.get(vehiculo.getTramo());
 		int cont = 0;
 		Vehiculo temp;
-		while (cont < lista.size()) {
+		while (lista != null && cont < lista.size()) {
 			temp = lista.get(cont);
 			if (temp != vehiculo) {
 				if (temp.nodoDestino == vehiculo.nodoDestino

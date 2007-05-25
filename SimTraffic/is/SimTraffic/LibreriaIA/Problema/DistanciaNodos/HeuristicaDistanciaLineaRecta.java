@@ -3,6 +3,7 @@ package is.SimTraffic.LibreriaIA.Problema.DistanciaNodos;
 import is.SimTraffic.LibreriaIA.IEstado;
 import is.SimTraffic.LibreriaIA.IHeuristica;
 import is.SimTraffic.Mapa.Nodo;
+import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
 
 public class HeuristicaDistanciaLineaRecta implements IHeuristica {
@@ -15,11 +16,14 @@ public class HeuristicaDistanciaLineaRecta implements IHeuristica {
 	}
 
 	public float darValorHeuristico(IEstado estado) {
-		Nodo nodoActual = ((EstadoDistanciaNodos)estado).getNodoPosicion();
-		Nodo nodoDestinoFinal = estadoObjetivo.getNodoPosicion();
-		Tramo tramoauxiliar = new Tramo(nodoActual,nodoDestinoFinal);
-		int distanciaMinima = tramoauxiliar.getLargo();
-		((EstadoDistanciaNodos)estado).setValorHeuristico(distanciaMinima);
+		Posicion nodoActual = ((EstadoDistanciaNodos)estado).getNodoPosicion().getPos();
+		Posicion nodoDestino = estadoObjetivo.getNodoPosicion().getPos();
+		//Tramo tramoauxiliar = new Tramo(nodoActual,nodoDestinoFinal);
+		//int distanciaMinima = tramoauxiliar.getLargo();
+		//((EstadoDistanciaNodos)estado).setValorHeuristico(distanciaMinima);
+		
+		int distanciaMinima = (int) ((Math.abs(nodoActual.getLat() - nodoDestino.getLat()) +
+							  Math.abs(nodoActual.getLon() - nodoDestino.getLon())) * 10 );
 		return distanciaMinima;	
 	}
 

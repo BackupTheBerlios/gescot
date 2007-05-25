@@ -435,7 +435,7 @@ public class Simulacion {
 				Nodo nodo = it.next();
 				if (nodo.getEs() != null)
 					i -= nodo.getEs().getPorcentajesEntrada()[franjaHoraria];
-				if (i <= 0) {
+				if (i <= 1) {
 					vehiculosActivos++;
 					return nodo;
 				}
@@ -517,27 +517,11 @@ public class Simulacion {
 	 * @return
 	 */
 	public double densidadTramo(Tramo tramo) {
-		ArrayList<Vehiculo> listaVehiculos = tabla.get(tramo);
 		int longitudT = tramo.getLargo();
-		int numCoches = listaVehiculos.size()*50000;
-		//int numCoches = listaVehiculos.size()*50000;
-		//if (numCoches>0)
-		//	System.out.println("Numcoches > 0!");
-		// Versión simple, realmente debería comprobar el tramo en el sentido en
-		// que quiere recorrerlo y no en ambos.
+		int numCoches = tabla.get(tramo).size()*50000;
 		int numCarriles = tramo.getNumCarrilesDir1()
 				+ tramo.getNumCarrilesDir2();
-		// Devuelve un valor entre 0 y 1, mayor cuantos más coches haya.
 		double densidad = numCoches / (longitudT * numCarriles);
-		/*if (densidad>0.001) {
-			System.out.println("Largo: "+ tramo.getLargo());
-			if (tramo.getNombre()!=null) System.out.println("Nombre" + tramo.getNombre());
-			System.out.println("Densidad calculada: "+densidad);
-		}*/
-		//densidad = densidad * longitudT;
-		// Se normaliza con la distancia (devolverá un valor entre 0 y la
-		// distancia del tramo).
-		//densidad = longitudT * densidad;
 		return densidad;
 	}
 	

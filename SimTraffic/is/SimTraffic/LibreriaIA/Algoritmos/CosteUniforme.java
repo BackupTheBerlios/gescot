@@ -2,6 +2,7 @@ package is.SimTraffic.LibreriaIA.Algoritmos;
 
 import is.SimTraffic.Herramientas.Messages;
 import is.SimTraffic.LibreriaIA.ComparadorNodosCoste;
+import is.SimTraffic.LibreriaIA.ComparadorNodosValorHyCoste;
 import is.SimTraffic.LibreriaIA.IAlgoritmo;
 import is.SimTraffic.LibreriaIA.IEstado;
 import is.SimTraffic.LibreriaIA.IOperador;
@@ -47,10 +48,10 @@ public class CosteUniforme implements IAlgoritmo {
 		this.inicial = inicial;
 		this.objetivo = objetivo;
 		this.operadores=operadores;
-		comparador=new ComparadorNodosCoste();
-		this.abiertos = new PriorityQueue<NodoIA>(1,comparador);
-		this.cerrados = new Vector<NodoIA>();
-		this.solucion = new Vector<NodoIA>();
+		comparador=new ComparadorNodosValorHyCoste();//ComparadorNodosCoste();
+		this.abiertos = new PriorityQueue<NodoIA>(200,comparador);
+		this.cerrados = new Vector<NodoIA>(200);
+		this.solucion = new Vector<NodoIA>(200);
 		this.tipoControlCiclos = tipoControlCiclos;
 	}
 	
@@ -59,7 +60,7 @@ public class CosteUniforme implements IAlgoritmo {
 		return s;
 	}
 
-	public Vector getSolucion() {
+	public Vector<NodoIA> getSolucion() {
 		return solucion;
 	}
 
@@ -99,15 +100,16 @@ public class CosteUniforme implements IAlgoritmo {
 	}
 
 	public void generarNodosHijos(NodoIA nodo){
-		
-		for (int i=0;i<operadores.size();i++) {
-			Vector<NodoIA> vectorNuevo=operadores.elementAt(i).aplicarOperador(nodo);
+		Iterator<IOperador> it = operadores.iterator();
+		while (it.hasNext()) {
+			Vector<NodoIA> vectorNuevo=it.next().aplicarOperador(nodo);
 			
 			//Se compara con null ya que si el operador no puede aplicarse o 
 			//desemboca en un nodo en situación de peligro devuelve null.
 			if (vectorNuevo!=null) {
-				for (int j=0;j<vectorNuevo.size();j++) {
-					NodoIA nodoNuevo=vectorNuevo.get(j);
+				Iterator<NodoIA> it2 = vectorNuevo.iterator();
+				while (it2.hasNext()) {
+					NodoIA nodoNuevo=it2.next();
 					boolean detectaCiclos = controlDeCiclos(nodoNuevo);
 					if (!detectaCiclos) abiertos.add(nodoNuevo);
 				}
@@ -123,40 +125,43 @@ public class CosteUniforme implements IAlgoritmo {
 	 */
 	public boolean controlDeCiclos(NodoIA nodo) {
 		boolean detectaCiclos=false;
-		if (tipoControlCiclos==0)
+		NodoIA aux;
+		switch (tipoControlCiclos) {
+		case 0:
 			detectaCiclos=false;
-		else if (tipoControlCiclos==1) {
+			break;
+		case 1:
 			//Se comprueba primero que no sea vacío, lo que pasa si es el primer hijo 
 			//generado (en ese caso el padre sería la raíz y no tendría operador).
 			if (nodo.getNodoPadre().getOperador()!=null) {
 				detectaCiclos = nodo.getOperador().esInversoDe(nodo.getNodoPadre().getOperador());
 			}
-		}
-		else if (tipoControlCiclos==2) {
+			break;
+		case 2:
 			//Comprueba en su propio camino
-			NodoIA aux=nodo;
+			aux=nodo;
 			while (aux.getNodoPadre()!=null && !detectaCiclos) {
 				detectaCiclos = nodo.getEstado().equals(aux.getNodoPadre().getEstado());
 				aux=aux.getNodoPadre();
 			}
-		}
-		else if (tipoControlCiclos==3) {
+			break;
+		case 3:
 			//Recorre cerrados
 			for (int i=0;(i<cerrados.size()) && (!detectaCiclos);i++) {
 				detectaCiclos = cerrados.get(i).getEstado().equals(nodo.getEstado());
 			}
-		}
-		else if (tipoControlCiclos==4) {
+			break;
+		case 4:
 			//Recorre abiertos
 			Iterator<NodoIA> ab=abiertos.iterator();
 			for (int i=0;i<abiertos.size() && !detectaCiclos;i++) {
-				NodoIA aux=ab.next();
+				aux=ab.next();
 				detectaCiclos = aux.getEstado().equals(nodo.getEstado());
 			}
+			break;
+		default:
+			detectaCiclos = false;	
 		}
-		
-		
-		
 		return detectaCiclos;
 	}
 	
@@ -174,7 +179,7 @@ public class CosteUniforme implements IAlgoritmo {
 			nodoActual.mostrarInfo();
 			nodoActual = abiertos.peek(); //Toma el primer elemento, pero no lo elimina de la cola con prioridad.
 			//Así permitimos detener la búsqueda al encontrar un fallo.
-			falloProducido = pararEjecucion();
+			//falloProducido = pararEjecucion();
 		}
 		
 		if (nodoActual!= null && esObjetivo(nodoActual)) {
@@ -217,11 +222,11 @@ public class CosteUniforme implements IAlgoritmo {
 
 	public void mostrarSolucion(Vector<NodoIA> sol) {
 		if (sol==null || sol.size()==0) 
-			System.out.println(Messages.getString("CosteUniforme.2"));  //$NON-NLS-1$
+		{}	//System.out.println(Messages.getString("CosteUniforme.2"));  //$NON-NLS-1$
 		else {
 			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");
 			for (int i=(sol.size()); i>0 ; i--) {
-				System.out.println(Messages.getString("CosteUniforme.3")+(sol.size()-i)+Messages.getString("CosteUniforme.4")+sol.elementAt(i-1).getOperador().getDescripcion() ); //$NON-NLS-1$ //$NON-NLS-2$
+				//System.out.println(Messages.getString("CosteUniforme.3")+(sol.size()-i)+Messages.getString("CosteUniforme.4")+sol.elementAt(i-1).getOperador().getDescripcion() ); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		
@@ -229,12 +234,4 @@ public class CosteUniforme implements IAlgoritmo {
 		//System.out.println("Tamaño de abiertos"+abiertos.size());
 		//System.out.println("Tamaño de cerrados"+cerrados.size());		
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-	}
-
 }

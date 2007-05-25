@@ -42,14 +42,10 @@ public class AEstrella implements IAlgoritmoInformado {
 		this.objetivo = objetivo;
 		this.operadores=operadores;
 		comparador=new ComparadorNodosValorHyCoste();
-		this.abiertos = new PriorityQueue<NodoIA>(1,comparador);
-		this.cerrados = new Vector<NodoIA>();
-		this.solucion = new Vector<NodoIA>();
+		this.abiertos = new PriorityQueue<NodoIA>(200,comparador);
+		this.cerrados = new Vector<NodoIA>(200);
+		this.solucion = new Vector<NodoIA>(200);
 		this.heuristica = heuristica;
-	}
-	
-	public float darValorHeuristico(IEstado estado) {
-		return heuristica.darValorHeuristico(estado);
 	}
 	
 	public String toString() {
@@ -98,17 +94,21 @@ public class AEstrella implements IAlgoritmoInformado {
 
 
 	public void generarNodosHijos(NodoIA nodo){
-		
-		for (int i=0;i<operadores.size();i++) {
-			Vector<NodoIA> vectorNuevo=operadores.elementAt(i).aplicarOperador(nodo);
+
+		Iterator<IOperador> it = operadores.iterator();
+		while(it.hasNext()) {
+			Vector<NodoIA> vectorNuevo = it.next().aplicarOperador(nodo);
 			
 			//Se compara con null ya que si el operador no puede aplicarse o 
 			//desemboca en un nodo en situación de peligro devuelve null.
 			if (vectorNuevo!=null) {
-				for (int j=0;j<vectorNuevo.size();j++) {
-					NodoIA nodoNuevo=vectorNuevo.get(j);
-					float valorh=darValorHeuristico(nodoNuevo.getEstado());
-					nodoNuevo.getEstado().setValorHeuristico(valorh); //Creo que esta segunda linea no necesaria
+				NodoIA nodoNuevo;
+				Iterator<NodoIA> it2 = vectorNuevo.iterator();
+				
+				while(it2.hasNext()) {
+					nodoNuevo=it2.next();
+					float valorh = heuristica.darValorHeuristico(nodoNuevo.getEstado());
+					nodoNuevo.getEstado().setValorHeuristico(valorh);
 					
 					//Esta función ya se encarga si es necesario de añadir el nodo a la estructura abiertos.
 					tratarSucesor(nodoNuevo,nodo);
@@ -126,15 +126,16 @@ public class AEstrella implements IAlgoritmoInformado {
 			estaCerrados = cerrados.get(i).getEstado().equals(nodoNuevo.getEstado());
 			posicion=i;
 		}
+		NodoIA nodo = cerrados.get(posicion);
+		
 		//Si el nodo nuevo ya estaba en cerrados, se comprueba si el coste de su camino era menor. En ese caso
 		//se actualiza y se propaga a los hijos (en abiertos y en cerrados)
-		if (estaCerrados) {
-			
-			if (cerrados.get(posicion).getCoste_camino() > nodoNuevo.getCoste_camino() ) {
-				cerrados.get(posicion).setNodoPadre(nodoPadre); //Con lo cual, es como insertar el nuevo.
+		if (estaCerrados) {			
+			if (nodo.getCoste_camino() > nodoNuevo.getCoste_camino() ) {
+				nodo.setNodoPadre(nodoPadre); //Con lo cual, es como insertar el nuevo.
 				//Actualizar valor del coste del camino y calcular su diferencia (para propagarla)
-				float diferenciaCoste=cerrados.get(posicion).getCoste_camino() - nodoNuevo.getCoste_camino();
-				cerrados.get(posicion).setCoste_camino(nodoNuevo.getCoste_camino());
+				float diferenciaCoste=nodo.getCoste_camino() - nodoNuevo.getCoste_camino();
+				nodo.setCoste_camino(nodoNuevo.getCoste_camino());
 				propagarMejorCosteCamino(nodoPadre,diferenciaCoste);
 			}
 			
@@ -147,16 +148,14 @@ public class AEstrella implements IAlgoritmoInformado {
 			boolean encontrado=false;
 			Iterator<NodoIA> nod= abiertos.iterator();
 			NodoIA nodoaux = null;
-			posicion=0;
 			while (nod.hasNext() && !encontrado) {
 				nodoaux = nod.next();
 				encontrado = nodoaux.getEstado().equals(nodoNuevo.getEstado());
-				posicion++;
 			}
 			if (encontrado) {
 				if (nodoaux.getCoste_camino() > nodoNuevo.getCoste_camino()) {
 					nodoaux.setNodoPadre(nodoPadre); //Con lo cual, es como insertar el nuevo.
-					nodoaux.setCoste_camino(nodoNuevo.getCoste_camino());					
+					nodoaux.setCoste_camino(nodoNuevo.getCoste_camino());				
 					//Añadido y necesario para respetar el camino
 					nodoaux.setOperador(nodoNuevo.getOperador());
 					nodoaux.setProfundidad(nodoNuevo.getProfundidad());
@@ -184,7 +183,6 @@ public class AEstrella implements IAlgoritmoInformado {
 			if (nodoaux == nodoPadre) {
 				nodoaux1.setCoste_camino(nodoaux1.getCoste_camino()-diferenciaCoste);
 				propagarMejorCosteCamino(nodoaux1,diferenciaCoste);
-				//System.out.println("Propagado en cerrados\n");
 			}			
 		}
 		
@@ -211,22 +209,20 @@ public class AEstrella implements IAlgoritmoInformado {
 			nodoActual = abiertos.poll();
 			generarNodosHijos(nodoActual);
 			cerrados.add(nodoActual);
-			//System.out.println("Nuevo nodo expandido pasa a cerrados:");
-			//nodoActual.mostrarInfo();
 			nodoActual = abiertos.peek();
 			//Así permitimos detener la búsqueda al encontrar un fallo.
-			falloProducido = pararEjecucion();
+//			falloProducido = pararEjecucion();
 		}
 		
 		if (nodoActual!= null && esObjetivo(nodoActual)) {
 			//Éxito
-			System.out.println(Messages.getString("AEstrella.2")); //$NON-NLS-1$
+//			System.out.println(Messages.getString("AEstrella.2")); //$NON-NLS-1$
 			solucion=crearSolucion(nodoActual);
-			mostrarSolucion(solucion);
+//			mostrarSolucion(solucion);
 			encontreSolucion = true;
 		}
 		else {
-			System.out.println(Messages.getString("AEstrella.3")); //$NON-NLS-1$
+//			System.out.println(Messages.getString("AEstrella.3")); //$NON-NLS-1$
 		}
 		
 		return encontreSolucion;
@@ -271,11 +267,8 @@ public class AEstrella implements IAlgoritmoInformado {
 		//System.out.println("Tamaño de cerrados"+cerrados.size());		
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
+	public float darValorHeuristico(IEstado estado) {
+		return 0;
 	}
 
 }

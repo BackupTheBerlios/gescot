@@ -82,7 +82,6 @@ public class Turismo extends Vehiculo {
 	    tramos = tramosTemp;
 	    cuentaTramos = 0;
 	    return true;
-
 	}
 
 }

@@ -1,9 +1,13 @@
 package is.SimTraffic.Simulacion;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
+import is.SimTraffic.LibreriaIA.IEstado;
+import is.SimTraffic.LibreriaIA.IOperador;
 import is.SimTraffic.LibreriaIA.IPrincipal;
 import is.SimTraffic.LibreriaIA.Algoritmos.AEstrella;
+import is.SimTraffic.LibreriaIA.Algoritmos.CosteUniforme;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.ExploraNodo;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.PrincipalDistanciaNodos;
 import is.SimTraffic.Mapa.Nodo;
@@ -40,20 +44,23 @@ public class BuscaCamino {
 		IPrincipal problemaDistancias = new PrincipalDistanciaNodos(entrada,
 				salida,simulacion,tipoCoste); //Se le permite conocer la simulación, de modo que se pueden evaluar
 									//rutas en función del tráfico.
-		AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
+		/*AEstrella algoritmoAEstrella = new AEstrella(problemaDistancias
 				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
 				problemaDistancias.getOperadores(), problemaDistancias
-						.getHeuristica());
+						.getHeuristica());*/
+
+		//public CosteUniforme(IEstado inicial,IEstado objetivo,Vector<IOperador> operadores,int tipoControlCiclos/*, InfoHabitaciones infoBase*/) {
+		CosteUniforme algoritmoAEstrella = new CosteUniforme(problemaDistancias
+				.getEstadoInicial(), problemaDistancias.getEstadoObjetivo(),
+				problemaDistancias.getOperadores(), 3);
 		
 		boolean resul = algoritmoAEstrella.ejecutar();
 		if (resul == false) {
 			// no ha sido posible encontrar un camino entre los nodos
 			return null;
 		} else {
-			// Mostrar solución en el mapa
 			for (int i = (algoritmoAEstrella.getSolucion().size()); i > 0; i--) {
-				if (algoritmoAEstrella.getSolucion().elementAt(i - 1)
-						.getOperador() != null) {
+				if (algoritmoAEstrella.getSolucion().elementAt(i - 1).getOperador() != null) {
 					Tramo tramoAux = ((ExploraNodo) (algoritmoAEstrella
 							.getSolucion().elementAt(i - 1).getOperador()))
 							.getTramoElegido();
