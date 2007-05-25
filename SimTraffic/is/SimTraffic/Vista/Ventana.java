@@ -1179,7 +1179,7 @@ public class Ventana extends JFrame {
 		JLabel puntitos = new JLabel(Messages.getString("Ventana.105")); //$NON-NLS-1$
 		posicionX = new JLabel();
 		posicionY = new JLabel();
-		ayudaDinamica = new JTextField(Messages.getString("Ventana.106"),70); //$NON-NLS-1$
+		ayudaDinamica = new JTextField(Messages.getString("Ventana.106"),85); //$NON-NLS-1$
 		ayudaDinamica.setEditable(false);
 
 		barraAyudaDinamica.add(ayudaDinamica,BorderLayout.CENTER);
