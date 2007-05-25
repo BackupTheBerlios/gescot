@@ -6,9 +6,56 @@ import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Mapa.Tramo;
-import is.SimTraffic.Vista.Acciones.*;
-import is.SimTraffic.Vista.BarrasHerramientas.*;
-import is.SimTraffic.Vista.EscuchasRaton.*;
+import is.SimTraffic.Vista.Acciones.AccionBarra;
+import is.SimTraffic.Vista.Acciones.AccionBuscar;
+import is.SimTraffic.Vista.Acciones.AccionCambiarRep;
+import is.SimTraffic.Vista.Acciones.AccionCargar;
+import is.SimTraffic.Vista.Acciones.AccionCargarImagen;
+import is.SimTraffic.Vista.Acciones.AccionComenzarSimulacion;
+import is.SimTraffic.Vista.Acciones.AccionCopiar;
+import is.SimTraffic.Vista.Acciones.AccionCortar;
+import is.SimTraffic.Vista.Acciones.AccionDescargar;
+import is.SimTraffic.Vista.Acciones.AccionDeshacer;
+import is.SimTraffic.Vista.Acciones.AccionDetenerSimulacion;
+import is.SimTraffic.Vista.Acciones.AccionEliminarNodo;
+import is.SimTraffic.Vista.Acciones.AccionEliminarSeleccion;
+import is.SimTraffic.Vista.Acciones.AccionEliminarTramo;
+import is.SimTraffic.Vista.Acciones.AccionGuardar;
+import is.SimTraffic.Vista.Acciones.AccionIdioma;
+import is.SimTraffic.Vista.Acciones.AccionImprimir;
+import is.SimTraffic.Vista.Acciones.AccionNuevo;
+import is.SimTraffic.Vista.Acciones.AccionPausarSimulacion;
+import is.SimTraffic.Vista.Acciones.AccionPropiedadesNodo;
+import is.SimTraffic.Vista.Acciones.AccionPropiedadesTramo;
+import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
+import is.SimTraffic.Vista.Acciones.AccionVerLineasBus;
+import is.SimTraffic.Vista.Acciones.AccionVerNodos;
+import is.SimTraffic.Vista.Acciones.AccionVerTramos;
+import is.SimTraffic.Vista.Acciones.AccionVerVias;
+import is.SimTraffic.Vista.Acciones.AccionZoom;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraCrearNodo;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraHerramientas;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraRedimensionarImagen;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraSeleccionar;
+import is.SimTraffic.Vista.BarrasHerramientas.BarraSuperior;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaTeclado;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirLineaAutobus;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirNodo;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
+import is.SimTraffic.Vista.EscuchasRaton.MLEliminarNodo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEliminarTramo;
+import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaItinerario;
+import is.SimTraffic.Vista.EscuchasRaton.MLEscuchaSiempre;
+import is.SimTraffic.Vista.EscuchasRaton.MLMapaBDerecho;
+import is.SimTraffic.Vista.EscuchasRaton.MLMover;
+import is.SimTraffic.Vista.EscuchasRaton.MLPegar;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionaNodoBDerecho;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionaTramoBDerecho;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarElementos;
+import is.SimTraffic.Vista.EscuchasRaton.MLSeleccionarYMover;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 import is.SimTraffic.Vista.Representaciones.RepresentacionAvanzada;
 import is.SimTraffic.Vista.Representaciones.RepresentacionSimple;
@@ -25,8 +72,64 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.border.BevelBorder;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.button.StandardButtonShaper;
+import org.jvnet.substance.button.SubstanceButtonShaper;
+import org.jvnet.substance.skin.AutumnSkin;
+import org.jvnet.substance.skin.BusinessBlueSteelSkin;
+import org.jvnet.substance.skin.ChallengerDeepSkin;
+import org.jvnet.substance.skin.CremeSkin;
+import org.jvnet.substance.skin.EmeraldDuskSkin;
+import org.jvnet.substance.skin.FieldOfWheatSkin;
+import org.jvnet.substance.skin.FindingNemoSkin;
+import org.jvnet.substance.skin.MagmaSkin;
+import org.jvnet.substance.skin.MangoSkin;
+import org.jvnet.substance.skin.OfficeSilver2007Skin;
+import org.jvnet.substance.skin.RavenSkin;
+import org.jvnet.substance.skin.SaharaSkin;
+import org.jvnet.substance.skin.StreetlightsSkin;
+import org.jvnet.substance.skin.SubstanceSkin;
+import org.jvnet.substance.theme.SubstanceBottleGreenTheme;
+import org.jvnet.substance.theme.SubstanceCharcoalTheme;
+import org.jvnet.substance.theme.SubstanceCremeTheme;
+import org.jvnet.substance.theme.SubstanceDarkVioletTheme;
+import org.jvnet.substance.theme.SubstanceDesertSandTheme;
+import org.jvnet.substance.theme.SubstanceJadeForestTheme;
+import org.jvnet.substance.theme.SubstanceLimeGreenTheme;
+import org.jvnet.substance.theme.SubstanceOliveTheme;
+import org.jvnet.substance.theme.SubstanceSepiaTheme;
+import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
+import org.jvnet.substance.theme.SubstanceSunsetTheme;
+import org.jvnet.substance.theme.SubstanceUltramarineTheme;
+import org.jvnet.substance.title.ArcHeaderPainter;
+import org.jvnet.substance.watermark.SubstanceBinaryWatermark;
+import org.jvnet.substance.watermark.SubstanceBubblesWatermark;
+import org.jvnet.substance.watermark.SubstanceCopperplateEngravingWatermark;
+import org.jvnet.substance.watermark.SubstanceCrosshatchWatermark;
+import org.jvnet.substance.watermark.SubstanceFabricWatermark;
+import org.jvnet.substance.watermark.SubstanceGenericNoiseWatermark;
+import org.jvnet.substance.watermark.SubstanceKatakanaWatermark;
+import org.jvnet.substance.watermark.SubstanceMagneticFieldWatermark;
+import org.jvnet.substance.watermark.SubstanceMazeWatermark;
+import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
+import org.jvnet.substance.watermark.SubstanceStripeWatermark;
+import org.jvnet.substance.watermark.SubstanceWatermark;
+import org.jvnet.substance.watermark.SubstanceWoodWatermark;
 
 /**
  * Ventana que contiene la interfaz gráfica de la aplicación.
@@ -501,7 +604,104 @@ public class Ventana extends JFrame {
 		crearMenuSimulacion();
 
 		crearMenuAyuda();
+		
+		crearMenuApariencia();
 	}
+
+	private void crearMenuApariencia() 
+	{
+		JMenu aparienciaMenu = new JMenu();
+		aparienciaMenu.setText("Apariencia");
+		aparienciaMenu.setMnemonic('P');
+		menuBar.add(aparienciaMenu);
+		
+		JMenu watermark = new JMenu();
+		watermark.setText("Marca de agua");
+		aparienciaMenu.add(watermark);
+		
+		crearMenuItemWatermark("Binario", watermark, new SubstanceBinaryWatermark());
+		crearMenuItemWatermark("Burbujas", watermark, new SubstanceBubblesWatermark());
+		crearMenuItemWatermark("Placa de cobre", watermark, new SubstanceCopperplateEngravingWatermark());
+		crearMenuItemWatermark("Crosshatch", watermark, new SubstanceCrosshatchWatermark());
+		crearMenuItemWatermark("Fabric", watermark, new SubstanceFabricWatermark());
+		crearMenuItemWatermark("Madera", watermark, new SubstanceWoodWatermark());
+		crearMenuItemWatermark("Ruido genérico", watermark, new SubstanceGenericNoiseWatermark());
+		crearMenuItemWatermark("Katakana", watermark, new SubstanceKatakanaWatermark());
+		crearMenuItemWatermark("Campo magnético", watermark, new SubstanceMagneticFieldWatermark());
+		crearMenuItemWatermark("Muro de metal ", watermark, new SubstanceMetalWallWatermark());
+		crearMenuItemWatermark("Barras", watermark, new SubstanceStripeWatermark());
+		crearMenuItemWatermark("Laberinto", watermark, new SubstanceMazeWatermark());
+		
+		JMenu theme = new JMenu();
+		theme.setText("Tema");
+		aparienciaMenu.add(theme);
+		
+		crearMenuItemTheme("Otoñal", theme, new AutumnSkin());
+		crearMenuItemTheme("Acero azul", theme, new BusinessBlueSteelSkin());
+		crearMenuItemTheme("Crema", theme, new CremeSkin());
+		crearMenuItemTheme("Esmeralda", theme, new EmeraldDuskSkin());
+		crearMenuItemTheme("Campo de avena", theme, new FieldOfWheatSkin());
+		crearMenuItemTheme("Magma", theme, new MagmaSkin());
+		crearMenuItemTheme("Mango", theme, new MangoSkin());
+		crearMenuItemTheme("Raven", theme, new RavenSkin());
+		crearMenuItemTheme("Luces de calle", theme, new StreetlightsSkin());
+		crearMenuItemTheme("Challenger Deep", theme, new ChallengerDeepSkin());
+		crearMenuItemTheme("Sahara", theme, new SaharaSkin());
+		crearMenuItemTheme("Nemo", theme, new FindingNemoSkin());
+		crearMenuItemTheme("Office Silver 2007", theme, new OfficeSilver2007Skin());
+		
+		JMenu button = new JMenu();
+		button.setText("Tipo de botones");
+		aparienciaMenu.add(button);
+		crearMenuItemButtonShape("Clasico", button, new ClassicButtonShaper());
+		crearMenuItemButtonShape("Redondeado", button, new StandardButtonShaper());
+	}
+
+
+	private void crearMenuItemWatermark(String string, JMenu menupadre, final SubstanceWatermark watermark) 
+	{
+		JMenuItem menu = new JMenuItem(string);
+		menupadre.add(menu);
+		menu.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						SubstanceLookAndFeel.setCurrentWatermark(watermark);
+						repaint();
+					}
+				});
+	}
+	
+	private void crearMenuItemButtonShape(String string, JMenu menupadre, final SubstanceButtonShaper button) 
+	{
+		JMenuItem menu = new JMenuItem(string);
+		menupadre.add(menu);
+		menu.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						SubstanceLookAndFeel.setCurrentButtonShaper(button);
+						repaint();
+					}
+				});
+	}
+	
+	private void crearMenuItemTheme(String string, JMenu menupadre, final SubstanceSkin theme) 
+	{
+		JMenuItem menu = new JMenuItem(string);
+		menupadre.add(menu);
+		menu.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						SubstanceWatermark water = SubstanceLookAndFeel.getCurrentWatermark();
+						SubstanceLookAndFeel.setSkin(theme);
+						SubstanceLookAndFeel.setCurrentWatermark(water);
+						repaint();
+					}
+				});
+	}
+
 
 	/**
 	 * Crea el menú Archivo.
@@ -1029,6 +1229,11 @@ public class Ventana extends JFrame {
 		this.escucha = escucha;
 	}
 
+	public void update(Graphics g)
+	{
+		paint(g);
+	}
+	
 	public void paint(Graphics g) {
 		// panel_mapa.dibujar();
 		paintComponents(g);
