@@ -41,7 +41,7 @@ public class PanelDescargar2 extends JFrame {
 	private JButton jbParis; 
 	private JButton jbHamburgo;
 	private JButton jbBarcelona; 
-	private JButton jbBerlin; 
+	private JButton jbCuenca; 
 	private JButton jbLisboa; //$NON-NLS-1$
 
 
@@ -75,13 +75,12 @@ public class PanelDescargar2 extends JFrame {
 				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.5")))); //$NON-NLS-1$
 		jbBarcelona = new JButton(new ImageIcon(cl
 				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.6")))); //$NON-NLS-1$
-		jbBerlin = new JButton(new ImageIcon(cl
+		jbCuenca = new JButton(new ImageIcon(cl
 				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.7")))); //$NON-NLS-1$
 		
 		jbLisboa.setEnabled(false);
 		jbHamburgo.setEnabled(false);
 		jbBarcelona.setEnabled(false);
-		jbBerlin.setEnabled(false);
 
 		
 		
@@ -108,7 +107,7 @@ public class PanelDescargar2 extends JFrame {
 		jpPrincipal.add((JButton) vBotonesAux.get(5));
 		jpPrincipal.add(jbBarcelona);
 		jpPrincipal.add((JButton) vBotonesAux.get(6));
-		jpPrincipal.add(jbBerlin);
+		jpPrincipal.add(jbCuenca);
 		jpPrincipal.add((JButton) vBotonesAux.get(7));
 		jpPrincipal.add(jbLisboa);
 		
@@ -117,7 +116,7 @@ public class PanelDescargar2 extends JFrame {
 		jbParis.setToolTipText(Messages.getString("PanelDescargar2.10")); //$NON-NLS-1$
 		jbHamburgo.setToolTipText(Messages.getString("PanelDescargar2.11")); //$NON-NLS-1$
 		jbBarcelona.setToolTipText(Messages.getString("PanelDescargar2.12")); //$NON-NLS-1$
-		jbBerlin.setToolTipText(Messages.getString("PanelDescargar2.13")); //$NON-NLS-1$
+		jbCuenca.setToolTipText(Messages.getString("PanelDescargar2.13")); //$NON-NLS-1$
 		jbLisboa.setToolTipText(Messages.getString("PanelDescargar2.14")); //$NON-NLS-1$
 
 
@@ -148,7 +147,7 @@ public class PanelDescargar2 extends JFrame {
 				llamarHerramienta("PanelDescargar2.19");
 			}
 		});
-		jbBerlin.addActionListener(new ActionListener() {
+		jbCuenca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llamarHerramienta("PanelDescargar2.20");
 			}
