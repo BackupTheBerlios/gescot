@@ -3,24 +3,22 @@
  */
 package is.SimTraffic;
 
+import is.SimTraffic.Herramientas.HCargarMapa;
+import is.SimTraffic.Vista.IVista;
+import is.SimTraffic.Vista.Vista;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.theme.SubstanceCharcoalTheme;
-import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
-import org.jvnet.substance.watermark.SubstanceMosaicWatermark;
 import org.jvnet.substance.watermark.SubstanceWoodWatermark;
-
-import com.incors.plaf.alloy.AlloyLookAndFeel;
-import com.incors.plaf.alloy.AlloyTheme;
-import com.incors.plaf.alloy.themes.acid.AcidTheme;
-import com.incors.plaf.alloy.themes.glass.GlassTheme;
-
-import is.SimTraffic.Herramientas.HCargarMapa;
-import is.SimTraffic.Vista.IVista;
-import is.SimTraffic.Vista.Vista;
 
 /**
  * Clase principal del programa.
@@ -44,17 +42,7 @@ public class Principal {
 	 * main.
 	 */
 	public static void main(String[] args) {
-		try {
-			//com.incors.plaf.alloy.AlloyLookAndFeel.setProperty("alloy.licenseCode", "2007/06/24#darthguado@gmail.com#n7i79d#15zvo4");
-			//UIManager.setLookAndFeel(new com.incors.plaf.alloy.AlloyLookAndFeel(new GlassTheme()));
-			new SubstanceLookAndFeel();
-			SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceCremeTheme()); //Quedan Bien Oliva, Sepia y Crema
-			SubstanceLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
-			UIManager.setLookAndFeel(new org.jvnet.substance.SubstanceLookAndFeel());
-		} catch (UnsupportedLookAndFeelException e) 
-		{
-			JOptionPane.showMessageDialog(null, "<html>Error al cargar la ventana.<br> El tema seleccionado noes soportado por esta plataforma.</html>", "Problemas al comenzar la aplicación", JOptionPane.WARNING_MESSAGE);
-		}
+		cargarLookandFeel();
 		new Messages();
 		HCargarMapa.p.validate();
 		IModelo modelo = new Modelo();
@@ -65,6 +53,34 @@ public class Principal {
 		controlador.setModelo(modelo);
 		controlador.setVista(vista);
 		vista.mostrar();
+	}
+
+	private static void cargarLookandFeel() 
+	{
+		try 
+		{
+			FileReader fr = new FileReader(new File(".\\look.conf"));
+			BufferedReader buf = new BufferedReader(fr);
+			String nombre = buf.readLine();
+			if (!nombre.equals("Substance"))
+			{	
+				new SubstanceLookAndFeel();
+				SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceCremeTheme()); //Quedan Bien Oliva, Sepia y Crema
+				SubstanceLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
+				UIManager.setLookAndFeel(new org.jvnet.substance.SubstanceLookAndFeel());
+			}
+		}
+		catch (UnsupportedLookAndFeelException e) 
+		{
+			JOptionPane.showMessageDialog(null, "<html>Error al cargar la ventana.<br> El tema seleccionado noes soportado por esta plataforma.</html>", "Problemas al comenzar la aplicación", JOptionPane.WARNING_MESSAGE);
+		} 
+		catch (FileNotFoundException e) 
+		{ 
+			//Por defecto es el L&F de java.
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

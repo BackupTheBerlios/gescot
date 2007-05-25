@@ -70,6 +70,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.BoxLayout;
@@ -84,6 +86,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
@@ -104,19 +107,6 @@ import org.jvnet.substance.skin.RavenSkin;
 import org.jvnet.substance.skin.SaharaSkin;
 import org.jvnet.substance.skin.StreetlightsSkin;
 import org.jvnet.substance.skin.SubstanceSkin;
-import org.jvnet.substance.theme.SubstanceBottleGreenTheme;
-import org.jvnet.substance.theme.SubstanceCharcoalTheme;
-import org.jvnet.substance.theme.SubstanceCremeTheme;
-import org.jvnet.substance.theme.SubstanceDarkVioletTheme;
-import org.jvnet.substance.theme.SubstanceDesertSandTheme;
-import org.jvnet.substance.theme.SubstanceJadeForestTheme;
-import org.jvnet.substance.theme.SubstanceLimeGreenTheme;
-import org.jvnet.substance.theme.SubstanceOliveTheme;
-import org.jvnet.substance.theme.SubstanceSepiaTheme;
-import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
-import org.jvnet.substance.theme.SubstanceSunsetTheme;
-import org.jvnet.substance.theme.SubstanceUltramarineTheme;
-import org.jvnet.substance.title.ArcHeaderPainter;
 import org.jvnet.substance.watermark.SubstanceBinaryWatermark;
 import org.jvnet.substance.watermark.SubstanceBubblesWatermark;
 import org.jvnet.substance.watermark.SubstanceCopperplateEngravingWatermark;
@@ -573,7 +563,6 @@ public class Ventana extends JFrame {
 		terminar.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						// TODO cancelar accion
 						escucha.notificar(-5);
 					}
 					
@@ -603,9 +592,10 @@ public class Ventana extends JFrame {
 
 		crearMenuSimulacion();
 
+		crearMenuApariencia();
+		
 		crearMenuAyuda();
 		
-		crearMenuApariencia();
 	}
 
 	private void crearMenuApariencia() 
@@ -614,6 +604,28 @@ public class Ventana extends JFrame {
 		aparienciaMenu.setText("Apariencia");
 		aparienciaMenu.setMnemonic('P');
 		menuBar.add(aparienciaMenu);
+		
+		JMenuItem cambio = new JMenuItem("Cambiar Look and Feel");
+		aparienciaMenu.add(cambio);
+		cambio.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (JOptionPane.showConfirmDialog(null, "Para que se apliquen los cambios, se cerrará el programa y deberá volver a iniciarlo. ¿Está seguro?", "Cambio de apariencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				{
+					try 
+					{
+						FileWriter fw = new FileWriter(new File(".\\look.conf"));
+						fw.write(UIManager.getLookAndFeel().getName() + "\n");
+						fw.close();
+						System.exit(0);
+					}
+					catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		
 		JMenu watermark = new JMenu();
 		watermark.setText("Marca de agua");
