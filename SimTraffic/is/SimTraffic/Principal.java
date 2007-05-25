@@ -9,6 +9,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.theme.SubstanceCharcoalTheme;
+import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
+import org.jvnet.substance.watermark.SubstanceMosaicWatermark;
+import org.jvnet.substance.watermark.SubstanceWoodWatermark;
+
+import com.incors.plaf.alloy.AlloyLookAndFeel;
+import com.incors.plaf.alloy.AlloyTheme;
+import com.incors.plaf.alloy.themes.acid.AcidTheme;
+import com.incors.plaf.alloy.themes.glass.GlassTheme;
 
 import is.SimTraffic.Herramientas.HCargarMapa;
 import is.SimTraffic.Vista.IVista;
@@ -38,10 +46,10 @@ public class Principal {
 	public static void main(String[] args) {
 		try {
 			//com.incors.plaf.alloy.AlloyLookAndFeel.setProperty("alloy.licenseCode", "2007/06/24#darthguado@gmail.com#n7i79d#15zvo4");
-			//UIManager.setLookAndFeel(new com.incors.plaf.alloy.AlloyLookAndFeel());
+			//UIManager.setLookAndFeel(new com.incors.plaf.alloy.AlloyLookAndFeel(new GlassTheme()));
 			new SubstanceLookAndFeel();
-			SubstanceLookAndFeel.setSkin(new org.jvnet.substance.skin.RavenGraphiteGlassSkin());
-			//SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceSepiaTheme()); //Quedan Bien Oliva, Sepia y Crema
+			SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceCremeTheme()); //Quedan Bien Oliva, Sepia y Crema
+			SubstanceLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
 			UIManager.setLookAndFeel(new org.jvnet.substance.SubstanceLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) 
 		{
