@@ -37,7 +37,7 @@ public class MLEliminarTramo extends EscuchaRaton
 		if (seleccionado != null)
 		{
 		 if(modelo.getMapa().esDeLineasBus(seleccionado)){
-				 // Preguntar si desea eliminar las lineas de Bus que contienen el nodo
+				 // Preguntar si desea eliminar las lineas de Bus que contienen el tramo
 				 	 int n=JOptionPane.showConfirmDialog(null, 
 			                Messages.getString("MLEliminarTramo.1"), //$NON-NLS-1$
 			                Messages.getString("MLEliminarTramo.2"), //$NON-NLS-1$

@@ -356,29 +356,33 @@ public class Mapa {
 		cambios_en_mapa=false;
 		if (tramo != null && Tramos.contains(tramo)) {
 			if(esDeLineasBus(tramo)){
-			 // Preguntar si desea eliminar las lineas de Bus que contienen el nodo
+			 // Preguntar si desea eliminar las lineas de Bus que contienen el tramo
 				int n=JOptionPane.showConfirmDialog(null, 
 			                Messages.getString("MLEliminarTramo.1"), //$NON-NLS-1$
 			                Messages.getString("MLEliminarTramo.2"), //$NON-NLS-1$
 				 	 		JOptionPane.OK_CANCEL_OPTION);
-				if (n==0) {
-					//Eliminar las lineas de bus que lo contienen
-					Iterator<LineaBus> it =this.LineasAutobuses.iterator();
-					ArrayList<LineaBus> lineasAeliminar = new ArrayList<LineaBus>();
-					while(it.hasNext()){
-						LineaBus linea =it.next();
-						if(linea.getTramos().contains(tramo))
-							lineasAeliminar.add(linea);
-					}
-					it=lineasAeliminar.iterator();
-					while(it.hasNext()){
-						eliminarLineaAutobus(it.next());
-					}
+				if (n==0){
+					//Eliminar las lineas de bus que continen al tramo
+					eliminarLineasAutobus(tramo);
 				}
-				else {
+				else 
 					//El usuario aborta la operacion
 					return false;
+			}
+			if(esDeVia(tramo)){
+				//Eliminar la via que contiene al tramo
+				int n=JOptionPane.showConfirmDialog(null, 
+		                "Esta a punto de eliminar un tramo que pertenece a una via. " +
+		                "Para ello debe eliminarla tambien. ¿Desea seguir con la operacion " +
+		                "y eliminar la via?","Advertencia",	JOptionPane.OK_CANCEL_OPTION);
+				if(n==0){
+					//Eliminar las vias que contienen al tramo
+					cambios_en_mapa=true;
+					return eliminarVias(tramo);
 				}
+				else
+					//el usuario aborta la operacion
+					return false;				
 			}
 			Tramos.remove(tramo);
 			tramo.getNodoFinal().quitarTramo(tramo);
@@ -396,8 +400,8 @@ public class Mapa {
 	 * nodos creados con ella. (la operación de isnertar y eliminar una vía es
 	 * atómica))
 	 * 
-	 * @param tramo
-	 *            Tramo que se desea quitar de la lista
+	 * @param via
+	 *            Via que se desea quitar de la lista
 	 * @return Booelano que inidca si se pudo elimnar el tramo
 	 */
 	public boolean eliminar(Via via) {
@@ -407,6 +411,7 @@ public class Mapa {
 			// concreta
 			// Ese borrar segmentos ya borrará los nodos correspondientes
 			// (recursivo)
+			Vias.remove(via);
 			Iterator<Tramo> tram = via.getTramos().iterator();
 			while (tram.hasNext()) {
 				Tramo aux = tram.next();
@@ -414,7 +419,6 @@ public class Mapa {
 				eliminar(aux.getNodoInicial());
 				eliminar(aux.getNodoFinal());
 			}
-			Vias.remove(via);
 			cambios_en_mapa=true;
 			return true;
 		}
@@ -444,7 +448,52 @@ public class Mapa {
 		Señales.remove(señal);
 		cambios_en_mapa=true;
 	}
+	
+	/**
+	 * Método que elimina todas las lineas de autobus que contengan al tramo pasado 
+	 * como parametro
+	 * 
+	 * @param tramo
+	 * 				tramo que pertenece a la/s linea/s de autobus que deben ser eliminadas
+	 */
+	public void eliminarLineasAutobus(Tramo tramo){
+		Iterator<LineaBus> it =this.LineasAutobuses.iterator();
+		ArrayList<LineaBus> lineasAeliminar = new ArrayList<LineaBus>();
+		while(it.hasNext()){
+			LineaBus linea =it.next();
+			if(linea.getTramos().contains(tramo))
+				lineasAeliminar.add(linea);
+		}
+		it=lineasAeliminar.iterator();
+		while(it.hasNext()){
+			eliminarLineaAutobus(it.next());
+		}
+	}
 
+	/**
+	 * Método que elimina todas las vias que contengan al tramo pasado 
+	 * como parametro
+	 * 
+	 * @param tramo
+	 * 				tramo que pertenece a la/s via/s que deben ser eliminadas
+	 */
+	public boolean eliminarVias(Tramo tramo){
+		boolean baux = true;
+		Iterator<Via> it =Vias.iterator();
+		ArrayList<Via> viasAeliminar = new ArrayList<Via>();
+		while(it.hasNext()){
+			Via via =it.next();
+			if(via.getTramos().contains(tramo))
+				viasAeliminar.add(via);
+		}
+		it=viasAeliminar.iterator();
+		while(it.hasNext()){
+			baux &= eliminar(it.next()); 
+		}
+		return baux;
+	}
+
+	
 	/**
 	 * En función de un rectangulo pasado como parámetro, modifica la seleccion
 	 * con todos los elementos que estén contenido en dicho rectángulo.
@@ -776,6 +825,14 @@ public class Mapa {
 		Iterator<LineaBus> LineasBus = LineasAutobuses.iterator();
 		while (LineasBus.hasNext()){
 			if (LineasBus.next().getTramos().contains(tramo))return true;
+		}
+		return false;
+	}
+	
+	public boolean esDeVia(Tramo tramo){
+		Iterator<Via> vias = Vias.iterator();
+		while (vias.hasNext()){
+			if(vias.next().getTramos().contains(tramo)) return true;
 		}
 		return false;
 	}
