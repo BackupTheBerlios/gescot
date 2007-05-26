@@ -26,18 +26,28 @@ public class BotonDeConexion extends JButton {
 	public BotonDeConexion (int tramoOrigen, int tramoDestino, int numIntervalo, Nodo nodo){
 		super();
 		this.setSize(new Dimension(10,10));
-		estado = 0;
+		
 		
 		if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().getMatrizDePaso()[tramoOrigen][tramoDestino] == 0){
 			setBackground(Color.GREEN);
+			estado = 1;
 		} else {
 			setBackground(Color.RED);
+			estado = 0;
 		}
 		
 		this.tramoOrigen = tramoOrigen;
 		this.tramoDestino = tramoDestino;
 	}
 
+	public void cambiaEstado(){
+		if (estado == 0){
+			estado = 1;
+		} else {
+			estado = 0;
+		}
+	}
+	
 	public int getTramoDestino() {
 		return tramoDestino;
 	}
@@ -52,5 +62,13 @@ public class BotonDeConexion extends JButton {
 
 	public void setTramoOrigen(int tramoOrigen) {
 		this.tramoOrigen = tramoOrigen;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 }
