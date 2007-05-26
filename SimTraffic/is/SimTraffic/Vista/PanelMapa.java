@@ -595,9 +595,9 @@ public class PanelMapa extends JPanel
 		return posEy;
 	}
 	
-	public void crearFlecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino) 
+	public void crearFlecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino, int tipo) 
 	{
-		this.flecha = new Flecha(nodo, tramoOrigen, tramoDestino);
+		this.flecha = new Flecha(nodo, tramoOrigen, tramoDestino, tipo);
 		this.repaint();
 	}
 	
