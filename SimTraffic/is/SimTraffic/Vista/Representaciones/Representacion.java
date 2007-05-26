@@ -503,7 +503,10 @@ abstract public class Representacion {
 			g.setStroke(new BasicStroke(7));
 			try 
 			{
-				Color colorTransparente = new Color(0,0,(float)1.0,(float)0.75);
+				Color colorTransparente = new Color((float)1.0,0,0,(float)0.75);
+				if (flecha.getTipo() == 1){
+					colorTransparente = new Color(0,(float)1.0,0,(float)0.75);
+				}
 				g.setColor(colorTransparente);
 				Polygon p = generarAreaTramo(origen);
 				g.fillPolygon(p);

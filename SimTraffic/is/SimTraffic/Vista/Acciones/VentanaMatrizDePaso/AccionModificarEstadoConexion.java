@@ -1,7 +1,9 @@
 package is.SimTraffic.Vista.Acciones.VentanaMatrizDePaso;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Señales.Semaforo;
+import is.SimTraffic.Vista.PanelNodo;
 import is.SimTraffic.Vista.VentanaMatrizPaso.BotonDeConexion;
 import is.SimTraffic.Vista.VentanaMatrizPaso.VentanaMatrizDePaso;
 
@@ -25,18 +27,23 @@ public class AccionModificarEstadoConexion implements ActionListener {
 		int tramoDestino = botonFuente.getTramoDestino();
 		int numIntervalo = ((VentanaMatrizDePaso)ventanaPadre).getNumIntervalo();
 		
+		botonFuente.cambiaEstado();
+		
 		Nodo nodo = ((VentanaMatrizDePaso)ventanaPadre).getNodo();
 		((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().modificarPaso(tramoOrigen,tramoDestino);
 		
 		
-		//Por último, pintamos el botón del color correspondiente.
+		//Pintamos el botón del color correspondiente.
 		if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().sePuedePasar(tramoOrigen,tramoDestino) == 0){
 			botonFuente.setBackground(Color.GREEN);
 		} else if (((Semaforo)nodo.getSeñal()).getListaIntervalos().get(numIntervalo).getMatrizDePaso().sePuedePasar(tramoOrigen,tramoDestino) == 1){
 			botonFuente.setBackground(Color.RED);
 		}
-	}
-	
-	
-
+		
+		//Pintamos la flecha para que cambie de color
+		int estado = ((BotonDeConexion)(arg0.getSource())).getEstado();
+		((PanelNodo)((VentanaMatrizDePaso)ventanaPadre).getVentanaPadre()).getMapa().crearFlecha(nodo, nodo.getTramos().get(tramoOrigen), nodo.getTramos().get(tramoDestino), estado);		
+		((VentanaMatrizDePaso)ventanaPadre).informa(Messages.getString("EscuchaBotonInterconexion.0")+tramoOrigen+Messages.getString("EscuchaBotonInterconexion.1")+tramoDestino); //$NON-NLS-1$ //$NON-NLS-2$
+		((VentanaMatrizDePaso)ventanaPadre).validate();
+	}	
 }
