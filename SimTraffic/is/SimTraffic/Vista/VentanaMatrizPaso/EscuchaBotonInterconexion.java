@@ -36,13 +36,14 @@ public class EscuchaBotonInterconexion implements MouseListener {
 		int tramoDestino = ((BotonDeConexion)arg0.getSource()).getTramoDestino();
 		Nodo nodo = ((PanelNodo)ventanaPadre.getVentanaPadre()).getNodo();
 		
+		int estado = ((BotonDeConexion)(arg0.getSource())).getEstado();
 		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir(nodo.getTramos().get(tramoOrigen));
 		//((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().sugerir2(nodo.getTramos().get(tramoDestino));
 		
 		// Aquí se podría dibujar una flecha para entender mejor la dirección del semáforo.
 		//Habría que crear algún método en el panel mapa y en la representación para crearla.
 		//Ahi va la flecha...
-		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().crearFlecha(nodo, nodo.getTramos().get(tramoOrigen), nodo.getTramos().get(tramoDestino));
+		((PanelNodo)ventanaPadre.getVentanaPadre()).getMapa().crearFlecha(nodo, nodo.getTramos().get(tramoOrigen), nodo.getTramos().get(tramoDestino), estado);
 		
 		ventanaPadre.informa(Messages.getString("EscuchaBotonInterconexion.0")+tramoOrigen+Messages.getString("EscuchaBotonInterconexion.1")+tramoDestino); //$NON-NLS-1$ //$NON-NLS-2$
 		ventanaPadre.validate();
