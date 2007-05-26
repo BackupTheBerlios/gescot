@@ -9,12 +9,15 @@ public class Flecha
 	private Nodo nodo;
 	private Tramo tramoOrigen;
 	private Tramo tramoDestino;
+	//Indica si es de paso prohibido(0) o permitido(1).
+	private int tipo;
 
-	public Flecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino) 
+	public Flecha(Nodo nodo, Tramo tramoOrigen, Tramo tramoDestino, int tipo) 
 	{
 		this.nodo = nodo;
 		this.tramoOrigen = tramoOrigen;
 		this.tramoDestino = tramoDestino;
+		this.tipo = tipo;
 	}
 
 	public Nodo getNodo() {
@@ -39,6 +42,14 @@ public class Flecha
 
 	public void setTramoOrigen(Tramo tramoOrigen) {
 		this.tramoOrigen = tramoOrigen;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 
 }
