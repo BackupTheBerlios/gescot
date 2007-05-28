@@ -39,7 +39,7 @@ public class AccionIdioma implements ActionListener {
 			if (((String) selectedValue).compareTo("Español") == 0) {
 				bw.write("Español");
 			}
-			else if (((String) selectedValue).compareTo("Inglés") == 0) {
+			else if (((String) selectedValue).compareTo("English") == 0) {
 				bw.write("English");
 			}
 			else if (((String) selectedValue).compareTo("Deutsch") == 0) {
