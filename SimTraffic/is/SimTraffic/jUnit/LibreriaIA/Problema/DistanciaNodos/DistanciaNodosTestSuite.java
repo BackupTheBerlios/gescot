@@ -23,7 +23,7 @@ public class DistanciaNodosTestSuite {
 		
 	    //Añadimos las clases del paquete
 		suite.addTestSuite(EstadoDistanciaNodosTest.class);
-		//suite.addTestSuite(ExploraNodoTest.class);
+		suite.addTestSuite(ExplorarNodoTest.class);
 		suite.addTestSuite(HeuristicaDistanciaLineaRectaTest.class);
 		//suite.addTestSuite(PrincipalDistanciaNodosTest.class);
 		return suite;
