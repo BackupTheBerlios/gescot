@@ -34,12 +34,60 @@ public class PrintUtilities implements Printable {
     } else {
       Graphics2D g2d = (Graphics2D)g;
       g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+      double pageHeight = pageFormat.getImageableHeight();
+	  double pageWidth = pageFormat.getImageableWidth();
+	  double mapHeight = componentToBePrinted.getHeight();
+	  double mapWidth = componentToBePrinted.getWidth();
+      double scaleX =pageWidth / mapWidth;
+	  double scaleY = pageHeight / mapHeight;
+	  g2d.scale(scaleX,scaleY);	
+      pageFormat.setOrientation(PageFormat.LANDSCAPE);
       disableDoubleBuffering(componentToBePrinted);
       componentToBePrinted.paint(g2d);
       enableDoubleBuffering(componentToBePrinted);
       return(PAGE_EXISTS);
     }
   }
+    public void drawMapBean(
+    		Graphics g, PageFormat pageFormat, double x, double y,
+    		double width, double height, boolean proportional)
+    	{
+    		Graphics2D g2d = (Graphics2D)g;
+    		
+    		double pageHeight = pageFormat.getImageableHeight();
+    		double pageWidth = pageFormat.getImageableWidth();
+    		
+    		double mapHeight = componentToBePrinted.getHeight();
+    		double mapWidth = componentToBePrinted.getWidth();
+    		
+    		//set the (X,Y) position
+    		g2d.translate(x*pageWidth,y*pageHeight);
+    		
+    		//determine the scale
+    		double scaleX = width * pageWidth / mapWidth;
+    		double scaleY = height * pageHeight / mapHeight;
+    		
+    		if(proportional)
+    		{
+    			//maintain the aspect ratio
+    			double scale = scaleX > scaleY ? scaleY : scaleX;
+    			
+    			//transform the graphics object for drawing
+    			g2d.scale(scale, scale);
+    			
+    		} else {
+    			g2d.scale(scaleX, scaleY);
+    		}
+    		
+    		// Do the work now ...
+    		disableDoubleBuffering(componentToBePrinted);
+    		componentToBePrinted.paint(g2d);
+    		enableDoubleBuffering(componentToBePrinted);
+    		
+    		//revert the transforms
+    		g2d.scale(1/scaleX, 1/scaleY);
+    		g2d.translate(-x*pageWidth,-y*pageHeight);
+    	} 
 
   public static void disableDoubleBuffering(Component c) {
     RepaintManager currentManager = RepaintManager.currentManager(c);
