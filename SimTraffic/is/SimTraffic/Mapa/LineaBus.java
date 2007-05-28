@@ -79,8 +79,10 @@ public class LineaBus extends Via{
 			Tramo tramo_aux = tram.next();
 			s=s.concat(Messages.getString("LineaBus.2")+tramo_aux.getID()+Messages.getString("LineaBus.3")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (this.getTipo()!=null) s=s.concat(Messages.getString("LineaBus.4")+this.getTipo().getTipo()+Messages.getString("LineaBus.5")+this.getTipo().getValorTipo()+Messages.getString("LineaBus.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		if (this.getNombre()!=null) s=s.concat(Messages.getString("LineaBus.7")+this.getNombre()+Messages.getString("LineaBus.8")); //$NON-NLS-1$ //$NON-NLS-2$
+		if (this.getTipo()!=null) 
+			s=s.concat(Messages.getString("LineaBus.4")+this.getTipo().getTipo()+Messages.getString("LineaBus.5")+this.getTipo().getValorTipo()+Messages.getString("LineaBus.6")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (this.getNombre()!=null) 
+			s=s.concat(Messages.getString("LineaBus.7")+this.getNombre()+Messages.getString("LineaBus.8")); //$NON-NLS-1$ //$NON-NLS-2$
 		s=s.concat(Messages.getString("LineaBus.9")); //$NON-NLS-1$
 		Iterator<Nodo> nodos = this.getParadas().iterator();
 		while (nodos.hasNext()){

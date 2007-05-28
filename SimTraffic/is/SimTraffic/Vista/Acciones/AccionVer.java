@@ -5,6 +5,7 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.BarrasHerramientas.Barra;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
