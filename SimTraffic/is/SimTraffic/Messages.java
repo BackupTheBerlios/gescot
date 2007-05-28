@@ -22,18 +22,19 @@ public class Messages {
 			FileReader fr = new FileReader(fichero);
 			BufferedReader br = new BufferedReader(fr);
 			String valorIdioma = br.readLine();
-			if (valorIdioma.compareTo("Inglés") == 0) {
+			if (valorIdioma.compareTo("English") == 0) {
 				BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
 						.getBundle(BUNDLE_NAME);
 			}
-			else if (valorIdioma.compareTo("Alemán") == 0) {
+			else if (valorIdioma.compareTo("Deutsch") == 0) {
 				BUNDLE_NAME = "is.SimTraffic.messagesger"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
 						.getBundle(BUNDLE_NAME);
 			}
+
 			else { //default
 				BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 
@@ -46,18 +47,19 @@ public class Messages {
 				FileReader fr = new FileReader(fichero);
 				BufferedReader br = new BufferedReader(fr);
 				String valorIdioma = br.readLine();
-				if (valorIdioma.compareTo("Inglés") == 0) {
+				if (valorIdioma.compareTo("English") == 0) {
 					BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 
 					RESOURCE_BUNDLE = ResourceBundle
 							.getBundle(BUNDLE_NAME);
 				}
-				else if (valorIdioma.compareTo("Alemán") == 0) {
+				else if (valorIdioma.compareTo("Deutsch") == 0) {
 					BUNDLE_NAME = "is.SimTraffic.messagesger"; //$NON-NLS-1$
 
 					RESOURCE_BUNDLE = ResourceBundle
 							.getBundle(BUNDLE_NAME);
 				}
+				
 				else  { //default
 					BUNDLE_NAME = "is.SimTraffic.messages"; //$NON-NLS-1$
 

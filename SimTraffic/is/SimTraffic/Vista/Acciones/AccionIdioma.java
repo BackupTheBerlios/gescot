@@ -20,6 +20,7 @@ public class AccionIdioma implements ActionListener {
 		ventana=V;
 	}
 	public void actionPerformed(ActionEvent arg0) {
+		
 		String aleman = "Alemán";
 		Object[] possibleValues = { "Español", "Inglés", aleman };
 		Object selectedValue = JOptionPane.showInputDialog(null, 
@@ -39,8 +40,12 @@ public class AccionIdioma implements ActionListener {
 				bw.write("Español");
 			}
 			else if (((String) selectedValue).compareTo("Inglés") == 0) {
-				bw.write("Inglés");
+				bw.write("English");
 			}
+			else if (((String) selectedValue).compareTo("Deutsch") == 0) {
+				bw.write("Deutsch");
+			}
+
 			else if (((String) selectedValue).compareTo(aleman) == 0) {
 				bw.write(aleman);
 			}
@@ -66,12 +71,15 @@ public class AccionIdioma implements ActionListener {
 				if (((String) selectedValue).compareTo("Español") == 0) {
 					bw.write("Español");
 				}
-				else if (((String) selectedValue).compareTo("Inglés") == 0) {
-					bw.write("Inglés");
+				else if (((String) selectedValue).compareTo("English") == 0) {
+					bw.write("English");
 				}
+				else if (((String) selectedValue).compareTo("Deutsch") == 0) {
+					bw.write("Deutsch");
+				}				
 				else if (((String) selectedValue).compareTo(aleman) == 0) {
 					bw.write(aleman);
-				}				
+			
 				bw.close();
 				fw.close();
 				JOptionPane.showMessageDialog(null, "Para que los cambios hagan efecto, debe salir del programa", "Debe reinciar el programa", JOptionPane.INFORMATION_MESSAGE); 
