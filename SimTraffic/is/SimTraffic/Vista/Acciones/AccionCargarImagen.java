@@ -54,6 +54,7 @@ public class AccionCargarImagen implements ActionListener {
 						"Lon: " + Representacion.pasarAGrados(lon));
            		  }
 				 }
+				 return;
 				}
 				
 			
