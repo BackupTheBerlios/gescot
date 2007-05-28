@@ -70,6 +70,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -278,7 +279,7 @@ public class Ventana extends JFrame {
 		// escuchaSeleccionTramos = new MLSeleccionarTramos(modelo, controlador, panel_mapa);
 
 		// escuchaSeleccionNodosYTramos = new MLSeleccionarElementos(modelo, controlador, panel_mapa);
-		 
+
 
 		escuchaSeleccionTramoBDerecho = new MLSeleccionaTramoBDerecho(modelo,
 				controlador, panel_mapa);
@@ -324,7 +325,7 @@ public class Ventana extends JFrame {
 		añadirMenuEmergenteMapa();
 		añadirMenuEmergenteTerminar();		
 	}
-	
+
 	/**
 	 * Crea el popUp emergente que aparecerá al pulsar el botón derecho
 	 */
@@ -630,46 +631,49 @@ public class Ventana extends JFrame {
 			}
 		});
 
-		JMenu watermark = new JMenu();
-		watermark.setText("Marca de agua");
-		aparienciaMenu.add(watermark);
+		if (UIManager.getLookAndFeel().getName().equals("Substance"))
+		{
+			JMenu watermark = new JMenu();
+			watermark.setText("Marca de agua");
+			aparienciaMenu.add(watermark);
 
-		crearMenuItemWatermark("Binario", watermark, new SubstanceBinaryWatermark());
-		crearMenuItemWatermark("Burbujas", watermark, new SubstanceBubblesWatermark());
-		crearMenuItemWatermark("Placa de cobre", watermark, new SubstanceCopperplateEngravingWatermark());
-		crearMenuItemWatermark("Crosshatch", watermark, new SubstanceCrosshatchWatermark());
-		crearMenuItemWatermark("Fabric", watermark, new SubstanceFabricWatermark());
-		crearMenuItemWatermark("Madera", watermark, new SubstanceWoodWatermark());
-		crearMenuItemWatermark("Ruido genérico", watermark, new SubstanceGenericNoiseWatermark());
-		crearMenuItemWatermark("Katakana", watermark, new SubstanceKatakanaWatermark());
-		crearMenuItemWatermark("Campo magnético", watermark, new SubstanceMagneticFieldWatermark());
-		crearMenuItemWatermark("Muro de metal ", watermark, new SubstanceMetalWallWatermark());
-		crearMenuItemWatermark("Barras", watermark, new SubstanceStripeWatermark());
-		crearMenuItemWatermark("Laberinto", watermark, new SubstanceMazeWatermark());
+			crearMenuItemWatermark("Binario", watermark, new SubstanceBinaryWatermark());
+			crearMenuItemWatermark("Burbujas", watermark, new SubstanceBubblesWatermark());
+			crearMenuItemWatermark("Placa de cobre", watermark, new SubstanceCopperplateEngravingWatermark());
+			crearMenuItemWatermark("Crosshatch", watermark, new SubstanceCrosshatchWatermark());
+			crearMenuItemWatermark("Fabric", watermark, new SubstanceFabricWatermark());
+			crearMenuItemWatermark("Madera", watermark, new SubstanceWoodWatermark());
+			crearMenuItemWatermark("Ruido genérico", watermark, new SubstanceGenericNoiseWatermark());
+			crearMenuItemWatermark("Katakana", watermark, new SubstanceKatakanaWatermark());
+			crearMenuItemWatermark("Campo magnético", watermark, new SubstanceMagneticFieldWatermark());
+			crearMenuItemWatermark("Muro de metal ", watermark, new SubstanceMetalWallWatermark());
+			crearMenuItemWatermark("Barras", watermark, new SubstanceStripeWatermark());
+			crearMenuItemWatermark("Laberinto", watermark, new SubstanceMazeWatermark());
 
-		JMenu theme = new JMenu();
-		theme.setText("Tema");
-		aparienciaMenu.add(theme);
+			JMenu theme = new JMenu();
+			theme.setText("Tema");
+			aparienciaMenu.add(theme);
 
-		crearMenuItemTheme("Otoñal", theme, new AutumnSkin());
-		crearMenuItemTheme("Acero azul", theme, new BusinessBlueSteelSkin());
-		crearMenuItemTheme("Crema", theme, new CremeSkin());
-		crearMenuItemTheme("Esmeralda", theme, new EmeraldDuskSkin());
-		crearMenuItemTheme("Campo de avena", theme, new FieldOfWheatSkin());
-		crearMenuItemTheme("Magma", theme, new MagmaSkin());
-		crearMenuItemTheme("Mango", theme, new MangoSkin());
-		crearMenuItemTheme("Raven", theme, new RavenSkin());
-		crearMenuItemTheme("Luces de calle", theme, new StreetlightsSkin());
-		crearMenuItemTheme("Challenger Deep", theme, new ChallengerDeepSkin());
-		crearMenuItemTheme("Sahara", theme, new SaharaSkin());
-		crearMenuItemTheme("Nemo", theme, new FindingNemoSkin());
-		crearMenuItemTheme("Office Silver 2007", theme, new OfficeSilver2007Skin());
+			crearMenuItemTheme("Otoñal", theme, new AutumnSkin());
+			crearMenuItemTheme("Acero azul", theme, new BusinessBlueSteelSkin());
+			crearMenuItemTheme("Crema", theme, new CremeSkin());
+			crearMenuItemTheme("Esmeralda", theme, new EmeraldDuskSkin());
+			crearMenuItemTheme("Campo de avena", theme, new FieldOfWheatSkin());
+			crearMenuItemTheme("Magma", theme, new MagmaSkin());
+			crearMenuItemTheme("Mango", theme, new MangoSkin());
+			crearMenuItemTheme("Raven", theme, new RavenSkin());
+			crearMenuItemTheme("Luces de calle", theme, new StreetlightsSkin());
+			crearMenuItemTheme("Challenger Deep", theme, new ChallengerDeepSkin());
+			crearMenuItemTheme("Sahara", theme, new SaharaSkin());
+			crearMenuItemTheme("Nemo", theme, new FindingNemoSkin());
+			crearMenuItemTheme("Office Silver 2007", theme, new OfficeSilver2007Skin());
 
-		JMenu button = new JMenu();
-		button.setText("Tipo de botones");
-		aparienciaMenu.add(button);
-		crearMenuItemButtonShape("Clasico", button, new ClassicButtonShaper());
-		crearMenuItemButtonShape("Redondeado", button, new StandardButtonShaper());
+			JMenu button = new JMenu();
+			button.setText("Tipo de botones");
+			aparienciaMenu.add(button);
+			crearMenuItemButtonShape("Clasico", button, new ClassicButtonShaper());
+			crearMenuItemButtonShape("Redondeado", button, new StandardButtonShaper());
+		}
 	}
 
 
@@ -682,6 +686,17 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				SubstanceLookAndFeel.setCurrentWatermark(watermark);
+				try 
+				{
+					FileWriter fw = new FileWriter(new File(".\\watermark.conf"));
+					BufferedWriter bw = new BufferedWriter(fw);
+					bw.write(("" + watermark.getClass()).substring(6));
+					bw.close();
+				}
+				catch (IOException e1) 
+				{
+					e1.printStackTrace();
+				}
 				repaint();
 			}
 		});
@@ -696,6 +711,17 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				SubstanceLookAndFeel.setCurrentButtonShaper(button);
+				try 
+				{
+					FileWriter fw = new FileWriter(new File(".\\button.conf"));
+					BufferedWriter bw = new BufferedWriter(fw);
+					bw.write(("" + button.getClass()).substring(6));
+					bw.close();
+				}
+				catch (IOException e1) 
+				{
+					e1.printStackTrace();
+				}
 				repaint();
 			}
 		});
@@ -712,6 +738,17 @@ public class Ventana extends JFrame {
 				SubstanceWatermark water = SubstanceLookAndFeel.getCurrentWatermark();
 				SubstanceLookAndFeel.setSkin(theme);
 				SubstanceLookAndFeel.setCurrentWatermark(water);
+				try 
+				{
+					FileWriter fw = new FileWriter(new File(".\\theme.conf"));
+					BufferedWriter bw = new BufferedWriter(fw);
+					bw.write(("" + theme.getClass()).substring(6));
+					bw.close();
+				}
+				catch (IOException e1) 
+				{
+					e1.printStackTrace();
+				}
 				repaint();
 			}
 		});

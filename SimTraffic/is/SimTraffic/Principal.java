@@ -18,7 +18,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.watermark.SubstanceWoodWatermark;
 
 /**
  * Clase principal del programa.
@@ -66,7 +65,9 @@ public class Principal {
 			{	
 				new SubstanceLookAndFeel();
 				SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceCremeTheme()); //Quedan Bien Oliva, Sepia y Crema
-				SubstanceLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
+				cargarTema();
+				cargarMarcadeAgua();
+				cargarTipoBotones();
 				UIManager.setLookAndFeel(new org.jvnet.substance.SubstanceLookAndFeel());
 			}
 		}
@@ -80,6 +81,47 @@ public class Principal {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	private static void cargarTipoBotones() 
+	{
+		try 
+		{
+			FileReader fr = new FileReader(new File(".\\button.conf"));
+			BufferedReader buf = new BufferedReader(fr);
+			String nombre = buf.readLine();
+			SubstanceLookAndFeel.setCurrentButtonShaper(nombre);
+		} 
+		catch (Exception e) 
+		{}
+	}
+
+	private static void cargarTema() 
+	{
+		try 
+		{
+			FileReader fr = new FileReader(new File(".\\theme.conf"));
+			BufferedReader buf = new BufferedReader(fr);
+			String nombre = buf.readLine();
+			SubstanceLookAndFeel.setSkin(nombre);
+		} 
+		catch (Exception e) 
+		{}
+	}
+
+	private static void cargarMarcadeAgua() 
+	{
+		try 
+		{
+			FileReader fr = new FileReader(new File(".\\watermark.conf"));
+			BufferedReader buf = new BufferedReader(fr);
+			String nombre = buf.readLine();
+			SubstanceLookAndFeel.setCurrentWatermark(nombre);
+		} 
+		catch (Exception e) 
+		{
+			SubstanceLookAndFeel.setCurrentWatermark(new org.jvnet.substance.watermark.SubstanceWoodWatermark());
 		}
 	}
 
