@@ -2,6 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Representaciones.Representacion;
 
@@ -39,13 +40,23 @@ public class AccionCargarImagen implements ActionListener {
 				"Confirmación",
 				JOptionPane.YES_NO_OPTION)){
 			try{
-				double lat = Double.parseDouble(JOptionPane.showInputDialog("Introduzca latitud (número entero)"));
-				double lon = Double.parseDouble(JOptionPane.showInputDialog("Introduzca longitud (número entero)"));
-				panel.centrarEnPosicion(lat, lon);
-				JOptionPane.showMessageDialog(null,"Posición central:\n"+
+				ChequeoInputVentanas chequeo=new ChequeoInputVentanas();
+				String aux;
+				aux=JOptionPane.showInputDialog("Introduzca latitud (número entero)");
+				 if(aux!=null&&chequeo.esLatitud(aux)){
+				  double lat = Double.parseDouble(aux);
+           		  aux=JOptionPane.showInputDialog("Introduzca longitud (número entero)");		
+           		  if(aux!=null&&chequeo.esLongitud(aux)){
+           		   double lon = Double.parseDouble(aux);
+           		   panel.centrarEnPosicion(lat, lon);
+           		   JOptionPane.showMessageDialog(null,"Posición central:\n"+
 						"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
 						"Lon: " + Representacion.pasarAGrados(lon));
+           		  }
+				 }
 				}
+				
+			
 				catch( java.lang.NumberFormatException excepcion){
 					JOptionPane.showMessageDialog(null,"Valor incorrecto");
 				}
