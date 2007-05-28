@@ -38,8 +38,8 @@ public class PrintUtilities implements Printable {
 	  double pageWidth = pageFormat.getImageableWidth();
 	  double mapHeight = componentToBePrinted.getHeight();
 	  double mapWidth = componentToBePrinted.getWidth();
-      double scaleX =(pageWidth-20) / mapWidth;
-	  double scaleY = (pageHeight-20) / mapHeight;
+      double scaleX =pageWidth / mapWidth;
+	  double scaleY = pageHeight / mapHeight;
 	  g2d.scale(scaleX,scaleY);
       pageFormat.setOrientation(PageFormat.LANDSCAPE);
       disableDoubleBuffering(componentToBePrinted);
