@@ -6,6 +6,7 @@ import is.SimTraffic.Herramientas.HComenzar;
 import is.SimTraffic.Herramientas.HEliminarNodo;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
+import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.Ventana;
 import junit.framework.TestCase;
 
@@ -34,8 +35,10 @@ public class HComenzarTest extends TestCase{
 		herramienta= new HComenzar(ventana, 0, 1, 3);
 		Nodo nodo = new Nodo(new Posicion(100,100));
 		Nodo nodo2 = new Nodo(new Posicion(125,150));
+		Tramo tramo = new Tramo(nodo,nodo2);
 		modelo.getMapa().insertar(nodo);
 		modelo.getMapa().insertar(nodo2);
+		modelo.getMapa().insertar(tramo);
 	}
 	
 	
