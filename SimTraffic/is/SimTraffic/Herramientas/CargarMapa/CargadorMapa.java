@@ -39,26 +39,22 @@ public class CargadorMapa implements DocHandler {
 	}
 
 	public void endDocument() throws Exception {
-		// TODO Auto-generated method stub
 		System.out.println(Messages.getString("CargadorMapa.0")); //$NON-NLS-1$
 
 	}
 
 	public void endElement(String elem) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println(Messages.getString("CargadorMapa.1") + elem); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.1") + elem); //$NON-NLS-1$
 
 	}
 
 	public void startDocument() throws Exception {
-		// TODO Auto-generated method stub
 		System.out.println(Messages.getString("CargadorMapa.2")); //$NON-NLS-1$
 
 	}
 
 	public void startElement(String elem, Hashtable h) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println(Messages.getString("CargadorMapa.3") + elem); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.3") + elem); //$NON-NLS-1$
 		int id = 0;		
 		double lat = 0;
 		double lon = 0;
@@ -76,7 +72,7 @@ public class CargadorMapa implements DocHandler {
 
 			String val = new String((String) h.get(key));
 
-			System.out.println(Messages.getString("CargadorMapa.6") + key + Messages.getString("CargadorMapa.7") + val); //$NON-NLS-1$ //$NON-NLS-2$
+			//System.out.println(Messages.getString("CargadorMapa.6") + key + Messages.getString("CargadorMapa.7") + val); //$NON-NLS-1$ //$NON-NLS-2$
 
 			if(key.compareTo(Messages.getString("CargadorMapa.8"))==0){ //$NON-NLS-1$
 				v=new String(val);
@@ -116,10 +112,10 @@ public class CargadorMapa implements DocHandler {
 		}
 
 		if (elem.compareTo(Messages.getString("CargadorMapa.17")) == 0) { //$NON-NLS-1$
-			System.out.println(Messages.getString("CargadorMapa.18")); //$NON-NLS-1$
+			//System.out.println(Messages.getString("CargadorMapa.18")); //$NON-NLS-1$
 			Posicion pos = new Posicion(lat,lon);
-			//Luego poner nombre y tipo en vez de null,null.
 			
+			//Luego se pondrá nombre y tipo en vez de null,null.		
 			ultimoElemReconocido=elem;
 			idUltimoElemReconocido=id;
 			nodos.add(new Nodo(es,id,null,pos,null));
@@ -127,7 +123,7 @@ public class CargadorMapa implements DocHandler {
 		}
 		if (elem.compareTo(Messages.getString("CargadorMapa.19"))==0){ //$NON-NLS-1$
 			if (ultimoElemReconocido.compareTo(Messages.getString("CargadorMapa.20")) == 0){ //$NON-NLS-1$
-				System.out.println(Messages.getString("CargadorMapa.21")); //$NON-NLS-1$
+				//System.out.println(Messages.getString("CargadorMapa.21")); //$NON-NLS-1$
 				Nodo nodoAux = buscarNodoConId(idUltimoElemReconocido);
 				if (k.compareTo(Messages.getString("CargadorMapa.22"))==0 || k.compareTo(Messages.getString("CargadorMapa.23"))==0){ //$NON-NLS-1$ //$NON-NLS-2$
 					nodoAux.setNombre(v);
@@ -147,7 +143,7 @@ public class CargadorMapa implements DocHandler {
 					nodoAux.setTipo(identificarTipoElem(k,v));}
 			}
 			else if (ultimoElemReconocido.compareTo(Messages.getString("CargadorMapa.26")) == 0){ //$NON-NLS-1$
-				System.out.println(Messages.getString("CargadorMapa.27")); //$NON-NLS-1$
+				//System.out.println(Messages.getString("CargadorMapa.27")); //$NON-NLS-1$
 				Tramo tramoAux = buscarTramoConId(idUltimoElemReconocido);
 				if (k.compareTo(Messages.getString("CargadorMapa.28"))==0 || k.compareTo(Messages.getString("CargadorMapa.29"))==0){ //$NON-NLS-1$ //$NON-NLS-2$
 					tramoAux.setNombre(v);
@@ -160,7 +156,7 @@ public class CargadorMapa implements DocHandler {
 					tramoAux.setVelMax(new Float(v).floatValue());				
 			}
 			else if (ultimoElemReconocido.compareTo(Messages.getString("CargadorMapa.33")) == 0){ //$NON-NLS-1$
-				System.out.println(Messages.getString("CargadorMapa.34")); //$NON-NLS-1$
+				//System.out.println(Messages.getString("CargadorMapa.34")); //$NON-NLS-1$
 				Via viaAux = buscarViaConId(idUltimoElemReconocido);
 				if (k.compareTo(Messages.getString("CargadorMapa.35"))==0 || k.compareTo(Messages.getString("CargadorMapa.36"))==0){ //$NON-NLS-1$ //$NON-NLS-2$
 					viaAux.setNombre(v);
@@ -184,20 +180,9 @@ public class CargadorMapa implements DocHandler {
 				}
 				else if(k.compareTo(Messages.getString("CargadorMapa.41")) == 0){ //$NON-NLS-1$
 						  if(idUltimoElemReconocido > 0){
-							System.out.println(Messages.getString("CargadorMapa.42")); //$NON-NLS-1$
-							//Via viaAux = buscarViaConId(idUltimoElemReconocido);
-							/*Tramo tramoAux = buscarTramoConId(id);
-							//Probando
-							if (tramoAux!=null) {
-								//if (tramoAux.getVia()==null) {
-								//	tramoAux.setVia(viaAux);
-								//}
-								viaAux.addTramo(tramoAux);
-							}*/
+							//System.out.println(Messages.getString("CargadorMapa.42")); //$NON-NLS-1$
 						  }
-				}//else if (k.compareTo("parada") == 0){
-					  
-				//}
+				}
 				else {
 					if (k.equals(Messages.getString("CargadorMapa.43"))) { //$NON-NLS-1$
 						  viaAux.setTipo(new TipoViaHighway(v));
@@ -208,25 +193,12 @@ public class CargadorMapa implements DocHandler {
 							viaAux.setTipo(identificarTipoElem(k,v));
 						}
 					}
-					
-					//Probando
-					/*Iterator<Tramo> tram = viaAux.getTramos().iterator();
-					boolean encontrado = false;
-					while (tram.hasNext() && (!encontrado)) {
-						Tramo tramoaux=tram.next();
-						if (tramoaux.getVia()!=null) {
-							encontrado = true;
-						}
-						else {
-							tramoaux.setVia(viaAux);
-						}
-					}*/
 				}
 			}
 		
 		}
 		  if (elem.compareTo(Messages.getString("CargadorMapa.44")) == 0) { //$NON-NLS-1$
-			System.out.println(Messages.getString("CargadorMapa.45")); //$NON-NLS-1$
+			//System.out.println(Messages.getString("CargadorMapa.45")); //$NON-NLS-1$
 			Nodo nodoI=buscarNodoConId(indexFrom);
 			Nodo nodoF=buscarNodoConId(indexTo);
 			if (nodoI != nodoF) { 
@@ -240,32 +212,22 @@ public class CargadorMapa implements DocHandler {
 			else { //Si el inicial y el final son el mismo nodo se descarta el tramo.
 				System.out.println(Messages.getString("CargadorMapa.46")); //$NON-NLS-1$
 			}
-			/*tramos.add(new Tramo(nodos.get(indexFrom), nodos.get(indexTo),
-					nodos.get(indexFrom).distancia(nodos.get(indexTo)), 2, 2,
-					false));*/
 		}
 		  if (elem.compareTo(Messages.getString("CargadorMapa.47")) == 0 /*&& id>0*/){ //$NON-NLS-1$
-			  System.out.println(Messages.getString("CargadorMapa.48")); //$NON-NLS-1$
+			  //System.out.println(Messages.getString("CargadorMapa.48")); //$NON-NLS-1$
 			  Via nuevaVia = new Via();
 			  nuevaVia.setID(id);
 			  vias.add(nuevaVia);
 			  ultimoElemReconocido=elem;
 			  idUltimoElemReconocido=id;
 		  }
-		  /*if (elem.compareTo("way") == 0 && id<0){
-			  ultimoElemReconocido=elem;
-			  idUltimoElemReconocido=id;
-		  } */
 		  if(elem.compareTo(Messages.getString("CargadorMapa.49")) == 0){ //$NON-NLS-1$
 			  if(idUltimoElemReconocido > 0){
-				System.out.println(Messages.getString("CargadorMapa.50")); //$NON-NLS-1$
+				//System.out.println(Messages.getString("CargadorMapa.50")); //$NON-NLS-1$
 				Via viaAux = buscarViaConId(idUltimoElemReconocido);
 				Tramo tramoAux = buscarTramoConId(id);
 				//Probando
 				if (tramoAux!=null) {
-				//	if (tramoAux.getVia()==null) {
-				//		tramoAux.setVia(viaAux);
-				//	}
 					viaAux.addTramo(tramoAux);
 				}
 			  }
@@ -355,7 +317,7 @@ public class CargadorMapa implements DocHandler {
 		System.out.println(Messages.getString("CargadorMapa.58") + file); //$NON-NLS-1$
 
 		// This is all the code we need to parse
-		// a document with our DocHandler.
+		// a document with the DocHandler.
 		FileReader fr = new FileReader(file);
 		QDParser.parse(cargadormapa, fr);
 
@@ -374,7 +336,7 @@ public class CargadorMapa implements DocHandler {
 		
 
 		// This is all the code we need to parse
-		// a document with our DocHandler.
+		// a document with the DocHandler.
 		FileReader fr = new FileReader(file);
 		QDParser.parse(cargadormapa, fr);
 		
