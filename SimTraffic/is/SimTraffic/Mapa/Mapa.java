@@ -372,9 +372,9 @@ public class Mapa {
 			if(esDeVia(tramo)){
 				//Eliminar la via que contiene al tramo
 				int n=JOptionPane.showConfirmDialog(null, 
-		                "Esta a punto de eliminar un tramo que pertenece a una via. " +
-		                "Para ello debe eliminarla tambien. ¿Desea seguir con la operacion " +
-		                "y eliminar la via?","Advertencia",	JOptionPane.OK_CANCEL_OPTION);
+		                Messages.getString("Mapa.1") + //$NON-NLS-1$
+		                Messages.getString("Mapa.2") + //$NON-NLS-1$
+		                Messages.getString("Mapa.3"),Messages.getString("Mapa.4"),	JOptionPane.OK_CANCEL_OPTION); //$NON-NLS-1$ //$NON-NLS-2$
 				if(n==0){
 					//Eliminar las vias que contienen al tramo
 					cambios_en_mapa=true;
@@ -814,7 +814,7 @@ public class Mapa {
 		while(nodos.hasNext()) {
 			Nodo nodo = nodos.next();
 			if (nodo.getTipo() != null) {
-				if (nodo.getTipo().getValorTipo().compareToIgnoreCase(Messages.getString("Mapa.0")) == 0) //$NON-NLS-1$
+				if (nodo.getTipo().getValorTipo().compareToIgnoreCase("") == 0) //$NON-NLS-1$
 					return true;
 			}
 		}

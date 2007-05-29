@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 public class AccionVerTramos extends AccionVer {
 
 	public AccionVerTramos(IControlador controlador, IModelo modelo, JFrame ventana, PanelMapa panel_mapa, String direccionIcono, String tituloVer, String nombreElemento) {
-		super(controlador, modelo, ventana, panel_mapa, "añadir_tramo2.png", "Tramos existentes",  //$NON-NLS-2$
+		super(controlador, modelo, ventana, panel_mapa, "añadir_tramo2.png", "Tramos existentes",   //$NON-NLS-1$//$NON-NLS-2$
 				"Tramo"); //$NON-NLS-1$
 	}
 	

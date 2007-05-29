@@ -17,18 +17,18 @@ public class Messages {
 			.getBundle(BUNDLE_NAME);
 
 	public Messages() {
-		File fichero = new File(".\\SimTraffic.conf");
+		File fichero = new File(".\\SimTraffic.conf"); //$NON-NLS-1$
 		try {
 			FileReader fr = new FileReader(fichero);
 			BufferedReader br = new BufferedReader(fr);
 			String valorIdioma = br.readLine();
-			if (valorIdioma.compareTo("English") == 0) {
+			if (valorIdioma.compareTo(Messages.getString("Messages.1")) == 0) { //$NON-NLS-1$
 				BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
 						.getBundle(BUNDLE_NAME);
 			}
-			else if (valorIdioma.compareTo("Deutsch") == 0) {
+			else if (valorIdioma.compareTo(Messages.getString("Messages.2")) == 0) { //$NON-NLS-1$
 				BUNDLE_NAME = "is.SimTraffic.messagesger"; //$NON-NLS-1$
 
 				RESOURCE_BUNDLE = ResourceBundle
@@ -43,17 +43,17 @@ public class Messages {
 			}
 		} catch (FileNotFoundException e) {
 			try {
-				fichero = new File("c:\\hlocal\\SimTraffic.conf");
+				fichero = new File("c:\\hlocal\\SimTraffic.conf"); //$NON-NLS-1$
 				FileReader fr = new FileReader(fichero);
 				BufferedReader br = new BufferedReader(fr);
 				String valorIdioma = br.readLine();
-				if (valorIdioma.compareTo("English") == 0) {
+				if (valorIdioma.compareTo(Messages.getString("Messages.4")) == 0) { //$NON-NLS-1$
 					BUNDLE_NAME = "is.SimTraffic.messagesen"; //$NON-NLS-1$
 
 					RESOURCE_BUNDLE = ResourceBundle
 							.getBundle(BUNDLE_NAME);
 				}
-				else if (valorIdioma.compareTo("Deutsch") == 0) {
+				else if (valorIdioma.compareTo(Messages.getString("Messages.5")) == 0) { //$NON-NLS-1$
 					BUNDLE_NAME = "is.SimTraffic.messagesger"; //$NON-NLS-1$
 
 					RESOURCE_BUNDLE = ResourceBundle

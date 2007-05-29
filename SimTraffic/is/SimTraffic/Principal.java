@@ -58,10 +58,10 @@ public class Principal {
 	{
 		try 
 		{
-			FileReader fr = new FileReader(new File(".\\look.conf"));
+			FileReader fr = new FileReader(new File(".\\look.conf")); //$NON-NLS-1$
 			BufferedReader buf = new BufferedReader(fr);
 			String nombre = buf.readLine();
-			if (!nombre.equals("Substance"))
+			if (!nombre.equals("Substance")) //$NON-NLS-1$
 			{	
 				new SubstanceLookAndFeel();
 				SubstanceLookAndFeel.setCurrentTheme(new org.jvnet.substance.theme.SubstanceCremeTheme()); //Quedan Bien Oliva, Sepia y Crema
@@ -73,7 +73,7 @@ public class Principal {
 		}
 		catch (UnsupportedLookAndFeelException e) 
 		{
-			JOptionPane.showMessageDialog(null, "<html>Error al cargar la ventana.<br> El tema seleccionado noes soportado por esta plataforma.</html>", "Problemas al comenzar la aplicación", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "<html>Error al cargar la ventana.<br> El tema seleccionado noes soportado por esta plataforma.</html>", Messages.getString("Principal.3"), JOptionPane.WARNING_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		} 
 		catch (FileNotFoundException e) 
 		{ 
@@ -88,7 +88,7 @@ public class Principal {
 	{
 		try 
 		{
-			FileReader fr = new FileReader(new File(".\\button.conf"));
+			FileReader fr = new FileReader(new File(".\\button.conf")); //$NON-NLS-1$
 			BufferedReader buf = new BufferedReader(fr);
 			String nombre = buf.readLine();
 			SubstanceLookAndFeel.setCurrentButtonShaper(nombre);
@@ -101,7 +101,7 @@ public class Principal {
 	{
 		try 
 		{
-			FileReader fr = new FileReader(new File(".\\theme.conf"));
+			FileReader fr = new FileReader(new File(".\\theme.conf")); //$NON-NLS-1$
 			BufferedReader buf = new BufferedReader(fr);
 			String nombre = buf.readLine();
 			SubstanceLookAndFeel.setSkin(nombre);
@@ -114,7 +114,7 @@ public class Principal {
 	{
 		try 
 		{
-			FileReader fr = new FileReader(new File(".\\watermark.conf"));
+			FileReader fr = new FileReader(new File(".\\watermark.conf")); //$NON-NLS-1$
 			BufferedReader buf = new BufferedReader(fr);
 			String nombre = buf.readLine();
 			SubstanceLookAndFeel.setCurrentWatermark(nombre);

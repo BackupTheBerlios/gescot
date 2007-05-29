@@ -88,7 +88,7 @@ public class HPartirTramoTest extends TestCase {
 	public void testhacer()
 	{
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de hacer no se ha hecho correctamente");
+			fail(Messages.getString("HPartirTramoTest.0")); //$NON-NLS-1$
 		assertEquals(3,modelo.getMapa().getNodos().size());
 		assertEquals(2,modelo.getMapa().getTramos().size());
 	}
@@ -100,7 +100,7 @@ public class HPartirTramoTest extends TestCase {
 	{
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
-			fail(Messages.getString("HPartirTramoTest.1")); //$NON-NLS-1$
+			fail(""); //$NON-NLS-1$
 		assertEquals(2,modelo.getMapa().getNodos().size());
 		assertEquals(1,modelo.getMapa().getTramos().size());
 	}

@@ -61,22 +61,22 @@ public class PanelDescargar2 extends JFrame {
 		
 		this.cl = this.getClass().getClassLoader();
 
-		URL ur = cl.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1"));
+		URL ur = cl.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1")); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		jbLisboa = new JButton(new ImageIcon(cl
-					.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1"))));
+					.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.1")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbHamburgo = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.2"))));
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.2")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbMadrid = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.3")))); //$NON-NLS-1$
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.3")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbLondres = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.4")))); //$NON-NLS-1$
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.4")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbParis = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.5")))); //$NON-NLS-1$
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.5")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbBarcelona = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.6")))); //$NON-NLS-1$
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.6")))); //$NON-NLS-1$ //$NON-NLS-2$
 		jbCuenca = new JButton(new ImageIcon(cl
-				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.7")))); //$NON-NLS-1$
+				.getResource("is/SimTraffic/Vista/Imagenes/" + Messages.getString("PanelDescargar2.7")))); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		jbLisboa.setEnabled(false);
 		jbHamburgo.setEnabled(false);
@@ -122,39 +122,39 @@ public class PanelDescargar2 extends JFrame {
 
 		jbMadrid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				llamarHerramienta("PanelDescargar2.15");
+				llamarHerramienta("PanelDescargar2.15"); //$NON-NLS-1$
 				
 			}
 		});
 
 		jbLondres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.16");
+				llamarHerramienta("PanelDescargar2.16"); //$NON-NLS-1$
 			}
 		});
 		jbParis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.17");
+				llamarHerramienta("PanelDescargar2.17"); //$NON-NLS-1$
 			}
 		});
 		jbHamburgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.18");
+				llamarHerramienta("PanelDescargar2.18"); //$NON-NLS-1$
 			}
 		});
 		jbBarcelona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.19");
+				llamarHerramienta("PanelDescargar2.19"); //$NON-NLS-1$
 			}
 		});
 		jbCuenca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.20");
+				llamarHerramienta("PanelDescargar2.20"); //$NON-NLS-1$
 			}
 		});
 		jbLisboa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				llamarHerramienta("PanelDescargar2.21");
+				llamarHerramienta("PanelDescargar2.21"); //$NON-NLS-1$
 			}
 		});
 
@@ -166,7 +166,7 @@ public class PanelDescargar2 extends JFrame {
 	}
 
 	private void llamarHerramienta(String s) {
-		File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/").getFile().replaceAll("%20", " ")+Messages.getString(s));
+		File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/").getFile().replaceAll("%20", " ")+Messages.getString(s)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		controlador.herramienta(new HDescargarMapa(controlador,panel,f));
 		this.setVisible(false);
 	}

@@ -605,22 +605,22 @@ public class Ventana extends JFrame {
 	private void crearMenuApariencia() 
 	{
 		JMenu aparienciaMenu = new JMenu();
-		aparienciaMenu.setText(Messages.getString("Ventana.108"));
+		aparienciaMenu.setText(Messages.getString("Ventana.108")); //$NON-NLS-1$
 		aparienciaMenu.setMnemonic('P');
 		menuBar.add(aparienciaMenu);
 
-		JMenuItem cambio = new JMenuItem(Messages.getString("Ventana.109"));
+		JMenuItem cambio = new JMenuItem(Messages.getString("Ventana.109")); //$NON-NLS-1$
 		aparienciaMenu.add(cambio);
 		cambio.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (JOptionPane.showConfirmDialog(Ventana.this, Messages.getString("Ventana.110"),Messages.getString("Ventana.111"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				if (JOptionPane.showConfirmDialog(Ventana.this, Messages.getString("Ventana.110"),Messages.getString("Ventana.111"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) //$NON-NLS-1$ //$NON-NLS-2$
 				{
 					try 
 					{
-						FileWriter fw = new FileWriter(new File(".\\look.conf"));
-						fw.write(UIManager.getLookAndFeel().getName() + "\n");
+						FileWriter fw = new FileWriter(new File(".\\look.conf")); //$NON-NLS-1$
+						fw.write(UIManager.getLookAndFeel().getName() + "\n"); //$NON-NLS-1$
 						fw.close();
 						System.exit(0);
 					}
@@ -631,48 +631,48 @@ public class Ventana extends JFrame {
 			}
 		});
 
-		if (UIManager.getLookAndFeel().getName().equals("Substance"))
+		if (UIManager.getLookAndFeel().getName().equals("Substance")) //$NON-NLS-1$
 		{
 			JMenu watermark = new JMenu();
-			watermark.setText(Messages.getString("Ventana.112"));
+			watermark.setText(Messages.getString("Ventana.112")); //$NON-NLS-1$
 			aparienciaMenu.add(watermark);
 
-			crearMenuItemWatermark(Messages.getString("Ventana.113"), watermark, new SubstanceBinaryWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.114"), watermark, new SubstanceBubblesWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.115"), watermark, new SubstanceCopperplateEngravingWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.116"), watermark, new SubstanceCrosshatchWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.117"), watermark, new SubstanceFabricWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.118"), watermark, new SubstanceWoodWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.119"), watermark, new SubstanceGenericNoiseWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.120"), watermark, new SubstanceKatakanaWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.121"), watermark, new SubstanceMagneticFieldWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.122"), watermark, new SubstanceMetalWallWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.123"), watermark, new SubstanceStripeWatermark());
-			crearMenuItemWatermark(Messages.getString("Ventana.124"), watermark, new SubstanceMazeWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.113"), watermark, new SubstanceBinaryWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.114"), watermark, new SubstanceBubblesWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.115"), watermark, new SubstanceCopperplateEngravingWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.116"), watermark, new SubstanceCrosshatchWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.117"), watermark, new SubstanceFabricWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.118"), watermark, new SubstanceWoodWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.119"), watermark, new SubstanceGenericNoiseWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.120"), watermark, new SubstanceKatakanaWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.121"), watermark, new SubstanceMagneticFieldWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.122"), watermark, new SubstanceMetalWallWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.123"), watermark, new SubstanceStripeWatermark()); //$NON-NLS-1$
+			crearMenuItemWatermark(Messages.getString("Ventana.124"), watermark, new SubstanceMazeWatermark()); //$NON-NLS-1$
 
 			JMenu theme = new JMenu();
-			theme.setText(Messages.getString("Ventana.125"));
+			theme.setText(Messages.getString("Ventana.125")); //$NON-NLS-1$
 			aparienciaMenu.add(theme);
 
-			crearMenuItemTheme(Messages.getString("Ventana.126"), theme, new AutumnSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.127"), theme, new BusinessBlueSteelSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.128"), theme, new CremeSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.129"), theme, new EmeraldDuskSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.130"), theme, new FieldOfWheatSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.131"), theme, new MagmaSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.132"), theme, new MangoSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.133"), theme, new RavenSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.134"), theme, new StreetlightsSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.135"), theme, new ChallengerDeepSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.136"), theme, new SaharaSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.137"), theme, new FindingNemoSkin());
-			crearMenuItemTheme(Messages.getString("Ventana.138"), theme, new OfficeSilver2007Skin());
+			crearMenuItemTheme(Messages.getString("Ventana.126"), theme, new AutumnSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.127"), theme, new BusinessBlueSteelSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.128"), theme, new CremeSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.129"), theme, new EmeraldDuskSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.130"), theme, new FieldOfWheatSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.131"), theme, new MagmaSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.132"), theme, new MangoSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.133"), theme, new RavenSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.134"), theme, new StreetlightsSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.135"), theme, new ChallengerDeepSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.136"), theme, new SaharaSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.137"), theme, new FindingNemoSkin()); //$NON-NLS-1$
+			crearMenuItemTheme(Messages.getString("Ventana.138"), theme, new OfficeSilver2007Skin()); //$NON-NLS-1$
 
 			JMenu button = new JMenu();
-			button.setText(Messages.getString("Ventana.139"));
+			button.setText(Messages.getString("Ventana.139")); //$NON-NLS-1$
 			aparienciaMenu.add(button);
-			crearMenuItemButtonShape(Messages.getString("Ventana.140"), button, new ClassicButtonShaper());
-			crearMenuItemButtonShape(Messages.getString("Ventana.141"), button, new StandardButtonShaper());
+			crearMenuItemButtonShape(Messages.getString("Ventana.140"), button, new ClassicButtonShaper()); //$NON-NLS-1$
+			crearMenuItemButtonShape(Messages.getString("Ventana.141"), button, new StandardButtonShaper()); //$NON-NLS-1$
 		}
 	}
 
@@ -688,9 +688,9 @@ public class Ventana extends JFrame {
 				SubstanceLookAndFeel.setCurrentWatermark(watermark);
 				try 
 				{
-					FileWriter fw = new FileWriter(new File(".\\watermark.conf"));
+					FileWriter fw = new FileWriter(new File(".\\watermark.conf")); //$NON-NLS-1$
 					BufferedWriter bw = new BufferedWriter(fw);
-					bw.write(("" + watermark.getClass()).substring(6));
+					bw.write(("" + watermark.getClass()).substring(6)); //$NON-NLS-1$
 					bw.close();
 				}
 				catch (IOException e1) 
@@ -713,9 +713,9 @@ public class Ventana extends JFrame {
 				SubstanceLookAndFeel.setCurrentButtonShaper(button);
 				try 
 				{
-					FileWriter fw = new FileWriter(new File(".\\button.conf"));
+					FileWriter fw = new FileWriter(new File(".\\button.conf")); //$NON-NLS-1$
 					BufferedWriter bw = new BufferedWriter(fw);
-					bw.write(("" + button.getClass()).substring(6));
+					bw.write(("" + button.getClass()).substring(6)); //$NON-NLS-1$
 					bw.close();
 				}
 				catch (IOException e1) 
@@ -740,9 +740,9 @@ public class Ventana extends JFrame {
 				SubstanceLookAndFeel.setCurrentWatermark(water);
 				try 
 				{
-					FileWriter fw = new FileWriter(new File(".\\theme.conf"));
+					FileWriter fw = new FileWriter(new File(".\\theme.conf")); //$NON-NLS-1$
 					BufferedWriter bw = new BufferedWriter(fw);
-					bw.write(("" + theme.getClass()).substring(6));
+					bw.write(("" + theme.getClass()).substring(6)); //$NON-NLS-1$
 					bw.close();
 				}
 				catch (IOException e1) 
@@ -874,15 +874,15 @@ public class Ventana extends JFrame {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent evento){
 						try{
-							double lat = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,"Introduzca latitud (número entero)"));
-							double lon = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,"Introduzca longitud (número entero)"));
+							double lat = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,Messages.getString("Ventana.151"))); //$NON-NLS-1$
+							double lon = Double.parseDouble(JOptionPane.showInputDialog(Ventana.this,Messages.getString("Ventana.152"))); //$NON-NLS-1$
 							panel_mapa.centrarEnPosicion(lat, lon);
-							JOptionPane.showMessageDialog(Ventana.this,"Posición central:\n"+
-									"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
-									"Lon: " + Representacion.pasarAGrados(lon));
+							JOptionPane.showMessageDialog(Ventana.this,Messages.getString("Ventana.153")+ //$NON-NLS-1$
+									Messages.getString("Ventana.154")+Representacion.pasarAGrados(lat)+Messages.getString("Ventana.155") + //$NON-NLS-1$ //$NON-NLS-2$
+									Messages.getString("Ventana.156") + Representacion.pasarAGrados(lon)); //$NON-NLS-1$
 						}
 						catch( java.lang.NumberFormatException excepcion){
-							JOptionPane.showMessageDialog(Ventana.this,"Valor incorrecto");
+							JOptionPane.showMessageDialog(Ventana.this,Messages.getString("Ventana.157")); //$NON-NLS-1$
 						}
 					}
 				}
@@ -1129,7 +1129,7 @@ public class Ventana extends JFrame {
 				 * Solo válido para internet Explorer 
 				 */
 				try {
-					Runtime.getRuntime().exec("cmd /c start iexplore "+url);
+					Runtime.getRuntime().exec("cmd /c start iexplore "+url); //$NON-NLS-1$
 				} catch (IOException e1) {
 					System.out.println(Messages.getString("Ventana.0"));  //$NON-NLS-1$
 				} 

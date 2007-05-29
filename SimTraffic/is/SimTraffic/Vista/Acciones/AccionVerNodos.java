@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 public class AccionVerNodos extends AccionVer {
 
 	public AccionVerNodos(IControlador controlador, IModelo modelo, JFrame ventana, PanelMapa panel_mapa, String direccionIcono, String tituloVer, String nombreElemento) {
-		super(controlador, modelo, ventana, panel_mapa, "añadir_nodo2.png", "Nodos existentes",  //$NON-NLS-2$
+		super(controlador, modelo, ventana, panel_mapa, "añadir_nodo2.png", "Nodos existentes",   //$NON-NLS-1$//$NON-NLS-2$
 				"Nodo"); //$NON-NLS-1$
 	}
 	

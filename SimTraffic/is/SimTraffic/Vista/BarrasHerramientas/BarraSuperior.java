@@ -191,7 +191,7 @@ public class BarraSuperior extends JPanel {
 				Messages.getString("BarraSuperior.51"), Messages.getString("BarraSuperior.52"), //$NON-NLS-1$ //$NON-NLS-2$
 				new AccionPausarSimulacion(controlador), false);
 		pausar.addMouseMotionListener(new EscuchaAyuda(
-				Messages.getString("BarraSuperior.53"), ventana));
+				Messages.getString("BarraSuperior.53"), ventana)); //$NON-NLS-1$
 		
 		detener = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.54"), Messages.getString("BarraSuperior.55"), //$NON-NLS-1$ //$NON-NLS-2$
 				Messages.getString("BarraSuperior.56"), new AccionDetenerSimulacion(controlador), //$NON-NLS-1$
@@ -275,7 +275,7 @@ public class BarraSuperior extends JPanel {
 	}
 	
 	public void setTiempoVacio() {
-		tiempo.setText("");
+		tiempo.setText(""); //$NON-NLS-1$
 	}
 	
 }

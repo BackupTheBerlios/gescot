@@ -36,23 +36,23 @@ public class AccionCargarImagen implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		if(JOptionPane.NO_OPTION==JOptionPane.showConfirmDialog(null,
-				Messages.getString("AccionCargarImagen.0") +
-				Messages.getString("AccionCargarImagen.1"),
-				Messages.getString("AccionCargarImagen.2"),
+				Messages.getString("AccionCargarImagen.0") + //$NON-NLS-1$
+				Messages.getString("AccionCargarImagen.1"), //$NON-NLS-1$
+				Messages.getString("AccionCargarImagen.2"), //$NON-NLS-1$
 				JOptionPane.YES_NO_OPTION)){
 			
 				ChequeoInputVentanas chequeo=new ChequeoInputVentanas();
 				String aux;
-				aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.3"));
+				aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.3")); //$NON-NLS-1$
 				 if(aux!=null&&chequeo.esLatitud(aux)){
 				  double lat = Double.parseDouble(aux);
-           		  aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.4"));		
+           		  aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.4"));		 //$NON-NLS-1$
            		  if(aux!=null&&chequeo.esLongitud(aux)){
            		   double lon = Double.parseDouble(aux);
            		   panel.centrarEnPosicion(lat, lon);
-           		   JOptionPane.showMessageDialog(null,Messages.getString("AccionCargarImagen.5")+
-						"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
-						"Lon: " + Representacion.pasarAGrados(lon));
+           		   JOptionPane.showMessageDialog(null,Messages.getString("AccionCargarImagen.5")+ //$NON-NLS-1$
+						Messages.getString("AccionCargarImagen.6")+Representacion.pasarAGrados(lat)+" ; " + //$NON-NLS-1$ //$NON-NLS-2$
+						Messages.getString("AccionCargarImagen.8") + Representacion.pasarAGrados(lon)); //$NON-NLS-1$
            		  }else return;
 				 }else return;		
 		}

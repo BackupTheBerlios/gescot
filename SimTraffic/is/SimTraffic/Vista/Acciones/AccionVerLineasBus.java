@@ -26,7 +26,7 @@ import javax.swing.*;
 public class AccionVerLineasBus extends AccionVer implements ActionListener{
 
 	public AccionVerLineasBus(IControlador controlador, IModelo modelo,JFrame ventana,PanelMapa panel_mapa) {
-		super(controlador, modelo, ventana, panel_mapa, "autobus.jpg", "Líneas de Autobús",  //$NON-NLS-2$
+		super(controlador, modelo, ventana, panel_mapa, "autobus.jpg", "Líneas de Autobús",   //$NON-NLS-1$//$NON-NLS-2$
 		"Linea de autobús"); //$NON-NLS-1$
 	}
 	

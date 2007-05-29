@@ -1,5 +1,6 @@
 package is.SimTraffic.Vista.Acciones;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Utils.PrintUtilities;
 import is.SimTraffic.Vista.PanelMapa;
 
@@ -14,7 +15,7 @@ public class AccionImprimir implements ActionListener {
 		this.panel=panel;
 	}
 	
-	@SuppressWarnings("static-access")
+	@SuppressWarnings("static-access") //$NON-NLS-1$
 	public  void actionPerformed(ActionEvent arg0) {
 		PrintUtilities impresion=new PrintUtilities(panel);
 		impresion.printComponent(panel);

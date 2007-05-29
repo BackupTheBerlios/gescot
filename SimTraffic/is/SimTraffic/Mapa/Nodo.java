@@ -226,8 +226,8 @@ public class Nodo implements ElementoMapa, Serializable{
 			if (nombre!=null) {
 				String nombreTemp = new String(nombre);
 				// TODO controlar los otros caracteres no validos
-				nombreTemp.replaceAll("'", "&apos;");
-				nombreTemp.replaceAll("&", "&amp;");
+				nombreTemp.replaceAll("'", "&apos;"); //$NON-NLS-1$ //$NON-NLS-2$
+				nombreTemp.replaceAll("&", "&amp;"); //$NON-NLS-1$ //$NON-NLS-2$
 				
 				s=s.concat(Messages.getString("Nodo.7")+getNombre()+Messages.getString("Nodo.8")); //$NON-NLS-1$ //$NON-NLS-2$
 			}

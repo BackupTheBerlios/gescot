@@ -336,22 +336,22 @@ public class PanelTramo extends JFrame
 			if (tramo.getVia().getTipo()!=null /*&& tramo.getVia().getTipo().equals("highway")*/) {
 				JLabel tipoEtiqVia = new JLabel(Messages.getString("PanelTramo.3")); //$NON-NLS-1$
 				//JLabel tipoVia = new JLabel(tramo.getVia().getTipo().getValorTipoCastellano());
-				String[] tiposVias = { Messages.getString("PanelTramo.4"), 
-						Messages.getString("PanelTramo.5"),
-						Messages.getString("PanelTramo.6"), 
-						Messages.getString("PanelTramo.7"),
-						Messages.getString("PanelTramo.8"),
-						Messages.getString("PanelTramo.9"),
-						Messages.getString("PanelTramo.10"),
-						Messages.getString("PanelTramo.11"),
-						Messages.getString("PanelTramo.12"),
-						Messages.getString("PanelTramo.13"),
-						Messages.getString("PanelTramo.14"),
-						Messages.getString("PanelTramo.15"),
-						Messages.getString("PanelTramo.16"), 
-						Messages.getString("PanelTramo.17"),
-						Messages.getString("PanelTramo.18"),
-						Messages.getString("PanelTramo.19")}; 
+				String[] tiposVias = { Messages.getString("PanelTramo.4"),  //$NON-NLS-1$
+						Messages.getString("PanelTramo.5"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.6"),  //$NON-NLS-1$
+						Messages.getString("PanelTramo.7"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.8"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.9"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.10"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.11"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.12"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.13"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.14"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.15"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.16"),  //$NON-NLS-1$
+						Messages.getString("PanelTramo.17"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.18"), //$NON-NLS-1$
+						Messages.getString("PanelTramo.19")};  //$NON-NLS-1$
 				
 				combo_tipoVia = new JComboBox(tiposVias);
 				labels.add(tipoEtiqVia);
@@ -365,7 +365,7 @@ public class PanelTramo extends JFrame
 						combo_tipoVia.setSelectedIndex(i);
 				}
 			}
-			JButton propComunes = new JButton("<html><p align=center>Establecer propiedades comunes <br>a todos los tramos</p><html>");
+			JButton propComunes = new JButton(Messages.getString("PanelTramo.39")); //$NON-NLS-1$
 			propComunes.addActionListener(new AccionPropComunes(tramo, this, panel, controlador, nombreVia, combo_tipoVia));
 			panelVias.add(propComunes);
 		}

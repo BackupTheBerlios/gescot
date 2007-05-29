@@ -62,7 +62,7 @@ public class HPausarTest extends TestCase{
 		HComenzar aux = new HComenzar(ventana,0,10,5);
 		aux.hacer(modelo);
 		if (herramienta.hacer(modelo)!=0)
-			fail("La herramienta de hacer no se ha hecho correctamente");
+			fail(Messages.getString("HPausarTest.0")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -76,6 +76,6 @@ public class HPausarTest extends TestCase{
 		aux.hacer(modelo);
 		herramienta.hacer(modelo);
 		if (herramienta.deshacer(modelo)!=0)
-			fail(Messages.getString("HPausarTest.1")); //$NON-NLS-1$
+			fail(""); //$NON-NLS-1$
 	}
 }

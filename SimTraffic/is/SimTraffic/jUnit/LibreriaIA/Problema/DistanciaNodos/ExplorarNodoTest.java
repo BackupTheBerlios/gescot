@@ -2,6 +2,7 @@ package is.SimTraffic.jUnit.LibreriaIA.Problema.DistanciaNodos;
 
 import java.util.Vector;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Modelo;
 import is.SimTraffic.LibreriaIA.NodoIA;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.EstadoDistanciaNodos;
@@ -72,7 +73,7 @@ public class ExplorarNodoTest extends TestCase{
 	
 	public void testgetCoste()
 	{
-		if (explorar.getCoste()==0.0) fail("El resultado deberia ser distinto de cero");	
+		if (explorar.getCoste()==0.0) fail(Messages.getString("ExplorarNodoTest.0"));	 //$NON-NLS-1$
 	}
 
 }

@@ -20,7 +20,7 @@ import javax.swing.JFrame;
 public class AccionVerVias extends AccionVer {
 
 	public AccionVerVias(IControlador controlador, IModelo modelo, JFrame ventana, PanelMapa panel_mapa, String direccionIcono, String tituloVer, String nombreElemento) {
-		super(controlador, modelo, ventana, panel_mapa, "añadir_via2.png", "Vías existentes",  //$NON-NLS-2$
+		super(controlador, modelo, ventana, panel_mapa, "añadir_via2.png", "Vías existentes",   //$NON-NLS-1$//$NON-NLS-2$
 				"Vía"); //$NON-NLS-1$
 	}
 	

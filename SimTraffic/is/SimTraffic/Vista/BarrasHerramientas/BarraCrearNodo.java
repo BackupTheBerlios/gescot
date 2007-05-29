@@ -50,7 +50,7 @@ public class BarraCrearNodo extends Barra
 		comboValor = new JComboBox(valorNodos);
 		
 		JLabel etiquetaIntervalo = new JLabel(Messages.getString("BarraCrearNodo.8")); //$NON-NLS-1$
-		String[] valorIntervalo = {Messages.getString("BarraCrearNodo.9"), Messages.getString("BarraCrearNodo.10"), Messages.getString("BarraCrearNodo.18")}; //$NON-NLS-1$ //$NON-NLS-2$
+		String[] valorIntervalo = {Messages.getString("BarraCrearNodo.9"), Messages.getString("BarraCrearNodo.10"), Messages.getString("BarraCrearNodo.18")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		comboInt = new JComboBox(valorIntervalo);
 		final JLabel etiquetaSalen = new JLabel(Messages.getString("BarraCrearNodo.11")); //$NON-NLS-1$
 		valorSalen = new JSpinner(new SpinnerNumberModel(0,0,9999,50));

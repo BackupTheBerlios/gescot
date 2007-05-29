@@ -1,5 +1,6 @@
 package is.SimTraffic.jUnit.LibreriaIA.Problema.DistanciaNodos;
 
+import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HPegar;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.EstadoDistanciaNodos;
 import is.SimTraffic.LibreriaIA.Problema.DistanciaNodos.HeuristicaDistanciaLineaRecta;
@@ -31,8 +32,8 @@ public class HeuristicaDistanciaLineaRectaTest extends TestCase{
 		EstadoDistanciaNodos estado = new EstadoDistanciaNodos(new Nodo(new Posicion(100,102)));
 		EstadoDistanciaNodos estado2 = new EstadoDistanciaNodos(new Nodo(new Posicion(100,100)));
 		heuristica.darValorHeuristico(estado);
-		if (heuristica.darValorHeuristico(estado)!=0.0) fail("El resultado deberia ser 0.0");
-		if (heuristica.darValorHeuristico(estado2)==0.0) fail("El resultado deberia ser distinto de cero");
+		if (heuristica.darValorHeuristico(estado)!=0.0) fail(Messages.getString("HeuristicaDistanciaLineaRectaTest.0")); //$NON-NLS-1$
+		if (heuristica.darValorHeuristico(estado2)==0.0) fail(Messages.getString("HeuristicaDistanciaLineaRectaTest.1")); //$NON-NLS-1$
 		
 	}
 }
