@@ -106,7 +106,7 @@ public class HDescargarMapa implements IHerramienta{
 
 					} catch (Exception e) {
 						p.terminar();
-						System.out.println(Messages.getString("HDescargarMapa.2")); //$NON-NLS-1$
+						//System.out.println(Messages.getString("HDescargarMapa.2")); //$NON-NLS-1$
 						e.printStackTrace();
 						error = true;
 					}

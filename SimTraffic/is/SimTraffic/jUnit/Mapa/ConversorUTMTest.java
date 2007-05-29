@@ -59,7 +59,7 @@ public class ConversorUTMTest extends TestCase {
 		xy = ConversorUTM.LatLonToUTMXY(30, 45, zone);
 		double nuevaX=xy[0];
 		double nuevaY=xy[1];
-		System.out.println(Messages.getString("ConversorUTMTest.9")+zone +Messages.getString("ConversorUTMTest.10") + nuevaX + Messages.getString("ConversorUTMTest.11") + nuevaY); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		//System.out.println(Messages.getString("ConversorUTMTest.9")+zone +Messages.getString("ConversorUTMTest.10") + nuevaX + Messages.getString("ConversorUTMTest.11") + nuevaY); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		assertFalse(Messages.getString("ConversorUTMTest.12"), (nuevaX < 499999 || nuevaX > 500001)); //$NON-NLS-1$
 
 		assertFalse(Messages.getString("ConversorUTMTest.13"), (nuevaY < 3318784 ||nuevaY > 3318786));	} //$NON-NLS-1$

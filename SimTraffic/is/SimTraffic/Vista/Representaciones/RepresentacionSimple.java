@@ -228,8 +228,8 @@ public class RepresentacionSimple extends Representacion {
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp4 };
 
-		System.out.println(x[0] + Messages.getString("RepresentacionSimple.8") + x[1] + Messages.getString("RepresentacionSimple.9") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
-		System.out.println(y[0] + Messages.getString("RepresentacionSimple.10") + y[1] + Messages.getString("RepresentacionSimple.11") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		//System.out.println(x[0] + Messages.getString("RepresentacionSimple.8") + x[1] + Messages.getString("RepresentacionSimple.9") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		//System.out.println(y[0] + Messages.getString("RepresentacionSimple.10") + y[1] + Messages.getString("RepresentacionSimple.11") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
 
 		Polygon p = new Polygon(x, y, 3);
 		return p;

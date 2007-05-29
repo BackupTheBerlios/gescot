@@ -251,7 +251,7 @@ public class AEstrella implements IAlgoritmoInformado {
 	
 
 	public void mostrarSolucion(Vector<NodoIA> sol) {
-		if (sol==null || sol.size()==0) 
+		if (!(sol==null || sol.size()==0)) 
 			System.out.println(Messages.getString("AEstrella.4"));  //$NON-NLS-1$
 		else {
 			//System.out.println("Solución encontrada: (" + sol.size() + " pasos)");

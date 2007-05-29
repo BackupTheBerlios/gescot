@@ -41,7 +41,7 @@ public class EntradaSalidaTest extends TestCase {
 		EntradaSalida es2= new EntradaSalida(entrada1,entrada2);
 		String aux =es1.transformaOSM();
 		String aux2 =es1.transformaOSM();
-		if (!aux.equals(aux2)) System.out.println(Messages.getString("EntradaSalidaTest.3")); //$NON-NLS-1$
+		//if (!aux.equals(aux2)) System.out.println(Messages.getString("EntradaSalidaTest.3")); //$NON-NLS-1$
 		if (!(es1.transformaOSM()).equals(es1.transformaOSM()))
 			fail(Messages.getString("EntradaSalidaTest.4")); //$NON-NLS-1$
 		if (!(es1.transformaOSM()).equals(es2.transformaOSM()))

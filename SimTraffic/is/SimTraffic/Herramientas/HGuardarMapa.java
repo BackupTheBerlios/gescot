@@ -78,33 +78,33 @@ public class HGuardarMapa implements IHerramienta {
 							.getSelectedFile().getAbsolutePath().concat(Messages.getString("HGuardarMapa.4")))))  ;	 //$NON-NLS-1$
 				}
 					
-				System.out.println(Messages.getString("HGuardarMapa.5")); //$NON-NLS-1$
+				//System.out.println(Messages.getString("HGuardarMapa.5")); //$NON-NLS-1$
 				// Escribir
-				salida.println(Messages.getString("HGuardarMapa.6")); //$NON-NLS-1$
-				salida.println(Messages.getString("HGuardarMapa.7")); //$NON-NLS-1$
+				//salida.println(Messages.getString("HGuardarMapa.6")); //$NON-NLS-1$
+				//salida.println(Messages.getString("HGuardarMapa.7")); //$NON-NLS-1$
 
 				Iterator<Nodo> nod = mapa.getNodos().iterator();
 				while (nod.hasNext()) {
 					Nodo nodoaux = nod.next();
-					salida.println(nodoaux.transformaraOSM());
+					//salida.println(nodoaux.transformaraOSM());
 				}
 
 				Iterator<Tramo> tram = mapa.getTramos().iterator();
 				while (tram.hasNext()) {
 					Tramo tramoaux = tram.next();
-					salida.println(tramoaux.transformaraOSM());
+					//salida.println(tramoaux.transformaraOSM());
 				}
 				
 				Iterator<Via> via = mapa.getVias().iterator();
 				while (via.hasNext()) {
 					Via viaAux = via.next();
-					salida.println(viaAux.transformaraOSM());
+					//salida.println(viaAux.transformaraOSM());
 				}
 				
 				Iterator<LineaBus> buses = mapa.getLineasAutobuses().iterator();
 				while (buses.hasNext()) {
 					LineaBus lineaBusAux = buses.next();
-					salida.println(lineaBusAux.transformarLineaBusaOSM());
+					//salida.println(lineaBusAux.transformarLineaBusaOSM());
 				}
 
 				// Parte de vías (en proceso)
@@ -133,7 +133,7 @@ public class HGuardarMapa implements IHerramienta {
 					s = s.concat("</way>\n");
 				}
 				salida.println(s);*/
-				salida.println(Messages.getString("HGuardarMapa.8")); //$NON-NLS-1$
+				//salida.println(Messages.getString("HGuardarMapa.8")); //$NON-NLS-1$
 				salida.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

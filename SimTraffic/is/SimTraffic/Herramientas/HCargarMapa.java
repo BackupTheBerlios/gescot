@@ -112,7 +112,7 @@ public class HCargarMapa implements IHerramienta {
 
 					} catch (Exception e) {
 						p.terminar();
-						System.out.println(Messages.getString("HCargarMapa.5")); //$NON-NLS-1$
+						//System.out.println(Messages.getString("HCargarMapa.5")); //$NON-NLS-1$
 						e.printStackTrace();
 						error = true;
 					}

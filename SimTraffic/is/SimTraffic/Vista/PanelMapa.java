@@ -333,7 +333,7 @@ public class PanelMapa extends JPanel
 		//representacion.pintarSugerencia(g, sugerencia);
 		//representacion.pintarSugerencia(g, sugerencia2);
 		
-		System.out.println(Messages.getString("PanelMapa.0") + (System.currentTimeMillis() - tiempo)); //$NON-NLS-1$
+		//System.out.println(Messages.getString("PanelMapa.0") + (System.currentTimeMillis() - tiempo)); //$NON-NLS-1$
 	}
 	
 	private void dibujarVehiculos(Graphics2D g, List<Vehiculo> vehiculos, Tramo tramo) {

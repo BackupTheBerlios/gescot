@@ -593,9 +593,9 @@ public class PanelNodo extends JFrame {
 				} catch (Exception e) {
 					entradas[i] = 0;
 				}
-				System.out.print(entradas[i]);
+				//System.out.print(entradas[i]);
 			}
-			System.out.println();
+			//System.out.println();
 			for (int i = 0; i < 3; i++) {
 				try {
 					salidas[i] = Integer.parseInt(this.salida[i].getText());

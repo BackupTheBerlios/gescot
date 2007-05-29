@@ -637,8 +637,8 @@ public class RepresentacionAvanzada extends Representacion {
 				y_MapaARep(pos.getLat()) + temp1 - temp4,
 				y_MapaARep(pos.getLat()) + temp4 };
 		
-		System.out.println(x[0] + Messages.getString("RepresentacionAvanzada.106") + x[1] + Messages.getString("RepresentacionAvanzada.107") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
-		System.out.println(y[0] + Messages.getString("RepresentacionAvanzada.108") + y[1] + Messages.getString("RepresentacionAvanzada.109") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		//System.out.println(x[0] + Messages.getString("RepresentacionAvanzada.106") + x[1] + Messages.getString("RepresentacionAvanzada.107") + x[2]); //$NON-NLS-1$ //$NON-NLS-2$
+		//System.out.println(y[0] + Messages.getString("RepresentacionAvanzada.108") + y[1] + Messages.getString("RepresentacionAvanzada.109") + y[2]); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		Polygon p = new Polygon(x, y, 3);
 		return p;

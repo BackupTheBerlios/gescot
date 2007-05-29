@@ -313,8 +313,8 @@ public class CargadorMapa implements DocHandler {
 	}*/
 
 	public static void reportOnFile(String file) throws Exception {
-		System.out.println(Messages.getString("CargadorMapa.57")); //$NON-NLS-1$
-		System.out.println(Messages.getString("CargadorMapa.58") + file); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.57")); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.58") + file); //$NON-NLS-1$
 
 		// This is all the code we need to parse
 		// a document with the DocHandler.
@@ -326,8 +326,8 @@ public class CargadorMapa implements DocHandler {
 
 	public static Mapa cargar(String file)
 			throws Exception {
-		System.out.println(Messages.getString("CargadorMapa.59")); //$NON-NLS-1$
-		System.out.println(Messages.getString("CargadorMapa.60") + file); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.59")); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.60") + file); //$NON-NLS-1$
 
 		nodos = new ArrayList<Nodo>();
 		tramos = new ArrayList<Tramo>();
@@ -341,14 +341,14 @@ public class CargadorMapa implements DocHandler {
 		QDParser.parse(cargadormapa, fr);
 		
 		fr.close();
-		System.out.println(Messages.getString("CargadorMapa.61")+nodos.size()); //$NON-NLS-1$
+		/*System.out.println(Messages.getString("CargadorMapa.61")+nodos.size()); //$NON-NLS-1$
 		System.out.println(Messages.getString("CargadorMapa.62")+tramos.size()); //$NON-NLS-1$
 		System.out.println(Messages.getString("CargadorMapa.63") + vias.size()); //$NON-NLS-1$
 		System.out.println(Messages.getString("CargadorMapa.64") + lineasAutobuses.size()); //$NON-NLS-1$
 		
 		System.out.println(Messages.getString("CargadorMapa.65")+nodos.get(0).getID()); //$NON-NLS-1$
 		System.out.println(Messages.getString("CargadorMapa.66")+nodos.get(0).getPos().getLat()); //$NON-NLS-1$
-		System.out.println(Messages.getString("CargadorMapa.67")+nodos.get(0).getPos().getLon()); //$NON-NLS-1$
+		System.out.println(Messages.getString("CargadorMapa.67")+nodos.get(0).getPos().getLon()); //$NON-NLS-1$*/
 		
 		Mapa mapaADevolver = new Mapa(nodos,tramos); 
 		mapaADevolver.setVias(vias);
@@ -370,6 +370,6 @@ public class CargadorMapa implements DocHandler {
 	
 	public static void main(String[] args) throws Exception{
 		Mapa mapa=cargar(Messages.getString("CargadorMapa.69")); //$NON-NLS-1$
-		System.out.println(Messages.getString("CargadorMapa.70")); //$NON-NLS-1$
+		//System.out.println(Messages.getString("CargadorMapa.70")); //$NON-NLS-1$
 	}
 }

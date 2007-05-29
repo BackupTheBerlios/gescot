@@ -90,8 +90,8 @@ public class PrincipalDistanciaNodos implements IPrincipal {
 
 	public Vector<IOperador> generarOperadores() {
 		Vector<IOperador> vOperadores=new Vector<IOperador>();
-		if (simulacion==null)
-			System.out.println(Messages.getString("PrincipalDistanciaNodos.0")); //$NON-NLS-1$
+		/*if (simulacion==null)
+			System.out.println(Messages.getString("PrincipalDistanciaNodos.0")); //$NON-NLS-1$*/
 		IOperador operador = new ExploraNodo(tipoCoste,simulacion);
 		
 		//Se inserta

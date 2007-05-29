@@ -52,7 +52,7 @@ public class Ambulancia extends Vehiculo {
 	
 	public boolean inicializar(Nodo entrada, Nodo salida) {
 		Random random = new Random();
-		System.out.println(hospitales.size());
+		//System.out.println(hospitales.size());
 		entrada = hospitales.get(random.nextInt(hospitales.size()));
 		
 		super.inicializar(entrada, salida);
