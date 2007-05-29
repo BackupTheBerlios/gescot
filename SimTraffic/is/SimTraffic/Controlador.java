@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import is.SimTraffic.Herramientas.HPausar;
 import is.SimTraffic.Herramientas.IHerramienta;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.IVista;
 
 /**
@@ -59,8 +61,10 @@ public class Controlador implements IControlador {
 			return 0;
 		}
 		if(modelo.getSimulacion().estaActiva()) {
+		  
+		 if(!herramienta.toString().equals(new HPausar().toString())){
 			Object[] options = {Messages.getString("Controlador.0"), //$NON-NLS-1$
-                    Messages.getString("Controlador.1")}; //$NON-NLS-1$
+					Messages.getString("Controlador.1")}; //$NON-NLS-1$
 			int n = JOptionPane.showOptionDialog(null,
 					Messages.getString("Controlador.2"), //$NON-NLS-1$
 					Messages.getString("Controlador.3"), //$NON-NLS-1$
@@ -71,9 +75,10 @@ public class Controlador implements IControlador {
 					options[0]);
 			if (n==1)
 				return -1;
+			
 			modelo.getSimulacion().detener();
 		}
-		
+		}
 		// habria que pensar limitar el tamaño de la cola
 		int resultado = herramienta.hacer(modelo);
 		//historial.add(herramienta.toString());
