@@ -1274,6 +1274,9 @@ public class Ventana extends JFrame {
 		{
 			if (this.escucha instanceof MLAñadirVia)
 				((MLAñadirVia)this.escucha).reiniciarEscucha();
+			else
+				if (this.escucha instanceof MLSeleccionarYMover)
+					panel_mapa.getModelo().getMapa().limpiaSeleccion();	
 			this.escucha.desactivar();
 		}
 		panel_mapa.sugerir(null);
