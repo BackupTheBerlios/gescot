@@ -1,6 +1,7 @@
 package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
+import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Posicion;
 import is.SimTraffic.Utils.ChequeoInputVentanas;
 import is.SimTraffic.Vista.PanelMapa;
@@ -35,32 +36,25 @@ public class AccionCargarImagen implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		if(JOptionPane.NO_OPTION==JOptionPane.showConfirmDialog(null,
-				"Colocar imagen en las coordenadas actuales?\n" +
-				"Pulsar NO para introducir nuevas coordenadas",
-				"Confirmación",
+				Messages.getString("AccionCargarImagen.0") +
+				Messages.getString("AccionCargarImagen.1"),
+				Messages.getString("AccionCargarImagen.2"),
 				JOptionPane.YES_NO_OPTION)){
-			try{
+			
 				ChequeoInputVentanas chequeo=new ChequeoInputVentanas();
 				String aux;
-				aux=JOptionPane.showInputDialog("Introduzca latitud (número entero)");
+				aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.3"));
 				 if(aux!=null&&chequeo.esLatitud(aux)){
 				  double lat = Double.parseDouble(aux);
-           		  aux=JOptionPane.showInputDialog("Introduzca longitud (número entero)");		
+           		  aux=JOptionPane.showInputDialog(Messages.getString("AccionCargarImagen.4"));		
            		  if(aux!=null&&chequeo.esLongitud(aux)){
            		   double lon = Double.parseDouble(aux);
            		   panel.centrarEnPosicion(lat, lon);
-           		   JOptionPane.showMessageDialog(null,"Posición central:\n"+
+           		   JOptionPane.showMessageDialog(null,Messages.getString("AccionCargarImagen.5")+
 						"Lat: "+Representacion.pasarAGrados(lat)+" ; " +
 						"Lon: " + Representacion.pasarAGrados(lon));
-           		  }
-				 }
-				 return;
-				}
-				
-			
-				catch( java.lang.NumberFormatException excepcion){
-					JOptionPane.showMessageDialog(null,"Valor incorrecto");
-				}
+           		  }else return;
+				 }else return;		
 		}
 		
 		JFileChooser fc = new JFileChooser();
