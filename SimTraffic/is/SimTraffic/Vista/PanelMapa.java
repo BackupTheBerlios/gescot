@@ -23,6 +23,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -186,6 +188,18 @@ public class PanelMapa extends JPanel
 		posLontemp = 0;
 		modoSeleccion = false;
 		rectanguloSeleccion = new Rectangle();
+		
+		addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e) 
+			{
+				if (e.getWheelRotation() < 0)
+					cambiaZoom(0.5);
+				else
+					if (e.getWheelRotation() > 0)
+						cambiaZoom(2);
+			}
+		});
 	}
 	
 	/**
