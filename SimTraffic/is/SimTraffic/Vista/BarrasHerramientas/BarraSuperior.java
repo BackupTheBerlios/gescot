@@ -13,6 +13,7 @@ import is.SimTraffic.Vista.Acciones.AccionDeshacer;
 import is.SimTraffic.Vista.Acciones.AccionDetenerSimulacion;
 import is.SimTraffic.Vista.Acciones.AccionGuardar;
 import is.SimTraffic.Vista.Acciones.AccionNuevo;
+import is.SimTraffic.Vista.Acciones.AccionPausarSimulacion;
 import is.SimTraffic.Vista.Acciones.AccionSobreMapa;
 import is.SimTraffic.Vista.Acciones.AccionZoom;
 import is.SimTraffic.Vista.EscuchasRaton.EscuchaAyuda;
@@ -42,6 +43,7 @@ public class BarraSuperior extends JPanel {
 	private JButton zoomin;
 	private JButton zoomout;
 	private JButton simular;
+	private JButton pausar;
 	private JButton detener;
 	private JPanel reloj;
 	private JTextField tiempo;
@@ -179,17 +181,23 @@ public class BarraSuperior extends JPanel {
 
 		simular = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.46"), //$NON-NLS-1$
 				Messages.getString("BarraSuperior.47"), Messages.getString("BarraSuperior.48"), //$NON-NLS-1$ //$NON-NLS-2$
-				new AccionComenzarSimulacion(ventana,controlador, modelo.getSimulacion().getParam()), false);
+				new AccionComenzarSimulacion(ventana,controlador, modelo), false);
 		simular
 				.addMouseMotionListener(new EscuchaAyuda(
 						Messages.getString("BarraSuperior.49"), //$NON-NLS-1$
 						ventana));
-
-		detener = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.50"), Messages.getString("BarraSuperior.51"), //$NON-NLS-1$ //$NON-NLS-2$
-				Messages.getString("BarraSuperior.52"), new AccionDetenerSimulacion(controlador), //$NON-NLS-1$
+		
+		pausar =(JButton) esto.añadirBoton(Messages.getString("BarraSuperior.50"), //$NON-NLS-1$
+				Messages.getString("BarraSuperior.51"), Messages.getString("BarraSuperior.52"), //$NON-NLS-1$ //$NON-NLS-2$
+				new AccionPausarSimulacion(controlador), false);
+		pausar.addMouseMotionListener(new EscuchaAyuda(
+				Messages.getString("BarraSuperior.53"), ventana));
+		
+		detener = (JButton) esto.añadirBoton(Messages.getString("BarraSuperior.54"), Messages.getString("BarraSuperior.55"), //$NON-NLS-1$ //$NON-NLS-2$
+				Messages.getString("BarraSuperior.56"), new AccionDetenerSimulacion(controlador), //$NON-NLS-1$
 				false);
 		detener.addMouseMotionListener(new EscuchaAyuda(
-				Messages.getString("BarraSuperior.53"), ventana)); //$NON-NLS-1$
+				Messages.getString("BarraSuperior.57"), ventana)); //$NON-NLS-1$
 
 		return esto;
 	}
@@ -236,18 +244,18 @@ public class BarraSuperior extends JPanel {
 	    	if (hour24 >= 7 && hour24 <15 ) {
 	    		tiempo.setBackground(Color.BLUE);
 	    		//tiempo.setForeground(Color.WHITE);
-	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.54")); //$NON-NLS-1$
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.58")); //$NON-NLS-1$
 	    	} else if (hour24 >= 15 && hour24 <23 ) {
 	    		//tiempo.setBackground(Color.YELLOW);
 	    		tiempo.setForeground(Color.RED);
-	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.55")); //$NON-NLS-1$
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.59")); //$NON-NLS-1$
 	    	}
 	    	else {
 	    		tiempo.setBackground(Color.BLACK);
 	    		//tiempo.setForeground(Color.GREEN);
-	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.56")); //$NON-NLS-1$
+	    		tiempo.setToolTipText(Messages.getString("BarraSuperior.60")); //$NON-NLS-1$
 	    	}
-	    		String hora = convierte(hour24)+Messages.getString("BarraSuperior.57")+convierte(min)+Messages.getString("BarraSuperior.58")+convierte(sec); //$NON-NLS-1$ //$NON-NLS-2$
+	    		String hora = convierte(hour24)+Messages.getString("BarraSuperior.61")+convierte(min)+Messages.getString("BarraSuperior.62")+convierte(sec); //$NON-NLS-1$ //$NON-NLS-2$
 
 	    	tiempo.setText(hora);
 	    	//this.repaint();
@@ -261,9 +269,9 @@ public class BarraSuperior extends JPanel {
 	
 	private static String convierte(int valor){
 		if (valor <10){
-			return Messages.getString("BarraSuperior.59")+valor; //$NON-NLS-1$
+			return Messages.getString("BarraSuperior.63")+valor; //$NON-NLS-1$
 		}
-		else return Messages.getString("BarraSuperior.60")+valor; //$NON-NLS-1$
+		else return Messages.getString("BarraSuperior.64")+valor; //$NON-NLS-1$
 	}
 	
 	public void setTiempoVacio() {
