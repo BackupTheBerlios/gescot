@@ -605,17 +605,17 @@ public class Ventana extends JFrame {
 	private void crearMenuApariencia() 
 	{
 		JMenu aparienciaMenu = new JMenu();
-		aparienciaMenu.setText("Apariencia");
+		aparienciaMenu.setText(Messages.getString("Ventana.108"));
 		aparienciaMenu.setMnemonic('P');
 		menuBar.add(aparienciaMenu);
 
-		JMenuItem cambio = new JMenuItem("Cambiar Look and Feel");
+		JMenuItem cambio = new JMenuItem(Messages.getString("Ventana.109"));
 		aparienciaMenu.add(cambio);
 		cambio.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (JOptionPane.showConfirmDialog(Ventana.this, "Para que se apliquen los cambios, se cerrará el programa y deberá volver a iniciarlo. ¿Está seguro?", "Cambio de apariencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				if (JOptionPane.showConfirmDialog(Ventana.this, Messages.getString("Ventana.110"),Messages.getString("Ventana.111"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				{
 					try 
 					{
@@ -634,45 +634,45 @@ public class Ventana extends JFrame {
 		if (UIManager.getLookAndFeel().getName().equals("Substance"))
 		{
 			JMenu watermark = new JMenu();
-			watermark.setText("Marca de agua");
+			watermark.setText(Messages.getString("Ventana.112"));
 			aparienciaMenu.add(watermark);
 
-			crearMenuItemWatermark("Binario", watermark, new SubstanceBinaryWatermark());
-			crearMenuItemWatermark("Burbujas", watermark, new SubstanceBubblesWatermark());
-			crearMenuItemWatermark("Placa de cobre", watermark, new SubstanceCopperplateEngravingWatermark());
-			crearMenuItemWatermark("Crosshatch", watermark, new SubstanceCrosshatchWatermark());
-			crearMenuItemWatermark("Fabric", watermark, new SubstanceFabricWatermark());
-			crearMenuItemWatermark("Madera", watermark, new SubstanceWoodWatermark());
-			crearMenuItemWatermark("Ruido genérico", watermark, new SubstanceGenericNoiseWatermark());
-			crearMenuItemWatermark("Katakana", watermark, new SubstanceKatakanaWatermark());
-			crearMenuItemWatermark("Campo magnético", watermark, new SubstanceMagneticFieldWatermark());
-			crearMenuItemWatermark("Muro de metal ", watermark, new SubstanceMetalWallWatermark());
-			crearMenuItemWatermark("Barras", watermark, new SubstanceStripeWatermark());
-			crearMenuItemWatermark("Laberinto", watermark, new SubstanceMazeWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.113"), watermark, new SubstanceBinaryWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.114"), watermark, new SubstanceBubblesWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.115"), watermark, new SubstanceCopperplateEngravingWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.116"), watermark, new SubstanceCrosshatchWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.117"), watermark, new SubstanceFabricWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.118"), watermark, new SubstanceWoodWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.119"), watermark, new SubstanceGenericNoiseWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.120"), watermark, new SubstanceKatakanaWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.121"), watermark, new SubstanceMagneticFieldWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.122"), watermark, new SubstanceMetalWallWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.123"), watermark, new SubstanceStripeWatermark());
+			crearMenuItemWatermark(Messages.getString("Ventana.124"), watermark, new SubstanceMazeWatermark());
 
 			JMenu theme = new JMenu();
-			theme.setText("Tema");
+			theme.setText(Messages.getString("Ventana.125"));
 			aparienciaMenu.add(theme);
 
-			crearMenuItemTheme("Otoñal", theme, new AutumnSkin());
-			crearMenuItemTheme("Acero azul", theme, new BusinessBlueSteelSkin());
-			crearMenuItemTheme("Crema", theme, new CremeSkin());
-			crearMenuItemTheme("Esmeralda", theme, new EmeraldDuskSkin());
-			crearMenuItemTheme("Campo de avena", theme, new FieldOfWheatSkin());
-			crearMenuItemTheme("Magma", theme, new MagmaSkin());
-			crearMenuItemTheme("Mango", theme, new MangoSkin());
-			crearMenuItemTheme("Raven", theme, new RavenSkin());
-			crearMenuItemTheme("Luces de calle", theme, new StreetlightsSkin());
-			crearMenuItemTheme("Challenger Deep", theme, new ChallengerDeepSkin());
-			crearMenuItemTheme("Sahara", theme, new SaharaSkin());
-			crearMenuItemTheme("Nemo", theme, new FindingNemoSkin());
-			crearMenuItemTheme("Office Silver 2007", theme, new OfficeSilver2007Skin());
+			crearMenuItemTheme(Messages.getString("Ventana.126"), theme, new AutumnSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.127"), theme, new BusinessBlueSteelSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.128"), theme, new CremeSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.129"), theme, new EmeraldDuskSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.130"), theme, new FieldOfWheatSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.131"), theme, new MagmaSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.132"), theme, new MangoSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.133"), theme, new RavenSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.134"), theme, new StreetlightsSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.135"), theme, new ChallengerDeepSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.136"), theme, new SaharaSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.137"), theme, new FindingNemoSkin());
+			crearMenuItemTheme(Messages.getString("Ventana.138"), theme, new OfficeSilver2007Skin());
 
 			JMenu button = new JMenu();
-			button.setText("Tipo de botones");
+			button.setText(Messages.getString("Ventana.139"));
 			aparienciaMenu.add(button);
-			crearMenuItemButtonShape("Clasico", button, new ClassicButtonShaper());
-			crearMenuItemButtonShape("Redondeado", button, new StandardButtonShaper());
+			crearMenuItemButtonShape(Messages.getString("Ventana.140"), button, new ClassicButtonShaper());
+			crearMenuItemButtonShape(Messages.getString("Ventana.141"), button, new StandardButtonShaper());
 		}
 	}
 
@@ -1075,7 +1075,7 @@ public class Ventana extends JFrame {
 		simMenu.addSeparator();
 
 		JMenuItem comenarSim = new JMenuItem();
-		comenarSim.addActionListener(new AccionComenzarSimulacion(this,controlador, modelo.getSimulacion().getParam()));
+		comenarSim.addActionListener(new AccionComenzarSimulacion(this,controlador, modelo));
 		comenarSim.setText(Messages.getString("Ventana.94")); //$NON-NLS-1$
 		comenarSim.setMnemonic('C');
 		comenarSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5,InputEvent.CTRL_MASK));
