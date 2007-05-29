@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -87,9 +88,7 @@ public class PanelTramo extends JFrame
 	public void creaPanelDatos(){
 		
 		JPanel panelPropiedades = new JPanel();
-		
-		//Antes comentado
-		
+				
 		JPanel panelVias = crearPanelVías();
 		
 		JPanel panelSentido = crearPanelSentido();

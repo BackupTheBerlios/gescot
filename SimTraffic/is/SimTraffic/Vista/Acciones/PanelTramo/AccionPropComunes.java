@@ -36,7 +36,7 @@ public class AccionPropComunes implements ActionListener
 	{
 		PanelPropComunes panelPC = new PanelPropComunes(tramo, panelTramo, panelMapa, controlador, nombreVia, tipoVia);
 		panelPC.setTitle("Establecer propiedades comunes"); //$NON-NLS-1$
-		panelPC.setBounds(80, 120, 500, 500);
+		panelPC.setBounds(80, 120, 303, 313);
 		panelPC.setVisible(true);
 	}
 
