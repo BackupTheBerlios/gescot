@@ -430,7 +430,7 @@ public class Ventana extends JFrame {
 
 		JMenuItem eliminarSeleccion = new JMenuItem(Messages.getString("Ventana.25")); //$NON-NLS-1$
 		eliminarSeleccion.addActionListener(new AccionEliminarSeleccion(
-				modelo, controlador, panel_mapa));
+				modelo, controlador, panel_mapa, this));
 		eliminarSeleccion.addMouseMotionListener(new EscuchaAyuda(Messages.getString("Ventana.26"), this)); //$NON-NLS-1$
 
 		JMenuItem desplazarMapa = new JMenuItem(Messages.getString("Ventana.27")); //$NON-NLS-1$
@@ -566,7 +566,8 @@ public class Ventana extends JFrame {
 		JMenuItem terminar = new JMenuItem(Messages.getString("Ventana.49")); //$NON-NLS-1$
 		terminar.addActionListener(
 				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
+					public void actionPerformed(ActionEvent e)
+					{
 						escucha.notificar(-5);
 					}
 
@@ -1396,5 +1397,13 @@ public class Ventana extends JFrame {
 	}
 	public void setEscuchaSeleccionar(MLSeleccionarYMover m) {
 		escuchaSeleccionar=m;
+	}
+
+	public EscuchaRaton getEscucha() {
+		return escucha;
+	}
+
+	public void setEscucha(EscuchaRaton escucha) {
+		this.escucha = escucha;
 	}
 }

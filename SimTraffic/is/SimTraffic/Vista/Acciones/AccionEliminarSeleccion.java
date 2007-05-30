@@ -6,6 +6,9 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Vista.PanelMapa;
+import is.SimTraffic.Vista.Ventana;
+import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
+import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 
 /**
  * Clase que extiende ActionListener para permitir a los botones o elementos del
@@ -23,10 +26,12 @@ import is.SimTraffic.Vista.PanelMapa;
 
 public class AccionEliminarSeleccion extends AccionesPopUpMenu {
 
-
+	private Ventana ventana;
+	
 	public AccionEliminarSeleccion(IModelo modelo, IControlador controlador,
-			PanelMapa panel_mapa) {
+			PanelMapa panel_mapa, Ventana ventana) {
 		super(modelo, controlador, panel_mapa);
+		this.ventana = ventana;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -40,5 +45,7 @@ public class AccionEliminarSeleccion extends AccionesPopUpMenu {
 			panel_mapa.recrearMapa();
 			panel_mapa.repaint();
 		}
+		if ((ventana.getEscucha() != null) && (ventana.getEscucha() instanceof MLAñadirVia))
+			((MLAñadirVia)(ventana.getEscucha())).reiniciarEscucha();
 	}
 }
