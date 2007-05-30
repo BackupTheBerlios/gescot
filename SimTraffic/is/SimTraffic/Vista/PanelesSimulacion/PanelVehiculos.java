@@ -203,9 +203,7 @@ public class PanelVehiculos extends JFrame {
 		JPanel panelaux2 = new JPanel();
 		panelaux2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		combo.setSelectedIndex(inicial);
-		JButton botonPropiedadesTurismo = new JButton(Messages.getString("PanelVehiculos.24")); //$NON-NLS-1$
 		panelaux2.add(combo);
-		panelaux2.add(botonPropiedadesTurismo);
 		panel.add(panelaux1);
 		panel.add(panelaux2);
 		return panel;
