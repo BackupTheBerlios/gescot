@@ -87,9 +87,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
-import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 
+/*
+import javax.swing.UIManager;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.button.ClassicButtonShaper;
 import org.jvnet.substance.button.StandardButtonShaper;
@@ -121,6 +122,7 @@ import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
 import org.jvnet.substance.watermark.SubstanceStripeWatermark;
 import org.jvnet.substance.watermark.SubstanceWatermark;
 import org.jvnet.substance.watermark.SubstanceWoodWatermark;
+*/
 
 /**
  * Ventana que contiene la interfaz gráfica de la aplicación.
@@ -597,12 +599,12 @@ public class Ventana extends JFrame {
 
 		crearMenuSimulacion();
 
-		crearMenuApariencia();
+		//crearMenuApariencia();
 
 		crearMenuAyuda();
 
 	}
-
+/*
 	private void crearMenuApariencia() 
 	{
 		JMenu aparienciaMenu = new JMenu();
@@ -754,7 +756,7 @@ public class Ventana extends JFrame {
 			}
 		});
 	}
-
+*/
 
 	/**
 	 * Crea el menú Archivo.
