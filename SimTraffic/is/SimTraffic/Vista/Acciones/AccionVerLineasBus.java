@@ -2,8 +2,8 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Messages;
 import is.SimTraffic.Herramientas.HBuscarElemento;
+import is.SimTraffic.Herramientas.HEliminarLineaBus;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.LineaBus;
 import is.SimTraffic.Vista.PanelMapa;
@@ -60,6 +60,26 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 					seleccionada.getTramos().get(0).getNodoInicial().getPos().getLon() );
 			panel_mapa.setLinea(seleccionada);
 			panel_mapa.repaint();
+			}
+		}
+	}
+
+	@Override
+	protected void estableceOyenteEliminar(JButton eliminar) {
+		eliminar.addActionListener(new actionEliminarLineasBus());
+	}
+	
+	private class actionEliminarLineasBus implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			ArrayList<LineaBus> lista=modelo.getMapa().getLineasAutobuses();
+			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){			
+			LineaBus seleccionada = lista.get(elementos.getSelectedIndex());			
+				HEliminarLineaBus nueva=new HEliminarLineaBus(seleccionada);
+				controlador.herramienta(nueva);
+				modelo.getMapa().limpiaSeleccion();
+				poneElementosEnLista();
+				repintaLista();
 			}
 		}
 	}

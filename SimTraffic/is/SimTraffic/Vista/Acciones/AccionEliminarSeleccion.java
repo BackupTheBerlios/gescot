@@ -7,7 +7,6 @@ import is.SimTraffic.IModelo;
 import is.SimTraffic.Herramientas.HEliminarSeleccion;
 import is.SimTraffic.Vista.PanelMapa;
 import is.SimTraffic.Vista.Ventana;
-import is.SimTraffic.Vista.EscuchasRaton.EscuchaRaton;
 import is.SimTraffic.Vista.EscuchasRaton.MLAñadirVia;
 
 /**

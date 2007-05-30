@@ -4,7 +4,7 @@ import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Messages;
 
-import is.SimTraffic.Herramientas.HCargarMapa;
+
 import is.SimTraffic.Herramientas.HGuardarMapa;
 import is.SimTraffic.Mapa.Mapa;
 import is.SimTraffic.Vista.PanelDescargar2;
@@ -15,14 +15,11 @@ import is.SimTraffic.Vista.PanelMapa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 
 
 

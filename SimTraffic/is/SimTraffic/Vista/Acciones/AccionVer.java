@@ -3,16 +3,13 @@ package is.SimTraffic.Vista.Acciones;
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
 import is.SimTraffic.Messages;
-import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Vista.PanelMapa;
-import is.SimTraffic.Vista.BarrasHerramientas.Barra;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -32,6 +29,7 @@ public abstract class AccionVer implements ActionListener {
 	String direccionIcono;
 	String tituloVer;
 	String nombreElemento;
+	JScrollPane panel_lista;
 
 	public AccionVer(IControlador controlador, IModelo modelo,JFrame ventana,PanelMapa panel_mapa, 
 			String direccionIcono, String tituloVer, String nombreElemento) {
@@ -52,13 +50,13 @@ public abstract class AccionVer implements ActionListener {
 		 
 		ClassLoader cl = this.getClass().getClassLoader();
 
-		 JLabel iconoBus = new JLabel((new ImageIcon(cl
+		 JLabel icono = new JLabel((new ImageIcon(cl
 					.getResource("is/SimTraffic/Vista/Imagenes/" + direccionIcono)))); //$NON-NLS-1$
-		 JPanel imagenBus =new JPanel();
-		 imagenBus.setLayout(new BorderLayout());
-		 imagenBus.add(iconoBus);
-		 ventanaVer.add(imagenBus,BorderLayout.WEST); 
-		 JScrollPane panel_lista =new JScrollPane(elementos);
+		 JPanel imagen =new JPanel();
+		 imagen.setLayout(new BorderLayout());
+		 imagen.add(icono);
+		 ventanaVer.add(imagen,BorderLayout.WEST); 
+		 panel_lista =new JScrollPane(elementos);
 		 panel_lista.setBorder(BorderFactory.createEmptyBorder(20, 10, 150, 20));
 		 JPanel titulo =new JPanel();
 		 JLabel label=new JLabel(tituloVer);
@@ -67,13 +65,16 @@ public abstract class AccionVer implements ActionListener {
 		 ventanaVer.add(titulo,BorderLayout.NORTH);
 		 ventanaVer.add(panel_lista,BorderLayout.CENTER);
 		 ventanaVer.setBorder(BorderFactory.createRaisedBevelBorder());
+		 JButton boton_eliminar = new JButton("Eliminar");//Messages.getString("AccionVer.3"));
+		 estableceOyenteEliminar(boton_eliminar);
 		 JButton boton_salir= new JButton(Messages.getString("AccionVer.1")); //$NON-NLS-1$
 		 boton_salir.addActionListener(new accionSalir());
 		 JButton boton_buscar=new JButton(Messages.getString("AccionVer.2")+nombreElemento); //$NON-NLS-1$
 		 estableceOyenteBuscar(boton_buscar);
 		 JPanel botones=new JPanel(new BorderLayout());
 		 botones.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		 botones.add(boton_buscar,BorderLayout.NORTH);
+		 botones.add(boton_eliminar,BorderLayout.NORTH);
+		 botones.add(boton_buscar,BorderLayout.CENTER);
 		 botones.add(boton_salir,BorderLayout.SOUTH);
 		 ventanaVer.add(botones,BorderLayout.SOUTH);
 		 panel_mapa.add(ventanaVer,BorderLayout.WEST);
@@ -81,17 +82,21 @@ public abstract class AccionVer implements ActionListener {
 		 }
 	}
 	
+	abstract protected void estableceOyenteEliminar(JButton eliminar) ;
+	
 	abstract protected void estableceOyenteBuscar(JButton buscar) ;
 	
-	protected void poneElementosEnLista(){
-		elementos = new List(); 
-		
-		//Esta es la línea que cambia en cada AccionVer
-		Iterator it = modelo.getMapa().getLineasAutobuses().iterator();
-		
-		while (it.hasNext()){
-		 elementos.add(((ElementoMapa)it.next()).getNombre());
-		}
+	
+	abstract protected void poneElementosEnLista();
+	
+	protected void repintaLista(){
+		ventanaVer.remove(panel_lista);
+		panel_lista =new JScrollPane(elementos);
+		panel_lista.setBorder(BorderFactory.createEmptyBorder(20, 10, 150, 20));
+		ventanaVer.add(panel_lista,BorderLayout.CENTER);
+		ventanaVer.repaint();
+		panel_mapa.recrear();
+		panel_mapa.repaint();
 	}
 	
 	private class accionSalir implements ActionListener {

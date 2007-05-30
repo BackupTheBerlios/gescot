@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista.Acciones;
 
-import is.SimTraffic.Messages;
 import is.SimTraffic.Vista.PanelMapa;
 
 import javax.swing.JScrollBar;
@@ -31,6 +30,7 @@ public class AuxScrollX extends Thread {
 		termino = true;
 	}
 
+	@SuppressWarnings("static-access")
 	public void run() {
 		while (true && !termino) {
 			int valor = barra.getValue();

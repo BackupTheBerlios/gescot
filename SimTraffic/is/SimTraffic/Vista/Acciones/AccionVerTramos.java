@@ -2,7 +2,7 @@ package is.SimTraffic.Vista.Acciones;
 
 import is.SimTraffic.IControlador;
 import is.SimTraffic.IModelo;
-import is.SimTraffic.Messages;
+import is.SimTraffic.Herramientas.HEliminarTramo;
 import is.SimTraffic.Mapa.ElementoMapa;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Vista.PanelMapa;
@@ -56,6 +56,25 @@ public class AccionVerTramos extends AccionVer {
 				modelo.getMapa().getSeleccion().añadirTramo(seleccionado);
 				panel_mapa.centrarEnPosicion(seleccionado.getNodoInicial().getPos().getLat(),seleccionado.getNodoInicial().getPos().getLon());
 				//panel_mapa.repaint();
+			}
+		}
+	}
+	
+	protected void estableceOyenteEliminar(JButton eliminar) {
+		eliminar.addActionListener(new actionEliminarTramos());
+	}
+	
+	private class actionEliminarTramos implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			ArrayList<Tramo> lista=modelo.getMapa().getTramos();
+			if (!lista.isEmpty()&&elementos.getSelectedIndex()>=0){
+			 Tramo seleccionado = lista.get(elementos.getSelectedIndex());			
+			    HEliminarTramo nueva=new HEliminarTramo(seleccionado);
+				controlador.herramienta(nueva);
+				modelo.getMapa().limpiaSeleccion();	
+				poneElementosEnLista();
+				repintaLista();
 			}
 		}
 	}

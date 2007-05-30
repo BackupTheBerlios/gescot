@@ -1,6 +1,5 @@
 package is.SimTraffic.Vista.Acciones;
 
-import is.SimTraffic.Messages;
 import is.SimTraffic.Utils.PrintUtilities;
 import is.SimTraffic.Vista.PanelMapa;
 

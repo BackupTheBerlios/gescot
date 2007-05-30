@@ -3,7 +3,6 @@ package is.SimTraffic.Vista.BarrasHerramientas;
 import is.SimTraffic.Messages;
 import is.SimTraffic.Mapa.Nodo;
 import is.SimTraffic.Mapa.Posicion;
-import is.SimTraffic.Mapa.Señal;
 import is.SimTraffic.Mapa.Tramo;
 import is.SimTraffic.Mapa.TipoElemento.ITipoElemento;
 import is.SimTraffic.Mapa.TipoElemento.TipoNodoAmenity;
@@ -16,7 +15,6 @@ import is.SimTraffic.Vista.Acciones.PanelNodo.AccionSeleccionarTipo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
