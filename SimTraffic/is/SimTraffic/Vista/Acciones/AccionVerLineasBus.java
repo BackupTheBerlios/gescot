@@ -79,6 +79,7 @@ public class AccionVerLineasBus extends AccionVer implements ActionListener{
 				controlador.herramienta(nueva);
 				modelo.getMapa().limpiaSeleccion();
 				poneElementosEnLista();
+				panel_mapa.setLinea(null);
 				repintaLista();
 			}
 		}
