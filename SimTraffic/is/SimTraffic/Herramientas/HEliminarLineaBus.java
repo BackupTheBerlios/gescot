@@ -45,7 +45,7 @@ public class HEliminarLineaBus implements IHerramienta {
 		return 0;
 	}
 	public String toString(){
-		return Tiempo.Hora()+Messages.getString("HEliminarTramo.0")+Messages.getString("HEliminarTramo.1"); //$NON-NLS-1$ //$NON-NLS-2$
+		return Tiempo.Hora()+Messages.getString("HEliminarLineaBus.0")+Messages.getString("HEliminarLineaBus.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public LineaBus getLineaBus() {
