@@ -424,6 +424,15 @@ public class Mapa {
 		}
 		return false;
 	}
+	
+	public boolean eliminar(LineaBus linea) {
+		if (linea != null && LineasAutobuses.contains(linea)) {
+			LineasAutobuses.remove(linea);
+			cambios_en_mapa=true;
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Método que elimina una linea de autobus. Deberá ampliarse cuando cada
@@ -442,7 +451,7 @@ public class Mapa {
 			return true;
 		}
 		return false;
-	}
+	}	
 
 	public void eliminar(Señal señal) {
 		Señales.remove(señal);
