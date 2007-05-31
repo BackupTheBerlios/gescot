@@ -241,6 +241,7 @@ public class CosteUniforme implements IAlgoritmo {
 		Vector<NodoIA> s = new Vector<NodoIA>(100);
 		s.add(hoja);
 		NodoIA nodoPadre = hoja.getNodoPadre();
+		if (nodoPadre==null) return s;
 		while (nodoPadre.getNodoPadre() != null) {
 			s.add(nodoPadre);
 			nodoPadre = nodoPadre.getNodoPadre();
