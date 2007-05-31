@@ -10,7 +10,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
-
 /**
  * Clase que, de acuerdo con el patrón Flyweight, agrupa las funciones de
  * procesamiento comunes a todos los vehiculos para un grupo de estos.
@@ -52,7 +51,7 @@ public class Inteligencia {
 	boolean puedeEntrar = true;
 
 	private double distDelante;
-	
+
 	private double acelDelante;
 
 	/**
@@ -141,11 +140,19 @@ public class Inteligencia {
 		if (vehiculo.inicializar(entrada, salida)) {
 			entrada = vehiculo.getNodoEntrada();
 			vehiculo.setTramo(vehiculo.siguienteTramo());
-			ArrayList<Vehiculo> vehic= tabla.get(vehiculo.getTramo());
-			vehic.add(vehiculo);
+			ArrayList<Vehiculo> vehic = tabla.get(vehiculo.getTramo());
+			if (vehic != null || vehiculo.getTramo() == null)
+				vehic.add(vehiculo);
+			else {
+				sim.saleVehiculo();
+				vehiculo.setNodoDestino(null);
+				vehiculo.setNodoOrigen(null);
+				vehiculo.setTramo(null);
+				return;
+			}
 			vehiculo.resetaerPosicion();
 			vehiculo.setNodoOrigen(entrada);
-			
+
 			if (vehiculo.getTramo().getNodoInicial() == entrada) {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
 				if (vehiculo.getTramo().getNumCarrilesDir1() == 0) {
@@ -287,7 +294,7 @@ public class Inteligencia {
 	 * 
 	 */
 	private synchronized void controlarCochesDelante(Vehiculo vehiculo) {
-		if (vehiculo.tramo == null ||  tabla.get(vehiculo.tramo) == null)
+		if (vehiculo.tramo == null || tabla.get(vehiculo.tramo) == null)
 			return;
 		iterador = (new ArrayList<Vehiculo>(tabla.get(vehiculo.tramo)))
 				.iterator();
@@ -318,8 +325,7 @@ public class Inteligencia {
 				if (tramo.getNodoInicial() == vehiculo.getNodoDestino()) {
 					while (carril > tramo.getNumCarrilesDir1() && carril > 0)
 						carril--;
-				}
-				else {
+				} else {
 					while (carril > tramo.getNumCarrilesDir2() && carril > 0)
 						carril--;
 				}
@@ -361,10 +367,10 @@ public class Inteligencia {
 		// si cambia de carril, recalcular velDelante
 		if (vehiculo.getTramo() == null)
 			return;
-		
+
 		if (vehiculo.getUltimoCambioCarril() < 10)
 			return;
-		
+
 		int carriles_tramo = 0;
 		if (vehiculo.getNodoDestino() == vehiculo.getTramo().getNodoFinal()) {
 			carriles_tramo = vehiculo.getTramo().getNumCarrilesDir1();
@@ -412,11 +418,14 @@ public class Inteligencia {
 						&& temp.getCarril() == carril)
 					if (temp.getPosicion() > vehiculo.getPosicion()
 							&& temp.getPosicion() - vehiculo.getPosicion() < distanciadelante) {
-						distanciadelante = temp.getPosicion() - vehiculo.getPosicion();
+						distanciadelante = temp.getPosicion()
+								- vehiculo.getPosicion();
 					}
-				    if (temp.getPosicion() < vehiculo.getPosicion() && temp.getPosicion() - vehiculo.getPosicion() > distanciadetras) {
-				    	distanciadetras = temp.getPosicion() - vehiculo.getPosicion();
-				    }
+				if (temp.getPosicion() < vehiculo.getPosicion()
+						&& temp.getPosicion() - vehiculo.getPosicion() > distanciadetras) {
+					distanciadetras = temp.getPosicion()
+							- vehiculo.getPosicion();
+				}
 			}
 		}
 		distanciadelante = distanciadelante * vehiculo.getTramo().getLargo();
@@ -462,20 +471,20 @@ public class Inteligencia {
 			return;
 		}
 		if (velDelante <= vehiculo.getVelocidad()) {
-			/*if (vehiculo.getDistanciaSeguridad() < distDelante) {
-				vehiculo.variarAceleracion(-25);
-			} else if (distDelante < 8) {
-				vehiculo.variarAceleracion(-12);
-			} else if (distDelante < 15) {
-				vehiculo.variarAceleracion(-2);
-			}*/
-			if (distDelante < vehiculo.getDistanciaSeguridad() + 5 ) {
-				vehiculo.velocidad = velDelante/1.2;
-				vehiculo.aceleracion = acelDelante/1.2;
-				//vehiculo.variarAceleracion(-80);
-			}
-			else if (distDelante < 20) {
-				vehiculo.variarAceleracion((int)(- 60 / (distDelante - 5 - vehiculo.getDistanciaSeguridad())));
+			/*
+			 * if (vehiculo.getDistanciaSeguridad() < distDelante) {
+			 * vehiculo.variarAceleracion(-25); } else if (distDelante < 8) {
+			 * vehiculo.variarAceleracion(-12); } else if (distDelante < 15) {
+			 * vehiculo.variarAceleracion(-2); }
+			 */
+			if (distDelante < vehiculo.getDistanciaSeguridad() + 5) {
+				vehiculo.velocidad = velDelante / 1.2;
+				vehiculo.aceleracion = acelDelante / 1.2;
+				// vehiculo.variarAceleracion(-80);
+			} else if (distDelante < 20) {
+				vehiculo
+						.variarAceleracion((int) (-60 / (distDelante - 5 - vehiculo
+								.getDistanciaSeguridad())));
 			}
 			return;
 		}
@@ -527,12 +536,12 @@ public class Inteligencia {
 	private void recalcularVelocidadYPosicion(Vehiculo vehiculo) {
 		if (vehiculo.getTramo() == null)
 			return;
-		
-		//	Si es un autobus y llega a una parada tendra q esperar un tiempo
-		if (vehiculo.getNombre()==Messages.getString("Inteligencia.1")){ //$NON-NLS-1$
-			 ((Bus)vehiculo).parada();		  
+
+		// Si es un autobus y llega a una parada tendra q esperar un tiempo
+		if (vehiculo.getNombre() == Messages.getString("Inteligencia.1")) { //$NON-NLS-1$
+			((Bus) vehiculo).parada();
 		}
-		
+
 		if (tieneQueEsperar(vehiculo)) {
 			vehiculo.aceleracion = 0;
 			vehiculo.velocidad = 0;
@@ -547,7 +556,7 @@ public class Inteligencia {
 			}
 			return;
 		}
-		
+
 		vehiculo.actualizarVelocidad();
 		vehiculo.posicion += vehiculo.velocidad
 				/ vehiculo.getTramo().getLargo();
