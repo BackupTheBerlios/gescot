@@ -41,7 +41,7 @@ public class Principal {
 	 * main.
 	 */
 	public static void main(String[] args) {
-		//cargarLookandFeel();
+		cargarLookandFeel();
 		new Messages();
 		HCargarMapa.p.validate();
 		IModelo modelo = new Modelo();
@@ -53,7 +53,7 @@ public class Principal {
 		controlador.setVista(vista);
 		vista.mostrar();
 	}
-/*
+
 	private static void cargarLookandFeel() 
 	{
 		try 
@@ -124,5 +124,5 @@ public class Principal {
 			SubstanceLookAndFeel.setCurrentWatermark(new org.jvnet.substance.watermark.SubstanceWoodWatermark());
 		}
 	}
-*/
+
 }

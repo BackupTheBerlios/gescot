@@ -87,7 +87,40 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.button.StandardButtonShaper;
+import org.jvnet.substance.button.SubstanceButtonShaper;
+import org.jvnet.substance.skin.AutumnSkin;
+import org.jvnet.substance.skin.BusinessBlueSteelSkin;
+import org.jvnet.substance.skin.ChallengerDeepSkin;
+import org.jvnet.substance.skin.CremeSkin;
+import org.jvnet.substance.skin.EmeraldDuskSkin;
+import org.jvnet.substance.skin.FieldOfWheatSkin;
+import org.jvnet.substance.skin.FindingNemoSkin;
+import org.jvnet.substance.skin.MagmaSkin;
+import org.jvnet.substance.skin.MangoSkin;
+import org.jvnet.substance.skin.OfficeSilver2007Skin;
+import org.jvnet.substance.skin.RavenSkin;
+import org.jvnet.substance.skin.SaharaSkin;
+import org.jvnet.substance.skin.StreetlightsSkin;
+import org.jvnet.substance.skin.SubstanceSkin;
+import org.jvnet.substance.watermark.SubstanceBinaryWatermark;
+import org.jvnet.substance.watermark.SubstanceBubblesWatermark;
+import org.jvnet.substance.watermark.SubstanceCopperplateEngravingWatermark;
+import org.jvnet.substance.watermark.SubstanceCrosshatchWatermark;
+import org.jvnet.substance.watermark.SubstanceFabricWatermark;
+import org.jvnet.substance.watermark.SubstanceGenericNoiseWatermark;
+import org.jvnet.substance.watermark.SubstanceKatakanaWatermark;
+import org.jvnet.substance.watermark.SubstanceMagneticFieldWatermark;
+import org.jvnet.substance.watermark.SubstanceMazeWatermark;
+import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
+import org.jvnet.substance.watermark.SubstanceStripeWatermark;
+import org.jvnet.substance.watermark.SubstanceWatermark;
+import org.jvnet.substance.watermark.SubstanceWoodWatermark;
 
 /*
 import javax.swing.UIManager;
@@ -599,12 +632,12 @@ public class Ventana extends JFrame {
 
 		crearMenuSimulacion();
 
-		//crearMenuApariencia();
+		crearMenuApariencia();
 
 		crearMenuAyuda();
 
 	}
-/*
+
 	private void crearMenuApariencia() 
 	{
 		JMenu aparienciaMenu = new JMenu();
@@ -756,7 +789,7 @@ public class Ventana extends JFrame {
 			}
 		});
 	}
-*/
+
 
 	/**
 	 * Crea el menú Archivo.
