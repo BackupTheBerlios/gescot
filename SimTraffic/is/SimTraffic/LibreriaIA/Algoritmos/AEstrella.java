@@ -209,7 +209,7 @@ public class AEstrella implements IAlgoritmoInformado {
 			cerrados.add(nodoActual);
 			nodoActual = abiertos.peek();
 			//Así permitimos detener la búsqueda al encontrar un fallo.
-//			falloProducido = pararEjecucion();
+			falloProducido = pararEjecucion();
 		}
 		
 		if (nodoActual!= null && esObjetivo(nodoActual)) {
