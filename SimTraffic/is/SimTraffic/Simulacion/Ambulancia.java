@@ -61,9 +61,17 @@ public class Ambulancia extends Vehiculo {
 		tramos = BuscaCamino.obtenerInstancia().buscar(entrada, salida);
 		if (tramos == null || tramos.size() < 1) return false;
 
-		for (int i = tramos.size() -1; i >= 0; i--) {
+		//Incorrecto si no puede ir por el camino de vuelta (por ejemplo en vías unidireccionales, como no).
+		/*for (int i = tramos.size() -1; i >= 0; i--) {
 			tramos.add(tramos.get(i));
-			}
+		}*/
+		ArrayList<Tramo> tramosVuelta = new ArrayList<Tramo>();
+		tramosVuelta = BuscaCamino.obtenerInstancia().buscar(salida, entrada);
+		if (tramosVuelta==null || tramos.size()<1) return false;
+		
+		for (int i = 0; i <= tramosVuelta.size() -1; i++) {
+		tramos.add(tramosVuelta.get(i));
+		}		
 		return true;
 
 	}
