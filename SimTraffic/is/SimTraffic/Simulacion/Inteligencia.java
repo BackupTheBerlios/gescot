@@ -141,7 +141,7 @@ public class Inteligencia {
 			entrada = vehiculo.getNodoEntrada();
 			vehiculo.setTramo(vehiculo.siguienteTramo());
 			ArrayList<Vehiculo> vehic = tabla.get(vehiculo.getTramo());
-			if (vehic != null || vehiculo.getTramo() == null)
+			if (vehic != null && vehiculo.getTramo() != null) // antes: (vehic != null || vehiculo.getTramo() == null) Por comprobar
 				vehic.add(vehiculo);
 			else {
 				sim.saleVehiculo();
@@ -155,17 +155,17 @@ public class Inteligencia {
 
 			if (vehiculo.getTramo().getNodoInicial() == entrada) {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoFinal());
-				if (vehiculo.getTramo().getNumCarrilesDir1() == 0) {
+				if (vehiculo.getTramo().getNumCarrilesDir1() == 0) { 
 					salir = true;
 				}
-				vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
+				else vehiculo.setCarril(random.nextInt(vehiculo.getTramo() //CAMBIO, antes sin else
 						.getNumCarrilesDir1()) + 1);
 			} else {
 				vehiculo.setNodoDestino(vehiculo.getTramo().getNodoInicial());
 				if (vehiculo.getTramo().getNumCarrilesDir2() == 0) {
 					salir = true;
 				}
-				vehiculo.setCarril(random.nextInt(vehiculo.getTramo()
+				else vehiculo.setCarril(random.nextInt(vehiculo.getTramo() //CAMBIO, antes sin else
 						.getNumCarrilesDir2()) + 1);
 
 			}
