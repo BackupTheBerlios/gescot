@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Vector;
 
@@ -166,8 +168,19 @@ public class PanelDescargar2 extends JFrame {
 	}
 
 	private void llamarHerramienta(String s) {
-		File f = new File(cl.getResource("is/SimTraffic/Ejemplos_Ciudades/").getFile().replaceAll("%20", " ")+Messages.getString(s)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		URL sd = cl.getResource("is/SimTraffic/Ejemplos_Ciudades/"+ Messages.getString(s));
+		sd.getFile().replaceAll("%20", " ");
+		URI sde=null;
+		try {
+			sde = sd.toURI();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (sde!=null) {
+		File f = new File(sde); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		controlador.herramienta(new HDescargarMapa(controlador,panel,f));
+		}
 		this.setVisible(false);
 	}
 
